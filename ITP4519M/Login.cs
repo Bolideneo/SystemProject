@@ -35,9 +35,9 @@ namespace ITP4519M
 
         private void accountBox_TextChanged(object sender, EventArgs e)
         {
-            usernameBox.BackColor = Color.White;  
+            usernameBox.BackColor = Color.White;
             accountPanel.BackColor = Color.White;
-        
+
         }
 
         private void accountPanel_Paint(object sender, PaintEventArgs e)
@@ -60,5 +60,9 @@ namespace ITP4519M
             }
         }
 
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
