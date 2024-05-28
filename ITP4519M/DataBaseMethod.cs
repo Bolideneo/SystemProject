@@ -99,6 +99,7 @@ namespace ITP4519M
             string sql = "SELECT MAX(userID) FROM staff";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             object userID = cmd.ExecuteScalar();
+            ServerConnect().Close();
             return userID.ToString();
         }
 
