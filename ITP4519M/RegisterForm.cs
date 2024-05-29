@@ -15,7 +15,7 @@ namespace ITP4519M
     public partial class RegisterForm : Form
     {
         private OperationMode _mode;
-        ProgramMethod.ProgramMethod programMethod;
+        ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
         public RegisterForm(OperationMode mode)
         {
             InitializeComponent();
@@ -40,7 +40,7 @@ namespace ITP4519M
 
         private void RegisterForm_Load(object sender, EventArgs e)
         {
-            programMethod = new ProgramMethod.ProgramMethod();
+            
 
             switch (_mode)
             {

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 
 namespace ITP4519M
@@ -163,6 +165,42 @@ namespace ITP4519M
                 Console.WriteLine("An exception occurred: " + ex.Message);
             }
             return false;
+        }
+
+        //search username
+        public DataTable searchUserInfoByName(string username)
+        {
+            string sql = "SELECT UserID, UserName, Password, department.DepartmentName, Title FROM staff, department WHERE department.departmentID = staff.DepartmentID AND UserName=@username OR UserID=@username";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@username", username);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
+
+        //search username by departmentName
+        public DataTable searchUserInformation(string username, string dept)
+        {
+            string sql = "SELECT UserID, UserName, Password, department.DepartmentName, Title FROM staff, department WHERE staff.DepartmentID=department.DepartmentID AND UserID=@userName OR UserName=@userName AND department.DepartmentName=@dept";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@username", username);
+            cmd.Parameters.AddWithValue("@dept", dept);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
+        public DataTable overallUserInfo()
+        {
+            string sql = "SELECT * FROM staff";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
         }
     }
 }

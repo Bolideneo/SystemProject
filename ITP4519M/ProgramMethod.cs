@@ -53,6 +53,8 @@ namespace ProgramMethod
                 return false;
         }
 
+
+
         public bool createUserAccount(string username, string password, string passwordagain, string dispalynanme, string department, string title)
         {
             if (password != passwordagain)
@@ -69,6 +71,18 @@ namespace ProgramMethod
             else
                 return false;
 
+        }
+
+        //Datatable for user datagridView
+        public DataTable searchUserInformation(string username)
+        {
+            return dataBaseMethod.searchUserInfoByName(username);
+        }
+
+        
+        public DataTable overviewUserinfo()
+        {
+            return dataBaseMethod.overallUserInfo();
         }
 
     }

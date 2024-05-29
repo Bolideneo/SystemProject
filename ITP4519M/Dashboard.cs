@@ -1,15 +1,19 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
+﻿    using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
 using ProgramMethod;
+using Org.BouncyCastle.Asn1.Cmp;
+using System.Reflection.Metadata.Ecma335;
+using System.Reflection;
 
 
 namespace ITP4519M
@@ -24,8 +28,10 @@ namespace ITP4519M
     public partial class Dashboard : Form
     {
 
-        ProgramMethod.ProgramMethod programMethod;
-        string username;
+        private ProgramMethod.ProgramMethod programMethod;
+        private string userID;
+        private int index = -1;
+
         public Dashboard()
         {
             InitializeComponent();
@@ -34,15 +40,11 @@ namespace ITP4519M
 
         }
 
-        public Dashboard(string username)
-        {
-            username = this.username;
-        }
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
             programMethod = new ProgramMethod.ProgramMethod();
-            namelbl.Text = programMethod.getUserDisplayName(username);
+            //namelbl.Text = programMethod.getUserDisplayName(username);
         }
 
 
@@ -77,7 +79,8 @@ namespace ITP4519M
         private void usersbtn_Click(object sender, EventArgs e)
         {
             ShowPanel(userspnl);
-
+            userData.DataSource = programMethod.overviewUserinfo();
+            
         }
 
         private void settingbtn_Click(object sender, EventArgs e)
@@ -138,8 +141,17 @@ namespace ITP4519M
 
         private void editAccountbtn_Click(object sender, EventArgs e)
         {
-            RegisterForm registerForm = new RegisterForm(OperationMode.Edit);
-            registerForm.ShowDialog();
+            if (index == -1)
+            {
+                MessageBox.Show("Please Select One User");
+            }
+            else
+            {
+                RegisterForm registerForm = new RegisterForm(OperationMode.Edit);
+                registerForm.ShowDialog();
+
+
+            }
         }
 
         private void viewAccountbtn_Click(object sender, EventArgs e)
@@ -162,5 +174,26 @@ namespace ITP4519M
         {
 
         }
+
+        //Account dataGridView
+        private void accountSearchBtn_Click(object sender, EventArgs e)
+        {
+            userData.DataSource = programMethod.searchUserInformation(accountSearchBox.Text.Trim());
+        }
+
+        //Account selected dataGridView row
+        private void userData_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                index = e.RowIndex;
+                DataGridViewRow selectRow = userData.Rows[index];
+                userID = selectRow.Cells[0].Value.ToString();
+            }
+            catch
+            {
+            }
+        }
+
     }
 }

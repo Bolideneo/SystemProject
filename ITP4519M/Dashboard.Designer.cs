@@ -1,4 +1,6 @@
-﻿namespace ITP4519M
+﻿using System.Windows.Forms;
+
+namespace ITP4519M
 {
     partial class Dashboard
     {
@@ -54,6 +56,8 @@
             ordersdata = new DataGridView();
             saleReportbtn = new Button();
             editOrdersbtn = new Button();
+            accountSearchBtn = new Button();
+            accountSearchBox = new TextBox();
             contactpnl = new Panel();
             supplersbtn = new Button();
             dealersbtn = new Button();
@@ -107,7 +111,7 @@
             listpnl.Controls.Add(usertypelbl);
             listpnl.Controls.Add(namelbl);
             listpnl.Controls.Add(avatarbox);
-            listpnl.Location = new Point(0, 2);
+            listpnl.Location = new Point(0, 3);
             listpnl.Margin = new Padding(3, 4, 3, 4);
             listpnl.Name = "listpnl";
             listpnl.Size = new Size(200, 875);
@@ -123,7 +127,7 @@
             Logbtn.ImageAlign = ContentAlignment.MiddleLeft;
             Logbtn.ImageIndex = 0;
             Logbtn.ImageList = log_logo;
-            Logbtn.Location = new Point(29, 558);
+            Logbtn.Location = new Point(29, 557);
             Logbtn.Margin = new Padding(3, 4, 3, 4);
             Logbtn.Name = "Logbtn";
             Logbtn.Size = new Size(166, 51);
@@ -152,7 +156,7 @@
             contactsbtn.Location = new Point(29, 459);
             contactsbtn.Margin = new Padding(3, 4, 3, 4);
             contactsbtn.Name = "contactsbtn";
-            contactsbtn.Size = new Size(166, 70);
+            contactsbtn.Size = new Size(173, 75);
             contactsbtn.TabIndex = 7;
             contactsbtn.Text = " Contacts\r\n       Information";
             contactsbtn.UseVisualStyleBackColor = true;
@@ -201,7 +205,7 @@
             usersbtn.ImageAlign = ContentAlignment.MiddleLeft;
             usersbtn.ImageIndex = 0;
             usersbtn.ImageList = Accounts_logo;
-            usersbtn.Location = new Point(29, 386);
+            usersbtn.Location = new Point(29, 387);
             usersbtn.Margin = new Padding(3, 4, 3, 4);
             usersbtn.Name = "usersbtn";
             usersbtn.Size = new Size(166, 51);
@@ -274,7 +278,7 @@
             // 
             usertypelbl.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             usertypelbl.ForeColor = Color.White;
-            usertypelbl.Location = new Point(49, 166);
+            usertypelbl.Location = new Point(49, 165);
             usertypelbl.Name = "usertypelbl";
             usertypelbl.Size = new Size(105, 31);
             usertypelbl.TabIndex = 2;
@@ -287,7 +291,7 @@
             namelbl.ForeColor = Color.White;
             namelbl.Location = new Point(46, 136);
             namelbl.Name = "namelbl";
-            namelbl.Size = new Size(116, 29);
+            namelbl.Size = new Size(117, 29);
             namelbl.TabIndex = 1;
             namelbl.Text = "UserName";
             namelbl.TextAlign = ContentAlignment.MiddleCenter;
@@ -297,10 +301,10 @@
             // 
             avatarbox.BackgroundImage = Properties.Resources.users_logo;
             avatarbox.BackgroundImageLayout = ImageLayout.Stretch;
-            avatarbox.Location = new Point(54, 38);
+            avatarbox.Location = new Point(54, 37);
             avatarbox.Margin = new Padding(3, 4, 3, 4);
             avatarbox.Name = "avatarbox";
-            avatarbox.Size = new Size(94, 94);
+            avatarbox.Size = new Size(94, 93);
             avatarbox.TabIndex = 0;
             avatarbox.TabStop = false;
             // 
@@ -313,7 +317,7 @@
             closebtn.Location = new Point(1457, 4);
             closebtn.Margin = new Padding(3, 4, 3, 4);
             closebtn.Name = "closebtn";
-            closebtn.Size = new Size(40, 50);
+            closebtn.Size = new Size(40, 51);
             closebtn.TabIndex = 15;
             closebtn.Text = "X";
             closebtn.UseVisualStyleBackColor = true;
@@ -327,7 +331,7 @@
             orderpnl.Controls.Add(ordersdata);
             orderpnl.Controls.Add(saleReportbtn);
             orderpnl.Controls.Add(editOrdersbtn);
-            orderpnl.Location = new Point(201, 2);
+            orderpnl.Location = new Point(201, 3);
             orderpnl.Margin = new Padding(3, 4, 3, 4);
             orderpnl.Name = "orderpnl";
             orderpnl.Size = new Size(1250, 875);
@@ -344,7 +348,7 @@
             viewOrderbtn.ForeColor = Color.Black;
             viewOrderbtn.ImageAlign = ContentAlignment.MiddleLeft;
             viewOrderbtn.ImageIndex = 0;
-            viewOrderbtn.Location = new Point(1062, 786);
+            viewOrderbtn.Location = new Point(1062, 787);
             viewOrderbtn.Margin = new Padding(3, 4, 3, 4);
             viewOrderbtn.Name = "viewOrderbtn";
             viewOrderbtn.Size = new Size(185, 56);
@@ -363,7 +367,7 @@
             newOrderbtn.ForeColor = Color.Black;
             newOrderbtn.ImageAlign = ContentAlignment.MiddleLeft;
             newOrderbtn.ImageIndex = 0;
-            newOrderbtn.Location = new Point(871, 786);
+            newOrderbtn.Location = new Point(871, 787);
             newOrderbtn.Margin = new Padding(3, 4, 3, 4);
             newOrderbtn.Name = "newOrderbtn";
             newOrderbtn.Size = new Size(185, 56);
@@ -385,7 +389,7 @@
             // ordersdata
             // 
             ordersdata.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ordersdata.Location = new Point(12, 82);
+            ordersdata.Location = new Point(15, 83);
             ordersdata.Margin = new Padding(3, 4, 3, 4);
             ordersdata.Name = "ordersdata";
             ordersdata.RowHeadersWidth = 51;
@@ -403,7 +407,7 @@
             saleReportbtn.ForeColor = Color.Black;
             saleReportbtn.ImageAlign = ContentAlignment.MiddleLeft;
             saleReportbtn.ImageIndex = 0;
-            saleReportbtn.Location = new Point(1098, 22);
+            saleReportbtn.Location = new Point(1098, 21);
             saleReportbtn.Margin = new Padding(3, 4, 3, 4);
             saleReportbtn.Name = "saleReportbtn";
             saleReportbtn.Size = new Size(149, 49);
@@ -421,7 +425,7 @@
             editOrdersbtn.ForeColor = Color.Black;
             editOrdersbtn.ImageAlign = ContentAlignment.MiddleLeft;
             editOrdersbtn.ImageIndex = 0;
-            editOrdersbtn.Location = new Point(680, 786);
+            editOrdersbtn.Location = new Point(680, 787);
             editOrdersbtn.Margin = new Padding(3, 4, 3, 4);
             editOrdersbtn.Name = "editOrdersbtn";
             editOrdersbtn.Size = new Size(185, 56);
@@ -430,12 +434,39 @@
             editOrdersbtn.UseVisualStyleBackColor = false;
             editOrdersbtn.Click += editOrdersbtn_Click;
             // 
+            // accountSearchBtn
+            // 
+            accountSearchBtn.AutoSize = true;
+            accountSearchBtn.BackColor = SystemColors.HighlightText;
+            accountSearchBtn.FlatAppearance.BorderColor = Color.Gray;
+            accountSearchBtn.FlatStyle = FlatStyle.System;
+            accountSearchBtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            accountSearchBtn.ForeColor = Color.Black;
+            accountSearchBtn.ImageAlign = ContentAlignment.MiddleLeft;
+            accountSearchBtn.ImageIndex = 0;
+            accountSearchBtn.Location = new Point(930, 21);
+            accountSearchBtn.Margin = new Padding(3, 4, 3, 4);
+            accountSearchBtn.Name = "accountSearchBtn";
+            accountSearchBtn.Size = new Size(149, 49);
+            accountSearchBtn.TabIndex = 27;
+            accountSearchBtn.Text = "Search";
+            accountSearchBtn.UseVisualStyleBackColor = false;
+            accountSearchBtn.Click += accountSearchBtn_Click;
+            // 
+            // accountSearchBox
+            // 
+            accountSearchBox.Location = new Point(734, 27);
+            accountSearchBox.Margin = new Padding(3, 4, 3, 4);
+            accountSearchBox.Name = "accountSearchBox";
+            accountSearchBox.Size = new Size(170, 27);
+            accountSearchBox.TabIndex = 26;
+            // 
             // contactpnl
             // 
             contactpnl.Controls.Add(supplersbtn);
             contactpnl.Controls.Add(dealersbtn);
             contactpnl.Controls.Add(contactsdata);
-            contactpnl.Location = new Point(201, 2);
+            contactpnl.Location = new Point(201, 3);
             contactpnl.Margin = new Padding(3, 4, 3, 4);
             contactpnl.Name = "contactpnl";
             contactpnl.Size = new Size(1250, 875);
@@ -453,10 +484,10 @@
             supplersbtn.ForeColor = Color.Black;
             supplersbtn.ImageAlign = ContentAlignment.MiddleLeft;
             supplersbtn.ImageIndex = 0;
-            supplersbtn.Location = new Point(252, 19);
+            supplersbtn.Location = new Point(251, 19);
             supplersbtn.Margin = new Padding(3, 4, 3, 4);
             supplersbtn.Name = "supplersbtn";
-            supplersbtn.Size = new Size(228, 56);
+            supplersbtn.Size = new Size(229, 56);
             supplersbtn.TabIndex = 18;
             supplersbtn.Text = "Supplers information";
             supplersbtn.UseVisualStyleBackColor = false;
@@ -472,7 +503,7 @@
             dealersbtn.ForeColor = Color.Black;
             dealersbtn.ImageAlign = ContentAlignment.MiddleLeft;
             dealersbtn.ImageIndex = 0;
-            dealersbtn.Location = new Point(12, 19);
+            dealersbtn.Location = new Point(11, 19);
             dealersbtn.Margin = new Padding(3, 4, 3, 4);
             dealersbtn.Name = "dealersbtn";
             dealersbtn.Size = new Size(234, 56);
@@ -484,7 +515,7 @@
             // contactsdata
             // 
             contactsdata.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            contactsdata.Location = new Point(12, 82);
+            contactsdata.Location = new Point(11, 83);
             contactsdata.Margin = new Padding(3, 4, 3, 4);
             contactsdata.Name = "contactsdata";
             contactsdata.RowHeadersWidth = 51;
@@ -495,7 +526,7 @@
             // settingpnl
             // 
             settingpnl.Controls.Add(settinglbl);
-            settingpnl.Location = new Point(201, 2);
+            settingpnl.Location = new Point(201, 3);
             settingpnl.Margin = new Padding(3, 4, 3, 4);
             settingpnl.Name = "settingpnl";
             settingpnl.Size = new Size(1250, 875);
@@ -514,12 +545,14 @@
             // 
             // userspnl
             // 
+            userspnl.Controls.Add(accountSearchBtn);
+            userspnl.Controls.Add(accountSearchBox);
             userspnl.Controls.Add(newAccountbtn);
             userspnl.Controls.Add(viewAccountbtn);
             userspnl.Controls.Add(editAccountbtn);
             userspnl.Controls.Add(userData);
             userspnl.Controls.Add(userslbl);
-            userspnl.Location = new Point(201, 2);
+            userspnl.Location = new Point(201, 3);
             userspnl.Margin = new Padding(3, 4, 3, 4);
             userspnl.Name = "userspnl";
             userspnl.Size = new Size(1250, 875);
@@ -530,8 +563,8 @@
             // 
             newAccountbtn.AccessibleRole = AccessibleRole.None;
             newAccountbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            newAccountbtn.Location = new Point(871, 786);
-            newAccountbtn.Margin = new Padding(4, 5, 4, 5);
+            newAccountbtn.Location = new Point(871, 787);
+            newAccountbtn.Margin = new Padding(5);
             newAccountbtn.Name = "newAccountbtn";
             newAccountbtn.Size = new Size(185, 56);
             newAccountbtn.TabIndex = 24;
@@ -543,8 +576,8 @@
             // 
             viewAccountbtn.AccessibleRole = AccessibleRole.None;
             viewAccountbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            viewAccountbtn.Location = new Point(1062, 786);
-            viewAccountbtn.Margin = new Padding(4, 5, 4, 5);
+            viewAccountbtn.Location = new Point(1062, 787);
+            viewAccountbtn.Margin = new Padding(5);
             viewAccountbtn.Name = "viewAccountbtn";
             viewAccountbtn.Size = new Size(185, 56);
             viewAccountbtn.TabIndex = 23;
@@ -556,8 +589,8 @@
             // 
             editAccountbtn.AccessibleRole = AccessibleRole.None;
             editAccountbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            editAccountbtn.Location = new Point(680, 786);
-            editAccountbtn.Margin = new Padding(4, 5, 4, 5);
+            editAccountbtn.Location = new Point(680, 787);
+            editAccountbtn.Margin = new Padding(5);
             editAccountbtn.Name = "editAccountbtn";
             editAccountbtn.Size = new Size(185, 56);
             editAccountbtn.TabIndex = 22;
@@ -567,8 +600,9 @@
             // 
             // userData
             // 
+            userData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             userData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            userData.Location = new Point(12, 82);
+            userData.Location = new Point(11, 83);
             userData.Margin = new Padding(3, 4, 3, 4);
             userData.Name = "userData";
             userData.RowHeadersWidth = 51;
@@ -590,7 +624,7 @@
             // 
             inventorypnl.Controls.Add(stockData);
             inventorypnl.Controls.Add(inventorylbl);
-            inventorypnl.Location = new Point(201, 2);
+            inventorypnl.Location = new Point(201, 3);
             inventorypnl.Margin = new Padding(3, 4, 3, 4);
             inventorypnl.Name = "inventorypnl";
             inventorypnl.Size = new Size(1235, 875);
@@ -600,7 +634,7 @@
             // stockData
             // 
             stockData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            stockData.Location = new Point(12, 82);
+            stockData.Location = new Point(11, 83);
             stockData.Margin = new Padding(3, 4, 3, 4);
             stockData.Name = "stockData";
             stockData.RowHeadersWidth = 51;
@@ -621,7 +655,7 @@
             // dashboardpnl
             // 
             dashboardpnl.Controls.Add(dashboardlbl);
-            dashboardpnl.Location = new Point(201, 2);
+            dashboardpnl.Location = new Point(201, 3);
             dashboardpnl.Margin = new Padding(3, 4, 3, 4);
             dashboardpnl.Name = "dashboardpnl";
             dashboardpnl.Size = new Size(1250, 875);
@@ -645,7 +679,7 @@
             logpnl.Controls.Add(logData);
             logpnl.Controls.Add(button3);
             logpnl.Controls.Add(button4);
-            logpnl.Location = new Point(201, 2);
+            logpnl.Location = new Point(201, 3);
             logpnl.Margin = new Padding(3, 4, 3, 4);
             logpnl.Name = "logpnl";
             logpnl.Size = new Size(1250, 875);
@@ -662,7 +696,7 @@
             button1.ForeColor = Color.Black;
             button1.ImageAlign = ContentAlignment.MiddleLeft;
             button1.ImageIndex = 0;
-            button1.Location = new Point(1062, 786);
+            button1.Location = new Point(1062, 787);
             button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
             button1.Size = new Size(185, 56);
@@ -680,7 +714,7 @@
             button2.ForeColor = Color.Black;
             button2.ImageAlign = ContentAlignment.MiddleLeft;
             button2.ImageIndex = 0;
-            button2.Location = new Point(871, 786);
+            button2.Location = new Point(871, 787);
             button2.Margin = new Padding(3, 4, 3, 4);
             button2.Name = "button2";
             button2.Size = new Size(185, 56);
@@ -701,7 +735,7 @@
             // logData
             // 
             logData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            logData.Location = new Point(12, 82);
+            logData.Location = new Point(11, 83);
             logData.Margin = new Padding(3, 4, 3, 4);
             logData.Name = "logData";
             logData.RowHeadersWidth = 51;
@@ -719,7 +753,7 @@
             button3.ForeColor = Color.Black;
             button3.ImageAlign = ContentAlignment.MiddleLeft;
             button3.ImageIndex = 0;
-            button3.Location = new Point(1098, 22);
+            button3.Location = new Point(1098, 21);
             button3.Margin = new Padding(3, 4, 3, 4);
             button3.Name = "button3";
             button3.Size = new Size(149, 49);
@@ -737,7 +771,7 @@
             button4.ForeColor = Color.Black;
             button4.ImageAlign = ContentAlignment.MiddleLeft;
             button4.ImageIndex = 0;
-            button4.Location = new Point(680, 786);
+            button4.Location = new Point(680, 787);
             button4.Margin = new Padding(3, 4, 3, 4);
             button4.Name = "button4";
             button4.Size = new Size(185, 56);
@@ -750,7 +784,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
-            ClientSize = new Size(1500, 875);
+            ClientSize = new Size(1499, 875);
             Controls.Add(orderpnl);
             Controls.Add(logpnl);
             Controls.Add(contactpnl);
@@ -841,5 +875,7 @@
         private System.Windows.Forms.DataGridView logData;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private TextBox accountSearchBox;
+        private Button accountSearchBtn;
     }
 }
