@@ -148,8 +148,8 @@ namespace ITP4519M
             else
             {
                 RegisterForm registerForm = new RegisterForm(OperationMode.Edit);
+                registerForm.accountEdit(userID);
                 registerForm.ShowDialog();
-
 
             }
         }
@@ -186,12 +186,13 @@ namespace ITP4519M
         {
             try
             {
-                index = e.RowIndex;
-                DataGridViewRow selectRow = userData.Rows[index];
+                index = e.RowIndex;  
+                DataGridViewRow selectRow = this.userData.Rows[index];
                 userID = selectRow.Cells[0].Value.ToString();
             }
             catch
             {
+                MessageBox.Show("Unable to obtained Index");
             }
         }
 

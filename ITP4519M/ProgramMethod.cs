@@ -10,6 +10,7 @@ using System.Collections;
 using System.Data.Common;
 using ITP4519M;
 using System.Web;
+using System.Reflection.Metadata.Ecma335;
 
 
 namespace ProgramMethod
@@ -23,7 +24,7 @@ namespace ProgramMethod
             dataBaseMethod = new DataBaseMethod();
         }
 
-   
+
 
 
         public bool verifyUser(string username, string password)
@@ -79,11 +80,25 @@ namespace ProgramMethod
             return dataBaseMethod.searchUserInfoByName(username);
         }
 
-        
+
         public DataTable overviewUserinfo()
         {
             return dataBaseMethod.overallUserInfo();
         }
 
+
+        public bool updateUserInfor(string userID, String userName, string password, string passwordagain, string dispalynanme, string department, string title)
+        {
+            
+                if (password != passwordagain)
+                {
+                    return false;
+                }
+
+            if (dataBaseMethod.updateUserInfor(userID, userName, password, department, title)){ 
+                return true;
+            }
+            return false;
+        }       
     }
 }

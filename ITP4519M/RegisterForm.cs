@@ -15,7 +15,9 @@ namespace ITP4519M
     public partial class RegisterForm : Form
     {
         private OperationMode _mode;
+        private string userID;
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
+        
         public RegisterForm(OperationMode mode)
         {
             InitializeComponent();
@@ -45,7 +47,7 @@ namespace ITP4519M
             switch (_mode)
             {
                 case OperationMode.View:
-                    //newAccountlabel.Visible = false;
+                    newAccountlabel.Visible = false;
                     SetReadOnly(true);
                     break;
                 case OperationMode.New:
@@ -53,7 +55,8 @@ namespace ITP4519M
                     SetReadOnly(false);
                     break;
                 case OperationMode.Edit:
-                    //newAccountlabel.Visible = false;
+                    accountEditlbl.Visible = true;
+                    newAccountlabel.Visible = false;
                     SetReadOnly(false);
                     break;
             }
@@ -155,6 +158,25 @@ namespace ITP4519M
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        public void accountEdit(string userID)
+        {
+
+            this.userID = userID;
+            this.registerUsernameBox.Text = userID;
+        }
+
+        public void udpateUserInfo(object sender,EventArgs e)
+        {
+            if (programMethod.updateUserInfor(userID, registerUsernameBox.Text.Trim(), registerPasswordBox.Text.Trim(), registerPasswordAgainBox.Text.Trim(), registerDisplaynameBox.Text.Trim(), departBox.GetItemText(this.departBox.SelectedItem), positionBox.Text.Trim()))
+            {
+                MessageBox.Show("Saved");
+            }
+            else
+            {
+                MessageBox.Show("Please input same password");
+            }
         }
     }
 }

@@ -202,5 +202,24 @@ namespace ITP4519M
             adat.Fill(dataTable);
             return dataTable;
         }
+
+        //Update User information
+        public bool updateUserInfor(string userID, string userName, string Password, string deptID, string title)
+        {
+            try
+            {
+                string sql = "UPDATE staff SET UserName=@userName Password=@password, deptID=@deptID, title=@title WHERE UserID=@userID";
+                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+                cmd.Parameters.AddWithValue("@userName", userName);
+                cmd.Parameters.AddWithValue("@password", Password);
+                cmd.Parameters.AddWithValue("@deptID", deptID);
+                cmd.Parameters.AddWithValue("@title", title);
+                int result = cmd.ExecuteNonQuery();
+                if (result > 0)
+                    return true;
+            }
+            catch { return false; }
+            return false;
+        }
     }
 }

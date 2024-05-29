@@ -32,7 +32,7 @@
             registerDisplaynameBox = new TextBox();
             createAccountBtn = new Button();
             label2 = new Label();
-            label3 = new Label();
+            newAccountlabel = new Label();
             label4 = new Label();
             mailBox = new TextBox();
             label5 = new Label();
@@ -53,6 +53,7 @@
             label12 = new Label();
             positionBox = new TextBox();
             registerClearBtn = new Button();
+            accountEditlbl = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
@@ -103,18 +104,18 @@
             label2.Text = "UserName";
             label2.Click += label2_Click;
             // 
-            // label3
+            // newAccountlabel
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.Black;
-            label3.Location = new Point(368, 56);
-            label3.Margin = new Padding(2, 0, 2, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(290, 32);
-            label3.TabIndex = 25;
-            label3.Text = "Create New Account";
-            label3.TextAlign = ContentAlignment.BottomRight;
+            newAccountlabel.AutoSize = true;
+            newAccountlabel.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            newAccountlabel.ForeColor = Color.Black;
+            newAccountlabel.Location = new Point(368, 56);
+            newAccountlabel.Margin = new Padding(2, 0, 2, 0);
+            newAccountlabel.Name = "newAccountlabel";
+            newAccountlabel.Size = new Size(290, 32);
+            newAccountlabel.TabIndex = 25;
+            newAccountlabel.Text = "Create New Account";
+            newAccountlabel.TextAlign = ContentAlignment.BottomRight;
             // 
             // label4
             // 
@@ -343,12 +344,26 @@
             registerClearBtn.UseVisualStyleBackColor = true;
             registerClearBtn.Click += button2_Click;
             // 
+            // accountEditlbl
+            // 
+            accountEditlbl.AutoSize = true;
+            accountEditlbl.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            accountEditlbl.ForeColor = Color.Black;
+            accountEditlbl.Location = new Point(415, 56);
+            accountEditlbl.Margin = new Padding(2, 0, 2, 0);
+            accountEditlbl.Name = "accountEditlbl";
+            accountEditlbl.Size = new Size(186, 32);
+            accountEditlbl.TabIndex = 44;
+            accountEditlbl.Text = "Edit Account";
+            accountEditlbl.TextAlign = ContentAlignment.BottomRight;
+            // 
             // RegisterForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
             ClientSize = new Size(750, 640);
+            Controls.Add(accountEditlbl);
             Controls.Add(registerClearBtn);
             Controls.Add(positionBox);
             Controls.Add(label12);
@@ -364,7 +379,7 @@
             Controls.Add(phoneNumBox);
             Controls.Add(label4);
             Controls.Add(mailBox);
-            Controls.Add(label3);
+            Controls.Add(newAccountlabel);
             Controls.Add(label1);
             Controls.Add(registerDisplaynameBox);
             Controls.Add(createAccountBtn);
@@ -387,7 +402,7 @@
         private System.Windows.Forms.TextBox registerDisplaynameBox;
         private System.Windows.Forms.Button createAccountBtn;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label newAccountlabel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox mailBox;
         private System.Windows.Forms.Label label5;
@@ -408,5 +423,6 @@
         private System.Windows.Forms.Label label12;
         private TextBox positionBox;
         private Button registerClearBtn;
+        private Label accountEditlbl;
     }
 }

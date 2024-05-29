@@ -602,6 +602,7 @@ namespace ITP4519M
             // 
             userData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             userData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            userData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.userData_CellClick);
             userData.Location = new Point(11, 83);
             userData.Margin = new Padding(3, 4, 3, 4);
             userData.Name = "userData";
