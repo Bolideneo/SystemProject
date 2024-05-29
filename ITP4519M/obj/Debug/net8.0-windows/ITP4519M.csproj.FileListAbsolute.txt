@@ -69,9 +69,6 @@ E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ref
 E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.pdb
 E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.genruntimeconfig.cache
 E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ref\ITP4519M.dll
-<<<<<<< HEAD
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.sourcelink.json
-=======
 C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.csproj.AssemblyReference.cache
 C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.Dashboard.resources
 C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.Login.resources
@@ -110,4 +107,4 @@ C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-wind
 C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.pdb
 C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.genruntimeconfig.cache
 C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ref\ITP4519M.dll
->>>>>>> 45938bea4439c7074efa7e4b7914a66503aa7737
+E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.sourcelink.json

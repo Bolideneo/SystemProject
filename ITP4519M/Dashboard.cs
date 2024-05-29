@@ -24,17 +24,12 @@ namespace ITP4519M
     public partial class Dashboard : Form
     {
 
-        ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
-        public Point mouseLocation;
-
+        ProgramMethod.ProgramMethod programMethod;
+        string username;
         public Dashboard()
         {
             InitializeComponent();
             ShowPanel(dashboardpnl);
-<<<<<<< HEAD
-
-        }
-=======
 
 
         }
@@ -43,17 +38,10 @@ namespace ITP4519M
         {
             username = this.username;
         }
->>>>>>> 45938bea4439c7074efa7e4b7914a66503aa7737
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
             programMethod = new ProgramMethod.ProgramMethod();
-        }
-
-
-        public void currentUserDisplayName(string username)
-        {
-
             namelbl.Text = programMethod.getUserDisplayName(username);
         }
 
@@ -146,6 +134,8 @@ namespace ITP4519M
         }
 
 
+
+
         private void editAccountbtn_Click(object sender, EventArgs e)
         {
             RegisterForm registerForm = new RegisterForm(OperationMode.Edit);
@@ -168,25 +158,9 @@ namespace ITP4519M
 
         }
 
-<<<<<<< HEAD
-        private void mouse_Down(object sender, MouseEventArgs e)
-        {
-            mouseLocation = new Point(-e.X, -e.Y);
-        }
-
-        private void mouse_Move(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                Point mousePose = Control.MousePosition;
-                mousePose.Offset(mouseLocation.X, mouseLocation.Y);
-                Location = mousePose;
-            }
-=======
         private void button5_Click(object sender, EventArgs e)
         {
 
->>>>>>> 45938bea4439c7074efa7e4b7914a66503aa7737
         }
     }
 }

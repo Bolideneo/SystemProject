@@ -45,7 +45,7 @@ namespace ITP4519M
             switch (_mode)
             {
                 case OperationMode.View:
-                    newAccountlabel.Visible = false;
+                    //newAccountlabel.Visible = false;
                     SetReadOnly(true);
                     break;
                 case OperationMode.New:
@@ -53,7 +53,7 @@ namespace ITP4519M
                     SetReadOnly(false);
                     break;
                 case OperationMode.Edit:
-                    newAccountlabel.Visible = false;
+                    //newAccountlabel.Visible = false;
                     SetReadOnly(false);
                     break;
             }
