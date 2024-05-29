@@ -82,7 +82,7 @@
             // 
             createAccountBtn.AccessibleRole = AccessibleRole.None;
             createAccountBtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            createAccountBtn.Location = new Point(383, 540);
+            createAccountBtn.Location = new Point(381, 498);
             createAccountBtn.Margin = new Padding(5, 4, 5, 4);
             createAccountBtn.Name = "createAccountBtn";
             createAccountBtn.Size = new Size(248, 48);
@@ -160,7 +160,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.Location = new Point(320, 408);
+            label6.Location = new Point(320, 402);
             label6.Margin = new Padding(5, 0, 5, 0);
             label6.Name = "label6";
             label6.Size = new Size(97, 20);
@@ -173,10 +173,10 @@
             departBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             departBox.FormattingEnabled = true;
             departBox.Items.AddRange(new object[] { "IT", "Sales", "Account", "WareHouse" });
-            departBox.Location = new Point(320, 445);
+            departBox.Location = new Point(326, 436);
             departBox.Margin = new Padding(2, 3, 2, 3);
             departBox.Name = "departBox";
-            departBox.Size = new Size(186, 28);
+            departBox.Size = new Size(185, 28);
             departBox.TabIndex = 32;
             departBox.SelectedIndexChanged += departBox_SelectedIndexChanged;
             // 
@@ -206,7 +206,7 @@
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(2, 3, 2, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(263, 663);
+            panel1.Size = new Size(263, 640);
             panel1.TabIndex = 34;
             // 
             // label7
@@ -247,11 +247,12 @@
             // 
             // pictureBox2
             // 
+            pictureBox2.BackgroundImage = Properties.Resources.company_logo;
             pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox2.Location = new Point(2, 97);
             pictureBox2.Margin = new Padding(2, 3, 2, 3);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(257, 104);
+            pictureBox2.Size = new Size(257, 98);
             pictureBox2.TabIndex = 0;
             pictureBox2.TabStop = false;
             // 
@@ -313,7 +314,7 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label12.Location = new Point(523, 408);
+            label12.Location = new Point(523, 402);
             label12.Margin = new Padding(5, 0, 5, 0);
             label12.Name = "label12";
             label12.Size = new Size(69, 20);
@@ -323,7 +324,7 @@
             // positionBox
             // 
             positionBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            positionBox.Location = new Point(523, 448);
+            positionBox.Location = new Point(523, 436);
             positionBox.Margin = new Padding(5, 4, 5, 4);
             positionBox.Name = "positionBox";
             positionBox.Size = new Size(186, 27);
@@ -333,7 +334,7 @@
             // 
             registerClearBtn.AccessibleRole = AccessibleRole.None;
             registerClearBtn.Font = new Font("Arial Narrow", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            registerClearBtn.Location = new Point(457, 596);
+            registerClearBtn.Location = new Point(454, 564);
             registerClearBtn.Margin = new Padding(5, 4, 5, 4);
             registerClearBtn.Name = "registerClearBtn";
             registerClearBtn.Size = new Size(96, 28);
@@ -347,7 +348,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
-            ClientSize = new Size(750, 663);
+            ClientSize = new Size(750, 640);
             Controls.Add(registerClearBtn);
             Controls.Add(positionBox);
             Controls.Add(label12);
