@@ -109,5 +109,14 @@ namespace ITP4519M.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+
+        internal static System.Drawing.Bitmap company_logo
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("company_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

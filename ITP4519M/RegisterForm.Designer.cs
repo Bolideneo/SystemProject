@@ -82,8 +82,13 @@
             // 
             createAccountBtn.AccessibleRole = AccessibleRole.None;
             createAccountBtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+<<<<<<< HEAD
             createAccountBtn.Location = new Point(335, 405);
             createAccountBtn.Margin = new Padding(4, 3, 4, 3);
+=======
+            createAccountBtn.Location = new Point(381, 498);
+            createAccountBtn.Margin = new Padding(5, 4, 5, 4);
+>>>>>>> 45938bea4439c7074efa7e4b7914a66503aa7737
             createAccountBtn.Name = "createAccountBtn";
             createAccountBtn.Size = new Size(217, 36);
             createAccountBtn.TabIndex = 20;
@@ -161,8 +166,13 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+<<<<<<< HEAD
             label6.Location = new Point(280, 306);
             label6.Margin = new Padding(4, 0, 4, 0);
+=======
+            label6.Location = new Point(320, 402);
+            label6.Margin = new Padding(5, 0, 5, 0);
+>>>>>>> 45938bea4439c7074efa7e4b7914a66503aa7737
             label6.Name = "label6";
             label6.Size = new Size(82, 17);
             label6.TabIndex = 31;
@@ -174,10 +184,17 @@
             departBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             departBox.FormattingEnabled = true;
             departBox.Items.AddRange(new object[] { "IT", "Sales", "Account", "WareHouse" });
+<<<<<<< HEAD
             departBox.Location = new Point(280, 334);
             departBox.Margin = new Padding(2, 2, 2, 2);
             departBox.Name = "departBox";
             departBox.Size = new Size(163, 25);
+=======
+            departBox.Location = new Point(326, 436);
+            departBox.Margin = new Padding(2, 3, 2, 3);
+            departBox.Name = "departBox";
+            departBox.Size = new Size(185, 28);
+>>>>>>> 45938bea4439c7074efa7e4b7914a66503aa7737
             departBox.TabIndex = 32;
             departBox.SelectedIndexChanged += departBox_SelectedIndexChanged;
             // 
@@ -207,7 +224,11 @@
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(2, 2, 2, 2);
             panel1.Name = "panel1";
+<<<<<<< HEAD
             panel1.Size = new Size(230, 497);
+=======
+            panel1.Size = new Size(263, 640);
+>>>>>>> 45938bea4439c7074efa7e4b7914a66503aa7737
             panel1.TabIndex = 34;
             // 
             // label7
@@ -248,11 +269,16 @@
             // 
             // pictureBox2
             // 
+            pictureBox2.BackgroundImage = Properties.Resources.company_logo;
             pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox2.Location = new Point(2, 73);
             pictureBox2.Margin = new Padding(2, 2, 2, 2);
             pictureBox2.Name = "pictureBox2";
+<<<<<<< HEAD
             pictureBox2.Size = new Size(225, 78);
+=======
+            pictureBox2.Size = new Size(257, 98);
+>>>>>>> 45938bea4439c7074efa7e4b7914a66503aa7737
             pictureBox2.TabIndex = 0;
             pictureBox2.TabStop = false;
             // 
@@ -314,8 +340,13 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+<<<<<<< HEAD
             label12.Location = new Point(458, 306);
             label12.Margin = new Padding(4, 0, 4, 0);
+=======
+            label12.Location = new Point(523, 402);
+            label12.Margin = new Padding(5, 0, 5, 0);
+>>>>>>> 45938bea4439c7074efa7e4b7914a66503aa7737
             label12.Name = "label12";
             label12.Size = new Size(58, 17);
             label12.TabIndex = 39;
@@ -324,8 +355,13 @@
             // positionBox
             // 
             positionBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+<<<<<<< HEAD
             positionBox.Location = new Point(458, 336);
             positionBox.Margin = new Padding(4, 3, 4, 3);
+=======
+            positionBox.Location = new Point(523, 436);
+            positionBox.Margin = new Padding(5, 4, 5, 4);
+>>>>>>> 45938bea4439c7074efa7e4b7914a66503aa7737
             positionBox.Name = "positionBox";
             positionBox.Size = new Size(163, 23);
             positionBox.TabIndex = 42;
@@ -334,8 +370,13 @@
             // 
             registerClearBtn.AccessibleRole = AccessibleRole.None;
             registerClearBtn.Font = new Font("Arial Narrow", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+<<<<<<< HEAD
             registerClearBtn.Location = new Point(400, 447);
             registerClearBtn.Margin = new Padding(4, 3, 4, 3);
+=======
+            registerClearBtn.Location = new Point(454, 564);
+            registerClearBtn.Margin = new Padding(5, 4, 5, 4);
+>>>>>>> 45938bea4439c7074efa7e4b7914a66503aa7737
             registerClearBtn.Name = "registerClearBtn";
             registerClearBtn.Size = new Size(84, 21);
             registerClearBtn.TabIndex = 43;
@@ -348,7 +389,11 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
+<<<<<<< HEAD
             ClientSize = new Size(656, 497);
+=======
+            ClientSize = new Size(750, 640);
+>>>>>>> 45938bea4439c7074efa7e4b7914a66503aa7737
             Controls.Add(registerClearBtn);
             Controls.Add(positionBox);
             Controls.Add(label12);

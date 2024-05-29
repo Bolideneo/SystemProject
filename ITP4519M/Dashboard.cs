@@ -31,8 +31,19 @@ namespace ITP4519M
         {
             InitializeComponent();
             ShowPanel(dashboardpnl);
+<<<<<<< HEAD
 
         }
+=======
+
+
+        }
+
+        public Dashboard(string username)
+        {
+            username = this.username;
+        }
+>>>>>>> 45938bea4439c7074efa7e4b7914a66503aa7737
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
@@ -157,6 +168,7 @@ namespace ITP4519M
 
         }
 
+<<<<<<< HEAD
         private void mouse_Down(object sender, MouseEventArgs e)
         {
             mouseLocation = new Point(-e.X, -e.Y);
@@ -170,6 +182,11 @@ namespace ITP4519M
                 mousePose.Offset(mouseLocation.X, mouseLocation.Y);
                 Location = mousePose;
             }
+=======
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+>>>>>>> 45938bea4439c7074efa7e4b7914a66503aa7737
         }
     }
 }

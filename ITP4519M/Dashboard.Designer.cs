@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+<<<<<<< HEAD
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
@@ -39,6 +40,9 @@
             DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+=======
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
+>>>>>>> 45938bea4439c7074efa7e4b7914a66503aa7737
             listpnl = new Panel();
             logOutBtn = new Button();
             setting_logo = new ImageList(components);
@@ -49,8 +53,8 @@
             settingbtn = new Button();
             usersbtn = new Button();
             Accounts_logo = new ImageList(components);
-            inventorybtn = new Button();
-            inventory_logo = new ImageList(components);
+            stockbtn = new Button();
+            stock_logo = new ImageList(components);
             orderbtn = new Button();
             Order_logo = new ImageList(components);
             usertypelbl = new Label();
@@ -113,7 +117,7 @@
             listpnl.Controls.Add(contactsbtn);
             listpnl.Controls.Add(settingbtn);
             listpnl.Controls.Add(usersbtn);
-            listpnl.Controls.Add(inventorybtn);
+            listpnl.Controls.Add(stockbtn);
             listpnl.Controls.Add(orderbtn);
             listpnl.Controls.Add(usertypelbl);
             listpnl.Controls.Add(namelbl);
@@ -153,6 +157,7 @@
             Logbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Logbtn.ForeColor = Color.White;
             Logbtn.ImageAlign = ContentAlignment.MiddleLeft;
+            Logbtn.ImageIndex = 0;
             Logbtn.ImageList = log_logo;
             Logbtn.Location = new Point(25, 418);
             Logbtn.Name = "Logbtn";
@@ -165,8 +170,9 @@
             // log_logo
             // 
             log_logo.ColorDepth = ColorDepth.Depth32Bit;
-            log_logo.ImageSize = new Size(16, 16);
+            log_logo.ImageStream = (ImageListStreamer)resources.GetObject("log_logo.ImageStream");
             log_logo.TransparentColor = Color.Transparent;
+            log_logo.Images.SetKeyName(0, "log_logo.png");
             // 
             // contactsbtn
             // 
@@ -176,6 +182,7 @@
             contactsbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             contactsbtn.ForeColor = Color.White;
             contactsbtn.ImageAlign = ContentAlignment.MiddleLeft;
+            contactsbtn.ImageIndex = 0;
             contactsbtn.ImageList = contact_logo;
             contactsbtn.Location = new Point(25, 344);
             contactsbtn.Name = "contactsbtn";
@@ -188,8 +195,9 @@
             // contact_logo
             // 
             contact_logo.ColorDepth = ColorDepth.Depth32Bit;
-            contact_logo.ImageSize = new Size(16, 16);
+            contact_logo.ImageStream = (ImageListStreamer)resources.GetObject("contact_logo.ImageStream");
             contact_logo.TransparentColor = Color.Transparent;
+            contact_logo.Images.SetKeyName(0, "contact_logo.png");
             // 
             // settingbtn
             // 
@@ -199,6 +207,7 @@
             settingbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             settingbtn.ForeColor = Color.White;
             settingbtn.ImageAlign = ContentAlignment.MiddleLeft;
+            settingbtn.ImageIndex = 0;
             settingbtn.ImageList = setting_logo;
             settingbtn.Location = new Point(25, 481);
             settingbtn.Name = "settingbtn";
@@ -208,6 +217,16 @@
             settingbtn.UseVisualStyleBackColor = true;
             settingbtn.Click += settingbtn_Click;
             // 
+<<<<<<< HEAD
+=======
+            // setting_logo
+            // 
+            setting_logo.ColorDepth = ColorDepth.Depth32Bit;
+            setting_logo.ImageStream = (ImageListStreamer)resources.GetObject("setting_logo.ImageStream");
+            setting_logo.TransparentColor = Color.Transparent;
+            setting_logo.Images.SetKeyName(0, "system_logo.png");
+            // 
+>>>>>>> 45938bea4439c7074efa7e4b7914a66503aa7737
             // usersbtn
             // 
             usersbtn.AutoSize = true;
@@ -216,6 +235,7 @@
             usersbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             usersbtn.ForeColor = Color.White;
             usersbtn.ImageAlign = ContentAlignment.MiddleLeft;
+            usersbtn.ImageIndex = 0;
             usersbtn.ImageList = Accounts_logo;
             usersbtn.Location = new Point(25, 290);
             usersbtn.Name = "usersbtn";
@@ -228,11 +248,13 @@
             // Accounts_logo
             // 
             Accounts_logo.ColorDepth = ColorDepth.Depth32Bit;
-            Accounts_logo.ImageSize = new Size(16, 16);
+            Accounts_logo.ImageStream = (ImageListStreamer)resources.GetObject("Accounts_logo.ImageStream");
             Accounts_logo.TransparentColor = Color.Transparent;
+            Accounts_logo.Images.SetKeyName(0, "accounts_logo.png");
             // 
-            // inventorybtn
+            // stockbtn
             // 
+<<<<<<< HEAD
             inventorybtn.AutoSize = true;
             inventorybtn.FlatAppearance.BorderSize = 0;
             inventorybtn.FlatStyle = FlatStyle.Flat;
@@ -247,12 +269,31 @@
             inventorybtn.Text = "Stock  ";
             inventorybtn.UseVisualStyleBackColor = true;
             inventorybtn.Click += inventorybtn_Click;
+=======
+            stockbtn.AutoSize = true;
+            stockbtn.FlatAppearance.BorderSize = 0;
+            stockbtn.FlatStyle = FlatStyle.Flat;
+            stockbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            stockbtn.ForeColor = Color.White;
+            stockbtn.ImageAlign = ContentAlignment.MiddleLeft;
+            stockbtn.ImageIndex = 0;
+            stockbtn.ImageList = stock_logo;
+            stockbtn.Location = new Point(29, 311);
+            stockbtn.Margin = new Padding(3, 4, 3, 4);
+            stockbtn.Name = "stockbtn";
+            stockbtn.Size = new Size(166, 56);
+            stockbtn.TabIndex = 4;
+            stockbtn.Text = "Stock  ";
+            stockbtn.UseVisualStyleBackColor = true;
+            stockbtn.Click += inventorybtn_Click;
+>>>>>>> 45938bea4439c7074efa7e4b7914a66503aa7737
             // 
-            // inventory_logo
+            // stock_logo
             // 
-            inventory_logo.ColorDepth = ColorDepth.Depth32Bit;
-            inventory_logo.ImageSize = new Size(16, 16);
-            inventory_logo.TransparentColor = Color.Transparent;
+            stock_logo.ColorDepth = ColorDepth.Depth32Bit;
+            stock_logo.ImageStream = (ImageListStreamer)resources.GetObject("stock_logo.ImageStream");
+            stock_logo.TransparentColor = Color.Transparent;
+            stock_logo.Images.SetKeyName(0, "stock_logo.png");
             // 
             // orderbtn
             // 
@@ -262,6 +303,7 @@
             orderbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             orderbtn.ForeColor = Color.White;
             orderbtn.ImageAlign = ContentAlignment.MiddleLeft;
+            orderbtn.ImageIndex = 0;
             orderbtn.ImageList = Order_logo;
             orderbtn.Location = new Point(25, 174);
             orderbtn.Name = "orderbtn";
@@ -274,9 +316,10 @@
             // 
             // Order_logo
             // 
-            Order_logo.ColorDepth = ColorDepth.Depth32Bit;
-            Order_logo.ImageSize = new Size(16, 16);
+            Order_logo.ColorDepth = ColorDepth.Depth24Bit;
+            Order_logo.ImageStream = (ImageListStreamer)resources.GetObject("Order_logo.ImageStream");
             Order_logo.TransparentColor = Color.Transparent;
+            Order_logo.Images.SetKeyName(0, "order_logo.png");
             // 
             // usertypelbl
             // 
@@ -303,10 +346,18 @@
             // 
             // avatarbox
             // 
+            avatarbox.BackgroundImage = Properties.Resources.users_logo;
             avatarbox.BackgroundImageLayout = ImageLayout.Stretch;
+<<<<<<< HEAD
             avatarbox.Location = new Point(57, 28);
             avatarbox.Name = "avatarbox";
             avatarbox.Size = new Size(66, 70);
+=======
+            avatarbox.Location = new Point(54, 38);
+            avatarbox.Margin = new Padding(3, 4, 3, 4);
+            avatarbox.Name = "avatarbox";
+            avatarbox.Size = new Size(94, 94);
+>>>>>>> 45938bea4439c7074efa7e4b7914a66503aa7737
             avatarbox.TabIndex = 0;
             avatarbox.TabStop = false;
             // 
@@ -864,8 +915,8 @@
         private System.Windows.Forms.Label namelbl;
         private System.Windows.Forms.Button orderbtn;
         public System.Windows.Forms.ImageList Order_logo;
-        private System.Windows.Forms.Button inventorybtn;
-        private System.Windows.Forms.ImageList inventory_logo;
+        private System.Windows.Forms.Button stockbtn;
+        private System.Windows.Forms.ImageList stock_logo;
         private System.Windows.Forms.Button usersbtn;
         private System.Windows.Forms.ImageList Accounts_logo;
         private System.Windows.Forms.Button settingbtn;

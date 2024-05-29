@@ -60,7 +60,11 @@ namespace ITP4519M
             }
         }
 
+<<<<<<< HEAD
         private void Login_Load(object sender, EventArgs e)
+=======
+        private void label3_Click(object sender, EventArgs e)
+>>>>>>> 45938bea4439c7074efa7e4b7914a66503aa7737
         {
 
         }
