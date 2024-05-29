@@ -17,16 +17,15 @@ namespace ITP4519M
     {
 
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
+        public Point mouseLocation;
+  
 
         public Login()
         {
             InitializeComponent();
         }
 
-        private void LoginButton_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
@@ -51,6 +50,7 @@ namespace ITP4519M
             {
                 errolabel.Visible = false;
                 Dashboard loginForm = new Dashboard();
+                loginForm.currentUserDisplayName(usernameBox.Text.Trim());
                 loginForm.Show();
                 this.Hide();
             }

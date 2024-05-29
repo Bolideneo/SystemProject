@@ -45,6 +45,7 @@ namespace ITP4519M
             switch (_mode)
             {
                 case OperationMode.View:
+                    newAccountlabel.Visible = false;
                     SetReadOnly(true);
                     break;
                 case OperationMode.New:
@@ -52,6 +53,7 @@ namespace ITP4519M
                     SetReadOnly(false);
                     break;
                 case OperationMode.Edit:
+                    newAccountlabel.Visible = false;
                     SetReadOnly(false);
                     break;
             }
@@ -147,9 +149,12 @@ namespace ITP4519M
         private void button2_Click(object sender, EventArgs e)
         {
 
+            ClearForm();
         }
 
+        private void label3_Click(object sender, EventArgs e)
+        {
 
-
+        }
     }
 }

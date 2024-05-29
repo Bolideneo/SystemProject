@@ -108,6 +108,7 @@ namespace ITP4519M
             string sql = "SELECT DisplayName FROM staff WHERE UserName=@username";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@username", username);
+            ServerConnect().Close();
             object displayName = cmd.ExecuteScalar();
             if (displayName != null)
             {
@@ -129,6 +130,7 @@ namespace ITP4519M
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@dept", departmentName);
             object deptID = cmd.ExecuteScalar();
+            ServerConnect().Close();
             if (deptID != null)
             {
                 return deptID.ToString();

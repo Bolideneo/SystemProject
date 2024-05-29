@@ -3,24 +3,16 @@
   "WorkspaceRootPath": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\databasemethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\databasemethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\programmethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\programmethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\itp4519m\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\dashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\dashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\itp4519m\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -35,24 +27,28 @@
       "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\password_logo.png||{177559E0-D141-11D0-92DF-00A0C9138C45}",
-      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\password_logo.png||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\itp4519m\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\dealer_contact_icon.png||{177559E0-D141-11D0-92DF-00A0C9138C45}",
-      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\dealer_contact_icon.png||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\log_logo.png||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\log_logo.png||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\programmethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\programmethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\databasemethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\databasemethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\itp4519m\\salesorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\salesorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\registerform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\registerform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -62,11 +58,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
+              "Title": "Dashboard.cs",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Dashboard.cs",
+              "RelativeDocumentMoniker": "ITP4519M\\Dashboard.cs",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Dashboard.cs",
+              "RelativeToolTip": "ITP4519M\\Dashboard.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAE8AAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T12:09:42.414Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Program.cs",
+              "RelativeDocumentMoniker": "ITP4519M\\Program.cs",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Program.cs",
+              "RelativeToolTip": "ITP4519M\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T12:29:50.949Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Dashboard.cs [Design]",
               "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Dashboard.cs",
               "RelativeDocumentMoniker": "ITP4519M\\Dashboard.cs",
@@ -78,20 +100,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ProgramMethod.cs",
-              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\ProgramMethod.cs",
-              "RelativeDocumentMoniker": "ITP4519M\\ProgramMethod.cs",
-              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\ProgramMethod.cs",
-              "RelativeToolTip": "ITP4519M\\ProgramMethod.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAACAAAAAdAAAA",
+              "DocumentIndex": 2,
+              "Title": "Dashboard.Designer.cs",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Dashboard.Designer.cs",
+              "RelativeDocumentMoniker": "ITP4519M\\Dashboard.Designer.cs",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Dashboard.Designer.cs",
+              "RelativeToolTip": "ITP4519M\\Dashboard.Designer.cs",
+              "ViewState": "AQIAAEgCAAAAAAAAAAAAAFQCAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T10:16:25.406Z",
+              "WhenOpened": "2024-05-29T03:12:16.84Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 5,
               "Title": "RegisterForm.cs [Design]",
               "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\RegisterForm.cs",
               "RelativeDocumentMoniker": "ITP4519M\\RegisterForm.cs",
@@ -103,7 +125,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
+              "Title": "Login.cs",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Login.cs",
+              "RelativeDocumentMoniker": "ITP4519M\\Login.cs",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Login.cs",
+              "RelativeToolTip": "ITP4519M\\Login.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAvwB8AAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T11:32:21.174Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "Login.cs [Design]",
               "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Login.cs",
               "RelativeDocumentMoniker": "ITP4519M\\Login.cs",
@@ -115,96 +150,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Login.cs",
-              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Login.cs",
-              "RelativeDocumentMoniker": "ITP4519M\\Login.cs",
-              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Login.cs",
-              "RelativeToolTip": "ITP4519M\\Login.cs",
-              "ViewState": "AQIAACIAAAAAAAAAAAAlwCUAAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T11:32:21.174Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "password_logo.png - PNG [204x204, 8 bit, PNG]",
-              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\password_logo.png",
-              "RelativeDocumentMoniker": "ITP4519M\\password_logo.png",
-              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\password_logo.png - PNG [204x204, 8 bit, PNG]",
-              "RelativeToolTip": "ITP4519M\\password_logo.png - PNG [204x204, 8 bit, PNG]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
-              "WhenOpened": "2024-05-28T12:32:11.15Z",
-              "EditorCaption": " - PNG [204x204, 8 bit, PNG]"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Program.cs",
-              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Program.cs",
-              "RelativeDocumentMoniker": "ITP4519M\\Program.cs",
-              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Program.cs",
-              "RelativeToolTip": "ITP4519M\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T12:29:50.949Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
               "Title": "RegisterForm.cs",
               "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\RegisterForm.cs",
               "RelativeDocumentMoniker": "ITP4519M\\RegisterForm.cs",
               "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\RegisterForm.cs",
               "RelativeToolTip": "ITP4519M\\RegisterForm.cs",
-              "ViewState": "AQIAAGQAAAAAAAAAAAAtwGwAAAAMAAAA",
+              "ViewState": "AQIAACAAAAAAAAAAAAAwwDcAAAA0AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T11:09:04.517Z",
+              "WhenOpened": "2024-05-29T03:42:20.558Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DataBaseMethod.cs",
-              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\DataBaseMethod.cs",
-              "RelativeDocumentMoniker": "ITP4519M\\DataBaseMethod.cs",
-              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\DataBaseMethod.cs",
-              "RelativeToolTip": "ITP4519M\\DataBaseMethod.cs",
-              "ViewState": "AQIAAFAAAAAAAAAAAAAgwF8AAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T10:16:09.579Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "Dashboard.cs",
-              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Dashboard.cs",
-              "RelativeDocumentMoniker": "ITP4519M\\Dashboard.cs",
-              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Dashboard.cs",
-              "RelativeToolTip": "ITP4519M\\Dashboard.cs",
-              "ViewState": "AQIAADAAAAAAAAAAAIA+wFQAAAAfAAAA",
+              "Title": "log_logo.png - PNG [512x512, 32 bit, PNG]",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\log_logo.png",
+              "RelativeDocumentMoniker": "ITP4519M\\log_logo.png",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\log_logo.png - PNG [512x512, 32 bit, PNG]",
+              "RelativeToolTip": "ITP4519M\\log_logo.png - PNG [512x512, 32 bit, PNG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2024-05-29T03:33:08.525Z",
+              "EditorCaption": " - PNG [512x512, 32 bit, PNG]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ProgramMethod.cs",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\ProgramMethod.cs",
+              "RelativeDocumentMoniker": "ITP4519M\\ProgramMethod.cs",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\ProgramMethod.cs",
+              "RelativeToolTip": "ITP4519M\\ProgramMethod.cs",
+              "ViewState": "AQIAACQAAAAAAAAAAAAowBIAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T12:09:42.414Z",
+              "WhenOpened": "2024-05-28T10:16:25.406Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "Dealer_contact_icon.png - PNG [640x640, 32 bit, PNG]",
-              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Dealer_contact_icon.png",
-              "RelativeDocumentMoniker": "ITP4519M\\Dealer_contact_icon.png",
-              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Dealer_contact_icon.png - PNG [640x640, 32 bit, PNG]",
-              "RelativeToolTip": "ITP4519M\\Dealer_contact_icon.png - PNG [640x640, 32 bit, PNG]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
-              "WhenOpened": "2024-05-28T12:19:16.623Z",
-              "EditorCaption": " - PNG [640x640, 32 bit, PNG]"
+              "Title": "DataBaseMethod.cs",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\DataBaseMethod.cs",
+              "RelativeDocumentMoniker": "ITP4519M\\DataBaseMethod.cs",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\DataBaseMethod.cs",
+              "RelativeToolTip": "ITP4519M\\DataBaseMethod.cs",
+              "ViewState": "AQIAAFUAAAAAAAAAAADgv4QAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T10:16:09.579Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -216,19 +209,6 @@
               "RelativeToolTip": "ITP4519M\\SalesOrder.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-28T11:01:10.955Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "RegisterForm.Designer.cs",
-              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\RegisterForm.Designer.cs",
-              "RelativeDocumentMoniker": "ITP4519M\\RegisterForm.Designer.cs",
-              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\RegisterForm.Designer.cs",
-              "RelativeToolTip": "ITP4519M\\RegisterForm.Designer.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T10:09:31.321Z",
-              "EditorCaption": ""
             }
           ]
         }
