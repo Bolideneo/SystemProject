@@ -121,6 +121,7 @@
             Logbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Logbtn.ForeColor = Color.White;
             Logbtn.ImageAlign = ContentAlignment.MiddleLeft;
+            Logbtn.ImageIndex = 0;
             Logbtn.ImageList = log_logo;
             Logbtn.Location = new Point(29, 558);
             Logbtn.Margin = new Padding(3, 4, 3, 4);
@@ -136,17 +137,17 @@
             log_logo.ColorDepth = ColorDepth.Depth32Bit;
             log_logo.ImageStream = (ImageListStreamer)resources.GetObject("log_logo.ImageStream");
             log_logo.TransparentColor = Color.Transparent;
-            log_logo.Images.SetKeyName(0, "order_logo.png");
+            log_logo.Images.SetKeyName(0, "log_logo.png");
             // 
             // contactsbtn
             // 
             contactsbtn.AutoSize = true;
-            contactsbtn.BackgroundImageLayout = ImageLayout.None;
             contactsbtn.FlatAppearance.BorderSize = 0;
             contactsbtn.FlatStyle = FlatStyle.Flat;
             contactsbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             contactsbtn.ForeColor = Color.White;
             contactsbtn.ImageAlign = ContentAlignment.MiddleLeft;
+            contactsbtn.ImageIndex = 0;
             contactsbtn.ImageList = contact_logo;
             contactsbtn.Location = new Point(29, 459);
             contactsbtn.Margin = new Padding(3, 4, 3, 4);
@@ -172,6 +173,7 @@
             settingbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             settingbtn.ForeColor = Color.White;
             settingbtn.ImageAlign = ContentAlignment.MiddleLeft;
+            settingbtn.ImageIndex = 0;
             settingbtn.ImageList = setting_logo;
             settingbtn.Location = new Point(29, 641);
             settingbtn.Margin = new Padding(3, 4, 3, 4);
@@ -185,8 +187,9 @@
             // setting_logo
             // 
             setting_logo.ColorDepth = ColorDepth.Depth32Bit;
-            setting_logo.ImageSize = new Size(16, 16);
+            setting_logo.ImageStream = (ImageListStreamer)resources.GetObject("setting_logo.ImageStream");
             setting_logo.TransparentColor = Color.Transparent;
+            setting_logo.Images.SetKeyName(0, "system_logo.png");
             // 
             // usersbtn
             // 
@@ -196,6 +199,7 @@
             usersbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             usersbtn.ForeColor = Color.White;
             usersbtn.ImageAlign = ContentAlignment.MiddleLeft;
+            usersbtn.ImageIndex = 0;
             usersbtn.ImageList = Accounts_logo;
             usersbtn.Location = new Point(29, 386);
             usersbtn.Margin = new Padding(3, 4, 3, 4);
@@ -209,8 +213,9 @@
             // Accounts_logo
             // 
             Accounts_logo.ColorDepth = ColorDepth.Depth32Bit;
-            Accounts_logo.ImageSize = new Size(16, 16);
+            Accounts_logo.ImageStream = (ImageListStreamer)resources.GetObject("Accounts_logo.ImageStream");
             Accounts_logo.TransparentColor = Color.Transparent;
+            Accounts_logo.Images.SetKeyName(0, "accounts_logo.png");
             // 
             // stockbtn
             // 
@@ -220,8 +225,8 @@
             stockbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             stockbtn.ForeColor = Color.White;
             stockbtn.ImageAlign = ContentAlignment.MiddleLeft;
-            stockbtn.ImageList = stock_logo;
             stockbtn.ImageIndex = 0;
+            stockbtn.ImageList = stock_logo;
             stockbtn.Location = new Point(29, 311);
             stockbtn.Margin = new Padding(3, 4, 3, 4);
             stockbtn.Name = "stockbtn";

@@ -30,10 +30,10 @@ namespace ITP4519M
         {
             InitializeComponent();
             ShowPanel(dashboardpnl);
-            
+
 
         }
-        
+
         public Dashboard(string username)
         {
             username = this.username;
@@ -155,7 +155,12 @@ namespace ITP4519M
 
         private void namelbl_Click(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
