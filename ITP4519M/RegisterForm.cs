@@ -164,7 +164,27 @@ namespace ITP4519M
         {
 
             this.userID = userID;
-            this.registerUsernameBox.Text = userID;
+
+            try
+            {
+                var userDetails = programMethod.getUserDetails(userID);
+                if (userDetails != null)
+                {
+                    this.registerUsernameBox.Text = userDetails.UserName;
+                    this.mailBox.Text = userDetails.EmailAddress;
+                    this.phoneNumBox.Text = userDetails.PhoneNum;
+                    this.departBox.Text = userDetails.DepartmentID;
+                    // 填充更多控件...
+                }
+                else
+                {
+                    MessageBox.Show("User details not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public void udpateUserInfo(object sender,EventArgs e)

@@ -205,6 +205,45 @@ namespace ITP4519M
             return dataTable;
         }
 
+        public UserDetails GetUserDetails(MySqlConnection connection, string userID)
+        {
+            UserDetails userDetails = null;
+            string query = "SELECT * FROM staff WHERE UserID = @UserID";
+
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@UserID", userID);
+
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    userDetails = new UserDetails
+                    {
+                        UserID = reader["UserID"].ToString(),
+                        UserName = reader["UserName"].ToString(),
+                        DepartmentID = reader["DepartmentID"].ToString(),
+                        EmailAddress = reader["EmailAddress"].ToString(),
+                        PhoneNum = reader["PhoneNum"].ToString()
+                        // 读取更多字段...
+                    };
+                }
+            }
+            return userDetails;
+        }
+
+
+        public class UserDetails
+        {
+            public string UserID { get; set; }
+            public string UserName { get; set; }
+            public string EmailAddress { get; set; }
+            public string PhoneNum { get; set; }
+            public string DepartmentID { get; set; }
+
+            // 更多字段...
+        }
+
+
         //Update User information
         public bool updateUserInfor(string userID, string userName, string Password, string deptID, string title)
         {

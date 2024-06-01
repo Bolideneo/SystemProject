@@ -13,6 +13,9 @@ using System.Web;
 using System.Reflection.Metadata.Ecma335;
 using System.Diagnostics.SymbolStore;
 using Org.BouncyCastle.Bcpg.OpenPgp;
+using static ITP4519M.DataBaseMethod;
+using Google.Protobuf.WellKnownTypes;
+using Microsoft.VisualBasic.ApplicationServices;
 
 
 namespace ProgramMethod
@@ -88,6 +91,7 @@ namespace ProgramMethod
             return dataBaseMethod.overallUserInfo();
         }
 
+
         public DataTable overviewStockinfo()
         {
             return dataBaseMethod.overallStockinfo();
@@ -140,8 +144,23 @@ namespace ProgramMethod
 
             }
             return true;
-
         }
+
+        public UserDetails getUserDetails(string userid)
+        {
+            using (var connection = dataBaseMethod.ServerConnect())
+            {
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    return dataBaseMethod.GetUserDetails(connection, userid);
+                }
+                else
+                {
+                    throw new Exception("Database connection failed.");
+                }
+            }
+        }
+
 
     }
 }

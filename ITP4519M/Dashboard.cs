@@ -30,16 +30,22 @@ namespace ITP4519M
     {
 
         private ProgramMethod.ProgramMethod programMethod;
+        private Button currentButton;
         private string userID;
         private int index = -1;
 
         public Dashboard()
         {
+
             InitializeComponent();
             ShowPanel(dashboardpnl);
 
 
+
         }
+
+  
+
 
 
         private void Dashboard_Load(object sender, EventArgs e)
@@ -172,10 +178,6 @@ namespace ITP4519M
 
         }
 
-        private void button5_Click(object sender, EventArgs e)
-        {
-
-        }
 
         //Account dataGridView
         private void accountSearchBtn_Click(object sender, EventArgs e)
@@ -198,10 +200,7 @@ namespace ITP4519M
             }
         }
 
-        private void ordersdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
-        }
 
         private void label1_Click(object sender, EventArgs e)
         {
