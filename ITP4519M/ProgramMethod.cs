@@ -11,6 +11,8 @@ using System.Data.Common;
 using ITP4519M;
 using System.Web;
 using System.Reflection.Metadata.Ecma335;
+using System.Diagnostics.SymbolStore;
+using Org.BouncyCastle.Bcpg.OpenPgp;
 
 
 namespace ProgramMethod
@@ -86,6 +88,10 @@ namespace ProgramMethod
             return dataBaseMethod.overallUserInfo();
         }
 
+        public DataTable overviewStockinfo()
+        {
+            return dataBaseMethod.overallStockinfo();
+        }
 
         public bool updateUserInfor(string userID, String userName, string password, string passwordagain, string dispalynanme, string department, string title)
         {
@@ -99,6 +105,43 @@ namespace ProgramMethod
                 return true;
             }
             return false;
-        }       
+        }
+
+        public string[] getStockLabelinfo(DataGridView stockData)
+        {
+            int qty = 0;
+            int demanqty = 0;
+            String[] data = new String[2];
+
+            for (int i = 0; i < stockData.RowCount - 1; i++)
+            {
+                qty += int.Parse(stockData.Rows[i].Cells["QuantityInStock"].Value.ToString());
+                demanqty += int.Parse(stockData.Rows[i].Cells["DemandStock"].Value.ToString());
+
+            }
+            data[0] = qty.ToString();
+            data[1] = demanqty.ToString();
+
+            return data;
+        }
+
+        
+
+        public bool createProductinfo(string productName, string productCategory, string wareHouse, string sn, string unitPrice, string costPrice, string weight, string  autoOrder, string quantityInStock, string reOrderLevel, string dangerLevel, string demand, string description, string status)
+        {
+            string productID = productCategory[0] + (int.Parse(dataBaseMethod.getProductID(productCategory[0]).Substring(1)) + 1).ToString("00000");
+            MessageBox.Show(productID);
+
+            while (!dataBaseMethod.createNewProduct(productID, productName, productCategory, wareHouse, sn, unitPrice, costPrice, weight, autoOrder, quantityInStock, reOrderLevel, dangerLevel ,demand,  description, status))
+            {
+                MessageBox.Show("something wrong");
+                productID = productCategory[0] + (int.Parse(dataBaseMethod.getProductID(productCategory[0]).Substring(1)) + 1).ToString("00000");
+                break;
+
+            }
+            return true;
+
+        }
+
     }
 }

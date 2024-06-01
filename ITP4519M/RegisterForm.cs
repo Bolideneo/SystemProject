@@ -111,7 +111,7 @@ namespace ITP4519M
         private void createAccountBtn_Click(object sender, EventArgs e)
 
         {
-            string selected = this.departBox.GetItemText(this.departBox.SelectedItem);
+            
             if (programMethod.createUserAccount(registerUsernameBox.Text.Trim(), registerPasswordBox.Text.Trim(), registerPasswordAgainBox.Text.Trim(), registerDisplaynameBox.Text.Trim(), departBox.GetItemText(this.departBox.SelectedItem), positionBox.Text.Trim()))
             {
                 MessageBox.Show("User Successfully Created");

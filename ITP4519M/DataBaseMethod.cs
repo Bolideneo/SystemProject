@@ -5,6 +5,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
+using Microsoft.VisualBasic.ApplicationServices;
 using MySql.Data.MySqlClient;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
@@ -127,7 +129,7 @@ namespace ITP4519M
         //Get departmentID when creating account match DepartmentID and departmentname
         public string getDeptID(string departmentName)
         {
-            //Debug.WriteLine(departmentName);
+            Debug.WriteLine(departmentName);
             string sql = "SELECT DepartmentID FROM department WHERE DepartmentName=@dept";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@dept", departmentName);
@@ -221,5 +223,59 @@ namespace ITP4519M
             catch { return false; }
             return false;
         }
+
+        public DataTable overallStockinfo()
+        {
+            string sql = "SELECT ProductID, ProductName, ProductCategory, BinLocation, UnitPrice, CostPrice, QuantityInStock, DemandStock, Status FROM product";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
+        //Get current max ID when creating new product
+        public String getProductID(char character)
+        {
+            string sql = "SELECT MAX(ProductID) FROM product WHERE LEFT(ProductID,1)=@character";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@character", character);
+            Object productID = cmd.ExecuteScalar();
+            return productID.ToString();
+        }
+
+        public bool createNewProduct(string productID, string productname , string productcategory, string binlocation, String sn, string unitprice, string costprice, string weight, string autoOrder, string quantitystock, string reorderlevel, string demandstock, string dangerlevel, string description, string status )
+        {
+            try
+            {
+                string sql = "INSERT INTO product(ProductID, ProdductName, SerialNumber, ProductCategory, BinLocation, Weight, UnitPrice, CostPrice, autoOrder, QuantityInStock, DemandStock, ReOrderQty, DangerQty, Description, Status) VALUES(@pid, @pName, @sn, @pCategory, @binLocation, @weight, @uniPrice, @costPrice, @autoOrder, @quantityStock, @demandStock, @reorderLevel, @dangerLevel, @description, @status)";
+                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+                cmd.Parameters.AddWithValue("@pid", productID);
+                cmd.Parameters.AddWithValue("@pName", productname);
+                cmd.Parameters.AddWithValue("@sn", sn);
+                cmd.Parameters.AddWithValue("@pCategory",productcategory);
+                cmd.Parameters.AddWithValue("@binLocation", binlocation);
+                cmd.Parameters.AddWithValue("@weight", weight);
+                cmd.Parameters.AddWithValue("@unitPrice", unitprice);
+                cmd.Parameters.AddWithValue("@costPrice", costprice);
+                cmd.Parameters.AddWithValue("@autoOrder", autoOrder);
+                cmd.Parameters.AddWithValue("@quantityStock", quantitystock);
+                cmd.Parameters.AddWithValue("@demandStock", demandstock);
+                cmd.Parameters.AddWithValue("@reorderLevel", reorderlevel);
+                cmd.Parameters.AddWithValue("@dangerLevel", dangerlevel);
+                cmd.Parameters.AddWithValue("@description", description);
+                cmd.Parameters.AddWithValue("@status", status);
+
+                if (cmd.ExecuteNonQuery() > 0)
+                    return true;
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine("An exception occurred: " + ex.Message);
+            }
+            return false;
+        }
+
+
     }
 }

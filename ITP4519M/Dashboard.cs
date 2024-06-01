@@ -1,4 +1,4 @@
-﻿    using Microsoft.VisualBasic.ApplicationServices;
+﻿using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +14,7 @@ using ProgramMethod;
 using Org.BouncyCastle.Asn1.Cmp;
 using System.Reflection.Metadata.Ecma335;
 using System.Reflection;
+using ITP4519M;
 
 
 namespace ITP4519M
@@ -44,7 +45,6 @@ namespace ITP4519M
         private void Dashboard_Load(object sender, EventArgs e)
         {
             programMethod = new ProgramMethod.ProgramMethod();
-            //namelbl.Text = programMethod.getUserDisplayName(username);
         }
 
 
@@ -73,6 +73,8 @@ namespace ITP4519M
         private void inventorybtn_Click(object sender, EventArgs e)
         {
             ShowPanel(inventorypnl);
+            stockData.DataSource = programMethod.overviewStockinfo();
+            productOverallLabel();
 
         }
 
@@ -80,7 +82,7 @@ namespace ITP4519M
         {
             ShowPanel(userspnl);
             userData.DataSource = programMethod.overviewUserinfo();
-            
+
         }
 
         private void settingbtn_Click(object sender, EventArgs e)
@@ -186,7 +188,7 @@ namespace ITP4519M
         {
             try
             {
-                index = e.RowIndex;  
+                index = e.RowIndex;
                 DataGridViewRow selectRow = this.userData.Rows[index];
                 userID = selectRow.Cells[0].Value.ToString();
             }
@@ -196,5 +198,62 @@ namespace ITP4519M
             }
         }
 
+        private void ordersdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void stocklbl1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            ITP4519M.ProductForm productForm = new ITP4519M.ProductForm();
+            productForm.ShowDialog();
+        }
+
+
+
+        private void orderpnl_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+
+        //Show datagridView of stock Data
+        private void stockData_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //stockData.DataSource = programMethod.searchUserInformation(accountSearchBox.Text.Trim());
+        }
+
+        //Overall of Stock Data Label
+        private void productOverallLabel()
+        {
+            int temp = stockData.Rows.Count - 1;
+            stockProductDatalbl1.Text = temp.ToString();
+            string[] numberofProduct = programMethod.getStockLabelinfo(stockData);
+            stockProductDatalbl2.Text = numberofProduct[0];
+            stockProductDatalbl3.Text = numberofProduct[1];
+        }
+
+        private void inventorylbl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void newProductbtn_Click(object sender, EventArgs e)
+        {
+            ProductForm productForm = new ProductForm();
+            productForm.StartPosition = FormStartPosition.CenterScreen;
+            productForm.ShowDialog();
+
+        }
     }
 }
