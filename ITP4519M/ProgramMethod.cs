@@ -113,7 +113,7 @@ namespace ProgramMethod
             int demanqty = 0;
             String[] data = new String[2];
 
-            for (int i = 0; i < stockData.RowCount - 1; i++)
+            for (int i = 0; i < stockData.RowCount ; i++)
             {
                 qty += int.Parse(stockData.Rows[i].Cells["QuantityInStock"].Value.ToString());
                 demanqty += int.Parse(stockData.Rows[i].Cells["DemandStock"].Value.ToString());

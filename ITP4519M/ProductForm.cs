@@ -18,6 +18,10 @@ namespace ITP4519M
     public partial class ProductForm : Form
     {
         ProgramMethod.ProgramMethod programMethod;
+        private bool isFormDragging = false;
+        private Point formStartPoint;
+
+
         public ProductForm()
         {
             InitializeComponent();
@@ -25,8 +29,6 @@ namespace ITP4519M
         private void productForm_Load(object sender, EventArgs e)
         {
             programMethod = new ProgramMethod.ProgramMethod();
- //Testing
- //New Testing
         }
 
         private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
@@ -49,7 +51,7 @@ namespace ITP4519M
 
         }
 
-   
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -59,10 +61,6 @@ namespace ITP4519M
         private void productClosebtn_Click(object sender, EventArgs e)
         {
             this.Close();
-
-            //新嘢加落去
-            //舊嘢
-
         }
 
         private void stockAddProductbtn_Click(object sender, EventArgs e)
@@ -88,8 +86,32 @@ namespace ITP4519M
             }
         }
 
+        private void ProductForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                isFormDragging = true;
+                formStartPoint = e.Location;
+            }
         }
 
+        private void ProductForm_MouseUp(object sender, MouseEventArgs e)
+        {
+
+            isFormDragging = false;
+        }
+
+        private void ProductForm_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isFormDragging)
+            {
+                int deltaX = e.X - formStartPoint.X;
+                int deltaY = e.Y - formStartPoint.Y;
+                this.Location = new Point(this.Location.X + deltaX, this.Location.Y + deltaY);
+            }
+        }
     }
+
+}
      
 

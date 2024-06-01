@@ -233,7 +233,6 @@ namespace ITP4519M
             adat.Fill(dataTable);
             return dataTable;
         }
-
         //Get current max ID when creating new product
         public String getProductID(char character)
         {

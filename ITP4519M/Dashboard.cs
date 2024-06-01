@@ -19,7 +19,6 @@ using ITP4519M;
 
 namespace ITP4519M
 {
-
     public enum OperationMode
     {
         View,
@@ -32,6 +31,11 @@ namespace ITP4519M
         private ProgramMethod.ProgramMethod programMethod;
         private string userID;
         private int index = -1;
+        private Button lastClickedButton = null;
+        private Button[] buttons = new Button[2];
+        private bool isFormDragging = false;
+        private Point formStartPoint;
+
 
         public Dashboard()
         {
@@ -39,6 +43,23 @@ namespace ITP4519M
             ShowPanel(dashboardpnl);
 
 
+        }
+
+        private void InitializeButtons()
+        {
+            buttons[0] = usersbtn;
+            buttons[1] = stockbtn;
+            buttons[2] = orderbtn;
+            buttons[3] = contactsbtn;
+            buttons[4] = Logbtn;
+            buttons[5] = settingbtn;
+
+
+
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                buttons[i].LostFocus += Button_LostFocus;
+            }
         }
 
 
@@ -72,6 +93,15 @@ namespace ITP4519M
 
         private void inventorybtn_Click(object sender, EventArgs e)
         {
+
+            if (lastClickedButton != null)
+            {
+                lastClickedButton.ForeColor = Color.White;
+            }
+
+            lastClickedButton = (Button)sender;
+            lastClickedButton.ForeColor = Color.Gray;
+
             ShowPanel(inventorypnl);
             stockData.DataSource = programMethod.overviewStockinfo();
             productOverallLabel();
@@ -80,19 +110,48 @@ namespace ITP4519M
 
         private void usersbtn_Click(object sender, EventArgs e)
         {
+
+            if (lastClickedButton != null)
+            {
+                lastClickedButton.ForeColor = Color.White;
+            }
+
+            lastClickedButton = (Button)sender;
+            lastClickedButton.ForeColor = Color.Gray;
+
+
             ShowPanel(userspnl);
             userData.DataSource = programMethod.overviewUserinfo();
-
+         
         }
 
         private void settingbtn_Click(object sender, EventArgs e)
         {
+
+
+            if (lastClickedButton != null)
+            {
+                lastClickedButton.ForeColor = Color.White;
+            }
+
+            lastClickedButton = (Button)sender;
+            lastClickedButton.ForeColor = Color.Gray;
+
             ShowPanel(settingpnl);
 
         }
 
         private void contactsbtn_Click(object sender, EventArgs e)
         {
+
+            if (lastClickedButton != null)
+            {
+                lastClickedButton.ForeColor = Color.White;
+            }
+
+            lastClickedButton = (Button)sender;
+            lastClickedButton.ForeColor = Color.Gray;
+
             ShowPanel(contactpnl);
 
         }
@@ -163,7 +222,17 @@ namespace ITP4519M
         }
 
         private void Logbtn_Click(object sender, EventArgs e)
+            
         {
+
+            if (lastClickedButton != null)
+            {
+                lastClickedButton.ForeColor = Color.White;
+            }
+
+            lastClickedButton = (Button)sender;
+            lastClickedButton.ForeColor = Color.Gray;
+
             ShowPanel(logpnl);
         }
 
@@ -186,16 +255,15 @@ namespace ITP4519M
         //Account selected dataGridView row
         private void userData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
+
+            if (e.RowIndex != -1)
             {
                 index = e.RowIndex;
                 DataGridViewRow selectRow = this.userData.Rows[index];
                 userID = selectRow.Cells[0].Value.ToString();
             }
-            catch
-            {
-                MessageBox.Show("Unable to obtained Index");
-            }
+
+
         }
 
         private void ordersdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -236,7 +304,7 @@ namespace ITP4519M
         //Overall of Stock Data Label
         private void productOverallLabel()
         {
-            int temp = stockData.Rows.Count - 1;
+            int temp = stockData.Rows.Count;
             stockProductDatalbl1.Text = temp.ToString();
             string[] numberofProduct = programMethod.getStockLabelinfo(stockData);
             stockProductDatalbl2.Text = numberofProduct[0];
@@ -250,10 +318,61 @@ namespace ITP4519M
 
         private void newProductbtn_Click(object sender, EventArgs e)
         {
+
+
             ProductForm productForm = new ProductForm();
             productForm.StartPosition = FormStartPosition.CenterScreen;
             productForm.ShowDialog();
 
+        }
+
+        private void userbtn_MouseEnter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void stockData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void Button_LostFocus(object sender, EventArgs e)
+        {
+
+            if (lastClickedButton != null)
+            {
+                lastClickedButton.ForeColor = SystemColors.Control;
+            }
+        }
+
+        private void listpnl_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Dashboard_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                isFormDragging = true;
+                formStartPoint = e.Location;
+            }
+        }
+
+        private void Dashboard_MouseUp(object sender, MouseEventArgs e)
+        {
+            isFormDragging = false;
+
+        }
+
+        private void Dashboard_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isFormDragging)
+            {
+                int deltaX = e.X - formStartPoint.X;
+                int deltaY = e.Y - formStartPoint.Y;
+                this.Location = new Point(this.Location.X + deltaX, this.Location.Y + deltaY);
+            }
         }
     }
 }

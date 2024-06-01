@@ -444,6 +444,9 @@
             Name = "ProductForm";
             Text = "Form1";
             Load += productForm_Load;
+            MouseDown += ProductForm_MouseDown;
+            MouseMove += ProductForm_MouseMove;
+            MouseUp += ProductForm_MouseUp;
             ResumeLayout(false);
             PerformLayout();
         }
