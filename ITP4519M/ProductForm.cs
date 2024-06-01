@@ -57,6 +57,10 @@ namespace ITP4519M
         private void productClosebtn_Click(object sender, EventArgs e)
         {
             this.Close();
+
+            //新嘢加落去
+            //舊嘢
+
         }
 
         private void stockAddProductbtn_Click(object sender, EventArgs e)
