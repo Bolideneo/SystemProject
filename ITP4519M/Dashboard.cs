@@ -44,7 +44,7 @@ namespace ITP4519M
 
         }
 
-  
+
 
 
 
@@ -252,6 +252,11 @@ namespace ITP4519M
             ProductForm productForm = new ProductForm();
             productForm.StartPosition = FormStartPosition.CenterScreen;
             productForm.ShowDialog();
+
+        }
+
+        private void listpnl_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }

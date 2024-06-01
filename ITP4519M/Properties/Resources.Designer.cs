@@ -118,5 +118,14 @@ namespace ITP4519M.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+
+        internal static System.Drawing.Bitmap dashboard_background
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("dashboard_background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

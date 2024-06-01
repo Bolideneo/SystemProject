@@ -25,7 +25,7 @@ namespace ITP4519M
         private void productForm_Load(object sender, EventArgs e)
         {
             programMethod = new ProgramMethod.ProgramMethod();
-//Tim add
+
         }
 
         private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
@@ -48,16 +48,13 @@ namespace ITP4519M
 
         }
 
-   
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void productClosebtn_Click(object sender, EventArgs e)
         {
             this.Close();
+
+
         }
 
         private void stockAddProductbtn_Click(object sender, EventArgs e)
