@@ -51,6 +51,7 @@ namespace ITP4519M
         private void Dashboard_Load(object sender, EventArgs e)
         {
             programMethod = new ProgramMethod.ProgramMethod();
+            closebtn.BringToFront();
         }
 
 

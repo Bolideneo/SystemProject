@@ -142,7 +142,7 @@ namespace ITP4519M
             listpnl.Location = new Point(0, 3);
             listpnl.Margin = new Padding(3, 4, 3, 4);
             listpnl.Name = "listpnl";
-            listpnl.Size = new Size(200, 875);
+            listpnl.Size = new Size(200, 876);
             listpnl.TabIndex = 14;
             listpnl.Paint += listpnl_Paint;
             // 
@@ -339,17 +339,18 @@ namespace ITP4519M
             // 
             // closebtn
             // 
+            closebtn.BackColor = SystemColors.Menu;
             closebtn.Cursor = Cursors.Hand;
             closebtn.FlatAppearance.BorderSize = 0;
             closebtn.FlatStyle = FlatStyle.Flat;
             closebtn.Font = new Font("Verdana", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            closebtn.Location = new Point(1258, 1);
+            closebtn.Location = new Point(1457, 2);
             closebtn.Margin = new Padding(3, 4, 3, 4);
             closebtn.Name = "closebtn";
             closebtn.Size = new Size(40, 51);
             closebtn.TabIndex = 15;
             closebtn.Text = "X";
-            closebtn.UseVisualStyleBackColor = true;
+            closebtn.UseVisualStyleBackColor = false;
             closebtn.Click += CloseButton_Click;
             // 
             // orderpnl
@@ -929,13 +930,12 @@ namespace ITP4519M
             // 
             dashboardpnl.BackgroundImage = Properties.Resources.dashboard_background;
             dashboardpnl.BackgroundImageLayout = ImageLayout.Stretch;
-            dashboardpnl.Controls.Add(closebtn);
             dashboardpnl.Controls.Add(label1);
             dashboardpnl.Controls.Add(dashboardlbl);
-            dashboardpnl.Location = new Point(201, 3);
+            dashboardpnl.Location = new Point(201, 2);
             dashboardpnl.Margin = new Padding(3, 4, 3, 4);
             dashboardpnl.Name = "dashboardpnl";
-            dashboardpnl.Size = new Size(1298, 875);
+            dashboardpnl.Size = new Size(1296, 876);
             dashboardpnl.TabIndex = 1;
             // 
             // label1
@@ -1090,6 +1090,7 @@ namespace ITP4519M
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
             ClientSize = new Size(1499, 875);
+            Controls.Add(closebtn);
             Controls.Add(listpnl);
             Controls.Add(dashboardpnl);
             Controls.Add(settingpnl);
