@@ -43,6 +43,8 @@ namespace ITP4519M
             {
                 case OperationMode.View:
                     viewaccountlbl.Visible = true;
+                    passwordAgainlbl.Visible = false;
+                    registerPasswordAgainBox.Visible = false;
                     newAccountlabel.Visible = false;
                     createAccountBtn.Visible = false;
                     editAccountbtn.Visible = false;
@@ -87,7 +89,7 @@ namespace ITP4519M
             mailBox.Text = string.Empty;
             phoneNumBox.Text = string.Empty;
             departBox.Text = string.Empty;
-            positionBox.Text = string.Empty;
+            titleBox.Text = string.Empty;
 
 
         }
@@ -101,6 +103,7 @@ namespace ITP4519M
             registerPasswordAgainBox.ReadOnly = readOnly;
             mailBox.ReadOnly = readOnly;
             phoneNumBox.ReadOnly = readOnly;
+            titleBox.ReadOnly = readOnly;
 
 
             registerUsernameBox.Enabled = !readOnly;
@@ -110,7 +113,7 @@ namespace ITP4519M
             mailBox.Enabled = !readOnly;
             phoneNumBox.Enabled = !readOnly;
             departBox.Enabled = true;
-            positionBox.Enabled = true;
+            titleBox.Enabled = !readOnly;
 
         }
 
@@ -128,13 +131,13 @@ namespace ITP4519M
 
         {
 
-            if (programMethod.createUserAccount(registerUsernameBox.Text.Trim(), registerPasswordBox.Text.Trim(), registerPasswordAgainBox.Text.Trim(), registerDisplaynameBox.Text.Trim(), departBox.GetItemText(this.departBox.SelectedItem), positionBox.Text.Trim()))
+            if (programMethod.createUserAccount(registerUsernameBox.Text.Trim(), registerPasswordBox.Text.Trim(), registerPasswordAgainBox.Text.Trim(), registerDisplaynameBox.Text.Trim(), departBox.GetItemText(this.departBox.SelectedItem), titleBox.Text.Trim()))
             {
                 MessageBox.Show("User Successfully Created");
                 registerUsernameBox.Text = "";
                 registerPasswordBox.Text = "";
                 registerPasswordAgainBox.Text = "";
-                positionBox.Text = "";
+                titleBox.Text = "";
             }
             else
             {
@@ -189,8 +192,10 @@ namespace ITP4519M
                     this.registerUsernameBox.Text = userDetails.UserName;
                     this.mailBox.Text = userDetails.EmailAddress;
                     this.phoneNumBox.Text = userDetails.PhoneNum;
-                    this.departBox.Text = userDetails.DepartmentID;
-                   
+                    this.departBox.SelectedItem = userDetails.Department;
+                    this.titleBox.Text = userDetails.Title;
+                    this.registerDisplaynameBox.Text = userDetails.DisplayName;
+
                 }
                 else
                 {
@@ -207,7 +212,7 @@ namespace ITP4519M
         private void editAccountbtn_Click(object sender, EventArgs e)
         {
             MessageBox.Show(departBox.GetItemText(this.departBox.SelectedItem));
-            if (programMethod.updateUserInfor(userID, registerUsernameBox.Text.Trim(), registerPasswordBox.Text.Trim(), registerPasswordAgainBox.Text.Trim(), registerDisplaynameBox.Text.Trim(), departBox.GetItemText(this.departBox.SelectedItem), positionBox.Text.Trim()))
+            if (programMethod.updateUserInfor(userID, registerUsernameBox.Text.Trim(), registerPasswordBox.Text.Trim(), registerPasswordAgainBox.Text.Trim(), registerDisplaynameBox.Text.Trim(), departBox.GetItemText(this.departBox.SelectedItem), titleBox.Text.Trim()))
             {
                 MessageBox.Show("Saved");
             }

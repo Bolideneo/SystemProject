@@ -28,16 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
+            displaynamelbl = new Label();
             registerDisplaynameBox = new TextBox();
             createAccountBtn = new Button();
-            label2 = new Label();
+            usernamelbl = new Label();
             newAccountlabel = new Label();
-            label4 = new Label();
+            maillbl = new Label();
             mailBox = new TextBox();
-            label5 = new Label();
+            phoneNumlbl = new Label();
             phoneNumBox = new TextBox();
-            label6 = new Label();
+            departlbl = new Label();
             departBox = new ComboBox();
             button1 = new Button();
             panel1 = new Panel();
@@ -47,11 +47,11 @@
             pictureBox2 = new PictureBox();
             registerUsernameBox = new TextBox();
             registerPasswordBox = new TextBox();
-            label10 = new Label();
-            label11 = new Label();
+            passwordlbl = new Label();
+            passwordAgainlbl = new Label();
             registerPasswordAgainBox = new TextBox();
-            label12 = new Label();
-            positionBox = new TextBox();
+            titlelbl = new Label();
+            titleBox = new TextBox();
             registerClearBtn = new Button();
             accountEditlbl = new Label();
             viewaccountlbl = new Label();
@@ -60,16 +60,16 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
-            // label1
+            // displaynamelbl
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(520, 137);
-            label1.Margin = new Padding(5, 0, 5, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(109, 20);
-            label1.TabIndex = 22;
-            label1.Text = "DisplayName";
+            displaynamelbl.AutoSize = true;
+            displaynamelbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            displaynamelbl.Location = new Point(520, 137);
+            displaynamelbl.Margin = new Padding(5, 0, 5, 0);
+            displaynamelbl.Name = "displaynamelbl";
+            displaynamelbl.Size = new Size(109, 20);
+            displaynamelbl.TabIndex = 22;
+            displaynamelbl.Text = "DisplayName";
             // 
             // registerDisplaynameBox
             // 
@@ -94,17 +94,17 @@
             createAccountBtn.UseVisualStyleBackColor = true;
             createAccountBtn.Click += createAccountBtn_Click;
             // 
-            // label2
+            // usernamelbl
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(320, 137);
-            label2.Margin = new Padding(5, 0, 5, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(89, 20);
-            label2.TabIndex = 19;
-            label2.Text = "UserName";
-            label2.Click += label2_Click;
+            usernamelbl.AutoSize = true;
+            usernamelbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            usernamelbl.Location = new Point(320, 137);
+            usernamelbl.Margin = new Padding(5, 0, 5, 0);
+            usernamelbl.Name = "usernamelbl";
+            usernamelbl.Size = new Size(89, 20);
+            usernamelbl.TabIndex = 19;
+            usernamelbl.Text = "UserName";
+            usernamelbl.Click += label2_Click;
             // 
             // newAccountlabel
             // 
@@ -119,16 +119,16 @@
             newAccountlabel.Text = "Create New Account";
             newAccountlabel.TextAlign = ContentAlignment.BottomRight;
             // 
-            // label4
+            // maillbl
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(321, 308);
-            label4.Margin = new Padding(5, 0, 5, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(107, 20);
-            label4.TabIndex = 27;
-            label4.Text = "Mail Address";
+            maillbl.AutoSize = true;
+            maillbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            maillbl.Location = new Point(321, 308);
+            maillbl.Margin = new Padding(5, 0, 5, 0);
+            maillbl.Name = "maillbl";
+            maillbl.Size = new Size(107, 20);
+            maillbl.TabIndex = 27;
+            maillbl.Text = "Mail Address";
             // 
             // mailBox
             // 
@@ -139,16 +139,16 @@
             mailBox.Size = new Size(186, 27);
             mailBox.TabIndex = 26;
             // 
-            // label5
+            // phoneNumlbl
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(520, 308);
-            label5.Margin = new Padding(5, 0, 5, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(120, 20);
-            label5.TabIndex = 29;
-            label5.Text = "Phone Number";
+            phoneNumlbl.AutoSize = true;
+            phoneNumlbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            phoneNumlbl.Location = new Point(520, 308);
+            phoneNumlbl.Margin = new Padding(5, 0, 5, 0);
+            phoneNumlbl.Name = "phoneNumlbl";
+            phoneNumlbl.Size = new Size(120, 20);
+            phoneNumlbl.TabIndex = 29;
+            phoneNumlbl.Text = "Phone Number";
             // 
             // phoneNumBox
             // 
@@ -159,20 +159,21 @@
             phoneNumBox.Size = new Size(186, 27);
             phoneNumBox.TabIndex = 28;
             // 
-            // label6
+            // departlbl
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.Location = new Point(320, 402);
-            label6.Margin = new Padding(5, 0, 5, 0);
-            label6.Name = "label6";
-            label6.Size = new Size(97, 20);
-            label6.TabIndex = 31;
-            label6.Text = "Department";
-            label6.Click += label6_Click;
+            departlbl.AutoSize = true;
+            departlbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            departlbl.Location = new Point(320, 402);
+            departlbl.Margin = new Padding(5, 0, 5, 0);
+            departlbl.Name = "departlbl";
+            departlbl.Size = new Size(97, 20);
+            departlbl.TabIndex = 31;
+            departlbl.Text = "Department";
+            departlbl.Click += label6_Click;
             // 
             // departBox
             // 
+            departBox.DropDownStyle = ComboBoxStyle.DropDownList;
             departBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             departBox.FormattingEnabled = true;
             departBox.Items.AddRange(new object[] { "IT", "Sales", "Account", "WareHouse" });
@@ -279,29 +280,29 @@
             registerPasswordBox.Size = new Size(186, 27);
             registerPasswordBox.TabIndex = 35;
             // 
-            // label10
+            // passwordlbl
             // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label10.Location = new Point(321, 217);
-            label10.Margin = new Padding(5, 0, 5, 0);
-            label10.Name = "label10";
-            label10.Size = new Size(83, 20);
-            label10.TabIndex = 36;
-            label10.Text = "Password";
-            label10.Click += label10_Click;
+            passwordlbl.AutoSize = true;
+            passwordlbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            passwordlbl.Location = new Point(321, 217);
+            passwordlbl.Margin = new Padding(5, 0, 5, 0);
+            passwordlbl.Name = "passwordlbl";
+            passwordlbl.Size = new Size(83, 20);
+            passwordlbl.TabIndex = 36;
+            passwordlbl.Text = "Password";
+            passwordlbl.Click += label10_Click;
             // 
-            // label11
+            // passwordAgainlbl
             // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label11.Location = new Point(520, 217);
-            label11.Margin = new Padding(5, 0, 5, 0);
-            label11.Name = "label11";
-            label11.Size = new Size(130, 20);
-            label11.TabIndex = 38;
-            label11.Text = "Password Again";
-            label11.Click += label11_Click;
+            passwordAgainlbl.AutoSize = true;
+            passwordAgainlbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            passwordAgainlbl.Location = new Point(520, 217);
+            passwordAgainlbl.Margin = new Padding(5, 0, 5, 0);
+            passwordAgainlbl.Name = "passwordAgainlbl";
+            passwordAgainlbl.Size = new Size(130, 20);
+            passwordAgainlbl.TabIndex = 38;
+            passwordAgainlbl.Text = "Password Again";
+            passwordAgainlbl.Click += label11_Click;
             // 
             // registerPasswordAgainBox
             // 
@@ -313,25 +314,25 @@
             registerPasswordAgainBox.Size = new Size(187, 27);
             registerPasswordAgainBox.TabIndex = 37;
             // 
-            // label12
+            // titlelbl
             // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label12.Location = new Point(523, 402);
-            label12.Margin = new Padding(5, 0, 5, 0);
-            label12.Name = "label12";
-            label12.Size = new Size(69, 20);
-            label12.TabIndex = 39;
-            label12.Text = "Position";
+            titlelbl.AutoSize = true;
+            titlelbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            titlelbl.Location = new Point(523, 402);
+            titlelbl.Margin = new Padding(5, 0, 5, 0);
+            titlelbl.Name = "titlelbl";
+            titlelbl.Size = new Size(41, 20);
+            titlelbl.TabIndex = 39;
+            titlelbl.Text = "Title";
             // 
-            // positionBox
+            // titleBox
             // 
-            positionBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            positionBox.Location = new Point(523, 436);
-            positionBox.Margin = new Padding(5, 4, 5, 4);
-            positionBox.Name = "positionBox";
-            positionBox.Size = new Size(186, 27);
-            positionBox.TabIndex = 42;
+            titleBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            titleBox.Location = new Point(523, 436);
+            titleBox.Margin = new Padding(5, 4, 5, 4);
+            titleBox.Name = "titleBox";
+            titleBox.Size = new Size(186, 27);
+            titleBox.TabIndex = 42;
             // 
             // registerClearBtn
             // 
@@ -395,25 +396,25 @@
             Controls.Add(viewaccountlbl);
             Controls.Add(accountEditlbl);
             Controls.Add(registerClearBtn);
-            Controls.Add(positionBox);
-            Controls.Add(label12);
-            Controls.Add(label11);
+            Controls.Add(titleBox);
+            Controls.Add(titlelbl);
+            Controls.Add(passwordAgainlbl);
             Controls.Add(registerPasswordAgainBox);
-            Controls.Add(label10);
+            Controls.Add(passwordlbl);
             Controls.Add(registerPasswordBox);
             Controls.Add(panel1);
             Controls.Add(button1);
             Controls.Add(departBox);
-            Controls.Add(label6);
-            Controls.Add(label5);
+            Controls.Add(departlbl);
+            Controls.Add(phoneNumlbl);
             Controls.Add(phoneNumBox);
-            Controls.Add(label4);
+            Controls.Add(maillbl);
             Controls.Add(mailBox);
             Controls.Add(newAccountlabel);
-            Controls.Add(label1);
+            Controls.Add(displaynamelbl);
             Controls.Add(registerDisplaynameBox);
             Controls.Add(createAccountBtn);
-            Controls.Add(label2);
+            Controls.Add(usernamelbl);
             Controls.Add(registerUsernameBox);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(2, 3, 2, 3);
@@ -429,16 +430,16 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label displaynamelbl;
         private System.Windows.Forms.TextBox registerDisplaynameBox;
         private System.Windows.Forms.Button createAccountBtn;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label usernamelbl;
         private System.Windows.Forms.Label newAccountlabel;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label maillbl;
         private System.Windows.Forms.TextBox mailBox;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label phoneNumlbl;
         private System.Windows.Forms.TextBox phoneNumBox;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label departlbl;
         private System.Windows.Forms.ComboBox departBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel1;
@@ -448,11 +449,11 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.TextBox registerUsernameBox;
         private System.Windows.Forms.TextBox registerPasswordBox;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label passwordlbl;
+        private System.Windows.Forms.Label passwordAgainlbl;
         private System.Windows.Forms.TextBox registerPasswordAgainBox;
-        private System.Windows.Forms.Label label12;
-        private TextBox positionBox;
+        private System.Windows.Forms.Label titlelbl;
+        private TextBox titleBox;
         private Button registerClearBtn;
         private Label accountEditlbl;
         private Label viewaccountlbl;

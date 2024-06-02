@@ -231,8 +231,10 @@ namespace ITP4519M
                     {
                         UserID = reader["UserID"].ToString(),
                         UserName = reader["UserName"].ToString(),
-                        DepartmentID = reader["DepartmentID"].ToString(),
+                        Department = reader["Department"].ToString(),
                         EmailAddress = reader["EmailAddress"].ToString(),
+                        DisplayName = reader["DisplayName"].ToString(),
+                        Title = reader["Title"].ToString(),
                         PhoneNum = reader["PhoneNum"].ToString()
                         // 读取更多字段...
                     };
@@ -248,9 +250,11 @@ namespace ITP4519M
             public string UserName { get; set; }
             public string EmailAddress { get; set; }
             public string PhoneNum { get; set; }
-            public string DepartmentID { get; set; }
+            public string Department { get; set; }
+            public string DisplayName { get; set; }
+            public string Title { get; set; }
 
-            
+
         }
 
 
