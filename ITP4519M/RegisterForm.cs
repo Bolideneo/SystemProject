@@ -45,7 +45,10 @@ namespace ITP4519M
                 case OperationMode.View:
                     viewaccountlbl.Visible = true;
                     passwordAgainlbl.Visible = false;
+                    passwordlbl.Visible = false;
                     registerPasswordAgainBox.Visible = false;
+                    registerPasswordBox.Visible = false;
+                    registerClearBtn.Visible = false;
                     newAccountlabel.Visible = false;
                     createAccountBtn.Visible = false;
                     editAccountbtn.Visible = false;

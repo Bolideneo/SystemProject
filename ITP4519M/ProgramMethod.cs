@@ -79,6 +79,32 @@ namespace ProgramMethod
 
         }
 
+        //Disable account
+        public bool disableUserAccount(string userID)
+        {
+
+            if (dataBaseMethod.disableUser(userID))
+            {
+                return true;
+            }
+            else
+                return false;
+
+        }
+
+        //enable account
+        public bool enableUserAccount(string userID)
+        {
+
+            if (dataBaseMethod.enableUser(userID))
+            {
+                return true;
+            }
+            else
+                return false;
+
+        }
+
         //Datatable for user datagridView
         public DataTable searchUserInformation(string username)
         {

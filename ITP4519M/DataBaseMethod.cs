@@ -189,6 +189,44 @@ namespace ITP4519M
             return false;
         }
 
+        //disable a new user account
+        public bool disableUser(string userID)
+        {
+            try
+            {
+                string sql = "UPDATE staff SET AccountStatus=@accountStatus WHERE UserID=@userID";
+                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+                cmd.Parameters.AddWithValue("@userID", userID);
+                cmd.Parameters.AddWithValue("@accountStatus", 2);
+                if (cmd.ExecuteNonQuery() > 0)
+                    return true;
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine("An exception occurred: " + ex.Message);
+            }
+            return false;
+        }
+
+        //enable a new user account
+        public bool enableUser(string userID)
+        {
+            try
+            {
+                string sql = "UPDATE staff SET AccountStatus=@accountStatus WHERE UserID=@userID";
+                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+                cmd.Parameters.AddWithValue("@userID", userID);
+                cmd.Parameters.AddWithValue("@accountStatus", 1);
+                if (cmd.ExecuteNonQuery() > 0)
+                    return true;
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine("An exception occurred: " + ex.Message);
+            }
+            return false;
+        }
+
         //search username
         public DataTable searchUserInfoByName(string username)
         {
@@ -267,7 +305,7 @@ namespace ITP4519M
 
         }
 
-        //string sql = "INSERT INTO staff(UserID, UserName, DisplayName, Password, DepartmentID, Title, PhoneNum, EmailAddress, Department) VALUES(@userID, @username, @displayname, @password, @departmentID, @title, @PhoneNum, @EmailAddress, @Department)";
+      
         //Update User information
         public bool updateUserInfor(string userID, string userName, string password, string displayName, string deptID, string title, string phonenum, string email, string department)
         {
