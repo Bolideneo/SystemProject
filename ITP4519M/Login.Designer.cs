@@ -34,7 +34,6 @@
             label3 = new Label();
             pictureBox2 = new PictureBox();
             CloseButton = new Button();
-            button2 = new Button();
             accountPanel = new Panel();
             usernameBox = new TextBox();
             pictureBox3 = new PictureBox();
@@ -44,6 +43,7 @@
             loginbtn = new Button();
             pictureBox1 = new PictureBox();
             errolabel = new Label();
+            label1 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             accountPanel.SuspendLayout();
@@ -130,21 +130,6 @@
             CloseButton.UseVisualStyleBackColor = true;
             CloseButton.Click += CloseButton_Click;
             // 
-            // button2
-            // 
-            button2.BackColor = SystemColors.Menu;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Microsoft PhagsPa", 10.2F, FontStyle.Underline, GraphicsUnit.Point, 0);
-            button2.ForeColor = SystemColors.Highlight;
-            button2.Location = new Point(522, 419);
-            button2.Margin = new Padding(5, 4, 5, 4);
-            button2.Name = "button2";
-            button2.Size = new Size(194, 44);
-            button2.TabIndex = 16;
-            button2.Text = "Forget Password";
-            button2.UseVisualStyleBackColor = false;
-            // 
             // accountPanel
             // 
             accountPanel.BackColor = SystemColors.HighlightText;
@@ -198,7 +183,6 @@
             passwordBox.Margin = new Padding(2, 3, 2, 3);
             passwordBox.Name = "passwordBox";
             passwordBox.Size = new Size(393, 25);
-
             passwordBox.TabIndex = 21;
             passwordBox.UseSystemPasswordChar = true;
             // 
@@ -248,17 +232,30 @@
             errolabel.Text = "Username or password is not correct";
             errolabel.Visible = false;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Cursor = Cursors.Hand;
+            label1.Font = new Font("Microsoft PhagsPa", 10.2F, FontStyle.Underline, GraphicsUnit.Point, 0);
+            label1.ForeColor = SystemColors.Highlight;
+            label1.Location = new Point(533, 431);
+            label1.Name = "label1";
+            label1.Size = new Size(135, 22);
+            label1.TabIndex = 21;
+            label1.Text = "Forget Password";
+            label1.Click += label1_Click;
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
             ClientSize = new Size(750, 550);
+            Controls.Add(label1);
             Controls.Add(errolabel);
             Controls.Add(loginbtn);
             Controls.Add(panel3);
             Controls.Add(accountPanel);
-            Controls.Add(button2);
             Controls.Add(CloseButton);
             Controls.Add(panel1);
             Controls.Add(pictureBox1);
@@ -266,7 +263,7 @@
             Margin = new Padding(2, 3, 2, 3);
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form1";
+            Text = "forgetPasswordlbl";
             Load += Login_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -290,7 +287,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button CloseButton;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel accountPanel;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.PictureBox pictureBox3;
@@ -299,6 +295,7 @@
         private System.Windows.Forms.TextBox passwordBox;
         private System.Windows.Forms.Button loginbtn;
         private Label errolabel;
+        private Label label1;
     }
 }
 

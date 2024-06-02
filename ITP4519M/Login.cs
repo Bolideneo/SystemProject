@@ -18,7 +18,7 @@ namespace ITP4519M
 
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
         public Point mouseLocation;
-  
+
 
         public Login()
         {
@@ -67,6 +67,11 @@ namespace ITP4519M
         private void Login_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("test");
         }
     }
 }

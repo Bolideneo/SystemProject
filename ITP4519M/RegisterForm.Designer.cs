@@ -54,6 +54,8 @@
             positionBox = new TextBox();
             registerClearBtn = new Button();
             accountEditlbl = new Label();
+            viewaccountlbl = new Label();
+            editAccountbtn = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
@@ -357,13 +359,40 @@
             accountEditlbl.Text = "Edit Account";
             accountEditlbl.TextAlign = ContentAlignment.BottomRight;
             // 
+            // viewaccountlbl
+            // 
+            viewaccountlbl.AutoSize = true;
+            viewaccountlbl.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            viewaccountlbl.ForeColor = Color.Black;
+            viewaccountlbl.Location = new Point(415, 56);
+            viewaccountlbl.Margin = new Padding(2, 0, 2, 0);
+            viewaccountlbl.Name = "viewaccountlbl";
+            viewaccountlbl.Size = new Size(198, 32);
+            viewaccountlbl.TabIndex = 45;
+            viewaccountlbl.Text = "View Account";
+            viewaccountlbl.TextAlign = ContentAlignment.BottomRight;
+            // 
+            // editAccountbtn
+            // 
+            editAccountbtn.AccessibleRole = AccessibleRole.None;
+            editAccountbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            editAccountbtn.Location = new Point(381, 498);
+            editAccountbtn.Margin = new Padding(5, 4, 5, 4);
+            editAccountbtn.Name = "editAccountbtn";
+            editAccountbtn.Size = new Size(248, 48);
+            editAccountbtn.TabIndex = 46;
+            editAccountbtn.Text = "Edit Account";
+            editAccountbtn.UseVisualStyleBackColor = true;
+            editAccountbtn.Click += editAccountbtn_Click;
+            // 
             // RegisterForm
             // 
-            StartPosition = FormStartPosition.CenterScreen;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
             ClientSize = new Size(750, 640);
+            Controls.Add(editAccountbtn);
+            Controls.Add(viewaccountlbl);
             Controls.Add(accountEditlbl);
             Controls.Add(registerClearBtn);
             Controls.Add(positionBox);
@@ -389,6 +418,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(2, 3, 2, 3);
             Name = "RegisterForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "RegisterForm";
             Load += RegisterForm_Load;
             panel1.ResumeLayout(false);
@@ -425,5 +455,7 @@
         private TextBox positionBox;
         private Button registerClearBtn;
         private Label accountEditlbl;
+        private Label viewaccountlbl;
+        private Button editAccountbtn;
     }
 }

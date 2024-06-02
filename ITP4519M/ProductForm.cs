@@ -53,11 +53,6 @@ namespace ITP4519M
 
 
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void productClosebtn_Click(object sender, EventArgs e)
         {
             this.Close();

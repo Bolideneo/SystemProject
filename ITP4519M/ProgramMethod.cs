@@ -13,6 +13,9 @@ using System.Web;
 using System.Reflection.Metadata.Ecma335;
 using System.Diagnostics.SymbolStore;
 using Org.BouncyCastle.Bcpg.OpenPgp;
+using static ITP4519M.DataBaseMethod;
+using Google.Protobuf.WellKnownTypes;
+using Microsoft.VisualBasic.ApplicationServices;
 
 
 namespace ProgramMethod
@@ -50,7 +53,7 @@ namespace ProgramMethod
 
         public bool getPermission(string username)
         {
-            if (dataBaseMethod.getDepartmentID(username).Equals("001"))
+            if (dataBaseMethod.getDepartmentIDByUserName(username).Equals("001"))
                 return true;
             else
                 return false;
@@ -88,22 +91,26 @@ namespace ProgramMethod
             return dataBaseMethod.overallUserInfo();
         }
 
+
         public DataTable overviewStockinfo()
         {
             return dataBaseMethod.overallStockinfo();
         }
 
-        public bool updateUserInfor(string userID, String userName, string password, string passwordagain, string dispalynanme, string department, string title)
+        public bool updateUserInfor(string userID, String userName, string password, string passwordagain, string dispalyName, string departmentName, string title)
         {
-            
+             string departmentID = dataBaseMethod.getDepartmentIDByDepartName(departmentName);
+            MessageBox.Show(departmentID);
+
                 if (password != passwordagain)
-                {
+                { 
                     return false;
                 }
 
-            if (dataBaseMethod.updateUserInfor(userID, userName, password, department, title)){ 
+            if (dataBaseMethod.updateUserInfor(userID, userName, password, dispalyName, departmentID, title)){ 
                 return true;
             }
+
             return false;
         }
 
@@ -140,8 +147,23 @@ namespace ProgramMethod
 
             }
             return true;
-
         }
+
+        public UserDetails getUserDetails(string userid)
+        {
+            using (var connection = dataBaseMethod.ServerConnect())
+            {
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    return dataBaseMethod.GetUserDetails(connection, userid);
+                }
+                else
+                {
+                    throw new Exception("Database connection failed.");
+                }
+            }
+        }
+
 
     }
 }

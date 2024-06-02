@@ -86,7 +86,7 @@ namespace ITP4519M
         }
 
         //Checking user general role
-        public string getDepartmentID(string userName)
+        public string getDepartmentIDByUserName(string userName)
         {
             string sql = "SELECT DepartmentID FROM staff WHERE UserName=@userName";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
@@ -94,6 +94,16 @@ namespace ITP4519M
             object departmentID = cmd.ExecuteScalar();
             ServerConnect().Close();
             return departmentID.ToString();
+        }
+
+        public string getDepartmentIDByDepartName(string departName)
+        {
+            string sql = "SELECT DepartmentID FROM department WHERE DepartmentName=@departName";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@departName", departName);
+            object DepartmentName = cmd.ExecuteScalar();
+            ServerConnect().Close();
+            return DepartmentName.ToString();
         }
 
 
@@ -205,22 +215,65 @@ namespace ITP4519M
             return dataTable;
         }
 
+        public UserDetails GetUserDetails(MySqlConnection connection, string userID)
+        {
+            UserDetails userDetails = null;
+            string query = "SELECT * FROM staff WHERE UserID = @UserID";
+
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@UserID", userID);
+
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    userDetails = new UserDetails
+                    {
+                        UserID = reader["UserID"].ToString(),
+                        UserName = reader["UserName"].ToString(),
+                        DepartmentID = reader["DepartmentID"].ToString(),
+                        EmailAddress = reader["EmailAddress"].ToString(),
+                        PhoneNum = reader["PhoneNum"].ToString()
+                        // 读取更多字段...
+                    };
+                }
+            }
+            return userDetails;
+        }
+
+
+        public class UserDetails
+        {
+            public string UserID { get; set; }
+            public string UserName { get; set; }
+            public string EmailAddress { get; set; }
+            public string PhoneNum { get; set; }
+            public string DepartmentID { get; set; }
+
+            
+        }
+
+
         //Update User information
-        public bool updateUserInfor(string userID, string userName, string Password, string deptID, string title)
+        public bool a(string userID, string userName, string Password, string displayName, string deptID, string title)
         {
             try
             {
-                string sql = "UPDATE staff SET UserName=@userName Password=@password, deptID=@deptID, title=@title WHERE UserID=@userID";
+                string sql = "UPDATE staff SET UserName=@usernName, Password=@password, DisplayName=@displayname, DepartmentID=@deptID, Title=@title WHERE UserID=@userID";
                 MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+                cmd.Parameters.AddWithValue("@userID", userID);
                 cmd.Parameters.AddWithValue("@userName", userName);
                 cmd.Parameters.AddWithValue("@password", Password);
+                cmd.Parameters.AddWithValue("@displayname", displayName);
                 cmd.Parameters.AddWithValue("@deptID", deptID);
                 cmd.Parameters.AddWithValue("@title", title);
                 int result = cmd.ExecuteNonQuery();
                 if (result > 0)
                     return true;
             }
-            catch { return false; }
+            catch (MySqlException ex) {
+                Console.WriteLine("MySQL Error: " + ex.Message);
+            }
             return false;
         }
 

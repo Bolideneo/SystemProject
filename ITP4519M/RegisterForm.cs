@@ -17,7 +17,7 @@ namespace ITP4519M
         private OperationMode _mode;
         private string userID;
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
-        
+
         public RegisterForm(OperationMode mode)
         {
             InitializeComponent();
@@ -30,11 +30,6 @@ namespace ITP4519M
 
         }
 
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -42,25 +37,46 @@ namespace ITP4519M
 
         private void RegisterForm_Load(object sender, EventArgs e)
         {
-            
+
 
             switch (_mode)
             {
                 case OperationMode.View:
+                    viewaccountlbl.Visible = true;
                     newAccountlabel.Visible = false;
+                    createAccountBtn.Visible = false;
+                    editAccountbtn.Visible = false;
                     SetReadOnly(true);
                     break;
                 case OperationMode.New:
+                    newAccountlabel.Visible = true;
+                    accountEditlbl.Visible = false;
+                    viewaccountlbl.Visible = false;
+                    editAccountbtn.Visible = false;
                     ClearForm();
                     SetReadOnly(false);
                     break;
                 case OperationMode.Edit:
                     accountEditlbl.Visible = true;
+                    editAccountbtn.Visible = true;
+                    createAccountBtn.Visible = false;
                     newAccountlabel.Visible = false;
+                    viewaccountlbl.Visible = false;
                     SetReadOnly(false);
                     break;
+                case OperationMode.Disable:
+                    accountEditlbl.Visible = true;
+                    editAccountbtn.Visible = true;
+                    createAccountBtn.Visible = false;
+                    newAccountlabel.Visible = false;
+                    viewaccountlbl.Visible = false;
+                    SetReadOnly(false);
+                    break;
+
+
             }
         }
+
         private void ClearForm()
         {
 
@@ -111,7 +127,7 @@ namespace ITP4519M
         private void createAccountBtn_Click(object sender, EventArgs e)
 
         {
-            
+
             if (programMethod.createUserAccount(registerUsernameBox.Text.Trim(), registerPasswordBox.Text.Trim(), registerPasswordAgainBox.Text.Trim(), registerDisplaynameBox.Text.Trim(), departBox.GetItemText(this.departBox.SelectedItem), positionBox.Text.Trim()))
             {
                 MessageBox.Show("User Successfully Created");
@@ -164,11 +180,33 @@ namespace ITP4519M
         {
 
             this.userID = userID;
-            this.registerUsernameBox.Text = userID;
+
+            try
+            {
+                var userDetails = programMethod.getUserDetails(userID);
+                if (userDetails != null)
+                {
+                    this.registerUsernameBox.Text = userDetails.UserName;
+                    this.mailBox.Text = userDetails.EmailAddress;
+                    this.phoneNumBox.Text = userDetails.PhoneNum;
+                    this.departBox.Text = userDetails.DepartmentID;
+                   
+                }
+                else
+                {
+                    MessageBox.Show("User details not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
-        public void udpateUserInfo(object sender,EventArgs e)
+
+        private void editAccountbtn_Click(object sender, EventArgs e)
         {
+            MessageBox.Show(departBox.GetItemText(this.departBox.SelectedItem));
             if (programMethod.updateUserInfor(userID, registerUsernameBox.Text.Trim(), registerPasswordBox.Text.Trim(), registerPasswordAgainBox.Text.Trim(), registerDisplaynameBox.Text.Trim(), departBox.GetItemText(this.departBox.SelectedItem), positionBox.Text.Trim()))
             {
                 MessageBox.Show("Saved");
