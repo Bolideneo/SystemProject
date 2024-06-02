@@ -255,7 +255,7 @@ namespace ITP4519M
 
 
         //Update User information
-        public bool a(string userID, string userName, string Password, string displayName, string deptID, string title)
+        public bool updateUserInfor(string userID, string userName, string Password, string displayName, string deptID, string title)
         {
             try
             {
