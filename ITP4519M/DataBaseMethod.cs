@@ -98,12 +98,19 @@ namespace ITP4519M
 
         public string getDepartmentIDByDepartName(string departName)
         {
-            string sql = "SELECT DepartmentID FROM department WHERE DepartmentName=@departName";
+            string sql = "SELECT DepartmentID FROM staff WHERE Department=@departName";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-            cmd.Parameters.AddWithValue("@departName", departName);
-            object DepartmentName = cmd.ExecuteScalar();
+            cmd.Parameters.AddWithValue("@departName", departName);   
             ServerConnect().Close();
-            return DepartmentName.ToString();
+            object Department = cmd.ExecuteScalar();
+            if (Department != null)
+            {
+                return Department.ToString();
+            }
+            else
+            {
+                return "Department not found.";
+            }
         }
 
 
@@ -158,11 +165,11 @@ namespace ITP4519M
 
 
         //Create a new user account
-        public bool createUser(string userID, string username, string displayname, string password, string departmentID, string title)
+        public bool createUser(string userID, string username, string password, string displayname, string departmentID, string title, string phonenum, string email, string department)
         {
             try
             {
-                string sql = "INSERT INTO staff(UserID, UserName, DisplayName, Password, DepartmentID, Title) VALUES(@userID, @username, @displayname, @password, @departmentID, @title)";
+                string sql = "INSERT INTO staff(UserID, UserName, DisplayName, Password, DepartmentID, Title, PhoneNum, EmailAddress, Department) VALUES(@userID, @username, @displayname, @password, @departmentID, @title, @PhoneNum, @EmailAddress, @Department)";
                 MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
                 cmd.Parameters.AddWithValue("@userID", userID);
                 cmd.Parameters.AddWithValue("@username", username);
@@ -170,6 +177,9 @@ namespace ITP4519M
                 cmd.Parameters.AddWithValue("@password", password);
                 cmd.Parameters.AddWithValue("@departmentID", departmentID);
                 cmd.Parameters.AddWithValue("@title", title);
+                cmd.Parameters.AddWithValue("@PhoneNum", phonenum);
+                cmd.Parameters.AddWithValue("@EmailAddress", email);
+                cmd.Parameters.AddWithValue("@Department", department);
                 if (cmd.ExecuteNonQuery() > 0)
                     return true;
             }
@@ -236,7 +246,7 @@ namespace ITP4519M
                         DisplayName = reader["DisplayName"].ToString(),
                         Title = reader["Title"].ToString(),
                         PhoneNum = reader["PhoneNum"].ToString()
-                        // 读取更多字段...
+                 
                     };
                 }
             }
@@ -257,21 +267,25 @@ namespace ITP4519M
 
         }
 
-
+        //string sql = "INSERT INTO staff(UserID, UserName, DisplayName, Password, DepartmentID, Title, PhoneNum, EmailAddress, Department) VALUES(@userID, @username, @displayname, @password, @departmentID, @title, @PhoneNum, @EmailAddress, @Department)";
         //Update User information
-        public bool updateUserInfor(string userID, string userName, string Password, string displayName, string deptID, string title)
+        public bool updateUserInfor(string userID, string userName, string password, string displayName, string deptID, string title, string phonenum, string email, string department)
         {
             try
             {
-                string sql = "UPDATE staff SET UserName=@usernName, Password=@password, DisplayName=@displayname, DepartmentID=@deptID, Title=@title WHERE UserID=@userID";
+                string sql = "UPDATE staff SET UserName=@userName, Password=@password, DisplayName=@displayName, DepartmentID=@deptID, Title=@title, EmailAddress=@email, PhoneNum=@phonenum, Department=@department WHERE UserID=@userID";
                 MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-                cmd.Parameters.AddWithValue("@userID", userID);
                 cmd.Parameters.AddWithValue("@userName", userName);
-                cmd.Parameters.AddWithValue("@password", Password);
-                cmd.Parameters.AddWithValue("@displayname", displayName);
+                cmd.Parameters.AddWithValue("@password", password);
+                cmd.Parameters.AddWithValue("@displayName", displayName);
                 cmd.Parameters.AddWithValue("@deptID", deptID);
                 cmd.Parameters.AddWithValue("@title", title);
+                cmd.Parameters.AddWithValue("@email", email);
+                cmd.Parameters.AddWithValue("@phonenum", phonenum);
+                cmd.Parameters.AddWithValue("@department", department);
+                cmd.Parameters.AddWithValue("@userID", userID);
                 int result = cmd.ExecuteNonQuery();
+
                 if (result > 0)
                     return true;
             }

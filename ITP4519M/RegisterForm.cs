@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.ApplicationServices;
 using ProgramMethod;
+using static ITP4519M.DataBaseMethod;
 
 namespace ITP4519M
 {
@@ -127,11 +128,13 @@ namespace ITP4519M
 
         }
 
+        //public bool createUserAccount(string username, string password, string passwordagain, string dispalynanme, string title, string phonenum, string email, string department)
+        
         private void createAccountBtn_Click(object sender, EventArgs e)
 
         {
 
-            if (programMethod.createUserAccount(registerUsernameBox.Text.Trim(), registerPasswordBox.Text.Trim(), registerPasswordAgainBox.Text.Trim(), registerDisplaynameBox.Text.Trim(), departBox.GetItemText(this.departBox.SelectedItem), titleBox.Text.Trim()))
+            if (programMethod.createUserAccount(registerUsernameBox.Text.Trim(), registerPasswordBox.Text.Trim(), registerPasswordAgainBox.Text.Trim(), registerDisplaynameBox.Text.Trim(), titleBox.Text.Trim(), phoneNumBox.Text.Trim(), mailBox.Text.Trim(), departBox.GetItemText(this.departBox.SelectedItem) ))
             {
                 MessageBox.Show("User Successfully Created");
                 registerUsernameBox.Text = "";
@@ -174,10 +177,7 @@ namespace ITP4519M
             ClearForm();
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
+ 
 
         public void accountEdit(string userID)
         {
@@ -207,17 +207,21 @@ namespace ITP4519M
                 MessageBox.Show(ex.Message);
             }
         }
-
+        //String userName, string password, string passwordagain, string dispalyName, string department, string title, string phonenum, string email
 
         private void editAccountbtn_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(departBox.GetItemText(this.departBox.SelectedItem));
-            if (programMethod.updateUserInfor(userID, registerUsernameBox.Text.Trim(), registerPasswordBox.Text.Trim(), registerPasswordAgainBox.Text.Trim(), registerDisplaynameBox.Text.Trim(), departBox.GetItemText(this.departBox.SelectedItem), titleBox.Text.Trim()))
+            var userDetails = programMethod.getUserDetails(userID);
+            string userid = userDetails.UserID;
+
+            if (programMethod.updateUserInfor(userid, registerUsernameBox.Text.Trim(), registerPasswordBox.Text.Trim(), registerPasswordAgainBox.Text.Trim(), registerDisplaynameBox.Text.Trim(), departBox.GetItemText(this.departBox.SelectedItem), titleBox.Text.Trim(), phoneNumBox.Text.Trim(), mailBox.Text.Trim()))
             {
+                
                 MessageBox.Show("Saved");
             }
             else
             {
+        
                 MessageBox.Show("Please input same password");
             }
         }

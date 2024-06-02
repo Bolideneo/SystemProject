@@ -61,7 +61,7 @@ namespace ProgramMethod
 
 
 
-        public bool createUserAccount(string username, string password, string passwordagain, string dispalynanme, string department, string title)
+        public bool createUserAccount(string username, string password, string passwordagain, string dispalynanme, string title, string phonenum, string email, string department)
         {
             if (password != passwordagain)
             {
@@ -70,7 +70,7 @@ namespace ProgramMethod
 
             string deptID = dataBaseMethod.getDeptID(department);
             string userID = (int.Parse(dataBaseMethod.getUserID()) + 1).ToString("000");
-            if (dataBaseMethod.createUser(userID, username, password, dispalynanme, deptID, title))
+            if (dataBaseMethod.createUser(userID, username, password, dispalynanme, deptID, title, phonenum, email, department))
             {
                 return true;
             }
@@ -97,21 +97,22 @@ namespace ProgramMethod
             return dataBaseMethod.overallStockinfo();
         }
 
-        public bool updateUserInfor(string userID, String userName, string password, string passwordagain, string dispalyName, string departmentName, string title)
+        public bool updateUserInfor(string userid, String userName, string password, string passwordagain, string dispalyName, string department, string title, string phonenum, string email )
         {
-             string departmentID = dataBaseMethod.getDepartmentIDByDepartName(departmentName);
-            MessageBox.Show(departmentID);
+            string departmentID = dataBaseMethod.getDepartmentIDByDepartName(department);
 
-                if (password != passwordagain)
-                { 
-                    return false;
-                }
 
-            if (dataBaseMethod.updateUserInfor(userID, userName, password, dispalyName, departmentID, title)){ 
-                return true;
+            if (password != passwordagain)
+            {
+                return false;
             }
 
-            return false;
+               if (dataBaseMethod.updateUserInfor(userid, userName, password, dispalyName, departmentID, title, phonenum, email, department )){
+                return true;
+                }
+               else
+                return false;
+
         }
 
         public string[] getStockLabelinfo(DataGridView stockData)
