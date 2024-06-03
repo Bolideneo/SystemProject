@@ -1918,23 +1918,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\10617\\.nuget\\packages\\": {},
+    "C:\\Users\\Nicky Tse\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\10617\\Desktop\\Tim_homework\\SystemProject\\ITP4519M\\ITP4519M.csproj",
+      "projectUniqueName": "C:\\Users\\Nicky Tse\\SystemProject\\ITP4519M\\ITP4519M.csproj",
       "projectName": "ITP4519M",
-      "projectPath": "C:\\Users\\10617\\Desktop\\Tim_homework\\SystemProject\\ITP4519M\\ITP4519M.csproj",
-      "packagesPath": "C:\\Users\\10617\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\10617\\Desktop\\Tim_homework\\SystemProject\\ITP4519M\\obj\\",
+      "projectPath": "C:\\Users\\Nicky Tse\\SystemProject\\ITP4519M\\ITP4519M.csproj",
+      "packagesPath": "C:\\Users\\Nicky Tse\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Nicky Tse\\SystemProject\\ITP4519M\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\10617\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Nicky Tse\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1943,6 +1943,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1955,11 +1956,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -1994,7 +1990,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
