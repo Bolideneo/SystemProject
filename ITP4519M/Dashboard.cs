@@ -76,6 +76,9 @@ namespace ITP4519M
             dashboardpnl.Visible = false;
             contactpnl.Visible = false;
             logpnl.Visible = false;
+            outstandingOrderpnl.Visible = false;
+            GRNpnl.Visible = false;
+            deliverypnl.Visible = false;
             panelToShow.Visible = true;
 
         }
@@ -133,6 +136,8 @@ namespace ITP4519M
 
         }
 
+
+
         private void settingbtn_Click(object sender, EventArgs e)
         {
 
@@ -146,6 +151,22 @@ namespace ITP4519M
             lastClickedButton.ForeColor = Color.Gray;
 
             ShowPanel(settingpnl);
+
+        }
+
+        private void outstandingOrderbtn_Click(object sender, EventArgs e)
+        {
+
+
+            if (lastClickedButton != null)
+            {
+                lastClickedButton.ForeColor = Color.White;
+            }
+
+            lastClickedButton = (Button)sender;
+            lastClickedButton.ForeColor = Color.Gray;
+
+            ShowPanel(outstandingOrderpnl);
 
         }
 
@@ -435,6 +456,32 @@ namespace ITP4519M
                 ProductForm.ShowDialog();
 
             }
+        }
+
+        private void GRNbtn_Click(object sender, EventArgs e)
+        {
+            if (lastClickedButton != null)
+            {
+                lastClickedButton.ForeColor = Color.White;
+            }
+
+            lastClickedButton = (Button)sender;
+            lastClickedButton.ForeColor = Color.Gray;
+
+            ShowPanel(GRNpnl);
+        }
+
+        private void deliverybtn_Click(object sender, EventArgs e)
+        {
+            if (lastClickedButton != null)
+            {
+                lastClickedButton.ForeColor = Color.White;
+            }
+
+            lastClickedButton = (Button)sender;
+            lastClickedButton.ForeColor = Color.Gray;
+
+            ShowPanel(deliverypnl);
         }
     }
 }
