@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.ApplicationServices;
 using ProgramMethod;
-using static ITP4519M.DataBaseMethod;
 
 namespace ITP4519M
 {
@@ -18,6 +17,9 @@ namespace ITP4519M
         private OperationMode _mode;
         private string userID;
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
+        private bool isFormDragging = false;
+        private Point formStartPoint;
+
 
         public RegisterForm(OperationMode mode)
         {
@@ -38,7 +40,7 @@ namespace ITP4519M
 
         private void RegisterForm_Load(object sender, EventArgs e)
         {
-
+           
 
             switch (_mode)
             {
@@ -132,12 +134,12 @@ namespace ITP4519M
         }
 
         //public bool createUserAccount(string username, string password, string passwordagain, string dispalynanme, string title, string phonenum, string email, string department)
-        
+
         private void createAccountBtn_Click(object sender, EventArgs e)
 
         {
 
-            if (programMethod.createUserAccount(registerUsernameBox.Text.Trim(), registerPasswordBox.Text.Trim(), registerPasswordAgainBox.Text.Trim(), registerDisplaynameBox.Text.Trim(), titleBox.Text.Trim(), phoneNumBox.Text.Trim(), mailBox.Text.Trim(), departBox.GetItemText(this.departBox.SelectedItem) ))
+            if (programMethod.createUserAccount(registerUsernameBox.Text.Trim(), registerPasswordBox.Text.Trim(), registerPasswordAgainBox.Text.Trim(), registerDisplaynameBox.Text.Trim(), titleBox.Text.Trim(), phoneNumBox.Text.Trim(), mailBox.Text.Trim(), departBox.GetItemText(this.departBox.SelectedItem)))
             {
                 MessageBox.Show("User Successfully Created");
                 registerUsernameBox.Text = "";
@@ -180,7 +182,7 @@ namespace ITP4519M
             ClearForm();
         }
 
- 
+
 
         public void accountEdit(string userID)
         {
@@ -219,14 +221,38 @@ namespace ITP4519M
 
             if (programMethod.updateUserInfor(userid, registerUsernameBox.Text.Trim(), registerPasswordBox.Text.Trim(), registerPasswordAgainBox.Text.Trim(), registerDisplaynameBox.Text.Trim(), departBox.GetItemText(this.departBox.SelectedItem), titleBox.Text.Trim(), phoneNumBox.Text.Trim(), mailBox.Text.Trim()))
             {
-                
+
                 MessageBox.Show("Saved");
             }
             else
             {
-        
+
                 MessageBox.Show("Please input same password");
             }
+        }
+
+        private void RegisterForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                isFormDragging = true;
+                formStartPoint = e.Location;
+            }
+        }
+
+        private void RegisterForm_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isFormDragging)
+            {
+                int deltaX = e.X - formStartPoint.X;
+                int deltaY = e.Y - formStartPoint.Y;
+                this.Location = new Point(this.Location.X + deltaX, this.Location.Y + deltaY);
+            }
+        }
+
+        private void RegisterForm_MouseUp(object sender, MouseEventArgs e)
+        {
+            isFormDragging = false;
         }
     }
 }

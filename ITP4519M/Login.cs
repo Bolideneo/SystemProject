@@ -49,9 +49,9 @@ namespace ITP4519M
             if (programMethod.verifyUser(usernameBox.Text.Trim(), passwordBox.Text.Trim()))
             {
                 errolabel.Visible = false;
-                Dashboard loginForm = new Dashboard();
-                //loginForm.currentUserDisplayName(usernameBox.Text.Trim());
-                loginForm.Show();
+                Dashboard dashboard = new Dashboard();
+                dashboard.currentUserDisplayName(programMethod.getUserDisplayName(usernameBox.Text.Trim()));
+                dashboard.Show();
                 this.Hide();
             }
             else
@@ -71,7 +71,8 @@ namespace ITP4519M
 
         private void label1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("test");
+
         }
+
     }
 }

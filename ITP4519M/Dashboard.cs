@@ -90,7 +90,7 @@ namespace ITP4519M
             lastClickedButton.ForeColor = Color.Gray;
 
             ShowPanel(orderpnl);
-
+            orderdata.DataSource = programMethod.overallOrderinfo();
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
@@ -160,7 +160,7 @@ namespace ITP4519M
             lastClickedButton.ForeColor = Color.Gray;
 
             ShowPanel(contactpnl);
-
+            contactsdata.DataSource = programMethod.overviewDealerinfo();
         }
 
 
@@ -403,6 +403,13 @@ namespace ITP4519M
                 MessageBox.Show("This account enabled");
             }
         }
+
+        public void currentUserDisplayName(string displayName)
+        {
+            namelbl.Text = displayName;
+        }
+
+       
     }
 }
 

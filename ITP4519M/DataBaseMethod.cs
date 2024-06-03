@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
@@ -40,7 +41,7 @@ namespace ITP4519M
                         Console.WriteLine("Cannot connect the Database");
                         break;
                     case 1045:
-                        Console.WriteLine("User or Password is Wrong");
+                        Console.WriteLine("User or Password is wrong");
                         break;
                 }
             }
@@ -263,6 +264,16 @@ namespace ITP4519M
             return dataTable;
         }
 
+        public DataTable overviewDealerinfo()
+        {
+            string sql = "SELECT * FROM dealer";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
         public UserDetails GetUserDetails(MySqlConnection connection, string userID)
         {
             UserDetails userDetails = null;
@@ -342,6 +353,18 @@ namespace ITP4519M
             adat.Fill(dataTable);
             return dataTable;
         }
+
+        public DataTable overallOrderinfo()
+        {
+            string sql = "SELECT * FROM `order` ";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
+
         //Get current max ID when creating new product
         public String getProductID(char character)
         {
@@ -385,5 +408,143 @@ namespace ITP4519M
         }
 
 
+        public bool CreateDealer(string dealerID, string dearlerOrderNo, string dealerName, string companyName, string phoneNum, string Eamil,  string regionNo)
+        {
+            string sql = "INSERT INTO dealer VALUES(@dealerID, @dealerOderNo, @dealerName, @companyName, @phoneNum, @Email, @regionNo)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@dealerID", dealerID);
+            cmd.Parameters.AddWithValue("@dealerOrderNo", dearlerOrderNo);
+            cmd.Parameters.AddWithValue("@dealerName", dealerName);
+            cmd.Parameters.AddWithValue("@companyName", companyName);
+            cmd.Parameters.AddWithValue("@phoneNum", phoneNum);
+            cmd.Parameters.AddWithValue("@Email", Eamil);
+            cmd.Parameters.AddWithValue("@regionNo", regionNo);
+            if (cmd.ExecuteNonQuery() > 0)
+                return true;
+            return false;
+        }
+
+
+
+        public string searchDealerID(string dealerID)
+        {
+            try
+            {
+                string sql = "SELECT DealerID FROM dealer WHERE DealerID=@dealerID";
+                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+                cmd.Parameters.AddWithValue("@dealerID", dealerID);
+                Object dealer = cmd.ExecuteScalar();
+                return dealer.ToString();
+            }
+            catch
+            { return null; }
+        }
+
+        public DataTable searchDealerDetail(string dealerID)
+        {
+            string sql = "SELECT * FROM dealer WHERE DealerID=@dealerID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@dealerID", dealerID);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
+        public string searchProductIDofOrder(string productID)
+        {
+            try {
+                string sql = "SELECT ProductID FROM product WHERE ProductID=@productid";
+                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+                cmd.Parameters.AddWithValue("@productid", productID);
+                Object product = cmd.ExecuteScalar();
+                return product.ToString();
+            } catch { return null; }
+
+
+        }
+
+        public string searchProductNameOrder(string ProductName)
+        {
+            try { 
+                string sql = "SELECT ProductName FROM product WHERE ProductName=@productname";
+                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+                cmd.Parameters.AddWithValue("@productname", ProductName);
+                Object dealer = cmd.ExecuteScalar();
+                return dealer.ToString();
+            
+            }catch { return null; }
+            }
+
+        public DataTable searchOrderItemDetail(string keyword)
+        {
+            string sql = "SELECT * FROM product WHERE ProductID=@keyword OR ProductName=@keyword";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@keyword", keyword);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
+
+        public string getDealerID()
+        {
+            string sql = "SELECT MAX(DealerID) FROM dealer";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            Object dealer = cmd.ExecuteScalar();
+            return dealer.ToString();
+        }
+
+        public string getOrderID()
+        {   
+            string sql = "SELECT MAX(OrderID) FROM `order` ";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            Object orderID = cmd.ExecuteScalar();
+            return orderID.ToString();
+        }
+
+
+        public bool createSalesOrder(string orderID, string dealerID, string orderstatusID)
+        {
+            DateTime orderDate = DateTime.Now;
+            orderDate.ToString("yyyy-MM-dd HH:mm:ss");
+            string sql = "INSERT INTO order (OrderID, DealerID, OrderStatusID, OrderDate) VALUES(@orderID, @dearlerID, @orderStatusID, @orderDate)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@orderID", orderID);
+            cmd.Parameters.AddWithValue("@dealerID", dealerID);
+            cmd.Parameters.AddWithValue("@orderStatusID", orderstatusID);
+            cmd.Parameters.AddWithValue("@orderDate", orderDate);
+
+            if (cmd.ExecuteNonQuery() > 0)
+                return true;
+            return false;
+        }
+
+        public bool createOrderItem(string orderID, string productID, string orderQty)
+        {
+            string sql = "INSERT INTO orderitem (ProductID,OrderID, OrderedQuantity) VALUES(@orderID,@productID,@orderQty)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@orderID", orderID);
+            cmd.Parameters.AddWithValue("@productID", productID);
+            cmd.Parameters.AddWithValue("@orderQty", orderQty);
+            if (cmd.ExecuteNonQuery() > 0)
+                return true;
+            return false;
+        }
+
+        public bool updateOrderItemDemand(string productID, int Qty)
+        {
+            string sql = "UPDATE product SET DemandStock=DemandStock+@Qty WHERE ProductID=@productID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@productID", productID);
+            cmd.Parameters.AddWithValue("@Qty", Qty);
+            if (cmd.ExecuteNonQuery() > 0)
+                return true;
+            return false;
+        }
+
+
     }
+
 }

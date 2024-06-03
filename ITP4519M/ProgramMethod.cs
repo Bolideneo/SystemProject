@@ -16,6 +16,7 @@ using Org.BouncyCastle.Bcpg.OpenPgp;
 using static ITP4519M.DataBaseMethod;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.VisualBasic.ApplicationServices;
+using Mysqlx.Crud;
 
 
 namespace ProgramMethod
@@ -117,10 +118,19 @@ namespace ProgramMethod
             return dataBaseMethod.overallUserInfo();
         }
 
+        public DataTable overviewDealerinfo()
+        {
+            return dataBaseMethod.overviewDealerinfo();
+        }
 
         public DataTable overviewStockinfo()
         {
             return dataBaseMethod.overallStockinfo();
+        }
+
+        public DataTable overallOrderinfo()
+        {
+            return dataBaseMethod.overallOrderinfo();
         }
 
         public bool updateUserInfor(string userid, String userName, string password, string passwordagain, string dispalyName, string department, string title, string phonenum, string email )
@@ -191,6 +201,73 @@ namespace ProgramMethod
             }
         }
 
+        //Search DealerID
+        public bool searchDealerID(string dearlerID)
+        {
+            if (dataBaseMethod.searchDealerID(dearlerID) == dearlerID)
+                return true;
+            else
+                return false;
+        }
+
+        public DataTable searchDealerDetail(string dealerID)
+        {
+            return dataBaseMethod.searchDealerDetail(dealerID);
+        }
+
+        public bool getValidProduct(string keyword)
+        {
+            if (dataBaseMethod.searchProductIDofOrder(keyword) == keyword || dataBaseMethod.searchProductNameOrder(keyword) == keyword)
+                return true;
+            else
+                return false;
+        }
+
+        public DataTable searchOrderItemDetail(string keyword)
+        {
+            return dataBaseMethod.searchOrderItemDetail(keyword);
+        }
+
+        public float calProductTotalAmount(DataGridView productOfOrder)
+        {
+            float sum = 0;
+            try
+            {
+
+                for (int i = 0; i < productOfOrder.Rows.Count; i++)
+                {
+                    sum += (int.Parse(productOfOrder.Rows[i].Cells[2].Value.ToString())) * (float.Parse(productOfOrder.Rows[i].Cells[3].Value.ToString()));
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Please input number");
+                return 0;
+            }
+            return sum;
+        }
+
+        public string createSalesOrder(string dealerID, string dealerName, string phoneNumber, string Address, DataGridView Order)
+        {
+    
+            //dealerID = "D" + (((int.Parse(dataBaseMethod.getDealerID()) + 1).ToString("0000")));
+            string orderID = "ORD" + (int.Parse(dataBaseMethod.getOrderID()) + 1).ToString("000000");
+            while (!dataBaseMethod.createSalesOrder(orderID, dealerID, "OST001"))
+            {
+                orderID = "ORD" + (int.Parse(dataBaseMethod.getOrderID()) + 1).ToString("000000");
+            }
+
+
+            for (int i = 0; i < Order.Rows.Count; i++)
+            {
+                dataBaseMethod.createOrderItem(orderID, Order.Rows[i].Cells[0].Value.ToString(), Order.Rows[i].Cells[2].Value.ToString());
+                dataBaseMethod.updateOrderItemDemand(Order.Rows[i].Cells[0].Value.ToString(), (int.Parse(Order.Rows[i].Cells[2].Value.ToString())));
+            }
+
+
+            return orderID;
+        }
 
     }
 }
+    
