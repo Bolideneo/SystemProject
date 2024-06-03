@@ -32,8 +32,7 @@
             label3 = new Label();
             productNamebox = new TextBox();
             productCostlbl = new Label();
-            stockAddProuctbtn = new Button();
-            stockDeleteBtn = new Button();
+            stockSaveProuctbtn = new Button();
             productStatusbox = new ComboBox();
             productDescriptionlbl = new Label();
             productSeriallbl = new Label();
@@ -66,11 +65,11 @@
             // prudctCategorylbl
             // 
             prudctCategorylbl.AutoSize = true;
-            prudctCategorylbl.Font = new Font("Maiandra GD", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            prudctCategorylbl.Location = new Point(39, 141);
+            prudctCategorylbl.Font = new Font("Microsoft Sans Serif", 12F);
+            prudctCategorylbl.Location = new Point(40, 130);
             prudctCategorylbl.Margin = new Padding(5, 0, 5, 0);
             prudctCategorylbl.Name = "prudctCategorylbl";
-            prudctCategorylbl.Size = new Size(175, 24);
+            prudctCategorylbl.Size = new Size(175, 25);
             prudctCategorylbl.TabIndex = 0;
             prudctCategorylbl.Text = "Product Category :";
             prudctCategorylbl.Click += label1_Click;
@@ -78,75 +77,66 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Maiandra GD", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(43, 79);
+            label3.Font = new Font("Microsoft Sans Serif", 12F);
+            label3.Location = new Point(40, 80);
             label3.Margin = new Padding(5, 0, 5, 0);
             label3.Name = "label3";
-            label3.Size = new Size(149, 24);
+            label3.Size = new Size(147, 25);
             label3.TabIndex = 3;
             label3.Text = "Product Name :";
             // 
             // productNamebox
             // 
-            productNamebox.Location = new Point(235, 79);
+            productNamebox.Location = new Point(240, 80);
             productNamebox.Margin = new Padding(5, 4, 5, 4);
             productNamebox.Name = "productNamebox";
-            productNamebox.Size = new Size(204, 27);
+            productNamebox.Size = new Size(210, 27);
             productNamebox.TabIndex = 4;
             // 
             // productCostlbl
             // 
             productCostlbl.AutoSize = true;
-            productCostlbl.Font = new Font("Maiandra GD", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            productCostlbl.Location = new Point(46, 341);
+            productCostlbl.Font = new Font("Microsoft Sans Serif", 12F);
+            productCostlbl.Location = new Point(40, 330);
             productCostlbl.Margin = new Padding(5, 0, 5, 0);
             productCostlbl.Name = "productCostlbl";
-            productCostlbl.Size = new Size(108, 24);
+            productCostlbl.Size = new Size(113, 25);
             productCostlbl.TabIndex = 5;
             productCostlbl.Text = "Cost Price :";
             // 
-            // stockAddProuctbtn
+            // stockSaveProuctbtn
             // 
-            stockAddProuctbtn.Font = new Font("Maiandra GD", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            stockAddProuctbtn.Location = new Point(105, 856);
-            stockAddProuctbtn.Margin = new Padding(5, 4, 5, 4);
-            stockAddProuctbtn.Name = "stockAddProuctbtn";
-            stockAddProuctbtn.Size = new Size(101, 39);
-            stockAddProuctbtn.TabIndex = 7;
-            stockAddProuctbtn.Text = "Add";
-            stockAddProuctbtn.UseVisualStyleBackColor = true;
-            stockAddProuctbtn.Click += stockAddProductbtn_Click;
-            // 
-            // stockDeleteBtn
-            // 
-            stockDeleteBtn.Font = new Font("Maiandra GD", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            stockDeleteBtn.Location = new Point(296, 856);
-            stockDeleteBtn.Margin = new Padding(5, 4, 5, 4);
-            stockDeleteBtn.Name = "stockDeleteBtn";
-            stockDeleteBtn.Size = new Size(101, 39);
-            stockDeleteBtn.TabIndex = 8;
-            stockDeleteBtn.Text = "Delete";
-            stockDeleteBtn.UseVisualStyleBackColor = true;
+            stockSaveProuctbtn.BackColor = Color.FromArgb(0, 192, 0);
+            stockSaveProuctbtn.Font = new Font("Microsoft Sans Serif", 12F);
+            stockSaveProuctbtn.ForeColor = Color.White;
+            stockSaveProuctbtn.Location = new Point(163, 784);
+            stockSaveProuctbtn.Margin = new Padding(5, 4, 5, 4);
+            stockSaveProuctbtn.Name = "stockSaveProuctbtn";
+            stockSaveProuctbtn.Size = new Size(172, 39);
+            stockSaveProuctbtn.TabIndex = 7;
+            stockSaveProuctbtn.Text = "Save";
+            stockSaveProuctbtn.UseVisualStyleBackColor = false;
+            stockSaveProuctbtn.Click += stockAddProductbtn_Click;
             // 
             // productStatusbox
             // 
-            productStatusbox.Font = new Font("PMingLiU", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 136);
+            productStatusbox.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 136);
             productStatusbox.FormattingEnabled = true;
             productStatusbox.Items.AddRange(new object[] { "Available", "Re-Order", "Danger", "Out Of Stock" });
-            productStatusbox.Location = new Point(231, 792);
+            productStatusbox.Location = new Point(240, 730);
             productStatusbox.Margin = new Padding(5, 4, 5, 4);
             productStatusbox.Name = "productStatusbox";
-            productStatusbox.Size = new Size(204, 24);
+            productStatusbox.Size = new Size(210, 28);
             productStatusbox.TabIndex = 9;
             // 
             // productDescriptionlbl
             // 
             productDescriptionlbl.AutoSize = true;
-            productDescriptionlbl.Font = new Font("Maiandra GD", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            productDescriptionlbl.Location = new Point(43, 729);
+            productDescriptionlbl.Font = new Font("Microsoft Sans Serif", 12F);
+            productDescriptionlbl.Location = new Point(40, 680);
             productDescriptionlbl.Margin = new Padding(5, 0, 5, 0);
             productDescriptionlbl.Name = "productDescriptionlbl";
-            productDescriptionlbl.Size = new Size(121, 24);
+            productDescriptionlbl.Size = new Size(120, 25);
             productDescriptionlbl.TabIndex = 11;
             productDescriptionlbl.Text = "Description :";
             productDescriptionlbl.Click += label4_Click;
@@ -154,112 +144,112 @@
             // productSeriallbl
             // 
             productSeriallbl.AutoSize = true;
-            productSeriallbl.Font = new Font("Maiandra GD", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            productSeriallbl.Location = new Point(46, 236);
+            productSeriallbl.Font = new Font("Microsoft Sans Serif", 12F);
+            productSeriallbl.Location = new Point(40, 230);
             productSeriallbl.Margin = new Padding(5, 0, 5, 0);
             productSeriallbl.Name = "productSeriallbl";
-            productSeriallbl.Size = new Size(146, 24);
+            productSeriallbl.Size = new Size(147, 25);
             productSeriallbl.TabIndex = 12;
             productSeriallbl.Text = "Serial Number :";
             // 
             // productserialbox
             // 
-            productserialbox.Location = new Point(235, 236);
+            productserialbox.Location = new Point(240, 230);
             productserialbox.Margin = new Padding(5, 4, 5, 4);
             productserialbox.Name = "productserialbox";
-            productserialbox.Size = new Size(204, 27);
+            productserialbox.Size = new Size(210, 27);
             productserialbox.TabIndex = 13;
             // 
             // productCostbox
             // 
-            productCostbox.Location = new Point(237, 341);
+            productCostbox.Location = new Point(240, 330);
             productCostbox.Margin = new Padding(5, 4, 5, 4);
             productCostbox.Name = "productCostbox";
-            productCostbox.Size = new Size(204, 27);
+            productCostbox.Size = new Size(210, 27);
             productCostbox.TabIndex = 14;
             // 
             // productWeightlbl
             // 
             productWeightlbl.AutoSize = true;
-            productWeightlbl.Font = new Font("Maiandra GD", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            productWeightlbl.Location = new Point(46, 385);
+            productWeightlbl.Font = new Font("Microsoft Sans Serif", 12F);
+            productWeightlbl.Location = new Point(40, 380);
             productWeightlbl.Margin = new Padding(5, 0, 5, 0);
             productWeightlbl.Name = "productWeightlbl";
-            productWeightlbl.Size = new Size(85, 24);
+            productWeightlbl.Size = new Size(85, 25);
             productWeightlbl.TabIndex = 15;
             productWeightlbl.Text = "Weight :";
             // 
             // productStatuslbl
             // 
             productStatuslbl.AutoSize = true;
-            productStatuslbl.Font = new Font("Maiandra GD", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            productStatuslbl.Location = new Point(46, 792);
+            productStatuslbl.Font = new Font("Microsoft Sans Serif", 12F);
+            productStatuslbl.Location = new Point(40, 730);
             productStatuslbl.Margin = new Padding(5, 0, 5, 0);
             productStatuslbl.Name = "productStatuslbl";
-            productStatuslbl.Size = new Size(73, 24);
+            productStatuslbl.Size = new Size(79, 25);
             productStatuslbl.TabIndex = 16;
             productStatuslbl.Text = "Status :";
             // 
             // productWeightbox
             // 
-            productWeightbox.Location = new Point(238, 380);
+            productWeightbox.Location = new Point(240, 380);
             productWeightbox.Margin = new Padding(5, 4, 5, 4);
             productWeightbox.Name = "productWeightbox";
-            productWeightbox.Size = new Size(204, 27);
+            productWeightbox.Size = new Size(210, 27);
             productWeightbox.TabIndex = 17;
             // 
             // productInStocklbl
             // 
             productInStocklbl.AutoSize = true;
-            productInStocklbl.Font = new Font("Maiandra GD", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            productInStocklbl.Location = new Point(46, 487);
+            productInStocklbl.Font = new Font("Microsoft Sans Serif", 12F);
+            productInStocklbl.Location = new Point(40, 480);
             productInStocklbl.Margin = new Padding(5, 0, 5, 0);
             productInStocklbl.Name = "productInStocklbl";
-            productInStocklbl.Size = new Size(175, 24);
+            productInStocklbl.Size = new Size(172, 25);
             productInStocklbl.TabIndex = 18;
             productInStocklbl.Text = "Quantity In Stock :";
             // 
             // productInStockbox
             // 
-            productInStockbox.Location = new Point(238, 481);
+            productInStockbox.Location = new Point(240, 480);
             productInStockbox.Margin = new Padding(5, 4, 5, 4);
             productInStockbox.Name = "productInStockbox";
-            productInStockbox.Size = new Size(204, 27);
+            productInStockbox.Size = new Size(210, 27);
             productInStockbox.TabIndex = 20;
             // 
             // productReOrderbox
             // 
-            productReOrderbox.Location = new Point(237, 543);
+            productReOrderbox.Location = new Point(240, 530);
             productReOrderbox.Margin = new Padding(5, 4, 5, 4);
             productReOrderbox.Name = "productReOrderbox";
-            productReOrderbox.Size = new Size(204, 27);
+            productReOrderbox.Size = new Size(210, 27);
             productReOrderbox.TabIndex = 22;
             // 
             // productReOrderlbl
             // 
             productReOrderlbl.AutoSize = true;
-            productReOrderlbl.Font = new Font("Maiandra GD", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            productReOrderlbl.Location = new Point(43, 543);
+            productReOrderlbl.Font = new Font("Microsoft Sans Serif", 12F);
+            productReOrderlbl.Location = new Point(40, 530);
             productReOrderlbl.Margin = new Padding(5, 0, 5, 0);
             productReOrderlbl.Name = "productReOrderlbl";
-            productReOrderlbl.Size = new Size(188, 24);
+            productReOrderlbl.Size = new Size(182, 25);
             productReOrderlbl.TabIndex = 23;
             productReOrderlbl.Text = "Re-Order Quantity :";
             // 
             // productDangerlbl
             // 
             productDangerlbl.AutoSize = true;
-            productDangerlbl.Font = new Font("Maiandra GD", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            productDangerlbl.Location = new Point(41, 608);
+            productDangerlbl.Font = new Font("Microsoft Sans Serif", 12F);
+            productDangerlbl.Location = new Point(40, 580);
             productDangerlbl.Margin = new Padding(5, 0, 5, 0);
             productDangerlbl.Name = "productDangerlbl";
-            productDangerlbl.Size = new Size(169, 24);
+            productDangerlbl.Size = new Size(165, 25);
             productDangerlbl.TabIndex = 24;
             productDangerlbl.Text = "Danger Quantity :";
             // 
             // productDescriptionbox
             // 
-            productDescriptionbox.Location = new Point(231, 724);
+            productDescriptionbox.Location = new Point(240, 680);
             productDescriptionbox.Margin = new Padding(5, 4, 5, 4);
             productDescriptionbox.Name = "productDescriptionbox";
             productDescriptionbox.Size = new Size(210, 27);
@@ -267,7 +257,7 @@
             // 
             // productDangerbox
             // 
-            productDangerbox.Location = new Point(232, 608);
+            productDangerbox.Location = new Point(240, 580);
             productDangerbox.Margin = new Padding(5, 4, 5, 4);
             productDangerbox.Name = "productDangerbox";
             productDangerbox.Size = new Size(210, 27);
@@ -276,12 +266,12 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Font = new Font("Maiandra GD", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label12.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label12.ForeColor = SystemColors.Desktop;
             label12.Location = new Point(39, 13);
             label12.Margin = new Padding(5, 0, 5, 0);
             label12.Name = "label12";
-            label12.Size = new Size(176, 29);
+            label12.Size = new Size(178, 29);
             label12.TabIndex = 27;
             label12.Text = "Product Detail";
             // 
@@ -300,68 +290,69 @@
             // 
             // productCategorybox
             // 
-            productCategorybox.Font = new Font("PMingLiU", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 136);
+            productCategorybox.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 136);
             productCategorybox.FormattingEnabled = true;
-            productCategorybox.Items.AddRange(new object[] { "A-Sheet Metal", "B-Major Assemblies", "C-Light Components", "D-Accessories" });
-            productCategorybox.Location = new Point(235, 144);
+            productCategorybox.Items.AddRange(new object[] { "A - Sheet Metal", "B - Major Assemblies", "C - Light Components", "D - Accessories" });
+            productCategorybox.Location = new Point(240, 130);
             productCategorybox.Margin = new Padding(5, 4, 5, 4);
             productCategorybox.Name = "productCategorybox";
-            productCategorybox.Size = new Size(204, 24);
+            productCategorybox.Size = new Size(210, 28);
             productCategorybox.TabIndex = 35;
             // 
             // productAutoOrderlbl
             // 
             productAutoOrderlbl.AutoSize = true;
-            productAutoOrderlbl.Font = new Font("Maiandra GD", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            productAutoOrderlbl.Location = new Point(46, 436);
+            productAutoOrderlbl.Font = new Font("Microsoft Sans Serif", 12F);
+            productAutoOrderlbl.Location = new Point(40, 430);
             productAutoOrderlbl.Margin = new Padding(5, 0, 5, 0);
             productAutoOrderlbl.Name = "productAutoOrderlbl";
-            productAutoOrderlbl.Size = new Size(124, 24);
+            productAutoOrderlbl.Size = new Size(119, 25);
             productAutoOrderlbl.TabIndex = 38;
             productAutoOrderlbl.Text = "AutoOrder : ";
             productAutoOrderlbl.Click += label9_Click;
             // 
             // productAutoOrderbox
             // 
-            productAutoOrderbox.Location = new Point(238, 436);
+            productAutoOrderbox.Location = new Point(240, 430);
             productAutoOrderbox.Margin = new Padding(5, 4, 5, 4);
             productAutoOrderbox.Name = "productAutoOrderbox";
-            productAutoOrderbox.Size = new Size(204, 27);
+            productAutoOrderbox.Size = new Size(210, 27);
             productAutoOrderbox.TabIndex = 39;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Maiandra GD", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(43, 189);
+            label1.Font = new Font("Microsoft Sans Serif", 12F);
+            label1.Location = new Point(40, 180);
             label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
-            label1.Size = new Size(125, 24);
+            label1.Size = new Size(128, 25);
             label1.TabIndex = 40;
             label1.Text = "WareHouse :";
             // 
             // productWarehousebox
             // 
-            productWarehousebox.Location = new Point(235, 189);
+            productWarehousebox.Location = new Point(240, 180);
             productWarehousebox.Margin = new Padding(5, 4, 5, 4);
             productWarehousebox.Name = "productWarehousebox";
-            productWarehousebox.Size = new Size(204, 27);
+            productWarehousebox.Size = new Size(210, 27);
             productWarehousebox.TabIndex = 41;
             // 
             // productDemandlbl
             // 
             productDemandlbl.AutoSize = true;
-            productDemandlbl.Font = new Font("Maiandra GD", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            productDemandlbl.Location = new Point(41, 665);
+            productDemandlbl.Font = new Font("Microsoft Sans Serif", 12F);
+            productDemandlbl.Location = new Point(40, 630);
             productDemandlbl.Margin = new Padding(5, 0, 5, 0);
             productDemandlbl.Name = "productDemandlbl";
-            productDemandlbl.Size = new Size(97, 24);
+            productDemandlbl.Size = new Size(97, 25);
             productDemandlbl.TabIndex = 42;
             productDemandlbl.Text = "Demand :";
+            productDemandlbl.Click += productDemandlbl_Click;
             // 
             // productdemandbox
             // 
-            productdemandbox.Location = new Point(233, 665);
+            productdemandbox.Location = new Point(240, 630);
             productdemandbox.Margin = new Padding(5, 4, 5, 4);
             productdemandbox.Name = "productdemandbox";
             productdemandbox.Size = new Size(210, 27);
@@ -372,7 +363,7 @@
             productClosebtn.FlatAppearance.BorderSize = 0;
             productClosebtn.FlatStyle = FlatStyle.Flat;
             productClosebtn.Font = new Font("Verdana", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            productClosebtn.Location = new Point(496, 15);
+            productClosebtn.Location = new Point(476, 1);
             productClosebtn.Margin = new Padding(2, 3, 2, 3);
             productClosebtn.Name = "productClosebtn";
             productClosebtn.Size = new Size(40, 49);
@@ -384,29 +375,28 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Maiandra GD", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(43, 299);
+            label2.Font = new Font("Microsoft Sans Serif", 12F);
+            label2.Location = new Point(40, 280);
             label2.Margin = new Padding(5, 0, 5, 0);
             label2.Name = "label2";
-            label2.Size = new Size(107, 24);
+            label2.Size = new Size(106, 25);
             label2.TabIndex = 45;
             label2.Text = "Unit Price :";
             // 
             // productUnitpricebox
             // 
-            productUnitpricebox.Location = new Point(235, 293);
+            productUnitpricebox.Location = new Point(240, 280);
             productUnitpricebox.Margin = new Padding(5, 4, 5, 4);
             productUnitpricebox.Name = "productUnitpricebox";
-            productUnitpricebox.Size = new Size(204, 27);
+            productUnitpricebox.Size = new Size(210, 27);
             productUnitpricebox.TabIndex = 46;
             // 
             // ProductForm
             // 
-            StartPosition = FormStartPosition.CenterScreen;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
-            ClientSize = new Size(549, 911);
+            ClientSize = new Size(522, 848);
             Controls.Add(productUnitpricebox);
             Controls.Add(label2);
             Controls.Add(productClosebtn);
@@ -434,8 +424,7 @@
             Controls.Add(productSeriallbl);
             Controls.Add(productDescriptionlbl);
             Controls.Add(productStatusbox);
-            Controls.Add(stockDeleteBtn);
-            Controls.Add(stockAddProuctbtn);
+            Controls.Add(stockSaveProuctbtn);
             Controls.Add(productCostlbl);
             Controls.Add(productNamebox);
             Controls.Add(label3);
@@ -443,6 +432,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(5, 4, 5, 4);
             Name = "ProductForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             Load += productForm_Load;
             MouseDown += ProductForm_MouseDown;
@@ -458,8 +448,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox productNamebox;
         private System.Windows.Forms.Label productCostlbl;
-        private System.Windows.Forms.Button stockAddProuctbtn;
-        private System.Windows.Forms.Button stockDeleteBtn;
+        private System.Windows.Forms.Button stockSaveProuctbtn;
         private System.Windows.Forms.ComboBox productStatusbox;
         private System.Windows.Forms.Label productDescriptionlbl;
         private System.Windows.Forms.Label productSeriallbl;

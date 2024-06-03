@@ -198,7 +198,7 @@ namespace ITP4519M
                 string sql = "UPDATE staff SET AccountStatus=@accountStatus WHERE UserID=@userID";
                 MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
                 cmd.Parameters.AddWithValue("@userID", userID);
-                cmd.Parameters.AddWithValue("@accountStatus", 2);
+                cmd.Parameters.AddWithValue("@accountStatus", "Inactive");
                 if (cmd.ExecuteNonQuery() > 0)
                     return true;
             }
@@ -217,7 +217,7 @@ namespace ITP4519M
                 string sql = "UPDATE staff SET AccountStatus=@accountStatus WHERE UserID=@userID";
                 MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
                 cmd.Parameters.AddWithValue("@userID", userID);
-                cmd.Parameters.AddWithValue("@accountStatus", 1);
+                cmd.Parameters.AddWithValue("@accountStatus", "Active");
                 if (cmd.ExecuteNonQuery() > 0)
                     return true;
             }
@@ -316,7 +316,63 @@ namespace ITP4519M
 
         }
 
-      
+
+        public ProductDetails GetProductDetails(MySqlConnection connection, string productID)
+        {
+            ProductDetails productDetails = null;
+            string query = "SELECT * FROM product WHERE ProductID = @ProductID";
+
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@ProductID", productID);
+
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    productDetails = new ProductDetails
+                    {
+                        ProductID = reader["ProductID"].ToString(),
+                        ProductName = reader["ProductName"].ToString(),
+                        SerialNumber = reader["SerialNumber"].ToString(),
+                        ProductCategory = reader["ProductCategory"].ToString(),
+                        BinLocation = reader["BinLocation"].ToString(),
+                        Weight = reader["Weight"].ToString(),
+                        UnitPrice = reader["UnitPrice"].ToString(),
+                        CostPrice = reader["CostPrice"].ToString(),
+                        autoOrder = reader["autoOrder"].ToString(),
+                        QuantityInStock = reader["QuantityInStock"].ToString(),
+                        DemandStock = reader["DemandStock"].ToString(),
+                        ReOrderQty = reader["ReOrderQty"].ToString(),
+                        DangerQty = reader["DangerQty"].ToString(),
+                        Description = reader["Description"].ToString(),
+                        Status = reader["Status"].ToString()
+                    };
+                }
+            }
+            return productDetails;
+        }
+
+
+        public class ProductDetails
+        {
+            public string ProductID { get; set; }
+            public string ProductName { get; set; }
+            public string SerialNumber { get; set; }
+            public string ProductCategory { get; set; }
+            public string BinLocation { get; set; }
+            public string Weight { get; set; }
+            public string UnitPrice { get; set; }
+            public string CostPrice { get; set; }
+            public string autoOrder { get; set; }
+            public string QuantityInStock { get; set; }
+            public string DemandStock { get; set; }
+            public string ReOrderQty { get; set; }
+            public string DangerQty { get; set; }
+            public string Description { get; set; }
+            public string Status { get; set; }
+        }
+
+
         //Update User information
         public bool updateUserInfor(string userID, string userName, string password, string displayName, string deptID, string title, string phonenum, string email, string department)
         {

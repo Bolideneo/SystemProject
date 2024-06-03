@@ -174,7 +174,6 @@ namespace ProgramMethod
         public bool createProductinfo(string productName, string productCategory, string wareHouse, string sn, string unitPrice, string costPrice, string weight, string  autoOrder, string quantityInStock, string reOrderLevel, string dangerLevel, string demand, string description, string status)
         {
             string productID = productCategory[0] + (int.Parse(dataBaseMethod.getProductID(productCategory[0]).Substring(1)) + 1).ToString("00000");
-            MessageBox.Show(productID);
 
             while (!dataBaseMethod.createNewProduct(productID, productName, productCategory, wareHouse, sn, unitPrice, costPrice, weight, autoOrder, quantityInStock, reOrderLevel, dangerLevel ,demand,  description, status))
             {
@@ -193,6 +192,22 @@ namespace ProgramMethod
                 if (connection.State == System.Data.ConnectionState.Open)
                 {
                     return dataBaseMethod.GetUserDetails(connection, userid);
+                }
+                else
+                {
+                    throw new Exception("Database connection failed.");
+                }
+            }
+        }
+
+        public ProductDetails getProductDetails(string productid)
+        {
+            using (var connection = dataBaseMethod.ServerConnect())
+            {
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    
+                    return dataBaseMethod.GetProductDetails(connection, productid);
                 }
                 else
                 {

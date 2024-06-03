@@ -32,6 +32,7 @@ namespace ITP4519M
         private ProgramMethod.ProgramMethod programMethod;
         private Button currentButton;
         private string userID;
+        private string productID;
         private int index = -1;
         private Button lastClickedButton = null;
         private Button[] buttons = new Button[2];
@@ -266,6 +267,20 @@ namespace ITP4519M
                 DataGridViewRow selectRow = this.userData.Rows[index];
                 userID = selectRow.Cells[0].Value.ToString();
             }
+            //stockData
+
+        }
+
+        //Show datagridView of stock Data
+        private void stockData_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.RowIndex != -1)
+            {
+                index = e.RowIndex;
+                DataGridViewRow selectRow = this.stockData.Rows[index];
+                productID = selectRow.Cells[0].Value.ToString();
+            }
 
 
         }
@@ -282,9 +297,10 @@ namespace ITP4519M
 
         }
 
-        private void button5_Click_1(object sender, EventArgs e)
+        private void viewProductbtn_Click(object sender, EventArgs e)
         {
-            ITP4519M.ProductForm productForm = new ITP4519M.ProductForm();
+            ProductForm productForm = new ProductForm(OperationMode.View);
+            productForm.productEdit(productID);
             productForm.ShowDialog();
         }
 
@@ -296,11 +312,8 @@ namespace ITP4519M
         }
 
 
-        //Show datagridView of stock Data
-        private void stockData_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //stockData.DataSource = programMethod.searchUserInformation(accountSearchBox.Text.Trim());
-        }
+
+
 
         //Overall of Stock Data Label
         private void productOverallLabel()
@@ -321,7 +334,7 @@ namespace ITP4519M
         {
 
 
-            ProductForm productForm = new ProductForm();
+            ProductForm productForm = new ProductForm(OperationMode.New);
             productForm.StartPosition = FormStartPosition.CenterScreen;
             productForm.ShowDialog();
 
@@ -409,7 +422,20 @@ namespace ITP4519M
             namelbl.Text = displayName;
         }
 
-       
+        private void editProductbtn_Click(object sender, EventArgs e)
+        {
+            if (index == -1)
+            {
+                MessageBox.Show("Please Select One Option");
+            }
+            else
+            {
+                ProductForm ProductForm = new ProductForm(OperationMode.Edit);
+                ProductForm.productEdit(productID);
+                ProductForm.ShowDialog();
+
+            }
+        }
     }
 }
 

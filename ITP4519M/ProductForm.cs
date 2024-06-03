@@ -12,23 +12,113 @@ using System.Windows.Forms;
 using System.Drawing;
 using ProgramMethod;
 using MySql.Data.MySqlClient;
+using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 
 namespace ITP4519M
 {
     public partial class ProductForm : Form
     {
-        ProgramMethod.ProgramMethod programMethod;
+        private OperationMode _mode;
+        private string productID;
+        ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
         private bool isFormDragging = false;
         private Point formStartPoint;
 
 
-        public ProductForm()
+        public ProductForm(OperationMode mode)
         {
             InitializeComponent();
+            _mode = mode;
         }
         private void productForm_Load(object sender, EventArgs e)
         {
             programMethod = new ProgramMethod.ProgramMethod();
+            switch (_mode)
+            {
+                case OperationMode.View:
+                    stockSaveProuctbtn.Visible = false;
+                    SetReadOnly(true);
+
+                    break;
+                case OperationMode.Edit:
+                    stockSaveProuctbtn.Visible = true;
+                    break;
+                case OperationMode.New:
+                    stockSaveProuctbtn.Visible = true;
+                    break;
+
+            }
+        }
+
+        public void productEdit(string productID)
+        {
+
+            this.productID = productID;
+
+            try
+            {
+
+                var productDetails = programMethod.getProductDetails(productID);
+                if (productDetails != null)
+                {
+                    this.productNamebox.Text = productDetails.ProductName;
+                    this.productWarehousebox.Text = productDetails.BinLocation;
+                    this.productCategorybox.SelectedItem = productDetails.ProductCategory;
+                    this.productUnitpricebox.Text = productDetails.UnitPrice;
+                    this.productCostbox.Text = productDetails.CostPrice;
+
+                    this.productWeightbox.Text = productDetails.Weight;
+                    this.productAutoOrderbox.Text = productDetails.autoOrder;
+                    this.productInStockbox.Text = productDetails.QuantityInStock;
+                    this.productReOrderbox.Text = productDetails.ReOrderQty;
+                    this.productDangerbox.Text = productDetails.DangerQty;
+
+                    this.productdemandbox.Text = productDetails.DemandStock;
+                    this.productDescriptionbox.Text = productDetails.Description;
+                    this.productStatusbox.SelectedItem = productDetails.Status;
+                }
+                else
+                {
+                    MessageBox.Show("User details not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void SetReadOnly(bool readOnly)
+        {
+
+            productNamebox.ReadOnly = readOnly;
+            productWarehousebox.ReadOnly = readOnly;
+            productserialbox.ReadOnly = readOnly;
+            productUnitpricebox.ReadOnly = readOnly;
+            productCostbox.ReadOnly = readOnly;
+            productWeightbox.ReadOnly = readOnly;
+            productAutoOrderbox.ReadOnly = readOnly;
+            productInStockbox.ReadOnly = readOnly;
+            productReOrderbox.ReadOnly = readOnly;
+            productDangerbox.ReadOnly = readOnly;
+            productDescriptionbox.ReadOnly = readOnly;
+            productdemandbox.ReadOnly = readOnly;
+
+            productNamebox.Enabled = !readOnly;
+            productWarehousebox.Enabled = !readOnly;
+            productserialbox.Enabled = !readOnly;
+            productUnitpricebox.Enabled = !readOnly;
+            productCostbox.Enabled = !readOnly;
+            productWeightbox.Enabled = !readOnly;
+            productAutoOrderbox.Enabled = !readOnly;
+            productInStockbox.Enabled = !readOnly;
+            productReOrderbox.Enabled = !readOnly;
+            productDangerbox.Enabled = !readOnly;
+            productDescriptionbox.Enabled = !readOnly;
+            productNamebox.Enabled = !readOnly;
+            productWarehousebox.Enabled = !readOnly;
+            productdemandbox.Enabled = !readOnly;
+
         }
 
         private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
@@ -104,6 +194,11 @@ namespace ITP4519M
                 int deltaY = e.Y - formStartPoint.Y;
                 this.Location = new Point(this.Location.X + deltaX, this.Location.Y + deltaY);
             }
+        }
+
+        private void productDemandlbl_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
