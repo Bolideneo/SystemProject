@@ -150,3 +150,4 @@ C:\Users\Nicky Tse\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.pdb
 C:\Users\Nicky Tse\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.genruntimeconfig.cache
 C:\Users\Nicky Tse\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ref\ITP4519M.dll
 C:\Users\Nicky Tse\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.Delivery.resources
+C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.Delivery.resources

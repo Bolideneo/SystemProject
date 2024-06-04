@@ -1038,6 +1038,7 @@ namespace ITP4519M
             delProductbtn.TabIndex = 31;
             delProductbtn.Text = "Delete Product";
             delProductbtn.UseVisualStyleBackColor = false;
+            delProductbtn.Click += delProductbtn_Click;
             // 
             // stockSearchBox
             // 
@@ -1262,16 +1263,16 @@ namespace ITP4519M
             ClientSize = new Size(1499, 875);
             Controls.Add(closebtn);
             Controls.Add(listpnl);
+            Controls.Add(inventorypnl);
+            Controls.Add(logpnl);
+            Controls.Add(deliverypnl);
+            Controls.Add(contactpnl);
             Controls.Add(GRNpnl);
             Controls.Add(outstandingOrderpnl);
             Controls.Add(dashboardpnl);
             Controls.Add(orderpnl);
             Controls.Add(settingpnl);
             Controls.Add(userspnl);
-            Controls.Add(inventorypnl);
-            Controls.Add(logpnl);
-            Controls.Add(deliverypnl);
-            Controls.Add(contactpnl);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);

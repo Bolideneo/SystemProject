@@ -483,6 +483,20 @@ namespace ITP4519M
 
             ShowPanel(deliverypnl);
         }
+
+        private void delProductbtn_Click(object sender, EventArgs e)
+        {
+            if (index == -1)
+            {
+                MessageBox.Show("Please Select One Option");
+            }
+            else
+            {
+
+                programMethod.productDel(productID);
+
+            }
+        }
     }
 }
 

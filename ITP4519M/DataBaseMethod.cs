@@ -4,11 +4,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using Microsoft.VisualBasic.ApplicationServices;
 using MySql.Data.MySqlClient;
+using Mysqlx.Crud;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 
@@ -199,6 +202,23 @@ namespace ITP4519M
                 MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
                 cmd.Parameters.AddWithValue("@userID", userID);
                 cmd.Parameters.AddWithValue("@accountStatus", "Inactive");
+                if (cmd.ExecuteNonQuery() > 0)
+                    return true;
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine("An exception occurred: " + ex.Message);
+            }
+            return false;
+        }
+
+        public bool delProduct(string productID)
+        {
+            try
+            {
+                string sql = "DELETE FROM product WHERE ProductID=@ProductID";
+                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+                cmd.Parameters.AddWithValue("@ProductID", productID);
                 if (cmd.ExecuteNonQuery() > 0)
                     return true;
             }
@@ -462,7 +482,64 @@ namespace ITP4519M
             }
             return false;
         }
+        //productID, productName, productCategory, wareHouse, sn, unitPrice, costPrice, weight, autoOrder, quantityInStock, reOrderLevel, dangerLevel, demand, description, status
+        public bool updateProductinfo(string productID, string productname, string productcategory, string binlocation, string sn, string unitprice, string costprice, string weight, string autoOrder, string quantitystock, string demandstock, string description, string status)
+        {
+            try
+            {
+                
+                string sql = "UPDATE product SET ProductName = @pName, SerialNumber = @sn, ProductCategory = @pCategory, BinLocation = @binLocation, Weight = @weight, UnitPrice = @unitPrice, CostPrice = @costPrice, autoOrder = @autoOrder, QuantityInStock = @quantityStock, DemandStock = @demandStock, Description = @description, Status = @status WHERE ProductID = @pid";
+                
+                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+                cmd.Parameters.AddWithValue("@pid", productID);
+                cmd.Parameters.AddWithValue("@pName", productname);
+                cmd.Parameters.AddWithValue("@sn", sn);
+                cmd.Parameters.AddWithValue("@pCategory", productcategory);
+                cmd.Parameters.AddWithValue("@binLocation", binlocation);
+                cmd.Parameters.AddWithValue("@weight", weight);
+                cmd.Parameters.AddWithValue("@unitPrice", unitprice);
+                cmd.Parameters.AddWithValue("@costPrice", costprice);
+                cmd.Parameters.AddWithValue("@autoOrder", autoOrder);
+                cmd.Parameters.AddWithValue("@quantityStock", quantitystock);
+                cmd.Parameters.AddWithValue("@demandStock", demandstock);
+  //              cmd.Parameters.AddWithValue("@reorderLevel", reorderlevel);
+    //            cmd.Parameters.AddWithValue("@dangerLevel", dangerlevel);
+                cmd.Parameters.AddWithValue("@description", description);
+                cmd.Parameters.AddWithValue("@status", status);
+            //    int result = cmd.ExecuteNonQuery();
+                // 使用 GetFullSqlString 函数生成完整的 SQL 语句
+                string fullSql = GetFullSqlString(cmd);
 
+                // 在 MessageBox 中显示完整的 SQL 语句
+                MessageBox.Show(fullSql);
+
+                if (cmd.ExecuteNonQuery() > 0)
+                    return true;
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine("An exception occurred: " + ex.Message);
+            }
+            return false;
+        }
+
+        public string GetFullSqlString(MySqlCommand cmd)
+        {
+            string sql = cmd.CommandText;
+            foreach (MySqlParameter param in cmd.Parameters)
+            {
+                string paramValue = param.Value == null ? "NULL" : param.Value.ToString();
+
+                // If the parameter is a string, add single quotes around it
+                if (param.DbType == System.Data.DbType.String || param.DbType == System.Data.DbType.DateTime)
+                {
+                    paramValue = $"'{paramValue}'";
+                }
+
+                sql = sql.Replace(param.ParameterName, paramValue);
+            }
+            return sql;
+        }
 
         public bool CreateDealer(string dealerID, string dearlerOrderNo, string dealerName, string companyName, string phoneNum, string Eamil,  string regionNo)
         {

@@ -185,6 +185,33 @@ namespace ProgramMethod
             return true;
         }
 
+        public bool updateProductinfo(string productID, string productName, string productCategory, string wareHouse, string sn, string unitPrice, string costPrice, string weight, string autoOrder, string quantityInStock,  string demand, string description, string status)
+        {
+            
+
+            if (dataBaseMethod.updateProductinfo(productID, productName, productCategory, wareHouse, sn, unitPrice, costPrice, weight, autoOrder, quantityInStock,  demand, description, status))
+            {
+                return true;
+
+            }
+            else 
+                return false;
+        }
+
+
+        public bool productDel(string productID)
+        {
+
+            if (dataBaseMethod.delProduct(productID))
+            {
+                MessageBox.Show("Delete successfully");
+                return true;
+            }
+            else
+                return false;
+
+        }
+
         public UserDetails getUserDetails(string userid)
         {
             using (var connection = dataBaseMethod.ServerConnect())

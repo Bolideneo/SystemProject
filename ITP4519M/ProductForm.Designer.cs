@@ -32,7 +32,7 @@
             label3 = new Label();
             productNamebox = new TextBox();
             productCostlbl = new Label();
-            stockSaveProuctbtn = new Button();
+            stockAddProuctbtn = new Button();
             productStatusbox = new ComboBox();
             productDescriptionlbl = new Label();
             productSeriallbl = new Label();
@@ -60,6 +60,7 @@
             productClosebtn = new Button();
             label2 = new Label();
             productUnitpricebox = new TextBox();
+            stockEditProuctbtn = new Button();
             SuspendLayout();
             // 
             // prudctCategorylbl
@@ -104,19 +105,19 @@
             productCostlbl.TabIndex = 5;
             productCostlbl.Text = "Cost Price :";
             // 
-            // stockSaveProuctbtn
+            // stockAddProuctbtn
             // 
-            stockSaveProuctbtn.BackColor = Color.FromArgb(0, 192, 0);
-            stockSaveProuctbtn.Font = new Font("Microsoft Sans Serif", 12F);
-            stockSaveProuctbtn.ForeColor = Color.White;
-            stockSaveProuctbtn.Location = new Point(163, 784);
-            stockSaveProuctbtn.Margin = new Padding(5, 4, 5, 4);
-            stockSaveProuctbtn.Name = "stockSaveProuctbtn";
-            stockSaveProuctbtn.Size = new Size(172, 39);
-            stockSaveProuctbtn.TabIndex = 7;
-            stockSaveProuctbtn.Text = "Save";
-            stockSaveProuctbtn.UseVisualStyleBackColor = false;
-            stockSaveProuctbtn.Click += stockAddProductbtn_Click;
+            stockAddProuctbtn.BackColor = Color.FromArgb(0, 192, 0);
+            stockAddProuctbtn.Font = new Font("Microsoft Sans Serif", 12F);
+            stockAddProuctbtn.ForeColor = Color.White;
+            stockAddProuctbtn.Location = new Point(163, 784);
+            stockAddProuctbtn.Margin = new Padding(5, 4, 5, 4);
+            stockAddProuctbtn.Name = "stockAddProuctbtn";
+            stockAddProuctbtn.Size = new Size(172, 39);
+            stockAddProuctbtn.TabIndex = 7;
+            stockAddProuctbtn.Text = "Add";
+            stockAddProuctbtn.UseVisualStyleBackColor = false;
+            stockAddProuctbtn.Click += stockAddProductbtn_Click;
             // 
             // productStatusbox
             // 
@@ -219,9 +220,11 @@
             // 
             // productReOrderbox
             // 
+            productReOrderbox.Enabled = false;
             productReOrderbox.Location = new Point(240, 530);
             productReOrderbox.Margin = new Padding(5, 4, 5, 4);
             productReOrderbox.Name = "productReOrderbox";
+            productReOrderbox.ReadOnly = true;
             productReOrderbox.Size = new Size(210, 27);
             productReOrderbox.TabIndex = 22;
             // 
@@ -257,9 +260,11 @@
             // 
             // productDangerbox
             // 
+            productDangerbox.Enabled = false;
             productDangerbox.Location = new Point(240, 580);
             productDangerbox.Margin = new Padding(5, 4, 5, 4);
             productDangerbox.Name = "productDangerbox";
+            productDangerbox.ReadOnly = true;
             productDangerbox.Size = new Size(210, 27);
             productDangerbox.TabIndex = 26;
             // 
@@ -391,12 +396,27 @@
             productUnitpricebox.Size = new Size(210, 27);
             productUnitpricebox.TabIndex = 46;
             // 
+            // stockEditProuctbtn
+            // 
+            stockEditProuctbtn.BackColor = SystemColors.ButtonHighlight;
+            stockEditProuctbtn.Font = new Font("Microsoft Sans Serif", 12F);
+            stockEditProuctbtn.ForeColor = Color.Black;
+            stockEditProuctbtn.Location = new Point(163, 784);
+            stockEditProuctbtn.Margin = new Padding(5, 4, 5, 4);
+            stockEditProuctbtn.Name = "stockEditProuctbtn";
+            stockEditProuctbtn.Size = new Size(172, 39);
+            stockEditProuctbtn.TabIndex = 47;
+            stockEditProuctbtn.Text = "Edit";
+            stockEditProuctbtn.UseVisualStyleBackColor = false;
+            stockEditProuctbtn.Click += stockEditProuctbtn_Click;
+            // 
             // ProductForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(522, 848);
+            Controls.Add(stockEditProuctbtn);
             Controls.Add(productUnitpricebox);
             Controls.Add(label2);
             Controls.Add(productClosebtn);
@@ -424,7 +444,7 @@
             Controls.Add(productSeriallbl);
             Controls.Add(productDescriptionlbl);
             Controls.Add(productStatusbox);
-            Controls.Add(stockSaveProuctbtn);
+            Controls.Add(stockAddProuctbtn);
             Controls.Add(productCostlbl);
             Controls.Add(productNamebox);
             Controls.Add(label3);
@@ -448,7 +468,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox productNamebox;
         private System.Windows.Forms.Label productCostlbl;
-        private System.Windows.Forms.Button stockSaveProuctbtn;
+        private System.Windows.Forms.Button stockAddProuctbtn;
         private System.Windows.Forms.ComboBox productStatusbox;
         private System.Windows.Forms.Label productDescriptionlbl;
         private System.Windows.Forms.Label productSeriallbl;
@@ -477,6 +497,7 @@
         private Button productClosebtn;
         private Label label2;
         private TextBox productUnitpricebox;
+        private Button stockEditProuctbtn;
     }
 }
 

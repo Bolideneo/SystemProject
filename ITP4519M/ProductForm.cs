@@ -13,6 +13,7 @@ using System.Drawing;
 using ProgramMethod;
 using MySql.Data.MySqlClient;
 using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace ITP4519M
 {
@@ -36,15 +37,19 @@ namespace ITP4519M
             switch (_mode)
             {
                 case OperationMode.View:
-                    stockSaveProuctbtn.Visible = false;
+                    stockAddProuctbtn.Visible = false;
+                    stockEditProuctbtn.Visible = false;
                     SetReadOnly(true);
 
                     break;
                 case OperationMode.Edit:
-                    stockSaveProuctbtn.Visible = true;
+                    stockAddProuctbtn.Visible = false;
+                    stockEditProuctbtn.Visible = true;
+
                     break;
                 case OperationMode.New:
-                    stockSaveProuctbtn.Visible = true;
+                    stockAddProuctbtn.Visible = true;
+                    stockEditProuctbtn.Visible = false;
                     break;
 
             }
@@ -79,7 +84,7 @@ namespace ITP4519M
                 }
                 else
                 {
-                    MessageBox.Show("User details not found.");
+                    MessageBox.Show("Product details not found.");
                 }
             }
             catch (Exception ex)
@@ -150,6 +155,7 @@ namespace ITP4519M
 
         private void stockAddProductbtn_Click(object sender, EventArgs e)
         {
+
             string selected = this.productCategorybox.GetItemText(this.productCategorybox.SelectedItem);
             if (programMethod.createProductinfo(productNamebox.Text.Trim(), selected, productWarehousebox.Text.Trim(), productserialbox.Text.Trim(), productUnitpricebox.Text.Trim(), productCostbox.Text.Trim(), productWeightbox.Text.Trim(), productAutoOrderbox.Text.Trim(), productInStockbox.Text.Trim(), productReOrderbox.Text.Trim(), productDangerbox.Text.Trim(), productdemandbox.Text.Trim(), productDescriptionbox.Text.Trim(), productStatusbox.GetItemText(this.productStatusbox.SelectedItem)))
             {
@@ -199,6 +205,23 @@ namespace ITP4519M
         private void productDemandlbl_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void stockEditProuctbtn_Click(object sender, EventArgs e)
+        {
+            var productDetails = programMethod.getProductDetails(productID);
+            string productid = productDetails.ProductID;
+            string selected = this.productCategorybox.GetItemText(this.productCategorybox.SelectedItem);
+            if (programMethod.updateProductinfo(productid, productNamebox.Text.Trim(), selected, productWarehousebox.Text.Trim(), productserialbox.Text.Trim(), productUnitpricebox.Text.Trim(), productCostbox.Text.Trim(), productWeightbox.Text.Trim(), productAutoOrderbox.Text.Trim(), productInStockbox.Text.Trim(),  productdemandbox.Text.Trim(), productDescriptionbox.Text.Trim(), productStatusbox.GetItemText(this.productStatusbox.SelectedItem)))
+            {
+
+                MessageBox.Show("Saved");
+            }
+            else
+            {
+
+                MessageBox.Show("Please input xxxxxx");
+            }
         }
     }
 
