@@ -1,48 +1,3 @@
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\bin\Debug\net8.0-windows\ITP4519M.exe
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\bin\Debug\net8.0-windows\ITP4519M.deps.json
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\bin\Debug\net8.0-windows\ITP4519M.runtimeconfig.json
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\bin\Debug\net8.0-windows\ITP4519M.dll
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\bin\Debug\net8.0-windows\ITP4519M.pdb
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\bin\Debug\net8.0-windows\MySqlConnector.dll
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.csproj.AssemblyReference.cache
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.csproj.GenerateResource.cache
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.GeneratedMSBuildEditorConfig.editorconfig
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.AssemblyInfoInputs.cache
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.AssemblyInfo.cs
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.csproj.CoreCompileInputs.cache
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.csproj.CopyComplete
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.dll
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\obj\Debug\net8.0-windows\refint\ITP4519M.dll
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.pdb
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.genruntimeconfig.cache
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\obj\Debug\net8.0-windows\ref\ITP4519M.dll
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.Login.resources
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\bin\Debug\net8.0-windows\BouncyCastle.Cryptography.dll
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\bin\Debug\net8.0-windows\Google.Protobuf.dll
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\bin\Debug\net8.0-windows\K4os.Compression.LZ4.dll
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\bin\Debug\net8.0-windows\K4os.Compression.LZ4.Streams.dll
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\bin\Debug\net8.0-windows\K4os.Hash.xxHash.dll
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\bin\Debug\net8.0-windows\MySql.Data.dll
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\bin\Debug\net8.0-windows\System.IO.Pipelines.dll
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\bin\Debug\net8.0-windows\ZstdSharp.dll
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\bin\Debug\net8.0-windows\runtimes\win-x64\native\comerr64.dll
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\bin\Debug\net8.0-windows\runtimes\win-x64\native\gssapi64.dll
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\bin\Debug\net8.0-windows\runtimes\win-x64\native\k5sprt64.dll
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\bin\Debug\net8.0-windows\runtimes\win-x64\native\krb5_64.dll
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\bin\Debug\net8.0-windows\runtimes\win-x64\native\krbcc64.dll
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.HomePage.resources
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.csproj.AssemblyReference.cache
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.csproj.GenerateResource.cache
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.Properties.Resources.resources
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.GeneratedMSBuildEditorConfig.editorconfig
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.AssemblyInfoInputs.cache
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.AssemblyInfo.cs
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.csproj.CoreCompileInputs.cache
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.Dashboard.resources
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.SalesOrder.resources
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.Login.resources
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.RegisterForm.resources
 E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\bin\Debug\net8.0-windows\ITP4519M.exe
 E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\bin\Debug\net8.0-windows\ITP4519M.deps.json
 E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\bin\Debug\net8.0-windows\ITP4519M.runtimeconfig.json
@@ -63,92 +18,23 @@ E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\bin\Debug\net8.0-windows\run
 E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\bin\Debug\net8.0-windows\runtimes\win-x64\native\k5sprt64.dll
 E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\bin\Debug\net8.0-windows\runtimes\win-x64\native\krb5_64.dll
 E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\bin\Debug\net8.0-windows\runtimes\win-x64\native\krbcc64.dll
+E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.csproj.AssemblyReference.cache
+E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.Dashboard.resources
+E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.Delivery.resources
+E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.Login.resources
+E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.ProductForm.resources
+E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.Properties.Resources.resources
+E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.RegisterForm.resources
+E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.SalesOrder.resources
+E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.csproj.GenerateResource.cache
+E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.GeneratedMSBuildEditorConfig.editorconfig
+E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.AssemblyInfoInputs.cache
+E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.AssemblyInfo.cs
+E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.csproj.CoreCompileInputs.cache
+E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.sourcelink.json
 E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.csproj.Up2Date
 E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.dll
 E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\refint\ITP4519M.dll
 E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.pdb
 E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.genruntimeconfig.cache
 E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ref\ITP4519M.dll
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.csproj.AssemblyReference.cache
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.Dashboard.resources
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.Login.resources
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.Properties.Resources.resources
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.RegisterForm.resources
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.SalesOrder.resources
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.csproj.GenerateResource.cache
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.AssemblyInfoInputs.cache
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.AssemblyInfo.cs
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.csproj.CoreCompileInputs.cache
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.sourcelink.json
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\bin\Debug\net8.0-windows\ITP4519M.exe
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\bin\Debug\net8.0-windows\ITP4519M.deps.json
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\bin\Debug\net8.0-windows\ITP4519M.runtimeconfig.json
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\bin\Debug\net8.0-windows\ITP4519M.dll
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\bin\Debug\net8.0-windows\ITP4519M.pdb
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\bin\Debug\net8.0-windows\BouncyCastle.Cryptography.dll
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\bin\Debug\net8.0-windows\Google.Protobuf.dll
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\bin\Debug\net8.0-windows\K4os.Compression.LZ4.dll
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\bin\Debug\net8.0-windows\K4os.Compression.LZ4.Streams.dll
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\bin\Debug\net8.0-windows\K4os.Hash.xxHash.dll
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\bin\Debug\net8.0-windows\MySql.Data.dll
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\bin\Debug\net8.0-windows\MySqlConnector.dll
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\bin\Debug\net8.0-windows\System.IO.Pipelines.dll
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\bin\Debug\net8.0-windows\ZstdSharp.dll
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\bin\Debug\net8.0-windows\runtimes\win-x64\native\comerr64.dll
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\bin\Debug\net8.0-windows\runtimes\win-x64\native\gssapi64.dll
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\bin\Debug\net8.0-windows\runtimes\win-x64\native\k5sprt64.dll
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\bin\Debug\net8.0-windows\runtimes\win-x64\native\krb5_64.dll
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\bin\Debug\net8.0-windows\runtimes\win-x64\native\krbcc64.dll
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.csproj.Up2Date
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.dll
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-windows\refint\ITP4519M.dll
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.pdb
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.genruntimeconfig.cache
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ref\ITP4519M.dll
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.sourcelink.json
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.ProductForm.resources
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.ProductForm.resources
-C:\Users\Nicky Tse\SystemProject\ITP4519M\bin\Debug\net8.0-windows\ITP4519M.exe
-C:\Users\Nicky Tse\SystemProject\ITP4519M\bin\Debug\net8.0-windows\ITP4519M.deps.json
-C:\Users\Nicky Tse\SystemProject\ITP4519M\bin\Debug\net8.0-windows\ITP4519M.runtimeconfig.json
-C:\Users\Nicky Tse\SystemProject\ITP4519M\bin\Debug\net8.0-windows\ITP4519M.dll
-C:\Users\Nicky Tse\SystemProject\ITP4519M\bin\Debug\net8.0-windows\ITP4519M.pdb
-C:\Users\Nicky Tse\SystemProject\ITP4519M\bin\Debug\net8.0-windows\BouncyCastle.Cryptography.dll
-C:\Users\Nicky Tse\SystemProject\ITP4519M\bin\Debug\net8.0-windows\Google.Protobuf.dll
-C:\Users\Nicky Tse\SystemProject\ITP4519M\bin\Debug\net8.0-windows\K4os.Compression.LZ4.dll
-C:\Users\Nicky Tse\SystemProject\ITP4519M\bin\Debug\net8.0-windows\K4os.Compression.LZ4.Streams.dll
-C:\Users\Nicky Tse\SystemProject\ITP4519M\bin\Debug\net8.0-windows\K4os.Hash.xxHash.dll
-C:\Users\Nicky Tse\SystemProject\ITP4519M\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
-C:\Users\Nicky Tse\SystemProject\ITP4519M\bin\Debug\net8.0-windows\MySql.Data.dll
-C:\Users\Nicky Tse\SystemProject\ITP4519M\bin\Debug\net8.0-windows\MySqlConnector.dll
-C:\Users\Nicky Tse\SystemProject\ITP4519M\bin\Debug\net8.0-windows\System.IO.Pipelines.dll
-C:\Users\Nicky Tse\SystemProject\ITP4519M\bin\Debug\net8.0-windows\ZstdSharp.dll
-C:\Users\Nicky Tse\SystemProject\ITP4519M\bin\Debug\net8.0-windows\runtimes\win-x64\native\comerr64.dll
-C:\Users\Nicky Tse\SystemProject\ITP4519M\bin\Debug\net8.0-windows\runtimes\win-x64\native\gssapi64.dll
-C:\Users\Nicky Tse\SystemProject\ITP4519M\bin\Debug\net8.0-windows\runtimes\win-x64\native\k5sprt64.dll
-C:\Users\Nicky Tse\SystemProject\ITP4519M\bin\Debug\net8.0-windows\runtimes\win-x64\native\krb5_64.dll
-C:\Users\Nicky Tse\SystemProject\ITP4519M\bin\Debug\net8.0-windows\runtimes\win-x64\native\krbcc64.dll
-C:\Users\Nicky Tse\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.csproj.AssemblyReference.cache
-C:\Users\Nicky Tse\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.Dashboard.resources
-C:\Users\Nicky Tse\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.Login.resources
-C:\Users\Nicky Tse\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.ProductForm.resources
-C:\Users\Nicky Tse\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.Properties.Resources.resources
-C:\Users\Nicky Tse\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.RegisterForm.resources
-C:\Users\Nicky Tse\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.SalesOrder.resources
-C:\Users\Nicky Tse\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.csproj.GenerateResource.cache
-C:\Users\Nicky Tse\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Nicky Tse\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.AssemblyInfoInputs.cache
-C:\Users\Nicky Tse\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.AssemblyInfo.cs
-C:\Users\Nicky Tse\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.csproj.CoreCompileInputs.cache
-C:\Users\Nicky Tse\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.sourcelink.json
-C:\Users\Nicky Tse\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.csproj.CopyComplete
-C:\Users\Nicky Tse\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.dll
-C:\Users\Nicky Tse\SystemProject\ITP4519M\obj\Debug\net8.0-windows\refint\ITP4519M.dll
-C:\Users\Nicky Tse\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.pdb
-C:\Users\Nicky Tse\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.genruntimeconfig.cache
-C:\Users\Nicky Tse\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ref\ITP4519M.dll
-C:\Users\Nicky Tse\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.Delivery.resources
-C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.Delivery.resources
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.Delivery.resources

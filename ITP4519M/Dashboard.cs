@@ -33,7 +33,10 @@ namespace ITP4519M
         private Button currentButton;
         private string userID;
         private string productID;
+        private string orderID;
+        private string dealerID;
         private int index = -1;
+        private int index2 = -1;
         private Button lastClickedButton = null;
         private Button[] buttons = new Button[2];
         private bool isFormDragging = false;
@@ -210,8 +213,19 @@ namespace ITP4519M
 
         private void viewOrderbtn_Click(object sender, EventArgs e)
         {
-            SalesOrder salesOrder = new SalesOrder(OperationMode.View);
-            salesOrder.ShowDialog();
+            if (index2 == -1)
+            {
+                MessageBox.Show("Please Select One Order");
+            }
+            else
+            {
+                SalesOrder salesOrder = new SalesOrder(OperationMode.View);
+                salesOrder.orderView(orderID, dealerID);
+                salesOrder.ShowDialog();
+
+            }
+
+
         }
 
         private void newOrderbtn_Click(object sender, EventArgs e)
@@ -494,6 +508,26 @@ namespace ITP4519M
             {
 
                 programMethod.productDel(productID);
+
+            }
+        }
+
+        private void orderdata_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.RowIndex != -1 && e.RowIndex < orderdata.Rows.Count)
+            {
+                index2 = e.RowIndex;
+                MessageBox.Show(index2.ToString());
+                DataGridViewRow selectRow = this.orderdata.Rows[index2];
+
+                if (selectRow.Cells.Count >= 2)
+                {
+                    orderID = selectRow.Cells[0].Value.ToString();
+                    dealerID = selectRow.Cells[1].Value.ToString();
+                }
+                //orderID = selectRow.Cells[0].Value.ToString();
+                //dealerID = selectRow.Cells[1].Value.ToString();
 
             }
         }

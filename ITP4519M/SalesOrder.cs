@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.ApplicationServices;
 using Mysqlx.Crud;
+using MySqlX.XDevAPI.Common;
 using ProgramMethod;
 
 namespace ITP4519M
@@ -17,8 +19,10 @@ namespace ITP4519M
     public partial class SalesOrder : Form
     {
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
+        private string orderID;
+        private string dealerID;
         private OperationMode _mode;
-       
+
 
 
         public SalesOrder(OperationMode mode)
@@ -34,7 +38,7 @@ namespace ITP4519M
 
         private void SalesOrder_Load(object sender, EventArgs e)
         {
-            
+
 
             switch (_mode)
             {
@@ -80,6 +84,11 @@ namespace ITP4519M
             dealerNameBox.ReadOnly = readOnly;
             dealerCompanyBox.ReadOnly = readOnly;
             phoneNumBox.ReadOnly = readOnly;
+            productOfOrderdata.ReadOnly = readOnly;
+            disableFunction(readOnly);
+
+
+
 
             goodsAddressBox.Enabled = !readOnly;
             invoiceAddressBox.Enabled = !readOnly;
@@ -91,12 +100,58 @@ namespace ITP4519M
             dealerNameBox.Enabled = !readOnly;
             dealerCompanyBox.Enabled = !readOnly;
             phoneNumBox.Enabled = !readOnly;
+
+
         }
 
         private void orderIDBox_TextChanged(object sender, EventArgs e)
         {
 
         }
+
+
+        public void orderView(string orderID, string dealerID)
+        {
+            this.productSearchbox.Visible = false;
+            this.orderID = orderID;
+            this.dealerID = dealerID;
+
+
+
+            try
+            {
+                DataTable orderDetails = programMethod.getOrderDetails(orderID);
+                DataTable dealerDetails = programMethod.getOrderDealerName(orderID, dealerID);
+                DataTable orderItemDeatails = programMethod.getOrderItemDetails(orderID);
+                string productID = orderItemDeatails.Rows[0]["ProductID"].ToString();
+                DataTable orderItemProductDeatails = programMethod.getOrderItemProductDeatails(orderID, productID);
+
+                if (orderDetails != null)
+                {
+                    this.orderIDBox.Text = orderID;
+                    this.dealerIDBox.Text = dealerID;
+                    this.orderDateBox.Text = orderDetails.Rows[0]["OrderDate"].ToString();
+                    this.orderStatusBox.Text = orderDetails.Rows[0]["OrderStatusID"].ToString();
+                    this.dealerNameBox.Text = dealerDetails.Rows[0]["DealerName"].ToString();
+                    this.phoneNumBox.Text = dealerDetails.Rows[0]["DealerPhoneNum"].ToString();
+                    this.dealerCompanyBox.Text = dealerDetails.Rows[0]["DealerCompanyName"].ToString();
+                    //for loop needs to add
+                    this.productOfOrderdata.Rows.Add(productID, orderItemProductDeatails.Rows[0]["ProductName"].ToString(), orderItemDeatails.Rows[0]["OrderedQuantity"].ToString(), orderItemProductDeatails.Rows[0]["UnitPrice"]);
+
+                }
+                else
+                {
+                    MessageBox.Show("User details not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+
 
         private void dealerIDBox_KeyDown(object sender, KeyEventArgs e)
         {
@@ -126,13 +181,14 @@ namespace ITP4519M
 
         private void productSearchbox_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void productSearchbox_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             //Question
-            productpricebox.Text = productpricebox.Text.Substring(0, 12) + programMethod.calProductTotalAmount(productOfOrderdata);
+
+            //totalpricelbl.Text = "" +  programMethod.calProductTotalAmount(productOfOrderdata);
 
         }
 
@@ -140,11 +196,13 @@ namespace ITP4519M
         {
             if (e.KeyCode == Keys.Enter)
             {
+
                 if (programMethod.getValidProduct(productSearchbox.Text.Trim()))
                 {
 
-                    for (int i = 0; i < productOfOrderdata.Rows.Count; i++)
+                    for (int i = 0; i < productOfOrderdata.Rows.Count - 1; i++)
                     {
+                        MessageBox.Show(productOfOrderdata.Rows[i].Cells[0].Value.ToString());
                         if (productOfOrderdata.Rows[i].Cells[0].Value.ToString() == productSearchbox.Text.Trim() || productOfOrderdata.Rows[i].Cells[1].Value.ToString() == productSearchbox.Text.Trim())
                         {
                             productSearchbox.Text = "";
@@ -179,24 +237,27 @@ namespace ITP4519M
             }
 
 
+
             if (productOfOrderdata.RowCount == 0)
             {
                 MessageBox.Show("Please Select atleast one product");
             }
 
 
-            ArrayList checkList = new ArrayList();
+            List<bool> checkList = new List<bool>();
 
             for (int i = 0; i < productOfOrderdata.Rows.Count; i++)
             {
-                if (int.Parse(productOfOrderdata.Rows[i].Cells[2].Value.ToString()) > 0)
-                    checkList.Add(true);
-                else
-                    checkList.Add(false);
-            }
-            if (checkList.Contains(false))
-                MessageBox.Show("Product quantity should not be 0");
+                int quantity = Convert.ToInt32(productOfOrderdata.Rows[i].Cells[2].Value);
 
+                bool isGreaterThanZero = (quantity > 0);
+                checkList.Add(isGreaterThanZero);
+            }
+
+            if (checkList.Contains(false))
+            {
+                MessageBox.Show("Product quantity should not be 0");
+            }
 
             string orderID;
             orderID = programMethod.createSalesOrder(dealerIDBox.Text.Trim(), dealerNameBox.Text.Trim(), phoneNumBox.Text.Trim(), goodsAddressBox.Text.Trim(), productOfOrderdata);
@@ -206,14 +267,31 @@ namespace ITP4519M
 
         }
 
-        private void productOfOrderdata_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            DataGridViewRow orderData = this.productOfOrderdata.CurrentRow;
-            this.productOfOrderdata.Rows.Remove(orderData);
-            productpricebox.Text = productpricebox.Text.Substring(0, 12) + programMethod.calProductTotalAmount(productOfOrderdata);
 
+        private void disableFunction(bool readOnly)
+        {
+            if (readOnly)
+            {
+                productOfOrderdata.CellContentDoubleClick -= productOfOrderdata_CellContentDoubleClick;
+            }
+            else { productOfOrderdata.CellContentDoubleClick += productOfOrderdata_CellContentDoubleClick; }
         }
 
- 
+        private void productOfOrderdata_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            DataGridViewRow orderData = this.productOfOrderdata.CurrentRow;
+            if (orderData != null && orderData.Index >= 0 && orderData.Index < productOfOrderdata.Rows.Count)
+            {
+                this.productOfOrderdata.Rows.Remove(orderData);
+            }
+
+            //totalpricelbl.Text = "" + programMethod.calProductTotalAmount(productOfOrderdata);
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

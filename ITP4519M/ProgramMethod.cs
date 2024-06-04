@@ -133,7 +133,7 @@ namespace ProgramMethod
             return dataBaseMethod.overallOrderinfo();
         }
 
-        public bool updateUserInfor(string userid, String userName, string password, string passwordagain, string dispalyName, string department, string title, string phonenum, string email )
+        public bool updateUserInfor(string userid, String userName, string password, string passwordagain, string dispalyName, string department, string title, string phonenum, string email)
         {
             string departmentID = dataBaseMethod.getDepartmentIDByDepartName(department);
 
@@ -143,10 +143,10 @@ namespace ProgramMethod
                 return false;
             }
 
-               if (dataBaseMethod.updateUserInfor(userid, userName, password, dispalyName, departmentID, title, phonenum, email, department )){
+            if (dataBaseMethod.updateUserInfor(userid, userName, password, dispalyName, departmentID, title, phonenum, email, department)) {
                 return true;
-                }
-               else
+            }
+            else
                 return false;
 
         }
@@ -157,7 +157,7 @@ namespace ProgramMethod
             int demanqty = 0;
             String[] data = new String[2];
 
-            for (int i = 0; i < stockData.RowCount ; i++)
+            for (int i = 0; i < stockData.RowCount; i++)
             {
                 qty += int.Parse(stockData.Rows[i].Cells["QuantityInStock"].Value.ToString());
                 demanqty += int.Parse(stockData.Rows[i].Cells["DemandStock"].Value.ToString());
@@ -169,13 +169,13 @@ namespace ProgramMethod
             return data;
         }
 
-        
 
-        public bool createProductinfo(string productName, string productCategory, string wareHouse, string sn, string unitPrice, string costPrice, string weight, string  autoOrder, string quantityInStock, string reOrderLevel, string dangerLevel, string demand, string description, string status)
+
+        public bool createProductinfo(string productName, string productCategory, string wareHouse, string sn, string unitPrice, string costPrice, string weight, string autoOrder, string quantityInStock, string reOrderLevel, string dangerLevel, string demand, string description, string status)
         {
             string productID = productCategory[0] + (int.Parse(dataBaseMethod.getProductID(productCategory[0]).Substring(1)) + 1).ToString("00000");
 
-            while (!dataBaseMethod.createNewProduct(productID, productName, productCategory, wareHouse, sn, unitPrice, costPrice, weight, autoOrder, quantityInStock, reOrderLevel, dangerLevel ,demand,  description, status))
+            while (!dataBaseMethod.createNewProduct(productID, productName, productCategory, wareHouse, sn, unitPrice, costPrice, weight, autoOrder, quantityInStock, reOrderLevel, dangerLevel, demand, description, status))
             {
                 MessageBox.Show("something wrong");
                 productID = productCategory[0] + (int.Parse(dataBaseMethod.getProductID(productCategory[0]).Substring(1)) + 1).ToString("00000");
@@ -233,7 +233,7 @@ namespace ProgramMethod
             {
                 if (connection.State == System.Data.ConnectionState.Open)
                 {
-                    
+
                     return dataBaseMethod.GetProductDetails(connection, productid);
                 }
                 else
@@ -289,6 +289,21 @@ namespace ProgramMethod
             return sum;
         }
 
+        public DataTable getOrderDetails(string orderID)
+        {
+            return dataBaseMethod.getOrderDetails(orderID);
+        }
+
+        public DataTable getOrderItemDetails(string orderID)
+        {
+            return dataBaseMethod.getOrderItemDetails(orderID);
+        }
+
+        public DataTable getOrderItemProductDeatails(string orderID, string productID)
+        {
+            return dataBaseMethod.getOrderItemProductDeatails(orderID, productID);
+        }
+
         public string createSalesOrder(string dealerID, string dealerName, string phoneNumber, string Address, DataGridView Order)
         {
     
@@ -310,6 +325,19 @@ namespace ProgramMethod
             return orderID;
         }
 
+       public DataTable getOrderDealerName(string orderID, string dealerID)
+        {
+            return dataBaseMethod.getOrderDealerName(orderID, dealerID);
+        }
+
+        public bool searchOrderID(string orderID)
+        {
+
+            if (dataBaseMethod.searchOrderID(orderID) == orderID)
+                return true;
+            else
+                return false;
+        }
     }
 }
     

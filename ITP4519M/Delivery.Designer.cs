@@ -111,9 +111,9 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.Location = new Point(54, 155);
+            label6.Location = new Point(62, 207);
             label6.Name = "label6";
-            label6.Size = new Size(93, 20);
+            label6.Size = new Size(117, 25);
             label6.TabIndex = 5;
             label6.Text = "Delivery ID :";
             // 
@@ -121,9 +121,9 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.Location = new Point(20, 251);
+            label7.Location = new Point(23, 335);
             label7.Name = "label7";
-            label7.Size = new Size(125, 20);
+            label7.Size = new Size(157, 25);
             label7.TabIndex = 6;
             label7.Text = "Quantity Follow :";
             // 
@@ -131,9 +131,9 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label8.Location = new Point(9, 300);
+            label8.Location = new Point(10, 400);
             label8.Name = "label8";
-            label8.Size = new Size(137, 20);
+            label8.Size = new Size(172, 25);
             label8.TabIndex = 7;
             label8.Text = "Quantity Deliverd :";
             // 
@@ -141,9 +141,9 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label9.Location = new Point(315, 252);
+            label9.Location = new Point(360, 336);
             label9.Name = "label9";
-            label9.Size = new Size(133, 20);
+            label9.Size = new Size(168, 25);
             label9.TabIndex = 8;
             label9.Text = "PostScript (P.S.) :";
             // 
@@ -151,9 +151,9 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label10.Location = new Point(316, 109);
+            label10.Location = new Point(361, 145);
             label10.Name = "label10";
-            label10.Size = new Size(135, 20);
+            label10.Size = new Size(171, 25);
             label10.TabIndex = 9;
             label10.Text = "Delivery Address :";
             // 
@@ -161,9 +161,9 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label11.Location = new Point(326, 203);
+            label11.Location = new Point(373, 271);
             label11.Name = "label11";
-            label11.Size = new Size(123, 20);
+            label11.Size = new Size(154, 25);
             label11.TabIndex = 10;
             label11.Text = "Phone Number :";
             // 
@@ -171,9 +171,9 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label12.Location = new Point(339, 156);
+            label12.Location = new Point(387, 208);
             label12.Name = "label12";
-            label12.Size = new Size(111, 20);
+            label12.Size = new Size(139, 25);
             label12.TabIndex = 11;
             label12.Text = "Delivery Date :";
             // 
@@ -182,10 +182,10 @@
             deliveryCreatebtn.BackColor = Color.FromArgb(0, 192, 0);
             deliveryCreatebtn.Font = new Font("Microsoft Sans Serif", 12F);
             deliveryCreatebtn.ForeColor = Color.White;
-            deliveryCreatebtn.Location = new Point(32, 398);
-            deliveryCreatebtn.Margin = new Padding(4, 3, 4, 3);
+            deliveryCreatebtn.Location = new Point(37, 531);
+            deliveryCreatebtn.Margin = new Padding(5, 4, 5, 4);
             deliveryCreatebtn.Name = "deliveryCreatebtn";
-            deliveryCreatebtn.Size = new Size(150, 29);
+            deliveryCreatebtn.Size = new Size(171, 39);
             deliveryCreatebtn.TabIndex = 12;
             deliveryCreatebtn.Text = "Create";
             deliveryCreatebtn.UseVisualStyleBackColor = false;
@@ -193,46 +193,46 @@
             // deliveryOrderidbox
             // 
             deliveryOrderidbox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryOrderidbox.Location = new Point(155, 110);
-            deliveryOrderidbox.Margin = new Padding(4, 3, 4, 3);
+            deliveryOrderidbox.Location = new Point(176, 147);
+            deliveryOrderidbox.Margin = new Padding(5, 4, 5, 4);
             deliveryOrderidbox.Name = "deliveryOrderidbox";
-            deliveryOrderidbox.Size = new Size(139, 23);
+            deliveryOrderidbox.Size = new Size(158, 27);
             deliveryOrderidbox.TabIndex = 18;
             // 
             // deliveryDeliveryidbox
             // 
             deliveryDeliveryidbox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryDeliveryidbox.Location = new Point(154, 155);
-            deliveryDeliveryidbox.Margin = new Padding(4, 3, 4, 3);
+            deliveryDeliveryidbox.Location = new Point(176, 207);
+            deliveryDeliveryidbox.Margin = new Padding(5, 4, 5, 4);
             deliveryDeliveryidbox.Name = "deliveryDeliveryidbox";
-            deliveryDeliveryidbox.Size = new Size(139, 23);
+            deliveryDeliveryidbox.Size = new Size(158, 27);
             deliveryDeliveryidbox.TabIndex = 19;
             // 
             // deliveryTotalofweightbox
             // 
             deliveryTotalofweightbox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryTotalofweightbox.Location = new Point(153, 202);
-            deliveryTotalofweightbox.Margin = new Padding(4, 3, 4, 3);
+            deliveryTotalofweightbox.Location = new Point(175, 269);
+            deliveryTotalofweightbox.Margin = new Padding(5, 4, 5, 4);
             deliveryTotalofweightbox.Name = "deliveryTotalofweightbox";
-            deliveryTotalofweightbox.Size = new Size(139, 23);
+            deliveryTotalofweightbox.Size = new Size(158, 27);
             deliveryTotalofweightbox.TabIndex = 20;
             // 
             // deliveryQtyfollowbox
             // 
             deliveryQtyfollowbox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryQtyfollowbox.Location = new Point(153, 251);
-            deliveryQtyfollowbox.Margin = new Padding(4, 3, 4, 3);
+            deliveryQtyfollowbox.Location = new Point(175, 335);
+            deliveryQtyfollowbox.Margin = new Padding(5, 4, 5, 4);
             deliveryQtyfollowbox.Name = "deliveryQtyfollowbox";
-            deliveryQtyfollowbox.Size = new Size(139, 23);
+            deliveryQtyfollowbox.Size = new Size(158, 27);
             deliveryQtyfollowbox.TabIndex = 21;
             // 
             // deliveryQtydeliverdbox
             // 
             deliveryQtydeliverdbox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryQtydeliverdbox.Location = new Point(154, 297);
-            deliveryQtydeliverdbox.Margin = new Padding(4, 3, 4, 3);
+            deliveryQtydeliverdbox.Location = new Point(176, 396);
+            deliveryQtydeliverdbox.Margin = new Padding(5, 4, 5, 4);
             deliveryQtydeliverdbox.Name = "deliveryQtydeliverdbox";
-            deliveryQtydeliverdbox.Size = new Size(139, 23);
+            deliveryQtydeliverdbox.Size = new Size(158, 27);
             deliveryQtydeliverdbox.TabIndex = 22;
             // 
             // deliveryPSbox
@@ -336,6 +336,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Delivery";
             Text = "Delivery";
             ResumeLayout(false);

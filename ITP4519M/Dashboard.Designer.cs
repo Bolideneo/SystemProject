@@ -458,6 +458,7 @@ namespace ITP4519M
             orderdata.RowHeadersWidth = 51;
             orderdata.Size = new Size(1232, 685);
             orderdata.TabIndex = 27;
+            orderdata.CellClick += orderdata_CellClick;
             // 
             // viewOrderbtn
             // 

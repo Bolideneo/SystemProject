@@ -12,6 +12,7 @@ using Microsoft.VisualBasic.ApplicationServices;
 using MySql.Data.MySqlClient;
 using Mysqlx.Crud;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Org.BouncyCastle.Asn1.Mozilla;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 
@@ -573,6 +574,20 @@ namespace ITP4519M
             { return null; }
         }
 
+        public string searchOrderID(string orderID)
+        {
+            try
+            {
+                string sql = "SELECT OrderID FROM `order` WHERE OrderID=@orderID";
+                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+                cmd.Parameters.AddWithValue("@orderID", orderID);
+                Object order = cmd.ExecuteScalar();
+                return order.ToString();
+            }
+            catch
+            { return null; }
+        }
+
         public DataTable searchDealerDetail(string dealerID)
         {
             string sql = "SELECT * FROM dealer WHERE DealerID=@dealerID";
@@ -629,6 +644,8 @@ namespace ITP4519M
             return dealer.ToString();
         }
 
+        
+
         public string getOrderID()
         {   
             string sql = "SELECT MAX(OrderID) FROM `order` ";
@@ -641,8 +658,9 @@ namespace ITP4519M
         public bool createSalesOrder(string orderID, string dealerID, string orderstatusID)
         {
             DateTime orderDate = DateTime.Now;
-            orderDate.ToString("yyyy-MM-dd HH:mm:ss");
-            string sql = "INSERT INTO order (OrderID, DealerID, OrderStatusID, OrderDate) VALUES(@orderID, @dearlerID, @orderStatusID, @orderDate)";
+            orderDate.ToString("yyyy-MM-dd HH:mm");
+            Console.WriteLine(orderDate);
+            string sql = "INSERT INTO `order` (OrderID, DealerID, OrderStatusID, OrderDate) VALUES(@orderID, @dealerID, @orderStatusID, @orderDate)";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@orderID", orderID);
             cmd.Parameters.AddWithValue("@dealerID", dealerID);
@@ -678,6 +696,77 @@ namespace ITP4519M
         }
 
 
+        //public OrderDetails GetOrderDetails(MySqlConnection connection, string orderID)
+        //{
+        //    OrderDetails oderDetails = null;
+        //    string query = "SELECT * FROM `order`WHERE OrderID = @orderID";
+
+        //    MySqlCommand command = new MySqlCommand(query, connection);
+        //    command.Parameters.AddWithValue("@UserID", orderID);
+
+        //    using (MySqlDataReader reader = command.ExecuteReader())
+        //    {
+        //        if (reader.Read())
+        //        {
+        //            oderDetails = new UserDetails
+        //            {
+        //                OrderID = reader["OrderID"].ToString(),
+        //                DealerID = reader["DealerID"].ToString(),
+        //                OrderSatusID = reader["OrderStatusID"].ToString(),
+        //                OrderDate = reader["OrderDate"].ToString(),
+
+        //            };
+        //        }
+        //    }
+        //    return OrderDetails;
+        //}
+
+        public DataTable getOrderDetails(string orderID)
+        {
+            string sql = "SELECT * FROM `order` WHERE OrderID=@orderID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@orderID", orderID);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+
+        }
+
+        public DataTable getOrderDealerName(string orderID, string dealerID)
+        { 
+            string sql = "SELECT DealerName, DealerCompanyName, DealerPhoneNum FROM dealer, `order` WHERE dealer.DealerID = `order`.DealerID AND dealer.DealerID = @dealerID AND `order`.OrderID = @orderID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@orderID", orderID);
+            cmd.Parameters.AddWithValue("@dealerID", dealerID);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
+        public DataTable getOrderItemDetails(string orderID) 
+        {
+            string sql = "SELECT * FROM orderitem WHERE OrderID=@orderID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@orderID", orderID);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
+        public DataTable getOrderItemProductDeatails(string orderID, string productID) 
+        {
+            string sql = "SELECT ProductName, UnitPrice FROM product, orderitem WHERE orderitem.ProductID= product.ProductID AND orderitem.OrderID =@orderID ";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@orderID", orderID);
+            cmd.Parameters.AddWithValue("@productID", productID);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
     }
 
 }
