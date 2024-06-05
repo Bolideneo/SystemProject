@@ -810,6 +810,45 @@ namespace ITP4519M
             return dataTable;
 
         }
+
+        public void increaseStock(string productID, int qty ) 
+        {
+            string sql = "UPDATE item SET QuantityInStock=QuantityInStock+ @qty WHERE ProrductID=@productID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@qty", qty);
+            cmd.Parameters.AddWithValue("@productID", productID);
+            cmd.ExecuteNonQuery();
+        }
+
+
+        public bool createGRN(string grnID, string POID, string productID, string warehouse , string recQty, string recDate)
+        {
+
+            DateTime theDate = DateTime.Now;
+            theDate.ToString("yyyy-MM-dd HH:mm:ss");
+            string sql = "INSERT INTO grn (grnID, PurcahseOrderID, ProductID, ReceiveQty, ReceiveDate, WareHouse)VALUES(@grnID, @poID @productID, @recqty, @recdate, @warehouse)";           
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@grnID", grnID);
+            cmd.Parameters.AddWithValue("@poID", POID);
+            cmd.Parameters.AddWithValue("@productID", productID);
+            cmd.Parameters.AddWithValue("@recqty", recQty);
+            cmd.Parameters.AddWithValue("@recdate", recDate);
+            cmd.Parameters.AddWithValue("@warehouse", warehouse);
+            if (cmd.ExecuteNonQuery() > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public string getGRNID(char character) 
+        {
+            string sql = "SELECT MAX(grnID) FROM grn WHERE LEFT(grnID,1)=@character";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@character", character);
+            Object grn = cmd.ExecuteScalar();
+            return grn.ToString();
+        }
     }
 
 }

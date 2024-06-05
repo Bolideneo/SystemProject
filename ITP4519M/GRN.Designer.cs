@@ -35,14 +35,15 @@
             label6 = new Label();
             label7 = new Label();
             label12 = new Label();
-            deliveryCreatebtn = new Button();
-            deliveryOrderidbox = new TextBox();
-            deliveryDeliveryidbox = new TextBox();
-            deliveryTotalofweightbox = new TextBox();
-            deliveryQtyfollowbox = new TextBox();
+            grnCreatebtn = new Button();
+            grnPOIDbox = new TextBox();
+            grnProductIDbox = new TextBox();
+            grnwarehousebox = new TextBox();
+            grnreceivedqtybox = new TextBox();
             deliveryClearbtn = new Button();
-            deliveryDateTimePicker = new DateTimePicker();
+            grnDateTimePicker = new DateTimePicker();
             CloseButton = new Button();
+            grnerrorlbl = new Label();
             SuspendLayout();
             // 
             // label1
@@ -73,9 +74,9 @@
             label3.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.Location = new Point(69, 106);
             label3.Name = "label3";
-            label3.Size = new Size(60, 20);
+            label3.Size = new Size(70, 20);
             label3.TabIndex = 2;
-            label3.Text = "PO ID :";
+            label3.Text = "* PO ID :";
             // 
             // label4
             // 
@@ -83,9 +84,9 @@
             label4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.Location = new Point(30, 254);
             label4.Name = "label4";
-            label4.Size = new Size(111, 20);
+            label4.Size = new Size(121, 20);
             label4.TabIndex = 3;
-            label4.Text = "Received Qty :";
+            label4.Text = "* Received Qty :";
             // 
             // label6
             // 
@@ -93,9 +94,9 @@
             label6.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.Location = new Point(52, 157);
             label6.Name = "label6";
-            label6.Size = new Size(89, 20);
+            label6.Size = new Size(99, 20);
             label6.TabIndex = 5;
-            label6.Text = "Product ID:";
+            label6.Text = "* Product ID:";
             // 
             // label7
             // 
@@ -103,88 +104,90 @@
             label7.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.Location = new Point(39, 208);
             label7.Name = "label7";
-            label7.Size = new Size(102, 20);
+            label7.Size = new Size(112, 20);
             label7.TabIndex = 6;
-            label7.Text = "WareHouse :";
+            label7.Text = "* WareHouse :";
             // 
             // label12
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label12.Location = new Point(26, 298);
+            label12.Location = new Point(39, 298);
             label12.Name = "label12";
             label12.Size = new Size(113, 20);
             label12.TabIndex = 11;
             label12.Text = "Receive Date :";
             // 
-            // deliveryCreatebtn
+            // grnCreatebtn
             // 
-            deliveryCreatebtn.BackColor = Color.FromArgb(0, 192, 0);
-            deliveryCreatebtn.Font = new Font("Microsoft Sans Serif", 12F);
-            deliveryCreatebtn.ForeColor = Color.White;
-            deliveryCreatebtn.Location = new Point(39, 393);
-            deliveryCreatebtn.Margin = new Padding(5, 4, 5, 4);
-            deliveryCreatebtn.Name = "deliveryCreatebtn";
-            deliveryCreatebtn.Size = new Size(171, 39);
-            deliveryCreatebtn.TabIndex = 12;
-            deliveryCreatebtn.Text = "Create";
-            deliveryCreatebtn.UseVisualStyleBackColor = false;
+            grnCreatebtn.BackColor = Color.FromArgb(0, 192, 0);
+            grnCreatebtn.Font = new Font("Microsoft Sans Serif", 12F);
+            grnCreatebtn.ForeColor = Color.White;
+            grnCreatebtn.Location = new Point(120, 400);
+            grnCreatebtn.Margin = new Padding(5, 4, 5, 4);
+            grnCreatebtn.Name = "grnCreatebtn";
+            grnCreatebtn.Size = new Size(171, 39);
+            grnCreatebtn.TabIndex = 12;
+            grnCreatebtn.Text = "Create";
+            grnCreatebtn.UseVisualStyleBackColor = false;
+            grnCreatebtn.Click += deliveryCreatebtn_Click;
             // 
-            // deliveryOrderidbox
+            // grnPOIDbox
             // 
-            deliveryOrderidbox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryOrderidbox.Location = new Point(169, 105);
-            deliveryOrderidbox.Margin = new Padding(5, 4, 5, 4);
-            deliveryOrderidbox.Name = "deliveryOrderidbox";
-            deliveryOrderidbox.Size = new Size(158, 23);
-            deliveryOrderidbox.TabIndex = 18;
+            grnPOIDbox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            grnPOIDbox.Location = new Point(169, 105);
+            grnPOIDbox.Margin = new Padding(5, 4, 5, 4);
+            grnPOIDbox.Name = "grnPOIDbox";
+            grnPOIDbox.Size = new Size(158, 23);
+            grnPOIDbox.TabIndex = 18;
             // 
-            // deliveryDeliveryidbox
+            // grnProductIDbox
             // 
-            deliveryDeliveryidbox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryDeliveryidbox.Location = new Point(169, 156);
-            deliveryDeliveryidbox.Margin = new Padding(5, 4, 5, 4);
-            deliveryDeliveryidbox.Name = "deliveryDeliveryidbox";
-            deliveryDeliveryidbox.Size = new Size(158, 23);
-            deliveryDeliveryidbox.TabIndex = 19;
+            grnProductIDbox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            grnProductIDbox.Location = new Point(169, 156);
+            grnProductIDbox.Margin = new Padding(5, 4, 5, 4);
+            grnProductIDbox.Name = "grnProductIDbox";
+            grnProductIDbox.Size = new Size(158, 23);
+            grnProductIDbox.TabIndex = 19;
             // 
-            // deliveryTotalofweightbox
+            // grnwarehousebox
             // 
-            deliveryTotalofweightbox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryTotalofweightbox.Location = new Point(169, 205);
-            deliveryTotalofweightbox.Margin = new Padding(5, 4, 5, 4);
-            deliveryTotalofweightbox.Name = "deliveryTotalofweightbox";
-            deliveryTotalofweightbox.Size = new Size(158, 23);
-            deliveryTotalofweightbox.TabIndex = 20;
+            grnwarehousebox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            grnwarehousebox.Location = new Point(169, 205);
+            grnwarehousebox.Margin = new Padding(5, 4, 5, 4);
+            grnwarehousebox.Name = "grnwarehousebox";
+            grnwarehousebox.Size = new Size(158, 23);
+            grnwarehousebox.TabIndex = 20;
             // 
-            // deliveryQtyfollowbox
+            // grnreceivedqtybox
             // 
-            deliveryQtyfollowbox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryQtyfollowbox.Location = new Point(169, 254);
-            deliveryQtyfollowbox.Margin = new Padding(5, 4, 5, 4);
-            deliveryQtyfollowbox.Name = "deliveryQtyfollowbox";
-            deliveryQtyfollowbox.Size = new Size(158, 23);
-            deliveryQtyfollowbox.TabIndex = 21;
+            grnreceivedqtybox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            grnreceivedqtybox.Location = new Point(169, 254);
+            grnreceivedqtybox.Margin = new Padding(5, 4, 5, 4);
+            grnreceivedqtybox.Name = "grnreceivedqtybox";
+            grnreceivedqtybox.Size = new Size(158, 23);
+            grnreceivedqtybox.TabIndex = 21;
             // 
             // deliveryClearbtn
             // 
             deliveryClearbtn.BackColor = Color.Red;
             deliveryClearbtn.Font = new Font("Microsoft Sans Serif", 12F);
             deliveryClearbtn.ForeColor = Color.White;
-            deliveryClearbtn.Location = new Point(251, 398);
+            deliveryClearbtn.Location = new Point(327, 407);
             deliveryClearbtn.Margin = new Padding(4, 3, 4, 3);
             deliveryClearbtn.Name = "deliveryClearbtn";
-            deliveryClearbtn.Size = new Size(150, 29);
+            deliveryClearbtn.Size = new Size(93, 32);
             deliveryClearbtn.TabIndex = 27;
             deliveryClearbtn.Text = "Clear";
             deliveryClearbtn.UseVisualStyleBackColor = false;
+            deliveryClearbtn.Click += deliveryClearbtn_Click;
             // 
-            // deliveryDateTimePicker
+            // grnDateTimePicker
             // 
-            deliveryDateTimePicker.Location = new Point(169, 298);
-            deliveryDateTimePicker.Name = "deliveryDateTimePicker";
-            deliveryDateTimePicker.Size = new Size(151, 23);
-            deliveryDateTimePicker.TabIndex = 28;
+            grnDateTimePicker.Location = new Point(169, 296);
+            grnDateTimePicker.Name = "grnDateTimePicker";
+            grnDateTimePicker.Size = new Size(212, 23);
+            grnDateTimePicker.TabIndex = 28;
             // 
             // CloseButton
             // 
@@ -199,6 +202,21 @@
             CloseButton.TabIndex = 30;
             CloseButton.Text = "X";
             CloseButton.UseVisualStyleBackColor = true;
+            CloseButton.Click += CloseButton_Click;
+            // 
+            // grnerrorlbl
+            // 
+            grnerrorlbl.AutoSize = true;
+            grnerrorlbl.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            grnerrorlbl.ForeColor = Color.Red;
+            grnerrorlbl.Location = new Point(148, 337);
+            grnerrorlbl.Name = "grnerrorlbl";
+            grnerrorlbl.RightToLeft = RightToLeft.No;
+            grnerrorlbl.Size = new Size(193, 21);
+            grnerrorlbl.TabIndex = 31;
+            grnerrorlbl.Text = "* column cannot be empty";
+            grnerrorlbl.Visible = false;
+            grnerrorlbl.Click += grnerrorlbl_Click;
             // 
             // GRN
             // 
@@ -206,14 +224,15 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(456, 478);
+            Controls.Add(grnerrorlbl);
             Controls.Add(CloseButton);
-            Controls.Add(deliveryDateTimePicker);
+            Controls.Add(grnDateTimePicker);
             Controls.Add(deliveryClearbtn);
-            Controls.Add(deliveryQtyfollowbox);
-            Controls.Add(deliveryTotalofweightbox);
-            Controls.Add(deliveryDeliveryidbox);
-            Controls.Add(deliveryOrderidbox);
-            Controls.Add(deliveryCreatebtn);
+            Controls.Add(grnreceivedqtybox);
+            Controls.Add(grnwarehousebox);
+            Controls.Add(grnProductIDbox);
+            Controls.Add(grnPOIDbox);
+            Controls.Add(grnCreatebtn);
             Controls.Add(label12);
             Controls.Add(label7);
             Controls.Add(label6);
@@ -224,6 +243,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
             Name = "GRN";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "GRN";
             ResumeLayout(false);
             PerformLayout();
@@ -238,13 +258,14 @@
         private Label label6;
         private Label label7;
         private Label label12;
-        private Button deliveryCreatebtn;
-        private TextBox deliveryOrderidbox;
-        private TextBox deliveryDeliveryidbox;
-        private TextBox deliveryTotalofweightbox;
-        private TextBox deliveryQtyfollowbox;
+        private Button grnCreatebtn;
+        private TextBox grnPOIDbox;
+        private TextBox grnProductIDbox;
+        private TextBox grnwarehousebox;
+        private TextBox grnreceivedqtybox;
         private Button deliveryClearbtn;
-        private DateTimePicker deliveryDateTimePicker;
+        private DateTimePicker grnDateTimePicker;
         private Button CloseButton;
+        private Label grnerrorlbl;
     }
 }

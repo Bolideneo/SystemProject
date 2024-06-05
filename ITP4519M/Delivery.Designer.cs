@@ -43,16 +43,16 @@
             deliveryCreatebtn = new Button();
             deliveryOrderidbox = new TextBox();
             deliveryDeliveryidbox = new TextBox();
-            deliveryTotalofweightbox = new TextBox();
+            deliveryOutstandingbox = new TextBox();
             deliveryQtyfollowbox = new TextBox();
             deliveryQtydeliverdbox = new TextBox();
-            deliveryPSbox = new TextBox();
+            deliveryOderedquantitybox = new TextBox();
             deliveryPerviousqtybtn = new TextBox();
             deliveryDeliveryaddressbox = new TextBox();
-            textBox3 = new TextBox();
+            deliveryPhoneNumbox = new TextBox();
             deliveryClearbtn = new Button();
             deliveryDateTimePicker = new DateTimePicker();
-            deliveryVieworderbtn = new Button();
+            label13 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -93,9 +93,9 @@
             label4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.Location = new Point(23, 205);
             label4.Name = "label4";
-            label4.Size = new Size(124, 20);
+            label4.Size = new Size(128, 20);
             label4.TabIndex = 3;
-            label4.Text = "Total of Weight :";
+            label4.Text = "OutStanding ID :";
             // 
             // label5
             // 
@@ -143,9 +143,9 @@
             label9.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label9.Location = new Point(316, 257);
             label9.Name = "label9";
-            label9.Size = new Size(133, 20);
+            label9.Size = new Size(134, 20);
             label9.TabIndex = 8;
-            label9.Text = "PostScript (P.S.) :";
+            label9.Text = "OrderedQuantity :";
             // 
             // label10
             // 
@@ -182,13 +182,14 @@
             deliveryCreatebtn.BackColor = Color.FromArgb(0, 192, 0);
             deliveryCreatebtn.Font = new Font("Microsoft Sans Serif", 12F);
             deliveryCreatebtn.ForeColor = Color.White;
-            deliveryCreatebtn.Location = new Point(33, 393);
+            deliveryCreatebtn.Location = new Point(155, 393);
             deliveryCreatebtn.Margin = new Padding(5, 4, 5, 4);
             deliveryCreatebtn.Name = "deliveryCreatebtn";
             deliveryCreatebtn.Size = new Size(171, 39);
             deliveryCreatebtn.TabIndex = 12;
             deliveryCreatebtn.Text = "Create";
             deliveryCreatebtn.UseVisualStyleBackColor = false;
+            deliveryCreatebtn.Click += deliveryCreatebtn_Click;
             // 
             // deliveryOrderidbox
             // 
@@ -208,14 +209,14 @@
             deliveryDeliveryidbox.Size = new Size(158, 23);
             deliveryDeliveryidbox.TabIndex = 19;
             // 
-            // deliveryTotalofweightbox
+            // deliveryOutstandingbox
             // 
-            deliveryTotalofweightbox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryTotalofweightbox.Location = new Point(155, 204);
-            deliveryTotalofweightbox.Margin = new Padding(5, 4, 5, 4);
-            deliveryTotalofweightbox.Name = "deliveryTotalofweightbox";
-            deliveryTotalofweightbox.Size = new Size(158, 23);
-            deliveryTotalofweightbox.TabIndex = 20;
+            deliveryOutstandingbox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            deliveryOutstandingbox.Location = new Point(155, 204);
+            deliveryOutstandingbox.Margin = new Padding(5, 4, 5, 4);
+            deliveryOutstandingbox.Name = "deliveryOutstandingbox";
+            deliveryOutstandingbox.Size = new Size(158, 23);
+            deliveryOutstandingbox.TabIndex = 20;
             // 
             // deliveryQtyfollowbox
             // 
@@ -235,14 +236,14 @@
             deliveryQtydeliverdbox.Size = new Size(158, 23);
             deliveryQtydeliverdbox.TabIndex = 22;
             // 
-            // deliveryPSbox
+            // deliveryOderedquantitybox
             // 
-            deliveryPSbox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryPSbox.Location = new Point(457, 257);
-            deliveryPSbox.Margin = new Padding(4, 3, 4, 3);
-            deliveryPSbox.Name = "deliveryPSbox";
-            deliveryPSbox.Size = new Size(151, 23);
-            deliveryPSbox.TabIndex = 23;
+            deliveryOderedquantitybox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            deliveryOderedquantitybox.Location = new Point(457, 257);
+            deliveryOderedquantitybox.Margin = new Padding(4, 3, 4, 3);
+            deliveryOderedquantitybox.Name = "deliveryOderedquantitybox";
+            deliveryOderedquantitybox.Size = new Size(151, 23);
+            deliveryOderedquantitybox.TabIndex = 23;
             // 
             // deliveryPerviousqtybtn
             // 
@@ -250,7 +251,7 @@
             deliveryPerviousqtybtn.Location = new Point(295, 341);
             deliveryPerviousqtybtn.Margin = new Padding(4, 3, 4, 3);
             deliveryPerviousqtybtn.Name = "deliveryPerviousqtybtn";
-            deliveryPerviousqtybtn.Size = new Size(322, 23);
+            deliveryPerviousqtybtn.Size = new Size(114, 23);
             deliveryPerviousqtybtn.TabIndex = 24;
             // 
             // deliveryDeliveryaddressbox
@@ -262,21 +263,21 @@
             deliveryDeliveryaddressbox.Size = new Size(151, 23);
             deliveryDeliveryaddressbox.TabIndex = 25;
             // 
-            // textBox3
+            // deliveryPhoneNumbox
             // 
-            textBox3.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox3.Location = new Point(457, 202);
-            textBox3.Margin = new Padding(4, 3, 4, 3);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(150, 23);
-            textBox3.TabIndex = 26;
+            deliveryPhoneNumbox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            deliveryPhoneNumbox.Location = new Point(457, 202);
+            deliveryPhoneNumbox.Margin = new Padding(4, 3, 4, 3);
+            deliveryPhoneNumbox.Name = "deliveryPhoneNumbox";
+            deliveryPhoneNumbox.Size = new Size(150, 23);
+            deliveryPhoneNumbox.TabIndex = 26;
             // 
             // deliveryClearbtn
             // 
             deliveryClearbtn.BackColor = Color.Red;
             deliveryClearbtn.Font = new Font("Microsoft Sans Serif", 12F);
             deliveryClearbtn.ForeColor = Color.White;
-            deliveryClearbtn.Location = new Point(233, 398);
+            deliveryClearbtn.Location = new Point(436, 398);
             deliveryClearbtn.Margin = new Padding(4, 3, 4, 3);
             deliveryClearbtn.Name = "deliveryClearbtn";
             deliveryClearbtn.Size = new Size(150, 29);
@@ -291,18 +292,14 @@
             deliveryDateTimePicker.Size = new Size(151, 23);
             deliveryDateTimePicker.TabIndex = 28;
             // 
-            // deliveryVieworderbtn
+            // label13
             // 
-            deliveryVieworderbtn.BackColor = Color.Navy;
-            deliveryVieworderbtn.Font = new Font("Microsoft Sans Serif", 12F);
-            deliveryVieworderbtn.ForeColor = Color.White;
-            deliveryVieworderbtn.Location = new Point(417, 398);
-            deliveryVieworderbtn.Margin = new Padding(4, 3, 4, 3);
-            deliveryVieworderbtn.Name = "deliveryVieworderbtn";
-            deliveryVieworderbtn.Size = new Size(191, 29);
-            deliveryVieworderbtn.TabIndex = 29;
-            deliveryVieworderbtn.Text = "View Delivery Order";
-            deliveryVieworderbtn.UseVisualStyleBackColor = false;
+            label13.AutoSize = true;
+            label13.Location = new Point(189, 66);
+            label13.Name = "label13";
+            label13.Size = new Size(44, 15);
+            label13.TabIndex = 29;
+            label13.Text = "label13";
             // 
             // Delivery
             // 
@@ -310,16 +307,16 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(630, 461);
-            Controls.Add(deliveryVieworderbtn);
+            Controls.Add(label13);
             Controls.Add(deliveryDateTimePicker);
             Controls.Add(deliveryClearbtn);
-            Controls.Add(textBox3);
+            Controls.Add(deliveryPhoneNumbox);
             Controls.Add(deliveryDeliveryaddressbox);
             Controls.Add(deliveryPerviousqtybtn);
-            Controls.Add(deliveryPSbox);
+            Controls.Add(deliveryOderedquantitybox);
             Controls.Add(deliveryQtydeliverdbox);
             Controls.Add(deliveryQtyfollowbox);
-            Controls.Add(deliveryTotalofweightbox);
+            Controls.Add(deliveryOutstandingbox);
             Controls.Add(deliveryDeliveryidbox);
             Controls.Add(deliveryOrderidbox);
             Controls.Add(deliveryCreatebtn);
@@ -339,6 +336,7 @@
             Margin = new Padding(3, 4, 3, 4);
             Name = "Delivery";
             Text = "Delivery";
+            Load += Delivery_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -360,15 +358,15 @@
         private Button deliveryCreatebtn;
         private TextBox deliveryOrderidbox;
         private TextBox deliveryDeliveryidbox;
-        private TextBox deliveryTotalofweightbox;
+        private TextBox deliveryOutstandingbox;
         private TextBox deliveryQtyfollowbox;
         private TextBox deliveryQtydeliverdbox;
-        private TextBox deliveryPSbox;
+        private TextBox deliveryOderedquantitybox;
         private TextBox deliveryPerviousqtybtn;
         private TextBox deliveryDeliveryaddressbox;
-        private TextBox textBox3;
+        private TextBox deliveryPhoneNumbox;
         private Button deliveryClearbtn;
         private DateTimePicker deliveryDateTimePicker;
-        private Button deliveryVieworderbtn;
+        private Label label13;
     }
 }

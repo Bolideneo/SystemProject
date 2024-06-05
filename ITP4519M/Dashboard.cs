@@ -525,7 +525,7 @@ namespace ITP4519M
             if (e.RowIndex != -1 && e.RowIndex < orderdata.Rows.Count)
             {
                 index2 = e.RowIndex;
-                MessageBox.Show(index2.ToString());
+                // MessageBox.Show(index2.ToString());
                 DataGridViewRow selectRow = this.orderdata.Rows[index2];
 
                 if (selectRow.Cells.Count >= 2)
@@ -556,13 +556,23 @@ namespace ITP4519M
 
         private void grnAddNoteBtn_Click(object sender, EventArgs e)
         {
-            //productForm = new ProductForm(OperationMode.New);
-            //productForm.StartPosition = FormStartPosition.CenterScreen;
-            //productForm.ShowDialog();
+            GRN grn = new GRN(OperationMode.New);
+            grn.ShowDialog();
         }
         private void productSearchBtn_Click(object sender, EventArgs e)
         {
             stockData.DataSource = programMethod.searchProductInformation(stockSearchBox.Text.Trim());
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void deliverySearchDatebtn_Click(object sender, EventArgs e)
+        {
+            Delivery delivery  = new Delivery(); 
+            delivery.ShowDialog();
         }
     }
 }
