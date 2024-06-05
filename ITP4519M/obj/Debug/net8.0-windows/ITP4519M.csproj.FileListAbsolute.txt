@@ -84,3 +84,4 @@ C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-wind
 C:\Users\10617\Desktop\Tim_homework\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.SupplierContactForm.resources
 E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.DealerContactForm.resources
 E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.SupplierContactForm.resources
+E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.DeliveryForm.resources

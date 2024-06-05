@@ -1992,5 +1992,13 @@
         "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
