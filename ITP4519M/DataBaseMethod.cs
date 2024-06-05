@@ -392,6 +392,45 @@ namespace ITP4519M
 
         }
 
+        public DealerDetails GetDealerDetails(MySqlConnection connection, string dealerID)
+        {
+            DealerDetails dealerDetails = null;
+            string query = "SELECT * FROM dealer WHERE DealerID = @DealerID";
+
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@DealerID", dealerID);
+
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    dealerDetails = new DealerDetails
+                    {
+                        DealerID = reader["DealerID"].ToString(),
+                        DealerName = reader["DealerName"].ToString(),
+                        DealerCompanyName = reader["DealerCompanyName"].ToString(),
+                        DealerPhoneNum = reader["DealerPhoneNum"].ToString(),
+                        DealerEmailAddress = reader["DealerEmailAddress"].ToString(),
+
+
+                    };
+                }
+            }
+            return dealerDetails;
+        }
+
+
+        public class DealerDetails
+        {
+            public string DealerID { get; set; }
+            public string DealerName { get; set; }
+            public string DealerCompanyName { get; set; }
+            public string DealerPhoneNum { get; set; }
+            public string DealerEmailAddress { get; set; }
+
+
+        }
+
 
         public ProductDetails GetProductDetails(MySqlConnection connection, string productID)
         {
@@ -559,6 +598,32 @@ namespace ITP4519M
                 cmd.Parameters.AddWithValue("@demandStock", demandstock);
                 cmd.Parameters.AddWithValue("@description", description);
                 cmd.Parameters.AddWithValue("@status", status);
+
+
+                if (cmd.ExecuteNonQuery() > 0)
+                    return true;
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine("An exception occurred: " + ex.Message);
+            }
+            return false;
+        }
+
+        public bool updateDealerInfo(string dealerid, String dealerName, string dealerCompanyName, string dealerMail, string dealerPhoneNum, string dealerAddress)
+        {
+            try
+            {
+
+                string sql = "UPDATE dealer SET DealerName = @dealerName, DealerCompanyName = @dealerCompanyName, DealerPhoneNum = @dealerPhoneNum, DealerEmailAddress = @dealerEmailAddress WHERE DealerID = @dealerID";
+
+                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+                cmd.Parameters.AddWithValue("@dealerName", dealerName);
+                cmd.Parameters.AddWithValue("@dealerCompanyName", dealerCompanyName);
+                cmd.Parameters.AddWithValue("@DealerPhoneNum", dealerPhoneNum);
+                cmd.Parameters.AddWithValue("@DealerMail", dealerMail);
+              //  cmd.Parameters.AddWithValue("@DealerAddress", dealerAddress);
+
 
 
                 if (cmd.ExecuteNonQuery() > 0)
