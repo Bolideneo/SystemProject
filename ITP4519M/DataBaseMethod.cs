@@ -767,6 +767,29 @@ namespace ITP4519M
             adat.Fill(dataTable);
             return dataTable;
         }
+
+        public DataTable searchGRNDate(string startDate, string endDate)
+        {
+            string sql = "SELECT * FROM grn WHERE ReceiveDate BETWEEN @startdate AND @enddate";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            cmd.Parameters.AddWithValue("@startdate", startDate);
+            cmd.Parameters.AddWithValue("@enddate", endDate);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
+        public DataTable overallGRNinfo()
+        {
+            string sql = "SELECT * FROM grn ";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+
+        }
     }
 
 }

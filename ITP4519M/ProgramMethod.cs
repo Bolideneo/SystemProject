@@ -338,6 +338,16 @@ namespace ProgramMethod
             else
                 return false;
         }
+
+        public DataTable searchGRNDate(string startDate, string endDate)
+        {
+            return dataBaseMethod.searchGRNDate(startDate,endDate);
+        }
+
+        public DataTable overallGRNinfo()
+        {
+            return dataBaseMethod.overallGRNinfo();
+        }
     }
 }
     

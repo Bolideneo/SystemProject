@@ -483,6 +483,7 @@ namespace ITP4519M
             lastClickedButton.ForeColor = Color.Gray;
 
             ShowPanel(GRNpnl);
+            grndata.DataSource = programMethod.overallGRNinfo();
         }
 
         private void deliverybtn_Click(object sender, EventArgs e)
@@ -530,6 +531,29 @@ namespace ITP4519M
                 //dealerID = selectRow.Cells[1].Value.ToString();
 
             }
+        }
+
+        private void grnSearchBtn_Click(object sender, EventArgs e)
+        {
+            string formDate = grnDatePicker1.Value.Date.ToString("yyyy-MM-dd");
+            string toDate = grnDatePicker2.Value.Date.ToString("yyyy-MM-dd");
+            grndata.DataSource = programMethod.searchGRNDate(formDate, toDate);
+
+        }
+
+        private void grnclearBtn_Click(object sender, EventArgs e)
+        {
+            grndata.DataSource = programMethod.overallGRNinfo();
+
+
+        }
+
+        private void grnAddNoteBtn_Click(object sender, EventArgs e)
+        {
+            //productForm = new ProductForm(OperationMode.New);
+            //productForm.StartPosition = FormStartPosition.CenterScreen;
+            //productForm.ShowDialog();
+
         }
     }
 }

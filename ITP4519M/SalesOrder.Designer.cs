@@ -252,6 +252,8 @@
             // 
             // productOfOrderdata
             // 
+            productOfOrderdata.AllowUserToAddRows = false;
+            productOfOrderdata.AllowUserToDeleteRows = false;
             productOfOrderdata.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             productOfOrderdata.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             productOfOrderdata.Columns.AddRange(new DataGridViewColumn[] { productIDColumn, productNameColumn, quantityColumn, unitPriceColumn });
