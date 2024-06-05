@@ -17,6 +17,7 @@ using static ITP4519M.DataBaseMethod;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.VisualBasic.ApplicationServices;
 using Mysqlx.Crud;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
 namespace ProgramMethod
@@ -49,7 +50,7 @@ namespace ProgramMethod
 
         public string getUserDisplayName(string username)
         {
- 
+
             return dataBaseMethod.getUserDisplayName(username);
         }
 
@@ -151,7 +152,7 @@ namespace ProgramMethod
             return dataBaseMethod.overallOrderinfo();
         }
 
-        public bool updateUserInfor(string userid, String userName, string password, string passwordagain, string dispalyName, string department, string title, string phonenum, string email)
+        public bool updateUserInfor(string userid, string userName, string password, string passwordagain, string dispalyName, string department, string title, string phonenum, string email)
         {
             string departmentID = dataBaseMethod.getDepartmentIDByDepartName(department);
 
@@ -169,7 +170,7 @@ namespace ProgramMethod
 
         }
 
-        public bool updateDealerInfo(string dealerid, String dealerName, string dealerCompanyName, string dealerMail, string phoneNum, string dealerAddress)
+        public bool updateDealerInfo(string dealerid, string dealerName, string dealerCompanyName, string dealerMail, string phoneNum, string dealerAddress)
         {
 
 
@@ -186,7 +187,7 @@ namespace ProgramMethod
         {
             int qty = 0;
             int demanqty = 0;
-            String[] data = new String[2];
+            string[] data = new string[2];
 
             for (int i = 0; i < stockData.RowCount; i++)
             {
@@ -202,11 +203,11 @@ namespace ProgramMethod
 
 
 
-        public bool createProductinfo(string productName, string productCategory, string wareHouse, string sn, string unitPrice, string costPrice, string weight, string autoOrder, string quantityInStock,  string demand, string description, string status)
+        public bool createProductinfo(string productName, string productCategory, string wareHouse, string sn, string unitPrice, string costPrice, string weight, string autoOrder, string quantityInStock, string demand, string description, string status)
         {
             string productID = productCategory[0] + (int.Parse(dataBaseMethod.getProductID(productCategory[0]).Substring(1)) + 1).ToString("00000");
 
-            while (!dataBaseMethod.createNewProduct(productID, productName, productCategory, wareHouse, sn, unitPrice, costPrice, weight, autoOrder, quantityInStock,  demand, description, status))
+            while (!dataBaseMethod.createNewProduct(productID, productName, productCategory, wareHouse, sn, unitPrice, costPrice, weight, autoOrder, quantityInStock, demand, description, status))
             {
                 MessageBox.Show("something wrong");
                 productID = productCategory[0] + (int.Parse(dataBaseMethod.getProductID(productCategory[0]).Substring(1)) + 1).ToString("00000");
@@ -216,16 +217,16 @@ namespace ProgramMethod
             return true;
         }
 
-        public bool updateProductinfo(string productID, string productName, string productCategory, string wareHouse, string sn, string unitPrice, string costPrice, string weight, string autoOrder, string quantityInStock,  string demand, string description, string status)
+        public bool updateProductinfo(string productID, string productName, string productCategory, string wareHouse, string sn, string unitPrice, string costPrice, string weight, string autoOrder, string quantityInStock, string demand, string description, string status)
         {
-            
 
-            if (dataBaseMethod.updateProductinfo(productID, productName, productCategory, wareHouse, sn, unitPrice, costPrice, weight, autoOrder, quantityInStock,  demand, description, status))
+
+            if (dataBaseMethod.updateProductinfo(productID, productName, productCategory, wareHouse, sn, unitPrice, costPrice, weight, autoOrder, quantityInStock, demand, description, status))
             {
                 return true;
 
             }
-            else 
+            else
                 return false;
         }
 
@@ -352,7 +353,7 @@ namespace ProgramMethod
 
         public string createSalesOrder(string dealerID, string dealerName, string phoneNumber, string Address, DataGridView Order)
         {
-    
+
             //dealerID = "D" + (((int.Parse(dataBaseMethod.getDealerID()) + 1).ToString("0000")));
             string orderID = "ORD" + (int.Parse(dataBaseMethod.getOrderID()) + 1).ToString("000000");
             while (!dataBaseMethod.createSalesOrder(orderID, dealerID, "OST001"))
@@ -371,7 +372,7 @@ namespace ProgramMethod
             return orderID;
         }
 
-       public DataTable getOrderDealerName(string orderID, string dealerID)
+        public DataTable getOrderDealerName(string orderID, string dealerID)
         {
             return dataBaseMethod.getOrderDealerName(orderID, dealerID);
         }
@@ -387,13 +388,38 @@ namespace ProgramMethod
 
         public DataTable searchGRNDate(string startDate, string endDate)
         {
-            return dataBaseMethod.searchGRNDate(startDate,endDate);
+            return dataBaseMethod.searchGRNDate(startDate, endDate);
         }
 
         public DataTable overallGRNinfo()
         {
             return dataBaseMethod.overallGRNinfo();
         }
+
+        public bool createGRN(string POID, string productID, string warehouse, string receiveqty, string receivedate)
+        {
+            DataTable temp = new DataTable();
+            if (dataBaseMethod.overallGRNinfo().Rows.Count == 0)
+            {
+                dataBaseMethod.createGRN("00001", POID, productID, warehouse, receiveqty, receivedate);
+                return true;
+            }
+            string grnID = (((int.Parse(dataBaseMethod.getGRNID('G'))) + 1).ToString("000000"));
+            while (!dataBaseMethod.createGRN(grnID, POID, productID, warehouse, receiveqty, receivedate))
+            {
+                grnID = (((int.Parse(dataBaseMethod.getGRNID('G'))) + 1).ToString("000000"));
+            }
+
+            return false;
+
+
+        }
+
+        public void increaseStock(string ProductID, string qty)
+        {
+            int newQty = int.Parse(qty);
+            dataBaseMethod.increaseStock(ProductID, newQty);
+
+        }
     }
-}
-    
+}    

@@ -132,6 +132,15 @@ namespace ITP4519M
             grndata = new DataGridView();
             GRNlbl = new Label();
             deliverypnl = new Panel();
+            panel2 = new Panel();
+            deliverydateTimePicker1 = new DateTimePicker();
+            deliverySearchIDbtn = new TextBox();
+            deliveryAddbtn = new Button();
+            deliverySearchDatebtn = new Button();
+            label3 = new Label();
+            deliveryclearbtn = new Button();
+            deliverydateTimePicker2 = new DateTimePicker();
+            deliveryData = new DataGridView();
             deliverylbl = new Label();
             listpnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)avatarbox).BeginInit();
@@ -156,6 +165,8 @@ namespace ITP4519M
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)grndata).BeginInit();
             deliverypnl.SuspendLayout();
+            panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)deliveryData).BeginInit();
             SuspendLayout();
             // 
             // listpnl
@@ -174,10 +185,9 @@ namespace ITP4519M
             listpnl.Controls.Add(usertypelbl);
             listpnl.Controls.Add(namelbl);
             listpnl.Controls.Add(avatarbox);
-            listpnl.Location = new Point(0, 3);
-            listpnl.Margin = new Padding(3, 4, 3, 4);
+            listpnl.Location = new Point(0, 2);
             listpnl.Name = "listpnl";
-            listpnl.Size = new Size(200, 876);
+            listpnl.Size = new Size(175, 657);
             listpnl.TabIndex = 14;
             listpnl.Paint += listpnl_Paint;
             // 
@@ -191,10 +201,9 @@ namespace ITP4519M
             deliverybtn.ImageAlign = ContentAlignment.MiddleLeft;
             deliverybtn.ImageIndex = 0;
             deliverybtn.ImageList = log_logo;
-            deliverybtn.Location = new Point(25, 580);
-            deliverybtn.Margin = new Padding(3, 4, 3, 4);
+            deliverybtn.Location = new Point(22, 435);
             deliverybtn.Name = "deliverybtn";
-            deliverybtn.Size = new Size(166, 51);
+            deliverybtn.Size = new Size(145, 38);
             deliverybtn.TabIndex = 11;
             deliverybtn.Text = "  Delivery";
             deliverybtn.UseVisualStyleBackColor = true;
@@ -217,10 +226,9 @@ namespace ITP4519M
             GRNbtn.ImageAlign = ContentAlignment.MiddleLeft;
             GRNbtn.ImageIndex = 0;
             GRNbtn.ImageList = log_logo;
-            GRNbtn.Location = new Point(25, 509);
-            GRNbtn.Margin = new Padding(3, 4, 3, 4);
+            GRNbtn.Location = new Point(22, 382);
             GRNbtn.Name = "GRNbtn";
-            GRNbtn.Size = new Size(166, 51);
+            GRNbtn.Size = new Size(145, 38);
             GRNbtn.TabIndex = 10;
             GRNbtn.Text = "GRN";
             GRNbtn.UseVisualStyleBackColor = true;
@@ -236,10 +244,9 @@ namespace ITP4519M
             outstandingOrderbtn.ImageAlign = ContentAlignment.MiddleLeft;
             outstandingOrderbtn.ImageIndex = 0;
             outstandingOrderbtn.ImageList = Order_logo;
-            outstandingOrderbtn.Location = new Point(25, 371);
-            outstandingOrderbtn.Margin = new Padding(3, 4, 3, 4);
+            outstandingOrderbtn.Location = new Point(22, 278);
             outstandingOrderbtn.Name = "outstandingOrderbtn";
-            outstandingOrderbtn.Size = new Size(166, 56);
+            outstandingOrderbtn.Size = new Size(145, 48);
             outstandingOrderbtn.TabIndex = 9;
             outstandingOrderbtn.Text = "         Outstanding\r\n         Order ";
             outstandingOrderbtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -263,10 +270,9 @@ namespace ITP4519M
             Logbtn.ImageAlign = ContentAlignment.MiddleLeft;
             Logbtn.ImageIndex = 0;
             Logbtn.ImageList = log_logo;
-            Logbtn.Location = new Point(25, 720);
-            Logbtn.Margin = new Padding(3, 4, 3, 4);
+            Logbtn.Location = new Point(22, 540);
             Logbtn.Name = "Logbtn";
-            Logbtn.Size = new Size(166, 51);
+            Logbtn.Size = new Size(145, 38);
             Logbtn.TabIndex = 8;
             Logbtn.Text = "Log      ";
             Logbtn.UseVisualStyleBackColor = true;
@@ -282,10 +288,9 @@ namespace ITP4519M
             contactsbtn.ImageAlign = ContentAlignment.MiddleLeft;
             contactsbtn.ImageIndex = 0;
             contactsbtn.ImageList = contact_logo;
-            contactsbtn.Location = new Point(25, 440);
-            contactsbtn.Margin = new Padding(3, 4, 3, 4);
+            contactsbtn.Location = new Point(22, 330);
             contactsbtn.Name = "contactsbtn";
-            contactsbtn.Size = new Size(166, 56);
+            contactsbtn.Size = new Size(145, 48);
             contactsbtn.TabIndex = 7;
             contactsbtn.Text = "         Contacts\r\n         Information";
             contactsbtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -309,10 +314,9 @@ namespace ITP4519M
             settingbtn.ImageAlign = ContentAlignment.MiddleLeft;
             settingbtn.ImageIndex = 0;
             settingbtn.ImageList = setting_logo;
-            settingbtn.Location = new Point(25, 789);
-            settingbtn.Margin = new Padding(3, 4, 3, 4);
+            settingbtn.Location = new Point(22, 592);
             settingbtn.Name = "settingbtn";
-            settingbtn.Size = new Size(166, 51);
+            settingbtn.Size = new Size(145, 38);
             settingbtn.TabIndex = 6;
             settingbtn.Text = "  Setting  ";
             settingbtn.UseVisualStyleBackColor = true;
@@ -336,10 +340,9 @@ namespace ITP4519M
             usersbtn.ImageAlign = ContentAlignment.MiddleLeft;
             usersbtn.ImageIndex = 0;
             usersbtn.ImageList = Accounts_logo;
-            usersbtn.Location = new Point(25, 651);
-            usersbtn.Margin = new Padding(3, 4, 3, 4);
+            usersbtn.Location = new Point(22, 488);
             usersbtn.Name = "usersbtn";
-            usersbtn.Size = new Size(166, 51);
+            usersbtn.Size = new Size(145, 38);
             usersbtn.TabIndex = 5;
             usersbtn.Text = "   Accounts";
             usersbtn.UseVisualStyleBackColor = true;
@@ -363,10 +366,9 @@ namespace ITP4519M
             stockbtn.ImageAlign = ContentAlignment.MiddleLeft;
             stockbtn.ImageIndex = 0;
             stockbtn.ImageList = stock_logo;
-            stockbtn.Location = new Point(25, 300);
-            stockbtn.Margin = new Padding(3, 4, 3, 4);
+            stockbtn.Location = new Point(22, 225);
             stockbtn.Name = "stockbtn";
-            stockbtn.Size = new Size(166, 56);
+            stockbtn.Size = new Size(145, 42);
             stockbtn.TabIndex = 4;
             stockbtn.Text = "Stock  ";
             stockbtn.UseVisualStyleBackColor = true;
@@ -389,10 +391,9 @@ namespace ITP4519M
             orderbtn.ImageAlign = ContentAlignment.MiddleLeft;
             orderbtn.ImageIndex = 0;
             orderbtn.ImageList = Order_logo;
-            orderbtn.Location = new Point(25, 229);
-            orderbtn.Margin = new Padding(3, 4, 3, 4);
+            orderbtn.Location = new Point(22, 172);
             orderbtn.Name = "orderbtn";
-            orderbtn.Size = new Size(166, 57);
+            orderbtn.Size = new Size(145, 43);
             orderbtn.TabIndex = 3;
             orderbtn.Text = "Salse Order  ";
             orderbtn.TextAlign = ContentAlignment.MiddleRight;
@@ -403,9 +404,9 @@ namespace ITP4519M
             // 
             usertypelbl.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             usertypelbl.ForeColor = Color.White;
-            usertypelbl.Location = new Point(49, 165);
+            usertypelbl.Location = new Point(43, 124);
             usertypelbl.Name = "usertypelbl";
-            usertypelbl.Size = new Size(105, 31);
+            usertypelbl.Size = new Size(92, 23);
             usertypelbl.TabIndex = 2;
             usertypelbl.Text = "Type";
             usertypelbl.TextAlign = ContentAlignment.MiddleCenter;
@@ -414,9 +415,9 @@ namespace ITP4519M
             // 
             namelbl.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             namelbl.ForeColor = Color.White;
-            namelbl.Location = new Point(46, 136);
+            namelbl.Location = new Point(40, 102);
             namelbl.Name = "namelbl";
-            namelbl.Size = new Size(117, 29);
+            namelbl.Size = new Size(102, 22);
             namelbl.TabIndex = 1;
             namelbl.Text = "UserName";
             namelbl.TextAlign = ContentAlignment.MiddleCenter;
@@ -426,10 +427,9 @@ namespace ITP4519M
             // 
             avatarbox.BackgroundImage = Properties.Resources.users_logo;
             avatarbox.BackgroundImageLayout = ImageLayout.Stretch;
-            avatarbox.Location = new Point(54, 37);
-            avatarbox.Margin = new Padding(3, 4, 3, 4);
+            avatarbox.Location = new Point(47, 28);
             avatarbox.Name = "avatarbox";
-            avatarbox.Size = new Size(94, 93);
+            avatarbox.Size = new Size(82, 70);
             avatarbox.TabIndex = 0;
             avatarbox.TabStop = false;
             // 
@@ -440,10 +440,9 @@ namespace ITP4519M
             closebtn.FlatAppearance.BorderSize = 0;
             closebtn.FlatStyle = FlatStyle.Flat;
             closebtn.Font = new Font("Verdana", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            closebtn.Location = new Point(1457, 3);
-            closebtn.Margin = new Padding(3, 4, 3, 4);
+            closebtn.Location = new Point(1275, 2);
             closebtn.Name = "closebtn";
-            closebtn.Size = new Size(40, 51);
+            closebtn.Size = new Size(35, 38);
             closebtn.TabIndex = 15;
             closebtn.Text = "X";
             closebtn.UseVisualStyleBackColor = false;
@@ -457,10 +456,9 @@ namespace ITP4519M
             orderpnl.Controls.Add(ordlerlbl);
             orderpnl.Controls.Add(saleReportbtn);
             orderpnl.Controls.Add(editOrdersbtn);
-            orderpnl.Location = new Point(201, 3);
-            orderpnl.Margin = new Padding(3, 4, 3, 4);
+            orderpnl.Location = new Point(176, 2);
             orderpnl.Name = "orderpnl";
-            orderpnl.Size = new Size(1250, 875);
+            orderpnl.Size = new Size(1094, 656);
             orderpnl.TabIndex = 16;
             orderpnl.Visible = false;
             // 
@@ -470,11 +468,10 @@ namespace ITP4519M
             orderdata.AllowUserToDeleteRows = false;
             orderdata.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             orderdata.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            orderdata.Location = new Point(11, 93);
-            orderdata.Margin = new Padding(3, 4, 3, 4);
+            orderdata.Location = new Point(10, 70);
             orderdata.Name = "orderdata";
             orderdata.RowHeadersWidth = 51;
-            orderdata.Size = new Size(1232, 685);
+            orderdata.Size = new Size(1078, 514);
             orderdata.TabIndex = 27;
             orderdata.CellClick += orderdata_CellClick;
             orderdata.CellContentClick += orderdata_CellContentClick;
@@ -489,10 +486,9 @@ namespace ITP4519M
             viewOrderbtn.ForeColor = Color.Black;
             viewOrderbtn.ImageAlign = ContentAlignment.MiddleLeft;
             viewOrderbtn.ImageIndex = 0;
-            viewOrderbtn.Location = new Point(1062, 787);
-            viewOrderbtn.Margin = new Padding(3, 4, 3, 4);
+            viewOrderbtn.Location = new Point(929, 590);
             viewOrderbtn.Name = "viewOrderbtn";
-            viewOrderbtn.Size = new Size(185, 56);
+            viewOrderbtn.Size = new Size(162, 42);
             viewOrderbtn.TabIndex = 25;
             viewOrderbtn.Text = "View Orders";
             viewOrderbtn.UseVisualStyleBackColor = false;
@@ -508,10 +504,9 @@ namespace ITP4519M
             newOrderbtn.ForeColor = Color.Black;
             newOrderbtn.ImageAlign = ContentAlignment.MiddleLeft;
             newOrderbtn.ImageIndex = 0;
-            newOrderbtn.Location = new Point(871, 787);
-            newOrderbtn.Margin = new Padding(3, 4, 3, 4);
+            newOrderbtn.Location = new Point(762, 590);
             newOrderbtn.Name = "newOrderbtn";
-            newOrderbtn.Size = new Size(185, 56);
+            newOrderbtn.Size = new Size(162, 42);
             newOrderbtn.TabIndex = 24;
             newOrderbtn.Text = "New Orders";
             newOrderbtn.UseVisualStyleBackColor = false;
@@ -521,9 +516,9 @@ namespace ITP4519M
             // 
             ordlerlbl.AutoSize = true;
             ordlerlbl.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ordlerlbl.Location = new Point(18, 24);
+            ordlerlbl.Location = new Point(16, 18);
             ordlerlbl.Name = "ordlerlbl";
-            ordlerlbl.Size = new Size(283, 31);
+            ordlerlbl.Size = new Size(236, 25);
             ordlerlbl.TabIndex = 23;
             ordlerlbl.Text = "Sales Order Management";
             // 
@@ -537,10 +532,9 @@ namespace ITP4519M
             saleReportbtn.ForeColor = Color.Black;
             saleReportbtn.ImageAlign = ContentAlignment.MiddleLeft;
             saleReportbtn.ImageIndex = 0;
-            saleReportbtn.Location = new Point(1098, 21);
-            saleReportbtn.Margin = new Padding(3, 4, 3, 4);
+            saleReportbtn.Location = new Point(961, 16);
             saleReportbtn.Name = "saleReportbtn";
-            saleReportbtn.Size = new Size(149, 49);
+            saleReportbtn.Size = new Size(130, 37);
             saleReportbtn.TabIndex = 21;
             saleReportbtn.Text = "Sale Reports";
             saleReportbtn.UseVisualStyleBackColor = false;
@@ -555,10 +549,9 @@ namespace ITP4519M
             editOrdersbtn.ForeColor = Color.Black;
             editOrdersbtn.ImageAlign = ContentAlignment.MiddleLeft;
             editOrdersbtn.ImageIndex = 0;
-            editOrdersbtn.Location = new Point(680, 787);
-            editOrdersbtn.Margin = new Padding(3, 4, 3, 4);
+            editOrdersbtn.Location = new Point(595, 590);
             editOrdersbtn.Name = "editOrdersbtn";
-            editOrdersbtn.Size = new Size(185, 56);
+            editOrdersbtn.Size = new Size(162, 42);
             editOrdersbtn.TabIndex = 20;
             editOrdersbtn.Text = "Edit Orders";
             editOrdersbtn.UseVisualStyleBackColor = false;
@@ -568,9 +561,9 @@ namespace ITP4519M
             // 
             stocklbl.AutoSize = true;
             stocklbl.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            stocklbl.Location = new Point(21, 12);
+            stocklbl.Location = new Point(18, 9);
             stocklbl.Name = "stocklbl";
-            stocklbl.Size = new Size(221, 31);
+            stocklbl.Size = new Size(185, 25);
             stocklbl.TabIndex = 2;
             stocklbl.Text = "Stock Management";
             stocklbl.Click += inventorylbl_Click;
@@ -580,29 +573,27 @@ namespace ITP4519M
             stockSummarypnl.Controls.Add(stockDatapanel3);
             stockSummarypnl.Controls.Add(stockDatapanel1);
             stockSummarypnl.Controls.Add(stockDatapanel2);
-            stockSummarypnl.Location = new Point(21, 68);
-            stockSummarypnl.Margin = new Padding(3, 4, 3, 4);
+            stockSummarypnl.Location = new Point(18, 51);
             stockSummarypnl.Name = "stockSummarypnl";
-            stockSummarypnl.Size = new Size(1226, 216);
+            stockSummarypnl.Size = new Size(1073, 162);
             stockSummarypnl.TabIndex = 26;
             // 
             // stockDatapanel3
             // 
             stockDatapanel3.Controls.Add(stocklbl3);
             stockDatapanel3.Controls.Add(stockProductDatalbl3);
-            stockDatapanel3.Location = new Point(870, 21);
-            stockDatapanel3.Margin = new Padding(3, 4, 3, 4);
+            stockDatapanel3.Location = new Point(761, 16);
             stockDatapanel3.Name = "stockDatapanel3";
-            stockDatapanel3.Size = new Size(304, 187);
+            stockDatapanel3.Size = new Size(266, 140);
             stockDatapanel3.TabIndex = 28;
             // 
             // stocklbl3
             // 
             stocklbl3.AutoSize = true;
             stocklbl3.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            stocklbl3.Location = new Point(46, 145);
+            stocklbl3.Location = new Point(40, 109);
             stocklbl3.Name = "stocklbl3";
-            stocklbl3.Size = new Size(245, 37);
+            stocklbl3.Size = new Size(191, 30);
             stocklbl3.TabIndex = 5;
             stocklbl3.Text = "Total DemandStock";
             // 
@@ -610,9 +601,9 @@ namespace ITP4519M
             // 
             stockProductDatalbl3.AutoSize = true;
             stockProductDatalbl3.Font = new Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            stockProductDatalbl3.Location = new Point(47, 57);
+            stockProductDatalbl3.Location = new Point(41, 43);
             stockProductDatalbl3.Name = "stockProductDatalbl3";
-            stockProductDatalbl3.Size = new Size(246, 62);
+            stockProductDatalbl3.Size = new Size(196, 50);
             stockProductDatalbl3.TabIndex = 4;
             stockProductDatalbl3.Text = "LabelData";
             // 
@@ -620,19 +611,18 @@ namespace ITP4519M
             // 
             stockDatapanel1.Controls.Add(stocklbl1);
             stockDatapanel1.Controls.Add(stockProductDatalbl1);
-            stockDatapanel1.Location = new Point(65, 21);
-            stockDatapanel1.Margin = new Padding(3, 4, 3, 4);
+            stockDatapanel1.Location = new Point(57, 16);
             stockDatapanel1.Name = "stockDatapanel1";
-            stockDatapanel1.Size = new Size(304, 187);
+            stockDatapanel1.Size = new Size(266, 140);
             stockDatapanel1.TabIndex = 0;
             // 
             // stocklbl1
             // 
             stocklbl1.AutoSize = true;
             stocklbl1.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            stocklbl1.Location = new Point(21, 145);
+            stocklbl1.Location = new Point(18, 109);
             stocklbl1.Name = "stocklbl1";
-            stocklbl1.Size = new Size(244, 37);
+            stocklbl1.Size = new Size(192, 30);
             stocklbl1.TabIndex = 1;
             stocklbl1.Text = "Number of Product";
             stocklbl1.Click += stocklbl1_Click;
@@ -641,9 +631,9 @@ namespace ITP4519M
             // 
             stockProductDatalbl1.AutoSize = true;
             stockProductDatalbl1.Font = new Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            stockProductDatalbl1.Location = new Point(21, 57);
+            stockProductDatalbl1.Location = new Point(18, 43);
             stockProductDatalbl1.Name = "stockProductDatalbl1";
-            stockProductDatalbl1.Size = new Size(246, 62);
+            stockProductDatalbl1.Size = new Size(196, 50);
             stockProductDatalbl1.TabIndex = 0;
             stockProductDatalbl1.Text = "LabelData";
             stockProductDatalbl1.Click += label1_Click;
@@ -652,19 +642,18 @@ namespace ITP4519M
             // 
             stockDatapanel2.Controls.Add(stockProductDatalbl2);
             stockDatapanel2.Controls.Add(stocklbl2);
-            stockDatapanel2.Location = new Point(459, 21);
-            stockDatapanel2.Margin = new Padding(3, 4, 3, 4);
+            stockDatapanel2.Location = new Point(402, 16);
             stockDatapanel2.Name = "stockDatapanel2";
-            stockDatapanel2.Size = new Size(304, 187);
+            stockDatapanel2.Size = new Size(266, 140);
             stockDatapanel2.TabIndex = 27;
             // 
             // stockProductDatalbl2
             // 
             stockProductDatalbl2.AutoSize = true;
             stockProductDatalbl2.Font = new Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            stockProductDatalbl2.Location = new Point(33, 57);
+            stockProductDatalbl2.Location = new Point(29, 43);
             stockProductDatalbl2.Name = "stockProductDatalbl2";
-            stockProductDatalbl2.Size = new Size(246, 62);
+            stockProductDatalbl2.Size = new Size(196, 50);
             stockProductDatalbl2.TabIndex = 2;
             stockProductDatalbl2.Text = "LabelData";
             // 
@@ -672,9 +661,9 @@ namespace ITP4519M
             // 
             stocklbl2.AutoSize = true;
             stocklbl2.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            stocklbl2.Location = new Point(46, 145);
+            stocklbl2.Location = new Point(40, 109);
             stocklbl2.Name = "stocklbl2";
-            stocklbl2.Size = new Size(183, 37);
+            stocklbl2.Size = new Size(143, 30);
             stocklbl2.TabIndex = 2;
             stocklbl2.Text = "Total Quantity";
             // 
@@ -688,10 +677,9 @@ namespace ITP4519M
             editProductbtn.ForeColor = Color.Black;
             editProductbtn.ImageAlign = ContentAlignment.MiddleLeft;
             editProductbtn.ImageIndex = 0;
-            editProductbtn.Location = new Point(11, 295);
-            editProductbtn.Margin = new Padding(3, 4, 3, 4);
+            editProductbtn.Location = new Point(10, 221);
             editProductbtn.Name = "editProductbtn";
-            editProductbtn.Size = new Size(185, 56);
+            editProductbtn.Size = new Size(162, 42);
             editProductbtn.TabIndex = 27;
             editProductbtn.Text = "Edit Product";
             editProductbtn.UseVisualStyleBackColor = false;
@@ -706,10 +694,9 @@ namespace ITP4519M
             newProductbtn.ForeColor = Color.White;
             newProductbtn.ImageAlign = ContentAlignment.MiddleLeft;
             newProductbtn.ImageIndex = 0;
-            newProductbtn.Location = new Point(1073, 19);
-            newProductbtn.Margin = new Padding(3, 4, 3, 4);
+            newProductbtn.Location = new Point(939, 14);
             newProductbtn.Name = "newProductbtn";
-            newProductbtn.Size = new Size(174, 48);
+            newProductbtn.Size = new Size(152, 36);
             newProductbtn.TabIndex = 28;
             newProductbtn.Text = "New Product";
             newProductbtn.UseVisualStyleBackColor = false;
@@ -737,13 +724,13 @@ namespace ITP4519M
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             stockData.DefaultCellStyle = dataGridViewCellStyle2;
-            stockData.Location = new Point(5, 371);
-            stockData.Margin = new Padding(3, 5, 3, 5);
+            stockData.Location = new Point(4, 278);
+            stockData.Margin = new Padding(3, 4, 3, 4);
             stockData.Name = "stockData";
             stockData.ReadOnly = true;
             stockData.RowHeadersWidth = 51;
             stockData.RowTemplate.Height = 24;
-            stockData.Size = new Size(1235, 468);
+            stockData.Size = new Size(1081, 351);
             stockData.TabIndex = 3;
             stockData.CellClick += stockData_CellClick;
             stockData.CellContentClick += stockData_CellContentClick;
@@ -758,10 +745,9 @@ namespace ITP4519M
             viewProductbtn.ForeColor = Color.Black;
             viewProductbtn.ImageAlign = ContentAlignment.MiddleLeft;
             viewProductbtn.ImageIndex = 0;
-            viewProductbtn.Location = new Point(219, 295);
-            viewProductbtn.Margin = new Padding(3, 4, 3, 4);
+            viewProductbtn.Location = new Point(192, 221);
             viewProductbtn.Name = "viewProductbtn";
-            viewProductbtn.Size = new Size(185, 56);
+            viewProductbtn.Size = new Size(162, 42);
             viewProductbtn.TabIndex = 29;
             viewProductbtn.Text = "View Product";
             viewProductbtn.UseVisualStyleBackColor = false;
@@ -777,10 +763,9 @@ namespace ITP4519M
             accountSearchBtn.ForeColor = Color.Black;
             accountSearchBtn.ImageAlign = ContentAlignment.MiddleLeft;
             accountSearchBtn.ImageIndex = 0;
-            accountSearchBtn.Location = new Point(1051, 83);
-            accountSearchBtn.Margin = new Padding(3, 4, 3, 4);
+            accountSearchBtn.Location = new Point(920, 62);
             accountSearchBtn.Name = "accountSearchBtn";
-            accountSearchBtn.Size = new Size(177, 43);
+            accountSearchBtn.Size = new Size(155, 32);
             accountSearchBtn.TabIndex = 27;
             accountSearchBtn.Text = "Search";
             accountSearchBtn.UseVisualStyleBackColor = false;
@@ -788,11 +773,10 @@ namespace ITP4519M
             // 
             // accountSearchBox
             // 
-            accountSearchBox.Location = new Point(806, 93);
-            accountSearchBox.Margin = new Padding(3, 4, 3, 4);
+            accountSearchBox.Location = new Point(705, 70);
             accountSearchBox.Name = "accountSearchBox";
             accountSearchBox.PlaceholderText = "Search Username";
-            accountSearchBox.Size = new Size(225, 27);
+            accountSearchBox.Size = new Size(197, 23);
             accountSearchBox.TabIndex = 26;
             // 
             // contactpnl
@@ -802,14 +786,12 @@ namespace ITP4519M
             contactpnl.Controls.Add(searchContactbtn);
             contactpnl.Controls.Add(newDealerbtn);
             contactpnl.Controls.Add(editDealerbtn);
-            contactpnl.Controls.Add(label2);
             contactpnl.Controls.Add(supplersbtn);
             contactpnl.Controls.Add(dealersbtn);
             contactpnl.Controls.Add(contactsdata);
-            contactpnl.Location = new Point(201, 3);
-            contactpnl.Margin = new Padding(3, 4, 3, 4);
+            contactpnl.Location = new Point(176, 2);
             contactpnl.Name = "contactpnl";
-            contactpnl.Size = new Size(1240, 875);
+            contactpnl.Size = new Size(1085, 656);
             contactpnl.TabIndex = 1;
             contactpnl.Visible = false;
             contactpnl.Paint += contactpnl_Paint;
@@ -818,12 +800,12 @@ namespace ITP4519M
             // 
             delContactbtn.AccessibleRole = AccessibleRole.None;
             delContactbtn.BackColor = Color.Red;
-            delContactbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            delContactbtn.Font = new Font("微软雅黑", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             delContactbtn.ForeColor = Color.White;
-            delContactbtn.Location = new Point(339, 108);
-            delContactbtn.Margin = new Padding(5);
+            delContactbtn.Location = new Point(297, 81);
+            delContactbtn.Margin = new Padding(4, 4, 4, 4);
             delContactbtn.Name = "delContactbtn";
-            delContactbtn.Size = new Size(91, 47);
+            delContactbtn.Size = new Size(80, 35);
             delContactbtn.TabIndex = 34;
             delContactbtn.Text = "Delete";
             delContactbtn.UseVisualStyleBackColor = false;
@@ -838,21 +820,19 @@ namespace ITP4519M
             button6.ForeColor = Color.Black;
             button6.ImageAlign = ContentAlignment.MiddleLeft;
             button6.ImageIndex = 0;
-            button6.Location = new Point(1051, 108);
-            button6.Margin = new Padding(3, 4, 3, 4);
+            button6.Location = new Point(920, 81);
             button6.Name = "button6";
-            button6.Size = new Size(177, 43);
+            button6.Size = new Size(155, 32);
             button6.TabIndex = 33;
             button6.Text = "Search";
             button6.UseVisualStyleBackColor = false;
             // 
             // searchContactbtn
             // 
-            searchContactbtn.Location = new Point(806, 118);
-            searchContactbtn.Margin = new Padding(3, 4, 3, 4);
+            searchContactbtn.Location = new Point(705, 88);
             searchContactbtn.Name = "searchContactbtn";
             searchContactbtn.PlaceholderText = "Search Name";
-            searchContactbtn.Size = new Size(225, 27);
+            searchContactbtn.Size = new Size(197, 23);
             searchContactbtn.TabIndex = 32;
             // 
             // newDealerbtn
@@ -860,12 +840,12 @@ namespace ITP4519M
             newDealerbtn.AccessibleRole = AccessibleRole.None;
             newDealerbtn.BackColor = SystemColors.Menu;
             newDealerbtn.FlatStyle = FlatStyle.System;
-            newDealerbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            newDealerbtn.Font = new Font("微软雅黑", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             newDealerbtn.ForeColor = Color.Black;
-            newDealerbtn.Location = new Point(11, 108);
-            newDealerbtn.Margin = new Padding(5);
+            newDealerbtn.Location = new Point(10, 81);
+            newDealerbtn.Margin = new Padding(4, 4, 4, 4);
             newDealerbtn.Name = "newDealerbtn";
-            newDealerbtn.Size = new Size(154, 47);
+            newDealerbtn.Size = new Size(135, 35);
             newDealerbtn.TabIndex = 31;
             newDealerbtn.Text = "New Dealer";
             newDealerbtn.UseVisualStyleBackColor = false;
@@ -874,11 +854,11 @@ namespace ITP4519M
             // editDealerbtn
             // 
             editDealerbtn.AccessibleRole = AccessibleRole.None;
-            editDealerbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            editDealerbtn.Location = new Point(175, 108);
-            editDealerbtn.Margin = new Padding(5);
+            editDealerbtn.Font = new Font("微软雅黑", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            editDealerbtn.Location = new Point(153, 81);
+            editDealerbtn.Margin = new Padding(4, 4, 4, 4);
             editDealerbtn.Name = "editDealerbtn";
-            editDealerbtn.Size = new Size(154, 47);
+            editDealerbtn.Size = new Size(135, 35);
             editDealerbtn.TabIndex = 29;
             editDealerbtn.Text = "Eidt Dealer";
             editDealerbtn.UseVisualStyleBackColor = true;
@@ -887,11 +867,12 @@ namespace ITP4519M
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(50, 19);
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Location = new Point(24, 8);
             label2.Name = "label2";
-            label2.Size = new Size(301, 20);
-            label2.TabIndex = 20;
-            label2.Text = "---------Change to view information---------";
+            label2.Size = new Size(47, 21);
+            label2.TabIndex = 10;
+            label2.Text = "From";
             // 
             // supplersbtn
             // 
@@ -902,10 +883,9 @@ namespace ITP4519M
             supplersbtn.ForeColor = Color.Black;
             supplersbtn.ImageAlign = ContentAlignment.MiddleLeft;
             supplersbtn.ImageIndex = 0;
-            supplersbtn.Location = new Point(217, 47);
-            supplersbtn.Margin = new Padding(3, 4, 3, 4);
+            supplersbtn.Location = new Point(190, 35);
             supplersbtn.Name = "supplersbtn";
-            supplersbtn.Size = new Size(196, 52);
+            supplersbtn.Size = new Size(172, 39);
             supplersbtn.TabIndex = 18;
             supplersbtn.Text = "Suppliers information";
             supplersbtn.UseVisualStyleBackColor = false;
@@ -920,10 +900,9 @@ namespace ITP4519M
             dealersbtn.ForeColor = Color.Black;
             dealersbtn.ImageAlign = ContentAlignment.MiddleLeft;
             dealersbtn.ImageIndex = 0;
-            dealersbtn.Location = new Point(11, 47);
-            dealersbtn.Margin = new Padding(3, 4, 3, 4);
+            dealersbtn.Location = new Point(10, 35);
             dealersbtn.Name = "dealersbtn";
-            dealersbtn.Size = new Size(180, 52);
+            dealersbtn.Size = new Size(158, 39);
             dealersbtn.TabIndex = 17;
             dealersbtn.Text = "Dealers information";
             dealersbtn.UseVisualStyleBackColor = false;
@@ -951,23 +930,22 @@ namespace ITP4519M
             dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
             contactsdata.DefaultCellStyle = dataGridViewCellStyle4;
-            contactsdata.Location = new Point(13, 165);
-            contactsdata.Margin = new Padding(3, 5, 3, 5);
+            contactsdata.Location = new Point(-7, 136);
+            contactsdata.Margin = new Padding(3, 4, 3, 4);
             contactsdata.Name = "contactsdata";
             contactsdata.RowHeadersWidth = 51;
             contactsdata.RowTemplate.Height = 24;
-            contactsdata.Size = new Size(1235, 678);
-            contactsdata.CellClick += contactsdata_CellClick;
+            contactsdata.Size = new Size(1081, 508);
             contactsdata.TabIndex = 19;
+            contactsdata.CellClick += contactsdata_CellClick;
             contactsdata.CellContentClick += contactsdata_CellContentClick;
             // 
             // settingpnl
             // 
             settingpnl.Controls.Add(settinglbl);
-            settingpnl.Location = new Point(201, 3);
-            settingpnl.Margin = new Padding(3, 4, 3, 4);
+            settingpnl.Location = new Point(176, 2);
             settingpnl.Name = "settingpnl";
-            settingpnl.Size = new Size(1250, 875);
+            settingpnl.Size = new Size(1094, 656);
             settingpnl.TabIndex = 5;
             settingpnl.Visible = false;
             // 
@@ -975,9 +953,9 @@ namespace ITP4519M
             // 
             settinglbl.AutoSize = true;
             settinglbl.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            settinglbl.Location = new Point(18, 24);
+            settinglbl.Location = new Point(16, 18);
             settinglbl.Name = "settinglbl";
-            settinglbl.Size = new Size(92, 31);
+            settinglbl.Size = new Size(76, 25);
             settinglbl.TabIndex = 6;
             settinglbl.Text = "Setting";
             // 
@@ -992,10 +970,9 @@ namespace ITP4519M
             userspnl.Controls.Add(editAccountbtn);
             userspnl.Controls.Add(userData);
             userspnl.Controls.Add(userslbl);
-            userspnl.Location = new Point(201, 3);
-            userspnl.Margin = new Padding(3, 4, 3, 4);
+            userspnl.Location = new Point(176, 2);
             userspnl.Name = "userspnl";
-            userspnl.Size = new Size(1250, 875);
+            userspnl.Size = new Size(1094, 656);
             userspnl.TabIndex = 3;
             userspnl.Visible = false;
             // 
@@ -1003,12 +980,12 @@ namespace ITP4519M
             // 
             enableAccountbtn.AccessibleRole = AccessibleRole.None;
             enableAccountbtn.BackColor = Color.LimeGreen;
-            enableAccountbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            enableAccountbtn.Font = new Font("微软雅黑", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             enableAccountbtn.ForeColor = Color.White;
-            enableAccountbtn.Location = new Point(507, 83);
-            enableAccountbtn.Margin = new Padding(5);
+            enableAccountbtn.Location = new Point(444, 62);
+            enableAccountbtn.Margin = new Padding(4, 4, 4, 4);
             enableAccountbtn.Name = "enableAccountbtn";
-            enableAccountbtn.Size = new Size(91, 47);
+            enableAccountbtn.Size = new Size(80, 35);
             enableAccountbtn.TabIndex = 29;
             enableAccountbtn.Text = "Enable";
             enableAccountbtn.UseVisualStyleBackColor = false;
@@ -1018,12 +995,12 @@ namespace ITP4519M
             // 
             disableAccountbtn.AccessibleRole = AccessibleRole.None;
             disableAccountbtn.BackColor = Color.Red;
-            disableAccountbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            disableAccountbtn.Font = new Font("微软雅黑", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             disableAccountbtn.ForeColor = Color.White;
-            disableAccountbtn.Location = new Point(598, 83);
-            disableAccountbtn.Margin = new Padding(5);
+            disableAccountbtn.Location = new Point(523, 62);
+            disableAccountbtn.Margin = new Padding(4, 4, 4, 4);
             disableAccountbtn.Name = "disableAccountbtn";
-            disableAccountbtn.Size = new Size(91, 47);
+            disableAccountbtn.Size = new Size(80, 35);
             disableAccountbtn.TabIndex = 28;
             disableAccountbtn.Text = "Disable";
             disableAccountbtn.UseVisualStyleBackColor = false;
@@ -1034,12 +1011,12 @@ namespace ITP4519M
             newAccountbtn.AccessibleRole = AccessibleRole.None;
             newAccountbtn.BackColor = SystemColors.Menu;
             newAccountbtn.FlatStyle = FlatStyle.System;
-            newAccountbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            newAccountbtn.Font = new Font("微软雅黑", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             newAccountbtn.ForeColor = Color.Black;
-            newAccountbtn.Location = new Point(11, 83);
-            newAccountbtn.Margin = new Padding(5);
+            newAccountbtn.Location = new Point(10, 62);
+            newAccountbtn.Margin = new Padding(4, 4, 4, 4);
             newAccountbtn.Name = "newAccountbtn";
-            newAccountbtn.Size = new Size(159, 47);
+            newAccountbtn.Size = new Size(139, 35);
             newAccountbtn.TabIndex = 24;
             newAccountbtn.Text = "New Account";
             newAccountbtn.UseVisualStyleBackColor = false;
@@ -1048,11 +1025,11 @@ namespace ITP4519M
             // viewAccountbtn
             // 
             viewAccountbtn.AccessibleRole = AccessibleRole.None;
-            viewAccountbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            viewAccountbtn.Location = new Point(339, 83);
-            viewAccountbtn.Margin = new Padding(5);
+            viewAccountbtn.Font = new Font("微软雅黑", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            viewAccountbtn.Location = new Point(297, 62);
+            viewAccountbtn.Margin = new Padding(4, 4, 4, 4);
             viewAccountbtn.Name = "viewAccountbtn";
-            viewAccountbtn.Size = new Size(159, 47);
+            viewAccountbtn.Size = new Size(139, 35);
             viewAccountbtn.TabIndex = 23;
             viewAccountbtn.Text = "View Account";
             viewAccountbtn.UseVisualStyleBackColor = true;
@@ -1061,11 +1038,11 @@ namespace ITP4519M
             // editAccountbtn
             // 
             editAccountbtn.AccessibleRole = AccessibleRole.None;
-            editAccountbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            editAccountbtn.Location = new Point(175, 83);
-            editAccountbtn.Margin = new Padding(5);
+            editAccountbtn.Font = new Font("微软雅黑", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            editAccountbtn.Location = new Point(153, 62);
+            editAccountbtn.Margin = new Padding(4, 4, 4, 4);
             editAccountbtn.Name = "editAccountbtn";
-            editAccountbtn.Size = new Size(159, 47);
+            editAccountbtn.Size = new Size(139, 35);
             editAccountbtn.TabIndex = 22;
             editAccountbtn.Text = "Eidt Account";
             editAccountbtn.UseVisualStyleBackColor = true;
@@ -1093,13 +1070,13 @@ namespace ITP4519M
             dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
             userData.DefaultCellStyle = dataGridViewCellStyle6;
-            userData.Location = new Point(13, 181);
-            userData.Margin = new Padding(3, 5, 3, 5);
+            userData.Location = new Point(11, 136);
+            userData.Margin = new Padding(3, 4, 3, 4);
             userData.Name = "userData";
             userData.ReadOnly = true;
             userData.RowHeadersWidth = 51;
             userData.RowTemplate.Height = 24;
-            userData.Size = new Size(1235, 707);
+            userData.Size = new Size(1081, 530);
             userData.TabIndex = 1;
             userData.CellClick += userData_CellClick;
             // 
@@ -1107,9 +1084,9 @@ namespace ITP4519M
             // 
             userslbl.AutoSize = true;
             userslbl.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            userslbl.Location = new Point(18, 24);
+            userslbl.Location = new Point(16, 18);
             userslbl.Name = "userslbl";
-            userslbl.Size = new Size(220, 31);
+            userslbl.Size = new Size(183, 25);
             userslbl.TabIndex = 0;
             userslbl.Text = "Users Management";
             // 
@@ -1124,10 +1101,9 @@ namespace ITP4519M
             inventorypnl.Controls.Add(newProductbtn);
             inventorypnl.Controls.Add(viewProductbtn);
             inventorypnl.Controls.Add(stockSummarypnl);
-            inventorypnl.Location = new Point(201, 3);
-            inventorypnl.Margin = new Padding(3, 4, 3, 4);
+            inventorypnl.Location = new Point(176, 2);
             inventorypnl.Name = "inventorypnl";
-            inventorypnl.Size = new Size(1247, 875);
+            inventorypnl.Size = new Size(1091, 656);
             inventorypnl.TabIndex = 16;
             inventorypnl.Visible = false;
             // 
@@ -1141,10 +1117,10 @@ namespace ITP4519M
             productSearchBtn.ForeColor = Color.Black;
             productSearchBtn.ImageAlign = ContentAlignment.MiddleLeft;
             productSearchBtn.ImageIndex = 0;
-            productSearchBtn.Location = new Point(1085, 300);
-            productSearchBtn.Margin = new Padding(3, 5, 3, 5);
+            productSearchBtn.Location = new Point(949, 225);
+            productSearchBtn.Margin = new Padding(3, 4, 3, 4);
             productSearchBtn.Name = "productSearchBtn";
-            productSearchBtn.Size = new Size(143, 51);
+            productSearchBtn.Size = new Size(125, 38);
             productSearchBtn.TabIndex = 32;
             productSearchBtn.Text = "Search";
             productSearchBtn.UseVisualStyleBackColor = false;
@@ -1156,10 +1132,9 @@ namespace ITP4519M
             delProductbtn.FlatAppearance.BorderSize = 0;
             delProductbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             delProductbtn.ForeColor = Color.White;
-            delProductbtn.Location = new Point(424, 295);
-            delProductbtn.Margin = new Padding(3, 4, 3, 4);
+            delProductbtn.Location = new Point(371, 221);
             delProductbtn.Name = "delProductbtn";
-            delProductbtn.Size = new Size(185, 56);
+            delProductbtn.Size = new Size(162, 42);
             delProductbtn.TabIndex = 31;
             delProductbtn.Text = "Delete Product";
             delProductbtn.UseVisualStyleBackColor = false;
@@ -1167,11 +1142,11 @@ namespace ITP4519M
             // 
             // stockSearchBox
             // 
-            stockSearchBox.Location = new Point(806, 316);
-            stockSearchBox.Margin = new Padding(3, 5, 3, 5);
+            stockSearchBox.Location = new Point(705, 237);
+            stockSearchBox.Margin = new Padding(3, 4, 3, 4);
             stockSearchBox.Name = "stockSearchBox";
             stockSearchBox.PlaceholderText = "Search Product Name";
-            stockSearchBox.Size = new Size(260, 27);
+            stockSearchBox.Size = new Size(228, 23);
             stockSearchBox.TabIndex = 30;
             // 
             // dashboardpnl
@@ -1179,10 +1154,9 @@ namespace ITP4519M
             dashboardpnl.BackgroundImage = Properties.Resources.dashboard_background;
             dashboardpnl.BackgroundImageLayout = ImageLayout.Stretch;
             dashboardpnl.Controls.Add(label1);
-            dashboardpnl.Location = new Point(201, 3);
-            dashboardpnl.Margin = new Padding(3, 4, 3, 4);
+            dashboardpnl.Location = new Point(176, 2);
             dashboardpnl.Name = "dashboardpnl";
-            dashboardpnl.Size = new Size(1296, 876);
+            dashboardpnl.Size = new Size(1134, 657);
             dashboardpnl.TabIndex = 1;
             // 
             // label1
@@ -1190,9 +1164,9 @@ namespace ITP4519M
             label1.AutoSize = true;
             label1.BackColor = SystemColors.Window;
             label1.Font = new Font("Calibri", 24F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(329, 116);
+            label1.Location = new Point(288, 87);
             label1.Name = "label1";
-            label1.Size = new Size(636, 49);
+            label1.Size = new Size(512, 39);
             label1.TabIndex = 2;
             label1.Text = "Welcome to the LM Company System";
             // 
@@ -1204,10 +1178,9 @@ namespace ITP4519M
             logpnl.Controls.Add(logData);
             logpnl.Controls.Add(button3);
             logpnl.Controls.Add(button4);
-            logpnl.Location = new Point(201, 3);
-            logpnl.Margin = new Padding(3, 4, 3, 4);
+            logpnl.Location = new Point(176, 2);
             logpnl.Name = "logpnl";
-            logpnl.Size = new Size(1250, 875);
+            logpnl.Size = new Size(1094, 656);
             logpnl.TabIndex = 26;
             logpnl.Visible = false;
             // 
@@ -1221,10 +1194,9 @@ namespace ITP4519M
             button1.ForeColor = Color.Black;
             button1.ImageAlign = ContentAlignment.MiddleLeft;
             button1.ImageIndex = 0;
-            button1.Location = new Point(1105, 812);
-            button1.Margin = new Padding(3, 4, 3, 4);
+            button1.Location = new Point(967, 609);
             button1.Name = "button1";
-            button1.Size = new Size(142, 45);
+            button1.Size = new Size(124, 34);
             button1.TabIndex = 25;
             button1.Text = "View";
             button1.UseVisualStyleBackColor = false;
@@ -1239,10 +1211,9 @@ namespace ITP4519M
             button2.ForeColor = Color.Black;
             button2.ImageAlign = ContentAlignment.MiddleLeft;
             button2.ImageIndex = 0;
-            button2.Location = new Point(914, 812);
-            button2.Margin = new Padding(3, 4, 3, 4);
+            button2.Location = new Point(800, 609);
             button2.Name = "button2";
-            button2.Size = new Size(142, 45);
+            button2.Size = new Size(124, 34);
             button2.TabIndex = 24;
             button2.Text = "New";
             button2.UseVisualStyleBackColor = false;
@@ -1251,9 +1222,9 @@ namespace ITP4519M
             // 
             loglbl.AutoSize = true;
             loglbl.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            loglbl.Location = new Point(18, 19);
+            loglbl.Location = new Point(16, 14);
             loglbl.Name = "loglbl";
-            loglbl.Size = new Size(202, 31);
+            loglbl.Size = new Size(169, 25);
             loglbl.TabIndex = 23;
             loglbl.Text = "Log Management";
             // 
@@ -1276,12 +1247,12 @@ namespace ITP4519M
             dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
             logData.DefaultCellStyle = dataGridViewCellStyle8;
-            logData.Location = new Point(13, 111);
-            logData.Margin = new Padding(3, 5, 3, 5);
+            logData.Location = new Point(11, 83);
+            logData.Margin = new Padding(3, 4, 3, 4);
             logData.Name = "logData";
             logData.RowHeadersWidth = 51;
             logData.RowTemplate.Height = 24;
-            logData.Size = new Size(1235, 696);
+            logData.Size = new Size(1081, 522);
             logData.TabIndex = 22;
             // 
             // button3
@@ -1294,10 +1265,9 @@ namespace ITP4519M
             button3.ForeColor = Color.Black;
             button3.ImageAlign = ContentAlignment.MiddleLeft;
             button3.ImageIndex = 0;
-            button3.Location = new Point(1098, 21);
-            button3.Margin = new Padding(3, 4, 3, 4);
+            button3.Location = new Point(961, 16);
             button3.Name = "button3";
-            button3.Size = new Size(149, 49);
+            button3.Size = new Size(130, 37);
             button3.TabIndex = 21;
             button3.Text = "Sale Reports";
             button3.UseVisualStyleBackColor = false;
@@ -1312,10 +1282,9 @@ namespace ITP4519M
             button4.ForeColor = Color.Black;
             button4.ImageAlign = ContentAlignment.MiddleLeft;
             button4.ImageIndex = 0;
-            button4.Location = new Point(723, 812);
-            button4.Margin = new Padding(3, 4, 3, 4);
+            button4.Location = new Point(633, 609);
             button4.Name = "button4";
-            button4.Size = new Size(142, 45);
+            button4.Size = new Size(124, 34);
             button4.TabIndex = 20;
             button4.Text = "Edit";
             button4.UseVisualStyleBackColor = false;
@@ -1323,10 +1292,9 @@ namespace ITP4519M
             // outstandingOrderpnl
             // 
             outstandingOrderpnl.Controls.Add(outstandingOrderlbl);
-            outstandingOrderpnl.Location = new Point(201, 3);
-            outstandingOrderpnl.Margin = new Padding(3, 4, 3, 4);
+            outstandingOrderpnl.Location = new Point(176, 2);
             outstandingOrderpnl.Name = "outstandingOrderpnl";
-            outstandingOrderpnl.Size = new Size(1250, 875);
+            outstandingOrderpnl.Size = new Size(1094, 656);
             outstandingOrderpnl.TabIndex = 7;
             outstandingOrderpnl.Visible = false;
             // 
@@ -1334,9 +1302,9 @@ namespace ITP4519M
             // 
             outstandingOrderlbl.AutoSize = true;
             outstandingOrderlbl.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            outstandingOrderlbl.Location = new Point(18, 24);
+            outstandingOrderlbl.Location = new Point(16, 18);
             outstandingOrderlbl.Name = "outstandingOrderlbl";
-            outstandingOrderlbl.Size = new Size(215, 31);
+            outstandingOrderlbl.Size = new Size(180, 25);
             outstandingOrderlbl.TabIndex = 6;
             outstandingOrderlbl.Text = "Outstanding Order";
             // 
@@ -1345,10 +1313,9 @@ namespace ITP4519M
             GRNpnl.Controls.Add(panel1);
             GRNpnl.Controls.Add(grndata);
             GRNpnl.Controls.Add(GRNlbl);
-            GRNpnl.Location = new Point(201, 3);
-            GRNpnl.Margin = new Padding(3, 4, 3, 4);
+            GRNpnl.Location = new Point(176, 2);
             GRNpnl.Name = "GRNpnl";
-            GRNpnl.Size = new Size(1250, 875);
+            GRNpnl.Size = new Size(1094, 656);
             GRNpnl.TabIndex = 8;
             GRNpnl.Visible = false;
             // 
@@ -1361,26 +1328,23 @@ namespace ITP4519M
             panel1.Controls.Add(grnDatePicker2);
             panel1.Controls.Add(grnSearchBtn);
             panel1.Controls.Add(grnlbl2);
-            panel1.Location = new Point(18, 72);
-            panel1.Margin = new Padding(3, 4, 3, 4);
+            panel1.Location = new Point(16, 54);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1134, 193);
+            panel1.Size = new Size(992, 145);
             panel1.TabIndex = 15;
             // 
             // grnDatePicker1
             // 
-            grnDatePicker1.Location = new Point(39, 64);
-            grnDatePicker1.Margin = new Padding(3, 4, 3, 4);
+            grnDatePicker1.Location = new Point(34, 48);
             grnDatePicker1.Name = "grnDatePicker1";
-            grnDatePicker1.Size = new Size(228, 27);
+            grnDatePicker1.Size = new Size(200, 23);
             grnDatePicker1.TabIndex = 8;
             // 
             // grnAddNoteBtn
             // 
-            grnAddNoteBtn.Location = new Point(374, 145);
-            grnAddNoteBtn.Margin = new Padding(3, 4, 3, 4);
+            grnAddNoteBtn.Location = new Point(327, 109);
             grnAddNoteBtn.Name = "grnAddNoteBtn";
-            grnAddNoteBtn.Size = new Size(86, 31);
+            grnAddNoteBtn.Size = new Size(75, 23);
             grnAddNoteBtn.TabIndex = 14;
             grnAddNoteBtn.Text = "Add";
             grnAddNoteBtn.UseVisualStyleBackColor = true;
@@ -1390,18 +1354,17 @@ namespace ITP4519M
             // 
             grnlbl1.AutoSize = true;
             grnlbl1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            grnlbl1.Location = new Point(32, 11);
+            grnlbl1.Location = new Point(28, 8);
             grnlbl1.Name = "grnlbl1";
-            grnlbl1.Size = new Size(69, 32);
+            grnlbl1.Size = new Size(55, 25);
             grnlbl1.TabIndex = 10;
             grnlbl1.Text = "From";
             // 
             // grnclearBtn
             // 
-            grnclearBtn.Location = new Point(199, 145);
-            grnclearBtn.Margin = new Padding(3, 4, 3, 4);
+            grnclearBtn.Location = new Point(174, 109);
             grnclearBtn.Name = "grnclearBtn";
-            grnclearBtn.Size = new Size(86, 31);
+            grnclearBtn.Size = new Size(75, 23);
             grnclearBtn.TabIndex = 13;
             grnclearBtn.Text = "Clear";
             grnclearBtn.UseVisualStyleBackColor = true;
@@ -1409,18 +1372,16 @@ namespace ITP4519M
             // 
             // grnDatePicker2
             // 
-            grnDatePicker2.Location = new Point(360, 64);
-            grnDatePicker2.Margin = new Padding(3, 4, 3, 4);
+            grnDatePicker2.Location = new Point(315, 48);
             grnDatePicker2.Name = "grnDatePicker2";
-            grnDatePicker2.Size = new Size(228, 27);
+            grnDatePicker2.Size = new Size(200, 23);
             grnDatePicker2.TabIndex = 9;
             // 
             // grnSearchBtn
             // 
-            grnSearchBtn.Location = new Point(39, 145);
-            grnSearchBtn.Margin = new Padding(3, 4, 3, 4);
+            grnSearchBtn.Location = new Point(34, 109);
             grnSearchBtn.Name = "grnSearchBtn";
-            grnSearchBtn.Size = new Size(86, 31);
+            grnSearchBtn.Size = new Size(75, 23);
             grnSearchBtn.TabIndex = 12;
             grnSearchBtn.Text = "grnSearchBtn";
             grnSearchBtn.UseVisualStyleBackColor = true;
@@ -1430,9 +1391,9 @@ namespace ITP4519M
             // 
             grnlbl2.AutoSize = true;
             grnlbl2.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            grnlbl2.Location = new Point(361, 13);
+            grnlbl2.Location = new Point(316, 10);
             grnlbl2.Name = "grnlbl2";
-            grnlbl2.Size = new Size(39, 32);
+            grnlbl2.Size = new Size(31, 25);
             grnlbl2.TabIndex = 11;
             grnlbl2.Text = "To";
             // 
@@ -1442,49 +1403,143 @@ namespace ITP4519M
             grndata.AllowUserToDeleteRows = false;
             grndata.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             grndata.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            grndata.Location = new Point(18, 347);
-            grndata.Margin = new Padding(3, 4, 3, 4);
+            grndata.Location = new Point(16, 260);
             grndata.Name = "grndata";
             grndata.RowHeadersWidth = 51;
-            grndata.Size = new Size(1143, 473);
+            grndata.Size = new Size(1000, 355);
             grndata.TabIndex = 7;
             // 
             // GRNlbl
             // 
             GRNlbl.AutoSize = true;
             GRNlbl.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            GRNlbl.Location = new Point(18, 24);
+            GRNlbl.Location = new Point(16, 18);
             GRNlbl.Name = "GRNlbl";
-            GRNlbl.Size = new Size(231, 31);
+            GRNlbl.Size = new Size(194, 25);
             GRNlbl.TabIndex = 6;
             GRNlbl.Text = "Good Received Note";
             // 
             // deliverypnl
             // 
+            deliverypnl.Controls.Add(panel2);
+            deliverypnl.Controls.Add(deliveryData);
             deliverypnl.Controls.Add(deliverylbl);
-            deliverypnl.Location = new Point(201, 3);
-            deliverypnl.Margin = new Padding(3, 4, 3, 4);
+            deliverypnl.Location = new Point(176, 2);
             deliverypnl.Name = "deliverypnl";
-            deliverypnl.Size = new Size(1250, 875);
+            deliverypnl.Size = new Size(1094, 656);
             deliverypnl.TabIndex = 9;
             deliverypnl.Visible = false;
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(deliverydateTimePicker1);
+            panel2.Controls.Add(deliverySearchIDbtn);
+            panel2.Controls.Add(deliveryAddbtn);
+            panel2.Controls.Add(label2);
+            panel2.Controls.Add(deliverySearchDatebtn);
+            panel2.Controls.Add(label3);
+            panel2.Controls.Add(deliveryclearbtn);
+            panel2.Controls.Add(deliverydateTimePicker2);
+            panel2.Location = new Point(18, 52);
+            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(884, 136);
+            panel2.TabIndex = 16;
+            // 
+            // deliverydateTimePicker1
+            // 
+            deliverydateTimePicker1.Location = new Point(22, 33);
+            deliverydateTimePicker1.Margin = new Padding(3, 2, 3, 2);
+            deliverydateTimePicker1.Name = "deliverydateTimePicker1";
+            deliverydateTimePicker1.Size = new Size(176, 23);
+            deliverydateTimePicker1.TabIndex = 8;
+            // 
+            // deliverySearchIDbtn
+            // 
+            deliverySearchIDbtn.Location = new Point(602, 98);
+            deliverySearchIDbtn.Margin = new Padding(3, 2, 3, 2);
+            deliverySearchIDbtn.Name = "deliverySearchIDbtn";
+            deliverySearchIDbtn.PlaceholderText = "Search ID";
+            deliverySearchIDbtn.Size = new Size(189, 23);
+            deliverySearchIDbtn.TabIndex = 14;
+            // 
+            // deliveryAddbtn
+            // 
+            deliveryAddbtn.Location = new Point(444, 98);
+            deliveryAddbtn.Margin = new Padding(3, 2, 3, 2);
+            deliveryAddbtn.Name = "deliveryAddbtn";
+            deliveryAddbtn.Size = new Size(51, 17);
+            deliveryAddbtn.TabIndex = 15;
+            deliveryAddbtn.Text = "Add";
+            deliveryAddbtn.UseVisualStyleBackColor = true;
+            // 
+            // deliverySearchDatebtn
+            // 
+            deliverySearchDatebtn.Location = new Point(21, 98);
+            deliverySearchDatebtn.Margin = new Padding(3, 2, 3, 2);
+            deliverySearchDatebtn.Name = "deliverySearchDatebtn";
+            deliverySearchDatebtn.Size = new Size(66, 27);
+            deliverySearchDatebtn.TabIndex = 12;
+            deliverySearchDatebtn.Text = "Search";
+            deliverySearchDatebtn.UseVisualStyleBackColor = true;
+            deliverySearchDatebtn.Click += deliverySearchDatebtn_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(240, 10);
+            label3.Name = "label3";
+            label3.Size = new Size(25, 21);
+            label3.TabIndex = 11;
+            label3.Text = "To";
+            // 
+            // deliveryclearbtn
+            // 
+            deliveryclearbtn.Location = new Point(256, 98);
+            deliveryclearbtn.Margin = new Padding(3, 2, 3, 2);
+            deliveryclearbtn.Name = "deliveryclearbtn";
+            deliveryclearbtn.Size = new Size(64, 27);
+            deliveryclearbtn.TabIndex = 13;
+            deliveryclearbtn.Text = "Clear";
+            deliveryclearbtn.UseVisualStyleBackColor = true;
+            // 
+            // deliverydateTimePicker2
+            // 
+            deliverydateTimePicker2.Location = new Point(240, 33);
+            deliverydateTimePicker2.Margin = new Padding(3, 2, 3, 2);
+            deliverydateTimePicker2.Name = "deliverydateTimePicker2";
+            deliverydateTimePicker2.Size = new Size(176, 23);
+            deliverydateTimePicker2.TabIndex = 9;
+            // 
+            // deliveryData
+            // 
+            deliveryData.AllowUserToAddRows = false;
+            deliveryData.AllowUserToDeleteRows = false;
+            deliveryData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            deliveryData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            deliveryData.Location = new Point(14, 202);
+            deliveryData.Margin = new Padding(3, 2, 3, 2);
+            deliveryData.Name = "deliveryData";
+            deliveryData.Size = new Size(888, 260);
+            deliveryData.TabIndex = 7;
             // 
             // deliverylbl
             // 
             deliverylbl.AutoSize = true;
             deliverylbl.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            deliverylbl.Location = new Point(18, 24);
+            deliverylbl.Location = new Point(16, 18);
             deliverylbl.Name = "deliverylbl";
-            deliverylbl.Size = new Size(103, 31);
+            deliverylbl.Size = new Size(85, 25);
             deliverylbl.TabIndex = 6;
             deliverylbl.Text = "Delivery";
             // 
             // Dashboard
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
-            ClientSize = new Size(1499, 875);
+            ClientSize = new Size(1312, 656);
             Controls.Add(closebtn);
             Controls.Add(listpnl);
             Controls.Add(contactpnl);
@@ -1499,9 +1554,8 @@ namespace ITP4519M
             Controls.Add(deliverypnl);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "Dashboard";
-            Padding = new Padding(0, 0, 10, 0);
+            Padding = new Padding(0, 0, 9, 0);
             StartPosition = FormStartPosition.CenterScreen;
             Text = "SalesOrder";
             Load += Dashboard_Load;
@@ -1546,6 +1600,9 @@ namespace ITP4519M
             ((System.ComponentModel.ISupportInitialize)grndata).EndInit();
             deliverypnl.ResumeLayout(false);
             deliverypnl.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)deliveryData).EndInit();
             ResumeLayout(false);
         }
 
@@ -1637,11 +1694,21 @@ namespace ITP4519M
         private Button grnAddNoteBtn;
         private Button grnclearBtn;
         private Button productSearchBtn;
+        private DataGridView deliveryData;
+        private DateTimePicker deliverydateTimePicker1;
+        private TextBox deliverySearchIDbtn;
+        private Button deliveryclearbtn;
+        private Button deliverySearchDatebtn;
+        private Label label3;
+        private Label label2;
+        private DateTimePicker deliverydateTimePicker2;
+        private Button deliveryAddbtn;
+        private Panel panel2;
         private Button delContactbtn;
         private Button button6;
         private TextBox searchContactbtn;
         private Button newDealerbtn;
         private Button editDealerbtn;
-        private Label label2;
+        //private Label label2;
     }
 }
