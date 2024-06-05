@@ -132,18 +132,50 @@ namespace ITP4519M
         public string getUserDisplayName(string username)
         {
             string sql = "SELECT DisplayName FROM staff WHERE UserName=@username";
-            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-            cmd.Parameters.AddWithValue("@username", username);
-            ServerConnect().Close();
-            object displayName = cmd.ExecuteScalar();
-            if (displayName != null)
+            using (MySqlCommand cmd = new MySqlCommand(sql, ServerConnect()))
             {
-                return displayName.ToString();
+                cmd.Parameters.AddWithValue("@username", username);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        string displayName = reader["DisplayName"].ToString();
+  
+                        return displayName;
+                    }
+                    else
+                    {
+                        return ("displayName not found.");
+                    }
+                }
             }
-            else
+
+
+        }
+
+        public string getUserDepartment(string username)
+        {
+            string sql = "SELECT Department FROM staff WHERE UserName=@username";
+            using (MySqlCommand cmd = new MySqlCommand(sql, ServerConnect()))
             {
-                return "displayName not found.";
+                cmd.Parameters.AddWithValue("@username", username);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        string department = reader["Department"].ToString();
+                        return department;
+                    }
+                    else
+                    {
+                        return ("Department not found.");
+                    }
+                }
             }
+
+
         }
 
 

@@ -49,7 +49,14 @@ namespace ProgramMethod
 
         public string getUserDisplayName(string username)
         {
+ 
             return dataBaseMethod.getUserDisplayName(username);
+        }
+
+        public string getUserDepartment(string username)
+        {
+
+            return dataBaseMethod.getUserDepartment(username);
         }
 
         public bool getPermission(string username)
