@@ -136,6 +136,11 @@ namespace ProgramMethod
             return dataBaseMethod.overviewDealerinfo();
         }
 
+        public DataTable overviewSupplierinfo()
+        {
+            return dataBaseMethod.overviewSupplierinfo();
+        }
+
         public DataTable overviewStockinfo()
         {
             return dataBaseMethod.overallStockinfo();

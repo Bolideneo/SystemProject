@@ -340,6 +340,16 @@ namespace ITP4519M
             return dataTable;
         }
 
+        public DataTable overviewSupplierinfo()
+        {
+            string sql = "SELECT * FROM supplier";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
         public UserDetails GetUserDetails(MySqlConnection connection, string userID)
         {
             UserDetails userDetails = null;

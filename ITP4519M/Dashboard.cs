@@ -192,12 +192,12 @@ namespace ITP4519M
 
         private void dealersbtn_Click(object sender, EventArgs e)
         {
-
+            contactsdata.DataSource = programMethod.overviewDealerinfo();
         }
 
-        private void supplersbtn_Click_1(object sender, EventArgs e)
+        private void supplersbtn_Click(object sender, EventArgs e)
         {
-
+            contactsdata.DataSource = programMethod.overviewSupplierinfo();
         }
 
         private void contactpnl_Paint(object sender, PaintEventArgs e)
@@ -563,6 +563,29 @@ namespace ITP4519M
         private void productSearchBtn_Click(object sender, EventArgs e)
         {
             stockData.DataSource = programMethod.searchProductInformation(stockSearchBox.Text.Trim());
+        }
+
+        private void orderdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void viewContactbtn_Click(object sender, EventArgs e)
+        {
+            DealerContactForm dealerContactForm = new DealerContactForm(OperationMode.View);
+            dealerContactForm.ShowDialog();
+        }
+
+        private void newContactbtn_Click(object sender, EventArgs e)
+        {
+            DealerContactForm dealerContactForm = new DealerContactForm(OperationMode.New);
+            dealerContactForm.ShowDialog();
+        }
+
+        private void editContactbtn_Click(object sender, EventArgs e)
+        {
+            DealerContactForm dealerContactForm = new DealerContactForm(OperationMode.Edit);
+            dealerContactForm.ShowDialog();
         }
     }
 }
