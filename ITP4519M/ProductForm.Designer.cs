@@ -416,7 +416,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(522, 848);
-            Controls.Add(stockEditProuctbtn);
             Controls.Add(productUnitpricebox);
             Controls.Add(label2);
             Controls.Add(productClosebtn);
@@ -449,6 +448,7 @@
             Controls.Add(productNamebox);
             Controls.Add(label3);
             Controls.Add(prudctCategorylbl);
+            Controls.Add(stockEditProuctbtn);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(5, 4, 5, 4);
             Name = "ProductForm";

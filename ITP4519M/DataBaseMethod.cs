@@ -132,18 +132,50 @@ namespace ITP4519M
         public string getUserDisplayName(string username)
         {
             string sql = "SELECT DisplayName FROM staff WHERE UserName=@username";
-            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-            cmd.Parameters.AddWithValue("@username", username);
-            ServerConnect().Close();
-            object displayName = cmd.ExecuteScalar();
-            if (displayName != null)
+            using (MySqlCommand cmd = new MySqlCommand(sql, ServerConnect()))
             {
-                return displayName.ToString();
+                cmd.Parameters.AddWithValue("@username", username);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        string displayName = reader["DisplayName"].ToString();
+  
+                        return displayName;
+                    }
+                    else
+                    {
+                        return ("displayName not found.");
+                    }
+                }
             }
-            else
+
+
+        }
+
+        public string getUserDepartment(string username)
+        {
+            string sql = "SELECT Department FROM staff WHERE UserName=@username";
+            using (MySqlCommand cmd = new MySqlCommand(sql, ServerConnect()))
             {
-                return "displayName not found.";
+                cmd.Parameters.AddWithValue("@username", username);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        string department = reader["Department"].ToString();
+                        return department;
+                    }
+                    else
+                    {
+                        return ("Department not found.");
+                    }
+                }
             }
+
+
         }
 
 
@@ -252,9 +284,22 @@ namespace ITP4519M
         //search username
         public DataTable searchUserInfoByName(string username)
         {
-            string sql = "SELECT UserID, UserName, Password, department.DepartmentName, Title FROM staff, department WHERE department.departmentID = staff.DepartmentID AND UserName=@username OR UserID=@username";
+            //  string sql = "SELECT * FROM staff, department WHERE department.departmentID = staff.DepartmentID AND UserName LIKE @username";
+            string sql = "SELECT * FROM staff WHERE UserName LIKE @username";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-            cmd.Parameters.AddWithValue("@username", username);
+            cmd.Parameters.AddWithValue("@username", "%"+username+"%");
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
+        //search product name
+        public DataTable searchProductInfoByName(string productname)
+        {
+            string sql = "SELECT ProductID, ProductName, ProductCategory, BinLocation, UnitPrice, CostPrice, QuantityInStock, DemandStock, Status FROM product WHERE ProductName LIKE @productname";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@productname", "%"+productname+"%");
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
@@ -451,12 +496,13 @@ namespace ITP4519M
             Object productID = cmd.ExecuteScalar();
             return productID.ToString();
         }
-
-        public bool createNewProduct(string productID, string productname , string productcategory, string binlocation, String sn, string unitprice, string costprice, string weight, string autoOrder, string quantitystock, string reorderlevel, string demandstock, string dangerlevel, string description, string status )
+                                            //productID, productName, productCategory, wareHouse, sn, unitPrice, costPrice, weight, autoOrder, quantityInStock,  demand, description, status
+        public bool createNewProduct(string productID, string productname , string productcategory, string binlocation, String sn, string unitprice, string costprice, string weight, string autoOrder, string quantitystock,  string demandstock, string description, string status )
         {
             try
             {
-                string sql = "INSERT INTO product(ProductID, ProdductName, SerialNumber, ProductCategory, BinLocation, Weight, UnitPrice, CostPrice, autoOrder, QuantityInStock, DemandStock, ReOrderQty, DangerQty, Description, Status) VALUES(@pid, @pName, @sn, @pCategory, @binLocation, @weight, @uniPrice, @costPrice, @autoOrder, @quantityStock, @demandStock, @reorderLevel, @dangerLevel, @description, @status)";
+                MessageBox.Show("DB");
+                string sql = "INSERT INTO product(ProductID, ProductName, SerialNumber, ProductCategory, BinLocation, Weight, UnitPrice, CostPrice, autoOrder, QuantityInStock, DemandStock, Description, Status) VALUES (@pid, @pName, @sn, @pCategory, @binLocation, @weight, @uniPrice, @costPrice, @autoOrder, @quantityStock, @demandStock,  @description, @status)";
                 MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
                 cmd.Parameters.AddWithValue("@pid", productID);
                 cmd.Parameters.AddWithValue("@pName", productname);
@@ -464,13 +510,11 @@ namespace ITP4519M
                 cmd.Parameters.AddWithValue("@pCategory",productcategory);
                 cmd.Parameters.AddWithValue("@binLocation", binlocation);
                 cmd.Parameters.AddWithValue("@weight", weight);
-                cmd.Parameters.AddWithValue("@unitPrice", unitprice);
+                cmd.Parameters.AddWithValue("@uniPrice", unitprice);
                 cmd.Parameters.AddWithValue("@costPrice", costprice);
                 cmd.Parameters.AddWithValue("@autoOrder", autoOrder);
                 cmd.Parameters.AddWithValue("@quantityStock", quantitystock);
                 cmd.Parameters.AddWithValue("@demandStock", demandstock);
-                cmd.Parameters.AddWithValue("@reorderLevel", reorderlevel);
-                cmd.Parameters.AddWithValue("@dangerLevel", dangerlevel);
                 cmd.Parameters.AddWithValue("@description", description);
                 cmd.Parameters.AddWithValue("@status", status);
 
@@ -483,7 +527,7 @@ namespace ITP4519M
             }
             return false;
         }
-        //productID, productName, productCategory, wareHouse, sn, unitPrice, costPrice, weight, autoOrder, quantityInStock, reOrderLevel, dangerLevel, demand, description, status
+        
         public bool updateProductinfo(string productID, string productname, string productcategory, string binlocation, string sn, string unitprice, string costprice, string weight, string autoOrder, string quantitystock, string demandstock, string description, string status)
         {
             try
@@ -503,16 +547,9 @@ namespace ITP4519M
                 cmd.Parameters.AddWithValue("@autoOrder", autoOrder);
                 cmd.Parameters.AddWithValue("@quantityStock", quantitystock);
                 cmd.Parameters.AddWithValue("@demandStock", demandstock);
-  //              cmd.Parameters.AddWithValue("@reorderLevel", reorderlevel);
-    //            cmd.Parameters.AddWithValue("@dangerLevel", dangerlevel);
                 cmd.Parameters.AddWithValue("@description", description);
                 cmd.Parameters.AddWithValue("@status", status);
-            //    int result = cmd.ExecuteNonQuery();
-                // 使用 GetFullSqlString 函数生成完整的 SQL 语句
-                string fullSql = GetFullSqlString(cmd);
 
-                // 在 MessageBox 中显示完整的 SQL 语句
-                MessageBox.Show(fullSql);
 
                 if (cmd.ExecuteNonQuery() > 0)
                     return true;
@@ -524,23 +561,6 @@ namespace ITP4519M
             return false;
         }
 
-        public string GetFullSqlString(MySqlCommand cmd)
-        {
-            string sql = cmd.CommandText;
-            foreach (MySqlParameter param in cmd.Parameters)
-            {
-                string paramValue = param.Value == null ? "NULL" : param.Value.ToString();
-
-                // If the parameter is a string, add single quotes around it
-                if (param.DbType == System.Data.DbType.String || param.DbType == System.Data.DbType.DateTime)
-                {
-                    paramValue = $"'{paramValue}'";
-                }
-
-                sql = sql.Replace(param.ParameterName, paramValue);
-            }
-            return sql;
-        }
 
         public bool CreateDealer(string dealerID, string dearlerOrderNo, string dealerName, string companyName, string phoneNum, string Eamil,  string regionNo)
         {

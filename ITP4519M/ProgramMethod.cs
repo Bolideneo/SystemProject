@@ -49,7 +49,14 @@ namespace ProgramMethod
 
         public string getUserDisplayName(string username)
         {
+ 
             return dataBaseMethod.getUserDisplayName(username);
+        }
+
+        public string getUserDepartment(string username)
+        {
+
+            return dataBaseMethod.getUserDepartment(username);
         }
 
         public bool getPermission(string username)
@@ -106,10 +113,16 @@ namespace ProgramMethod
 
         }
 
-        //Datatable for user datagridView
+        //Datatable for user datagridView 
         public DataTable searchUserInformation(string username)
         {
             return dataBaseMethod.searchUserInfoByName(username);
+        }
+
+        //Datatable for product datagridView 
+        public DataTable searchProductInformation(string productname)
+        {
+            return dataBaseMethod.searchProductInfoByName(productname);
         }
 
 
@@ -171,11 +184,11 @@ namespace ProgramMethod
 
 
 
-        public bool createProductinfo(string productName, string productCategory, string wareHouse, string sn, string unitPrice, string costPrice, string weight, string autoOrder, string quantityInStock, string reOrderLevel, string dangerLevel, string demand, string description, string status)
+        public bool createProductinfo(string productName, string productCategory, string wareHouse, string sn, string unitPrice, string costPrice, string weight, string autoOrder, string quantityInStock,  string demand, string description, string status)
         {
             string productID = productCategory[0] + (int.Parse(dataBaseMethod.getProductID(productCategory[0]).Substring(1)) + 1).ToString("00000");
 
-            while (!dataBaseMethod.createNewProduct(productID, productName, productCategory, wareHouse, sn, unitPrice, costPrice, weight, autoOrder, quantityInStock, reOrderLevel, dangerLevel, demand, description, status))
+            while (!dataBaseMethod.createNewProduct(productID, productName, productCategory, wareHouse, sn, unitPrice, costPrice, weight, autoOrder, quantityInStock,  demand, description, status))
             {
                 MessageBox.Show("something wrong");
                 productID = productCategory[0] + (int.Parse(dataBaseMethod.getProductID(productCategory[0]).Substring(1)) + 1).ToString("00000");

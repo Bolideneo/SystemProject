@@ -452,9 +452,15 @@ namespace ITP4519M
             }
         }
 
-        public void currentUserDisplayName(string displayName)
+        public void currentUserDisplayName(string displayName, string department)
         {
             namelbl.Text = displayName;
+            usertypelbl.Text = department;
+        }
+
+        public void currentUserDepartment(string department)
+        {
+            usertypelbl.Text = department;
         }
 
         private void editProductbtn_Click(object sender, EventArgs e)
@@ -553,7 +559,10 @@ namespace ITP4519M
             //productForm = new ProductForm(OperationMode.New);
             //productForm.StartPosition = FormStartPosition.CenterScreen;
             //productForm.ShowDialog();
-
+        }
+        private void productSearchBtn_Click(object sender, EventArgs e)
+        {
+            stockData.DataSource = programMethod.searchProductInformation(stockSearchBox.Text.Trim());
         }
     }
 }

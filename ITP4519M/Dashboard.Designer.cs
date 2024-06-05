@@ -100,6 +100,7 @@ namespace ITP4519M
             userData = new DataGridView();
             userslbl = new Label();
             inventorypnl = new Panel();
+            productSearchBtn = new Button();
             delProductbtn = new Button();
             stockSearchBox = new TextBox();
             dashboardpnl = new Panel();
@@ -212,7 +213,7 @@ namespace ITP4519M
             GRNbtn.Name = "GRNbtn";
             GRNbtn.Size = new Size(145, 38);
             GRNbtn.TabIndex = 10;
-            GRNbtn.Text = "Delivery    ";
+            GRNbtn.Text = "GRN";
             GRNbtn.UseVisualStyleBackColor = true;
             GRNbtn.Click += GRNbtn_Click;
             // 
@@ -705,7 +706,8 @@ namespace ITP4519M
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             stockData.DefaultCellStyle = dataGridViewCellStyle2;
-            stockData.Location = new Point(10, 269);
+            stockData.Location = new Point(11, 359);
+            stockData.Margin = new Padding(3, 4, 3, 4);
             stockData.Name = "stockData";
             stockData.ReadOnly = true;
             stockData.RowHeadersWidth = 51;
@@ -829,7 +831,8 @@ namespace ITP4519M
             dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
             contactsdata.DefaultCellStyle = dataGridViewCellStyle4;
-            contactsdata.Location = new Point(10, 62);
+            contactsdata.Location = new Point(11, 83);
+            contactsdata.Margin = new Padding(3, 4, 3, 4);
             contactsdata.Name = "contactsdata";
             contactsdata.RowHeadersWidth = 51;
             contactsdata.RowTemplate.Height = 24;
@@ -966,7 +969,8 @@ namespace ITP4519M
             dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
             userData.DefaultCellStyle = dataGridViewCellStyle6;
-            userData.Location = new Point(10, 102);
+            userData.Location = new Point(11, 136);
+            userData.Margin = new Padding(3, 4, 3, 4);
             userData.Name = "userData";
             userData.ReadOnly = true;
             userData.RowHeadersWidth = 51;
@@ -987,6 +991,7 @@ namespace ITP4519M
             // 
             // inventorypnl
             // 
+            inventorypnl.Controls.Add(productSearchBtn);
             inventorypnl.Controls.Add(delProductbtn);
             inventorypnl.Controls.Add(stockSearchBox);
             inventorypnl.Controls.Add(stocklbl);
@@ -1000,6 +1005,25 @@ namespace ITP4519M
             inventorypnl.Size = new Size(1091, 656);
             inventorypnl.TabIndex = 16;
             inventorypnl.Visible = false;
+            // 
+            // productSearchBtn
+            // 
+            productSearchBtn.AutoSize = true;
+            productSearchBtn.BackColor = SystemColors.HighlightText;
+            productSearchBtn.FlatAppearance.BorderColor = Color.Gray;
+            productSearchBtn.FlatStyle = FlatStyle.System;
+            productSearchBtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            productSearchBtn.ForeColor = Color.Black;
+            productSearchBtn.ImageAlign = ContentAlignment.MiddleLeft;
+            productSearchBtn.ImageIndex = 0;
+            productSearchBtn.Location = new Point(11, 302);
+            productSearchBtn.Margin = new Padding(3, 4, 3, 4);
+            productSearchBtn.Name = "productSearchBtn";
+            productSearchBtn.Size = new Size(1217, 43);
+            productSearchBtn.TabIndex = 32;
+            productSearchBtn.Text = "Search";
+            productSearchBtn.UseVisualStyleBackColor = false;
+            productSearchBtn.Click += productSearchBtn_Click;
             // 
             // delProductbtn
             // 
@@ -1017,10 +1041,11 @@ namespace ITP4519M
             // 
             // stockSearchBox
             // 
-            stockSearchBox.Location = new Point(779, 231);
+            stockSearchBox.Location = new Point(705, 237);
+            stockSearchBox.Margin = new Padding(3, 4, 3, 4);
             stockSearchBox.Name = "stockSearchBox";
-            stockSearchBox.PlaceholderText = "Search";
-            stockSearchBox.Size = new Size(250, 23);
+            stockSearchBox.PlaceholderText = "Search Product Name";
+            stockSearchBox.Size = new Size(228, 23);
             stockSearchBox.TabIndex = 30;
             // 
             // dashboardpnl
@@ -1121,7 +1146,8 @@ namespace ITP4519M
             dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
             logData.DefaultCellStyle = dataGridViewCellStyle8;
-            logData.Location = new Point(10, 62);
+            logData.Location = new Point(11, 83);
+            logData.Margin = new Padding(3, 4, 3, 4);
             logData.Name = "logData";
             logData.RowHeadersWidth = 51;
             logData.RowTemplate.Height = 24;
@@ -1316,10 +1342,10 @@ namespace ITP4519M
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
             ClientSize = new Size(1312, 656);
+            Controls.Add(inventorypnl);
             Controls.Add(GRNpnl);
             Controls.Add(closebtn);
             Controls.Add(listpnl);
-            Controls.Add(inventorypnl);
             Controls.Add(logpnl);
             Controls.Add(deliverypnl);
             Controls.Add(contactpnl);
@@ -1466,5 +1492,6 @@ namespace ITP4519M
         private Panel panel1;
         private Button grnAddNoteBtn;
         private Button grnclearBtn;
+        private Button productSearchBtn;
     }
 }
