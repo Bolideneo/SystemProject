@@ -319,6 +319,18 @@ namespace ITP4519M
 
 
         }
+        private void contactsdata_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.RowIndex != -1)
+            {
+                index = e.RowIndex;
+                DataGridViewRow selectRow = this.contactsdata.Rows[index];
+                dealerID = selectRow.Cells[0].Value.ToString();
+            }
+
+
+        }
 
 
 
@@ -584,8 +596,22 @@ namespace ITP4519M
 
         private void editContactbtn_Click(object sender, EventArgs e)
         {
-            DealerContactForm dealerContactForm = new DealerContactForm(OperationMode.Edit);
-            dealerContactForm.ShowDialog();
+            if (index == -1)
+            {
+                MessageBox.Show("Please Select One Option");
+            }
+            else
+            {
+
+                DealerContactForm dealerContactForm = new DealerContactForm(OperationMode.Edit);
+                dealerContactForm.dealerEdit(dealerID);
+                dealerContactForm.ShowDialog();
+            }
+        }
+
+        private void contactsdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

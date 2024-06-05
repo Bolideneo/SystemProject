@@ -169,6 +169,19 @@ namespace ProgramMethod
 
         }
 
+        public bool updateDealerInfo(string dealerid, String dealerName, string dealerCompanyName, string dealerMail, string phoneNum, string dealerAddress)
+        {
+
+
+            if (dataBaseMethod.updateDealerInfo(dealerid, dealerName, dealerCompanyName, dealerMail, phoneNum, dealerAddress))
+            {
+                return true;
+            }
+            else
+                return false;
+
+        }
+
         public string[] getStockLabelinfo(DataGridView stockData)
         {
             int qty = 0;
@@ -237,6 +250,21 @@ namespace ProgramMethod
                 if (connection.State == System.Data.ConnectionState.Open)
                 {
                     return dataBaseMethod.GetUserDetails(connection, userid);
+                }
+                else
+                {
+                    throw new Exception("Database connection failed.");
+                }
+            }
+        }
+
+        public DealerDetails getDealerDetails(string dealerID)
+        {
+            using (var connection = dataBaseMethod.ServerConnect())
+            {
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    return dataBaseMethod.GetDealerDetails(connection, dealerID); 
                 }
                 else
                 {

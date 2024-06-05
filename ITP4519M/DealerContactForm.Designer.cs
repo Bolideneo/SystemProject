@@ -56,6 +56,7 @@
             editDealerbtn.TabIndex = 69;
             editDealerbtn.Text = "Edit Dealer";
             editDealerbtn.UseVisualStyleBackColor = true;
+            editDealerbtn.Click += editDealerbtn_Click;
             // 
             // dealerInfolbl
             // 

@@ -957,7 +957,9 @@ namespace ITP4519M
             contactsdata.RowHeadersWidth = 51;
             contactsdata.RowTemplate.Height = 24;
             contactsdata.Size = new Size(1235, 678);
+            contactsdata.CellClick += contactsdata_CellClick;
             contactsdata.TabIndex = 19;
+            contactsdata.CellContentClick += contactsdata_CellContentClick;
             // 
             // settingpnl
             // 
