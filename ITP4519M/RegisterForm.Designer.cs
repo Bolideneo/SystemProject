@@ -85,7 +85,7 @@
             // 
             createAccountBtn.AccessibleRole = AccessibleRole.None;
             createAccountBtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            createAccountBtn.Location = new Point(381, 499);
+            createAccountBtn.Location = new Point(395, 485);
             createAccountBtn.Margin = new Padding(5, 4, 5, 4);
             createAccountBtn.Name = "createAccountBtn";
             createAccountBtn.Size = new Size(248, 48);
@@ -338,7 +338,7 @@
             // 
             registerClearBtn.AccessibleRole = AccessibleRole.None;
             registerClearBtn.Font = new Font("Arial Narrow", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            registerClearBtn.Location = new Point(454, 564);
+            registerClearBtn.Location = new Point(468, 550);
             registerClearBtn.Margin = new Padding(5, 4, 5, 4);
             registerClearBtn.Name = "registerClearBtn";
             registerClearBtn.Size = new Size(96, 28);
@@ -377,7 +377,7 @@
             // 
             editAccountbtn.AccessibleRole = AccessibleRole.None;
             editAccountbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            editAccountbtn.Location = new Point(381, 499);
+            editAccountbtn.Location = new Point(395, 485);
             editAccountbtn.Margin = new Padding(5, 4, 5, 4);
             editAccountbtn.Name = "editAccountbtn";
             editAccountbtn.Size = new Size(248, 48);

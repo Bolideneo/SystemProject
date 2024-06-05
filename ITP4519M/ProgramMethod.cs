@@ -137,6 +137,11 @@ namespace ProgramMethod
             return dataBaseMethod.overviewDealerinfo();
         }
 
+        public DataTable overviewSupplierinfo()
+        {
+            return dataBaseMethod.overviewSupplierinfo();
+        }
+
         public DataTable overviewStockinfo()
         {
             return dataBaseMethod.overallStockinfo();
@@ -158,6 +163,19 @@ namespace ProgramMethod
             }
 
             if (dataBaseMethod.updateUserInfor(userid, userName, password, dispalyName, departmentID, title, phonenum, email, department)) {
+                return true;
+            }
+            else
+                return false;
+
+        }
+
+        public bool updateDealerInfo(string dealerid, string dealerName, string dealerCompanyName, string dealerMail, string phoneNum, string dealerAddress)
+        {
+
+
+            if (dataBaseMethod.updateDealerInfo(dealerid, dealerName, dealerCompanyName, dealerMail, phoneNum, dealerAddress))
+            {
                 return true;
             }
             else
@@ -233,6 +251,21 @@ namespace ProgramMethod
                 if (connection.State == System.Data.ConnectionState.Open)
                 {
                     return dataBaseMethod.GetUserDetails(connection, userid);
+                }
+                else
+                {
+                    throw new Exception("Database connection failed.");
+                }
+            }
+        }
+
+        public DealerDetails getDealerDetails(string dealerID)
+        {
+            using (var connection = dataBaseMethod.ServerConnect())
+            {
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    return dataBaseMethod.GetDealerDetails(connection, dealerID); 
                 }
                 else
                 {
