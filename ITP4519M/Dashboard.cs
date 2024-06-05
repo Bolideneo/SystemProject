@@ -531,6 +531,11 @@ namespace ITP4519M
 
             }
         }
+
+        private void productSearchBtn_Click(object sender, EventArgs e)
+        {
+            stockData.DataSource = programMethod.searchProductInformation(stockSearchBox.Text.Trim());
+        }
     }
 }
 

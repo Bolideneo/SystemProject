@@ -157,7 +157,7 @@ namespace ITP4519M
         {
 
             string selected = this.productCategorybox.GetItemText(this.productCategorybox.SelectedItem);
-            if (programMethod.createProductinfo(productNamebox.Text.Trim(), selected, productWarehousebox.Text.Trim(), productserialbox.Text.Trim(), productUnitpricebox.Text.Trim(), productCostbox.Text.Trim(), productWeightbox.Text.Trim(), productAutoOrderbox.Text.Trim(), productInStockbox.Text.Trim(), productReOrderbox.Text.Trim(), productDangerbox.Text.Trim(), productdemandbox.Text.Trim(), productDescriptionbox.Text.Trim(), productStatusbox.GetItemText(this.productStatusbox.SelectedItem)))
+            if (programMethod.createProductinfo(productNamebox.Text.Trim(), selected, productWarehousebox.Text.Trim(), productserialbox.Text.Trim(), productUnitpricebox.Text.Trim(), productCostbox.Text.Trim(), productWeightbox.Text.Trim(), productAutoOrderbox.Text.Trim(), productInStockbox.Text.Trim(), productdemandbox.Text.Trim(), productDescriptionbox.Text.Trim(), productStatusbox.GetItemText(this.productStatusbox.SelectedItem)))
             {
 
                 productNamebox.Text = "";
