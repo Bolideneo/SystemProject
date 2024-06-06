@@ -29,6 +29,7 @@ namespace ProgramMethod
         public ProgramMethod()
         {
             dataBaseMethod = new DataBaseMethod();
+            dataBaseMethod.EncryptExistingPasswords();
         }
 
 
@@ -38,13 +39,20 @@ namespace ProgramMethod
         {
             try
             {
-                if (password == dataBaseMethod.getPassword(username))
+                string hashedPassword = dataBaseMethod.HashPassword(password);
+                string storedPassword = dataBaseMethod.getPassword(username);
+                MessageBox.Show(hashedPassword);
+                MessageBox.Show(storedPassword);
+                if (hashedPassword == storedPassword)
                 {
                     return true;
                 }
             }
-            catch
-            { }
+            catch (Exception ex)
+            {
+             
+                Console.WriteLine(ex.Message);
+            }
             return false;
         }
 

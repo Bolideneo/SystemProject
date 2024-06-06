@@ -91,13 +91,14 @@ namespace ITP4519M
             supplersbtn = new Button();
             dealersbtn = new Button();
             delContactbtn = new Button();
-            searchDealerbtn = new Button();
             searchContactbtn = new TextBox();
             contactsdata = new DataGridView();
             newSupplierbtn = new Button();
             editSupplierbtn = new Button();
             newDealerbtn = new Button();
             editDealerbtn = new Button();
+            searchSupplierbtn = new Button();
+            searchDealerbtn = new Button();
             label2 = new Label();
             settingpnl = new Panel();
             settinglbl = new Label();
@@ -146,7 +147,6 @@ namespace ITP4519M
             deliverydateTimePicker2 = new DateTimePicker();
             deliveryData = new DataGridView();
             deliverylbl = new Label();
-            searchSupplierbtn = new Button();
             listpnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)avatarbox).BeginInit();
             orderpnl.SuspendLayout();
@@ -239,7 +239,7 @@ namespace ITP4519M
             GRNbtn.Name = "GRNbtn";
             GRNbtn.Size = new Size(166, 51);
             GRNbtn.TabIndex = 10;
-            GRNbtn.Text = "GRN";
+            GRNbtn.Text = "GRN   ";
             GRNbtn.UseVisualStyleBackColor = true;
             GRNbtn.Click += GRNbtn_Click;
             // 
@@ -256,7 +256,7 @@ namespace ITP4519M
             outstandingOrderbtn.Location = new Point(25, 371);
             outstandingOrderbtn.Margin = new Padding(3, 4, 3, 4);
             outstandingOrderbtn.Name = "outstandingOrderbtn";
-            outstandingOrderbtn.Size = new Size(189, 75);
+            outstandingOrderbtn.Size = new Size(166, 56);
             outstandingOrderbtn.TabIndex = 9;
             outstandingOrderbtn.Text = "         Outstanding\r\n         Order ";
             outstandingOrderbtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -302,7 +302,7 @@ namespace ITP4519M
             contactsbtn.Location = new Point(25, 440);
             contactsbtn.Margin = new Padding(3, 4, 3, 4);
             contactsbtn.Name = "contactsbtn";
-            contactsbtn.Size = new Size(184, 75);
+            contactsbtn.Size = new Size(166, 56);
             contactsbtn.TabIndex = 7;
             contactsbtn.Text = "         Contacts\r\n         Information";
             contactsbtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -505,7 +505,7 @@ namespace ITP4519M
             checkColumn.FillWeight = 25F;
             checkColumn.HeaderText = "Select";
             checkColumn.MinimumWidth = 6;
-            checkColumn.Name = "Select";
+            checkColumn.Name = "checkColumn";
             // 
             // viewOrderbtn
             // 
@@ -849,7 +849,7 @@ namespace ITP4519M
             contactGroupBox.Controls.Add(dealersbtn);
             contactGroupBox.Location = new Point(13, 12);
             contactGroupBox.Name = "contactGroupBox";
-            contactGroupBox.Size = new Size(427, 91);
+            contactGroupBox.Size = new Size(461, 91);
             contactGroupBox.TabIndex = 35;
             contactGroupBox.TabStop = false;
             contactGroupBox.Text = "Change to Contact information";
@@ -897,32 +897,13 @@ namespace ITP4519M
             delContactbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             delContactbtn.ForeColor = Color.White;
             delContactbtn.Location = new Point(349, 113);
-            delContactbtn.Margin = new Padding(5, 5, 5, 5);
+            delContactbtn.Margin = new Padding(5);
             delContactbtn.Name = "delContactbtn";
             delContactbtn.Size = new Size(91, 47);
             delContactbtn.TabIndex = 34;
             delContactbtn.Text = "Delete";
             delContactbtn.UseVisualStyleBackColor = false;
             delContactbtn.Click += delContactbtn_Click;
-            // 
-            // searchDealerbtn
-            // 
-            searchDealerbtn.AutoSize = true;
-            searchDealerbtn.BackColor = SystemColors.HighlightText;
-            searchDealerbtn.FlatAppearance.BorderColor = Color.Gray;
-            searchDealerbtn.FlatStyle = FlatStyle.System;
-            searchDealerbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            searchDealerbtn.ForeColor = Color.Black;
-            searchDealerbtn.ImageAlign = ContentAlignment.MiddleLeft;
-            searchDealerbtn.ImageIndex = 0;
-            searchDealerbtn.Location = new Point(1051, 117);
-            searchDealerbtn.Margin = new Padding(3, 4, 3, 4);
-            searchDealerbtn.Name = "searchDealerbtn";
-            searchDealerbtn.Size = new Size(177, 43);
-            searchDealerbtn.TabIndex = 33;
-            searchDealerbtn.Text = "Search";
-            searchDealerbtn.UseVisualStyleBackColor = false;
-            searchDealerbtn.Click += searchDealerbtn_Click;
             // 
             // searchContactbtn
             // 
@@ -973,7 +954,7 @@ namespace ITP4519M
             newSupplierbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             newSupplierbtn.ForeColor = Color.Black;
             newSupplierbtn.Location = new Point(21, 113);
-            newSupplierbtn.Margin = new Padding(5, 5, 5, 5);
+            newSupplierbtn.Margin = new Padding(5);
             newSupplierbtn.Name = "newSupplierbtn";
             newSupplierbtn.Size = new Size(154, 47);
             newSupplierbtn.TabIndex = 37;
@@ -986,7 +967,7 @@ namespace ITP4519M
             editSupplierbtn.AccessibleRole = AccessibleRole.None;
             editSupplierbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             editSupplierbtn.Location = new Point(185, 113);
-            editSupplierbtn.Margin = new Padding(5, 5, 5, 5);
+            editSupplierbtn.Margin = new Padding(5);
             editSupplierbtn.Name = "editSupplierbtn";
             editSupplierbtn.Size = new Size(154, 47);
             editSupplierbtn.TabIndex = 36;
@@ -1002,7 +983,7 @@ namespace ITP4519M
             newDealerbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             newDealerbtn.ForeColor = Color.Black;
             newDealerbtn.Location = new Point(21, 113);
-            newDealerbtn.Margin = new Padding(5, 5, 5, 5);
+            newDealerbtn.Margin = new Padding(5);
             newDealerbtn.Name = "newDealerbtn";
             newDealerbtn.Size = new Size(154, 47);
             newDealerbtn.TabIndex = 31;
@@ -1015,13 +996,51 @@ namespace ITP4519M
             editDealerbtn.AccessibleRole = AccessibleRole.None;
             editDealerbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             editDealerbtn.Location = new Point(185, 113);
-            editDealerbtn.Margin = new Padding(5, 5, 5, 5);
+            editDealerbtn.Margin = new Padding(5);
             editDealerbtn.Name = "editDealerbtn";
             editDealerbtn.Size = new Size(154, 47);
             editDealerbtn.TabIndex = 29;
             editDealerbtn.Text = "Edit Dealer";
             editDealerbtn.UseVisualStyleBackColor = true;
             editDealerbtn.Click += editDealerbtn_Click;
+            // 
+            // searchSupplierbtn
+            // 
+            searchSupplierbtn.AutoSize = true;
+            searchSupplierbtn.BackColor = SystemColors.HighlightText;
+            searchSupplierbtn.FlatAppearance.BorderColor = Color.Gray;
+            searchSupplierbtn.FlatStyle = FlatStyle.System;
+            searchSupplierbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            searchSupplierbtn.ForeColor = Color.Black;
+            searchSupplierbtn.ImageAlign = ContentAlignment.MiddleLeft;
+            searchSupplierbtn.ImageIndex = 0;
+            searchSupplierbtn.Location = new Point(1051, 117);
+            searchSupplierbtn.Margin = new Padding(3, 4, 3, 4);
+            searchSupplierbtn.Name = "searchSupplierbtn";
+            searchSupplierbtn.Size = new Size(177, 43);
+            searchSupplierbtn.TabIndex = 38;
+            searchSupplierbtn.Text = "Search";
+            searchSupplierbtn.UseVisualStyleBackColor = false;
+            searchSupplierbtn.Click += searchSupplierbtn_Click;
+            // 
+            // searchDealerbtn
+            // 
+            searchDealerbtn.AutoSize = true;
+            searchDealerbtn.BackColor = SystemColors.HighlightText;
+            searchDealerbtn.FlatAppearance.BorderColor = Color.Gray;
+            searchDealerbtn.FlatStyle = FlatStyle.System;
+            searchDealerbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            searchDealerbtn.ForeColor = Color.Black;
+            searchDealerbtn.ImageAlign = ContentAlignment.MiddleLeft;
+            searchDealerbtn.ImageIndex = 0;
+            searchDealerbtn.Location = new Point(1051, 117);
+            searchDealerbtn.Margin = new Padding(3, 4, 3, 4);
+            searchDealerbtn.Name = "searchDealerbtn";
+            searchDealerbtn.Size = new Size(177, 43);
+            searchDealerbtn.TabIndex = 33;
+            searchDealerbtn.Text = "Search";
+            searchDealerbtn.UseVisualStyleBackColor = false;
+            searchDealerbtn.Click += searchDealerbtn_Click;
             // 
             // label2
             // 
@@ -1078,7 +1097,7 @@ namespace ITP4519M
             enableAccountbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             enableAccountbtn.ForeColor = Color.White;
             enableAccountbtn.Location = new Point(507, 83);
-            enableAccountbtn.Margin = new Padding(5, 5, 5, 5);
+            enableAccountbtn.Margin = new Padding(5);
             enableAccountbtn.Name = "enableAccountbtn";
             enableAccountbtn.Size = new Size(91, 47);
             enableAccountbtn.TabIndex = 29;
@@ -1093,7 +1112,7 @@ namespace ITP4519M
             disableAccountbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             disableAccountbtn.ForeColor = Color.White;
             disableAccountbtn.Location = new Point(598, 83);
-            disableAccountbtn.Margin = new Padding(5, 5, 5, 5);
+            disableAccountbtn.Margin = new Padding(5);
             disableAccountbtn.Name = "disableAccountbtn";
             disableAccountbtn.Size = new Size(91, 47);
             disableAccountbtn.TabIndex = 28;
@@ -1109,7 +1128,7 @@ namespace ITP4519M
             newAccountbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             newAccountbtn.ForeColor = Color.Black;
             newAccountbtn.Location = new Point(11, 83);
-            newAccountbtn.Margin = new Padding(5, 5, 5, 5);
+            newAccountbtn.Margin = new Padding(5);
             newAccountbtn.Name = "newAccountbtn";
             newAccountbtn.Size = new Size(159, 47);
             newAccountbtn.TabIndex = 24;
@@ -1122,7 +1141,7 @@ namespace ITP4519M
             viewAccountbtn.AccessibleRole = AccessibleRole.None;
             viewAccountbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             viewAccountbtn.Location = new Point(339, 83);
-            viewAccountbtn.Margin = new Padding(5, 5, 5, 5);
+            viewAccountbtn.Margin = new Padding(5);
             viewAccountbtn.Name = "viewAccountbtn";
             viewAccountbtn.Size = new Size(159, 47);
             viewAccountbtn.TabIndex = 23;
@@ -1135,7 +1154,7 @@ namespace ITP4519M
             editAccountbtn.AccessibleRole = AccessibleRole.None;
             editAccountbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             editAccountbtn.Location = new Point(175, 83);
-            editAccountbtn.Margin = new Padding(5, 5, 5, 5);
+            editAccountbtn.Margin = new Padding(5);
             editAccountbtn.Name = "editAccountbtn";
             editAccountbtn.Size = new Size(159, 47);
             editAccountbtn.TabIndex = 22;
@@ -1640,32 +1659,12 @@ namespace ITP4519M
             deliverylbl.TabIndex = 6;
             deliverylbl.Text = "Delivery";
             // 
-            // searchSupplierbtn
-            // 
-            searchSupplierbtn.AutoSize = true;
-            searchSupplierbtn.BackColor = SystemColors.HighlightText;
-            searchSupplierbtn.FlatAppearance.BorderColor = Color.Gray;
-            searchSupplierbtn.FlatStyle = FlatStyle.System;
-            searchSupplierbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            searchSupplierbtn.ForeColor = Color.Black;
-            searchSupplierbtn.ImageAlign = ContentAlignment.MiddleLeft;
-            searchSupplierbtn.ImageIndex = 0;
-            searchSupplierbtn.Location = new Point(1051, 117);
-            searchSupplierbtn.Margin = new Padding(3, 4, 3, 4);
-            searchSupplierbtn.Name = "searchSupplierbtn";
-            searchSupplierbtn.Size = new Size(177, 43);
-            searchSupplierbtn.TabIndex = 38;
-            searchSupplierbtn.Text = "Search";
-            searchSupplierbtn.UseVisualStyleBackColor = false;
-            searchSupplierbtn.Click += searchSupplierbtn_Click;
-            // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
             ClientSize = new Size(1499, 875);
-            Controls.Add(orderpnl);
             Controls.Add(closebtn);
             Controls.Add(listpnl);
             Controls.Add(contactpnl);
@@ -1677,6 +1676,7 @@ namespace ITP4519M
             Controls.Add(GRNpnl);
             Controls.Add(logpnl);
             Controls.Add(deliverypnl);
+            Controls.Add(orderpnl);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
