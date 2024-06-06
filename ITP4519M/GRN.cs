@@ -83,35 +83,6 @@ namespace ITP4519M
 
         }
 
-        private void deliveryCreatebtn_Click(object sender, EventArgs e)
-        {
-            if (grnPOIDbox.Text == "" || grnwarehousebox.Text == "" || grnProductIDbox.Text == "" || grnreceivedqtybox.Text == "")
-            {
-                grnerrorlbl.Visible = true;
-            }
-            else
-            {
-                try
-                {
-                    if (programMethod.createGRN(grnPOIDbox.Text.Trim(), grnProductIDbox.Text.Trim(), grnwarehousebox.Text.Trim(), grnreceivedqtybox.Text.Trim(), grnDateTimePicker.Value.Date.ToString()))
-                    {
-
-                        programMethod.increaseStock(grnProductIDbox.Text.Trim(), grnreceivedqtybox.Text.Trim());
-                        MessageBox.Show("Good Received Note Saved");
-                        ClearForm();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Purchase ID  Recevied");
-                    }
-                }
-                catch
-                {
-                    //MessageBox.Show("GRN error");
-                }
-            }
-        }
-
         private void CloseButton_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -124,7 +95,35 @@ namespace ITP4519M
 
         private void deliveryClearbtn_Click(object sender, EventArgs e)
         {
+            ClearForm();
+        }
 
+        private void grnCreatebtn_Click(object sender, EventArgs e)
+        {
+            if (grnPOIDbox.Text == "" || grnwarehousebox.Text == "" || grnProductIDbox.Text == "" || grnreceivedqtybox.Text == "")
+            {
+                grnerrorlbl.Visible = true;
+            }
+            else
+            {
+                try
+                {
+                    if (programMethod.createGRN(grnPOIDbox.Text.Trim(), grnProductIDbox.Text.Trim(), grnwarehousebox.Text.Trim(), grnreceivedqtybox.Text.Trim(), grnDateTimePicker.Value.Date.ToString()))
+                    {
+                        programMethod.increaseStock(grnProductIDbox.Text.Trim(), grnreceivedqtybox.Text.Trim());
+                        MessageBox.Show("Good Received Note Saved");
+                        ClearForm();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Purchase ID  Recevied");
+                    }
+                }
+                catch
+                {
+                   MessageBox.Show("GRN error");
+                }
+            }
         }
     }
 }

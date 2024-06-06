@@ -43,7 +43,6 @@ namespace ITP4519M
             switch (_mode)
             {
                 case OperationMode.View:
-                    createOrderbtn.Visible = false;
                     saveOrderbtn.Visible = false;
                     SetReadOnly(true);
                     break;
@@ -52,7 +51,6 @@ namespace ITP4519M
                     productOfOrderdata.Columns.Add("ProductName", "Product Name");
                     productOfOrderdata.Columns.Add("Quantity", "Quantity");
                     productOfOrderdata.Columns.Add("UnitPrice", "Unit Price");
-                    createOrderbtn.Visible = true;
                     saveOrderbtn.Visible = false;
                     ClearForm();
                     SetReadOnly(false);
@@ -163,8 +161,8 @@ namespace ITP4519M
         public void orderEdit(string orderID, string dealerID)
         {
 
-            string oID = orderID;
-            string pID = null;
+            this.orderID = orderID;
+            
 
 
             try
@@ -333,7 +331,7 @@ namespace ITP4519M
         {
             
             programMethod.orderDeleteItem(orderID);
-            for (int i = 0; i < productOfOrderdata.Rows.Count - 1; i++)
+            for (int i = 0; i < productOfOrderdata.Rows.Count; i++)
             {
                 programMethod.createOrderItem(orderID, productOfOrderdata.Rows[i].Cells[0].Value.ToString(), productOfOrderdata.Rows[i].Cells[2].Value.ToString());
             }

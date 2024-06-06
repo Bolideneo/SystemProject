@@ -18,6 +18,8 @@ using Google.Protobuf.WellKnownTypes;
 using Microsoft.VisualBasic.ApplicationServices;
 using Mysqlx.Crud;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Linq.Expressions;
+using System.Diagnostics;
 
 
 namespace ProgramMethod
@@ -473,6 +475,11 @@ namespace ProgramMethod
             return dataBaseMethod.searchGRNDate(startDate, endDate);
         }
 
+        public DataTable searchDeliveryDate(string startDate, string endDate)
+        {
+            return dataBaseMethod.searchDeliveryDate(startDate, endDate);
+        }
+
         public DataTable overallGRNinfo()
         {
             return dataBaseMethod.overallGRNinfo();
@@ -480,27 +487,33 @@ namespace ProgramMethod
 
         public bool createGRN(string POID, string productID, string warehouse, string receiveqty, string receivedate)
         {
-            DataTable temp = new DataTable();
+            //datatable temp = new datatable();
             if (dataBaseMethod.overallGRNinfo().Rows.Count == 0)
             {
                 dataBaseMethod.createGRN("00001", POID, productID, warehouse, receiveqty, receivedate);
                 return true;
             }
-            string grnID = (((int.Parse(dataBaseMethod.getGRNID('G'))) + 1).ToString("000000"));
+            string grnID = "G" + (int.Parse(dataBaseMethod.getGRNID('G').Substring(1)) + 1).ToString("000000");
+
+            MessageBox.Show(grnID);
+            try { 
             while (!dataBaseMethod.createGRN(grnID, POID, productID, warehouse, receiveqty, receivedate))
             {
-                grnID = (((int.Parse(dataBaseMethod.getGRNID('G'))) + 1).ToString("000000"));
+                grnID = "G" + (int.Parse(dataBaseMethod.getGRNID('G').Substring(1)) + 1).ToString("000000");
             }
+            }catch(Exception e)
+            {
 
-            return false;
+            MessageBox.Show(e.ToString()); }
+            return true;
 
 
         }
 
         public void increaseStock(string ProductID, string qty)
         {
-            int newQty = int.Parse(qty);
-            dataBaseMethod.increaseStock(ProductID, newQty);
+            int temp = int.Parse(dataBaseMethod.getProductQuantity(ProductID)) + int.Parse(qty);
+            dataBaseMethod.increaseStock(ProductID, temp.ToString());
 
         }
 
@@ -518,5 +531,33 @@ namespace ProgramMethod
         {
             dataBaseMethod.createOrderItem(orderID, product, qty);
         }
+
+        public DataTable overallDeliveryinfo()
+        {
+            return dataBaseMethod.overallDeliveryinfo();
+        }
+
+        public DataTable getInvoiceDetails(string orderID)
+        {
+            return dataBaseMethod.getInvoiceDetails(orderID);
+        }
+
+
+        public DataTable createDelivery(string orderID, string deliveryDate)
+        {
+
+                string deliveryID = "DE" + (int.Parse(dataBaseMethod.getDeliveryID("DE").Substring(1)) + 1).ToString("000000");
+
+                 while (!dataBaseMethod.createDelivery(deliveryID, deliveryDate))
+                {
+                deliveryID = "DE" + (int.Parse(dataBaseMethod.getDeliveryID("DE").Substring(1)) + 1).ToString("000000");
+                }
+
+                DataTable result = dataBaseMethod.getDelivery(orderID);
+                dataBaseMethod.updateOrderStatus("OrderInTransit", orderID);
+                return result;
+            }
+                return null;
+            
+        }
     }
-}    

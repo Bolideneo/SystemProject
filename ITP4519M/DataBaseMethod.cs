@@ -955,31 +955,6 @@ namespace ITP4519M
         }
 
 
-        //public OrderDetails GetOrderDetails(MySqlConnection connection, string orderID)
-        //{
-        //    OrderDetails oderDetails = null;
-        //    string query = "SELECT * FROM `order`WHERE OrderID = @orderID";
-
-        //    MySqlCommand command = new MySqlCommand(query, connection);
-        //    command.Parameters.AddWithValue("@UserID", orderID);
-
-        //    using (MySqlDataReader reader = command.ExecuteReader())
-        //    {
-        //        if (reader.Read())
-        //        {
-        //            oderDetails = new UserDetails
-        //            {
-        //                OrderID = reader["OrderID"].ToString(),
-        //                DealerID = reader["DealerID"].ToString(),
-        //                OrderSatusID = reader["OrderStatusID"].ToString(),
-        //                OrderDate = reader["OrderDate"].ToString(),
-
-        //            };
-        //        }
-        //    }
-        //    return OrderDetails;
-        //}
-
         public DataTable getOrderDetails(string orderID)
         {
             string sql = "SELECT * FROM `order` WHERE OrderID=@orderID";
@@ -1003,17 +978,6 @@ namespace ITP4519M
             adat.Fill(dataTable);
             return dataTable;
         }
-
-        //public DataTable getOrderItemDetails(string orderID) 
-        //{
-        //    string sql = "SELECT * FROM orderitem WHERE OrderID=@orderID";
-        //    MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-        //    cmd.Parameters.AddWithValue("@orderID", orderID);
-        //    MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
-        //    DataTable dataTable = new DataTable();
-        //    adat.Fill(dataTable);
-        //    return dataTable;
-        //}
 
         public DataTable getOrderItemDetails(string orderID)
         {
@@ -1060,6 +1024,18 @@ namespace ITP4519M
             return dataTable;
         }
 
+        public DataTable searchDeliveryDate(string startDate, string endDate)
+        {
+            string sql = "SELECT * FROM delivery WHERE DeliveryDate BETWEEN @startdate AND @enddate";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            cmd.Parameters.AddWithValue("@startdate", startDate);
+            cmd.Parameters.AddWithValue("@enddate", endDate);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
         public DataTable overallGRNinfo()
         {
             string sql = "SELECT * FROM grn ";
@@ -1071,26 +1047,45 @@ namespace ITP4519M
 
         }
 
-        public void increaseStock(string productID, int qty ) 
+        public DataTable overallDeliveryinfo()
         {
-            string sql = "UPDATE item SET QuantityInStock=QuantityInStock+ @qty WHERE ProrductID=@productID";
+            string sql = "SELECT * FROM delivery ";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-            cmd.Parameters.AddWithValue("@qty", qty);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+
+        }
+
+        public void increaseStock(string productID, string qty ) 
+        {
+            string sql = "UPDATE product SET QuantityInStock=@qty WHERE ProductID=@productID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@productID", productID);
+            cmd.Parameters.AddWithValue("@qty", qty);
             cmd.ExecuteNonQuery();
         }
 
+        public string getProductQuantity(string productID)
+        {
+            string sql = "SELECT QuantityInStock FROM product WHERE ProductID=@productID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());;
+            cmd.Parameters.AddWithValue("@productID", productID);
+            Object qty = cmd.ExecuteScalar();
+            return qty.ToString();
+        }
 
         public bool createGRN(string grnID, string POID, string productID, string warehouse , string recQty, string recDate)
         {
 
             DateTime theDate = DateTime.Now;
             theDate.ToString("yyyy-MM-dd HH:mm:ss");
-            string sql = "INSERT INTO grn (grnID, PurcahseOrderID, ProductID, ReceiveQty, ReceiveDate, WareHouse)VALUES(@grnID, @poID @productID, @recqty, @recdate, @warehouse)";           
+            string sql = "INSERT INTO grn (grnID, ProductID, PurcahseOrderID, ReceiveQty, ReceiveDate, WareHouse) VALUES(@grnID, @productID, @poID , @recqty, @recdate, @warehouse)";           
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@grnID", grnID);
-            cmd.Parameters.AddWithValue("@poID", POID);
             cmd.Parameters.AddWithValue("@productID", productID);
+            cmd.Parameters.AddWithValue("@poID", POID);
             cmd.Parameters.AddWithValue("@recqty", recQty);
             cmd.Parameters.AddWithValue("@recdate", recDate);
             cmd.Parameters.AddWithValue("@warehouse", warehouse);
@@ -1117,6 +1112,52 @@ namespace ITP4519M
             cmd.Parameters.AddWithValue("@OrderID", orderID);
             cmd.ExecuteNonQuery();
         }
+
+        
+
+        public DataTable getInvoiceDetails(string orderID)
+        {
+            string sql = "SELECT * FROM invoice WHERE OrderID=@orderID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@orderID", orderID);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+
+        }
+
+        public string getDeliveryID(string character)
+        {
+            string sql = "SELECT MAX(DeliveryID) FROM delivery WHERE LEFT(DeliveryID,2)=@character";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            Object DeliveryID = cmd.ExecuteScalar();
+            return DeliveryID.ToString();
+        }
+
+        public bool createDelivery(string deliveryID, string deliveryDate)
+        {
+ 
+            string sql = "INSERT INTO delivery (DeliveryID, DeliveryDate, ) VALUES(@deliveryID, @deliveryDate)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@deliveryID", deliveryID);
+            cmd.Parameters.AddWithValue("@deliveryDate", deliveryDate);
+            if (cmd.ExecuteNonQuery() > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public void updateOrderStatus(String status, String orderID)
+        {
+            string sql = "UPDATE order Set OrderStatus=@status WHERE OrderID=@orderID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@status", status);
+            cmd.Parameters.AddWithValue("@orderID", orderID);
+            cmd.ExecuteNonQuery();
+        }
+
 
 
     }

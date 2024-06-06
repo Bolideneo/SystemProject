@@ -90,6 +90,7 @@ namespace ITP4519M
 
         private void orderbtn_Click(object sender, EventArgs e)
         {
+
             if (lastClickedButton != null)
             {
                 lastClickedButton.ForeColor = Color.White;
@@ -100,6 +101,7 @@ namespace ITP4519M
 
             ShowPanel(orderpnl);
             orderdata.DataSource = programMethod.overallOrderinfo();
+            orderdata.Rows[0].Selected = false;
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
@@ -251,8 +253,8 @@ namespace ITP4519M
 
         private void newOrderbtn_Click(object sender, EventArgs e)
         {
-            SalesOrder salesOrder = new SalesOrder(OperationMode.New);
-            salesOrder.ShowDialog();
+            CreateOrder createOrder = new CreateOrder(OperationMode.New);
+            createOrder.ShowDialog();
         }
 
         private void editOrdersbtn_Click(object sender, EventArgs e)
@@ -544,6 +546,7 @@ namespace ITP4519M
             lastClickedButton.ForeColor = Color.Gray;
 
             ShowPanel(deliverypnl);
+            deliveryData.DataSource = programMethod.overallDeliveryinfo();
         }
 
         private void delProductbtn_Click(object sender, EventArgs e)
@@ -623,8 +626,9 @@ namespace ITP4519M
 
         private void deliverySearchDatebtn_Click(object sender, EventArgs e)
         {
-            //  Delivery delivery = new Delivery();
-            //delivery.ShowDialog();
+            string formDate = grnDatePicker1.Value.Date.ToString("yyyy-MM-dd");
+            string toDate = grnDatePicker2.Value.Date.ToString("yyyy-MM-dd");
+            deliveryData.DataSource = programMethod.searchDeliveryDate(formDate, toDate);
         }
 
         private void newDealerbtn_Click(object sender, EventArgs e)
@@ -701,5 +705,15 @@ namespace ITP4519M
             contactsdata.DataSource = programMethod.searchSupplierInformation(searchContactbtn.Text.Trim());
         }
 
+        private void deliveryclearbtn_Click(object sender, EventArgs e)
+        {
+            deliveryData.DataSource = programMethod.overallDeliveryinfo();
+        }
+
+        private void deliveryAddbtn_Click(object sender, EventArgs e)
+        {
+            Delivery delivery = new Delivery(OperationMode.New);
+            delivery.ShowDialog();
+        }
     }
 }
