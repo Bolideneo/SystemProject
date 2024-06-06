@@ -38,6 +38,7 @@ namespace ITP4519M
         private string contactID;
         private int index = -1;
         private int index2 = -1;
+        private int orderindex = -1;
         private Button lastClickedButton = null;
         private Button[] buttons = new Button[2];
         private bool isFormDragging = false;
@@ -227,7 +228,7 @@ namespace ITP4519M
 
         private void viewOrderbtn_Click(object sender, EventArgs e)
         {
-            if (index2 == -1)
+            if (orderindex == -1)
             {
                 MessageBox.Show("Please Select One Order");
             }
@@ -250,11 +251,19 @@ namespace ITP4519M
 
         private void editOrdersbtn_Click(object sender, EventArgs e)
         {
-            SalesOrder salesOrder = new SalesOrder(OperationMode.Edit);
-            salesOrder.ShowDialog();
+            if (orderindex == -1)
+            {
+                MessageBox.Show("Please Select One User");
+            }
+            else
+            {
+                SalesOrder salesOrder = new SalesOrder(OperationMode.Edit);
+                salesOrder.orderEdit(orderID, dealerID);
+                salesOrder.ShowDialog();
+            }
+
+
         }
-
-
 
 
         private void editAccountbtn_Click(object sender, EventArgs e)
@@ -548,22 +557,32 @@ namespace ITP4519M
         private void orderdata_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            if (e.RowIndex != -1 && e.RowIndex < orderdata.Rows.Count)
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
             {
-                index2 = e.RowIndex;
-                // MessageBox.Show(index2.ToString());
-                DataGridViewRow selectRow = this.orderdata.Rows[index2];
 
-                if (selectRow.Cells.Count >= 2)
+                this.orderdata.Rows[e.RowIndex].Cells["Select"].Value = true;
+                orderindex = e.RowIndex;
+                DataGridViewRow selectRow = this.orderdata.Rows[orderindex];
+                orderID = selectRow.Cells[1].Value.ToString();
+                dealerID = selectRow.Cells[2].Value.ToString();
+
+                foreach (DataGridViewRow row in orderdata.Rows)
                 {
-                    orderID = selectRow.Cells[0].Value.ToString();
-                    dealerID = selectRow.Cells[1].Value.ToString();
+                    if (row.Index == e.RowIndex)
+                    {
+                        row.Cells["Select"].Value = !Convert.ToBoolean(row.Cells["Select"].EditedFormattedValue);
+                    }
+                    else
+                    {
+                        row.Cells["Select"].Value = false;
+                    }
                 }
-                //orderID = selectRow.Cells[0].Value.ToString();
-                //dealerID = selectRow.Cells[1].Value.ToString();
-
             }
+
         }
+
+
+
 
         private void grnSearchBtn_Click(object sender, EventArgs e)
         {
@@ -666,6 +685,32 @@ namespace ITP4519M
                 supplierContactForm.ShowDialog();
             }
         }
+
+        //private void orderdata_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    var columnIndex = 0;
+
+        //    // Whatever index is your checkbox column
+        //    if (e.RowIndex == columnIndex)
+        //    {
+        //        MessageBox.Show(e.RowIndex.ToString());
+        //        // If the user checked this box, then uncheck all the other rows
+        //        var isChecked = (bool)orderdata.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+        //        if (isChecked)
+        //        {
+        //            foreach (DataGridViewRow row in orderdata.Rows)
+        //            {
+        //                if (row.Index != e.RowIndex)
+        //                {
+        //                    row.Cells[orderindex].Value = false;
+        //                }
+        //            }
+        //        }
+
+        //    }
+        //}
+
+
+
     }
 }
-

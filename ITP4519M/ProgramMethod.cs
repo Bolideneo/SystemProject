@@ -413,10 +413,10 @@ namespace ProgramMethod
         {
 
             //dealerID = "D" + (((int.Parse(dataBaseMethod.getDealerID()) + 1).ToString("0000")));
-            string orderID = "ORD" + (int.Parse(dataBaseMethod.getOrderID()) + 1).ToString("000000");
+            string orderID = (int.Parse(dataBaseMethod.getOrderID()) + 1).ToString("000000");
             while (!dataBaseMethod.createSalesOrder(orderID, dealerID, "OST001"))
             {
-                orderID = "ORD" + (int.Parse(dataBaseMethod.getOrderID()) + 1).ToString("000000");
+                orderID = (int.Parse(dataBaseMethod.getOrderID()) + 1).ToString("000000");
             }
 
 
@@ -478,6 +478,21 @@ namespace ProgramMethod
             int newQty = int.Parse(qty);
             dataBaseMethod.increaseStock(ProductID, newQty);
 
+        }
+
+        public string getOrderStatus(string orderID)
+        {
+            return dataBaseMethod.getOrderStatus(orderID);
+        }
+
+        public void orderDeleteItem(string orderID)
+        {
+            dataBaseMethod.orderDeleteItem(orderID);
+        }
+
+        public void  createOrderItem(string orderID, string product, string qty)
+        {
+            dataBaseMethod.createOrderItem(orderID, product, qty);
         }
     }
 }    
