@@ -193,6 +193,8 @@ namespace ITP4519M
             editSupplierbtn.Visible = false;
             newDealerbtn.Visible = true;
             editDealerbtn.Visible = true;
+            searchSupplierbtn.Visible = false;
+            searchDealerbtn.Visible = true;
         }
 
 
@@ -204,6 +206,8 @@ namespace ITP4519M
             editSupplierbtn.Visible = false;
             newDealerbtn.Visible = true;
             editDealerbtn.Visible = true;
+            searchSupplierbtn.Visible = false;
+            searchDealerbtn.Visible = true;
         }
 
         private void supplersbtn_Click(object sender, EventArgs e)
@@ -213,6 +217,8 @@ namespace ITP4519M
             editDealerbtn.Visible = false;
             newSupplierbtn.Visible = true;
             editSupplierbtn.Visible = true;
+            searchSupplierbtn.Visible = true;
+            searchDealerbtn.Visible = false;
         }
 
         private void contactpnl_Paint(object sender, PaintEventArgs e)
@@ -659,7 +665,6 @@ namespace ITP4519M
             }
             else
             {
-                MessageBox.Show(contactID);
                 programMethod.contactDel(contactID);
 
             }
@@ -686,31 +691,15 @@ namespace ITP4519M
             }
         }
 
-        //private void orderdata_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    var columnIndex = 0;
+        private void searchDealerbtn_Click(object sender, EventArgs e)
+        {
+            contactsdata.DataSource = programMethod.searchDealerInformation(searchContactbtn.Text.Trim());
+        }
 
-        //    // Whatever index is your checkbox column
-        //    if (e.RowIndex == columnIndex)
-        //    {
-        //        MessageBox.Show(e.RowIndex.ToString());
-        //        // If the user checked this box, then uncheck all the other rows
-        //        var isChecked = (bool)orderdata.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-        //        if (isChecked)
-        //        {
-        //            foreach (DataGridViewRow row in orderdata.Rows)
-        //            {
-        //                if (row.Index != e.RowIndex)
-        //                {
-        //                    row.Cells[orderindex].Value = false;
-        //                }
-        //            }
-        //        }
-
-        //    }
-        //}
-
-
+        private void searchSupplierbtn_Click(object sender, EventArgs e)
+        {
+            contactsdata.DataSource = programMethod.searchSupplierInformation(searchContactbtn.Text.Trim());
+        }
 
     }
 }

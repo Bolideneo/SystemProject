@@ -318,6 +318,29 @@ namespace ITP4519M
             adat.Fill(dataTable);
             return dataTable;
         }
+        //searchSupplierInfoByName
+        public DataTable searchDealerInfoByName(string contactname) { 
+
+            string sql = "SELECT * FROM dealer WHERE DealerName LIKE @contactname";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@contactname", "%" + contactname + "%");
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
+        public DataTable searchSupplierInfoByName(string contactname)
+        {
+
+            string sql = "SELECT * FROM supplier WHERE SupplierName LIKE @contactname";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@contactname", "%" + contactname + "%");
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
 
         //search product name
         public DataTable searchProductInfoByName(string productname)
@@ -723,6 +746,27 @@ namespace ITP4519M
             return false;
         }
 
+        public bool createSupplier(string SupplierID, string Suppliername, string SupplierMailBox, string SupplierPhoneNumBox, string SupplierAddressBox)
+        {
+            try
+            {
+                string sql = "INSERT INTO Supplier(SupplierID, SupplierName,  SupplierPhoneNum, SupplierEmail) VALUES(@SupplierID, @SupplierName, @SupplierPhoneNum, @SupplierEmail)";
+                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+                cmd.Parameters.AddWithValue("@SupplierID", SupplierID);
+                cmd.Parameters.AddWithValue("@SupplierName", Suppliername);
+                cmd.Parameters.AddWithValue("@SupplierEmail", SupplierMailBox);
+                cmd.Parameters.AddWithValue("@SupplierPhoneNum", SupplierPhoneNumBox);
+
+
+                if (cmd.ExecuteNonQuery() > 0)
+                    return true;
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine("An exception occurred: " + ex.Message);
+            }
+            return false;
+        }
         public bool updateSupplierInfo(string supplierid, String supplierName, string supplierMail, string supplierPhoneNum, string supplierAddress)
         {
             try
@@ -852,7 +896,14 @@ namespace ITP4519M
             return dealer.ToString();
         }
 
-        
+        public string getSupplierID()
+        {
+            string sql = "SELECT MAX(SupplierID) FROM supplier";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            Object supplier = cmd.ExecuteScalar();
+            return supplier.ToString();
+        }
+
 
         public string getOrderID()
         {   
