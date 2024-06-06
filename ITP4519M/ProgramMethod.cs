@@ -20,6 +20,10 @@ using Mysqlx.Crud;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Linq.Expressions;
 using System.Diagnostics;
+using System.IO;
+using System.Security.Cryptography;
+using System.Text;
+
 
 
 namespace ProgramMethod
@@ -31,31 +35,93 @@ namespace ProgramMethod
         public ProgramMethod()
         {
             dataBaseMethod = new DataBaseMethod();
-            dataBaseMethod.EncryptExistingPasswords();
+            //dataBaseMethod.EncryptExistingPasswords();
         }
 
 
+        public class PasswordEncryption
+        {
+            private static byte[] key = Encoding.UTF8.GetBytes("YourEncryptionKey123");
 
+            public static string Encrypt(string password)
+            {
+                using (AesCryptoServiceProvider aesAlg = new AesCryptoServiceProvider())
+                {
+                    aesAlg.Key = key;
+
+                    ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+                    byte[] encryptedBytes;
+
+                    using (MemoryStream msEncrypt = new MemoryStream())
+                    {
+                        using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+                        {
+                            using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
+                            {
+                                swEncrypt.Write(password);
+                            }
+                            encryptedBytes = msEncrypt.ToArray();
+                        }
+                    }
+                    return Convert.ToBase64String(encryptedBytes);
+                }
+            }
+
+            public static string Decrypt(string encryptedPassword)
+            {
+                byte[] cipherTextBytes = Convert.FromBase64String(encryptedPassword);
+                string decryptedPassword;
+
+                using (AesCryptoServiceProvider aesAlg = new AesCryptoServiceProvider())
+                {
+                    aesAlg.Key = key;
+
+                    ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+
+                    using (MemoryStream msDecrypt = new MemoryStream(cipherTextBytes))
+                    {
+                        using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+                        {
+                            using (StreamReader srDecrypt = new StreamReader(csDecrypt))
+                            {
+                                decryptedPassword = srDecrypt.ReadToEnd();
+                            }
+                        }
+                    }
+                }
+                return decryptedPassword;
+            }
+        }
 
         public bool verifyUser(string username, string password)
         {
             try
             {
-                string hashedPassword = dataBaseMethod.HashPassword(password);
-                string storedPassword = dataBaseMethod.getPassword(username);
-                MessageBox.Show(hashedPassword);
-                MessageBox.Show(storedPassword);
-                if (hashedPassword == storedPassword)
+                //string hashedPassword = dataBaseMethod.HashPassword(password);
+                //string storedPassword = dataBaseMethod.getPassword(username);
+                //MessageBox.Show(hashedPassword);
+                //MessageBox.Show(storedPassword);
+                //password = encryptPwd(password);
+                if (password == dataBaseMethod.getPassword(username))
                 {
                     return true;
                 }
             }
             catch (Exception ex)
             {
-             
+
                 Console.WriteLine(ex.Message);
             }
             return false;
+        }
+
+        private string encryptPwd(string password)
+        {
+            SHA256 sha256 = new SHA256CryptoServiceProvider();
+            byte[] source = Encoding.Default.GetBytes(password);
+            byte[] crypto = sha256.ComputeHash(source);
+            string entcyPassword = Convert.ToBase64String(crypto);
+            return entcyPassword;
         }
 
         public string getUserDisplayName(string username)

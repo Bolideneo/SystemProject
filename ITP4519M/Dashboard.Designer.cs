@@ -585,7 +585,7 @@ namespace ITP4519M
             checkColumn.FillWeight = 25F;
             checkColumn.HeaderText = "Select";
             checkColumn.MinimumWidth = 6;
-            checkColumn.Name = "checkColumn";
+            checkColumn.Name = "Select";
             // 
             // viewOrderbtn
             // 
