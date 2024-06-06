@@ -31,6 +31,7 @@ namespace ProgramMethod
         public ProgramMethod()
         {
             dataBaseMethod = new DataBaseMethod();
+            dataBaseMethod.EncryptExistingPasswords();
         }
 
 
@@ -40,13 +41,20 @@ namespace ProgramMethod
         {
             try
             {
-                if (password == dataBaseMethod.getPassword(username))
+                string hashedPassword = dataBaseMethod.HashPassword(password);
+                string storedPassword = dataBaseMethod.getPassword(username);
+                MessageBox.Show(hashedPassword);
+                MessageBox.Show(storedPassword);
+                if (hashedPassword == storedPassword)
                 {
                     return true;
                 }
             }
-            catch
-            { }
+            catch (Exception ex)
+            {
+             
+                Console.WriteLine(ex.Message);
+            }
             return false;
         }
 
@@ -553,11 +561,11 @@ namespace ProgramMethod
                 deliveryID = "DE" + (int.Parse(dataBaseMethod.getDeliveryID("DE").Substring(1)) + 1).ToString("000000");
                 }
 
-                DataTable result = dataBaseMethod.getDelivery(orderID);
+                //DataTable result = dataBaseMethod.getDelivery(orderID);
                 dataBaseMethod.updateOrderStatus("OrderInTransit", orderID);
-                return result;
-            }
-                return null;
+              //  return result;
             
+               return null;
         }
+    }
     }

@@ -695,7 +695,6 @@
             deliveryVieworderbtn.TabIndex = 30;
             deliveryVieworderbtn.Text = "Print";
             deliveryVieworderbtn.UseVisualStyleBackColor = false;
-            deliveryVieworderbtn.Click += deliveryVieworderbtn_Click;
             // 
             // DeliveryForm
             // 

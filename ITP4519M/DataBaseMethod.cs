@@ -70,6 +70,8 @@ namespace ITP4519M
 
 
 
+
+
         //Login with username
         public string getPassword(string userName)
         {
@@ -77,7 +79,7 @@ namespace ITP4519M
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@userName", userName);
             object password = cmd.ExecuteScalar();
-            ServerConnect().Close();
+
             if (password != null)
             {
                 return password.ToString();
@@ -86,8 +88,49 @@ namespace ITP4519M
             {
                 return string.Empty;
             }
+        }
 
+        public void EncryptExistingPasswords()
+        {
+            string selectSql = "SELECT UserName, Password FROM staff";
+            MySqlCommand selectCmd = new MySqlCommand(selectSql, ServerConnect());
 
+            MySqlDataReader reader = selectCmd.ExecuteReader();
+
+            List<(string userName, string hashedPassword)> users = new List<(string, string)>();
+
+            while (reader.Read())
+            {
+                string userName = reader["UserName"].ToString();
+                string plainPassword = reader["Password"].ToString();
+                string hashedPassword = HashPassword(plainPassword);
+                users.Add((userName, hashedPassword));
+            }
+            reader.Close();
+
+            foreach (var user in users)
+            {
+                string updateSql = "UPDATE staff SET Password = @hashedPassword WHERE UserName = @userName";
+                MySqlCommand updateCmd = new MySqlCommand(updateSql, ServerConnect());
+                updateCmd.Parameters.AddWithValue("@userName", user.userName);
+                updateCmd.Parameters.AddWithValue("@hashedPassword", user.hashedPassword);
+                updateCmd.ExecuteNonQuery();
+            }
+
+            ServerConnect().Close();
+        }
+        public string HashPassword(string password)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                StringBuilder builder = new StringBuilder();
+                foreach (byte b in bytes)
+                {
+                    builder.Append(b.ToString("x2"));
+                }
+                return builder.ToString();
+            }
         }
 
         //Checking user general role
@@ -206,12 +249,13 @@ namespace ITP4519M
         {
             try
             {
+                string hashedPassword = HashPassword(password);
                 string sql = "INSERT INTO staff(UserID, UserName, DisplayName, Password, DepartmentID, Title, PhoneNum, EmailAddress, Department) VALUES(@userID, @username, @displayname, @password, @departmentID, @title, @PhoneNum, @EmailAddress, @Department)";
                 MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
                 cmd.Parameters.AddWithValue("@userID", userID);
                 cmd.Parameters.AddWithValue("@username", username);
                 cmd.Parameters.AddWithValue("@displayname", displayname);
-                cmd.Parameters.AddWithValue("@password", password);
+                cmd.Parameters.AddWithValue("@password", hashedPassword);
                 cmd.Parameters.AddWithValue("@departmentID", departmentID);
                 cmd.Parameters.AddWithValue("@title", title);
                 cmd.Parameters.AddWithValue("@PhoneNum", phonenum);

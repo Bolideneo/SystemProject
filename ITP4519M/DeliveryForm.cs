@@ -86,42 +86,42 @@ namespace ITP4519M
             e.Graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, System.Drawing.GraphicsUnit.Pixel);
         }
 
-        private void deliveryVieworderbtn_Click(object sender, EventArgs e)
-        {
-            Graphics g1 = this.CreateGraphics();
-            Image MyImage = new Bitmap(this.ClientRectangle.Width, this.ClientRectangle.Height, g1);
-            Graphics g2 = Graphics.FromImage(MyImage);
-            IntPtr dc1 = g1.GetHdc();
-            IntPtr dc2 = g2.GetHdc();
-            BitBlt(dc2, 0, 0, this.ClientRectangle.Width, this.ClientRectangle.Height, dc1, 0, 0, 13369376);
-            g1.ReleaseHdc(dc1);
-            g2.ReleaseHdc(dc2);
-            MyImage.Save(@"c:\PrintPage.jpg", ImageFormat.Jpeg);
-            FileStream fileStream = new FileStream(@"c:\PrintPage.jpg", FileMode.Open, FileAccess.Read);
-            StartPrint(fileStream, "Image");
-            fileStream.Close();
-            if (System.IO.File.Exists(@"c:\PrintPage.jpg"))
-            {
-                System.IO.File.Delete(@"c:\PrintPage.jpg");
-            }
-        }
+        //private void deliveryVieworderbtn_Click(object sender, EventArgs e)
+        //{
+        //    Graphics g1 = this.CreateGraphics();
+        //    Image MyImage = new Bitmap(this.ClientRectangle.Width, this.ClientRectangle.Height, g1);
+        //    Graphics g2 = Graphics.FromImage(MyImage);
+        //    IntPtr dc1 = g1.GetHdc();
+        //    IntPtr dc2 = g2.GetHdc();
+        //    BitBlt(dc2, 0, 0, this.ClientRectangle.Width, this.ClientRectangle.Height, dc1, 0, 0, 13369376);
+        //    g1.ReleaseHdc(dc1);
+        //    g2.ReleaseHdc(dc2);
+        //    MyImage.Save(@"c:\PrintPage.jpg", ImageFormat.Jpeg);
+        //    FileStream fileStream = new FileStream(@"c:\PrintPage.jpg", FileMode.Open, FileAccess.Read);
+        //    StartPrint(fileStream, "Image");
+        //    fileStream.Close();
+        //    if (System.IO.File.Exists(@"c:\PrintPage.jpg"))
+        //    {
+        //        System.IO.File.Delete(@"c:\PrintPage.jpg");
+        //    }
+        //}
 
-        public void StartPrint(Stream streamToPrint, string streamType)
-        {
-            this.printDoc.PrintPage += new PrintPageEventHandler(printDoc_PrintPage);
-            this.streamToPrint = streamToPrint;
-            this.streamType = streamType;
-            System.Windows.Forms.PrintDialog PrintDialog1 = new PrintDialog();
-            PrintDialog1.AllowSomePages = true;
-            PrintDialog1.ShowHelp = true;
-            PrintDialog1.Document = printDoc;
-            DialogResult result = PrintDialog1.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                printDoc.Print();
-                //docToPrint.Print();  
-            }
-        }
+        //public void StartPrint(Stream streamToPrint, string streamType)
+        //{
+        //    this.printDoc.PrintPage += new PrintPageEventHandler(printDoc_PrintPage);
+        //    this.streamToPrint = streamToPrint;
+        //    this.streamType = streamType;
+        //    System.Windows.Forms.PrintDialog PrintDialog1 = new PrintDialog();
+        //    PrintDialog1.AllowSomePages = true;
+        //    PrintDialog1.ShowHelp = true;
+        //    PrintDialog1.Document = printDoc;
+        //    DialogResult result = PrintDialog1.ShowDialog();
+        //    if (result == DialogResult.OK)
+        //    {
+        //        printDoc.Print();
+        //        //docToPrint.Print();  
+        //    }
+        //}
     }
 }
 

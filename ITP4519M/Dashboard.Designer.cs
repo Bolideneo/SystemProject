@@ -243,7 +243,7 @@ namespace ITP4519M
             GRNbtn.Name = "GRNbtn";
             GRNbtn.Size = new Size(166, 51);
             GRNbtn.TabIndex = 10;
-            GRNbtn.Text = "GRN";
+            GRNbtn.Text = "GRN   ";
             GRNbtn.UseVisualStyleBackColor = true;
             GRNbtn.Click += GRNbtn_Click;
             // 
@@ -260,7 +260,7 @@ namespace ITP4519M
             outstandingOrderbtn.Location = new Point(25, 371);
             outstandingOrderbtn.Margin = new Padding(3, 4, 3, 4);
             outstandingOrderbtn.Name = "outstandingOrderbtn";
-            outstandingOrderbtn.Size = new Size(189, 75);
+            outstandingOrderbtn.Size = new Size(166, 56);
             outstandingOrderbtn.TabIndex = 9;
             outstandingOrderbtn.Text = "         Outstanding\r\n         Order ";
             outstandingOrderbtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -306,7 +306,7 @@ namespace ITP4519M
             contactsbtn.Location = new Point(25, 440);
             contactsbtn.Margin = new Padding(3, 4, 3, 4);
             contactsbtn.Name = "contactsbtn";
-            contactsbtn.Size = new Size(184, 75);
+            contactsbtn.Size = new Size(166, 56);
             contactsbtn.TabIndex = 7;
             contactsbtn.Text = "         Contacts\r\n         Information";
             contactsbtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -929,7 +929,7 @@ namespace ITP4519M
             contactGroupBox.Controls.Add(dealersbtn);
             contactGroupBox.Location = new Point(13, 12);
             contactGroupBox.Name = "contactGroupBox";
-            contactGroupBox.Size = new Size(427, 91);
+            contactGroupBox.Size = new Size(461, 91);
             contactGroupBox.TabIndex = 35;
             contactGroupBox.TabStop = false;
             contactGroupBox.Text = "Change to Contact information";
