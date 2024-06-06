@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ITP4519M")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cfee3a165ff0112ac2d69f28fa345e7048ab1349")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c194cdc276bd92b6cf34721207fab29449950e68")]
 [assembly: System.Reflection.AssemblyProductAttribute("ITP4519M")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ITP4519M")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

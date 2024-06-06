@@ -30,7 +30,6 @@
         {
             label1 = new Label();
             editSupplierbtn = new Button();
-            registerClearBtn = new Button();
             button1 = new Button();
             phoneNumlbl = new Label();
             SupplierPhoneNumBox = new TextBox();
@@ -66,18 +65,6 @@
             editSupplierbtn.Text = "Edit Supplier";
             editSupplierbtn.UseVisualStyleBackColor = true;
             editSupplierbtn.Click += editSupplierbtn_Click;
-            // 
-            // registerClearBtn
-            // 
-            registerClearBtn.AccessibleRole = AccessibleRole.None;
-            registerClearBtn.Font = new Font("Arial Narrow", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            registerClearBtn.Location = new Point(138, 472);
-            registerClearBtn.Margin = new Padding(5, 4, 5, 4);
-            registerClearBtn.Name = "registerClearBtn";
-            registerClearBtn.Size = new Size(96, 28);
-            registerClearBtn.TabIndex = 83;
-            registerClearBtn.Text = "Clear";
-            registerClearBtn.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -157,6 +144,7 @@
             createSupplierBtn.TabIndex = 74;
             createSupplierBtn.Text = "Create Supplier";
             createSupplierBtn.UseVisualStyleBackColor = true;
+            createSupplierBtn.Click += createSupplierBtn_Click;
             // 
             // suppliernamelbl
             // 
@@ -191,10 +179,9 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(389, 536);
+            ClientSize = new Size(389, 496);
             Controls.Add(supplierAddressBox);
             Controls.Add(label1);
-            Controls.Add(registerClearBtn);
             Controls.Add(button1);
             Controls.Add(phoneNumlbl);
             Controls.Add(SupplierPhoneNumBox);
@@ -203,8 +190,8 @@
             Controls.Add(suppliernamelbl);
             Controls.Add(suppliernameBox);
             Controls.Add(supplierInfolabel);
-            Controls.Add(editSupplierbtn);
             Controls.Add(createSupplierBtn);
+            Controls.Add(editSupplierbtn);
             FormBorderStyle = FormBorderStyle.None;
             Name = "SupplierContactForm";
             Text = "SupplierContactForm";
@@ -218,7 +205,6 @@
         private Label label1;
         private TextBox textBox1;
         private Button editSupplierbtn;
-        private Button registerClearBtn;
         private Button button1;
         private Label phoneNumlbl;
         private TextBox SupplierPhoneNumBox;

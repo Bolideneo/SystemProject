@@ -84,5 +84,21 @@ namespace ITP4519M
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void createSupplierBtn_Click(object sender, EventArgs e)
+        {
+            if (programMethod.createSupplier(suppliernameBox.Text.Trim(), SupplierMailBox.Text.Trim(), SupplierPhoneNumBox.Text.Trim(), supplierAddressBox.Text.Trim()))
+            {
+                MessageBox.Show("User Successfully Created");
+                suppliernameBox.Text = "";
+                SupplierMailBox.Text = "";
+                SupplierPhoneNumBox.Text = "";
+                supplierAddressBox.Text = "";
+            }
+            else
+            {
+                MessageBox.Show("Please input correct information");
+            }
+        }
     }
 }

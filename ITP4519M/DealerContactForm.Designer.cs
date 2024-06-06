@@ -30,7 +30,6 @@
         {
             editDealerbtn = new Button();
             dealerInfolbl = new Label();
-            registerClearBtn = new Button();
             button1 = new Button();
             phoneNumlbl = new Label();
             DealerPhoneNumBox = new TextBox();
@@ -70,18 +69,6 @@
             dealerInfolbl.TabIndex = 67;
             dealerInfolbl.Text = "Dealer Information";
             dealerInfolbl.TextAlign = ContentAlignment.BottomRight;
-            // 
-            // registerClearBtn
-            // 
-            registerClearBtn.AccessibleRole = AccessibleRole.None;
-            registerClearBtn.Font = new Font("Arial Narrow", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            registerClearBtn.Location = new Point(145, 552);
-            registerClearBtn.Margin = new Padding(5, 4, 5, 4);
-            registerClearBtn.Name = "registerClearBtn";
-            registerClearBtn.Size = new Size(96, 28);
-            registerClearBtn.TabIndex = 66;
-            registerClearBtn.Text = "Clear";
-            registerClearBtn.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -214,10 +201,9 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(401, 594);
+            ClientSize = new Size(401, 574);
             Controls.Add(label1);
             Controls.Add(dealerAddressBox);
-            Controls.Add(registerClearBtn);
             Controls.Add(button1);
             Controls.Add(phoneNumlbl);
             Controls.Add(DealerPhoneNumBox);
@@ -244,7 +230,6 @@
         private Button editDealerbtn;
         private Label viewDealerlbl;
         private Label dealerInfolbl;
-        private Button registerClearBtn;
         private Button button1;
         private Label phoneNumlbl;
         private TextBox DealerPhoneNumBox;

@@ -126,7 +126,14 @@ namespace ProgramMethod
             return dataBaseMethod.searchProductInfoByName(productname);
         }
 
-
+        public DataTable searchDealerInformation(string contactname)
+        {
+            return dataBaseMethod.searchDealerInfoByName(contactname);
+        }
+        public DataTable searchSupplierInformation(string contactname)
+        {
+            return dataBaseMethod.searchSupplierInfoByName(contactname);
+        }
         public DataTable overviewUserinfo()
         {
             return dataBaseMethod.overallUserInfo();
@@ -179,6 +186,23 @@ namespace ProgramMethod
             int newDealerIDNum = lastDealerIDNum + 1;
             string dealerID = $"{letterPart}{newDealerIDNum:D3}";
             if (dataBaseMethod.createDealer(dealerID, dealername, dealerCompanyName, dealerMailBox, DealerPhoneNumBox, dealerAddressBox))
+            {
+                return true;
+            }
+            else
+                return false;
+
+        }
+
+        public bool createSupplier(string Suppliername, string SupplierMailBox, string SupplierPhoneNumBox, string SupplierAddressBox)
+        {
+            string lastSupplierID = dataBaseMethod.getSupplierID();
+            string letterPart = new string(lastSupplierID.TakeWhile(c => !char.IsDigit(c)).ToArray());
+            string numericPart = new string(lastSupplierID.SkipWhile(c => !char.IsDigit(c)).ToArray());
+            int lastSupplierIDNum = int.Parse(numericPart);
+            int newSupplierIDNum = lastSupplierIDNum + 1;
+            string SupplierID = $"{letterPart}{newSupplierIDNum:D3}";
+            if (dataBaseMethod.createSupplier(SupplierID, Suppliername, SupplierMailBox, SupplierPhoneNumBox, SupplierAddressBox))
             {
                 return true;
             }

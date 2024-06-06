@@ -90,7 +90,7 @@ namespace ITP4519M
             supplersbtn = new Button();
             dealersbtn = new Button();
             delContactbtn = new Button();
-            button6 = new Button();
+            searchDealerbtn = new Button();
             searchContactbtn = new TextBox();
             contactsdata = new DataGridView();
             newSupplierbtn = new Button();
@@ -145,6 +145,7 @@ namespace ITP4519M
             deliverydateTimePicker2 = new DateTimePicker();
             deliveryData = new DataGridView();
             deliverylbl = new Label();
+            searchSupplierbtn = new Button();
             listpnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)avatarbox).BeginInit();
             orderpnl.SuspendLayout();
@@ -189,7 +190,7 @@ namespace ITP4519M
             listpnl.Controls.Add(usertypelbl);
             listpnl.Controls.Add(namelbl);
             listpnl.Controls.Add(avatarbox);
-            listpnl.Location = new Point(0, 3);
+            listpnl.Location = new Point(0, 1);
             listpnl.Margin = new Padding(3, 4, 3, 4);
             listpnl.Name = "listpnl";
             listpnl.Size = new Size(200, 876);
@@ -814,13 +815,14 @@ namespace ITP4519M
             // 
             contactpnl.Controls.Add(contactGroupBox);
             contactpnl.Controls.Add(delContactbtn);
-            contactpnl.Controls.Add(button6);
             contactpnl.Controls.Add(searchContactbtn);
             contactpnl.Controls.Add(contactsdata);
             contactpnl.Controls.Add(newSupplierbtn);
             contactpnl.Controls.Add(editSupplierbtn);
             contactpnl.Controls.Add(newDealerbtn);
             contactpnl.Controls.Add(editDealerbtn);
+            contactpnl.Controls.Add(searchSupplierbtn);
+            contactpnl.Controls.Add(searchDealerbtn);
             contactpnl.Location = new Point(201, 3);
             contactpnl.Margin = new Padding(3, 4, 3, 4);
             contactpnl.Name = "contactpnl";
@@ -891,23 +893,24 @@ namespace ITP4519M
             delContactbtn.UseVisualStyleBackColor = false;
             delContactbtn.Click += delContactbtn_Click;
             // 
-            // button6
+            // searchDealerbtn
             // 
-            button6.AutoSize = true;
-            button6.BackColor = SystemColors.HighlightText;
-            button6.FlatAppearance.BorderColor = Color.Gray;
-            button6.FlatStyle = FlatStyle.System;
-            button6.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button6.ForeColor = Color.Black;
-            button6.ImageAlign = ContentAlignment.MiddleLeft;
-            button6.ImageIndex = 0;
-            button6.Location = new Point(1051, 117);
-            button6.Margin = new Padding(3, 4, 3, 4);
-            button6.Name = "button6";
-            button6.Size = new Size(177, 43);
-            button6.TabIndex = 33;
-            button6.Text = "Search";
-            button6.UseVisualStyleBackColor = false;
+            searchDealerbtn.AutoSize = true;
+            searchDealerbtn.BackColor = SystemColors.HighlightText;
+            searchDealerbtn.FlatAppearance.BorderColor = Color.Gray;
+            searchDealerbtn.FlatStyle = FlatStyle.System;
+            searchDealerbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            searchDealerbtn.ForeColor = Color.Black;
+            searchDealerbtn.ImageAlign = ContentAlignment.MiddleLeft;
+            searchDealerbtn.ImageIndex = 0;
+            searchDealerbtn.Location = new Point(1051, 117);
+            searchDealerbtn.Margin = new Padding(3, 4, 3, 4);
+            searchDealerbtn.Name = "searchDealerbtn";
+            searchDealerbtn.Size = new Size(177, 43);
+            searchDealerbtn.TabIndex = 33;
+            searchDealerbtn.Text = "Search";
+            searchDealerbtn.UseVisualStyleBackColor = false;
+            searchDealerbtn.Click += searchDealerbtn_Click;
             // 
             // searchContactbtn
             // 
@@ -1625,6 +1628,25 @@ namespace ITP4519M
             deliverylbl.TabIndex = 6;
             deliverylbl.Text = "Delivery";
             // 
+            // searchSupplierbtn
+            // 
+            searchSupplierbtn.AutoSize = true;
+            searchSupplierbtn.BackColor = SystemColors.HighlightText;
+            searchSupplierbtn.FlatAppearance.BorderColor = Color.Gray;
+            searchSupplierbtn.FlatStyle = FlatStyle.System;
+            searchSupplierbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            searchSupplierbtn.ForeColor = Color.Black;
+            searchSupplierbtn.ImageAlign = ContentAlignment.MiddleLeft;
+            searchSupplierbtn.ImageIndex = 0;
+            searchSupplierbtn.Location = new Point(1051, 117);
+            searchSupplierbtn.Margin = new Padding(3, 4, 3, 4);
+            searchSupplierbtn.Name = "searchSupplierbtn";
+            searchSupplierbtn.Size = new Size(177, 43);
+            searchSupplierbtn.TabIndex = 38;
+            searchSupplierbtn.Text = "Search";
+            searchSupplierbtn.UseVisualStyleBackColor = false;
+            searchSupplierbtn.Click += searchSupplierbtn_Click;
+            // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -1799,13 +1821,14 @@ namespace ITP4519M
         private Button deliveryAddbtn;
         private Panel panel2;
         private Button delContactbtn;
-        private Button button6;
+        private Button searchDealerbtn;
         private TextBox searchContactbtn;
         private Button newDealerbtn;
         private Button editDealerbtn;
         private GroupBox contactGroupBox;
         private Button newSupplierbtn;
         private Button editSupplierbtn;
+        private Button searchSupplierbtn;
         //private Label label2;
     }
 }

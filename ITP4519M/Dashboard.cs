@@ -192,6 +192,8 @@ namespace ITP4519M
             editSupplierbtn.Visible = false;
             newDealerbtn.Visible = true;
             editDealerbtn.Visible = true;
+            searchSupplierbtn.Visible = false;
+            searchDealerbtn.Visible = true;
         }
 
 
@@ -203,6 +205,8 @@ namespace ITP4519M
             editSupplierbtn.Visible = false;
             newDealerbtn.Visible = true;
             editDealerbtn.Visible = true;
+            searchSupplierbtn.Visible = false;
+            searchDealerbtn.Visible = true;
         }
 
         private void supplersbtn_Click(object sender, EventArgs e)
@@ -212,6 +216,8 @@ namespace ITP4519M
             editDealerbtn.Visible = false;
             newSupplierbtn.Visible = true;
             editSupplierbtn.Visible = true;
+            searchSupplierbtn.Visible = true;
+            searchDealerbtn.Visible = false;
         }
 
         private void contactpnl_Paint(object sender, PaintEventArgs e)
@@ -640,7 +646,6 @@ namespace ITP4519M
             }
             else
             {
-                MessageBox.Show(contactID);
                 programMethod.contactDel(contactID);
 
             }
@@ -665,6 +670,16 @@ namespace ITP4519M
                 supplierContactForm.supplierEdit(contactID);
                 supplierContactForm.ShowDialog();
             }
+        }
+
+        private void searchDealerbtn_Click(object sender, EventArgs e)
+        {
+            contactsdata.DataSource = programMethod.searchDealerInformation(searchContactbtn.Text.Trim());
+        }
+
+        private void searchSupplierbtn_Click(object sender, EventArgs e)
+        {
+            contactsdata.DataSource = programMethod.searchSupplierInformation(searchContactbtn.Text.Trim());
         }
     }
 }
