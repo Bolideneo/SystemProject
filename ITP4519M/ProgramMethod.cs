@@ -169,13 +169,56 @@ namespace ProgramMethod
                 return false;
 
         }
+        //
+        public bool createDealer(string dealername, string dealerCompanyName, string dealerMailBox, string DealerPhoneNumBox, string dealerAddressBox)
+        {
+            string lastDealerID = dataBaseMethod.getDealerID();
+            string letterPart = new string(lastDealerID.TakeWhile(c => !char.IsDigit(c)).ToArray());
+            string numericPart = new string(lastDealerID.SkipWhile(c => !char.IsDigit(c)).ToArray());
+            int lastDealerIDNum = int.Parse(numericPart);
+            int newDealerIDNum = lastDealerIDNum + 1;
+            string dealerID = $"{letterPart}{newDealerIDNum:D3}";
+            if (dataBaseMethod.createDealer(dealerID, dealername, dealerCompanyName, dealerMailBox, DealerPhoneNumBox, dealerAddressBox))
+            {
+                return true;
+            }
+            else
+                return false;
 
+        }
         public bool updateDealerInfo(string dealerid, string dealerName, string dealerCompanyName, string dealerMail, string phoneNum, string dealerAddress)
         {
 
 
             if (dataBaseMethod.updateDealerInfo(dealerid, dealerName, dealerCompanyName, dealerMail, phoneNum, dealerAddress))
             {
+                return true;
+            }
+            else
+                return false;
+
+        }
+
+
+        public bool updateSupplierInfo(string supplierid, string supplierName, string supplierMail, string supplierPhoneNum, string supplierAddress)
+        {
+
+
+            if (dataBaseMethod.updateSupplierInfo(supplierid, supplierName, supplierMail, supplierPhoneNum, supplierAddress))
+            {
+                return true;
+            }
+            else
+                return false;
+
+        }
+
+        public bool contactDel(string contactID)
+        {
+
+            if (dataBaseMethod.contactDel(contactID))
+            {
+                MessageBox.Show("Delete successfully");
                 return true;
             }
             else
@@ -266,6 +309,21 @@ namespace ProgramMethod
                 if (connection.State == System.Data.ConnectionState.Open)
                 {
                     return dataBaseMethod.GetDealerDetails(connection, dealerID); 
+                }
+                else
+                {
+                    throw new Exception("Database connection failed.");
+                }
+            }
+        }
+
+        public SupplierDetails getSupplierDetails(string supplierID)
+        {
+            using (var connection = dataBaseMethod.ServerConnect())
+            {
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    return dataBaseMethod.GetSupplierDetails(connection, supplierID);
                 }
                 else
                 {

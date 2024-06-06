@@ -65,6 +65,7 @@
             editSupplierbtn.TabIndex = 86;
             editSupplierbtn.Text = "Edit Supplier";
             editSupplierbtn.UseVisualStyleBackColor = true;
+            editSupplierbtn.Click += editSupplierbtn_Click;
             // 
             // registerClearBtn
             // 

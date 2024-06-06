@@ -262,6 +262,31 @@ namespace ITP4519M
             return false;
         }
 
+        public bool contactDel(string contactID)
+        {
+            string sql;
+            try
+            {
+                if (contactID.StartsWith("D"))
+                {
+                    sql = "DELETE FROM dealer WHERE DealerID=@ContactID";
+                }
+                else {
+                    sql = "DELETE FROM supplier WHERE SupplierID=@ContactID";
+                }
+
+                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+                cmd.Parameters.AddWithValue("@ContactID", contactID);
+                if (cmd.ExecuteNonQuery() > 0)
+                    return true;
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine("An exception occurred: " + ex.Message);
+            }
+            return false;
+        }
+
         //enable a new user account
         public bool enableUser(string userID)
         {
@@ -329,6 +354,7 @@ namespace ITP4519M
             adat.Fill(dataTable);
             return dataTable;
         }
+
 
         public DataTable overviewDealerinfo()
         {
@@ -427,6 +453,45 @@ namespace ITP4519M
             public string DealerCompanyName { get; set; }
             public string DealerPhoneNum { get; set; }
             public string DealerEmailAddress { get; set; }
+
+
+        }
+
+        public SupplierDetails GetSupplierDetails(MySqlConnection connection, string supplierID)
+        {
+            SupplierDetails supplierDetails = null;
+            string query = "SELECT * FROM supplier WHERE SupplierID = @SupplierID";
+
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@SupplierID", supplierID);
+
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    supplierDetails = new SupplierDetails
+                    {
+                        SupplierID = reader["SupplierID"].ToString(),
+                        SupplierName = reader["SupplierName"].ToString(),
+                        SupplierPhoneNum = reader["SupplierPhoneNum"].ToString(),
+                        SupplierEmail = reader["SupplierEmail"].ToString(),
+                        SupplierAddress = reader["SupplierAddress"].ToString(),
+
+
+                    };
+                }
+            }
+            return supplierDetails;
+        }
+
+
+        public class SupplierDetails
+        {
+            public string SupplierID { get; set; }
+            public string SupplierName { get; set; }
+            public string SupplierPhoneNum { get; set; }
+            public string SupplierEmail { get; set; }
+            public string SupplierAddress { get; set; }
 
 
         }
@@ -550,7 +615,6 @@ namespace ITP4519M
         {
             try
             {
-                MessageBox.Show("DB");
                 string sql = "INSERT INTO product(ProductID, ProductName, SerialNumber, ProductCategory, BinLocation, Weight, UnitPrice, CostPrice, autoOrder, QuantityInStock, DemandStock, Description, Status) VALUES (@pid, @pName, @sn, @pCategory, @binLocation, @weight, @uniPrice, @costPrice, @autoOrder, @quantityStock, @demandStock,  @description, @status)";
                 MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
                 cmd.Parameters.AddWithValue("@pid", productID);
@@ -609,7 +673,29 @@ namespace ITP4519M
             }
             return false;
         }
+        //dealerID, dealername, dealerCompanyName, dealerMailBox, DealerPhoneNumBox, dealerAddressBox
+        public bool createDealer(string dealerID, string dealername, string dealerCompanyName, string dealerMailBox, string dealerPhoneNumBox, string dealerAddressBox)
+        {
+            try
+            {
+                string sql = "INSERT INTO dealer(DealerID, DealerName, DealerCompanyName, DealerPhoneNum, DealerEmailAddress) VALUES(@DealerID, @DealerName, @DealerCompanyName, @DealerPhoneNum, @DealerEmailAddress)";
+                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+                cmd.Parameters.AddWithValue("@DealerID", dealerID);
+                cmd.Parameters.AddWithValue("@DealerName", dealername);
+                cmd.Parameters.AddWithValue("@DealerCompanyName", dealerCompanyName);
+                cmd.Parameters.AddWithValue("@DealerEmailAddress", dealerMailBox);
+                cmd.Parameters.AddWithValue("@DealerPhoneNum", dealerPhoneNumBox);
+              //  cmd.Parameters.AddWithValue("@DealerAddressBox", dealerAddressBox);
 
+                if (cmd.ExecuteNonQuery() > 0)
+                    return true;
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine("An exception occurred: " + ex.Message);
+            }
+            return false;
+        }
         public bool updateDealerInfo(string dealerid, String dealerName, string dealerCompanyName, string dealerMail, string dealerPhoneNum, string dealerAddress)
         {
             try
@@ -618,10 +704,11 @@ namespace ITP4519M
                 string sql = "UPDATE dealer SET DealerName = @dealerName, DealerCompanyName = @dealerCompanyName, DealerPhoneNum = @dealerPhoneNum, DealerEmailAddress = @dealerEmailAddress WHERE DealerID = @dealerID";
 
                 MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+                cmd.Parameters.AddWithValue("@dealerID", dealerid);
                 cmd.Parameters.AddWithValue("@dealerName", dealerName);
                 cmd.Parameters.AddWithValue("@dealerCompanyName", dealerCompanyName);
-                cmd.Parameters.AddWithValue("@DealerPhoneNum", dealerPhoneNum);
-                cmd.Parameters.AddWithValue("@DealerMail", dealerMail);
+                cmd.Parameters.AddWithValue("@dealerPhoneNum", dealerPhoneNum);
+                cmd.Parameters.AddWithValue("@dealerEmailAddress", dealerMail);
               //  cmd.Parameters.AddWithValue("@DealerAddress", dealerAddress);
 
 
@@ -636,6 +723,32 @@ namespace ITP4519M
             return false;
         }
 
+        public bool updateSupplierInfo(string supplierid, String supplierName, string supplierMail, string supplierPhoneNum, string supplierAddress)
+        {
+            try
+            {
+
+                string sql = "UPDATE supplier SET SupplierName = @SupplierName, SupplierPhoneNum = @SupplierPhoneNum, SupplierEmail = @SupplierEmail, SupplierAddress = @SupplierAddress WHERE SupplierID = @SupplierID";
+
+                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+                cmd.Parameters.AddWithValue("@SupplierID", supplierid);
+                cmd.Parameters.AddWithValue("@SupplierName", supplierName);
+                cmd.Parameters.AddWithValue("@SupplierPhoneNum", supplierPhoneNum); 
+                cmd.Parameters.AddWithValue("@SupplierEmail", supplierMail);
+                cmd.Parameters.AddWithValue("@SupplierAddress", supplierAddress);
+                //  cmd.Parameters.AddWithValue("@DealerAddress", dealerAddress);
+
+
+
+                if (cmd.ExecuteNonQuery() > 0)
+                    return true;
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine("An exception occurred: " + ex.Message);
+            }
+            return false;
+        }
 
         public bool CreateDealer(string dealerID, string dearlerOrderNo, string dealerName, string companyName, string phoneNum, string Eamil,  string regionNo)
         {

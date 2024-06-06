@@ -41,12 +41,29 @@ namespace ITP4519M
             }
         }
 
+        private void createDealerBtn_Click(object sender, EventArgs e)
+
+        {
+            if (programMethod.createDealer(dealerNameBox.Text.Trim(), dealerCompanyNameBox.Text.Trim(), dealerMailBox.Text.Trim(), DealerPhoneNumBox.Text.Trim(), dealerAddressBox.Text.Trim()))
+            {
+                MessageBox.Show("User Successfully Created");
+                dealerNameBox.Text = "";
+                dealerCompanyNameBox.Text = "";
+                dealerMailBox.Text = "";
+                DealerPhoneNumBox.Text = "";
+                dealerAddressBox.Text = "";
+            }
+            else {
+                MessageBox.Show("Please input correct information");
+            }
+        }
+
         private void editDealerbtn_Click(object sender, EventArgs e)
         {
             var dealerDetails = programMethod.getDealerDetails(dealerID);
             string dealerid = dealerDetails.DealerID;
 
-            if (programMethod.updateDealerInfo(dealerid,dealerNameBox.Text.Trim(), dealerCompanyNameBox.Text.Trim(), dealerMailBox.Text.Trim(), DealerPhoneNumBox.Text.Trim(), dealerAddressBox.Text.Trim()))
+            if (programMethod.updateDealerInfo(dealerid, dealerNameBox.Text.Trim(), dealerCompanyNameBox.Text.Trim(), dealerMailBox.Text.Trim(), DealerPhoneNumBox.Text.Trim(), dealerAddressBox.Text.Trim()))
             {
 
                 MessageBox.Show("Saved");
@@ -54,7 +71,7 @@ namespace ITP4519M
             else
             {
 
-                MessageBox.Show("Please input same password");
+                MessageBox.Show("Please input correct information");
             }
         }
 
@@ -66,14 +83,14 @@ namespace ITP4519M
             try
             {
 
-                var productDetails = programMethod.getDealerDetails(dealerID);
-                if (productDetails != null)
+                var dealerDetails = programMethod.getDealerDetails(dealerID);
+                if (dealerDetails != null)
                 {
-                    this.dealerNameBox.Text = productDetails.DealerName;
-                    this.dealerCompanyNameBox.Text = productDetails.DealerCompanyName;
-                    this.dealerMailBox.Text = productDetails.DealerCompanyName;
-                    this.DealerPhoneNumBox.Text = productDetails.DealerPhoneNum;
-                    this.dealerAddressBox.Text = productDetails.DealerEmailAddress;
+                    this.dealerNameBox.Text = dealerDetails.DealerName;
+                    this.dealerCompanyNameBox.Text = dealerDetails.DealerCompanyName;
+                    this.dealerMailBox.Text = dealerDetails.DealerEmailAddress;
+                    this.DealerPhoneNumBox.Text = dealerDetails.DealerPhoneNum;
+                    this.dealerAddressBox.Text = "STELLAR BEAUTY BIOTECH CO, LTD"; //dealerDetails.DealerEmailAddress;
 
                 }
                 else
@@ -86,5 +103,6 @@ namespace ITP4519M
                 MessageBox.Show(ex.Message);
             }
         }
+
     }
 }

@@ -15,6 +15,7 @@ namespace ITP4519M
     {
         private OperationMode _mode;
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
+        private string supplierID;
         public SupplierContactForm(OperationMode mode)
         {
             InitializeComponent();
@@ -28,13 +29,59 @@ namespace ITP4519M
 
         private void SupplierContactForm_Load(object sender, EventArgs e)
         {
-            switch (_mode) {
+            switch (_mode)
+            {
                 case OperationMode.Edit:
                     createSupplierBtn.Visible = false;
                     break;
                 case OperationMode.New:
                     editSupplierbtn.Visible = false;
                     break;
+            }
+        }
+
+        private void editSupplierbtn_Click(object sender, EventArgs e)
+        {
+            var supplierDetails = programMethod.getSupplierDetails(supplierID);
+            string supplierid = supplierDetails.SupplierID;
+
+            if (programMethod.updateSupplierInfo(supplierid, suppliernameBox.Text.Trim(), SupplierMailBox.Text.Trim(), SupplierPhoneNumBox.Text.Trim(), supplierAddressBox.Text.Trim()))
+            {
+
+                MessageBox.Show("Saved");
+            }
+            else
+            {
+
+                MessageBox.Show("Please input correct information");
+            }
+        }
+
+        public void supplierEdit(string supplierID)
+        {
+
+            this.supplierID = supplierID;
+
+            try
+            {
+
+                var supplierDetails = programMethod.getSupplierDetails(supplierID);
+                if (supplierDetails != null)
+                {
+                    this.suppliernameBox.Text = supplierDetails.SupplierName;
+                    this.SupplierMailBox.Text = supplierDetails.SupplierEmail;
+                    this.SupplierPhoneNumBox.Text = supplierDetails.SupplierPhoneNum;
+                    this.supplierAddressBox.Text = supplierDetails.SupplierAddress;
+
+                }
+                else
+                {
+                    MessageBox.Show("Product details not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

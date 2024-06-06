@@ -35,6 +35,7 @@ namespace ITP4519M
         private string productID;
         private string orderID;
         private string dealerID;
+        private string contactID;
         private int index = -1;
         private int index2 = -1;
         private Button lastClickedButton = null;
@@ -186,6 +187,11 @@ namespace ITP4519M
 
             ShowPanel(contactpnl);
             contactsdata.DataSource = programMethod.overviewDealerinfo();
+
+            newSupplierbtn.Visible = false;
+            editSupplierbtn.Visible = false;
+            newDealerbtn.Visible = true;
+            editDealerbtn.Visible = true;
         }
 
 
@@ -193,11 +199,19 @@ namespace ITP4519M
         private void dealersbtn_Click(object sender, EventArgs e)
         {
             contactsdata.DataSource = programMethod.overviewDealerinfo();
+            newSupplierbtn.Visible = false;
+            editSupplierbtn.Visible = false;
+            newDealerbtn.Visible = true;
+            editDealerbtn.Visible = true;
         }
 
         private void supplersbtn_Click(object sender, EventArgs e)
         {
             contactsdata.DataSource = programMethod.overviewSupplierinfo();
+            newDealerbtn.Visible = false;
+            editDealerbtn.Visible = false;
+            newSupplierbtn.Visible = true;
+            editSupplierbtn.Visible = true;
         }
 
         private void contactpnl_Paint(object sender, PaintEventArgs e)
@@ -326,7 +340,7 @@ namespace ITP4519M
             {
                 index = e.RowIndex;
                 DataGridViewRow selectRow = this.contactsdata.Rows[index];
-                dealerID = selectRow.Cells[0].Value.ToString();
+                contactID = selectRow.Cells[0].Value.ToString();
             }
 
 
@@ -584,22 +598,19 @@ namespace ITP4519M
 
         private void deliverySearchDatebtn_Click(object sender, EventArgs e)
         {
-          //  Delivery delivery = new Delivery();
+            //  Delivery delivery = new Delivery();
             //delivery.ShowDialog();
         }
-        private void viewContactbtn_Click(object sender, EventArgs e)
-        {
-            DealerContactForm dealerContactForm = new DealerContactForm(OperationMode.View);
-            dealerContactForm.ShowDialog();
-        }
 
-        private void newContactbtn_Click(object sender, EventArgs e)
+        private void newDealerbtn_Click(object sender, EventArgs e)
         {
+
             DealerContactForm dealerContactForm = new DealerContactForm(OperationMode.New);
             dealerContactForm.ShowDialog();
+
         }
 
-        private void editContactbtn_Click(object sender, EventArgs e)
+        private void editDealerbtn_Click(object sender, EventArgs e)
         {
             if (index == -1)
             {
@@ -609,7 +620,7 @@ namespace ITP4519M
             {
 
                 DealerContactForm dealerContactForm = new DealerContactForm(OperationMode.Edit);
-                dealerContactForm.dealerEdit(dealerID);
+                dealerContactForm.dealerEdit(contactID);
                 dealerContactForm.ShowDialog();
             }
         }
@@ -617,6 +628,43 @@ namespace ITP4519M
         private void contactsdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void delContactbtn_Click(object sender, EventArgs e)
+        {
+
+
+            if (index == -1)
+            {
+                MessageBox.Show("Please Select One Option");
+            }
+            else
+            {
+                MessageBox.Show(contactID);
+                programMethod.contactDel(contactID);
+
+            }
+        }
+
+        private void newSupplierbtn_Click(object sender, EventArgs e)
+        {
+            SupplierContactForm supplierContactForm = new SupplierContactForm(OperationMode.New);
+            supplierContactForm.ShowDialog();
+        }
+
+        private void editSupplierbtn_Click(object sender, EventArgs e)
+        {
+            if (index == -1)
+            {
+                MessageBox.Show("Please Select One Option");
+            }
+            else
+            {
+
+                SupplierContactForm supplierContactForm = new SupplierContactForm(OperationMode.Edit);
+                supplierContactForm.supplierEdit(contactID);
+                supplierContactForm.ShowDialog();
+            }
         }
     }
 }

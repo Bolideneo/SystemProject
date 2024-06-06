@@ -168,6 +168,7 @@
             createDealerBtn.TabIndex = 49;
             createDealerBtn.Text = "Create Dealer";
             createDealerBtn.UseVisualStyleBackColor = true;
+            createDealerBtn.Click += createDealerBtn_Click;
             // 
             // dealernamelbl
             // 
@@ -227,8 +228,8 @@
             Controls.Add(dealernamelbl);
             Controls.Add(dealerNameBox);
             Controls.Add(dealerInfolbl);
-            Controls.Add(editDealerbtn);
             Controls.Add(createDealerBtn);
+            Controls.Add(editDealerbtn);
             FormBorderStyle = FormBorderStyle.None;
             Name = "DealerContactForm";
             StartPosition = FormStartPosition.CenterScreen;
