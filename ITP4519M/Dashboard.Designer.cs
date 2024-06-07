@@ -1468,6 +1468,7 @@ namespace ITP4519M
             // GRNpnl
             // 
             GRNpnl.Controls.Add(panel1);
+            GRNpnl.Controls.Add(grnAddNoteBtn);
             GRNpnl.Controls.Add(grndata);
             GRNpnl.Controls.Add(GRNlbl);
             GRNpnl.Location = new Point(176, 2);
@@ -1479,7 +1480,6 @@ namespace ITP4519M
             // panel1
             // 
             panel1.Controls.Add(grnDatePicker1);
-            panel1.Controls.Add(grnAddNoteBtn);
             panel1.Controls.Add(grnlbl1);
             panel1.Controls.Add(grnclearBtn);
             panel1.Controls.Add(grnDatePicker2);
@@ -1500,10 +1500,10 @@ namespace ITP4519M
             // grnAddNoteBtn
             // 
             grnAddNoteBtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            grnAddNoteBtn.Location = new Point(365, 109);
+            grnAddNoteBtn.Location = new Point(880, 3);
             grnAddNoteBtn.Margin = new Padding(3, 2, 3, 2);
             grnAddNoteBtn.Name = "grnAddNoteBtn";
-            grnAddNoteBtn.Size = new Size(88, 34);
+            grnAddNoteBtn.Size = new Size(155, 44);
             grnAddNoteBtn.TabIndex = 15;
             grnAddNoteBtn.Text = "Add";
             grnAddNoteBtn.UseVisualStyleBackColor = true;
@@ -1712,6 +1712,7 @@ namespace ITP4519M
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
             ClientSize = new Size(1312, 656);
+            Controls.Add(GRNpnl);
             Controls.Add(deliverypnl);
             Controls.Add(orderpnl);
             Controls.Add(contactpnl);
@@ -1722,7 +1723,6 @@ namespace ITP4519M
             Controls.Add(settingpnl);
             Controls.Add(userspnl);
             Controls.Add(inventorypnl);
-            Controls.Add(GRNpnl);
             Controls.Add(logpnl);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;

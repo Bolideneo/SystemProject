@@ -131,10 +131,12 @@ namespace ProgramMethod
 
             string deptID = dataBaseMethod.getDeptID(department);
             string userID = (int.Parse(dataBaseMethod.getUserID()) + 1).ToString("000");
-            if (dataBaseMethod.createUser(userID, username, EncodePasswordToBase64(password), dispalynanme, deptID, title, phonenum, email, department))
-            {
+             if (dataBaseMethod.createUser(userID, username, EncodePasswordToBase64(password), dispalynanme, deptID, title, phonenum, email, department))
+
+                {
                     return true;
-            }else
+                }
+                else
                     return false;
             
         }
