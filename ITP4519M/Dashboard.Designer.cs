@@ -144,12 +144,12 @@ namespace ITP4519M
             panel2 = new Panel();
             deliverydateTimePicker1 = new DateTimePicker();
             deliverySearchIDbox = new TextBox();
-            deliveryAddbtn = new Button();
             deliverySearchDatebtn = new Button();
             label3 = new Label();
             deliveryclearbtn = new Button();
             deliverydateTimePicker2 = new DateTimePicker();
             deliveryData = new DataGridView();
+            deliveryAddbtn = new Button();
             deliverylbl = new Label();
             listpnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)avatarbox).BeginInit();
@@ -1628,18 +1628,6 @@ namespace ITP4519M
             deliverySearchIDbox.TextChanged += deliverySearchIDbtn_TextChanged;
             deliverySearchIDbox.KeyDown += deliverySearchIDbox_KeyDown;
             // 
-            // deliveryAddbtn
-            // 
-            deliveryAddbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            deliveryAddbtn.Location = new Point(880, 5);
-            deliveryAddbtn.Margin = new Padding(3, 2, 3, 2);
-            deliveryAddbtn.Name = "deliveryAddbtn";
-            deliveryAddbtn.Size = new Size(155, 46);
-            deliveryAddbtn.TabIndex = 15;
-            deliveryAddbtn.Text = "Add";
-            deliveryAddbtn.UseVisualStyleBackColor = true;
-            deliveryAddbtn.Click += deliveryAddbtn_Click_1;
-            // 
             // deliverySearchDatebtn
             // 
             deliverySearchDatebtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -1694,6 +1682,19 @@ namespace ITP4519M
             deliveryData.RowHeadersWidth = 51;
             deliveryData.Size = new Size(1020, 378);
             deliveryData.TabIndex = 7;
+            deliveryData.CellClick += deliveryData_CellClick;
+            // 
+            // deliveryAddbtn
+            // 
+            deliveryAddbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            deliveryAddbtn.Location = new Point(880, 5);
+            deliveryAddbtn.Margin = new Padding(3, 2, 3, 2);
+            deliveryAddbtn.Name = "deliveryAddbtn";
+            deliveryAddbtn.Size = new Size(155, 46);
+            deliveryAddbtn.TabIndex = 15;
+            deliveryAddbtn.Text = "Add";
+            deliveryAddbtn.UseVisualStyleBackColor = true;
+            deliveryAddbtn.Click += deliveryAddbtn_Click_1;
             // 
             // deliverylbl
             // 

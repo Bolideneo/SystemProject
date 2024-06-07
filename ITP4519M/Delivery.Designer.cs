@@ -36,13 +36,13 @@
             label10 = new Label();
             deliveryCreatebtn = new Button();
             deliveryOrderidbox = new TextBox();
-            deliveryDeliveryidbox = new TextBox();
             deliveryOutstandingbox = new TextBox();
             deliveryInvoiceIDbox = new TextBox();
             deliveryClearbtn = new Button();
             panel1 = new Panel();
             deliveryerrorlbl = new Label();
             CloseButton = new Button();
+            DeliverydateTimePicker1 = new DateTimePicker();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -82,7 +82,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(40, 157);
+            label4.Location = new Point(36, 113);
             label4.Name = "label4";
             label4.Size = new Size(128, 20);
             label4.TabIndex = 3;
@@ -92,11 +92,11 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.Location = new Point(75, 113);
+            label6.Location = new Point(53, 155);
             label6.Name = "label6";
-            label6.Size = new Size(93, 20);
+            label6.Size = new Size(111, 20);
             label6.TabIndex = 5;
-            label6.Text = "Delivery ID :";
+            label6.Text = "Delivery Date :";
             // 
             // label10
             // 
@@ -132,19 +132,9 @@
             deliveryOrderidbox.Size = new Size(149, 23);
             deliveryOrderidbox.TabIndex = 18;
             // 
-            // deliveryDeliveryidbox
-            // 
-            deliveryDeliveryidbox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryDeliveryidbox.Location = new Point(215, 113);
-            deliveryDeliveryidbox.Margin = new Padding(5, 4, 5, 4);
-            deliveryDeliveryidbox.Name = "deliveryDeliveryidbox";
-            deliveryDeliveryidbox.Size = new Size(149, 23);
-            deliveryDeliveryidbox.TabIndex = 19;
-            deliveryDeliveryidbox.TextChanged += deliveryDeliveryidbox_TextChanged;
-            // 
             // deliveryOutstandingbox
             // 
-            deliveryOutstandingbox.Location = new Point(215, 158);
+            deliveryOutstandingbox.Location = new Point(214, 114);
             deliveryOutstandingbox.Name = "deliveryOutstandingbox";
             deliveryOutstandingbox.Size = new Size(147, 23);
             deliveryOutstandingbox.TabIndex = 34;
@@ -174,6 +164,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(DeliverydateTimePicker1);
             panel1.Controls.Add(deliveryerrorlbl);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(deliveryClearbtn);
@@ -181,7 +172,6 @@
             panel1.Controls.Add(label6);
             panel1.Controls.Add(deliveryCreatebtn);
             panel1.Controls.Add(deliveryInvoiceIDbox);
-            panel1.Controls.Add(deliveryDeliveryidbox);
             panel1.Controls.Add(deliveryOutstandingbox);
             panel1.Controls.Add(label10);
             panel1.Controls.Add(label4);
@@ -219,6 +209,13 @@
             CloseButton.UseVisualStyleBackColor = true;
             CloseButton.Click += CloseButton_Click;
             // 
+            // DeliverydateTimePicker1
+            // 
+            DeliverydateTimePicker1.Location = new Point(214, 153);
+            DeliverydateTimePicker1.Name = "DeliverydateTimePicker1";
+            DeliverydateTimePicker1.Size = new Size(200, 23);
+            DeliverydateTimePicker1.TabIndex = 37;
+            // 
             // Delivery
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -251,7 +248,6 @@
         private Label label10;
         private Button deliveryCreatebtn;
         private TextBox deliveryOrderidbox;
-        private TextBox deliveryDeliveryidbox;
         private TextBox deliveryOutstandingbox;
 
         private TextBox deliveryInvoiceIDbox;
@@ -262,5 +258,6 @@
         private Panel panel1;
         private Label deliveryerrorlbl;
         private Button CloseButton;
+        private DateTimePicker DeliverydateTimePicker1;
     }
 }

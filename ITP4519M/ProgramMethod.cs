@@ -95,16 +95,35 @@ namespace ProgramMethod
 
         public bool getPermission(string username)
         {
+            
+            switch (dataBaseMethod.getDepartmentIDByUserName(username))
+            {
+                case "001":
+                //IT
+                return true;
+
+                case "002":
+                //Account
+                return false;
+
+                case "003":
+                    //Sales
+                    return true;
+
+            }
             if (dataBaseMethod.getDepartmentIDByUserName(username).Equals("001"))
                 return true;
             else
                 return false;
+        
         }
 
-
+        
 
         public bool createUserAccount(string username, string password, string passwordagain, string dispalynanme, string title, string phonenum, string email, string department)
         {
+            MessageBox.Show(password + "   "    + passwordagain);
+
             if (password != passwordagain)
             {
                 return false;
@@ -114,11 +133,10 @@ namespace ProgramMethod
             string userID = (int.Parse(dataBaseMethod.getUserID()) + 1).ToString("000");
             if (dataBaseMethod.createUser(userID, username, EncodePasswordToBase64(password), dispalynanme, deptID, title, phonenum, email, department))
             {
-                return true;
-            }
-            else
-                return false;
-
+                    return true;
+            }else
+                    return false;
+            
         }
 
         //Disable account

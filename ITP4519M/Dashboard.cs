@@ -739,5 +739,11 @@ namespace ITP4519M
             Delivery delivery = new Delivery(OperationMode.New);
             delivery.ShowDialog();
         }
+
+        private void deliveryData_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+             DeliveryForm deliveryForm = new DeliveryForm();
+             deliveryForm.ShowDialog();
+        }
     }
 }

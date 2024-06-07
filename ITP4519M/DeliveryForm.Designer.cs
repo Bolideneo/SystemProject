@@ -85,6 +85,7 @@
             deliveryPrintbtn = new Button();
             printDocument1 = new System.Drawing.Printing.PrintDocument();
             printPreviewDialog1 = new PrintDialog();
+            deliveryExitbtn = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel4.SuspendLayout();
@@ -685,13 +686,27 @@
             // 
             printPreviewDialog1.UseEXDialog = true;
             // 
+            // deliveryExitbtn
+            // 
+            deliveryExitbtn.BackColor = Color.DarkGray;
+            deliveryExitbtn.Font = new Font("Microsoft Sans Serif", 12F);
+            deliveryExitbtn.ForeColor = Color.White;
+            deliveryExitbtn.Location = new Point(207, 631);
+            deliveryExitbtn.Margin = new Padding(4, 3, 4, 3);
+            deliveryExitbtn.Name = "deliveryExitbtn";
+            deliveryExitbtn.Size = new Size(94, 29);
+            deliveryExitbtn.TabIndex = 31;
+            deliveryExitbtn.Text = "Exit";
+            deliveryExitbtn.UseVisualStyleBackColor = false;
+            deliveryExitbtn.Click += deliveryExitbtn_Click;
+            // 
             // DeliveryForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(590, 687);
-            StartPosition = FormStartPosition.CenterScreen;
+            Controls.Add(deliveryExitbtn);
             Controls.Add(deliveryPrintbtn);
             Controls.Add(label13);
             Controls.Add(DelFormdataGridView);
@@ -820,5 +835,6 @@
         private Button deliveryPrintbtn;
         private System.Drawing.Printing.PrintDocument printDocument1;
         private PrintDialog printPreviewDialog1;
+        private Button deliveryExitbtn;
     }
 }

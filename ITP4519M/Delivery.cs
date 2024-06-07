@@ -24,6 +24,7 @@ namespace ITP4519M
         {
             InitializeComponent();
             _mode = mode;
+            DeliverydateTimePicker1.MinDate = DateTime.Today;
         }
 
 
@@ -49,7 +50,6 @@ namespace ITP4519M
         {
 
             deliveryOrderidbox.Text = string.Empty;
-            deliveryDeliveryidbox.Text = string.Empty;
             deliveryOutstandingbox.Text = string.Empty;
             deliveryDeliveryaddressbox.Text = string.Empty;
             deliveryPhoneNumbox.Text = string.Empty;
@@ -59,14 +59,12 @@ namespace ITP4519M
         private void SetReadOnly(bool readOnly)
         {
             deliveryOrderidbox.ReadOnly = readOnly;
-            deliveryDeliveryidbox.ReadOnly = readOnly;
             deliveryOutstandingbox.ReadOnly = readOnly;
             deliveryDeliveryaddressbox.ReadOnly = readOnly;
             deliveryPhoneNumbox.ReadOnly = readOnly;
 
 
             deliveryOrderidbox.ReadOnly = !readOnly;
-            deliveryDeliveryidbox.ReadOnly = !readOnly;
             deliveryOutstandingbox.ReadOnly = !readOnly;
             deliveryDeliveryaddressbox.ReadOnly = !readOnly;
             deliveryPhoneNumbox.ReadOnly = !readOnly;
@@ -89,12 +87,13 @@ namespace ITP4519M
         {
             try
             {
-                DataTable InvoiceDetail = programMethod.getInvoiceDetails(deliveryDeliveryidbox.Text.Trim());
+                DataTable deliveryDetail = programMethod.getOrderDetails(deliveryOrderidbox.Text.Trim());
+                
 
-                if (InvoiceDetail.Rows.Count > 0)
+                if (deliveryDetail.Rows.Count > 0)
                 {   
-                    deliveryInvoiceIDbox.Text = InvoiceDetail.Rows[0]["InvoiceID"].ToString();
-                    deliveryDeliveryidbox.Text = InvoiceDetail.Rows[0]["DeliveryID"].ToString();
+                    deliveryInvoiceIDbox.Text = deliveryDetail.Rows[0]["InvoiceID"].ToString();
+                    //deliveryDeliveryidbox.Text = InvoiceDetail.Rows[0]["DeliveryID"].ToString();
 
                 }
                 else
@@ -106,7 +105,7 @@ namespace ITP4519M
             {
                 MessageBox.Show("Delivery Error");
             }
-        }
+        }   
 
         private void deliveryDeliveryidbox_TextChanged(object sender, EventArgs e)
         {

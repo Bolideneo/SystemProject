@@ -48,7 +48,6 @@ namespace ITP4519M
             CaptureScreen();
             printDocument1.Print();
             printDocument1.PrintPage += new PrintPageEventHandler(printDocument1_PrintPage);
-            Close();
         }
 
 
@@ -76,6 +75,10 @@ namespace ITP4519M
             e.Graphics.DrawImage(memoryImage, 0, 0);
         }
 
+        private void deliveryExitbtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
 

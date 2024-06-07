@@ -232,7 +232,7 @@ namespace ITP4519M
                 cmd.Parameters.AddWithValue("@userID", userID);
                 cmd.Parameters.AddWithValue("@username", username);
                 cmd.Parameters.AddWithValue("@displayname", displayname);
-               // cmd.Parameters.AddWithValue("@password", hashedPassword);
+                cmd.Parameters.AddWithValue("@password", password);
                 cmd.Parameters.AddWithValue("@departmentID", departmentID);
                 cmd.Parameters.AddWithValue("@title", title);
                 cmd.Parameters.AddWithValue("@PhoneNum", phonenum);
