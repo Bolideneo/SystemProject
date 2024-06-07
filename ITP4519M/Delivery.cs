@@ -35,8 +35,8 @@ namespace ITP4519M
                     SetReadOnly(true);
                     break;
                 case OperationMode.New:
-                    ClearForm();
-                    SetReadOnly(false);
+                    //ClearForm();
+                    //SetReadOnly(false);
                     break;
                     //case OperationMode.Edit:
                     //    SetReadOnly(false);
@@ -88,11 +88,11 @@ namespace ITP4519M
         private void deliveryCreatebtn_Click(object sender, EventArgs e)
         {
             try
-            {    
+            {
                 DataTable InvoiceDetail = programMethod.getInvoiceDetails(deliveryDeliveryidbox.Text.Trim());
-                
+
                 if (InvoiceDetail.Rows.Count > 0)
-                {
+                {   
                     deliveryInvoiceIDbox.Text = InvoiceDetail.Rows[0]["InvoiceID"].ToString();
                     deliveryDeliveryidbox.Text = InvoiceDetail.Rows[0]["DeliveryID"].ToString();
 
@@ -121,6 +121,11 @@ namespace ITP4519M
         private void label10_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

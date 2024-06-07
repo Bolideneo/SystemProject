@@ -46,7 +46,10 @@ namespace ITP4519M
             {
                 case OperationMode.View:
                     viewaccountlbl.Visible = true;
+                    accountreadlbl.Visible = true;
+                    accountlbl.Visible = false;
                     passwordAgainlbl.Visible = false;
+                    accountEditlbl.Visible = false;
                     passwordlbl.Visible = false;
                     registerPasswordAgainBox.Visible = false;
                     registerPasswordBox.Visible = false;
@@ -57,7 +60,9 @@ namespace ITP4519M
                     SetReadOnly(true);
                     break;
                 case OperationMode.New:
+                    accountlbl.Visible = true;
                     newAccountlabel.Visible = true;
+                    accountreadlbl.Visible = false;
                     accountEditlbl.Visible = false;
                     viewaccountlbl.Visible = false;
                     editAccountbtn.Visible = false;
@@ -65,8 +70,10 @@ namespace ITP4519M
                     SetReadOnly(false);
                     break;
                 case OperationMode.Edit:
+                    accountreadlbl.Visible = true;
                     accountEditlbl.Visible = true;
                     editAccountbtn.Visible = true;
+                    accountlbl.Visible = false;
                     createAccountBtn.Visible = false;
                     newAccountlabel.Visible = false;
                     viewaccountlbl.Visible = false;
@@ -139,7 +146,7 @@ namespace ITP4519M
 
         {
 
-            if (programMethod.createUserAccount(registerUsernameBox.Text.Trim(), registerPasswordBox.Text.Trim(), registerPasswordAgainBox.Text.Trim(), registerDisplaynameBox.Text.Trim(), titleBox.Text.Trim(), phoneNumBox.Text.Trim(), mailBox.Text.Trim(), departBox.GetItemText(this.departBox.SelectedItem)))
+            if (programMethod.createUserAccount(registerUsernameBox.Text.Trim(), registerPasswordBox.Text.Trim(), registerPasswordAgainBox.Text.Trim(), registerDisplaynameBox.Text.Trim() , titleBox.Text.Trim(), phoneNumBox.Text.Trim(), mailBox.Text.Trim(), departBox.GetItemText(this.departBox.SelectedItem)))
             {
                 MessageBox.Show("User Successfully Created");
                 registerUsernameBox.Text = "";

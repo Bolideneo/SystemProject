@@ -569,7 +569,7 @@ namespace ITP4519M
             if (e.RowIndex >= 0 && e.ColumnIndex == 0)
             {
 
-                this.orderdata.Rows[e.RowIndex].Cells["Select"].Value = true;
+                this.orderdata.Rows[e.RowIndex].Cells["checkColumn"].Value = true;
                 orderindex = e.RowIndex;
                 DataGridViewRow selectRow = this.orderdata.Rows[orderindex];
                 orderID = selectRow.Cells[1].Value.ToString();
@@ -579,11 +579,11 @@ namespace ITP4519M
                 {
                     if (row.Index == e.RowIndex)
                     {
-                        row.Cells["Select"].Value = !Convert.ToBoolean(row.Cells["Select"].EditedFormattedValue);
+                        row.Cells["checkColumn"].Value = !Convert.ToBoolean(row.Cells["checkColumn"].EditedFormattedValue);
                     }
                     else
                     {
-                        row.Cells["Select"].Value = false;
+                        row.Cells["checkColumn"].Value = false;
                     }
                 }
             }
@@ -626,8 +626,8 @@ namespace ITP4519M
 
         private void deliverySearchDatebtn_Click(object sender, EventArgs e)
         {
-            string formDate = grnDatePicker1.Value.Date.ToString("yyyy-MM-dd");
-            string toDate = grnDatePicker2.Value.Date.ToString("yyyy-MM-dd");
+            string formDate = deliverydateTimePicker1.Value.Date.ToString("yyyy-MM-dd");
+            string toDate = deliverydateTimePicker2.Value.Date.ToString("yyyy-MM-dd");
             deliveryData.DataSource = programMethod.searchDeliveryDate(formDate, toDate);
         }
 
@@ -711,6 +711,30 @@ namespace ITP4519M
         }
 
         private void deliveryAddbtn_Click(object sender, EventArgs e)
+        {
+            Delivery delivery = new Delivery(OperationMode.New);
+            delivery.ShowDialog();
+        }
+
+        private void deliverySearchIDbtn_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void deliverySearchIDbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                deliveryData.DataSource = programMethod.getDeliveryDetails(deliverySearchIDbox.Text.Trim());
+            }
+        }
+
+        private void deliveryclearbtn_Click_1(object sender, EventArgs e)
+        {
+            deliveryData.DataSource = programMethod.overallDeliveryinfo();
+        }
+
+        private void deliveryAddbtn_Click_1(object sender, EventArgs e)
         {
             Delivery delivery = new Delivery(OperationMode.New);
             delivery.ShowDialog();

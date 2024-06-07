@@ -143,7 +143,7 @@ namespace ITP4519M
             deliverypnl = new Panel();
             panel2 = new Panel();
             deliverydateTimePicker1 = new DateTimePicker();
-            deliverySearchIDbtn = new TextBox();
+            deliverySearchIDbox = new TextBox();
             deliveryAddbtn = new Button();
             deliverySearchDatebtn = new Button();
             label3 = new Label();
@@ -597,7 +597,7 @@ namespace ITP4519M
             newOrderbtn.ForeColor = Color.Black;
             newOrderbtn.ImageAlign = ContentAlignment.MiddleLeft;
             newOrderbtn.ImageIndex = 0;
-            newOrderbtn.Location = new Point(920, 9);
+            newOrderbtn.Location = new Point(920, 25);
             newOrderbtn.Name = "newOrderbtn";
             newOrderbtn.Size = new Size(162, 42);
             newOrderbtn.TabIndex = 24;
@@ -942,7 +942,7 @@ namespace ITP4519M
             // 
             delContactbtn.AccessibleRole = AccessibleRole.None;
             delContactbtn.BackColor = Color.Red;
-            delContactbtn.Font = new Font("微软雅黑", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            delContactbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             delContactbtn.ForeColor = Color.White;
             delContactbtn.Location = new Point(305, 85);
             delContactbtn.Margin = new Padding(4);
@@ -983,12 +983,12 @@ namespace ITP4519M
             dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
             contactsdata.DefaultCellStyle = dataGridViewCellStyle4;
-            contactsdata.Location = new Point(-7, 136);
+            contactsdata.Location = new Point(10, 136);
             contactsdata.Margin = new Padding(3, 4, 3, 4);
             contactsdata.Name = "contactsdata";
             contactsdata.RowHeadersWidth = 51;
             contactsdata.RowTemplate.Height = 24;
-            contactsdata.Size = new Size(1081, 508);
+            contactsdata.Size = new Size(1064, 479);
             contactsdata.TabIndex = 19;
             contactsdata.CellClick += contactsdata_CellClick;
             contactsdata.CellContentClick += contactsdata_CellContentClick;
@@ -998,7 +998,7 @@ namespace ITP4519M
             newSupplierbtn.AccessibleRole = AccessibleRole.None;
             newSupplierbtn.BackColor = SystemColors.Menu;
             newSupplierbtn.FlatStyle = FlatStyle.System;
-            newSupplierbtn.Font = new Font("微软雅黑", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            newSupplierbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             newSupplierbtn.ForeColor = Color.Black;
             newSupplierbtn.Location = new Point(18, 85);
             newSupplierbtn.Margin = new Padding(4);
@@ -1012,7 +1012,7 @@ namespace ITP4519M
             // editSupplierbtn
             // 
             editSupplierbtn.AccessibleRole = AccessibleRole.None;
-            editSupplierbtn.Font = new Font("微软雅黑", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            editSupplierbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             editSupplierbtn.Location = new Point(162, 85);
             editSupplierbtn.Margin = new Padding(4);
             editSupplierbtn.Name = "editSupplierbtn";
@@ -1027,7 +1027,7 @@ namespace ITP4519M
             newDealerbtn.AccessibleRole = AccessibleRole.None;
             newDealerbtn.BackColor = SystemColors.Menu;
             newDealerbtn.FlatStyle = FlatStyle.System;
-            newDealerbtn.Font = new Font("微软雅黑", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            newDealerbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             newDealerbtn.ForeColor = Color.Black;
             newDealerbtn.Location = new Point(18, 85);
             newDealerbtn.Margin = new Padding(4);
@@ -1041,7 +1041,7 @@ namespace ITP4519M
             // editDealerbtn
             // 
             editDealerbtn.AccessibleRole = AccessibleRole.None;
-            editDealerbtn.Font = new Font("微软雅黑", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            editDealerbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             editDealerbtn.Location = new Point(162, 85);
             editDealerbtn.Margin = new Padding(4);
             editDealerbtn.Name = "editDealerbtn";
@@ -1137,7 +1137,7 @@ namespace ITP4519M
             // 
             enableAccountbtn.AccessibleRole = AccessibleRole.None;
             enableAccountbtn.BackColor = Color.LimeGreen;
-            enableAccountbtn.Font = new Font("微软雅黑", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            enableAccountbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             enableAccountbtn.ForeColor = Color.White;
             enableAccountbtn.Location = new Point(444, 62);
             enableAccountbtn.Margin = new Padding(4);
@@ -1152,7 +1152,7 @@ namespace ITP4519M
             // 
             disableAccountbtn.AccessibleRole = AccessibleRole.None;
             disableAccountbtn.BackColor = Color.Red;
-            disableAccountbtn.Font = new Font("微软雅黑", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            disableAccountbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             disableAccountbtn.ForeColor = Color.White;
             disableAccountbtn.Location = new Point(523, 62);
             disableAccountbtn.Margin = new Padding(4);
@@ -1168,7 +1168,7 @@ namespace ITP4519M
             newAccountbtn.AccessibleRole = AccessibleRole.None;
             newAccountbtn.BackColor = SystemColors.Menu;
             newAccountbtn.FlatStyle = FlatStyle.System;
-            newAccountbtn.Font = new Font("微软雅黑", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            newAccountbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             newAccountbtn.ForeColor = Color.Black;
             newAccountbtn.Location = new Point(10, 62);
             newAccountbtn.Margin = new Padding(4);
@@ -1182,7 +1182,7 @@ namespace ITP4519M
             // viewAccountbtn
             // 
             viewAccountbtn.AccessibleRole = AccessibleRole.None;
-            viewAccountbtn.Font = new Font("微软雅黑", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            viewAccountbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             viewAccountbtn.Location = new Point(297, 62);
             viewAccountbtn.Margin = new Padding(4);
             viewAccountbtn.Name = "viewAccountbtn";
@@ -1195,7 +1195,7 @@ namespace ITP4519M
             // editAccountbtn
             // 
             editAccountbtn.AccessibleRole = AccessibleRole.None;
-            editAccountbtn.Font = new Font("微软雅黑", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            editAccountbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             editAccountbtn.Location = new Point(153, 62);
             editAccountbtn.Margin = new Padding(4);
             editAccountbtn.Name = "editAccountbtn";
@@ -1586,6 +1586,7 @@ namespace ITP4519M
             // 
             deliverypnl.Controls.Add(panel2);
             deliverypnl.Controls.Add(deliveryData);
+            deliverypnl.Controls.Add(deliveryAddbtn);
             deliverypnl.Controls.Add(deliverylbl);
             deliverypnl.Location = new Point(176, 2);
             deliverypnl.Name = "deliverypnl";
@@ -1596,8 +1597,7 @@ namespace ITP4519M
             // panel2
             // 
             panel2.Controls.Add(deliverydateTimePicker1);
-            panel2.Controls.Add(deliverySearchIDbtn);
-            panel2.Controls.Add(deliveryAddbtn);
+            panel2.Controls.Add(deliverySearchIDbox);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(deliverySearchDatebtn);
             panel2.Controls.Add(label3);
@@ -1606,36 +1606,39 @@ namespace ITP4519M
             panel2.Location = new Point(19, 51);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1016, 145);
+            panel2.Size = new Size(1016, 169);
             panel2.TabIndex = 16;
             // 
             // deliverydateTimePicker1
             // 
-            deliverydateTimePicker1.Location = new Point(21, 47);
+            deliverydateTimePicker1.Location = new Point(21, 48);
             deliverydateTimePicker1.Margin = new Padding(3, 2, 3, 2);
             deliverydateTimePicker1.Name = "deliverydateTimePicker1";
-            deliverydateTimePicker1.Size = new Size(176, 23);
+            deliverydateTimePicker1.Size = new Size(212, 23);
             deliverydateTimePicker1.TabIndex = 8;
             // 
-            // deliverySearchIDbtn
+            // deliverySearchIDbox
             // 
-            deliverySearchIDbtn.Location = new Point(602, 98);
-            deliverySearchIDbtn.Margin = new Padding(3, 2, 3, 2);
-            deliverySearchIDbtn.Name = "deliverySearchIDbtn";
-            deliverySearchIDbtn.PlaceholderText = "Search ID";
-            deliverySearchIDbtn.Size = new Size(189, 23);
-            deliverySearchIDbtn.TabIndex = 14;
+            deliverySearchIDbox.Location = new Point(614, 106);
+            deliverySearchIDbox.Margin = new Padding(3, 2, 3, 2);
+            deliverySearchIDbox.Name = "deliverySearchIDbox";
+            deliverySearchIDbox.PlaceholderText = "Search ID";
+            deliverySearchIDbox.Size = new Size(241, 23);
+            deliverySearchIDbox.TabIndex = 14;
+            deliverySearchIDbox.TextChanged += deliverySearchIDbtn_TextChanged;
+            deliverySearchIDbox.KeyDown += deliverySearchIDbox_KeyDown;
             // 
             // deliveryAddbtn
             // 
             deliveryAddbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            deliveryAddbtn.Location = new Point(417, 98);
+            deliveryAddbtn.Location = new Point(880, 5);
             deliveryAddbtn.Margin = new Padding(3, 2, 3, 2);
             deliveryAddbtn.Name = "deliveryAddbtn";
-            deliveryAddbtn.Size = new Size(100, 35);
+            deliveryAddbtn.Size = new Size(155, 46);
             deliveryAddbtn.TabIndex = 15;
             deliveryAddbtn.Text = "Add";
             deliveryAddbtn.UseVisualStyleBackColor = true;
+            deliveryAddbtn.Click += deliveryAddbtn_Click_1;
             // 
             // deliverySearchDatebtn
             // 
@@ -1669,13 +1672,14 @@ namespace ITP4519M
             deliveryclearbtn.TabIndex = 15;
             deliveryclearbtn.Text = "Clear";
             deliveryclearbtn.UseVisualStyleBackColor = true;
+            deliveryclearbtn.Click += deliveryclearbtn_Click_1;
             // 
             // deliverydateTimePicker2
             // 
-            deliverydateTimePicker2.Location = new Point(277, 45);
+            deliverydateTimePicker2.Location = new Point(278, 48);
             deliverydateTimePicker2.Margin = new Padding(3, 2, 3, 2);
             deliverydateTimePicker2.Name = "deliverydateTimePicker2";
-            deliverydateTimePicker2.Size = new Size(176, 23);
+            deliverydateTimePicker2.Size = new Size(220, 23);
             deliverydateTimePicker2.TabIndex = 9;
             // 
             // deliveryData
@@ -1684,11 +1688,11 @@ namespace ITP4519M
             deliveryData.AllowUserToDeleteRows = false;
             deliveryData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             deliveryData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            deliveryData.Location = new Point(14, 202);
+            deliveryData.Location = new Point(19, 224);
             deliveryData.Margin = new Padding(3, 2, 3, 2);
             deliveryData.Name = "deliveryData";
             deliveryData.RowHeadersWidth = 51;
-            deliveryData.Size = new Size(1020, 402);
+            deliveryData.Size = new Size(1020, 378);
             deliveryData.TabIndex = 7;
             // 
             // deliverylbl
@@ -1697,9 +1701,9 @@ namespace ITP4519M
             deliverylbl.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             deliverylbl.Location = new Point(16, 18);
             deliverylbl.Name = "deliverylbl";
-            deliverylbl.Size = new Size(85, 25);
+            deliverylbl.Size = new Size(134, 25);
             deliverylbl.TabIndex = 6;
-            deliverylbl.Text = "Delivery";
+            deliverylbl.Text = "Delivery Note";
             // 
             // Dashboard
             // 
@@ -1709,9 +1713,9 @@ namespace ITP4519M
             ClientSize = new Size(1312, 656);
             Controls.Add(deliverypnl);
             Controls.Add(orderpnl);
+            Controls.Add(contactpnl);
             Controls.Add(closebtn);
             Controls.Add(listpnl);
-            Controls.Add(contactpnl);
             Controls.Add(outstandingOrderpnl);
             Controls.Add(dashboardpnl);
             Controls.Add(settingpnl);
@@ -1865,7 +1869,7 @@ namespace ITP4519M
         private Button productSearchBtn;
         private DataGridView deliveryData;
         private DateTimePicker deliverydateTimePicker1;
-        private TextBox deliverySearchIDbtn;
+        private TextBox deliverySearchIDbox;
         private Button deliveryclearbtn;
         private Button deliverySearchDatebtn;
         private Label label3;

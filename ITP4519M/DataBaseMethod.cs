@@ -69,26 +69,26 @@ namespace ITP4519M
             }
         }
 
-        public bool ValidateUserCredentials(string username, string password)
-        {
+        //public bool ValidateUserCredentials(string username, string password)
+        //{
 
-            string sql = "SELECT Password FROM staff WHERE UserName=@userName";
-            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-            cmd.Parameters.AddWithValue("@userName", username);
-            //object password1 = cmd.ExecuteScalar();
-            using (MySqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            string encryptedPassword = reader.GetString("password");
-                            MessageBox.Show(encryptedPassword);
-                            string decryptedPassword = PasswordEncryption.Decrypt(encryptedPassword);
-                            return password == decryptedPassword;
-                        }
-                    }
+        //    string sql = "SELECT Password FROM staff WHERE UserName=@userName";
+        //    MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+        //    cmd.Parameters.AddWithValue("@userName", username);
+        //    //object password1 = cmd.ExecuteScalar();
+        //    using (MySqlDataReader reader = cmd.ExecuteReader())
+        //            {
+        //                if (reader.Read())
+        //                {
+        //                    string encryptedPassword = reader.GetString("password");
+        //                    MessageBox.Show(encryptedPassword);
+        //                    string decryptedPassword = PasswordEncryption.Decrypt(encryptedPassword);
+        //                    return password == decryptedPassword;
+        //                }
+        //            }
                 
-            return false;
-        }
+        //    return false;
+        //}
            
 
         //Login with username
@@ -109,48 +109,6 @@ namespace ITP4519M
             }
         }
 
-        //public void EncryptExistingPasswords()
-        //{
-        //    string selectSql = "SELECT UserName, Password FROM staff";
-        //    MySqlCommand selectCmd = new MySqlCommand(selectSql, ServerConnect());
-
-        //    MySqlDataReader reader = selectCmd.ExecuteReader();
-
-        //    List<(string userName, string hashedPassword)> users = new List<(string, string)>();
-
-        //    while (reader.Read())
-        //    {
-        //        string userName = reader["UserName"].ToString();
-        //        string plainPassword = reader["Password"].ToString();
-        //        string hashedPassword = HashPassword(plainPassword);
-        //        users.Add((userName, hashedPassword));
-        //    }
-        //    reader.Close();
-
-        //    foreach (var user in users)
-        //    {
-        //        string updateSql = "UPDATE staff SET Password = @hashedPassword WHERE UserName = @userName";
-        //        MySqlCommand updateCmd = new MySqlCommand(updateSql, ServerConnect());
-        //        updateCmd.Parameters.AddWithValue("@userName", user.userName);
-        //        updateCmd.Parameters.AddWithValue("@hashedPassword", user.hashedPassword);
-        //        updateCmd.ExecuteNonQuery();
-        //    }
-
-        //    ServerConnect().Close();
-        //}
-        //public string HashPassword(string password)
-        //{
-        //    using (SHA256 sha256 = SHA256.Create())
-        //    {
-        //        byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-        //        StringBuilder builder = new StringBuilder();
-        //        foreach (byte b in bytes)
-        //        {
-        //            builder.Append(b.ToString("x2"));
-        //        }
-        //        return builder.ToString();
-        //    }
-        //}
 
         //Checking user general role
         public string getDepartmentIDByUserName(string userName)
@@ -678,7 +636,7 @@ namespace ITP4519M
 
         public DataTable overallOrderinfo()
         {
-            string sql = "SELECT OrderID, DealerID, OrderStatusID, OrderDate FROM `order` ";
+            string sql = "SELECT OrderID, DealerID, OrderStatus, OrderDate FROM `order` ";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
@@ -982,7 +940,7 @@ namespace ITP4519M
             DateTime orderDate = DateTime.Now;
             orderDate.ToString("yyyy-MM-dd HH:mm");
             Console.WriteLine(orderDate);
-            string sql = "INSERT INTO `order` (OrderID, DealerID, OrderStatusID, OrderDate) VALUES(@orderID, @dealerID, @orderStatusID, @orderDate)";
+            string sql = "INSERT INTO `order` (OrderID, DealerID, OrderStatus, OrderDate) VALUES(@orderID, @dealerID, @orderStatusID, @orderDate)";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@orderID", orderID);
             cmd.Parameters.AddWithValue("@dealerID", dealerID);
@@ -1067,7 +1025,7 @@ namespace ITP4519M
 
         public String getOrderStatus(string orderID)
         {
-            string sql = "SELECT OrderStatusID FROM `order` WHERE OrderID=@orderID";
+            string sql = "SELECT OrderStatus FROM `order` WHERE OrderID=@orderID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@orderID", orderID);
             Object status = cmd.ExecuteScalar();
@@ -1219,6 +1177,17 @@ namespace ITP4519M
             cmd.Parameters.AddWithValue("@status", status);
             cmd.Parameters.AddWithValue("@orderID", orderID);
             cmd.ExecuteNonQuery();
+        }
+
+        public DataTable getDeliveryDetails(string deliveryID)
+        {
+            string sql = "SELECT * FROM delivery WHERE DeliveryID=@deliveryID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@deliveryID", deliveryID);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
         }
 
 

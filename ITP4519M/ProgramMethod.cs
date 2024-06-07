@@ -35,74 +35,40 @@ namespace ProgramMethod
         public ProgramMethod()
         {
             dataBaseMethod = new DataBaseMethod();
-            //dataBaseMethod.EncryptExistingPasswords();
+        }  
+
+        public string EncodePasswordToBase64(string password)
+        {
+            try
+            {
+                byte[] encData_byte = new byte[password.Length];
+                encData_byte = System.Text.Encoding.UTF8.GetBytes(password);
+                string encodedData = Convert.ToBase64String(encData_byte);
+                return encodedData;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in base64Encode" + ex.Message);
+            }
         }
 
-
-        public class PasswordEncryption
+        public string DecodeFrom64(string encodedData)
         {
-            private static byte[] key = Encoding.UTF8.GetBytes("YourEncryptionKey123");
-
-            public static string Encrypt(string password)
-            {
-                using (AesCryptoServiceProvider aesAlg = new AesCryptoServiceProvider())
-                {
-                    aesAlg.Key = key;
-
-                    ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
-                    byte[] encryptedBytes;
-
-                    using (MemoryStream msEncrypt = new MemoryStream())
-                    {
-                        using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
-                        {
-                            using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
-                            {
-                                swEncrypt.Write(password);
-                            }
-                            encryptedBytes = msEncrypt.ToArray();
-                        }
-                    }
-                    return Convert.ToBase64String(encryptedBytes);
-                }
-            }
-
-            public static string Decrypt(string encryptedPassword)
-            {
-                byte[] cipherTextBytes = Convert.FromBase64String(encryptedPassword);
-                string decryptedPassword;
-
-                using (AesCryptoServiceProvider aesAlg = new AesCryptoServiceProvider())
-                {
-                    aesAlg.Key = key;
-
-                    ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
-
-                    using (MemoryStream msDecrypt = new MemoryStream(cipherTextBytes))
-                    {
-                        using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
-                        {
-                            using (StreamReader srDecrypt = new StreamReader(csDecrypt))
-                            {
-                                decryptedPassword = srDecrypt.ReadToEnd();
-                            }
-                        }
-                    }
-                }
-                return decryptedPassword;
-            }
+            System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
+            System.Text.Decoder utf8Decode = encoder.GetDecoder();
+            byte[] todecode_byte = Convert.FromBase64String(encodedData);
+            int charCount = utf8Decode.GetCharCount(todecode_byte, 0, todecode_byte.Length);
+            char[] decoded_char = new char[charCount];
+            utf8Decode.GetChars(todecode_byte, 0, todecode_byte.Length, decoded_char, 0);
+            string result = new string(decoded_char);
+            return result;
         }
 
         public bool verifyUser(string username, string password)
         {
             try
             {
-                //string hashedPassword = dataBaseMethod.HashPassword(password);
-                //string storedPassword = dataBaseMethod.getPassword(username);
-                //MessageBox.Show(hashedPassword);
-                //MessageBox.Show(storedPassword);
-                //password = encryptPwd(password);
-                if (password == dataBaseMethod.getPassword(username))
+                if (password == DecodeFrom64(dataBaseMethod.getPassword(username)))
                 {
                     return true;
                 }
@@ -113,15 +79,6 @@ namespace ProgramMethod
                 Console.WriteLine(ex.Message);
             }
             return false;
-        }
-
-        private string encryptPwd(string password)
-        {
-            SHA256 sha256 = new SHA256CryptoServiceProvider();
-            byte[] source = Encoding.Default.GetBytes(password);
-            byte[] crypto = sha256.ComputeHash(source);
-            string entcyPassword = Convert.ToBase64String(crypto);
-            return entcyPassword;
         }
 
         public string getUserDisplayName(string username)
@@ -155,7 +112,7 @@ namespace ProgramMethod
 
             string deptID = dataBaseMethod.getDeptID(department);
             string userID = (int.Parse(dataBaseMethod.getUserID()) + 1).ToString("000");
-            if (dataBaseMethod.createUser(userID, username, password, dispalynanme, deptID, title, phonenum, email, department))
+            if (dataBaseMethod.createUser(userID, username, EncodePasswordToBase64(password), dispalynanme, deptID, title, phonenum, email, department))
             {
                 return true;
             }
@@ -245,7 +202,7 @@ namespace ProgramMethod
                 return false;
             }
 
-            if (dataBaseMethod.updateUserInfor(userid, userName, password, dispalyName, departmentID, title, phonenum, email, department)) {
+            if (dataBaseMethod.updateUserInfor(userid, userName, EncodePasswordToBase64(password), dispalyName, departmentID, title, phonenum, email, department)) {
                 return true;
             }
             else
@@ -632,6 +589,11 @@ namespace ProgramMethod
               //  return result;
             
                return null;
+        }
+
+        public DataTable getDeliveryDetails(string deliveryID)
+        {
+           return dataBaseMethod.getDeliveryDetails(deliveryID);
         }
     }
     }
