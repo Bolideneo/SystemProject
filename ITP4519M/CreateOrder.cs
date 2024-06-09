@@ -19,6 +19,7 @@ namespace ITP4519M
     public partial class CreateOrder : Form
     {
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
+        Dashboard dashboard = new Dashboard();
         private string orderID;
         private string dealerID;
         private OperationMode _mode;

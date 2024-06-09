@@ -71,6 +71,61 @@ namespace ITP4519M
             closebtn.BringToFront();
         }
 
+        private void ButtonLocation()
+        {
+            //IT
+            usersbtn.Location = new Point(25, 229);
+            //ShowButton(true);
+
+
+            //Sales
+            orderbtn.Location = new Point(25, 229);
+            outstandingOrderbtn.Location = new Point(25, 300);
+            stockbtn.Location = new Point(25, 371);
+            contactsbtn.Location = new Point(25, 440);
+            deliverybtn.Location = new Point(25, 509);
+            //ShowButton(true);
+
+
+            //WareHouse
+            stockbtn.Location = new Point(25, 229);
+            outstandingOrderbtn.Location = new Point(25, 300);
+            GRNbtn.Location = new Point(25, 371);
+            deliverybtn.Location = new Point(25, 440);
+
+
+            //Purcahsing
+            stockbtn.Location = new Point(25, 229);
+            contactsbtn.Location = new Point(25, 300);
+            //PO
+
+
+
+        }
+
+        private void ShowButton(bool ReadyOnly)
+        {
+            usersbtn.Visible = ReadyOnly;
+            stockbtn.Visible = ReadyOnly;
+            outstandingOrderbtn.Visible = ReadyOnly;
+            orderbtn.Visible = ReadyOnly;
+            contactsbtn.Visible = ReadyOnly;
+            GRNbtn.Visible = ReadyOnly;
+            deliverybtn.Visible = ReadyOnly;
+            Logbtn.Visible = ReadyOnly;
+            settingbtn.Visible = ReadyOnly;
+
+
+            usersbtn.Visible = !ReadyOnly;
+            stockbtn.Visible = !ReadyOnly;
+            outstandingOrderbtn.Visible = !ReadyOnly;
+            orderbtn.Visible = !ReadyOnly;
+            contactsbtn.Visible = !ReadyOnly;
+            GRNbtn.Visible = !ReadyOnly;
+            deliverybtn.Visible = !ReadyOnly;
+            Logbtn.Visible = !ReadyOnly;
+            settingbtn.Visible = !ReadyOnly;
+        }
 
         private void ShowPanel(Panel panelToShow)
         {
@@ -270,7 +325,7 @@ namespace ITP4519M
                 salesOrder.ShowDialog();
             }
 
-
+            
         }
 
 
@@ -283,10 +338,15 @@ namespace ITP4519M
             else
             {
                 RegisterForm registerForm = new RegisterForm(OperationMode.Edit);
+                registerForm.OperationCompleted += registerFormOperationCompleted;
                 registerForm.accountEdit(userID);
                 registerForm.ShowDialog();
-
             }
+        }
+
+        private void registerFormOperationCompleted(object sender, EventArgs e)
+        {
+            userData.DataSource = programMethod.overviewUserinfo();
         }
 
         private void viewAccountbtn_Click(object sender, EventArgs e)

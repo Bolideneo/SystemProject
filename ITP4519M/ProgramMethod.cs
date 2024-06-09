@@ -100,15 +100,17 @@ namespace ProgramMethod
             {
                 case "001":
                 //IT
+                
                 return true;
 
                 case "002":
                 //Account
+                
                 return false;
 
                 case "003":
                     //Sales
-                    return true;
+                return true;
 
             }
             if (dataBaseMethod.getDepartmentIDByUserName(username).Equals("001"))
@@ -491,7 +493,7 @@ namespace ProgramMethod
 
             //dealerID = "D" + (((int.Parse(dataBaseMethod.getDealerID()) + 1).ToString("0000")));
             string orderID = (int.Parse(dataBaseMethod.getOrderID()) + 1).ToString("000000");
-            while (!dataBaseMethod.createSalesOrder(orderID, dealerID, "OST001"))
+            while (!dataBaseMethod.createSalesOrder(orderID, dealerID, "OrderProcessing"))
             {
                 orderID = (int.Parse(dataBaseMethod.getOrderID()) + 1).ToString("000000");
             }

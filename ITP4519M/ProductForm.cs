@@ -175,6 +175,8 @@ namespace ITP4519M
                 productdemandbox.Text = "";
                 productStatusbox.SelectedItem = null;
             }
+            
+            
         }
 
         private void ProductForm_MouseDown(object sender, MouseEventArgs e)

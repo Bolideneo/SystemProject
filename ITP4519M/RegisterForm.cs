@@ -19,6 +19,8 @@ namespace ITP4519M
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
         private bool isFormDragging = false;
         private Point formStartPoint;
+        public event EventHandler OperationCompleted;
+
 
 
         public RegisterForm(OperationMode mode)
@@ -26,7 +28,6 @@ namespace ITP4519M
             InitializeComponent();
             _mode = mode;
         }
-
 
         private void label6_Click(object sender, EventArgs e)
         {
@@ -153,6 +154,7 @@ namespace ITP4519M
                 registerPasswordBox.Text = "";
                 registerPasswordAgainBox.Text = "";
                 titleBox.Text = "";
+                OperationCompleted?.Invoke(this, new EventArgs());
             }
             else
             {
@@ -207,7 +209,6 @@ namespace ITP4519M
                     this.departBox.SelectedItem = userDetails.Department;
                     this.titleBox.Text = userDetails.Title;
                     this.registerDisplaynameBox.Text = userDetails.DisplayName;
-
                 }
                 else
                 {
@@ -230,12 +231,14 @@ namespace ITP4519M
             {
 
                 MessageBox.Show("Saved");
+                OperationCompleted?.Invoke(this, new EventArgs());
             }
             else
             {
 
                 MessageBox.Show("Please input same password");
             }
+            
         }
 
         private void RegisterForm_MouseDown(object sender, MouseEventArgs e)
