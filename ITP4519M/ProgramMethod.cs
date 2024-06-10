@@ -93,9 +93,12 @@ namespace ProgramMethod
             return dataBaseMethod.getUserDepartment(username);
         }
 
-        public string getPermission(string username)
-        {
-            return dataBaseMethod.getDepartmentIDByUserName(username);
+        public string[] getPermission(string username)
+        {   
+            string[] permission = new string[2];
+            permission[0] = dataBaseMethod.getDepartmentIDbyUsername(username);
+            permission[1] = dataBaseMethod.getUserTitle(username);
+            return permission;
         }
 
         
@@ -109,13 +112,13 @@ namespace ProgramMethod
             }
 
             string deptID = dataBaseMethod.getDeptID(department);
-            string userID = (int.Parse(dataBaseMethod.getUserID()) + 1).ToString("000");
+            string userID = (int.Parse(dataBaseMethod.getUserID()) + 1).ToString("0000");
              if (dataBaseMethod.createUser(userID, username, EncodePasswordToBase64(password), dispalynanme, deptID, title, phonenum, email, department))
-
                 {
                     return true;
+               
                 }
-                else
+                
                     return false;
             
         }
@@ -593,6 +596,11 @@ namespace ProgramMethod
         public DataTable getDeliveryDetails(string deliveryID)
         {
            return dataBaseMethod.getDeliveryDetails(deliveryID);
+        }
+
+        public DataTable getDepartmentNameDataSource()
+        {
+            return dataBaseMethod.getDepartmentNameDataSource();
         }
     }
     }

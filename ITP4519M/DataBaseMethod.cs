@@ -68,28 +68,7 @@ namespace ITP4519M
                 return false;
             }
         }
-
-        //public bool ValidateUserCredentials(string username, string password)
-        //{
-
-        //    string sql = "SELECT Password FROM staff WHERE UserName=@userName";
-        //    MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-        //    cmd.Parameters.AddWithValue("@userName", username);
-        //    //object password1 = cmd.ExecuteScalar();
-        //    using (MySqlDataReader reader = cmd.ExecuteReader())
-        //            {
-        //                if (reader.Read())
-        //                {
-        //                    string encryptedPassword = reader.GetString("password");
-        //                    MessageBox.Show(encryptedPassword);
-        //                    string decryptedPassword = PasswordEncryption.Decrypt(encryptedPassword);
-        //                    return password == decryptedPassword;
-        //                }
-        //            }
-                
-        //    return false;
-        //}
-           
+      
 
         //Login with username
         public string getPassword(string userName)
@@ -111,16 +90,6 @@ namespace ITP4519M
 
 
         //Checking user general role
-        public string getDepartmentIDByUserName(string userName)
-        {
-            string sql = "SELECT DepartmentID FROM staff WHERE UserName=@userName";
-            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-            cmd.Parameters.AddWithValue("@userName", userName);
-            object departmentID = cmd.ExecuteScalar();
-            ServerConnect().Close();
-            return departmentID.ToString();
-        }
-
         public string getDepartmentIDByDepartName(string departName)
         {
             string sql = "SELECT DepartmentID FROM staff WHERE Department=@departName";
@@ -136,6 +105,26 @@ namespace ITP4519M
             {
                 return "Department not found.";
             }
+        }
+
+        public string getDepartmentIDbyUsername(string username)
+        {
+            string sql = "select DepartmentID from staff where UserName=@userName";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@userName", username);
+            ServerConnect().Close();
+            object title = cmd.ExecuteScalar();
+            return title.ToString();
+        }
+
+        public string getUserTitle(string userName)
+        {
+            string sql = "SELECT Title FROM staff WHERE UserName=@userName";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@userName", userName);
+            ServerConnect().Close();
+            object title = cmd.ExecuteScalar();
+            return title.ToString();
         }
 
 
@@ -1184,6 +1173,16 @@ namespace ITP4519M
             string sql = "SELECT * FROM delivery WHERE DeliveryID=@deliveryID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@deliveryID", deliveryID);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
+        public DataTable getDepartmentNameDataSource()
+        {
+            string sql = "SELECT DepartmentName FROM department";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);

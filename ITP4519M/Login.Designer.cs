@@ -1,4 +1,8 @@
-﻿namespace ITP4519M
+﻿
+using System.Drawing.Drawing2D;
+
+
+namespace ITP4519M
 {
     partial class Login
     {
@@ -20,6 +24,7 @@
             base.Dispose(disposing);
         }
 
+
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -28,11 +33,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new Panel();
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
             pictureBox2 = new PictureBox();
+            button1 = new Button();
+            textBox1 = new TextBox();
             CloseButton = new Button();
             accountPanel = new Panel();
             usernameBox = new TextBox();
@@ -44,28 +50,22 @@
             pictureBox1 = new PictureBox();
             errolabel = new Label();
             label1 = new Label();
-            panel1.SuspendLayout();
+            textBox2 = new RoundTextBox();
+            button2 = new RoundedButton();
+            panel1 = new Panel();
+            label2 = new Label();
+            label6 = new Label();
+            label7 = new Label();
+            pictureBox5 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             accountPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             SuspendLayout();
-            // 
-            // panel1
-            // 
-            panel1.BackColor = SystemColors.MenuText;
-            panel1.BackgroundImageLayout = ImageLayout.Stretch;
-            panel1.Controls.Add(label5);
-            panel1.Controls.Add(label4);
-            panel1.Controls.Add(label3);
-            panel1.Controls.Add(pictureBox2);
-            panel1.Location = new Point(1, 1);
-            panel1.Margin = new Padding(2, 3, 2, 3);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(232, 550);
-            panel1.TabIndex = 13;
             // 
             // label5
             // 
@@ -114,6 +114,21 @@
             pictureBox2.Size = new Size(229, 81);
             pictureBox2.TabIndex = 0;
             pictureBox2.TabStop = false;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(0, 0);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 0;
+            // 
+            // textBox1
+            // 
+            textBox1.BackColor = SystemColors.Menu;
+            textBox1.Location = new Point(69, 34);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(275, 27);
+            textBox1.TabIndex = 0;
             // 
             // CloseButton
             // 
@@ -208,6 +223,7 @@
             loginbtn.Text = "Login";
             loginbtn.UseVisualStyleBackColor = true;
             loginbtn.Click += loginbtn_Click;
+            loginbtn.Paint += loginbtn_Paint;
             // 
             // pictureBox1
             // 
@@ -245,28 +261,112 @@
             label1.Text = "Forget Password";
             label1.Click += label1_Click;
             // 
+            // textBox2
+            //
+            textBox2.AutoSize = false;
+            textBox2.Location = new Point(336, 187);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(332, 40);
+            textBox1.Multiline = true;
+            textBox1.Height = 332;
+            textBox1.Width = 40;
+            textBox2.TabIndex = 22;
+            // 
+            // button2
+            // 
+            button2.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button2.Location = new Point(545, 474);
+            button2.Margin = new Padding(2, 3, 2, 3);
+            button2.Name = "button2";
+            button2.Size = new Size(170, 53);
+            button2.TabIndex = 23;
+            button2.Text = "Fake Login";
+            button2.UseVisualStyleBackColor = true;
+            button2.Paint += button2_Paint;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = SystemColors.MenuText;
+            panel1.BackgroundImageLayout = ImageLayout.Stretch;
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(label6);
+            panel1.Controls.Add(label7);
+            panel1.Controls.Add(pictureBox5);
+            panel1.Location = new Point(1, 1);
+            panel1.Margin = new Padding(2, 3, 2, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(232, 550);
+            panel1.TabIndex = 24;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Century", 13.8F);
+            label2.ForeColor = SystemColors.Window;
+            label2.Location = new Point(33, 340);
+            label2.Margin = new Padding(2, 0, 2, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(90, 28);
+            label2.TabIndex = 3;
+            label2.Text = "System";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Century", 13.8F);
+            label6.ForeColor = SystemColors.Window;
+            label6.Location = new Point(33, 289);
+            label6.Margin = new Padding(2, 0, 2, 0);
+            label6.Name = "label6";
+            label6.Size = new Size(162, 28);
+            label6.TabIndex = 2;
+            label6.Text = "LM Company ";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Century", 13.8F);
+            label7.ForeColor = SystemColors.Window;
+            label7.Location = new Point(33, 236);
+            label7.Margin = new Padding(2, 0, 2, 0);
+            label7.Name = "label7";
+            label7.Size = new Size(182, 28);
+            label7.TabIndex = 1;
+            label7.Text = "Welcome to the ";
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.BackgroundImage = Properties.Resources.company_logo;
+            pictureBox5.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox5.Location = new Point(2, 97);
+            pictureBox5.Margin = new Padding(2, 3, 2, 3);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(229, 81);
+            pictureBox5.TabIndex = 0;
+            pictureBox5.TabStop = false;
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
             ClientSize = new Size(750, 550);
+            Controls.Add(panel1);
+            Controls.Add(button2);
+            Controls.Add(textBox2);
             Controls.Add(label1);
             Controls.Add(errolabel);
             Controls.Add(loginbtn);
             Controls.Add(panel3);
             Controls.Add(accountPanel);
             Controls.Add(CloseButton);
-            Controls.Add(panel1);
             Controls.Add(pictureBox1);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(2, 3, 2, 3);
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "forgetPasswordlbl";
+            Text = "s";
             Load += Login_Load;
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             accountPanel.ResumeLayout(false);
             accountPanel.PerformLayout();
@@ -275,13 +375,15 @@
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -296,6 +398,15 @@
         private System.Windows.Forms.Button loginbtn;
         private Label errolabel;
         private Label label1;
+        private TextBox textBox1;
+        private Button button1;
+        private RoundTextBox textBox2;
+        private RoundedButton button2;
+        private Panel panel1;
+        private Label label2;
+        private Label label6;
+        private Label label7;
+        private PictureBox pictureBox5;
     }
 }
 

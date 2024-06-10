@@ -5,7 +5,6 @@ E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP
 E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.Delivery.resources
 E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.DeliveryForm.resources
 E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.GRN.resources
-E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.Login.resources
 E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.ProductForm.resources
 E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.Properties.Resources.resources
 E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.RegisterForm.resources
@@ -43,3 +42,4 @@ E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ref
 E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.pdb
 E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.genruntimeconfig.cache
 E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ref\ITP4519M.dll
+E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.Login.resources

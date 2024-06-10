@@ -18,6 +18,8 @@ using ITP4519M;
 using System.Linq.Expressions;
 using Google.Protobuf.WellKnownTypes;
 using System.Xml.Linq;
+using Org.BouncyCastle.Asn1.Sec;
+using System.Runtime.InteropServices;
 
 
 namespace ITP4519M
@@ -79,48 +81,104 @@ namespace ITP4519M
         }
         private void Dashboard_Load(object sender, EventArgs e)
         {
+            DoubleBuffered = true;
             programMethod = new ProgramMethod.ProgramMethod();
             closebtn.BringToFront();
         }
 
-        public void ButtonLocation(string departmentID)
+        public void ButtonLocation(string departmentID, string title)
         {
-
-            switch(departmentID){
+            switch (departmentID)
+            {
                 //IT
-               case "001":
-               ShowButton(!false);
-               usersbtn.Visible = true;
-               settingbtn.Visible = true;
-               
-               usersbtn.Location = new Point(25, buttonLocationIndex[0]);
-               settingbtn.Location = new Point(25, buttonLocationIndex[8]);
-               break;
+                case "001":
+                    ShowButton(false);
+                    usersbtn.Visible = true;
+                    settingbtn.Visible = true;
+                    usersbtn.Location = new Point(25, buttonLocationIndex[0]);
+                    settingbtn.Location = new Point(25, buttonLocationIndex[8]);
+                    break;
 
 
-                //WareHouse
-                case "002":
-                ShowButton(!false);
-                stockbtn.Location = new Point(25, buttonLocationIndex[0]);
-                outstandingOrderbtn.Location = new Point(25, buttonLocationIndex[1]);
-                GRNbtn.Location = new Point(25, buttonLocationIndex[2]);
-                deliverybtn.Location = new Point(25, buttonLocationIndex[3]);
-                settingbtn.Location = new Point(25, buttonLocationIndex[8]);
-                break;
+                //Account
+
+
 
                 //Sales Manager
                 case "003":
-                editOrdersbtn.Visible = false;
-                break;
+                    if (title.ToString() == "Sales Manager" || title.ToString() == "Area Manager")
+                    {
+                        break;
+                    }
+                    else if (title.ToString() == "Sales Office Clerk")
+                    {
+                        ShowButton(false);
+                        orderbtn.Visible = true;
+                        outstandingOrderbtn.Visible = true;
+                        settingbtn.Visible = true;
+                        orderbtn.Location = new Point(25, buttonLocationIndex[0]);
+                        outstandingOrderbtn.Location = new Point(25, buttonLocationIndex[1]);
+                        settingbtn.Location = new Point(25, buttonLocationIndex[8]);
+
+                        newOrderbtn.Visible = true;
+                        viewOrderbtn.Visible = true;
+                        editOrdersbtn.Visible = true;
+                        break;
+
+                    }
+                    else //Order Processing Clerk
+                    {
+                        ShowButton(false);
+                        orderbtn.Visible = true;
+                        settingbtn.Visible = true;
+                        orderbtn.Location = new Point(25, buttonLocationIndex[0]);
+                        settingbtn.Location = new Point(25, buttonLocationIndex[8]);
+
+                        newOrderbtn.Visible = true;
+                        viewOrderbtn.Visible = true;
+                        editOrdersbtn.Visible = true;
+                        break;
+                    }
+
+
+
+
+                //WareHouse
+                case "004":
+                    ShowButton(!false);
+                    stockbtn.Location = new Point(25, buttonLocationIndex[0]);
+                    outstandingOrderbtn.Location = new Point(25, buttonLocationIndex[1]);
+                    GRNbtn.Location = new Point(25, buttonLocationIndex[2]);
+                    deliverybtn.Location = new Point(25, buttonLocationIndex[3]);
+                    settingbtn.Location = new Point(25, buttonLocationIndex[8]);
+                    break;
+
+
 
 
                 //Purcahsing
-                case "004":
-                stockbtn.Location = new Point(25, buttonLocationIndex[0]);
-                contactsbtn.Location = new Point(25, buttonLocationIndex[1]);
-                settingbtn.Location = new Point(25, buttonLocationIndex[8]);
-                break;
+                case "005":
+                    stockbtn.Location = new Point(25, buttonLocationIndex[0]);
+                    contactsbtn.Location = new Point(25, buttonLocationIndex[1]);
+                    settingbtn.Location = new Point(25, buttonLocationIndex[8]);
+                    break;
+
+
+                //Invoice
+                case "006":
+                    break;
+
             }
+
+        }
+
+        private void ShowPannelButton(bool Readonly)
+        {
+            //Order
+            newOrderbtn.Visible = Readonly;
+            viewOrderbtn.Visible = Readonly;
+            editOrdersbtn.Visible = Readonly;
+
 
         }
 
@@ -136,16 +194,17 @@ namespace ITP4519M
             Logbtn.Visible = ReadyOnly;
             settingbtn.Visible = ReadyOnly;
 
+            //Enabled
 
-            usersbtn.Visible = !ReadyOnly;
-            stockbtn.Visible = !ReadyOnly;
-            outstandingOrderbtn.Visible = !ReadyOnly;
-            orderbtn.Visible = !ReadyOnly;
-            contactsbtn.Visible = !ReadyOnly;
-            GRNbtn.Visible = !ReadyOnly;
-            deliverybtn.Visible = !ReadyOnly;
-            Logbtn.Visible = !ReadyOnly;
-            settingbtn.Visible = !ReadyOnly;
+            //usersbtn.Visible = !ReadyOnly;
+            //stockbtn.Visible = !ReadyOnly;
+            //outstandingOrderbtn.Visible = !ReadyOnly;
+            //orderbtn.Visible = !ReadyOnly;
+            //contactsbtn.Visible = !ReadyOnly;
+            //GRNbtn.Visible = !ReadyOnly;
+            //deliverybtn.Visible = !ReadyOnly;
+            //Logbtn.Visible = !ReadyOnly;
+            //settingbtn.Visible = !ReadyOnly;
         }
 
         private void ShowPanel(Panel panelToShow)
@@ -163,6 +222,36 @@ namespace ITP4519M
             panelToShow.Visible = true;
 
         }
+
+
+        //// Round Corner TextBox
+        //class round : TextBox
+        //{
+        //    [System.Runtime.InteropServices.DllImport("gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        //    private static extern IntPtr CreateRoundRectRgn
+        //    (
+        //        int nLeftRect, // X-coordinate of upper-left corner or padding at start
+        //        int nTopRect,// Y-coordinate of upper-left corner or padding at the top of the textbox
+        //        int nRightRect, // X-coordinate of lower-right corner or Width of the object
+        //        int nBottomRect,// Y-coordinate of lower-right corner or Height of the object
+        //                        //RADIUS, how round do you want it to be?
+        //        int nheightRect, //height of ellipse 
+        //        int nweightRect //width of ellipse
+        //    );
+
+
+
+        //    protected override void OnResize(EventArgs e)
+        //    {
+        //        base.OnResize(e);
+        //        this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(2, 3, this.Width, this.Height, 15, 15)); //play with these values till you are happy
+        //    }
+
+        //}
+
+
+
+
 
         private void orderbtn_Click(object sender, EventArgs e)
         {
@@ -307,9 +396,12 @@ namespace ITP4519M
 
         }
 
+
+        //Create Account button
         private void newAccountbtn_Click(object sender, EventArgs e)
         {
             RegisterForm registerForm = new RegisterForm(OperationMode.New);
+            registerForm.OperationCompleted += registerFormOperationCompleted;
             registerForm.ShowDialog();
         }
 
@@ -418,7 +510,7 @@ namespace ITP4519M
                 userindex = e.RowIndex;
                 DataGridViewRow selectRow = this.userData.Rows[userindex];
                 userID = selectRow.Cells[1].Value.ToString();
-               // dealerID = selectRow.Cells[2].Value.ToString();
+                // dealerID = selectRow.Cells[2].Value.ToString();
 
                 foreach (DataGridViewRow row in userData.Rows)
                 {
@@ -446,7 +538,7 @@ namespace ITP4519M
                 stockindex = e.RowIndex;
                 DataGridViewRow selectRow = this.stockData.Rows[stockindex];
                 productID = selectRow.Cells[1].Value.ToString();
-              //  dealerID = selectRow.Cells[2].Value.ToString();
+                //  dealerID = selectRow.Cells[2].Value.ToString();
 
                 foreach (DataGridViewRow row in stockData.Rows)
                 {
@@ -533,6 +625,7 @@ namespace ITP4519M
 
         }
 
+        // Create product button
         private void newProductbtn_Click(object sender, EventArgs e)
         {
 
@@ -929,5 +1022,11 @@ namespace ITP4519M
         {
 
         }
+
+        private void accountSearchBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

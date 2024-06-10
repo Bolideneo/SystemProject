@@ -141,8 +141,7 @@ namespace ITP4519M
 
         }
 
-        //public bool createUserAccount(string username, string password, string passwordagain, string dispalynanme, string title, string phonenum, string email, string department)
-
+        
         private void createAccountBtn_Click(object sender, EventArgs e)
 
         {

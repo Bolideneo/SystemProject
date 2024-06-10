@@ -1,4 +1,5 @@
 ﻿using Org.BouncyCastle.Asn1.Crmf;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace ITP4519M
@@ -23,6 +24,7 @@ namespace ITP4519M
             base.Dispose(disposing);
         }
 
+
         class CustomDataGridView : DataGridView
         {
             public CustomDataGridView()
@@ -30,6 +32,70 @@ namespace ITP4519M
                 DoubleBuffered = true;
             }
         }
+
+        // Rounded Button
+        public class RoundedButton : Button
+        {
+            GraphicsPath GetRoundPath(RectangleF Rect, int radius)
+            {
+                float m = 2.75F;
+                float r2 = radius / 2f;
+                GraphicsPath GraphPath = new GraphicsPath();
+
+                GraphPath.AddArc(Rect.X + m, Rect.Y + m, radius, radius, 180, 90);
+                GraphPath.AddLine(Rect.X + r2 + m, Rect.Y + m, Rect.Width - r2 - m, Rect.Y + m);
+                GraphPath.AddArc(Rect.X + Rect.Width - radius - m, Rect.Y + m, radius, radius, 270, 90);
+                GraphPath.AddLine(Rect.Width - m, Rect.Y + r2, Rect.Width - m, Rect.Height - r2 - m);
+                GraphPath.AddArc(Rect.X + Rect.Width - radius - m,
+                               Rect.Y + Rect.Height - radius - m, radius, radius, 0, 90);
+                GraphPath.AddLine(Rect.Width - r2 - m, Rect.Height - m, Rect.X + r2 - m, Rect.Height - m);
+                GraphPath.AddArc(Rect.X + m, Rect.Y + Rect.Height - radius - m, radius, radius, 90, 90);
+                GraphPath.AddLine(Rect.X + m, Rect.Height - r2 - m, Rect.X + m, Rect.Y + r2 + m);
+
+                GraphPath.CloseFigure();
+                return GraphPath;
+            }
+
+            protected override void OnPaint(PaintEventArgs e)
+            {
+                int borderRadius = 50;
+                float borderThickness = 1.75f;
+                base.OnPaint(e);
+                RectangleF Rect = new RectangleF(0, 0, this.Width, this.Height);
+                GraphicsPath GraphPath = GetRoundPath(Rect, borderRadius);
+
+                this.Region = new Region(GraphPath);
+                using (Pen pen = new Pen(Color.Silver, borderThickness))
+                {
+                    pen.Alignment = PenAlignment.Inset;
+                    e.Graphics.DrawPath(pen, GraphPath);
+                }
+            }
+        }
+
+        public class round : TextBox
+        {
+            [System.Runtime.InteropServices.DllImport("gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+            private static extern IntPtr CreateRoundRectRgn
+            (
+                int nLeftRect, // X-coordinate of upper-left corner or padding at start
+                int nTopRect,// Y-coordinate of upper-left corner or padding at the top of the textbox
+                int nRightRect, // X-coordinate of lower-right corner or Width of the object
+                int nBottomRect,// Y-coordinate of lower-right corner or Height of the object
+                                //RADIUS, how round do you want it to be?
+                int nheightRect, //height of ellipse 
+                int nweightRect //width of ellipse
+            );
+
+            
+            protected override void OnResize(EventArgs e)
+            {
+                base.OnResize(e);
+                this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(2, 3, this.Width, this.Height, 15, 15)); //play with these values till you are happy
+            }
+
+        }
+
 
         #region Windows Form Designer generated code
 
@@ -74,13 +140,12 @@ namespace ITP4519M
             orderPendingbtn = new Button();
             orderActivebtn = new Button();
             orderoverallBtn = new Button();
-            orderdata = new CustomDataGridView();
-           // checkColumn = new DataGridViewCheckBoxColumn();
             viewOrderbtn = new Button();
             newOrderbtn = new Button();
             ordlerlbl = new Label();
             saleReportbtn = new Button();
             editOrdersbtn = new Button();
+            orderdata = new CustomDataGridView();
             ordercheckColumn = new DataGridViewCheckBoxColumn();
             grncheckColumn = new DataGridViewCheckBoxColumn();
             deliverycheckColumn = new DataGridViewCheckBoxColumn();
@@ -103,7 +168,6 @@ namespace ITP4519M
             stockData = new CustomDataGridView();
             viewProductbtn = new Button();
             accountSearchBtn = new Button();
-            accountSearchBox = new TextBox();
             contactpnl = new Panel();
             contactGroupBox = new GroupBox();
             supplersbtn = new Button();
@@ -123,6 +187,7 @@ namespace ITP4519M
             userspnl = new Panel();
             enableAccountbtn = new Button();
             disableAccountbtn = new Button();
+            accountSearchBox = new TextBox();
             newAccountbtn = new Button();
             viewAccountbtn = new Button();
             editAccountbtn = new Button();
@@ -641,6 +706,7 @@ namespace ITP4519M
             saleReportbtn.TabIndex = 21;
             saleReportbtn.Text = "Sale Reports";
             saleReportbtn.UseVisualStyleBackColor = false;
+            saleReportbtn.Visible = false;
             // 
             // editOrdersbtn
             // 
@@ -689,31 +755,38 @@ namespace ITP4519M
             // 
             // grncheckColumn
             // 
-            grncheckColumn.FillWeight = 50;
+            grncheckColumn.FillWeight = 50F;
             grncheckColumn.HeaderText = "Select";
             grncheckColumn.MinimumWidth = 35;
             grncheckColumn.Name = "grncheckColumn";
             // 
             // deliverycheckColumn
             // 
-            deliverycheckColumn.FillWeight = 35;
+            deliverycheckColumn.FillWeight = 35F;
             deliverycheckColumn.HeaderText = "Select";
             deliverycheckColumn.MinimumWidth = 35;
             deliverycheckColumn.Name = "deliverycheckColumn";
             // 
             // contactcheckColumn
             // 
-            contactcheckColumn.FillWeight = 45;
+            contactcheckColumn.FillWeight = 45F;
             contactcheckColumn.HeaderText = "Select";
             contactcheckColumn.MinimumWidth = 45;
             contactcheckColumn.Name = "contactcheckColumn";
             // 
             // usercheckColumn
             // 
-            usercheckColumn.FillWeight = 66;
+            usercheckColumn.FillWeight = 66F;
             usercheckColumn.HeaderText = "Select";
             usercheckColumn.MinimumWidth = 50;
             usercheckColumn.Name = "usercheckColumn";
+            // 
+            // stockcheckColumn
+            // 
+            stockcheckColumn.FillWeight = 50F;
+            stockcheckColumn.HeaderText = "Select";
+            stockcheckColumn.MinimumWidth = 40;
+            stockcheckColumn.Name = "stockcheckColumn";
             // 
             // stocklbl
             // 
@@ -880,6 +953,7 @@ namespace ITP4519M
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             stockData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             stockData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            stockData.Columns.AddRange(new DataGridViewColumn[] { stockcheckColumn });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -888,26 +962,17 @@ namespace ITP4519M
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             stockData.DefaultCellStyle = dataGridViewCellStyle2;
-            stockData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            stockData.Columns.AddRange(new DataGridViewColumn[] { stockcheckColumn });
-            stockData.RowHeadersVisible = false;
             stockData.Location = new Point(5, 371);
             stockData.Margin = new Padding(3, 5, 3, 5);
             stockData.Name = "stockData";
-            stockData.ReadOnly = false;
+            stockData.RowHeadersVisible = false;
             stockData.RowHeadersWidth = 51;
             stockData.RowTemplate.Height = 24;
+            stockData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             stockData.Size = new Size(1235, 468);
             stockData.TabIndex = 3;
             stockData.CellClick += stockData_CellClick;
             stockData.CellContentClick += stockData_CellContentClick;
-            // 
-            // stockcheckColumn
-            // 
-            stockcheckColumn.FillWeight = 50;
-            stockcheckColumn.HeaderText = "Select";
-            stockcheckColumn.MinimumWidth = 40;
-            stockcheckColumn.Name = "stockcheckColumn";
             // 
             // viewProductbtn
             // 
@@ -938,7 +1003,7 @@ namespace ITP4519M
             accountSearchBtn.ForeColor = Color.Black;
             accountSearchBtn.ImageAlign = ContentAlignment.MiddleLeft;
             accountSearchBtn.ImageIndex = 0;
-            accountSearchBtn.Location = new Point(1051, 83);
+            accountSearchBtn.Location = new Point(1033, 160);
             accountSearchBtn.Margin = new Padding(3, 4, 3, 4);
             accountSearchBtn.Name = "accountSearchBtn";
             accountSearchBtn.Size = new Size(177, 43);
@@ -946,15 +1011,6 @@ namespace ITP4519M
             accountSearchBtn.Text = "Search";
             accountSearchBtn.UseVisualStyleBackColor = false;
             accountSearchBtn.Click += accountSearchBtn_Click;
-            // 
-            // accountSearchBox
-            // 
-            accountSearchBox.Location = new Point(806, 93);
-            accountSearchBox.Margin = new Padding(3, 4, 3, 4);
-            accountSearchBox.Name = "accountSearchBox";
-            accountSearchBox.PlaceholderText = "Search Username";
-            accountSearchBox.Size = new Size(225, 27);
-            accountSearchBox.TabIndex = 26;
             // 
             // contactpnl
             // 
@@ -1256,6 +1312,15 @@ namespace ITP4519M
             disableAccountbtn.UseVisualStyleBackColor = false;
             disableAccountbtn.Click += disableAccountbtn_Click;
             // 
+            // accountSearchBox
+            // 
+            accountSearchBox.Location = new Point(25, 199);
+            accountSearchBox.Name = "accountSearchBox";
+            accountSearchBox.PlaceholderText = "Search";
+            accountSearchBox.Size = new Size(277, 27);
+            accountSearchBox.TabIndex = 30;
+            accountSearchBox.TextChanged += accountSearchBox_TextChanged;
+            // 
             // newAccountbtn
             // 
             newAccountbtn.AccessibleRole = AccessibleRole.None;
@@ -1321,14 +1386,14 @@ namespace ITP4519M
             dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
             userData.DefaultCellStyle = dataGridViewCellStyle6;
-            userData.Location = new Point(13, 181);
+            userData.Location = new Point(19, 260);
             userData.Margin = new Padding(3, 5, 3, 5);
             userData.Name = "userData";
             userData.RowHeadersVisible = false;
             userData.RowHeadersWidth = 51;
             userData.RowTemplate.Height = 24;
             userData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            userData.Size = new Size(1235, 707);
+            userData.Size = new Size(1191, 560);
             userData.TabIndex = 1;
             userData.CellClick += userData_CellClick;
             userData.CellContentClick += userData_CellContentClick;
@@ -1821,13 +1886,12 @@ namespace ITP4519M
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
             ClientSize = new Size(1499, 875);
+            Controls.Add(userspnl);
+            Controls.Add(orderpnl);
             Controls.Add(closebtn);
             Controls.Add(listpnl);
             Controls.Add(inventorypnl);
             Controls.Add(logpnl);
-            Controls.Add(userspnl);
-            Controls.Add(orderpnl);
-            Controls.Add(userspnl);
             Controls.Add(GRNpnl);
             Controls.Add(deliverypnl);
             Controls.Add(contactpnl);
