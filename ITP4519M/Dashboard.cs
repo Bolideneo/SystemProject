@@ -34,11 +34,19 @@ namespace ITP4519M
         private string userID;
         private string productID;
         private string orderID;
+        private string grnID;
         private string dealerID;
+        private string deliveryID;
         private string contactID;
+
         private int index = -1;
         private int index2 = -1;
         private int orderindex = -1;
+        private int userindex = -1;
+        private int grnindex = -1;
+        private int deliveryindex = -1;
+        private int contactindex = -1;
+        private int stockindex = -1;
         private Button lastClickedButton = null;
         private Button[] buttons = new Button[2];
         private bool isFormDragging = false;
@@ -178,6 +186,7 @@ namespace ITP4519M
             ShowPanel(inventorypnl);
             stockData.DataSource = programMethod.overviewStockinfo();
             productOverallLabel();
+            stockData.Rows[0].Selected = false;
 
         }
 
@@ -245,13 +254,14 @@ namespace ITP4519M
 
             ShowPanel(contactpnl);
             contactsdata.DataSource = programMethod.overviewDealerinfo();
-
+            contactsdata.Rows[0].Selected = false;
             newSupplierbtn.Visible = false;
             editSupplierbtn.Visible = false;
             newDealerbtn.Visible = true;
             editDealerbtn.Visible = true;
             searchSupplierbtn.Visible = false;
             searchDealerbtn.Visible = true;
+
         }
 
 
@@ -265,6 +275,7 @@ namespace ITP4519M
             editDealerbtn.Visible = true;
             searchSupplierbtn.Visible = false;
             searchDealerbtn.Visible = true;
+
         }
 
         private void supplersbtn_Click(object sender, EventArgs e)
@@ -325,13 +336,13 @@ namespace ITP4519M
                 salesOrder.ShowDialog();
             }
 
-            
+
         }
 
 
         private void editAccountbtn_Click(object sender, EventArgs e)
         {
-            if (index == -1)
+            if (userindex == -1)
             {
                 MessageBox.Show("Please Select One User");
             }
@@ -387,13 +398,27 @@ namespace ITP4519M
         private void userData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            if (e.RowIndex != -1)
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
             {
-                index = e.RowIndex;
-                DataGridViewRow selectRow = this.userData.Rows[index];
-                userID = selectRow.Cells[0].Value.ToString();
+
+                this.userData.Rows[e.RowIndex].Cells["usercheckColumn"].Value = true;
+                userindex = e.RowIndex;
+                DataGridViewRow selectRow = this.userData.Rows[userindex];
+                userID = selectRow.Cells[1].Value.ToString();
+               // dealerID = selectRow.Cells[2].Value.ToString();
+
+                foreach (DataGridViewRow row in userData.Rows)
+                {
+                    if (row.Index == e.RowIndex)
+                    {
+                        row.Cells["usercheckColumn"].Value = !Convert.ToBoolean(row.Cells["usercheckColumn"].EditedFormattedValue);
+                    }
+                    else
+                    {
+                        row.Cells["usercheckColumn"].Value = false;
+                    }
+                }
             }
-            //stockData
 
         }
 
@@ -401,26 +426,53 @@ namespace ITP4519M
         private void stockData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            if (e.RowIndex != -1)
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
             {
-                index = e.RowIndex;
-                DataGridViewRow selectRow = this.stockData.Rows[index];
-                productID = selectRow.Cells[0].Value.ToString();
-            }
 
+                this.stockData.Rows[e.RowIndex].Cells["stockcheckColumn"].Value = true;
+                stockindex = e.RowIndex;
+                DataGridViewRow selectRow = this.stockData.Rows[stockindex];
+                productID = selectRow.Cells[1].Value.ToString();
+              //  dealerID = selectRow.Cells[2].Value.ToString();
+
+                foreach (DataGridViewRow row in stockData.Rows)
+                {
+                    if (row.Index == e.RowIndex)
+                    {
+                        row.Cells["stockcheckColumn"].Value = !Convert.ToBoolean(row.Cells["stockcheckColumn"].EditedFormattedValue);
+                    }
+                    else
+                    {
+                        row.Cells["stockcheckColumn"].Value = false;
+                    }
+                }
+            }
 
         }
         private void contactsdata_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            if (e.RowIndex != -1)
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
             {
-                index = e.RowIndex;
-                DataGridViewRow selectRow = this.contactsdata.Rows[index];
-                contactID = selectRow.Cells[0].Value.ToString();
+
+                this.contactsdata.Rows[e.RowIndex].Cells["contactcheckColumn"].Value = true;
+                contactindex = e.RowIndex;
+                DataGridViewRow selectRow = this.contactsdata.Rows[contactindex];
+                contactID = selectRow.Cells[1].Value.ToString();
+                //dealerID = selectRow.Cells[2].Value.ToString();
+
+                foreach (DataGridViewRow row in contactsdata.Rows)
+                {
+                    if (row.Index == e.RowIndex)
+                    {
+                        row.Cells["contactcheckColumn"].Value = !Convert.ToBoolean(row.Cells["contactcheckColumn"].EditedFormattedValue);
+                    }
+                    else
+                    {
+                        row.Cells["contactcheckColumn"].Value = false;
+                    }
+                }
             }
-
-
         }
 
 
@@ -568,7 +620,7 @@ namespace ITP4519M
 
         private void editProductbtn_Click(object sender, EventArgs e)
         {
-            if (index == -1)
+            if (stockindex == -1)
             {
                 MessageBox.Show("Please Select One Option");
             }
@@ -593,6 +645,8 @@ namespace ITP4519M
 
             ShowPanel(GRNpnl);
             grndata.DataSource = programMethod.overallGRNinfo();
+            grndata.Rows[0].Selected = false;
+
         }
 
         private void deliverybtn_Click(object sender, EventArgs e)
@@ -607,6 +661,7 @@ namespace ITP4519M
 
             ShowPanel(deliverypnl);
             deliveryData.DataSource = programMethod.overallDeliveryinfo();
+            deliveryData.Rows[0].Selected = false;
         }
 
         private void delProductbtn_Click(object sender, EventArgs e)
@@ -629,7 +684,7 @@ namespace ITP4519M
             if (e.RowIndex >= 0 && e.ColumnIndex == 0)
             {
 
-                this.orderdata.Rows[e.RowIndex].Cells["checkColumn"].Value = true;
+                this.orderdata.Rows[e.RowIndex].Cells["ordercheckColumn"].Value = true;
                 orderindex = e.RowIndex;
                 DataGridViewRow selectRow = this.orderdata.Rows[orderindex];
                 orderID = selectRow.Cells[1].Value.ToString();
@@ -639,11 +694,11 @@ namespace ITP4519M
                 {
                     if (row.Index == e.RowIndex)
                     {
-                        row.Cells["checkColumn"].Value = !Convert.ToBoolean(row.Cells["checkColumn"].EditedFormattedValue);
+                        row.Cells["ordercheckColumn"].Value = !Convert.ToBoolean(row.Cells["ordercheckColumn"].EditedFormattedValue);
                     }
                     else
                     {
-                        row.Cells["checkColumn"].Value = false;
+                        row.Cells["ordercheckColumn"].Value = false;
                     }
                 }
             }
@@ -701,7 +756,7 @@ namespace ITP4519M
 
         private void editDealerbtn_Click(object sender, EventArgs e)
         {
-            if (index == -1)
+            if (contactindex == -1)
             {
                 MessageBox.Show("Please Select One Option");
             }
@@ -716,6 +771,7 @@ namespace ITP4519M
 
         private void contactsdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
 
         }
 
@@ -742,7 +798,7 @@ namespace ITP4519M
 
         private void editSupplierbtn_Click(object sender, EventArgs e)
         {
-            if (index == -1)
+            if (contactindex == -1)
             {
                 MessageBox.Show("Please Select One Option");
             }
@@ -802,8 +858,63 @@ namespace ITP4519M
 
         private void deliveryData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-             DeliveryForm deliveryForm = new DeliveryForm();
-             deliveryForm.ShowDialog();
+            DeliveryForm deliveryForm = new DeliveryForm();
+            deliveryForm.ShowDialog();
+        }
+
+        private void grndata_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+            {
+
+                this.grndata.Rows[e.RowIndex].Cells["grncheckColumn"].Value = true;
+                grnindex = e.RowIndex;
+                DataGridViewRow selectRow = this.grndata.Rows[grnindex];
+                grnID = selectRow.Cells[1].Value.ToString();
+                productID = selectRow.Cells[2].Value.ToString();
+
+                foreach (DataGridViewRow row in grndata.Rows)
+                {
+                    if (row.Index == e.RowIndex)
+                    {
+                        row.Cells["grncheckColumn"].Value = !Convert.ToBoolean(row.Cells["grncheckColumn"].EditedFormattedValue);
+                    }
+                    else
+                    {
+                        row.Cells["grncheckColumn"].Value = false;
+                    }
+                }
+            }
+        }
+
+        private void deliveryData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+            {
+
+                this.deliveryData.Rows[e.RowIndex].Cells["deliverycheckColumn"].Value = true;
+                deliveryindex = e.RowIndex;
+                DataGridViewRow selectRow = this.deliveryData.Rows[deliveryindex];
+                deliveryID = selectRow.Cells[1].Value.ToString();
+                // deliveryID = selectRow.Cells[2].Value.ToString();
+
+                foreach (DataGridViewRow row in deliveryData.Rows)
+                {
+                    if (row.Index == e.RowIndex)
+                    {
+                        row.Cells["deliverycheckColumn"].Value = !Convert.ToBoolean(row.Cells["deliverycheckColumn"].EditedFormattedValue);
+                    }
+                    else
+                    {
+                        row.Cells["deliverycheckColumn"].Value = false;
+                    }
+                }
+            }
+        }
+
+        private void userData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
