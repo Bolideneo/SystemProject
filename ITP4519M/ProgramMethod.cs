@@ -93,38 +93,15 @@ namespace ProgramMethod
             return dataBaseMethod.getUserDepartment(username);
         }
 
-        public bool getPermission(string username)
+        public string getPermission(string username)
         {
-            
-            switch (dataBaseMethod.getDepartmentIDByUserName(username))
-            {
-                case "001":
-                //IT
-                
-                return true;
-
-                case "002":
-                //Account
-                
-                return false;
-
-                case "003":
-                    //Sales
-                return true;
-
-            }
-            if (dataBaseMethod.getDepartmentIDByUserName(username).Equals("001"))
-                return true;
-            else
-                return false;
-        
+            return dataBaseMethod.getDepartmentIDByUserName(username);
         }
 
         
 
         public bool createUserAccount(string username, string password, string passwordagain, string dispalynanme, string title, string phonenum, string email, string department)
         {
-            MessageBox.Show(password + "   "    + passwordagain);
 
             if (password != passwordagain)
             {

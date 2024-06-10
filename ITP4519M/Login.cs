@@ -52,6 +52,7 @@ namespace ITP4519M
                 var userDisplayName = programMethod.getUserDisplayName(usernameBox.Text.Trim());
                 var userDepartment = programMethod.getUserDepartment(usernameBox.Text.Trim());
                 Dashboard dashboard = new Dashboard();
+                dashboard.ButtonLocation(programMethod.getPermission(usernameBox.Text.Trim()));
                 dashboard.currentUserDisplayName(userDisplayName, userDepartment);
                 dashboard.Show();
                 this.Hide();

@@ -23,6 +23,14 @@ namespace ITP4519M
             base.Dispose(disposing);
         }
 
+        class CustomDataGridView : DataGridView
+        {
+            public CustomDataGridView()
+            {
+                DoubleBuffered = true;
+            }
+        }
+
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -66,12 +74,13 @@ namespace ITP4519M
             orderPendingbtn = new Button();
             orderActivebtn = new Button();
             orderoverallBtn = new Button();
+            orderdata = new CustomDataGridView();
+           // checkColumn = new DataGridViewCheckBoxColumn();
             viewOrderbtn = new Button();
             newOrderbtn = new Button();
             ordlerlbl = new Label();
             saleReportbtn = new Button();
             editOrdersbtn = new Button();
-            orderdata = new DataGridView();
             ordercheckColumn = new DataGridViewCheckBoxColumn();
             grncheckColumn = new DataGridViewCheckBoxColumn();
             deliverycheckColumn = new DataGridViewCheckBoxColumn();
@@ -91,7 +100,7 @@ namespace ITP4519M
             stocklbl2 = new Label();
             editProductbtn = new Button();
             newProductbtn = new Button();
-            stockData = new DataGridView();
+            stockData = new CustomDataGridView();
             viewProductbtn = new Button();
             accountSearchBtn = new Button();
             accountSearchBox = new TextBox();
@@ -101,7 +110,7 @@ namespace ITP4519M
             dealersbtn = new Button();
             delContactbtn = new Button();
             searchContactbtn = new TextBox();
-            contactsdata = new DataGridView();
+            contactsdata = new CustomDataGridView();
             newSupplierbtn = new Button();
             editSupplierbtn = new Button();
             newDealerbtn = new Button();
@@ -117,7 +126,7 @@ namespace ITP4519M
             newAccountbtn = new Button();
             viewAccountbtn = new Button();
             editAccountbtn = new Button();
-            userData = new DataGridView();
+            userData = new CustomDataGridView();
             userslbl = new Label();
             inventorypnl = new Panel();
             productSearchBtn = new Button();
@@ -129,7 +138,7 @@ namespace ITP4519M
             button1 = new Button();
             button2 = new Button();
             loglbl = new Label();
-            logData = new DataGridView();
+            logData = new CustomDataGridView();
             button3 = new Button();
             button4 = new Button();
             outstandingOrderpnl = new Panel();
@@ -143,7 +152,7 @@ namespace ITP4519M
             grnSearchBtn = new Button();
             grnlbl2 = new Label();
             grnAddNoteBtn = new Button();
-            grndata = new DataGridView();
+            grndata = new CustomDataGridView();
             GRNlbl = new Label();
             deliverypnl = new Panel();
             panel2 = new Panel();
@@ -153,7 +162,7 @@ namespace ITP4519M
             label3 = new Label();
             deliveryclearbtn = new Button();
             deliverydateTimePicker2 = new DateTimePicker();
-            deliveryData = new DataGridView();
+            deliveryData = new CustomDataGridView();
             deliveryAddbtn = new Button();
             deliverylbl = new Label();
             listpnl.SuspendLayout();
@@ -438,11 +447,12 @@ namespace ITP4519M
             // 
             // namelbl
             // 
+            namelbl.AutoSize = true;
             namelbl.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             namelbl.ForeColor = Color.White;
-            namelbl.Location = new Point(46, 136);
+            namelbl.Location = new Point(37, 134);
             namelbl.Name = "namelbl";
-            namelbl.Size = new Size(117, 29);
+            namelbl.Size = new Size(105, 25);
             namelbl.TabIndex = 1;
             namelbl.Text = "UserName";
             namelbl.TextAlign = ContentAlignment.MiddleCenter;
@@ -679,30 +689,30 @@ namespace ITP4519M
             // 
             // grncheckColumn
             // 
-            grncheckColumn.FillWeight = 25F;
+            grncheckColumn.FillWeight = 50;
             grncheckColumn.HeaderText = "Select";
-            grncheckColumn.MinimumWidth = 6;
+            grncheckColumn.MinimumWidth = 35;
             grncheckColumn.Name = "grncheckColumn";
             // 
             // deliverycheckColumn
             // 
-            deliverycheckColumn.FillWeight = 25F;
+            deliverycheckColumn.FillWeight = 35;
             deliverycheckColumn.HeaderText = "Select";
-            deliverycheckColumn.MinimumWidth = 6;
+            deliverycheckColumn.MinimumWidth = 35;
             deliverycheckColumn.Name = "deliverycheckColumn";
             // 
             // contactcheckColumn
             // 
-            contactcheckColumn.FillWeight = 25F;
+            contactcheckColumn.FillWeight = 45;
             contactcheckColumn.HeaderText = "Select";
-            contactcheckColumn.MinimumWidth = 6;
+            contactcheckColumn.MinimumWidth = 45;
             contactcheckColumn.Name = "contactcheckColumn";
             // 
             // usercheckColumn
             // 
-            usercheckColumn.FillWeight = 25F;
+            usercheckColumn.FillWeight = 66;
             usercheckColumn.HeaderText = "Select";
-            usercheckColumn.MinimumWidth = 6;
+            usercheckColumn.MinimumWidth = 50;
             usercheckColumn.Name = "usercheckColumn";
             // 
             // stocklbl
@@ -894,9 +904,9 @@ namespace ITP4519M
             // 
             // stockcheckColumn
             // 
-            stockcheckColumn.FillWeight = 25F;
+            stockcheckColumn.FillWeight = 50;
             stockcheckColumn.HeaderText = "Select";
-            stockcheckColumn.MinimumWidth = 6;
+            stockcheckColumn.MinimumWidth = 40;
             stockcheckColumn.Name = "stockcheckColumn";
             // 
             // viewProductbtn
@@ -1817,6 +1827,7 @@ namespace ITP4519M
             Controls.Add(logpnl);
             Controls.Add(userspnl);
             Controls.Add(orderpnl);
+            Controls.Add(userspnl);
             Controls.Add(GRNpnl);
             Controls.Add(deliverypnl);
             Controls.Add(contactpnl);
@@ -1907,13 +1918,12 @@ namespace ITP4519M
         private System.Windows.Forms.Panel contactpnl;
         private System.Windows.Forms.Button supplersbtn;
         private System.Windows.Forms.Button dealersbtn;
-        private System.Windows.Forms.DataGridView contactsdata;
+        private CustomDataGridView contactsdata;
         private System.Windows.Forms.Button saleReportbtn;
         private System.Windows.Forms.Button editOrdersbtn;
-        private System.Windows.Forms.DataGridView userData;
         private System.Windows.Forms.Button viewAccountbtn;
         private System.Windows.Forms.Button editAccountbtn;
-        private System.Windows.Forms.DataGridView stockData;
+        private CustomDataGridView stockData;
         private System.Windows.Forms.Button viewOrderbtn;
         private System.Windows.Forms.Button newOrderbtn;
         private System.Windows.Forms.Label ordlerlbl;
@@ -1925,7 +1935,7 @@ namespace ITP4519M
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label loglbl;
-        private System.Windows.Forms.DataGridView logData;
+        private CustomDataGridView logData;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private TextBox accountSearchBox;
@@ -1948,7 +1958,7 @@ namespace ITP4519M
         private Button disableAccountbtn;
         private Label label1;
         private Button enableAccountbtn;
-        private DataGridView orderdata;
+        private CustomDataGridView orderdata;
         private Button outstandingOrderbtn;
         private Panel outstandingOrderpnl;
         private Label outstandingOrderlbl;
@@ -1958,7 +1968,7 @@ namespace ITP4519M
         private Button deliverybtn;
         private Panel deliverypnl;
         private Label deliverylbl;
-        private DataGridView grndata;
+        private CustomDataGridView grndata;
         private Label grnlbl2;
         private Label grnlbl1;
         private DateTimePicker grnDatePicker2;
@@ -1968,7 +1978,7 @@ namespace ITP4519M
         private Button grnAddNoteBtn;
         private Button grnclearBtn;
         private Button productSearchBtn;
-        private DataGridView deliveryData;
+        private CustomDataGridView deliveryData;
         private DateTimePicker deliverydateTimePicker1;
         private TextBox deliverySearchIDbox;
         private Button deliveryclearbtn;
@@ -1997,6 +2007,7 @@ namespace ITP4519M
         private Button orderPendingbtn;
         private Button orderActivebtn;
         private Button orderoverallBtn;
+        private CustomDataGridView userData;
         //private Label label2;
     }
 }

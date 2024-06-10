@@ -15,6 +15,9 @@ using Org.BouncyCastle.Asn1.Cmp;
 using System.Reflection.Metadata.Ecma335;
 using System.Reflection;
 using ITP4519M;
+using System.Linq.Expressions;
+using Google.Protobuf.WellKnownTypes;
+using System.Xml.Linq;
 
 
 namespace ITP4519M
@@ -51,6 +54,7 @@ namespace ITP4519M
         private Button[] buttons = new Button[2];
         private bool isFormDragging = false;
         private Point formStartPoint;
+        private int[] buttonLocationIndex = [229, 300, 371, 440, 509, 580, 651, 720, 789];
 
 
         public Dashboard()
@@ -79,35 +83,44 @@ namespace ITP4519M
             closebtn.BringToFront();
         }
 
-        private void ButtonLocation()
+        public void ButtonLocation(string departmentID)
         {
-            //IT
-            usersbtn.Location = new Point(25, 229);
-            //ShowButton(true);
+
+            switch(departmentID){
+                //IT
+               case "001":
+               ShowButton(!false);
+               usersbtn.Visible = true;
+               settingbtn.Visible = true;
+               
+               usersbtn.Location = new Point(25, buttonLocationIndex[0]);
+               settingbtn.Location = new Point(25, buttonLocationIndex[8]);
+               break;
 
 
-            //Sales
-            orderbtn.Location = new Point(25, 229);
-            outstandingOrderbtn.Location = new Point(25, 300);
-            stockbtn.Location = new Point(25, 371);
-            contactsbtn.Location = new Point(25, 440);
-            deliverybtn.Location = new Point(25, 509);
-            //ShowButton(true);
+                //WareHouse
+                case "002":
+                ShowButton(!false);
+                stockbtn.Location = new Point(25, buttonLocationIndex[0]);
+                outstandingOrderbtn.Location = new Point(25, buttonLocationIndex[1]);
+                GRNbtn.Location = new Point(25, buttonLocationIndex[2]);
+                deliverybtn.Location = new Point(25, buttonLocationIndex[3]);
+                settingbtn.Location = new Point(25, buttonLocationIndex[8]);
+                break;
+
+                //Sales Manager
+                case "003":
+                editOrdersbtn.Visible = false;
+                break;
 
 
-            //WareHouse
-            stockbtn.Location = new Point(25, 229);
-            outstandingOrderbtn.Location = new Point(25, 300);
-            GRNbtn.Location = new Point(25, 371);
-            deliverybtn.Location = new Point(25, 440);
-
-
-            //Purcahsing
-            stockbtn.Location = new Point(25, 229);
-            contactsbtn.Location = new Point(25, 300);
-            //PO
-
-
+                //Purcahsing
+                case "004":
+                stockbtn.Location = new Point(25, buttonLocationIndex[0]);
+                contactsbtn.Location = new Point(25, buttonLocationIndex[1]);
+                settingbtn.Location = new Point(25, buttonLocationIndex[8]);
+                break;
+            }
 
         }
 
