@@ -22,6 +22,7 @@ namespace ITP4519M
 
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
         public Point mouseLocation;
+
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
          (
@@ -71,7 +72,8 @@ namespace ITP4519M
         }
 
 
-            class RoundedButton : Button
+        
+        class RoundedButton : Button
         {
             public int rdus = 30;
             System.Drawing.Drawing2D.GraphicsPath GetRoundPath(RectangleF Rect, int radius)
@@ -95,17 +97,24 @@ namespace ITP4519M
                 base.OnPaint(e);
                 RectangleF Rect = new RectangleF(0, 0, this.Width, this.Height);
                 using (System.Drawing.Drawing2D.GraphicsPath GraphPath = GetRoundPath(Rect, rdus))
-                {
+                {   //Color.CadetBlue
                     this.Region = new Region(GraphPath);
-                    using (Pen pen = new Pen(Color.CadetBlue, 1.75f))
+                    using (Pen pen = new Pen(Color.Gray, 1.87f))
                     {
+                        //pen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
+                        //e.Graphics.DrawPath(pen, GraphPath);
                         pen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
+                        e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
                         e.Graphics.DrawPath(pen, GraphPath);
                     }
                 }
             }
         }
-                    private void CloseButton_Click(object sender, EventArgs e)
+
+
+
+
+        private void CloseButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
@@ -166,9 +175,6 @@ namespace ITP4519M
 
         private void button2_Paint(object sender, PaintEventArgs e)
         {
-            //IntPtr ptr = CreateRoundRectRgn(0, 0, button2.Width, button2.Height, 30, 30);
-            //button2.Region = Region.FromHrgn(ptr);
-            //DeleteObject(ptr);
         }
     }
 }

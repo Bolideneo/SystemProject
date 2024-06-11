@@ -126,8 +126,9 @@ namespace ITP4519M
             // 
             textBox1.BackColor = SystemColors.Menu;
             textBox1.Location = new Point(69, 34);
+            textBox1.Multiline = true;
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(275, 27);
+            textBox1.Size = new Size(40, 332);
             textBox1.TabIndex = 0;
             // 
             // CloseButton
@@ -223,7 +224,6 @@ namespace ITP4519M
             loginbtn.Text = "Login";
             loginbtn.UseVisualStyleBackColor = true;
             loginbtn.Click += loginbtn_Click;
-            loginbtn.Paint += loginbtn_Paint;
             // 
             // pictureBox1
             // 
@@ -262,20 +262,18 @@ namespace ITP4519M
             label1.Click += label1_Click;
             // 
             // textBox2
-            //
-            textBox2.AutoSize = false;
-            textBox2.Location = new Point(336, 187);
+            // 
+            textBox2.Location = new Point(237, 488);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(332, 40);
-            textBox1.Multiline = true;
-            textBox1.Height = 332;
-            textBox1.Width = 40;
+            textBox2.Size = new Size(332, 27);
             textBox2.TabIndex = 22;
             // 
             // button2
             // 
             button2.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.Location = new Point(545, 474);
+            button2.FlatAppearance.BorderColor = Color.Gray;
+            //button2.FlatStyle = FlatStyle.System;
+            button2.Location = new Point(578, 474);
             button2.Margin = new Padding(2, 3, 2, 3);
             button2.Name = "button2";
             button2.Size = new Size(170, 53);

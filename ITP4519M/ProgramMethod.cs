@@ -602,5 +602,26 @@ namespace ProgramMethod
         {
             return dataBaseMethod.getDepartmentNameDataSource();
         }
+
+        public int getAccountRowCount()
+        {
+            return dataBaseMethod.getAccountRowCount();
+        }
+
+        public DataTable GetCurrentRecords(int page, int pageSize)
+        {
+
+            if (page == 1)
+            {
+                return dataBaseMethod.GetCurrentRecords(page, pageSize);
+            }
+            else
+            { 
+               return dataBaseMethod.GetCurrentRecords2(page, pageSize);
+            }
+        }
+
+
+
     }
     }
