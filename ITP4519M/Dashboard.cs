@@ -35,6 +35,11 @@ namespace ITP4519M
     {
 
         private ProgramMethod.ProgramMethod programMethod;
+        //datagrid paging
+        private int PgSize = 10;
+        private int CurrentPageIndex = 1;
+        private int TotalPage = 0;
+        //Paging
         private Button currentButton;
         private string userID;
         private string productID;
@@ -57,6 +62,7 @@ namespace ITP4519M
         private bool isFormDragging = false;
         private Point formStartPoint;
         private int[] buttonLocationIndex = [229, 300, 371, 440, 509, 580, 651, 720, 789];
+
 
 
         public Dashboard()
@@ -87,78 +93,78 @@ namespace ITP4519M
             CalculateTotalPages();
         }
 
-        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-        private static extern IntPtr CreateRoundRectRgn
- (
-    int nLeftRect,     // x-coordinate of upper-left corner
-    int nTopRect,      // y-coordinate of upper-left corner
-    int nRightRect,    // x-coordinate of lower-right corner
-    int nBottomRect,   // y-coordinate of lower-right corner
-    int nWidthEllipse, // height of ellipse
-    int nHeightEllipse // width of ellipse
-);
+//        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+//        private static extern IntPtr CreateRoundRectRgn
+// (
+//    int nLeftRect,     // x-coordinate of upper-left corner
+//    int nTopRect,      // y-coordinate of upper-left corner
+//    int nRightRect,    // x-coordinate of lower-right corner
+//    int nBottomRect,   // y-coordinate of lower-right corner
+//    int nWidthEllipse, // height of ellipse
+//    int nHeightEllipse // width of ellipse
+//);
 
-        [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
-        private static extern bool DeleteObject(System.IntPtr hObject);
-
-
-        class RoundTextBox : TextBox
-        {
-            [System.Runtime.InteropServices.DllImport("gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-            private static extern IntPtr CreateRoundRectRgn
-            (
-                int nLeftRect, // X-coordinate of upper-left corner or padding at start
-                int nTopRect,// Y-coordinate of upper-left corner or padding at the top of the textbox
-                int nRightRect, // X-coordinate of lower-right corner or Width of the object
-                int nBottomRect,// Y-coordinate of lower-right corner or Height of the object
-                                //RADIUS, 
-                int nheightRect, //height of ellipse 
-                int nweightRect //width of ellipse
-            );
-
-            protected override void OnResize(EventArgs e)
-            {
-                base.OnResize(e);
-                this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(2, 3, this.Width, this.Height, 30, 30));
-            }
-        }
+//        [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
+//        private static extern bool DeleteObject(System.IntPtr hObject);
 
 
+//        class RoundTextBox : TextBox
+//        {
+//            [System.Runtime.InteropServices.DllImport("gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+//            private static extern IntPtr CreateRoundRectRgn
+//            (
+//                int nLeftRect, // X-coordinate of upper-left corner or padding at start
+//                int nTopRect,// Y-coordinate of upper-left corner or padding at the top of the textbox
+//                int nRightRect, // X-coordinate of lower-right corner or Width of the object
+//                int nBottomRect,// Y-coordinate of lower-right corner or Height of the object
+//                                //RADIUS, 
+//                int nheightRect, //height of ellipse 
+//                int nweightRect //width of ellipse
+//            );
 
-        class RoundedButton : Button
-        {
-            public int rdus = 30;
-            System.Drawing.Drawing2D.GraphicsPath GetRoundPath(RectangleF Rect, int radius)
-            {
-                float r2 = radius / 2f;
-                System.Drawing.Drawing2D.GraphicsPath GraphPath = new System.Drawing.Drawing2D.GraphicsPath();
-                GraphPath.AddArc(Rect.X, Rect.Y, radius, radius, 180, 90);
-                GraphPath.AddLine(Rect.X + r2, Rect.Y, Rect.Width - r2, Rect.Y);
-                GraphPath.AddArc(Rect.X + Rect.Width - radius, Rect.Y, radius, radius, 270, 90);
-                GraphPath.AddLine(Rect.Width, Rect.Y + r2, Rect.Width, Rect.Height - r2);
-                GraphPath.AddArc(Rect.X + Rect.Width - radius,
-                        Rect.Y + Rect.Height - radius, radius, radius, 0, 90);
-                GraphPath.AddLine(Rect.Width - r2, Rect.Height, Rect.X + r2, Rect.Height);
-                GraphPath.AddArc(Rect.X, Rect.Y + Rect.Height - radius, radius, radius, 90, 90);
-                GraphPath.AddLine(Rect.X, Rect.Height - r2, Rect.X, Rect.Y + r2);
-                GraphPath.CloseFigure();
-                return GraphPath;
-            }
-            protected override void OnPaint(PaintEventArgs e)
-            {
-                base.OnPaint(e);
-                RectangleF Rect = new RectangleF(0, 0, this.Width, this.Height);
-                using (System.Drawing.Drawing2D.GraphicsPath GraphPath = GetRoundPath(Rect, rdus))
-                {
-                    this.Region = new Region(GraphPath);
-                    using (Pen pen = new Pen(Color.CadetBlue, 1.75f))
-                    {
-                        pen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
-                        e.Graphics.DrawPath(pen, GraphPath);
-                    }
-                }
-            }
-        }
+//            protected override void OnResize(EventArgs e)
+//            {
+//                base.OnResize(e);
+//                this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(2, 3, this.Width, this.Height, 30, 30));
+//            }
+//        }
+
+
+
+//        class RoundedButton : Button
+//        {
+//            public int rdus = 30;
+//            System.Drawing.Drawing2D.GraphicsPath GetRoundPath(RectangleF Rect, int radius)
+//            {
+//                float r2 = radius / 2f;
+//                System.Drawing.Drawing2D.GraphicsPath GraphPath = new System.Drawing.Drawing2D.GraphicsPath();
+//                GraphPath.AddArc(Rect.X, Rect.Y, radius, radius, 180, 90);
+//                GraphPath.AddLine(Rect.X + r2, Rect.Y, Rect.Width - r2, Rect.Y);
+//                GraphPath.AddArc(Rect.X + Rect.Width - radius, Rect.Y, radius, radius, 270, 90);
+//                GraphPath.AddLine(Rect.Width, Rect.Y + r2, Rect.Width, Rect.Height - r2);
+//                GraphPath.AddArc(Rect.X + Rect.Width - radius,
+//                        Rect.Y + Rect.Height - radius, radius, radius, 0, 90);
+//                GraphPath.AddLine(Rect.Width - r2, Rect.Height, Rect.X + r2, Rect.Height);
+//                GraphPath.AddArc(Rect.X, Rect.Y + Rect.Height - radius, radius, radius, 90, 90);
+//                GraphPath.AddLine(Rect.X, Rect.Height - r2, Rect.X, Rect.Y + r2);
+//                GraphPath.CloseFigure();
+//                return GraphPath;
+//            }
+//            protected override void OnPaint(PaintEventArgs e)
+//            {
+//                base.OnPaint(e);
+//                RectangleF Rect = new RectangleF(0, 0, this.Width, this.Height);
+//                using (System.Drawing.Drawing2D.GraphicsPath GraphPath = GetRoundPath(Rect, rdus))
+//                {
+//                    this.Region = new Region(GraphPath);
+//                    using (Pen pen = new Pen(Color.CadetBlue, 1.75f))
+//                    {
+//                        pen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
+//                        e.Graphics.DrawPath(pen, GraphPath);
+//                    }
+//                }
+//            }
+//        }
 
         public void ButtonLocation(string departmentID, string title)
         {
@@ -379,11 +385,15 @@ namespace ITP4519M
 
 
             ShowPanel(userspnl);
-            userData.DataSource = programMethod.overviewUserinfo();
+            //accountPageSizeComboBox.TextColumn = 1;
+            accountSearchBox.AutoSize = false;
+            userData.DataSource = programMethod.GetAccountCurrentRecords(CurrentPageIndex, PgSize);
+
+
 
         }
 
-
+ 
 
         private void settingbtn_Click(object sender, EventArgs e)
         {
@@ -536,7 +546,7 @@ namespace ITP4519M
 
         private void registerFormOperationCompleted(object sender, EventArgs e)
         {
-            userData.DataSource = programMethod.overviewUserinfo();
+            userData.DataSource = programMethod.GetAccountCurrentRecords(CurrentPageIndex,PgSize);
         }
 
         private void viewAccountbtn_Click(object sender, EventArgs e)
@@ -1102,12 +1112,6 @@ namespace ITP4519M
 
         }
 
-
-        //datagrid paging
-        private int PgSize = 5;
-        private int CurrentPageIndex = 1;
-        private int TotalPage = 0;
-
         private void CalculateTotalPages()
         {
             int rowCount = programMethod.getAccountRowCount();
@@ -1120,7 +1124,7 @@ namespace ITP4519M
         private void accountbtnFirstPage_Click(object sender, EventArgs e)
         {
             this.CurrentPageIndex = 1;
-            this.userData.DataSource = programMethod.GetCurrentRecords(this.CurrentPageIndex, PgSize);
+            this.userData.DataSource = programMethod.GetAccountCurrentRecords(this.CurrentPageIndex, PgSize);
         }
 
         private void accountbtnNxtPage_Click(object sender, EventArgs e)
@@ -1128,7 +1132,7 @@ namespace ITP4519M
             if (this.CurrentPageIndex < this.TotalPage)
             {
                 this.CurrentPageIndex++;
-                this.userData.DataSource = programMethod.GetCurrentRecords(this.CurrentPageIndex, PgSize);
+                this.userData.DataSource = programMethod.GetAccountCurrentRecords(this.CurrentPageIndex, PgSize);
             }
         }
 
@@ -1137,14 +1141,14 @@ namespace ITP4519M
             if (this.CurrentPageIndex > 1)
             {
                 this.CurrentPageIndex--;
-                this.userData.DataSource = programMethod.GetCurrentRecords(this.CurrentPageIndex, PgSize);
+                this.userData.DataSource = programMethod.GetAccountCurrentRecords(this.CurrentPageIndex, PgSize);
             }
         }
 
         private void accountbtnLastPage_Click(object sender, EventArgs e)
         {
             this.CurrentPageIndex = TotalPage;
-            this.userData.DataSource = programMethod.GetCurrentRecords(this.CurrentPageIndex, PgSize);
+            this.userData.DataSource = programMethod.GetAccountCurrentRecords(this.CurrentPageIndex, PgSize);
         }
     }
 }

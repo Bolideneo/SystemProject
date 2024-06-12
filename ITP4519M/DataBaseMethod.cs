@@ -111,6 +111,7 @@ namespace ITP4519M
 
         public string getDepartmentIDbyUsername(string username)
         {
+         
             string sql = "select DepartmentID from staff where UserName=@userName";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@userName", username);
@@ -1209,7 +1210,7 @@ namespace ITP4519M
         }
 
 
-        public DataTable GetCurrentRecords(int page,int pageSize)
+        public DataTable GetAccountCurrentRecords(int page,int pageSize)
         {
             string sql = "SELECT * FROM staff ORDER BY UserID LIMIT @PgSize";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
@@ -1220,28 +1221,20 @@ namespace ITP4519M
             return dataTable;
         }
 
-        public DataTable GetCurrentRecords2(int page, int pageSize)
+        public DataTable GetAccountCurrentRecords2(int page, int pageSize)
         {
             string sql = "SELECT * FROM (SELECT * FROM staff ORDER BY UserID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY UserID";
-            using (MySqlConnection con = ServerConnect())
-            {
-                using (MySqlCommand cmd = new MySqlCommand(sql, con))
-                {
-                    cmd.Parameters.AddWithValue("@PgSize", pageSize);
-                    cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);
-
-                    using (MySqlDataAdapter adat = new MySqlDataAdapter(cmd))
-                    {
-                        DataTable dataTable = new DataTable();
-                        adat.Fill(dataTable);
-                        return dataTable;
-                    }
-                }
-            }
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@PgSize", pageSize);
+            cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
         }
 
 
-
+       
 
     }
 

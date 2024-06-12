@@ -133,13 +133,7 @@ namespace ITP4519M
 
         }
 
-        private void productSearchbox_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            //Question
 
-            //totalpricelbl.Text = "" +  programMethod.calProductTotalAmount(productOfOrderdata);
-
-        }
 
         private void productSearchbox_KeyDown(object sender, KeyEventArgs e)
         {
@@ -233,8 +227,21 @@ namespace ITP4519M
                 this.productOfOrderdata.Rows.Remove(orderData);
             }
 
-            //totalpricelbl.Text = "" + programMethod.calProductTotalAmount(productOfOrderdata);
+            //ordertotallbl.Text = "" + programMethod.calProductTotalAmount(productOfOrderdata);
+            float temp = programMethod.calProductTotalAmount(productOfOrderdata);
+            MessageBox.Show(temp.ToString());
         }
 
+        private void ordertotallbl_TextChanged(object sender, EventArgs e)
+        {
+            ordertotallbl.Text = "" + programMethod.calProductTotalAmount(productOfOrderdata);
+        }
+
+        private void productOfOrderdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            MessageBox.Show("HI");
+            float temp = programMethod.calProductTotalAmount(productOfOrderdata);
+            MessageBox.Show(temp.ToString());
+        }
     }
 }

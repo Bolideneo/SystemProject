@@ -52,6 +52,7 @@ namespace ITP4519M
             createOrderbtn = new Button();
             productSearchbox = new TextBox();
             panel1 = new Panel();
+            ordertotallbl = new Label();
             label7 = new Label();
             label2 = new Label();
             orderDateBox = new DateTimePicker();
@@ -65,10 +66,9 @@ namespace ITP4519M
             CloseButton.FlatAppearance.BorderSize = 0;
             CloseButton.FlatStyle = FlatStyle.Flat;
             CloseButton.Font = new Font("Verdana", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            CloseButton.Location = new Point(630, 9);
-            CloseButton.Margin = new Padding(3, 4, 3, 4);
+            CloseButton.Location = new Point(551, 7);
             CloseButton.Name = "CloseButton";
-            CloseButton.Size = new Size(40, 51);
+            CloseButton.Size = new Size(35, 38);
             CloseButton.TabIndex = 15;
             CloseButton.Text = "X";
             CloseButton.UseVisualStyleBackColor = true;
@@ -79,9 +79,9 @@ namespace ITP4519M
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = SystemColors.WindowText;
-            label3.Location = new Point(11, 11);
+            label3.Location = new Point(10, 8);
             label3.Name = "label3";
-            label3.Size = new Size(251, 38);
+            label3.Size = new Size(201, 30);
             label3.TabIndex = 16;
             label3.Text = "Create New Order";
             // 
@@ -89,30 +89,30 @@ namespace ITP4519M
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label11.Location = new Point(69, 107);
-            label11.Margin = new Padding(5, 0, 5, 0);
+            label11.Location = new Point(60, 80);
+            label11.Margin = new Padding(4, 0, 4, 0);
             label11.Name = "label11";
-            label11.Size = new Size(118, 20);
+            label11.Size = new Size(99, 17);
             label11.TabIndex = 54;
             label11.Text = "Dealer Name :";
             // 
             // dealerNameBox
             // 
             dealerNameBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dealerNameBox.Location = new Point(257, 107);
-            dealerNameBox.Margin = new Padding(6, 7, 6, 7);
+            dealerNameBox.Location = new Point(225, 80);
+            dealerNameBox.Margin = new Padding(5);
             dealerNameBox.Name = "dealerNameBox";
-            dealerNameBox.Size = new Size(249, 27);
+            dealerNameBox.Size = new Size(218, 23);
             dealerNameBox.TabIndex = 44;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.Location = new Point(454, 515);
-            label6.Margin = new Padding(6, 0, 6, 0);
+            label6.Location = new Point(397, 386);
+            label6.Margin = new Padding(5, 0, 5, 0);
             label6.Name = "label6";
-            label6.Size = new Size(125, 20);
+            label6.Size = new Size(106, 17);
             label6.TabIndex = 49;
             label6.Text = "Search Product";
             // 
@@ -120,10 +120,10 @@ namespace ITP4519M
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(57, 218);
-            label5.Margin = new Padding(5, 0, 5, 0);
+            label5.Location = new Point(50, 164);
+            label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
-            label5.Size = new Size(130, 20);
+            label5.Size = new Size(111, 17);
             label5.TabIndex = 48;
             label5.Text = "Phone Number :";
             // 
@@ -131,40 +131,40 @@ namespace ITP4519M
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(40, 263);
-            label4.Margin = new Padding(5, 0, 5, 0);
+            label4.Location = new Point(35, 197);
+            label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new Size(147, 20);
+            label4.Size = new Size(123, 17);
             label4.TabIndex = 46;
             label4.Text = "Delivery Address :";
             // 
             // goodsAddressBox
             // 
             goodsAddressBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            goodsAddressBox.Location = new Point(256, 262);
-            goodsAddressBox.Margin = new Padding(6, 7, 6, 7);
+            goodsAddressBox.Location = new Point(224, 196);
+            goodsAddressBox.Margin = new Padding(5);
             goodsAddressBox.Name = "goodsAddressBox";
-            goodsAddressBox.Size = new Size(250, 27);
+            goodsAddressBox.Size = new Size(219, 23);
             goodsAddressBox.TabIndex = 47;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(96, 43);
-            label1.Margin = new Padding(5, 0, 5, 0);
+            label1.Location = new Point(84, 32);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(97, 20);
+            label1.Size = new Size(80, 17);
             label1.TabIndex = 44;
             label1.Text = "*Dealer ID :";
             // 
             // dealerIDBox
             // 
             dealerIDBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dealerIDBox.Location = new Point(257, 43);
-            dealerIDBox.Margin = new Padding(6, 7, 6, 7);
+            dealerIDBox.Location = new Point(225, 32);
+            dealerIDBox.Margin = new Padding(5);
             dealerIDBox.Name = "dealerIDBox";
-            dealerIDBox.Size = new Size(249, 27);
+            dealerIDBox.Size = new Size(218, 23);
             dealerIDBox.TabIndex = 43;
             dealerIDBox.KeyDown += dealerIDBox_KeyDown;
             // 
@@ -172,20 +172,20 @@ namespace ITP4519M
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label8.Location = new Point(43, 160);
-            label8.Margin = new Padding(5, 0, 5, 0);
+            label8.Location = new Point(38, 120);
+            label8.Margin = new Padding(4, 0, 4, 0);
             label8.Name = "label8";
-            label8.Size = new Size(144, 20);
+            label8.Size = new Size(121, 17);
             label8.TabIndex = 60;
             label8.Text = "Dealer Company :";
             // 
             // dealerCompanyBox
             // 
             dealerCompanyBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dealerCompanyBox.Location = new Point(257, 160);
-            dealerCompanyBox.Margin = new Padding(6, 7, 6, 7);
+            dealerCompanyBox.Location = new Point(225, 120);
+            dealerCompanyBox.Margin = new Padding(5);
             dealerCompanyBox.Name = "dealerCompanyBox";
-            dealerCompanyBox.Size = new Size(249, 27);
+            dealerCompanyBox.Size = new Size(218, 23);
             dealerCompanyBox.TabIndex = 45;
             // 
             // productOfOrderdata
@@ -194,13 +194,14 @@ namespace ITP4519M
             productOfOrderdata.AllowUserToDeleteRows = false;
             productOfOrderdata.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             productOfOrderdata.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            productOfOrderdata.Location = new Point(3, 444);
-            productOfOrderdata.Margin = new Padding(3, 5, 3, 5);
+            productOfOrderdata.Location = new Point(3, 333);
+            productOfOrderdata.Margin = new Padding(3, 4, 3, 4);
             productOfOrderdata.Name = "productOfOrderdata";
             productOfOrderdata.RowHeadersWidth = 51;
             productOfOrderdata.RowTemplate.Height = 24;
-            productOfOrderdata.Size = new Size(663, 246);
+            productOfOrderdata.Size = new Size(580, 184);
             productOfOrderdata.TabIndex = 61;
+            productOfOrderdata.CellContentClick += productOfOrderdata_CellContentClick;
             productOfOrderdata.CellDoubleClick += productOfOrderdata_CellDoubleClick;
             // 
             // productIDColumn
@@ -235,29 +236,28 @@ namespace ITP4519M
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label12.Location = new Point(8, 321);
-            label12.Margin = new Padding(5, 0, 5, 0);
+            label12.Location = new Point(7, 241);
+            label12.Margin = new Padding(4, 0, 4, 0);
             label12.Name = "label12";
-            label12.Size = new Size(179, 20);
+            label12.Size = new Size(150, 17);
             label12.TabIndex = 65;
             label12.Text = "Order Complete Date :";
             // 
             // phoneNumBox
             // 
             phoneNumBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            phoneNumBox.Location = new Point(256, 215);
-            phoneNumBox.Margin = new Padding(6, 7, 6, 7);
+            phoneNumBox.Location = new Point(224, 161);
+            phoneNumBox.Margin = new Padding(5);
             phoneNumBox.Name = "phoneNumBox";
-            phoneNumBox.Size = new Size(250, 27);
+            phoneNumBox.Size = new Size(219, 23);
             phoneNumBox.TabIndex = 46;
             // 
             // createOrderbtn
             // 
             createOrderbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            createOrderbtn.Location = new Point(490, 832);
-            createOrderbtn.Margin = new Padding(3, 4, 3, 4);
+            createOrderbtn.Location = new Point(429, 624);
             createOrderbtn.Name = "createOrderbtn";
-            createOrderbtn.Size = new Size(171, 53);
+            createOrderbtn.Size = new Size(150, 40);
             createOrderbtn.TabIndex = 68;
             createOrderbtn.Text = "Create";
             createOrderbtn.UseVisualStyleBackColor = true;
@@ -267,12 +267,12 @@ namespace ITP4519M
             // 
             productSearchbox.BackColor = SystemColors.ButtonFace;
             productSearchbox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            productSearchbox.Location = new Point(40, 383);
-            productSearchbox.Margin = new Padding(6, 7, 6, 7);
-            productSearchbox.MaximumSize = new Size(300, 60);
+            productSearchbox.Location = new Point(35, 287);
+            productSearchbox.Margin = new Padding(5);
+            productSearchbox.MaximumSize = new Size(263, 60);
             productSearchbox.Name = "productSearchbox";
             productSearchbox.PlaceholderText = "Search Product ID or Name";
-            productSearchbox.Size = new Size(255, 27);
+            productSearchbox.Size = new Size(224, 23);
             productSearchbox.TabIndex = 48;
             productSearchbox.TextChanged += productSearchbox_TextChanged;
             productSearchbox.KeyDown += productSearchbox_KeyDown;
@@ -281,6 +281,7 @@ namespace ITP4519M
             // 
             panel1.BackColor = SystemColors.Window;
             panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(ordertotallbl);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(orderDateBox);
@@ -298,19 +299,31 @@ namespace ITP4519M
             panel1.Controls.Add(phoneNumBox);
             panel1.Controls.Add(label8);
             panel1.Controls.Add(dealerCompanyBox);
-            panel1.Location = new Point(1, 77);
+            panel1.Location = new Point(1, 58);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(669, 736);
+            panel1.Size = new Size(586, 553);
             panel1.TabIndex = 72;
+            // 
+            // ordertotallbl
+            // 
+            ordertotallbl.AutoSize = true;
+            ordertotallbl.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            ordertotallbl.Location = new Point(450, 521);
+            ordertotallbl.Name = "ordertotallbl";
+            ordertotallbl.Size = new Size(53, 25);
+            ordertotallbl.TabIndex = 73;
+            ordertotallbl.Text = "label";
+            ordertotallbl.TextChanged += ordertotallbl_TextChanged;
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Red;
-            label7.Location = new Point(311, 383);
+            label7.Location = new Point(272, 287);
             label7.Name = "label7";
-            label7.Size = new Size(358, 23);
+            label7.Size = new Size(288, 19);
             label7.TabIndex = 72;
             label7.Text = "Left click Quantity column to change quantity";
             // 
@@ -319,32 +332,32 @@ namespace ITP4519M
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Red;
-            label2.Location = new Point(311, 409);
+            label2.Location = new Point(272, 307);
             label2.Name = "label2";
-            label2.Size = new Size(345, 23);
+            label2.Size = new Size(277, 19);
             label2.TabIndex = 71;
             label2.Text = "Double click Cell to remove unwant product";
             // 
             // orderDateBox
             // 
-            orderDateBox.Location = new Point(256, 314);
+            orderDateBox.Location = new Point(224, 236);
+            orderDateBox.Margin = new Padding(3, 2, 3, 2);
             orderDateBox.MinDate = new DateTime(2010, 7, 27, 0, 0, 0, 0);
             orderDateBox.Name = "orderDateBox";
-            orderDateBox.Size = new Size(250, 27);
+            orderDateBox.Size = new Size(219, 23);
             orderDateBox.TabIndex = 70;
             // 
             // CreateOrder
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
-            ClientSize = new Size(673, 898);
+            ClientSize = new Size(589, 674);
             Controls.Add(panel1);
             Controls.Add(createOrderbtn);
             Controls.Add(label3);
             Controls.Add(CloseButton);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "CreateOrder";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "OrderForm1";
@@ -393,5 +406,6 @@ namespace ITP4519M
         private DateTimePicker orderDateBox;
         private Label label2;
         private Label label7;
+        private Label ordertotallbl;
     }
 }

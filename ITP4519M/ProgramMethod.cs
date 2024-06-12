@@ -23,6 +23,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using System.Runtime.InteropServices;
+using System.Drawing.Drawing2D;
+using System.ComponentModel;
+using System.Drawing.Text;
 
 
 
@@ -608,20 +612,278 @@ namespace ProgramMethod
             return dataBaseMethod.getAccountRowCount();
         }
 
-        public DataTable GetCurrentRecords(int page, int pageSize)
+        public DataTable GetAccountCurrentRecords(int page, int pageSize)
         {
 
             if (page == 1)
             {
-                return dataBaseMethod.GetCurrentRecords(page, pageSize);
+                return dataBaseMethod.GetAccountCurrentRecords(page, pageSize);
             }
             else
             { 
-               return dataBaseMethod.GetCurrentRecords2(page, pageSize);
+               return dataBaseMethod.GetAccountCurrentRecords2(page, pageSize);
             }
         }
 
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+        (
+        int nLeftRect,     // x-coordinate of upper-left corner
+        int nTopRect,      // y-coordinate of upper-left corner
+        int nRightRect,    // x-coordinate of lower-right corner
+        int nBottomRect,   // y-coordinate of lower-right corner
+        int nWidthEllipse, // height of ellipse
+        int nHeightEllipse // width of ellipse
+        );
+
+        [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
+        private static extern bool DeleteObject(System.IntPtr hObject);
 
 
+        public  class RoundedTextBox : TextBox
+        {
+            [System.Runtime.InteropServices.DllImport("gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+            private static extern IntPtr CreateRoundRectRgn
+            (
+                int nLeftRect, // X-coordinate of upper-left corner or padding at start
+                int nTopRect,// Y-coordinate of upper-left corner or padding at the top of the textbox
+                int nRightRect, // X-coordinate of lower-right corner or Width of the object
+                int nBottomRect,// Y-coordinate of lower-right corner or Height of the object
+                                //RADIUS, 
+                int nheightRect, //height of ellipse 
+                int nweightRect //width of ellipse
+            );
+
+            protected override void OnResize(EventArgs e)
+            {
+                base.OnResize(e);
+                this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(2, 3, this.Width, this.Height, 30, 30));
+            }
+        }
+
+        //Origninal rounded button
+
+        //public class RoundedButton : Button
+        //{
+        //    public int rdus = 30;
+        //    System.Drawing.Drawing2D.GraphicsPath GetRoundPath(RectangleF Rect, int radius)
+        //    {
+        //        float r2 = radius / 2f;
+        //        System.Drawing.Drawing2D.GraphicsPath GraphPath = new System.Drawing.Drawing2D.GraphicsPath();
+        //        GraphPath.AddArc(Rect.X, Rect.Y, radius, radius, 180, 90);
+        //        GraphPath.AddLine(Rect.X + r2, Rect.Y, Rect.Width - r2, Rect.Y);
+        //        GraphPath.AddArc(Rect.X + Rect.Width - radius, Rect.Y, radius, radius, 270, 90);
+        //        GraphPath.AddLine(Rect.Width, Rect.Y + r2, Rect.Width, Rect.Height - r2);
+        //        GraphPath.AddArc(Rect.X + Rect.Width - radius,
+        //                Rect.Y + Rect.Height - radius, radius, radius, 0, 90);
+        //        GraphPath.AddLine(Rect.Width - r2, Rect.Height, Rect.X + r2, Rect.Height);
+        //        GraphPath.AddArc(Rect.X, Rect.Y + Rect.Height - radius, radius, radius, 90, 90);
+        //        GraphPath.AddLine(Rect.X, Rect.Height - r2, Rect.X, Rect.Y + r2);
+        //        GraphPath.CloseFigure();
+        //        return GraphPath;
+        //    }
+        //    protected override void OnPaint(PaintEventArgs e)
+        //    {
+        //        base.OnPaint(e);
+        //        RectangleF Rect = new RectangleF(0, 0, this.Width, this.Height);
+        //        using (System.Drawing.Drawing2D.GraphicsPath GraphPath = GetRoundPath(Rect, rdus))
+        //        {
+        //            this.Region = new Region(GraphPath);
+        //            using (Pen pen = new Pen(Color.CadetBlue, 1.75f))
+        //            {
+        //                pen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
+        //                e.Graphics.DrawPath(pen, GraphPath);
+        //            }
+        //        }
+        //    }
+        //}
+
+
+        [DesignerCategory("Code")]
+        public class RoundedButton : Control
+        {
+            private int m_BorderSize = 2;
+            private int m_ButtonRoundRadius = 30;
+
+            private bool IsHighlighted = false;
+            private bool IsPressed = false;
+
+            public RoundedButton()
+            {
+                SetStyle(ControlStyles.Opaque |
+                         ControlStyles.AllPaintingInWmPaint |
+                         ControlStyles.ResizeRedraw |
+                         ControlStyles.UserPaint, true);
+                // To be explicit...
+                SetStyle(ControlStyles.OptimizedDoubleBuffer, false);
+                this.DoubleBuffered = false;
+                InitializeComponent();
+            }
+
+            private void InitializeComponent()
+            {
+                Size = new Size(100, 40);
+                BackColor = Color.CadetBlue;
+               // BackColor2 = Color.Tomato;
+                ButtonBorderColor = Color.White;
+                //ButtonHighlightColor = Color.Orange;
+                //ButtonHighlightColor2 = Color.OrangeRed;
+                ButtonHighlightForeColor = Color.Black;
+
+                ButtonPressedColor = Color.BlueViolet;
+                ButtonPressedColor2 = Color.Maroon;
+                ButtonPressedForeColor = Color.White;
+            }
+
+            protected override CreateParams CreateParams
+            {
+                get
+                {
+                    CreateParams cp = base.CreateParams;
+                    cp.ExStyle |= 0x00000020; // WS_EX_TRANSPARENT
+                    return cp;
+                }
+            }
+
+            // Invalidate(rect) in Design-Mode to refresh the view
+            public int BorderSize
+            {
+                get => m_BorderSize;
+                set
+                {
+                    m_BorderSize = Math.Max(Math.Min(value, 6), 1);
+                    RepaintControl();
+                }
+            }
+
+            // Set Max = 44, Min = 1 to avoid quirks and exceptions
+            public int ButtonRoundRadius
+            {
+                get => m_ButtonRoundRadius;
+                set
+                {
+                    m_ButtonRoundRadius = Math.Max(Math.Min(value, 44), 1);
+                    RepaintControl();
+                }
+            }
+
+            public override string Text
+            {
+                get => base.Text;
+
+                set
+                {
+                    base.Text = value;
+                    RepaintControl();
+                }
+            }
+
+           
+            public Color BorderColor { get; set; } = Color.White;
+            public Color BackColor2 { get; set; } = Color.White;
+
+            public Color ButtonBorderColor { get; set; }
+            public Color ButtonHighlightColor { get; set; }
+            public Color ButtonHighlightColor2 { get; set; }
+            public Color ButtonHighlightForeColor { get; set; }
+            public Color ButtonPressedColor { get; set; }
+            public Color ButtonPressedColor2 { get; set; }
+            public Color ButtonPressedForeColor { get; set; }
+
+            protected override void OnPaint(PaintEventArgs e)
+            {
+                base.OnPaint(e);
+                e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+                e.Graphics.CompositingQuality = CompositingQuality.HighQuality;
+                e.Graphics.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
+                e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
+
+
+                var foreColor = IsPressed ? ButtonPressedForeColor : IsHighlighted ? ButtonHighlightForeColor : ForeColor;
+                var backColor = IsPressed ? ButtonPressedColor : IsHighlighted ? ButtonHighlightColor : BackColor;
+                var backColor2 = IsPressed ? ButtonPressedColor2 : IsHighlighted ? ButtonHighlightColor2 : BackColor2;
+                var rect = Path.GetBounds();
+
+                using (var pen = new Pen(ButtonBorderColor, m_BorderSize))
+                using (var pathBrush = new LinearGradientBrush(rect, backColor, backColor2, LinearGradientMode.Vertical))
+                using (var textBrush = new SolidBrush(foreColor))
+                using (var sf = new StringFormat())
+                {
+                    sf.Alignment = StringAlignment.Center;
+                    sf.LineAlignment = StringAlignment.Center;
+
+                    e.Graphics.FillPath(pathBrush, Path);
+                    if (m_BorderSize > 0) e.Graphics.DrawPath(pen, Path);
+
+                    rect.Inflate(-4, -4);
+                    e.Graphics.DrawString(Text, Font, textBrush, rect, sf);
+
+
+                }
+            }
+
+            protected override void OnMouseEnter(EventArgs e)
+            {
+                base.OnMouseEnter(e);
+                IsHighlighted = true;
+                ButtonBorderColor = Color.Blue;
+                RepaintControl();
+            }
+
+            protected override void OnMouseLeave(EventArgs e)
+            {
+                base.OnMouseLeave(e);
+                IsHighlighted = false;
+                IsPressed = false;
+                ButtonBorderColor = Color.Gray;
+                RepaintControl();
+            }
+
+            protected override void OnMouseDown(MouseEventArgs e)
+            {
+                base.OnMouseDown(e);
+                IsPressed = true;
+                RepaintControl();
+            }
+
+            protected override void OnMouseUp(MouseEventArgs e)
+            {
+                base.OnMouseUp(e);
+                IsPressed = false;
+                RepaintControl();
+            }
+
+            private void RepaintControl()
+            {
+                Parent?.Invalidate(this.Bounds, true);
+                Invalidate();
+            }
+
+            private GraphicsPath Path
+            {
+                get
+                {
+                    var rect = ClientRectangle;
+                    int scaleOnBorder = -((m_BorderSize / 2) + 2);
+                    rect.Inflate(scaleOnBorder, scaleOnBorder);
+                    return GetRoundedRectangle(rect, m_ButtonRoundRadius);
+                }
+            }
+
+            private GraphicsPath GetRoundedRectangle(Rectangle rect, int d)
+            {
+                var gp = new GraphicsPath();
+                gp.StartFigure();
+                gp.AddArc(rect.X, rect.Y, d, d, 180, 90);
+                gp.AddArc(rect.X + rect.Width - d, rect.Y, d, d, 270, 90);
+                gp.AddArc(rect.X + rect.Width - d, rect.Y + rect.Height - d, d, d, 0, 90);
+                gp.AddArc(rect.X, rect.Y + rect.Height - d, d, d, 90, 90);
+                gp.CloseFigure();
+                return gp;
+            }
+        }
     }
     }
+
+    
+    
