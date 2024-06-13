@@ -201,7 +201,6 @@ namespace ITP4519M
             productOfOrderdata.RowTemplate.Height = 24;
             productOfOrderdata.Size = new Size(580, 184);
             productOfOrderdata.TabIndex = 61;
-            productOfOrderdata.CellContentClick += productOfOrderdata_CellContentClick;
             productOfOrderdata.CellDoubleClick += productOfOrderdata_CellDoubleClick;
             // 
             // productIDColumn
@@ -309,11 +308,11 @@ namespace ITP4519M
             // 
             ordertotallbl.AutoSize = true;
             ordertotallbl.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            ordertotallbl.Location = new Point(450, 521);
+            ordertotallbl.Location = new Point(365, 521);
             ordertotallbl.Name = "ordertotallbl";
-            ordertotallbl.Size = new Size(53, 25);
+            ordertotallbl.Size = new Size(108, 25);
             ordertotallbl.TabIndex = 73;
-            ordertotallbl.Text = "label";
+            ordertotallbl.Text = "Total Price: ";
             ordertotallbl.TextChanged += ordertotallbl_TextChanged;
             // 
             // label7

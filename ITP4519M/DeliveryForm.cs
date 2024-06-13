@@ -10,6 +10,10 @@ using System.Windows.Forms;
 using System.Drawing.Imaging;
 using System.Drawing.Printing;
 using System.Runtime.InteropServices;
+using ProgramMethod;
+using Mysqlx.Crud;
+using System.Web;
+using MySqlX.XDevAPI.Common;
 
 
 
@@ -19,8 +23,8 @@ namespace ITP4519M
     public partial class DeliveryForm : Form
     {
 
-
-
+        private OperationMode _mode;
+        ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
 
         public DeliveryForm()
         {
@@ -35,8 +39,100 @@ namespace ITP4519M
 
         private void DeliveryForm_Load(object sender, EventArgs e)
         {
+        }
+
+
+        public DeliveryForm(OperationMode mode)
+        {
+            InitializeComponent();
+            _mode = mode;
+            //DeliverydateTimePicker1.MinDate = DateTime.Today;
+        }
+
+
+        private void Delivery_Load(object sender, EventArgs e)
+        {
+            switch (_mode)
+            {
+                case OperationMode.View:
+                    SetReadOnly(true);
+                    break;
+                case OperationMode.New:
+                    //ClearForm();
+                    //SetReadOnly(false);
+                    break;
+                    //case OperationMode.Edit:
+                    //    SetReadOnly(false);
+                    //    break;
+            }
+        }
+
+
+        public void viewDeliveryNote(string deliveryID, String orderID)
+        {
+
+            try
+            {   //delivery, orderitem
+                DataTable deliveryDetails = programMethod.getDeliveryDetails(deliveryID);
+                DataTable orderDetails = programMethod.getOrderDetails(orderID);
+                DataTable orderItemDeatails = programMethod.getOrderItemDetailForDelivery(orderID);
+
+
+                if (deliveryDetails != null)
+                {
+                    this.deliveryOrderidbox.Text = orderID;
+                    this.deliveryIDbox.Text = deliveryID;
+                    this.deliveryDatebox.Text = deliveryDetails.Rows[0]["DeliveryDate"].ToString();
+                    this.deliveryWeightBox.Text = deliveryDetails.Rows[0]["TotalOfWeigth"].ToString();
+                    this.deliveryQuqntiyFollow.Text = orderItemDeatails.Rows[0]["FollowUpQuantity"].ToString();// 總數之前加今次
+                    //this.phoneNumBox.Text = dealerDetails.Rows[0]["DealerPhoneNum"].ToString();//Phone Number
+                    this.deliveryQuantityDeliverdbox.Text = deliveryDetails.Rows[0]["QuantityDelieverd"].ToString();//一次delivery嘅總數
+                    this.deliveryPreQtyBox.Text = deliveryDetails.Rows[0]["QuantityDelieverd"].ToString();
+                    this.deliveryAddressbox.Text = orderDetails.Rows[0]["DeliveryAddress"].ToString();
+
+                    //Should use deliveryformData.DataSource instead of loop
+                    this.deliveryformData.Rows.Add(orderItemDeatails.Rows[0]["ProductID"].ToString(), orderItemDeatails.Rows[0]["ProductName"].ToString(), orderItemDeatails.Rows[0]["ActualDespatchQuantity"]);
+                }
+                else
+                {
+                    MessageBox.Show("Deliery Details not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void SetReadOnly(bool readOnly)
+        {
+            deliveryOrderidbox.ReadOnly = readOnly;
+            deliveryIDbox.ReadOnly = readOnly;
+            deliveryDatebox.ReadOnly = readOnly;
+            deliveryWeightBox.ReadOnly = readOnly;
+            deliveryQuqntiyFollow.ReadOnly = readOnly;
+            deliveryQuantityDeliverdbox.ReadOnly = readOnly;
+            deliveryPreQtyBox.ReadOnly = readOnly;
+            deliveryAddressbox.ReadOnly =  readOnly;
+            deliveryPhoneBox.ReadOnly = readOnly;
+            deliveryformData.ReadOnly = readOnly;
+
+
+            deliveryOrderidbox.ReadOnly = !readOnly;
+            deliveryIDbox.ReadOnly = !readOnly;
+            deliveryDatebox.ReadOnly = !readOnly;
+            deliveryWeightBox.ReadOnly = !readOnly;
+            deliveryQuqntiyFollow.ReadOnly = !readOnly;
+            deliveryQuantityDeliverdbox.ReadOnly = !readOnly;
+            deliveryPreQtyBox.ReadOnly = !readOnly;
+            deliveryAddressbox.ReadOnly = !readOnly;
+            deliveryPhoneBox.ReadOnly = !readOnly;
+            deliveryformData.ReadOnly = !readOnly;
+
+
 
         }
+
 
         private void label5_Click(object sender, EventArgs e)
         {

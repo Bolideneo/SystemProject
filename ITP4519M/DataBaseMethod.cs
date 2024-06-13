@@ -558,7 +558,7 @@ namespace ITP4519M
                         Weight = reader["Weight"].ToString(),
                         UnitPrice = reader["UnitPrice"].ToString(),
                         CostPrice = reader["CostPrice"].ToString(),
-                        autoOrder = reader["autoOrder"].ToString(),
+                        OutOfStockQty = reader["OutOfStockQty"].ToString(),
                         QuantityInStock = reader["QuantityInStock"].ToString(),
                         DemandStock = reader["DemandStock"].ToString(),
                         ReOrderQty = reader["ReOrderQty"].ToString(),
@@ -582,7 +582,7 @@ namespace ITP4519M
             public string Weight { get; set; }
             public string UnitPrice { get; set; }
             public string CostPrice { get; set; }
-            public string autoOrder { get; set; }
+            public string OutOfStockQty { get; set; }
             public string QuantityInStock { get; set; }
             public string DemandStock { get; set; }
             public string ReOrderQty { get; set; }
@@ -651,11 +651,11 @@ namespace ITP4519M
             return productID.ToString();
         }
         //productID, productName, productCategory, wareHouse, sn, unitPrice, costPrice, weight, autoOrder, quantityInStock,  demand, description, status
-        public bool createNewProduct(string productID, string productname, string productcategory, string binlocation, String sn, string unitprice, string costprice, string weight, string autoOrder, string quantitystock, string demandstock, string description, string status)
+        public bool createNewProduct(string productID, string productname, string productcategory, string binlocation, String sn, string unitprice, string costprice, string weight, string outofStockQty, string quantitystock, string demandstock, string description, string status)
         {
             try
             {
-                string sql = "INSERT INTO product(ProductID, ProductName, SerialNumber, ProductCategory, BinLocation, Weight, UnitPrice, CostPrice, autoOrder, QuantityInStock, DemandStock, Description, Status) VALUES (@pid, @pName, @sn, @pCategory, @binLocation, @weight, @uniPrice, @costPrice, @autoOrder, @quantityStock, @demandStock,  @description, @status)";
+                string sql = "INSERT INTO product(ProductID, ProductName, SerialNumber, ProductCategory, BinLocation, Weight, UnitPrice, CostPrice, OutOfStockQty, QuantityInStock, DemandStock, Description, Status) VALUES (@pid, @pName, @sn, @pCategory, @binLocation, @weight, @uniPrice, @costPrice, @OutOfStockQty, @quantityStock, @demandStock,  @description, @status)";
                 MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
                 cmd.Parameters.AddWithValue("@pid", productID);
                 cmd.Parameters.AddWithValue("@pName", productname);
@@ -665,7 +665,7 @@ namespace ITP4519M
                 cmd.Parameters.AddWithValue("@weight", weight);
                 cmd.Parameters.AddWithValue("@uniPrice", unitprice);
                 cmd.Parameters.AddWithValue("@costPrice", costprice);
-                cmd.Parameters.AddWithValue("@autoOrder", autoOrder);
+                cmd.Parameters.AddWithValue("@OutOfStockQty", outofStockQty);
                 cmd.Parameters.AddWithValue("@quantityStock", quantitystock);
                 cmd.Parameters.AddWithValue("@demandStock", demandstock);
                 cmd.Parameters.AddWithValue("@description", description);
@@ -1002,7 +1002,19 @@ namespace ITP4519M
 
         public DataTable getOrderItemDetails(string orderID)
         {
-            string sql = "SELECT orderitem.ProductID, product.ProductName, orderitem.OrderedQuantity, product.UnitPrice FROM orderitem, product WHERE orderitem.ProductID=product.ProductID AND orderItem.OrderID=@orderID";
+            string sql = "SELECT orderitem.ProductID, product.ProductName,  product.UnitPrice FROM orderitem, product WHERE orderitem.ProductID=product.ProductID AND orderItem.OrderID=@orderID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@orderID", orderID);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
+        public DataTable getOrderItemDetailForDelivery(string orderID)
+        {
+           // string sql = "SELECT orderitem.ProductID, product.ProductName, orderitem.OrderedQuantity, product.UnitPrice, orderitem.FollowUpQuantity FROM orderitem, product WHERE orderitem.ProductID=product.ProductID AND orderItem.OrderID=@orderID";
+            string sql = "SELECT * FROM orderitem, product WHERE orderitem.ProductID=product.ProductID AND orderItem.OrderID=@orderID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@orderID", orderID);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
@@ -1022,6 +1034,16 @@ namespace ITP4519M
             adat.Fill(dataTable);
             return dataTable;
         }
+
+        public void updateProductStatus(string productID, string status)
+        {
+            string sql = "UPDATE product SET Status=@status WHERE ProductID=@productID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@productID", productID);
+            cmd.Parameters.AddWithValue("@status", status);
+            cmd.ExecuteNonQuery();
+        }
+
 
         public String getOrderStatus(string orderID)
         {
@@ -1088,6 +1110,15 @@ namespace ITP4519M
             cmd.ExecuteNonQuery();
         }
 
+        public void ReduceStock(string productID, int qty)
+        {
+            string sql = "UPDATE product SET QuantityInStock=@qty WHERE ProductID=@productID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@productID", productID);
+            cmd.Parameters.AddWithValue("@qty", qty);
+            cmd.ExecuteNonQuery();
+        }
+
         public string getProductQuantity(string productID)
         {
             string sql = "SELECT QuantityInStock FROM product WHERE ProductID=@productID";
@@ -1096,6 +1127,19 @@ namespace ITP4519M
             Object qty = cmd.ExecuteScalar();
             return qty.ToString();
         }
+
+        public DataTable getProductQuantityLevel(string productID)
+        {
+            string sql = "SELECT ReOrderQty,DangerQty, OutOfStockQty FROM product WHERE ProductID=@productID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect()); ;
+            cmd.Parameters.AddWithValue("@productID", productID);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
+
 
         public bool createGRN(string grnID, string POID, string productID, string warehouse, string recQty, string recDate)
         {

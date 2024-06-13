@@ -227,21 +227,31 @@ namespace ITP4519M
                 this.productOfOrderdata.Rows.Remove(orderData);
             }
 
-            //ordertotallbl.Text = "" + programMethod.calProductTotalAmount(productOfOrderdata);
-            float temp = programMethod.calProductTotalAmount(productOfOrderdata);
-            MessageBox.Show(temp.ToString());
+            ordertotallbl.Text = "" + programMethod.calProductTotalAmount(productOfOrderdata);
+            //float temp = programMethod.calProductTotalAmount(productOfOrderdata);
+            //MessageBox.Show(temp.ToString());
         }
 
         private void ordertotallbl_TextChanged(object sender, EventArgs e)
         {
-            ordertotallbl.Text = "" + programMethod.calProductTotalAmount(productOfOrderdata);
+            ordertotallbl.Text = "Total Price: " + programMethod.calProductTotalAmount(productOfOrderdata);
         }
 
-        private void productOfOrderdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData) 
         {
-            MessageBox.Show("HI");
-            float temp = programMethod.calProductTotalAmount(productOfOrderdata);
-            MessageBox.Show(temp.ToString());
+            if (keyData == Keys.Enter) 
+            {
+                if (this.productOfOrderdata.ContainsFocus) 
+                {
+                    this.productOfOrderdata.EndEdit(); 
+                    if (this.productOfOrderdata.CurrentRow.IsNewRow && this.productOfOrderdata.Rows.Count > 1)
+                      this.productOfOrderdata.CurrentCell = this.productOfOrderdata.Rows[this.productOfOrderdata.Rows.Count - 1].Cells[2];
+                    ordertotallbl.Text = "Total Price: " + programMethod.calProductTotalAmount(productOfOrderdata);
+                    return true;  
+                }
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
+
     }
 }

@@ -309,11 +309,11 @@ namespace ProgramMethod
 
 
 
-        public bool createProductinfo(string productName, string productCategory, string wareHouse, string sn, string unitPrice, string costPrice, string weight, string autoOrder, string quantityInStock, string demand, string description, string status)
+        public bool createProductinfo(string productName, string productCategory, string wareHouse, string sn, string unitPrice, string costPrice, string weight, string outofStockQty, string quantityInStock, string demand, string description, string status)
         {
             string productID = productCategory[0] + (int.Parse(dataBaseMethod.getProductID(productCategory[0]).Substring(1)) + 1).ToString("00000");
 
-            while (!dataBaseMethod.createNewProduct(productID, productName, productCategory, wareHouse, sn, unitPrice, costPrice, weight, autoOrder, quantityInStock, demand, description, status))
+            while (!dataBaseMethod.createNewProduct(productID, productName, productCategory, wareHouse, sn, unitPrice, costPrice, weight, outofStockQty, quantityInStock, demand, description, status))
             {
                 MessageBox.Show("something wrong");
                 productID = productCategory[0] + (int.Parse(dataBaseMethod.getProductID(productCategory[0]).Substring(1)) + 1).ToString("00000");
@@ -467,6 +467,11 @@ namespace ProgramMethod
             return dataBaseMethod.getOrderItemDetails(orderID);
         }
 
+        public DataTable getOrderItemDetailForDelivery(string orderID)
+        {
+            return dataBaseMethod.getOrderItemDetailForDelivery(orderID);
+        }
+
         public DataTable getOrderItemProductDeatails(string orderID, string productID)
         {
             return dataBaseMethod.getOrderItemProductDeatails(orderID, productID);
@@ -551,6 +556,80 @@ namespace ProgramMethod
         {
             int temp = int.Parse(dataBaseMethod.getProductQuantity(ProductID)) + int.Parse(qty);
             dataBaseMethod.increaseStock(ProductID, temp.ToString());
+  
+
+            DataTable ReOrderqty = dataBaseMethod.getProductQuantityLevel(ProductID);
+            string ReOrderlevel = ReOrderqty.Rows[0]["ReOrderQty"].ToString();
+            string dangerlevel = ReOrderqty.Rows[0]["DangerQty"].ToString();
+            string outofStocklevel = ReOrderqty.Rows[0]["OutOfStockQty"].ToString();
+
+            int reOrderLevelInt, dangerLevelInt, outOfStockLevelInt;
+            bool isReOrderLevelValid = int.TryParse(ReOrderlevel, out reOrderLevelInt);
+            bool isDangerLevelValid = int.TryParse(dangerlevel, out dangerLevelInt);
+            bool isOutOfStockLevelValid = int.TryParse(outofStocklevel, out outOfStockLevelInt);
+
+            if (!isReOrderLevelValid || !isDangerLevelValid || !isOutOfStockLevelValid)
+            {
+                MessageBox.Show("Error: Invalid product levels in database.");
+                return;
+            }
+
+            if (temp > reOrderLevelInt)
+            {
+                dataBaseMethod.updateProductStatus(ProductID, "Available");
+            }
+            else if (temp <= outOfStockLevelInt)
+            {
+                dataBaseMethod.updateProductStatus(ProductID, "Out of Stock");
+            }
+            else if (temp > outOfStockLevelInt && temp <= dangerLevelInt)
+            {
+                dataBaseMethod.updateProductStatus(ProductID, "Danger");
+            }
+            else
+            {
+                dataBaseMethod.updateProductStatus(ProductID, "ReOrder");
+            }
+
+        }
+        public void ReduceStock(string ProductID, string qty)
+        {
+             int temp = int.Parse(dataBaseMethod.getProductQuantity(ProductID)) - int.Parse(qty);
+                dataBaseMethod.increaseStock(ProductID, temp.ToString());
+
+
+            DataTable ReOrderqty = dataBaseMethod.getProductQuantityLevel(ProductID);
+            string ReOrderlevel = ReOrderqty.Rows[0]["ReOrderQty"].ToString();
+            string dangerlevel = ReOrderqty.Rows[0]["DangerQty"].ToString();
+            string outofStocklevel = ReOrderqty.Rows[0]["OutOfStockQty"].ToString();
+
+            int reOrderLevelInt, dangerLevelInt, outOfStockLevelInt;
+            bool isReOrderLevelValid = int.TryParse(ReOrderlevel, out reOrderLevelInt);
+            bool isDangerLevelValid = int.TryParse(dangerlevel, out dangerLevelInt);
+            bool isOutOfStockLevelValid = int.TryParse(outofStocklevel, out outOfStockLevelInt);
+
+            if (!isReOrderLevelValid || !isDangerLevelValid || !isOutOfStockLevelValid)
+            {
+                MessageBox.Show("Error: Invalid product levels in database.");
+                return;
+            }
+
+            if (temp > reOrderLevelInt)
+            {
+                dataBaseMethod.updateProductStatus(ProductID, "Available");
+            }
+            else if (temp <= outOfStockLevelInt)
+            {
+                dataBaseMethod.updateProductStatus(ProductID, "Out of Stock");
+            }
+            else if (temp > outOfStockLevelInt && temp <= dangerLevelInt)
+            {
+                dataBaseMethod.updateProductStatus(ProductID, "Danger");
+            }
+            else
+            {
+                dataBaseMethod.updateProductStatus(ProductID, "ReOrder");
+            }
 
         }
 

@@ -119,9 +119,10 @@ namespace ITP4519M
                         MessageBox.Show("Purchase ID  Recevied");
                     }
                 }
-                catch
+                catch(Exception ex) 
                 {
-                   MessageBox.Show("GRN error");
+                
+                   MessageBox.Show(ex.Message);
                 }
             }
         }

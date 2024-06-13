@@ -93,78 +93,78 @@ namespace ITP4519M
             CalculateTotalPages();
         }
 
-//        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-//        private static extern IntPtr CreateRoundRectRgn
-// (
-//    int nLeftRect,     // x-coordinate of upper-left corner
-//    int nTopRect,      // y-coordinate of upper-left corner
-//    int nRightRect,    // x-coordinate of lower-right corner
-//    int nBottomRect,   // y-coordinate of lower-right corner
-//    int nWidthEllipse, // height of ellipse
-//    int nHeightEllipse // width of ellipse
-//);
+        //        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        //        private static extern IntPtr CreateRoundRectRgn
+        // (
+        //    int nLeftRect,     // x-coordinate of upper-left corner
+        //    int nTopRect,      // y-coordinate of upper-left corner
+        //    int nRightRect,    // x-coordinate of lower-right corner
+        //    int nBottomRect,   // y-coordinate of lower-right corner
+        //    int nWidthEllipse, // height of ellipse
+        //    int nHeightEllipse // width of ellipse
+        //);
 
-//        [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
-//        private static extern bool DeleteObject(System.IntPtr hObject);
-
-
-//        class RoundTextBox : TextBox
-//        {
-//            [System.Runtime.InteropServices.DllImport("gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-//            private static extern IntPtr CreateRoundRectRgn
-//            (
-//                int nLeftRect, // X-coordinate of upper-left corner or padding at start
-//                int nTopRect,// Y-coordinate of upper-left corner or padding at the top of the textbox
-//                int nRightRect, // X-coordinate of lower-right corner or Width of the object
-//                int nBottomRect,// Y-coordinate of lower-right corner or Height of the object
-//                                //RADIUS, 
-//                int nheightRect, //height of ellipse 
-//                int nweightRect //width of ellipse
-//            );
-
-//            protected override void OnResize(EventArgs e)
-//            {
-//                base.OnResize(e);
-//                this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(2, 3, this.Width, this.Height, 30, 30));
-//            }
-//        }
+        //        [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
+        //        private static extern bool DeleteObject(System.IntPtr hObject);
 
 
+        //        class RoundTextBox : TextBox
+        //        {
+        //            [System.Runtime.InteropServices.DllImport("gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        //            private static extern IntPtr CreateRoundRectRgn
+        //            (
+        //                int nLeftRect, // X-coordinate of upper-left corner or padding at start
+        //                int nTopRect,// Y-coordinate of upper-left corner or padding at the top of the textbox
+        //                int nRightRect, // X-coordinate of lower-right corner or Width of the object
+        //                int nBottomRect,// Y-coordinate of lower-right corner or Height of the object
+        //                                //RADIUS, 
+        //                int nheightRect, //height of ellipse 
+        //                int nweightRect //width of ellipse
+        //            );
 
-//        class RoundedButton : Button
-//        {
-//            public int rdus = 30;
-//            System.Drawing.Drawing2D.GraphicsPath GetRoundPath(RectangleF Rect, int radius)
-//            {
-//                float r2 = radius / 2f;
-//                System.Drawing.Drawing2D.GraphicsPath GraphPath = new System.Drawing.Drawing2D.GraphicsPath();
-//                GraphPath.AddArc(Rect.X, Rect.Y, radius, radius, 180, 90);
-//                GraphPath.AddLine(Rect.X + r2, Rect.Y, Rect.Width - r2, Rect.Y);
-//                GraphPath.AddArc(Rect.X + Rect.Width - radius, Rect.Y, radius, radius, 270, 90);
-//                GraphPath.AddLine(Rect.Width, Rect.Y + r2, Rect.Width, Rect.Height - r2);
-//                GraphPath.AddArc(Rect.X + Rect.Width - radius,
-//                        Rect.Y + Rect.Height - radius, radius, radius, 0, 90);
-//                GraphPath.AddLine(Rect.Width - r2, Rect.Height, Rect.X + r2, Rect.Height);
-//                GraphPath.AddArc(Rect.X, Rect.Y + Rect.Height - radius, radius, radius, 90, 90);
-//                GraphPath.AddLine(Rect.X, Rect.Height - r2, Rect.X, Rect.Y + r2);
-//                GraphPath.CloseFigure();
-//                return GraphPath;
-//            }
-//            protected override void OnPaint(PaintEventArgs e)
-//            {
-//                base.OnPaint(e);
-//                RectangleF Rect = new RectangleF(0, 0, this.Width, this.Height);
-//                using (System.Drawing.Drawing2D.GraphicsPath GraphPath = GetRoundPath(Rect, rdus))
-//                {
-//                    this.Region = new Region(GraphPath);
-//                    using (Pen pen = new Pen(Color.CadetBlue, 1.75f))
-//                    {
-//                        pen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
-//                        e.Graphics.DrawPath(pen, GraphPath);
-//                    }
-//                }
-//            }
-//        }
+        //            protected override void OnResize(EventArgs e)
+        //            {
+        //                base.OnResize(e);
+        //                this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(2, 3, this.Width, this.Height, 30, 30));
+        //            }
+        //        }
+
+
+
+        //        class RoundedButton : Button
+        //        {
+        //            public int rdus = 30;
+        //            System.Drawing.Drawing2D.GraphicsPath GetRoundPath(RectangleF Rect, int radius)
+        //            {
+        //                float r2 = radius / 2f;
+        //                System.Drawing.Drawing2D.GraphicsPath GraphPath = new System.Drawing.Drawing2D.GraphicsPath();
+        //                GraphPath.AddArc(Rect.X, Rect.Y, radius, radius, 180, 90);
+        //                GraphPath.AddLine(Rect.X + r2, Rect.Y, Rect.Width - r2, Rect.Y);
+        //                GraphPath.AddArc(Rect.X + Rect.Width - radius, Rect.Y, radius, radius, 270, 90);
+        //                GraphPath.AddLine(Rect.Width, Rect.Y + r2, Rect.Width, Rect.Height - r2);
+        //                GraphPath.AddArc(Rect.X + Rect.Width - radius,
+        //                        Rect.Y + Rect.Height - radius, radius, radius, 0, 90);
+        //                GraphPath.AddLine(Rect.Width - r2, Rect.Height, Rect.X + r2, Rect.Height);
+        //                GraphPath.AddArc(Rect.X, Rect.Y + Rect.Height - radius, radius, radius, 90, 90);
+        //                GraphPath.AddLine(Rect.X, Rect.Height - r2, Rect.X, Rect.Y + r2);
+        //                GraphPath.CloseFigure();
+        //                return GraphPath;
+        //            }
+        //            protected override void OnPaint(PaintEventArgs e)
+        //            {
+        //                base.OnPaint(e);
+        //                RectangleF Rect = new RectangleF(0, 0, this.Width, this.Height);
+        //                using (System.Drawing.Drawing2D.GraphicsPath GraphPath = GetRoundPath(Rect, rdus))
+        //                {
+        //                    this.Region = new Region(GraphPath);
+        //                    using (Pen pen = new Pen(Color.CadetBlue, 1.75f))
+        //                    {
+        //                        pen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
+        //                        e.Graphics.DrawPath(pen, GraphPath);
+        //                    }
+        //                }
+        //            }
+        //        }
 
         public void ButtonLocation(string departmentID, string title)
         {
@@ -393,7 +393,7 @@ namespace ITP4519M
 
         }
 
- 
+
 
         private void settingbtn_Click(object sender, EventArgs e)
         {
@@ -546,7 +546,7 @@ namespace ITP4519M
 
         private void registerFormOperationCompleted(object sender, EventArgs e)
         {
-            userData.DataSource = programMethod.GetAccountCurrentRecords(CurrentPageIndex,PgSize);
+            userData.DataSource = programMethod.GetAccountCurrentRecords(CurrentPageIndex, PgSize);
         }
 
         private void viewAccountbtn_Click(object sender, EventArgs e)
@@ -924,6 +924,11 @@ namespace ITP4519M
         }
 
 
+        private void stockSearchBox_TextChanged(object sender, EventArgs e)
+        {
+            stockData.DataSource = programMethod.searchProductInformation(stockSearchBox.Text.Trim());
+        }
+
         private void orderdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -1048,8 +1053,31 @@ namespace ITP4519M
 
         private void deliveryData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DeliveryForm deliveryForm = new DeliveryForm();
-            deliveryForm.ShowDialog();
+
+
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+            {
+
+                this.deliveryData.Rows[e.RowIndex].Cells["deliverycheckColumn"].Value = true;
+                deliveryindex = e.RowIndex;
+                DataGridViewRow selectRow = this.deliveryData.Rows[deliveryindex];
+                deliveryID = selectRow.Cells[1].Value.ToString();
+                orderID = selectRow.Cells[2].Value.ToString();
+
+
+
+                foreach (DataGridViewRow row in userData.Rows)
+                {
+                    if (row.Index == e.RowIndex)
+                    {
+                        row.Cells["deliverycheckColumn"].Value = !Convert.ToBoolean(row.Cells["deliverycheckColumn"].EditedFormattedValue);
+                    }
+                    else
+                    {
+                        row.Cells["deliverycheckColumn"].Value = false;
+                    }
+                }
+            }
         }
 
         private void grndata_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -1150,6 +1178,26 @@ namespace ITP4519M
             this.CurrentPageIndex = TotalPage;
             this.userData.DataSource = programMethod.GetAccountCurrentRecords(this.CurrentPageIndex, PgSize);
         }
+
+        private void deliveryViewDNbtn_Click(object sender, EventArgs e)
+        {
+            if (deliveryindex == -1)
+            {
+                MessageBox.Show("Please Select One Delivery");
+            }
+            else
+            {
+                //SalesOrder salesOrder = new SalesOrder(OperationMode.View);
+                //salesOrder.orderView(orderID, dealerID);
+                //salesOrder.ShowDialog();
+
+                DeliveryForm deliveryform = new DeliveryForm();
+                deliveryform.viewDeliveryNote(deliveryID, orderID);
+                deliveryform.ShowDialog();
+            }
+        }
+
+
     }
 }
     

@@ -73,7 +73,7 @@ namespace ITP4519M
                     this.productCostbox.Text = productDetails.CostPrice;
 
                     this.productWeightbox.Text = productDetails.Weight;
-                    this.productAutoOrderbox.Text = productDetails.autoOrder;
+                    this.productOutofStockbox.Text = productDetails.OutOfStockQty;
                     this.productInStockbox.Text = productDetails.QuantityInStock;
                     this.productReOrderbox.Text = productDetails.ReOrderQty;
                     this.productDangerbox.Text = productDetails.DangerQty;
@@ -102,7 +102,7 @@ namespace ITP4519M
             productUnitpricebox.ReadOnly = readOnly;
             productCostbox.ReadOnly = readOnly;
             productWeightbox.ReadOnly = readOnly;
-            productAutoOrderbox.ReadOnly = readOnly;
+            productOutofStockbox.ReadOnly = readOnly;
             productInStockbox.ReadOnly = readOnly;
             productReOrderbox.ReadOnly = readOnly;
             productDangerbox.ReadOnly = readOnly;
@@ -115,7 +115,7 @@ namespace ITP4519M
             productUnitpricebox.Enabled = !readOnly;
             productCostbox.Enabled = !readOnly;
             productWeightbox.Enabled = !readOnly;
-            productAutoOrderbox.Enabled = !readOnly;
+            productOutofStockbox.Enabled = !readOnly;
             productInStockbox.Enabled = !readOnly;
             productReOrderbox.Enabled = !readOnly;
             productDangerbox.Enabled = !readOnly;
@@ -157,7 +157,7 @@ namespace ITP4519M
         {
 
             string selected = this.productCategorybox.GetItemText(this.productCategorybox.SelectedItem);
-            if (programMethod.createProductinfo(productNamebox.Text.Trim(), selected, productWarehousebox.Text.Trim(), productserialbox.Text.Trim(), productUnitpricebox.Text.Trim(), productCostbox.Text.Trim(), productWeightbox.Text.Trim(), productAutoOrderbox.Text.Trim(), productInStockbox.Text.Trim(), productdemandbox.Text.Trim(), productDescriptionbox.Text.Trim(), productStatusbox.GetItemText(this.productStatusbox.SelectedItem)))
+            if (programMethod.createProductinfo(productNamebox.Text.Trim(), selected, productWarehousebox.Text.Trim(), productserialbox.Text.Trim(), productUnitpricebox.Text.Trim(), productCostbox.Text.Trim(), productWeightbox.Text.Trim(), productOutofStockbox.Text.Trim(), productInStockbox.Text.Trim(), productdemandbox.Text.Trim(), productDescriptionbox.Text.Trim(), productStatusbox.GetItemText(this.productStatusbox.SelectedItem)))
             {
 
                 productNamebox.Text = "";
@@ -167,7 +167,7 @@ namespace ITP4519M
                 productUnitpricebox.Text = "";
                 productCostbox.Text = "";
                 productWeightbox.Text = "";
-                productAutoOrderbox.Text = "";
+                productOutofStockbox.Text = "";
                 productInStockbox.Text = "";
                 productReOrderbox.Text = "";
                 productDangerbox.Text = "";
@@ -214,7 +214,7 @@ namespace ITP4519M
             var productDetails = programMethod.getProductDetails(productID);
             string productid = productDetails.ProductID;
             string selected = this.productCategorybox.GetItemText(this.productCategorybox.SelectedItem);
-            if (programMethod.updateProductinfo(productid, productNamebox.Text.Trim(), selected, productWarehousebox.Text.Trim(), productserialbox.Text.Trim(), productUnitpricebox.Text.Trim(), productCostbox.Text.Trim(), productWeightbox.Text.Trim(), productAutoOrderbox.Text.Trim(), productInStockbox.Text.Trim(),  productdemandbox.Text.Trim(), productDescriptionbox.Text.Trim(), productStatusbox.GetItemText(this.productStatusbox.SelectedItem)))
+            if (programMethod.updateProductinfo(productid, productNamebox.Text.Trim(), selected, productWarehousebox.Text.Trim(), productserialbox.Text.Trim(), productUnitpricebox.Text.Trim(), productCostbox.Text.Trim(), productWeightbox.Text.Trim(), productOutofStockbox.Text.Trim(), productInStockbox.Text.Trim(),  productdemandbox.Text.Trim(), productDescriptionbox.Text.Trim(), productStatusbox.GetItemText(this.productStatusbox.SelectedItem)))
             {
 
                 MessageBox.Show("Saved");
