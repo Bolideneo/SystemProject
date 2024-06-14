@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.ApplicationServices;
@@ -143,10 +144,112 @@ namespace ITP4519M
 
         
         private void createAccountBtn_Click(object sender, EventArgs e)
-
         {
+            string username = registerUsernameBox.Text.Trim();
+            string password = registerPasswordBox.Text.Trim();
+            string confirmPassword = registerPasswordAgainBox.Text.Trim();
+            string displayName = registerDisplaynameBox.Text.Trim();
+            string title = titleBox.Text.Trim();
+            string phoneNum = phoneNumBox.Text.Trim();
+            string email = mailBox.Text.Trim();
+            string department = departBox.GetItemText(this.departBox.SelectedItem);
 
-            if (programMethod.createUserAccount(registerUsernameBox.Text.Trim(), registerPasswordBox.Text.Trim(), registerPasswordAgainBox.Text.Trim(), registerDisplaynameBox.Text.Trim() , titleBox.Text.Trim(), phoneNumBox.Text.Trim(), mailBox.Text.Trim(), departBox.GetItemText(this.departBox.SelectedItem)))
+
+            if (string.IsNullOrEmpty(username))
+            {
+                MessageBox.Show("Please enter a username.");
+                registerUsernameBox.Focus();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(displayName))
+            {
+                MessageBox.Show("Please enter a display name.");
+                registerDisplaynameBox.Focus();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Please enter a password.");
+                registerPasswordBox.Focus();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(confirmPassword))
+            {
+                MessageBox.Show("Please confirm your password.");
+                registerPasswordAgainBox.Focus();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(title))
+            {
+                MessageBox.Show("Please enter a title.");
+                titleBox.Focus();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(email))
+            {
+                MessageBox.Show("Please enter an email address.");
+                mailBox.Focus();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(phoneNum))
+            {
+                MessageBox.Show("Please enter a phone number.");
+                phoneNumBox.Focus();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(department))
+            {
+                MessageBox.Show("Please select a department.");
+                departBox.Focus();
+                return;
+            }
+
+            if (!IsPasswordValid(password))
+            {
+                MessageBox.Show("Password must be at least 8 characters long with uppercase, lowercase, digit, and special character.");
+                registerPasswordBox.Text = "";
+                registerPasswordAgainBox.Text = "";
+                return;
+            }
+
+            if (password != confirmPassword)
+            {
+                MessageBox.Show("Passwords do not match!");
+                registerPasswordBox.Text = "";
+                registerPasswordAgainBox.Text = "";
+                return;
+            }
+
+            if (!IsValidEmail(email))
+            {
+                MessageBox.Show("Please enter a valid email address.");
+                mailBox.Text = "";
+                return;
+            }
+
+            if (!IsValidPhoneNumber(phoneNum))
+            {
+                MessageBox.Show("Please enter a valid phone number.");
+                phoneNumBox.Text = "";
+                return;
+            }
+
+            if (programMethod.createUserAccount(
+                username,
+                password,
+                confirmPassword,
+                displayName,
+                title,
+                phoneNum,
+                email,
+                department))
             {
                 MessageBox.Show("User Successfully Created");
                 registerUsernameBox.Text = "";
@@ -157,10 +260,33 @@ namespace ITP4519M
             }
             else
             {
-                MessageBox.Show("Password is not match!");
-                registerPasswordBox.Text = "";
-                registerPasswordAgainBox.Text = "";
+
             }
+        }
+
+        private bool IsPasswordValid(string password)
+        {
+
+            var passwordPattern = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$";
+            return Regex.IsMatch(password, passwordPattern);
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private bool IsValidPhoneNumber(string phoneNum)
+        {
+            return phoneNum.Length >= 6 && phoneNum.Length <= 13;
         }
 
         private void registerUsernameBox_TextChanged(object sender, EventArgs e)
@@ -225,8 +351,100 @@ namespace ITP4519M
         {
             var userDetails = programMethod.getUserDetails(userID);
             string userid = userDetails.UserID;
+            string username = registerUsernameBox.Text.Trim();
+            string password = registerPasswordBox.Text.Trim();
+            string confirmPassword = registerPasswordAgainBox.Text.Trim();
+            string displayName = registerDisplaynameBox.Text.Trim();
+            string title = titleBox.Text.Trim();
+            string phoneNum = phoneNumBox.Text.Trim();
+            string email = mailBox.Text.Trim();
+            string department = departBox.GetItemText(this.departBox.SelectedItem);
 
-            if (programMethod.updateUserInfor(userid, registerUsernameBox.Text.Trim(), registerPasswordBox.Text.Trim(), registerPasswordAgainBox.Text.Trim(), registerDisplaynameBox.Text.Trim(), departBox.GetItemText(this.departBox.SelectedItem), titleBox.Text.Trim(), phoneNumBox.Text.Trim(), mailBox.Text.Trim()))
+            if (string.IsNullOrEmpty(username))
+            {
+                MessageBox.Show("Please enter a username.");
+                registerUsernameBox.Focus();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(displayName))
+            {
+                MessageBox.Show("Please enter a display name.");
+                registerDisplaynameBox.Focus();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Please enter a password.");
+                registerPasswordBox.Focus();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(confirmPassword))
+            {
+                MessageBox.Show("Please confirm your password.");
+                registerPasswordAgainBox.Focus();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(title))
+            {
+                MessageBox.Show("Please enter a title.");
+                titleBox.Focus();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(email))
+            {
+                MessageBox.Show("Please enter an email address.");
+                mailBox.Focus();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(phoneNum))
+            {
+                MessageBox.Show("Please enter a phone number.");
+                phoneNumBox.Focus();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(department))
+            {
+                MessageBox.Show("Please select a department.");
+                departBox.Focus();
+                return;
+            }
+
+            if (!IsPasswordValid(password))
+            {
+                MessageBox.Show("Password must be at least 8 characters long with uppercase, lowercase, digit, and special character.");
+                registerPasswordBox.Text = "";
+                registerPasswordAgainBox.Text = "";
+                return;
+            }
+
+            if (password != confirmPassword)
+            {
+                MessageBox.Show("Passwords do not match!");
+                registerPasswordBox.Text = "";
+                registerPasswordAgainBox.Text = "";
+                return;
+            }
+
+            if (!IsValidEmail(email))
+            {
+                MessageBox.Show("Please enter a valid email address.");
+                return;
+            }
+
+            if (!IsValidPhoneNumber(phoneNum))
+            {
+                MessageBox.Show("Please enter a valid phone number.");
+                return;
+            }
+
+            if (programMethod.updateUserInfor(userid, username, password, confirmPassword, displayName, department, title, phoneNum, email))
             {
 
                 MessageBox.Show("Saved");
@@ -235,7 +453,7 @@ namespace ITP4519M
             else
             {
 
-                MessageBox.Show("Please input same password");
+                
             }
             
         }

@@ -27,6 +27,8 @@ using System.Runtime.InteropServices;
 using System.Drawing.Drawing2D;
 using System.ComponentModel;
 using System.Drawing.Text;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 
 
@@ -105,17 +107,13 @@ namespace ProgramMethod
             return permission;
         }
 
-        
 
+      //  createUserAccount(username, password, passwordAgain, displayName, title, phoneNum, email, department)
         public bool createUserAccount(string username, string password, string passwordagain, string dispalynanme, string title, string phonenum, string email, string department)
         {
 
-            if (password != passwordagain)
-            {
-                return false;
-            }
-
             string deptID = dataBaseMethod.getDeptID(department);
+
             string userID = (int.Parse(dataBaseMethod.getUserID()) + 1).ToString("0000");
              if (dataBaseMethod.createUser(userID, username, EncodePasswordToBase64(password), dispalynanme, deptID, title, phonenum, email, department))
                 {
@@ -197,7 +195,7 @@ namespace ProgramMethod
         {
             return dataBaseMethod.overallOrderinfo();
         }
-
+        //updateUserInfor(userid, username, password, confirmPassword, displayName, department, title, phoneNum, email)
         public bool updateUserInfor(string userid, string userName, string password, string passwordagain, string dispalyName, string department, string title, string phonenum, string email)
         {
             string departmentID = dataBaseMethod.getDepartmentIDByDepartName(department);
@@ -205,6 +203,7 @@ namespace ProgramMethod
 
             if (password != passwordagain)
             {
+                MessageBox.Show("Please input same password");
                 return false;
             }
 
