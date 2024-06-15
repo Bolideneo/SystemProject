@@ -7,7 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static ITP4519M.DataBaseMethod;
 using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace ITP4519M
 {
@@ -44,8 +47,46 @@ namespace ITP4519M
         {
             var supplierDetails = programMethod.getSupplierDetails(supplierID);
             string supplierid = supplierDetails.SupplierID;
+            string suppliername = suppliernameBox.Text.Trim();
+            string supplierMail = SupplierMailBox.Text.Trim();
+            string supplierPhoneNum = SupplierPhoneNumBox.Text.Trim();
+            string supplierAddress = supplierAddressBox.Text.Trim();
+            if (string.IsNullOrEmpty(suppliername))
+            {
+                MessageBox.Show("Please enter a supplier name.");
+                suppliernameBox.Focus();
+                return;
+            }
+            if (string.IsNullOrEmpty(supplierMail))
+            {
+                MessageBox.Show("Please enter a supplier mail address.");
+                SupplierMailBox.Focus();
+                return;
+            }
+            if (string.IsNullOrEmpty(supplierPhoneNum))
+            {
+                MessageBox.Show("Please enter a supplier phone number.");
+                SupplierPhoneNumBox.Focus();
+                return;
+            }
+            if (string.IsNullOrEmpty(supplierAddress))
+            {
+                MessageBox.Show("Please enter a supplier address.");
+                supplierAddressBox.Focus();
+                return;
+            }
+            if (!IsValidEmail(supplierMail))
+            {
+                MessageBox.Show("Please enter a valid email address.");
+                return;
+            }
 
-            if (programMethod.updateSupplierInfo(supplierid, suppliernameBox.Text.Trim(), SupplierMailBox.Text.Trim(), SupplierPhoneNumBox.Text.Trim(), supplierAddressBox.Text.Trim()))
+            if (!IsValidPhoneNumber(supplierPhoneNum))
+            {
+                MessageBox.Show("Please enter a valid phone number.");
+                return;
+            }
+            if (programMethod.updateSupplierInfo(supplierid, suppliername, supplierMail, supplierPhoneNum, supplierAddress))
             {
 
                 MessageBox.Show("Saved");
@@ -53,7 +94,6 @@ namespace ITP4519M
             else
             {
 
-                MessageBox.Show("Please input correct information");
             }
         }
 
@@ -87,9 +127,48 @@ namespace ITP4519M
 
         private void createSupplierBtn_Click(object sender, EventArgs e)
         {
-            if (programMethod.createSupplier(suppliernameBox.Text.Trim(), SupplierMailBox.Text.Trim(), SupplierPhoneNumBox.Text.Trim(), supplierAddressBox.Text.Trim()))
+            string suppliername = suppliernameBox.Text.Trim();
+            string supplierMail = SupplierMailBox.Text.Trim();
+            string supplierPhoneNum = SupplierPhoneNumBox.Text.Trim();
+            string supplierAddress = supplierAddressBox.Text.Trim();
+            if (string.IsNullOrEmpty(suppliername))
             {
-                MessageBox.Show("User Successfully Created");
+                MessageBox.Show("Please enter a supplier name.");
+                suppliernameBox.Focus();
+                return;
+            }
+            if (string.IsNullOrEmpty(supplierMail))
+            {
+                MessageBox.Show("Please enter a supplier mail address.");
+                SupplierMailBox.Focus();
+                return;
+            }
+            if (string.IsNullOrEmpty(supplierPhoneNum))
+            {
+                MessageBox.Show("Please enter a supplier phone number.");
+                SupplierPhoneNumBox.Focus();
+                return;
+            }
+            if (string.IsNullOrEmpty(supplierAddress))
+            {
+                MessageBox.Show("Please enter a supplier address.");
+                supplierAddressBox.Focus();
+                return;
+            }
+            if (!IsValidEmail(supplierMail))
+            {
+                MessageBox.Show("Please enter a valid email address.");
+                return;
+            }
+
+            if (!IsValidPhoneNumber(supplierPhoneNum))
+            {
+                MessageBox.Show("Please enter a valid phone number.");
+                return;
+            }
+            if (programMethod.createSupplier(suppliername, supplierMail, supplierPhoneNum, supplierAddress))
+            {
+                MessageBox.Show("Supplier Contacts Successfully Added");
                 suppliernameBox.Text = "";
                 SupplierMailBox.Text = "";
                 SupplierPhoneNumBox.Text = "";
@@ -97,8 +176,29 @@ namespace ITP4519M
             }
             else
             {
-                MessageBox.Show("Please input correct information");
+
+            }
+
+
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
             }
         }
+
+        private bool IsValidPhoneNumber(string phoneNum)
+        {
+            return phoneNum.Length >= 6 && phoneNum.Length <= 13;
+        }
+
     }
 }

@@ -223,19 +223,19 @@ namespace ITP4519M
                 {
         
 
-                    if (ExistsInDatabase(connection, "UserName", username))
+                    if (AccountExistsInDatabase(connection, "UserName", username))
                     {
                         MessageBox.Show("The username already exists. Please choose a different username.");
                         return false;
                     }
 
-                    if (ExistsInDatabase(connection, "EmailAddress", email))
+                    if (AccountExistsInDatabase(connection, "EmailAddress", email))
                     {
                         MessageBox.Show("The email address already exists. Please use a different email address.");
                         return false;
                     }
 
-                    if (ExistsInDatabase(connection, "PhoneNum", phonenum))
+                    if (AccountExistsInDatabase(connection, "PhoneNum", phonenum))
                     {
                         MessageBox.Show("The phone number already exists. Please use a different phone number.");
                         return false;
@@ -268,7 +268,7 @@ namespace ITP4519M
             return false;
         }
 
-        private bool ExistsInDatabase(MySqlConnection connection, string column, string value, string userID = null)
+        private bool AccountExistsInDatabase(MySqlConnection connection, string column, string value, string userID = null)
         {
             string sql = $"SELECT COUNT(*) FROM staff WHERE {column} = @value";
             if (!string.IsNullOrEmpty(userID))
@@ -645,19 +645,19 @@ namespace ITP4519M
                 using (var connection = ServerConnect())
                 {
 
-                    if (ExistsInDatabase(connection, "UserName", userName, userID))
+                    if (AccountExistsInDatabase(connection, "UserName", userName, userID))
                     {
                         MessageBox.Show("The username already exists. Please choose a different username.");
                         return false;
                     }
 
-                    if (ExistsInDatabase(connection, "EmailAddress", email, userID))
+                    if (AccountExistsInDatabase(connection, "EmailAddress", email, userID))
                     {
                         MessageBox.Show("The email address already exists. Please use a different email address.");
                         return false;
                     }
 
-                    if (ExistsInDatabase(connection, "PhoneNum", phonenum, userID))
+                    if (AccountExistsInDatabase(connection, "PhoneNum", phonenum, userID))
                     {
                         MessageBox.Show("The phone number already exists. Please use a different phone number.");
                         return false;
@@ -785,17 +785,39 @@ namespace ITP4519M
         {
             try
             {
-                string sql = "INSERT INTO dealer(DealerID, DealerName, DealerCompanyName, DealerPhoneNum, DealerEmailAddress) VALUES(@DealerID, @DealerName, @DealerCompanyName, @DealerPhoneNum, @DealerEmailAddress)";
-                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-                cmd.Parameters.AddWithValue("@DealerID", dealerID);
-                cmd.Parameters.AddWithValue("@DealerName", dealername);
-                cmd.Parameters.AddWithValue("@DealerCompanyName", dealerCompanyName);
-                cmd.Parameters.AddWithValue("@DealerEmailAddress", dealerMailBox);
-                cmd.Parameters.AddWithValue("@DealerPhoneNum", dealerPhoneNumBox);
-                //  cmd.Parameters.AddWithValue("@DealerAddressBox", dealerAddressBox);
+                using (var connection = ServerConnect())
+                {
 
-                if (cmd.ExecuteNonQuery() > 0)
-                    return true;
+                    if (DealerExistsInDatabase(connection, "dealer", "DealerName", dealername))
+                    {
+                        MessageBox.Show("The dealer name already exists. Please choose a different name.");
+                        return false;
+                    }
+
+                    if (DealerExistsInDatabase(connection, "dealer", "DealerEmailAddress", dealerMailBox))
+                    {
+                        MessageBox.Show("The dealer email already exists. Please use a different email address.");
+                        return false;
+                    }
+
+                    if (DealerExistsInDatabase(connection, "dealer", "DealerPhoneNum", dealerPhoneNumBox))
+                    {
+                        MessageBox.Show("The dealer phone number already exists. Please use a different phone number.");
+                        return false;
+                    }
+
+                    string sql = "INSERT INTO dealer (DealerID, DealerName, DealerCompanyName, DealerPhoneNum, DealerEmailAddress) VALUES (@DealerID, @DealerName, @DealerCompanyName, @DealerPhoneNum, @DealerEmailAddress)";
+                    MySqlCommand cmd = new MySqlCommand(sql, connection);
+                    cmd.Parameters.AddWithValue("@DealerID", dealerID);
+                    cmd.Parameters.AddWithValue("@DealerName", dealername);
+                    cmd.Parameters.AddWithValue("@DealerCompanyName", dealerCompanyName);
+                    cmd.Parameters.AddWithValue("@DealerEmailAddress", dealerMailBox);
+                    cmd.Parameters.AddWithValue("@DealerPhoneNum", dealerPhoneNumBox);
+                    // cmd.Parameters.AddWithValue("@DealerAddressBox", dealerAddressBox);
+
+                    if (cmd.ExecuteNonQuery() > 0)
+                        return true;
+                }
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
@@ -807,43 +829,104 @@ namespace ITP4519M
         {
             try
             {
+                using (var connection = ServerConnect())
+                {
 
-                string sql = "UPDATE dealer SET DealerName = @dealerName, DealerCompanyName = @dealerCompanyName, DealerPhoneNum = @dealerPhoneNum, DealerEmailAddress = @dealerEmailAddress WHERE DealerID = @dealerID";
+                    if (DealerExistsInDatabase(connection, "dealer", "DealerName", dealerName, "DealerID", dealerid))
+                    {
+                        MessageBox.Show("The dealer name already exists. Please choose a different name.");
+                        return false;
+                    }
 
-                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-                cmd.Parameters.AddWithValue("@dealerID", dealerid);
-                cmd.Parameters.AddWithValue("@dealerName", dealerName);
-                cmd.Parameters.AddWithValue("@dealerCompanyName", dealerCompanyName);
-                cmd.Parameters.AddWithValue("@dealerPhoneNum", dealerPhoneNum);
-                cmd.Parameters.AddWithValue("@dealerEmailAddress", dealerMail);
-                //  cmd.Parameters.AddWithValue("@DealerAddress", dealerAddress);
+                    if (DealerExistsInDatabase(connection, "dealer", "DealerCompanyName", dealerCompanyName, "DealerID", dealerid))
+                    {
+                        MessageBox.Show("The company name already exists. Please choose a different company name.");
+                        return false;
+                    }
 
+                    if (DealerExistsInDatabase(connection, "dealer", "DealerEmailAddress", dealerMail, "DealerID", dealerid))
+                    {
+                        MessageBox.Show("The dealer email already exists. Please use a different email address.");
+                        return false;
+                    }
 
+                    if (DealerExistsInDatabase(connection, "dealer", "DealerPhoneNum", dealerPhoneNum, "DealerID", dealerid))
+                    {
+                        MessageBox.Show("The dealer phone number already exists. Please use a different phone number.");
+                        return false;
+                    }
 
-                if (cmd.ExecuteNonQuery() > 0)
-                    return true;
+                    string sql = "UPDATE dealer SET DealerName = @dealerName, DealerCompanyName = @dealerCompanyName, DealerPhoneNum = @dealerPhoneNum, DealerEmailAddress = @dealerEmailAddress WHERE DealerID = @dealerID";
+                    MySqlCommand cmd = new MySqlCommand(sql, connection);
+                    cmd.Parameters.AddWithValue("@dealerID", dealerid);
+                    cmd.Parameters.AddWithValue("@dealerName", dealerName);
+                    cmd.Parameters.AddWithValue("@dealerCompanyName", dealerCompanyName);
+                    cmd.Parameters.AddWithValue("@dealerPhoneNum", dealerPhoneNum);
+                    cmd.Parameters.AddWithValue("@dealerEmailAddress", dealerMail);
+                    // cmd.Parameters.AddWithValue("@DealerAddress", dealerAddress);
+
+                    if (cmd.ExecuteNonQuery() > 0)
+                        return true;
+                }
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
                 Console.WriteLine("An exception occurred: " + ex.Message);
             }
             return false;
+        }
+
+        private bool DealerExistsInDatabase(MySqlConnection connection, string table, string column, string value, string idColumn = null, string idValue = null)
+        {
+            string sql = $"SELECT COUNT(*) FROM {table} WHERE {column} = @value";
+            if (!string.IsNullOrEmpty(idColumn) && !string.IsNullOrEmpty(idValue))
+            {
+                sql += $" AND {idColumn} != @idValue";
+            }
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+            cmd.Parameters.AddWithValue("@value", value);
+            if (!string.IsNullOrEmpty(idColumn) && !string.IsNullOrEmpty(idValue))
+            {
+                cmd.Parameters.AddWithValue("@idValue", idValue);
+            }
+            return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
         }
 
         public bool createSupplier(string SupplierID, string Suppliername, string SupplierMailBox, string SupplierPhoneNumBox, string SupplierAddressBox)
         {
             try
             {
-                string sql = "INSERT INTO Supplier(SupplierID, SupplierName,  SupplierPhoneNum, SupplierEmail) VALUES(@SupplierID, @SupplierName, @SupplierPhoneNum, @SupplierEmail)";
-                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-                cmd.Parameters.AddWithValue("@SupplierID", SupplierID);
-                cmd.Parameters.AddWithValue("@SupplierName", Suppliername);
-                cmd.Parameters.AddWithValue("@SupplierEmail", SupplierMailBox);
-                cmd.Parameters.AddWithValue("@SupplierPhoneNum", SupplierPhoneNumBox);
+                using (var connection = ServerConnect())
+                {
 
+                    if (SupplierExistsInDatabase(connection, "SupplierName", Suppliername))
+                    {
+                        MessageBox.Show("The supplier name already exists. Please choose a different name.");
+                        return false;
+                    }
 
-                if (cmd.ExecuteNonQuery() > 0)
-                    return true;
+                    if (SupplierExistsInDatabase(connection, "SupplierEmail", SupplierMailBox))
+                    {
+                        MessageBox.Show("The supplier email already exists. Please use a different email address.");
+                        return false;
+                    }
+
+                    if (SupplierExistsInDatabase(connection, "SupplierPhoneNum", SupplierPhoneNumBox))
+                    {
+                        MessageBox.Show("The supplier phone number already exists. Please use a different phone number.");
+                        return false;
+                    }
+
+                    string sql = "INSERT INTO Supplier(SupplierID, SupplierName, SupplierPhoneNum, SupplierEmail) VALUES(@SupplierID, @SupplierName, @SupplierPhoneNum, @SupplierEmail)";
+                    MySqlCommand cmd = new MySqlCommand(sql, connection);
+                    cmd.Parameters.AddWithValue("@SupplierID", SupplierID);
+                    cmd.Parameters.AddWithValue("@SupplierName", Suppliername);
+                    cmd.Parameters.AddWithValue("@SupplierEmail", SupplierMailBox);
+                    cmd.Parameters.AddWithValue("@SupplierPhoneNum", SupplierPhoneNumBox);
+
+                    if (cmd.ExecuteNonQuery() > 0)
+                        return true;
+                }
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
@@ -851,25 +934,44 @@ namespace ITP4519M
             }
             return false;
         }
+
         public bool updateSupplierInfo(string supplierid, String supplierName, string supplierMail, string supplierPhoneNum, string supplierAddress)
         {
             try
             {
+                using (var connection = ServerConnect())
+                {
+                    connection.Open();
 
-                string sql = "UPDATE supplier SET SupplierName = @SupplierName, SupplierPhoneNum = @SupplierPhoneNum, SupplierEmail = @SupplierEmail, SupplierAddress = @SupplierAddress WHERE SupplierID = @SupplierID";
+                    if (SupplierExistsInDatabase(connection, "SupplierName", supplierName, supplierid))
+                    {
+                        MessageBox.Show("The supplier name already exists. Please choose a different name.");
+                        return false;
+                    }
 
-                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-                cmd.Parameters.AddWithValue("@SupplierID", supplierid);
-                cmd.Parameters.AddWithValue("@SupplierName", supplierName);
-                cmd.Parameters.AddWithValue("@SupplierPhoneNum", supplierPhoneNum);
-                cmd.Parameters.AddWithValue("@SupplierEmail", supplierMail);
-                cmd.Parameters.AddWithValue("@SupplierAddress", supplierAddress);
-                //  cmd.Parameters.AddWithValue("@DealerAddress", dealerAddress);
+                    if (SupplierExistsInDatabase(connection, "SupplierEmail", supplierMail, supplierid))
+                    {
+                        MessageBox.Show("The supplier email already exists. Please use a different email address.");
+                        return false;
+                    }
 
+                    if (SupplierExistsInDatabase(connection, "SupplierPhoneNum", supplierPhoneNum, supplierid))
+                    {
+                        MessageBox.Show("The supplier phone number already exists. Please use a different phone number.");
+                        return false;
+                    }
 
+                    string sql = "UPDATE Supplier SET SupplierName = @SupplierName, SupplierPhoneNum = @SupplierPhoneNum, SupplierEmail = @SupplierEmail, SupplierAddress = @SupplierAddress WHERE SupplierID = @SupplierID";
+                    MySqlCommand cmd = new MySqlCommand(sql, connection);
+                    cmd.Parameters.AddWithValue("@SupplierID", supplierid);
+                    cmd.Parameters.AddWithValue("@SupplierName", supplierName);
+                    cmd.Parameters.AddWithValue("@SupplierPhoneNum", supplierPhoneNum);
+                    cmd.Parameters.AddWithValue("@SupplierEmail", supplierMail);
+                    cmd.Parameters.AddWithValue("@SupplierAddress", supplierAddress);
 
-                if (cmd.ExecuteNonQuery() > 0)
-                    return true;
+                    if (cmd.ExecuteNonQuery() > 0)
+                        return true;
+                }
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
@@ -878,22 +980,21 @@ namespace ITP4519M
             return false;
         }
 
-        public bool CreateDealer(string dealerID, string dearlerOrderNo, string dealerName, string companyName, string phoneNum, string Eamil, string regionNo)
+        private bool SupplierExistsInDatabase(MySqlConnection connection, string column, string value, string supplierID = null)
         {
-            string sql = "INSERT INTO dealer VALUES(@dealerID, @dealerOderNo, @dealerName, @companyName, @phoneNum, @Email, @regionNo)";
-            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-            cmd.Parameters.AddWithValue("@dealerID", dealerID);
-            cmd.Parameters.AddWithValue("@dealerOrderNo", dearlerOrderNo);
-            cmd.Parameters.AddWithValue("@dealerName", dealerName);
-            cmd.Parameters.AddWithValue("@companyName", companyName);
-            cmd.Parameters.AddWithValue("@phoneNum", phoneNum);
-            cmd.Parameters.AddWithValue("@Email", Eamil);
-            cmd.Parameters.AddWithValue("@regionNo", regionNo);
-            if (cmd.ExecuteNonQuery() > 0)
-                return true;
-            return false;
+            string sql = $"SELECT COUNT(*) FROM Supplier WHERE {column} = @value";
+            if (!string.IsNullOrEmpty(supplierID))
+            {
+                sql += " AND SupplierID != @supplierID";
+            }
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+            cmd.Parameters.AddWithValue("@value", value);
+            if (!string.IsNullOrEmpty(supplierID))
+            {
+                cmd.Parameters.AddWithValue("@supplierID", supplierID);
+            }
+            return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
         }
-
 
 
         public string searchDealerID(string dealerID)
