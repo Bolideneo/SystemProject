@@ -162,7 +162,7 @@ namespace ProgramMethod
         //Datatable for product datagridView 
         public DataTable searchProductInformation(string productname)
         {
-            return dataBaseMethod.searchProductInfoByName(productname);
+            return dataBaseMethod.searchProductInfo(productname);
         }
 
         public DataTable searchDealerInformation(string contactname)
@@ -420,9 +420,10 @@ namespace ProgramMethod
                 return false;
         }
 
-        public DataTable searchDealerDetail(string dealerID)
+
+        public DataTable searchDealerDetail(string keyword)
         {
-            return dataBaseMethod.searchDealerDetail(dealerID);
+            return dataBaseMethod.searchDealerDetail(keyword);
         }
 
         public bool getValidProduct(string keyword)

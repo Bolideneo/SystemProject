@@ -693,6 +693,7 @@
             Controls.Add(panel4);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            Cursor = Cursors.Default;
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
             Name = "DeliveryForm";

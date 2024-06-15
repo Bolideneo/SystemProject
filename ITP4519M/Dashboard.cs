@@ -509,7 +509,7 @@ namespace ITP4519M
         private void newOrderbtn_Click(object sender, EventArgs e)
         {
             CreateOrder createOrder = new CreateOrder(OperationMode.New);
-            createOrder.ShowDialog();
+           createOrder.ShowDialog();
         }
 
         private void editOrdersbtn_Click(object sender, EventArgs e)

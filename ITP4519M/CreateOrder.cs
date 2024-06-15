@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic.ApplicationServices;
 using Mysqlx.Crud;
+using Mysqlx.Session;
 using MySqlX.XDevAPI.Common;
 using ProgramMethod;
 using System;
@@ -13,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ITP4519M
 {
@@ -20,6 +22,12 @@ namespace ITP4519M
     {
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
         Dashboard dashboard = new Dashboard();
+        private System.Windows.Forms.Timer _tmrDelaySearch;
+        AutoCompleteStringCollection coll = new AutoCompleteStringCollection();
+        private const int DelayedTextChangedTimeout = 900;
+        bool isComplete = true;
+        bool isComplete2 = true;
+
         private string orderID;
         private string dealerID;
         private OperationMode _mode;
@@ -30,6 +38,79 @@ namespace ITP4519M
         {
             InitializeComponent();
             _mode = mode;
+        }
+
+
+
+        private void dealerinfoBox_TextChanged(object sender, EventArgs e)
+        {
+
+            if (_tmrDelaySearch != null)
+                _tmrDelaySearch.Stop();
+
+            if (_tmrDelaySearch == null)
+            {
+                _tmrDelaySearch = new System.Windows.Forms.Timer();
+                _tmrDelaySearch.Interval = DelayedTextChangedTimeout;
+                _tmrDelaySearch.Tick += _tmrDelaySearch_Tick;
+            }
+
+            if(isComplete)
+            _tmrDelaySearch.Start();
+
+
+        }
+
+        void _tmrDelaySearch_Tick(object sender, EventArgs e)
+        {
+
+            try
+            {  //Enable This
+                coll.Clear();
+
+                DataTable result = programMethod.searchDealerDetail(dealerinfoBox.Text.Trim());
+
+                if (result.Rows.Count > 0)
+                {
+                    _tmrDelaySearch.Enabled = false;
+                    isComplete = false;
+
+                    foreach (DataRow row in result.Rows)
+                    {
+                        coll.Add(row["DealerName"].ToString());
+                        dealerinfoBox.AutoCompleteCustomSource = coll;
+                    }
+
+                    foreach (string item in coll)
+                    {
+                        MessageBox.Show(item);
+                    }
+                    //dealerinfoBox.AutoCompleteCustomSource = coll;
+
+
+
+                    dealerNameBox.Text = result.Rows[0]["DealerName"].ToString();
+                    phoneNumBox.Text = result.Rows[0]["DealerPhoneNum"].ToString();
+                    dealerCompanyBox.Text = result.Rows[0]["DealerCompanyName"].ToString();
+                    goodsAddressBox.Text = result.Rows[0]["DealerRegionNum"].ToString();
+
+
+                }
+                else
+                {
+                    MessageBox.Show("Name not found");
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+            if (_tmrDelaySearch != null)
+                _tmrDelaySearch.Stop();
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
@@ -106,8 +187,6 @@ namespace ITP4519M
         {
             if (e.KeyCode == Keys.Enter)
             {
-
-
                 if (programMethod.searchDealerID(dealerIDBox.Text.Trim()))
                 {
                     DataTable result = programMethod.searchDealerDetail(dealerIDBox.Text.Trim());
@@ -124,6 +203,7 @@ namespace ITP4519M
                     goodsAddressBox.Text = "";
 
                 }
+
             }
         }
 
@@ -237,20 +317,64 @@ namespace ITP4519M
             ordertotallbl.Text = "Total Price: " + programMethod.calProductTotalAmount(productOfOrderdata);
         }
 
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData) 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if (keyData == Keys.Enter) 
+            if (keyData == Keys.Enter)
             {
-                if (this.productOfOrderdata.ContainsFocus) 
+                if (this.productOfOrderdata.ContainsFocus)
                 {
-                    this.productOfOrderdata.EndEdit(); 
+                    this.productOfOrderdata.EndEdit();
                     if (this.productOfOrderdata.CurrentRow.IsNewRow && this.productOfOrderdata.Rows.Count > 1)
-                      this.productOfOrderdata.CurrentCell = this.productOfOrderdata.Rows[this.productOfOrderdata.Rows.Count - 1].Cells[2];
+                        this.productOfOrderdata.CurrentCell = this.productOfOrderdata.Rows[this.productOfOrderdata.Rows.Count - 1].Cells[2];
                     ordertotallbl.Text = "Total Price: " + programMethod.calProductTotalAmount(productOfOrderdata);
-                    return true;  
+                    return true;
                 }
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+
+        private void dealerinfoBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            //if (e.KeyCode == Keys.Enter)
+            //{
+            //    try
+            //    {
+            //        // Clear the existing autocomplete collection
+            //        coll.Clear();
+
+            //        // Search for dealer details based on the input text
+            //        DataTable result = programMethod.searchDealerDetail(dealerinfoBox.Text.Trim());
+
+            //        if (result.Rows.Count > 0)
+            //        {
+            //            // Add the dealer names to the autocomplete collection
+            //            foreach (DataRow row in result.Rows)
+            //            {
+            //                coll.Add(row["DealerName"].ToString());
+            //            }
+            //        }
+            //        else
+            //        {
+            //            MessageBox.Show("Name not found");
+            //        }
+
+            //        // Set the autocomplete mode and source
+            //        dealerNameBox.Text = result.Rows[0]["DealerName"].ToString();
+            //        phoneNumBox.Text = result.Rows[0]["DealerPhoneNum"].ToString();
+            //        dealerCompanyBox.Text = result.Rows[0]["DealerCompanyName"].ToString();
+            //        goodsAddressBox.Text = result.Rows[0]["DealerRegionNum"].ToString();
+            //        dealerinfoBox.AutoCompleteMode = AutoCompleteMode.Suggest;
+            //        dealerinfoBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            //        dealerinfoBox.AutoCompleteCustomSource = coll;
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+
+            //}
+
         }
 
     }

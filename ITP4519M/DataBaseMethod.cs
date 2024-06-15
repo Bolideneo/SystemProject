@@ -17,6 +17,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using static ProgramMethod.ProgramMethod;
 using static System.ComponentModel.Design.ObjectSelectorEditor;
 using System.Windows.Forms;
+using Microsoft.VisualBasic.Devices;
 
 
 namespace ITP4519M
@@ -358,12 +359,14 @@ namespace ITP4519M
             return dataTable;
         }
 
-        //search product name
-        public DataTable searchProductInfoByName(string productname)
+        //search product information
+        public DataTable searchProductInfo(string keyword)
         {
-            string sql = "SELECT ProductID, ProductName, ProductCategory, BinLocation, UnitPrice, CostPrice, QuantityInStock, DemandStock, Status FROM product WHERE ProductName LIKE @productname";
+            string sql = "SELECT ProductID, ProductName, ProductCategory, BinLocation, UnitPrice, CostPrice, QuantityInStock, DemandStock, Status FROM product WHERE ProductName LIKE @keyword1 OR ProductName LIKE @keyword2 OR ProductID LIKE @keyword2 OR ProductName LIKE @keyword2";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-            cmd.Parameters.AddWithValue("@productname", "%" + productname + "%");
+            cmd.Parameters.AddWithValue("@keyword1", "%" + keyword + "%");
+            string keyword2 = keyword.Length > 0 ? $"%{char.ToUpper(keyword[0])}{keyword.Substring(1)}%" : keyword;
+            cmd.Parameters.AddWithValue("@keyword2", keyword2);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
@@ -857,11 +860,16 @@ namespace ITP4519M
             { return null; }
         }
 
-        public DataTable searchDealerDetail(string dealerID)
+        public DataTable searchDealerDetail(string keyword)
         {
-            string sql = "SELECT * FROM dealer WHERE DealerID=@dealerID";
+
+            // string sql = "SELECT DealerID, DealerName, DealerCompanyName, DealerPhoneNum, DealerRegionNum FROM dealer WHERE DealerID LIKE @keyword1 OR DealerID LIKE @keyword2 OR DealerName LIKE @keyword1 OR DealerName LIKE @keyword2 OR DealerCompanyName LIKE @keyword1 OR DealerCompanyName LIKE @keyword2 OR DealerPhoneNum LIKE @keyword2";
+            //string sql = "SELECT DealerID, DealerName, DealerCompanyName, DealerPhoneNum, DealerRegionNum FROM dealer WHERE DealerID LIKE @keyword1 OR DealerID LIKE @keyword2 OR DealerName LIKE @keyword1 OR DealerName LIKE @keyword2 OR DealerCompanyName LIKE @keyword1 OR DealerCompanyName LIKE @keyword2";
+            string sql = "SELECT DealerID, DealerName, DealerCompanyName, DealerPhoneNum, DealerRegionNum FROM dealer WHERE DealerID LIKE @keyword1 OR DealerID LIKE @keyword2 OR DealerName LIKE @keyword1 OR DealerName LIKE @keyword2 OR DealerCompanyName LIKE @keyword1 OR DealerCompanyName LIKE @keyword2 LIMIT 5";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-            cmd.Parameters.AddWithValue("@dealerID", dealerID);
+            cmd.Parameters.AddWithValue("@keyword1", "%" + keyword + "%");
+            string keyword2 = keyword.Length > 0 ? $"%{char.ToUpper(keyword[0])}{keyword.Substring(1)}%" : keyword;
+            cmd.Parameters.AddWithValue("@keyword2", keyword2);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
