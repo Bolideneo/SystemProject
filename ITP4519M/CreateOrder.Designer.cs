@@ -257,7 +257,7 @@ namespace ITP4519M
             // createOrderbtn
             // 
             createOrderbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            createOrderbtn.Location = new Point(490, 832);
+            createOrderbtn.Location = new Point(624, 825);
             createOrderbtn.Margin = new Padding(3, 4, 3, 4);
             createOrderbtn.Name = "createOrderbtn";
             createOrderbtn.Size = new Size(171, 53);
@@ -286,7 +286,6 @@ namespace ITP4519M
             panel1.BorderStyle = BorderStyle.Fixed3D;
             panel1.Controls.Add(dealerinfoBox);
             panel1.Controls.Add(label10);
-            panel1.Controls.Add(ordertotallbl);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(orderDateBox);
@@ -312,7 +311,6 @@ namespace ITP4519M
             // dealerinfoBox
             // 
             dealerinfoBox.AutoCompleteMode = AutoCompleteMode.Suggest;
-            //dealerinfoBox.AutoCompleteMode = AutoCompleteMode.Suggest;//Suggest
             dealerinfoBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
             dealerinfoBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dealerinfoBox.Location = new Point(257, 7);
@@ -326,7 +324,7 @@ namespace ITP4519M
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label10.Location = new Point(70, 12);
+            label10.Location = new Point(71, 10);
             label10.Margin = new Padding(5, 0, 5, 0);
             label10.Name = "label10";
             label10.Size = new Size(116, 20);
@@ -337,7 +335,7 @@ namespace ITP4519M
             // 
             ordertotallbl.AutoSize = true;
             ordertotallbl.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            ordertotallbl.Location = new Point(417, 695);
+            ordertotallbl.Location = new Point(12, 832);
             ordertotallbl.Name = "ordertotallbl";
             ordertotallbl.Size = new Size(135, 32);
             ordertotallbl.TabIndex = 73;
@@ -383,6 +381,7 @@ namespace ITP4519M
             Controls.Add(panel1);
             Controls.Add(createOrderbtn);
             Controls.Add(label3);
+            Controls.Add(ordertotallbl);
             Controls.Add(CloseButton);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);

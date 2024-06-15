@@ -194,10 +194,10 @@ namespace ITP4519M
                     {
                         ShowButton(false);
                         orderbtn.Visible = true;
-                        outstandingOrderbtn.Visible = true;
+                        OrderAccemblybtn.Visible = true;
                         settingbtn.Visible = true;
                         orderbtn.Location = new Point(25, buttonLocationIndex[0]);
-                        outstandingOrderbtn.Location = new Point(25, buttonLocationIndex[1]);
+                        OrderAccemblybtn.Location = new Point(25, buttonLocationIndex[1]);
                         settingbtn.Location = new Point(25, buttonLocationIndex[8]);
 
                         newOrderbtn.Visible = true;
@@ -227,7 +227,7 @@ namespace ITP4519M
                 case "004":
                     ShowButton(!false);
                     stockbtn.Location = new Point(25, buttonLocationIndex[0]);
-                    outstandingOrderbtn.Location = new Point(25, buttonLocationIndex[1]);
+                    OrderAccemblybtn.Location = new Point(25, buttonLocationIndex[1]);
                     GRNbtn.Location = new Point(25, buttonLocationIndex[2]);
                     deliverybtn.Location = new Point(25, buttonLocationIndex[3]);
                     settingbtn.Location = new Point(25, buttonLocationIndex[8]);
@@ -266,7 +266,7 @@ namespace ITP4519M
         {
             usersbtn.Visible = ReadyOnly;
             stockbtn.Visible = ReadyOnly;
-            outstandingOrderbtn.Visible = ReadyOnly;
+            OrderAccemblybtn.Visible = ReadyOnly;
             orderbtn.Visible = ReadyOnly;
             contactsbtn.Visible = ReadyOnly;
             GRNbtn.Visible = ReadyOnly;
@@ -296,7 +296,7 @@ namespace ITP4519M
             dashboardpnl.Visible = false;
             contactpnl.Visible = false;
             logpnl.Visible = false;
-            outstandingOrderpnl.Visible = false;
+            OrderAccemblypnl.Visible = false;
             GRNpnl.Visible = false;
             deliverypnl.Visible = false;
             panelToShow.Visible = true;
@@ -423,7 +423,9 @@ namespace ITP4519M
             lastClickedButton = (Button)sender;
             lastClickedButton.ForeColor = Color.Gray;
 
-            ShowPanel(outstandingOrderpnl);
+            orderAccemblyData.DataSource = programMethod.overallOrderinfo();
+
+            ShowPanel(OrderAccemblypnl);
 
         }
 

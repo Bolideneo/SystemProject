@@ -18,6 +18,7 @@ using static ProgramMethod.ProgramMethod;
 using static System.ComponentModel.Design.ObjectSelectorEditor;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.Devices;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 
 namespace ITP4519M
@@ -219,26 +220,69 @@ namespace ITP4519M
         {
             try
             {
-                //string hashedPassword = HashPassword(password);
-                string sql = "INSERT INTO staff(UserID, UserName, DisplayName, Password, DepartmentID, Title, PhoneNum, EmailAddress, Department) VALUES(@userID, @username, @displayname, @password, @departmentID, @title, @PhoneNum, @EmailAddress, @Department)";
-                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-                cmd.Parameters.AddWithValue("@userID", userID);
-                cmd.Parameters.AddWithValue("@username", username);
-                cmd.Parameters.AddWithValue("@displayname", displayname);
-                cmd.Parameters.AddWithValue("@password", password);
-                cmd.Parameters.AddWithValue("@departmentID", departmentID);
-                cmd.Parameters.AddWithValue("@title", title);
-                cmd.Parameters.AddWithValue("@PhoneNum", phonenum);
-                cmd.Parameters.AddWithValue("@EmailAddress", email);
-                cmd.Parameters.AddWithValue("@Department", department);
-                if (cmd.ExecuteNonQuery() > 0)
-                    return true;
+                using (var connection = ServerConnect())
+                {
+        
+
+                    if (ExistsInDatabase(connection, "UserName", username))
+                    {
+                        MessageBox.Show("The username already exists. Please choose a different username.");
+                        return false;
+                    }
+
+                    if (ExistsInDatabase(connection, "EmailAddress", email))
+                    {
+                        MessageBox.Show("The email address already exists. Please use a different email address.");
+                        return false;
+                    }
+
+                    if (ExistsInDatabase(connection, "PhoneNum", phonenum))
+                    {
+                        MessageBox.Show("The phone number already exists. Please use a different phone number.");
+                        return false;
+                    }
+     
+                    string sql = "INSERT INTO staff(UserID, UserName, DisplayName, Password, DepartmentID, Title, PhoneNum, EmailAddress, Department) " +
+                                 "VALUES(@userID, @username, @displayname, @password, @departmentID, @title, @PhoneNum, @EmailAddress, @Department)";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, connection);
+                    cmd.Parameters.AddWithValue("@userID", userID);
+                    cmd.Parameters.AddWithValue("@username", username);
+                    cmd.Parameters.AddWithValue("@displayname", displayname);
+                    cmd.Parameters.AddWithValue("@password", password);
+                    cmd.Parameters.AddWithValue("@departmentID", departmentID);
+                    cmd.Parameters.AddWithValue("@title", title);
+                    cmd.Parameters.AddWithValue("@PhoneNum", phonenum);
+                    cmd.Parameters.AddWithValue("@EmailAddress", email);
+                    cmd.Parameters.AddWithValue("@Department", department);
+
+                    if (cmd.ExecuteNonQuery() > 0)
+                    {
+                        return true;
+                    }
+                }
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
                 Console.WriteLine("An exception occurred: " + ex.Message);
             }
             return false;
+        }
+
+        private bool ExistsInDatabase(MySqlConnection connection, string column, string value, string userID = null)
+        {
+            string sql = $"SELECT COUNT(*) FROM staff WHERE {column} = @value";
+            if (!string.IsNullOrEmpty(userID))
+            {
+                sql += " AND UserID != @userID";
+            }
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+            cmd.Parameters.AddWithValue("@value", value);
+            if (!string.IsNullOrEmpty(userID))
+            {
+                cmd.Parameters.AddWithValue("@userID", userID);
+            }
+            return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
         }
 
         //disable a new user account
@@ -306,6 +350,7 @@ namespace ITP4519M
         //enable a new user account
         public bool enableUser(string userID)
         {
+
             try
             {
                 string sql = "UPDATE staff SET AccountStatus=@accountStatus WHERE UserID=@userID";
@@ -600,21 +645,43 @@ namespace ITP4519M
         {
             try
             {
-                string sql = "UPDATE staff SET UserName=@userName, Password=@password, DisplayName=@displayName, DepartmentID=@deptID, Title=@title, EmailAddress=@email, PhoneNum=@phonenum, Department=@department WHERE UserID=@userID";
-                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-                cmd.Parameters.AddWithValue("@userName", userName);
-                cmd.Parameters.AddWithValue("@password", password);
-                cmd.Parameters.AddWithValue("@displayName", displayName);
-                cmd.Parameters.AddWithValue("@deptID", deptID);
-                cmd.Parameters.AddWithValue("@title", title);
-                cmd.Parameters.AddWithValue("@email", email);
-                cmd.Parameters.AddWithValue("@phonenum", phonenum);
-                cmd.Parameters.AddWithValue("@department", department);
-                cmd.Parameters.AddWithValue("@userID", userID);
-                int result = cmd.ExecuteNonQuery();
+                using (var connection = ServerConnect())
+                {
 
-                if (result > 0)
-                    return true;
+                    if (ExistsInDatabase(connection, "UserName", userName, userID))
+                    {
+                        MessageBox.Show("The username already exists. Please choose a different username.");
+                        return false;
+                    }
+
+                    if (ExistsInDatabase(connection, "EmailAddress", email, userID))
+                    {
+                        MessageBox.Show("The email address already exists. Please use a different email address.");
+                        return false;
+                    }
+
+                    if (ExistsInDatabase(connection, "PhoneNum", phonenum, userID))
+                    {
+                        MessageBox.Show("The phone number already exists. Please use a different phone number.");
+                        return false;
+                    }
+
+                    string sql = "UPDATE staff SET UserName=@userName, Password=@password, DisplayName=@displayName, DepartmentID=@deptID, Title=@title, EmailAddress=@email, PhoneNum=@phonenum, Department=@department WHERE UserID=@userID";
+                    MySqlCommand cmd = new MySqlCommand(sql, connection);
+                    cmd.Parameters.AddWithValue("@userName", userName);
+                    cmd.Parameters.AddWithValue("@password", password);
+                    cmd.Parameters.AddWithValue("@displayName", displayName);
+                    cmd.Parameters.AddWithValue("@deptID", deptID);
+                    cmd.Parameters.AddWithValue("@title", title);
+                    cmd.Parameters.AddWithValue("@email", email);
+                    cmd.Parameters.AddWithValue("@phonenum", phonenum);
+                    cmd.Parameters.AddWithValue("@department", department);
+                    cmd.Parameters.AddWithValue("@userID", userID);
+                    int result = cmd.ExecuteNonQuery();
+
+                    if (result > 0)
+                        return true;
+                }
             }
             catch (MySqlException ex)
             {
@@ -897,7 +964,7 @@ namespace ITP4519M
             {
                 string sql = "SELECT ProductName FROM product WHERE ProductName=@productname";
                 MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-                cmd.Parameters.AddWithValue("@productname", ProductName);
+                cmd.Parameters.AddWithValue("@productname", "%" + ProductName + "%");
                 Object dealer = cmd.ExecuteScalar();
                 return dealer.ToString();
 

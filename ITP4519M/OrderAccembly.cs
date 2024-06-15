@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualBasic.ApplicationServices;
 using Mysqlx.Crud;
-using Mysqlx.Session;
 using MySqlX.XDevAPI.Common;
 using ProgramMethod;
 using System;
@@ -14,72 +13,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ITP4519M
 {
-    public partial class CreateOrder : Form
+    public partial class OrderAccembly : Form
     {
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
-        Dashboard dashboard = new Dashboard();
-        AutoCompleteStringCollection coll = new AutoCompleteStringCollection();
-        TypeAssistant assistant;
         private string orderID;
         private string dealerID;
         private OperationMode _mode;
 
 
 
-        public CreateOrder(OperationMode mode)
+        public OrderAccembly(OperationMode mode)
         {
             InitializeComponent();
             _mode = mode;
-        }
-
-        void assistant_Idled(object sender, EventArgs e)
-        {
-            this.Invoke(
-            new MethodInvoker(() =>
-            {
-                try
-                {  //Enable This
-                    coll.Clear();
-
-                    DataTable result = programMethod.searchDealerDetail(dealerinfoBox.Text.Trim());
-
-                    if (result.Rows.Count > 0)
-                    {
-
-                        foreach (DataRow row in result.Rows)
-                        {
-                            coll.Add(row["DealerName"].ToString());
-
-                        }
-                        dealerinfoBox.AutoCompleteCustomSource = coll;
-                        dealerNameBox.Text = result.Rows[0]["DealerName"].ToString();
-                        phoneNumBox.Text = result.Rows[0]["DealerPhoneNum"].ToString();
-                        dealerCompanyBox.Text = result.Rows[0]["DealerCompanyName"].ToString();
-                        goodsAddressBox.Text = result.Rows[0]["DealerRegionNum"].ToString();
-
-                        return;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Name not found");
-                    }
-
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }));
-        }
-
-        private void dealerinfoBox_TextChanged(object sender, EventArgs e)
-        {
-            assistant.TextChanged();
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
@@ -89,28 +38,28 @@ namespace ITP4519M
 
         private void SalesOrder_Load(object sender, EventArgs e)
         {
-            assistant = new TypeAssistant();
-            assistant.Idled += assistant_Idled;
+
 
             switch (_mode)
             {
                 case OperationMode.View:
                     createOrderbtn.Visible = false;
+                    saveOrderbtn.Visible = false;
                     SetReadOnly(true);
                     break;
                 case OperationMode.New:
-                    orderDateBox.MinDate = DateTime.Today;
-                    orderDateBox.MaxDate = DateTime.Today;
                     productOfOrderdata.Columns.Add("ProductID", "Product ID");
                     productOfOrderdata.Columns.Add("ProductName", "Product Name");
                     productOfOrderdata.Columns.Add("Quantity", "Quantity");
                     productOfOrderdata.Columns.Add("UnitPrice", "Unit Price");
                     createOrderbtn.Visible = true;
+                    saveOrderbtn.Visible = false;
                     ClearForm();
                     SetReadOnly(false);
                     break;
                 case OperationMode.Edit:
                     // SetReadOnly(true);
+                    orderStatusBox.ReadOnly = false;
                     break;
             }
         }
@@ -119,18 +68,27 @@ namespace ITP4519M
         {
 
             goodsAddressBox.Text = string.Empty;
+            invoiceAddressBox.Text = string.Empty;
+            orderCompleteDateBox.Text = string.Empty;
+            orderIDBox.Text = string.Empty;
+            orderStatusBox.Text = string.Empty;
             orderDateBox.Text = string.Empty;
             dealerIDBox.Text = string.Empty;
             dealerNameBox.Text = string.Empty;
             dealerCompanyBox.Text = string.Empty;
             phoneNumBox.Text = string.Empty;
-            productOfOrderdata.Rows.Clear();
+
         }
 
         private void SetReadOnly(bool readOnly)
         {
 
             goodsAddressBox.ReadOnly = readOnly;
+            invoiceAddressBox.ReadOnly = readOnly;
+            orderCompleteDateBox.ReadOnly = readOnly;
+            orderIDBox.ReadOnly = readOnly;
+            orderStatusBox.ReadOnly = readOnly;
+            orderDateBox.ReadOnly = readOnly;
             dealerIDBox.ReadOnly = readOnly;
             dealerNameBox.ReadOnly = readOnly;
             dealerCompanyBox.ReadOnly = readOnly;
@@ -142,6 +100,10 @@ namespace ITP4519M
 
 
             goodsAddressBox.Enabled = !readOnly;
+            invoiceAddressBox.Enabled = !readOnly;
+            orderCompleteDateBox.Enabled = !readOnly;
+            orderIDBox.Enabled = !readOnly;
+            orderStatusBox.Enabled = !readOnly;
             orderDateBox.Enabled = !readOnly;
             dealerIDBox.Enabled = !readOnly;
             dealerNameBox.Enabled = !readOnly;
@@ -151,12 +113,97 @@ namespace ITP4519M
 
         }
 
+        private void orderIDBox_TextChanged(object sender, EventArgs e)
+        {
 
+        }
+
+
+        public void orderView(string orderID, string dealerID)
+        {
+            this.productSearchbox.Visible = false;
+            this.orderID = orderID;
+            this.dealerID = dealerID;
+
+
+
+            try
+            {
+                DataTable orderDetails = programMethod.getOrderDetails(orderID);
+                DataTable dealerDetails = programMethod.getOrderDealerName(orderID, dealerID);
+                DataTable orderItemDeatails = programMethod.getOrderItemDetails(orderID);
+
+
+
+
+                if (orderDetails != null)
+                {
+                    this.orderIDBox.Text = orderID;
+                    this.dealerIDBox.Text = dealerID;
+                    this.orderDateBox.Text = orderDetails.Rows[0]["OrderDate"].ToString();
+                    this.orderStatusBox.Text = orderDetails.Rows[0]["OrderStatusID"].ToString();
+                    this.dealerNameBox.Text = dealerDetails.Rows[0]["DealerName"].ToString();
+                    this.phoneNumBox.Text = dealerDetails.Rows[0]["DealerPhoneNum"].ToString();
+                    this.dealerCompanyBox.Text = dealerDetails.Rows[0]["DealerCompanyName"].ToString();
+                    productOfOrderdata.DataSource = orderItemDeatails;
+
+                }
+                else
+                {
+                    MessageBox.Show("User details not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        public void orderEdit(string orderID, string dealerID)
+        {
+
+            this.orderID = orderID;
+
+
+
+            try
+            {
+                DataTable orderDetails = programMethod.getOrderDetails(orderID);
+                DataTable dealerDetails = programMethod.getOrderDealerName(orderID, dealerID);
+                DataTable orderItemDeatails = programMethod.getOrderItemDetails(orderID);
+
+
+                if (orderDetails != null)
+                {
+                    this.orderIDBox.Text = orderID;
+                    this.dealerIDBox.Text = dealerID;
+                    this.orderDateBox.Text = orderDetails.Rows[0]["OrderDate"].ToString();
+                    this.orderStatusBox.Text = programMethod.getOrderStatus(orderID);
+                    this.dealerNameBox.Text = dealerDetails.Rows[0]["DealerName"].ToString();
+                    this.phoneNumBox.Text = dealerDetails.Rows[0]["DealerPhoneNum"].ToString();
+                    this.dealerCompanyBox.Text = dealerDetails.Rows[0]["DealerCompanyName"].ToString();
+                    productOfOrderdata.DataSource = orderItemDeatails;
+
+                }
+                else
+                {
+                    MessageBox.Show("User details not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
 
         private void dealerIDBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
+
+
                 if (programMethod.searchDealerID(dealerIDBox.Text.Trim()))
                 {
                     DataTable result = programMethod.searchDealerDetail(dealerIDBox.Text.Trim());
@@ -173,7 +220,6 @@ namespace ITP4519M
                     goodsAddressBox.Text = "";
 
                 }
-
             }
         }
 
@@ -183,7 +229,13 @@ namespace ITP4519M
 
         }
 
+        private void productSearchbox_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            //Question
 
+            //totalpricelbl.Text = "" +  programMethod.calProductTotalAmount(productOfOrderdata);
+
+        }
 
         private void productSearchbox_KeyDown(object sender, KeyEventArgs e)
         {
@@ -229,6 +281,8 @@ namespace ITP4519M
             //    MessageBox.Show("Please Input Product ID ");
             //}
 
+
+
             if (productOfOrderdata.RowCount == 0)
             {
                 MessageBox.Show("Please Select atleast one product");
@@ -253,7 +307,7 @@ namespace ITP4519M
             string orderID;
             orderID = programMethod.createSalesOrder(dealerIDBox.Text.Trim(), dealerNameBox.Text.Trim(), phoneNumBox.Text.Trim(), goodsAddressBox.Text.Trim(), productOfOrderdata);
             ClearForm();
-            MessageBox.Show("Order Create Successfully " + "Order ID: " + orderID);
+
 
 
         }
@@ -269,6 +323,23 @@ namespace ITP4519M
         }
 
 
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void saveOrderbtn_Click(object sender, EventArgs e)
+        {
+
+            programMethod.orderDeleteItem(orderID);
+            for (int i = 0; i < productOfOrderdata.Rows.Count; i++)
+            {
+                programMethod.createOrderItem(orderID, productOfOrderdata.Rows[i].Cells[0].Value.ToString(), productOfOrderdata.Rows[i].Cells[2].Value.ToString());
+            }
+            MessageBox.Show("Order Edit Save");
+        }
+
         private void productOfOrderdata_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow orderData = this.productOfOrderdata.CurrentRow;
@@ -277,52 +348,7 @@ namespace ITP4519M
                 this.productOfOrderdata.Rows.Remove(orderData);
             }
 
-            ordertotallbl.Text = "" + programMethod.calProductTotalAmount(productOfOrderdata);
-            //float temp = programMethod.calProductTotalAmount(productOfOrderdata);
-            //MessageBox.Show(temp.ToString());
+            //totalpricelbl.Text = "" + programMethod.calProductTotalAmount(productOfOrderdata);
         }
-
-        private void ordertotallbl_TextChanged(object sender, EventArgs e)
-        {
-            ordertotallbl.Text = "Total Price: " + programMethod.calProductTotalAmount(productOfOrderdata);
-        }
-
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            if (keyData == Keys.Enter)
-            {
-                if (this.productOfOrderdata.ContainsFocus)
-                {
-                    this.productOfOrderdata.EndEdit();
-                    if (this.productOfOrderdata.CurrentRow.IsNewRow && this.productOfOrderdata.Rows.Count > 1)
-                        this.productOfOrderdata.CurrentCell = this.productOfOrderdata.Rows[this.productOfOrderdata.Rows.Count - 1].Cells[2];
-                    ordertotallbl.Text = "Total Price: " + programMethod.calProductTotalAmount(productOfOrderdata);
-                    return true;
-                }
-            }
-            return base.ProcessCmdKey(ref msg, keyData);
-        }
-
-
-        public class TypeAssistant
-        {
-            public event EventHandler Idled = delegate { };
-            public int WaitingMilliSeconds { get; set; }
-            System.Threading.Timer waitingTimer;
-
-            public TypeAssistant(int waitingMilliSeconds = 600)
-            {
-                WaitingMilliSeconds = waitingMilliSeconds;
-                waitingTimer = new System.Threading.Timer(p =>
-                {
-                    Idled(this, EventArgs.Empty);
-                });
-            }
-            public void TextChanged()
-            {
-                waitingTimer.Change(WaitingMilliSeconds, System.Threading.Timeout.Infinite);
-            }
-        }
-
     }
 }
