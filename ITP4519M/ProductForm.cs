@@ -175,8 +175,8 @@ namespace ITP4519M
                 productdemandbox.Text = "";
                 productStatusbox.SelectedItem = null;
             }
-            
-            
+
+
         }
 
         private void ProductForm_MouseDown(object sender, MouseEventArgs e)
@@ -214,7 +214,7 @@ namespace ITP4519M
             var productDetails = programMethod.getProductDetails(productID);
             string productid = productDetails.ProductID;
             string selected = this.productCategorybox.GetItemText(this.productCategorybox.SelectedItem);
-            if (programMethod.updateProductinfo(productid, productNamebox.Text.Trim(), selected, productWarehousebox.Text.Trim(), productserialbox.Text.Trim(), productUnitpricebox.Text.Trim(), productCostbox.Text.Trim(), productWeightbox.Text.Trim(), productOutofStockbox.Text.Trim(), productInStockbox.Text.Trim(),  productdemandbox.Text.Trim(), productDescriptionbox.Text.Trim(), productStatusbox.GetItemText(this.productStatusbox.SelectedItem)))
+            if (programMethod.updateProductinfo(productid, productNamebox.Text.Trim(), selected, productWarehousebox.Text.Trim(), productserialbox.Text.Trim(), productUnitpricebox.Text.Trim(), productCostbox.Text.Trim(), productWeightbox.Text.Trim(), productOutofStockbox.Text.Trim(), productInStockbox.Text.Trim(), productdemandbox.Text.Trim(), productDescriptionbox.Text.Trim(), productStatusbox.GetItemText(this.productStatusbox.SelectedItem)))
             {
 
                 MessageBox.Show("Saved");
@@ -224,6 +224,11 @@ namespace ITP4519M
 
                 MessageBox.Show("Please input xxxxxx");
             }
+        }
+
+        private void productReOrderbox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 

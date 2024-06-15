@@ -240,7 +240,7 @@ namespace ITP4519M
         //    }
         //}
 
-   
+
 
         private void disableFunction(bool readOnly)
         {
@@ -278,6 +278,11 @@ namespace ITP4519M
             }
 
             //totalpricelbl.Text = "" + programMethod.calProductTotalAmount(productOfOrderdata);
+        }
+
+        private void phoneNumBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -227,6 +227,7 @@
             productReOrderbox.ReadOnly = true;
             productReOrderbox.Size = new Size(156, 23);
             productReOrderbox.TabIndex = 14;
+            productReOrderbox.TextChanged += productReOrderbox_TextChanged;
             // 
             // productReOrderlbl
             // 

@@ -59,10 +59,9 @@
             CloseButton.FlatAppearance.BorderSize = 0;
             CloseButton.FlatStyle = FlatStyle.Flat;
             CloseButton.Font = new Font("Verdana", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            CloseButton.Location = new Point(862, 5);
-            CloseButton.Margin = new Padding(3, 4, 3, 4);
+            CloseButton.Location = new Point(754, 4);
             CloseButton.Name = "CloseButton";
-            CloseButton.Size = new Size(40, 51);
+            CloseButton.Size = new Size(35, 38);
             CloseButton.TabIndex = 15;
             CloseButton.Text = "X";
             CloseButton.UseVisualStyleBackColor = true;
@@ -73,102 +72,102 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = SystemColors.WindowText;
-            label3.Location = new Point(11, 11);
+            label3.Location = new Point(10, 8);
             label3.Name = "label3";
-            label3.Size = new Size(166, 38);
+            label3.Size = new Size(132, 30);
             label3.TabIndex = 16;
             label3.Text = "Sales Order";
             // 
             // label11
             // 
             label11.AutoSize = true;
-            label11.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label11.Location = new Point(188, 166);
-            label11.Margin = new Padding(5, 0, 5, 0);
+            label11.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label11.Location = new Point(47, 149);
+            label11.Margin = new Padding(4, 0, 4, 0);
             label11.Name = "label11";
-            label11.Size = new Size(118, 20);
+            label11.Size = new Size(103, 18);
             label11.TabIndex = 54;
             label11.Text = "Dealer Name :";
             // 
             // dealerNameBox
             // 
             dealerNameBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dealerNameBox.Location = new Point(337, 166);
-            dealerNameBox.Margin = new Padding(6, 7, 6, 7);
+            dealerNameBox.Location = new Point(178, 147);
+            dealerNameBox.Margin = new Padding(5, 5, 5, 5);
             dealerNameBox.Name = "dealerNameBox";
-            dealerNameBox.Size = new Size(187, 27);
+            dealerNameBox.Size = new Size(204, 23);
             dealerNameBox.TabIndex = 53;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(176, 222);
-            label5.Margin = new Padding(5, 0, 5, 0);
+            label5.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Location = new Point(47, 192);
+            label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
-            label5.Size = new Size(130, 20);
+            label5.Size = new Size(116, 18);
             label5.TabIndex = 48;
             label5.Text = "Phone Number :";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(215, 112);
-            label1.Margin = new Padding(5, 0, 5, 0);
+            label1.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(47, 108);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(91, 20);
+            label1.Size = new Size(77, 18);
             label1.TabIndex = 44;
             label1.Text = "Dealer ID :";
             // 
             // dealerIDBox
             // 
             dealerIDBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dealerIDBox.Location = new Point(337, 109);
-            dealerIDBox.Margin = new Padding(6, 7, 6, 7);
+            dealerIDBox.Location = new Point(178, 108);
+            dealerIDBox.Margin = new Padding(5, 5, 5, 5);
             dealerIDBox.Name = "dealerIDBox";
-            dealerIDBox.Size = new Size(187, 27);
+            dealerIDBox.Size = new Size(204, 23);
             dealerIDBox.TabIndex = 43;
             dealerIDBox.KeyDown += dealerIDBox_KeyDown;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(232, 58);
-            label2.Margin = new Padding(5, 0, 5, 0);
+            label2.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Location = new Point(47, 67);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(84, 20);
+            label2.Size = new Size(72, 18);
             label2.TabIndex = 42;
             label2.Text = "Order ID :";
             // 
             // orderIDBox
             // 
             orderIDBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            orderIDBox.Location = new Point(337, 58);
-            orderIDBox.Margin = new Padding(6, 7, 6, 7);
+            orderIDBox.Location = new Point(178, 65);
+            orderIDBox.Margin = new Padding(5, 5, 5, 5);
             orderIDBox.Name = "orderIDBox";
-            orderIDBox.Size = new Size(185, 27);
+            orderIDBox.Size = new Size(204, 23);
             orderIDBox.TabIndex = 41;
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label8.Location = new Point(149, 279);
-            label8.Margin = new Padding(5, 0, 5, 0);
+            label8.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.Location = new Point(50, 236);
+            label8.Margin = new Padding(4, 0, 4, 0);
             label8.Name = "label8";
-            label8.Size = new Size(144, 20);
+            label8.Size = new Size(127, 18);
             label8.TabIndex = 60;
             label8.Text = "Dealer Company :";
             // 
             // dealerCompanyBox
             // 
             dealerCompanyBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dealerCompanyBox.Location = new Point(324, 279);
-            dealerCompanyBox.Margin = new Padding(6, 7, 6, 7);
+            dealerCompanyBox.Location = new Point(178, 234);
+            dealerCompanyBox.Margin = new Padding(5, 5, 5, 5);
             dealerCompanyBox.Name = "dealerCompanyBox";
-            dealerCompanyBox.Size = new Size(268, 27);
+            dealerCompanyBox.Size = new Size(200, 23);
             dealerCompanyBox.TabIndex = 59;
             // 
             // productOfOrderdata
@@ -178,12 +177,12 @@
             productOfOrderdata.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             productOfOrderdata.BackgroundColor = SystemColors.ButtonFace;
             productOfOrderdata.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            productOfOrderdata.Location = new Point(59, 719);
-            productOfOrderdata.Margin = new Padding(3, 5, 3, 5);
+            productOfOrderdata.Location = new Point(52, 539);
+            productOfOrderdata.Margin = new Padding(3, 4, 3, 4);
             productOfOrderdata.Name = "productOfOrderdata";
             productOfOrderdata.RowHeadersWidth = 51;
             productOfOrderdata.RowTemplate.Height = 24;
-            productOfOrderdata.Size = new Size(776, 221);
+            productOfOrderdata.Size = new Size(679, 166);
             productOfOrderdata.TabIndex = 61;
             productOfOrderdata.CellDoubleClick += productOfOrderdata_CellDoubleClick;
             // 
@@ -218,19 +217,19 @@
             // phoneNumBox
             // 
             phoneNumBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            phoneNumBox.Location = new Point(332, 222);
-            phoneNumBox.Margin = new Padding(6, 7, 6, 7);
+            phoneNumBox.Location = new Point(178, 190);
+            phoneNumBox.Margin = new Padding(5, 5, 5, 5);
             phoneNumBox.Name = "phoneNumBox";
-            phoneNumBox.Size = new Size(187, 27);
+            phoneNumBox.Size = new Size(200, 23);
             phoneNumBox.TabIndex = 66;
+            phoneNumBox.TextChanged += phoneNumBox_TextChanged;
             // 
             // saveOrderbtn
             // 
             saveOrderbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            saveOrderbtn.Location = new Point(722, 970);
-            saveOrderbtn.Margin = new Padding(3, 4, 3, 4);
+            saveOrderbtn.Location = new Point(632, 728);
             saveOrderbtn.Name = "saveOrderbtn";
-            saveOrderbtn.Size = new Size(171, 53);
+            saveOrderbtn.Size = new Size(150, 40);
             saveOrderbtn.TabIndex = 71;
             saveOrderbtn.Text = "Save";
             saveOrderbtn.UseVisualStyleBackColor = true;
@@ -243,40 +242,40 @@
             orderAccemblyOrderItemdata.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             orderAccemblyOrderItemdata.BackgroundColor = SystemColors.ButtonFace;
             orderAccemblyOrderItemdata.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            orderAccemblyOrderItemdata.Location = new Point(60, 438);
-            orderAccemblyOrderItemdata.Margin = new Padding(3, 5, 3, 5);
+            orderAccemblyOrderItemdata.Location = new Point(52, 328);
+            orderAccemblyOrderItemdata.Margin = new Padding(3, 4, 3, 4);
             orderAccemblyOrderItemdata.Name = "orderAccemblyOrderItemdata";
             orderAccemblyOrderItemdata.RowHeadersWidth = 51;
             orderAccemblyOrderItemdata.RowTemplate.Height = 24;
-            orderAccemblyOrderItemdata.Size = new Size(776, 221);
+            orderAccemblyOrderItemdata.Size = new Size(679, 166);
             orderAccemblyOrderItemdata.TabIndex = 72;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(149, 342);
-            label4.Margin = new Padding(5, 0, 5, 0);
+            label4.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Location = new Point(50, 281);
+            label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new Size(131, 20);
+            label4.Size = new Size(113, 18);
             label4.TabIndex = 73;
             label4.Text = "Dealer Address:";
             // 
             // textBox1
             // 
             textBox1.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(324, 342);
-            textBox1.Margin = new Padding(6, 7, 6, 7);
+            textBox1.Location = new Point(178, 281);
+            textBox1.Margin = new Padding(5, 5, 5, 5);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(268, 27);
+            textBox1.Size = new Size(200, 23);
             textBox1.TabIndex = 74;
             // 
             // OrderAccembly
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
-            ClientSize = new Size(931, 1036);
+            ClientSize = new Size(815, 777);
             Controls.Add(textBox1);
             Controls.Add(label4);
             Controls.Add(orderAccemblyOrderItemdata);
@@ -295,7 +294,6 @@
             Controls.Add(label3);
             Controls.Add(CloseButton);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "OrderAccembly";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "OrderForm1";
