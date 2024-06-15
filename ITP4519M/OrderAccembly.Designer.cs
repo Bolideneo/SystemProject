@@ -78,7 +78,6 @@
             label3.Size = new Size(166, 38);
             label3.TabIndex = 16;
             label3.Text = "Sales Order";
-            label3.Click += this.label3_Click;
             // 
             // label11
             // 
@@ -151,7 +150,6 @@
             orderIDBox.Name = "orderIDBox";
             orderIDBox.Size = new Size(185, 27);
             orderIDBox.TabIndex = 41;
-            orderIDBox.TextChanged += this.orderIDBox_TextChanged_1;
             // 
             // label8
             // 

@@ -43,7 +43,6 @@ namespace ITP4519M
             switch (_mode)
             {
                 case OperationMode.View:
-                    createOrderbtn.Visible = false;
                     saveOrderbtn.Visible = false;
                     SetReadOnly(true);
                     break;
@@ -52,14 +51,12 @@ namespace ITP4519M
                     productOfOrderdata.Columns.Add("ProductName", "Product Name");
                     productOfOrderdata.Columns.Add("Quantity", "Quantity");
                     productOfOrderdata.Columns.Add("UnitPrice", "Unit Price");
-                    createOrderbtn.Visible = true;
                     saveOrderbtn.Visible = false;
                     ClearForm();
                     SetReadOnly(false);
                     break;
                 case OperationMode.Edit:
                     // SetReadOnly(true);
-                    orderStatusBox.ReadOnly = false;
                     break;
             }
         }
@@ -67,12 +64,7 @@ namespace ITP4519M
         private void ClearForm()
         {
 
-            goodsAddressBox.Text = string.Empty;
-            invoiceAddressBox.Text = string.Empty;
-            orderCompleteDateBox.Text = string.Empty;
             orderIDBox.Text = string.Empty;
-            orderStatusBox.Text = string.Empty;
-            orderDateBox.Text = string.Empty;
             dealerIDBox.Text = string.Empty;
             dealerNameBox.Text = string.Empty;
             dealerCompanyBox.Text = string.Empty;
@@ -83,12 +75,6 @@ namespace ITP4519M
         private void SetReadOnly(bool readOnly)
         {
 
-            goodsAddressBox.ReadOnly = readOnly;
-            invoiceAddressBox.ReadOnly = readOnly;
-            orderCompleteDateBox.ReadOnly = readOnly;
-            orderIDBox.ReadOnly = readOnly;
-            orderStatusBox.ReadOnly = readOnly;
-            orderDateBox.ReadOnly = readOnly;
             dealerIDBox.ReadOnly = readOnly;
             dealerNameBox.ReadOnly = readOnly;
             dealerCompanyBox.ReadOnly = readOnly;
@@ -98,13 +84,6 @@ namespace ITP4519M
 
 
 
-
-            goodsAddressBox.Enabled = !readOnly;
-            invoiceAddressBox.Enabled = !readOnly;
-            orderCompleteDateBox.Enabled = !readOnly;
-            orderIDBox.Enabled = !readOnly;
-            orderStatusBox.Enabled = !readOnly;
-            orderDateBox.Enabled = !readOnly;
             dealerIDBox.Enabled = !readOnly;
             dealerNameBox.Enabled = !readOnly;
             dealerCompanyBox.Enabled = !readOnly;
@@ -121,7 +100,6 @@ namespace ITP4519M
 
         public void orderView(string orderID, string dealerID)
         {
-            this.productSearchbox.Visible = false;
             this.orderID = orderID;
             this.dealerID = dealerID;
 
@@ -140,8 +118,6 @@ namespace ITP4519M
                 {
                     this.orderIDBox.Text = orderID;
                     this.dealerIDBox.Text = dealerID;
-                    this.orderDateBox.Text = orderDetails.Rows[0]["OrderDate"].ToString();
-                    this.orderStatusBox.Text = orderDetails.Rows[0]["OrderStatusID"].ToString();
                     this.dealerNameBox.Text = dealerDetails.Rows[0]["DealerName"].ToString();
                     this.phoneNumBox.Text = dealerDetails.Rows[0]["DealerPhoneNum"].ToString();
                     this.dealerCompanyBox.Text = dealerDetails.Rows[0]["DealerCompanyName"].ToString();
@@ -178,8 +154,6 @@ namespace ITP4519M
                 {
                     this.orderIDBox.Text = orderID;
                     this.dealerIDBox.Text = dealerID;
-                    this.orderDateBox.Text = orderDetails.Rows[0]["OrderDate"].ToString();
-                    this.orderStatusBox.Text = programMethod.getOrderStatus(orderID);
                     this.dealerNameBox.Text = dealerDetails.Rows[0]["DealerName"].ToString();
                     this.phoneNumBox.Text = dealerDetails.Rows[0]["DealerPhoneNum"].ToString();
                     this.dealerCompanyBox.Text = dealerDetails.Rows[0]["DealerCompanyName"].ToString();
@@ -210,14 +184,12 @@ namespace ITP4519M
                     dealerNameBox.Text = result.Rows[0]["DealerName"].ToString();
                     phoneNumBox.Text = result.Rows[0]["DealerPhoneNum"].ToString();
                     dealerCompanyBox.Text = result.Rows[0]["DealerCompanyName"].ToString();
-                    goodsAddressBox.Text = result.Rows[0]["DealerRegionNum"].ToString();
                 }
                 else
                 {
                     dealerNameBox.Text = "";
                     phoneNumBox.Text = "";
                     dealerCompanyBox.Text = "";
-                    goodsAddressBox.Text = "";
 
                 }
             }
@@ -237,81 +209,38 @@ namespace ITP4519M
 
         }
 
-        private void productSearchbox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
+        //private void productSearchbox_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    if (e.KeyCode == Keys.Enter)
+        //    {
 
-                if (programMethod.getValidProduct(productSearchbox.Text.Trim()))
-                {
+        //        if (programMethod.getValidProduct(productSearchbox.Text.Trim()))
+        //        {
 
-                    for (int i = 0; i < productOfOrderdata.Rows.Count; i++)
-                    {
+        //            for (int i = 0; i < productOfOrderdata.Rows.Count; i++)
+        //            {
 
-                        if (productOfOrderdata.Rows[i].Cells[0].Value.ToString() == productSearchbox.Text.Trim() || productOfOrderdata.Rows[i].Cells[1].Value.ToString() == productSearchbox.Text.Trim())
-                        {
-                            productSearchbox.Text = "";
-                            MessageBox.Show("Product is Added");
-                            return;
-                        }
-                        if (int.Parse(productOfOrderdata.Rows[i].Cells[2].Value.ToString()) == 0)
-                        {
-                            productSearchbox.Text = "";
-                            MessageBox.Show("Please Add One quantity");
-                            return;
-                        }
-                    }
-                    DataTable result = programMethod.searchOrderItemDetail(productSearchbox.Text.Trim());
-                    this.productOfOrderdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, result.Rows[0]["UnitPrice"]);
-                    productSearchbox.Text = "";
-                }
-            }
-        }
+        //                if (productOfOrderdata.Rows[i].Cells[0].Value.ToString() == productSearchbox.Text.Trim() || productOfOrderdata.Rows[i].Cells[1].Value.ToString() == productSearchbox.Text.Trim())
+        //                {
+        //                    productSearchbox.Text = "";
+        //                    MessageBox.Show("Product is Added");
+        //                    return;
+        //                }
+        //                if (int.Parse(productOfOrderdata.Rows[i].Cells[2].Value.ToString()) == 0)
+        //                {
+        //                    productSearchbox.Text = "";
+        //                    MessageBox.Show("Please Add One quantity");
+        //                    return;
+        //                }
+        //            }
+        //            DataTable result = programMethod.searchOrderItemDetail(productSearchbox.Text.Trim());
+        //            this.productOfOrderdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, result.Rows[0]["UnitPrice"]);
+        //            productSearchbox.Text = "";
+        //        }
+        //    }
+        //}
 
-        private void createOrderbtn_Click(object sender, EventArgs e)
-        {
-            if (dealerIDBox.Text == "")
-                MessageBox.Show("Please input Dealer ID");
-            else if (dealerNameBox.Text == "")
-            {
-                MessageBox.Show("Please input Dealer Name");
-            }
-            //else if (productSearchbox.Text == "")
-            //{
-            //    MessageBox.Show("Please Input Product ID ");
-            //}
-
-
-
-            if (productOfOrderdata.RowCount == 0)
-            {
-                MessageBox.Show("Please Select atleast one product");
-            }
-
-
-            List<bool> checkList = new List<bool>();
-
-            for (int i = 0; i < productOfOrderdata.Rows.Count; i++)
-            {
-                int quantity = Convert.ToInt32(productOfOrderdata.Rows[i].Cells[2].Value);
-
-                bool isGreaterThanZero = (quantity > 0);
-                checkList.Add(isGreaterThanZero);
-            }
-
-            if (checkList.Contains(false))
-            {
-                MessageBox.Show("Product quantity should not be 0");
-            }
-
-            string orderID;
-            orderID = programMethod.createSalesOrder(dealerIDBox.Text.Trim(), dealerNameBox.Text.Trim(), phoneNumBox.Text.Trim(), goodsAddressBox.Text.Trim(), productOfOrderdata);
-            ClearForm();
-
-
-
-        }
-
+   
 
         private void disableFunction(bool readOnly)
         {

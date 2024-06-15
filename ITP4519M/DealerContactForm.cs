@@ -44,9 +44,55 @@ namespace ITP4519M
         private void createDealerBtn_Click(object sender, EventArgs e)
 
         {
-            if (programMethod.createDealer(dealerNameBox.Text.Trim(), dealerCompanyNameBox.Text.Trim(), dealerMailBox.Text.Trim(), DealerPhoneNumBox.Text.Trim(), dealerAddressBox.Text.Trim()))
+            string dealername = dealerNameBox.Text.Trim();
+            string dealerCompany = dealerCompanyNameBox.Text.Trim();
+            string dealerMail = dealerMailBox.Text.Trim();
+            string dealerPhoneNum = DealerPhoneNumBox.Text.Trim();
+            string dealerAddress = dealerAddressBox.Text.Trim();
+            if (string.IsNullOrEmpty(dealername))
             {
-                MessageBox.Show("User Successfully Created");
+                MessageBox.Show("Please enter a dealer name.");
+                dealerNameBox.Focus();
+                return;
+            }
+            if (string.IsNullOrEmpty(dealerCompany))
+            {
+                MessageBox.Show("Please enter a dealer company.");
+                dealerCompanyNameBox.Focus();
+                return;
+            }
+            if (string.IsNullOrEmpty(dealerMail))
+            {
+                MessageBox.Show("Please enter a dealer mail address.");
+                dealerMailBox.Focus();
+                return;
+            }
+            if (string.IsNullOrEmpty(dealerPhoneNum))
+            {
+                MessageBox.Show("Please enter a dealer phone number.");
+                DealerPhoneNumBox.Focus();
+                return;
+            }
+            if (string.IsNullOrEmpty(dealerAddress))
+            {
+                MessageBox.Show("Please enter a dealer address.");
+                dealerAddressBox.Focus();
+                return;
+            }
+                        if (!IsValidEmail(dealerMail))
+            {
+                MessageBox.Show("Please enter a valid email address.");
+                return;
+            }
+
+            if (!IsValidPhoneNumber(dealerPhoneNum))
+            {
+                MessageBox.Show("Please enter a valid phone number.");
+                return;
+            }
+            if (programMethod.createDealer(dealername, dealerCompany, dealerMail, dealerPhoneNum, dealerAddress))
+            {
+                MessageBox.Show("Dealer Successfully Created");
                 dealerNameBox.Text = "";
                 dealerCompanyNameBox.Text = "";
                 dealerMailBox.Text = "";
@@ -54,7 +100,7 @@ namespace ITP4519M
                 dealerAddressBox.Text = "";
             }
             else {
-                MessageBox.Show("Please input correct information");
+
             }
         }
 
@@ -62,8 +108,54 @@ namespace ITP4519M
         {
             var dealerDetails = programMethod.getDealerDetails(dealerID);
             string dealerid = dealerDetails.DealerID;
+            string dealername = dealerNameBox.Text.Trim();
+            string dealerCompany = dealerCompanyNameBox.Text.Trim();
+            string dealerMail = dealerMailBox.Text.Trim();
+            string dealerPhoneNum = DealerPhoneNumBox.Text.Trim();
+            string dealerAddress = dealerAddressBox.Text.Trim();
+            if (string.IsNullOrEmpty(dealername))
+            {
+                MessageBox.Show("Please enter a dealer name.");
+                dealerNameBox.Focus();
+                return;
+            }
+            if (string.IsNullOrEmpty(dealerCompany))
+            {
+                MessageBox.Show("Please enter a dealer company.");
+                dealerCompanyNameBox.Focus();
+                return;
+            }
+            if (string.IsNullOrEmpty(dealerMail))
+            {
+                MessageBox.Show("Please enter a dealer mail address.");
+                dealerMailBox.Focus();
+                return;
+            }
+            if (string.IsNullOrEmpty(dealerPhoneNum))
+            {
+                MessageBox.Show("Please enter a dealer phone number.");
+                DealerPhoneNumBox.Focus();
+                return;
+            }
+            if (string.IsNullOrEmpty(dealerAddress))
+            {
+                MessageBox.Show("Please enter a dealer address.");
+                dealerAddressBox.Focus();
+                return;
+            }
+            if (!IsValidEmail(dealerMail))
+            {
+                MessageBox.Show("Please enter a valid email address.");
+                return;
+            }
 
-            if (programMethod.updateDealerInfo(dealerid, dealerNameBox.Text.Trim(), dealerCompanyNameBox.Text.Trim(), dealerMailBox.Text.Trim(), DealerPhoneNumBox.Text.Trim(), dealerAddressBox.Text.Trim()))
+            if (!IsValidPhoneNumber(dealerPhoneNum))
+            {
+                MessageBox.Show("Please enter a valid phone number.");
+                return;
+            }
+
+            if (programMethod.updateDealerInfo(dealerid, dealername, dealerCompany, dealerMail, dealerPhoneNum, dealerAddress))
             {
 
                 MessageBox.Show("Saved");
@@ -71,7 +163,6 @@ namespace ITP4519M
             else
             {
 
-                MessageBox.Show("Please input correct information");
             }
         }
 
@@ -95,13 +186,31 @@ namespace ITP4519M
                 }
                 else
                 {
-                    MessageBox.Show("Product details not found.");
+                    MessageBox.Show("Dealer details not found.");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private bool IsValidPhoneNumber(string phoneNum)
+        {
+            return phoneNum.Length >= 6 && phoneNum.Length <= 13;
         }
 
     }
