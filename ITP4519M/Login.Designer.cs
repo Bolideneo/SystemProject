@@ -33,6 +33,7 @@ namespace ITP4519M
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
@@ -51,6 +52,9 @@ namespace ITP4519M
             errolabel = new Label();
             label1 = new Label();
             panel1 = new Panel();
+            pictureBox8 = new PictureBox();
+            pictureBox7 = new PictureBox();
+            pictureBox6 = new PictureBox();
             label2 = new Label();
             label6 = new Label();
             label7 = new Label();
@@ -62,6 +66,9 @@ namespace ITP4519M
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             SuspendLayout();
             // 
@@ -135,10 +142,10 @@ namespace ITP4519M
             CloseButton.FlatAppearance.BorderSize = 0;
             CloseButton.FlatStyle = FlatStyle.Flat;
             CloseButton.Font = new Font("Verdana", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            CloseButton.Location = new Point(709, 1);
-            CloseButton.Margin = new Padding(2, 3, 2, 3);
+            CloseButton.Location = new Point(620, 1);
+            CloseButton.Margin = new Padding(2);
             CloseButton.Name = "CloseButton";
-            CloseButton.Size = new Size(40, 49);
+            CloseButton.Size = new Size(35, 37);
             CloseButton.TabIndex = 14;
             CloseButton.Text = "X";
             CloseButton.UseVisualStyleBackColor = true;
@@ -149,10 +156,10 @@ namespace ITP4519M
             accountPanel.BackColor = SystemColors.HighlightText;
             accountPanel.Controls.Add(usernameBox);
             accountPanel.Controls.Add(pictureBox3);
-            accountPanel.Location = new Point(237, 220);
-            accountPanel.Margin = new Padding(2, 3, 2, 3);
+            accountPanel.Location = new Point(207, 165);
+            accountPanel.Margin = new Padding(2);
             accountPanel.Name = "accountPanel";
-            accountPanel.Size = new Size(511, 51);
+            accountPanel.Size = new Size(447, 38);
             accountPanel.TabIndex = 17;
             accountPanel.Paint += accountPanel_Paint;
             // 
@@ -160,10 +167,10 @@ namespace ITP4519M
             // 
             usernameBox.BorderStyle = BorderStyle.None;
             usernameBox.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            usernameBox.Location = new Point(55, 12);
-            usernameBox.Margin = new Padding(2, 3, 2, 3);
+            usernameBox.Location = new Point(48, 9);
+            usernameBox.Margin = new Padding(2);
             usernameBox.Name = "usernameBox";
-            usernameBox.Size = new Size(393, 25);
+            usernameBox.Size = new Size(344, 20);
             usernameBox.TabIndex = 20;
             usernameBox.TextChanged += accountBox_TextChanged;
             // 
@@ -171,10 +178,10 @@ namespace ITP4519M
             // 
             pictureBox3.BackgroundImage = Properties.Resources.user_logo;
             pictureBox3.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox3.Location = new Point(6, 3);
-            pictureBox3.Margin = new Padding(2, 3, 2, 3);
+            pictureBox3.Location = new Point(5, 2);
+            pictureBox3.Margin = new Padding(2);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(45, 45);
+            pictureBox3.Size = new Size(39, 34);
             pictureBox3.TabIndex = 19;
             pictureBox3.TabStop = false;
             // 
@@ -183,20 +190,20 @@ namespace ITP4519M
             panel3.BackColor = SystemColors.HighlightText;
             panel3.Controls.Add(passwordBox);
             panel3.Controls.Add(pictureBox4);
-            panel3.Location = new Point(237, 285);
-            panel3.Margin = new Padding(2, 3, 2, 3);
+            panel3.Location = new Point(207, 214);
+            panel3.Margin = new Padding(2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(511, 51);
+            panel3.Size = new Size(447, 38);
             panel3.TabIndex = 18;
             // 
             // passwordBox
             // 
             passwordBox.BorderStyle = BorderStyle.None;
             passwordBox.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            passwordBox.Location = new Point(55, 12);
-            passwordBox.Margin = new Padding(2, 3, 2, 3);
+            passwordBox.Location = new Point(48, 9);
+            passwordBox.Margin = new Padding(2);
             passwordBox.Name = "passwordBox";
-            passwordBox.Size = new Size(393, 25);
+            passwordBox.Size = new Size(344, 20);
             passwordBox.TabIndex = 21;
             passwordBox.UseSystemPasswordChar = true;
             // 
@@ -204,20 +211,20 @@ namespace ITP4519M
             // 
             pictureBox4.BackgroundImage = Properties.Resources.password_logo;
             pictureBox4.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox4.Location = new Point(6, 3);
-            pictureBox4.Margin = new Padding(2, 3, 2, 3);
+            pictureBox4.Location = new Point(5, 2);
+            pictureBox4.Margin = new Padding(2);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(45, 45);
+            pictureBox4.Size = new Size(39, 34);
             pictureBox4.TabIndex = 20;
             pictureBox4.TabStop = false;
             // 
             // loginbtn
             // 
             loginbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            loginbtn.Location = new Point(293, 411);
-            loginbtn.Margin = new Padding(2, 3, 2, 3);
+            loginbtn.Location = new Point(254, 317);
+            loginbtn.Margin = new Padding(2);
             loginbtn.Name = "loginbtn";
-            loginbtn.Size = new Size(170, 53);
+            loginbtn.Size = new Size(149, 40);
             loginbtn.TabIndex = 19;
             loginbtn.Text = "Login";
             loginbtn.UseVisualStyleBackColor = true;
@@ -227,10 +234,10 @@ namespace ITP4519M
             // 
             pictureBox1.BackgroundImage = Properties.Resources.login_logo;
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox1.Location = new Point(431, 71);
-            pictureBox1.Margin = new Padding(2, 3, 2, 3);
+            pictureBox1.Location = new Point(377, 53);
+            pictureBox1.Margin = new Padding(2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(110, 109);
+            pictureBox1.Size = new Size(96, 82);
             pictureBox1.TabIndex = 7;
             pictureBox1.TabStop = false;
             // 
@@ -239,9 +246,9 @@ namespace ITP4519M
             errolabel.AutoSize = true;
             errolabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             errolabel.ForeColor = Color.Red;
-            errolabel.Location = new Point(321, 359);
+            errolabel.Location = new Point(281, 269);
             errolabel.Name = "errolabel";
-            errolabel.Size = new Size(330, 28);
+            errolabel.Size = new Size(265, 21);
             errolabel.TabIndex = 20;
             errolabel.Text = "Username or password is not correct";
             errolabel.Visible = false;
@@ -252,9 +259,9 @@ namespace ITP4519M
             label1.Cursor = Cursors.Hand;
             label1.Font = new Font("Microsoft PhagsPa", 10.2F, FontStyle.Underline, GraphicsUnit.Point, 0);
             label1.ForeColor = SystemColors.Highlight;
-            label1.Location = new Point(533, 431);
+            label1.Location = new Point(464, 332);
             label1.Name = "label1";
-            label1.Size = new Size(135, 22);
+            label1.Size = new Size(110, 18);
             label1.TabIndex = 21;
             label1.Text = "Forget Password";
             label1.Click += label1_Click;
@@ -263,49 +270,85 @@ namespace ITP4519M
             // 
             panel1.BackColor = SystemColors.MenuText;
             panel1.BackgroundImageLayout = ImageLayout.Stretch;
+            panel1.Controls.Add(pictureBox8);
+            panel1.Controls.Add(pictureBox7);
+            panel1.Controls.Add(pictureBox6);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(pictureBox5);
             panel1.Location = new Point(1, 1);
-            panel1.Margin = new Padding(2, 3, 2, 3);
+            panel1.Margin = new Padding(2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(232, 549);
+            panel1.Size = new Size(203, 412);
             panel1.TabIndex = 24;
+            // 
+            // pictureBox8
+            // 
+            pictureBox8.BackgroundImage = (Image)resources.GetObject("pictureBox8.BackgroundImage");
+            pictureBox8.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox8.Location = new Point(139, 322);
+            pictureBox8.Margin = new Padding(2);
+            pictureBox8.Name = "pictureBox8";
+            pictureBox8.Size = new Size(49, 40);
+            pictureBox8.TabIndex = 27;
+            pictureBox8.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            pictureBox7.BackgroundImage = (Image)resources.GetObject("pictureBox7.BackgroundImage");
+            pictureBox7.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox7.Location = new Point(80, 322);
+            pictureBox7.Margin = new Padding(2);
+            pictureBox7.Name = "pictureBox7";
+            pictureBox7.Size = new Size(45, 40);
+            pictureBox7.TabIndex = 26;
+            pictureBox7.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.BackgroundImage = (Image)resources.GetObject("pictureBox6.BackgroundImage");
+            pictureBox6.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox6.Location = new Point(19, 322);
+            pictureBox6.Margin = new Padding(2);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(44, 40);
+            pictureBox6.TabIndex = 25;
+            pictureBox6.TabStop = false;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Century", 13.8F);
+            label2.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = SystemColors.Window;
-            label2.Location = new Point(33, 340);
+            label2.Location = new Point(19, 251);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(90, 28);
+            label2.Size = new Size(75, 25);
             label2.TabIndex = 3;
             label2.Text = "System";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Century", 13.8F);
+            label6.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = SystemColors.Window;
-            label6.Location = new Point(33, 289);
+            label6.Location = new Point(19, 213);
             label6.Margin = new Padding(2, 0, 2, 0);
             label6.Name = "label6";
-            label6.Size = new Size(162, 28);
+            label6.Size = new Size(135, 25);
             label6.TabIndex = 2;
             label6.Text = "LM Company ";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Font = new Font("Century", 13.8F);
+            label7.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = SystemColors.Window;
-            label7.Location = new Point(33, 236);
+            label7.Location = new Point(19, 173);
             label7.Margin = new Padding(2, 0, 2, 0);
             label7.Name = "label7";
-            label7.Size = new Size(182, 28);
+            label7.Size = new Size(155, 25);
             label7.TabIndex = 1;
             label7.Text = "Welcome to the ";
             // 
@@ -313,19 +356,19 @@ namespace ITP4519M
             // 
             pictureBox5.BackgroundImage = Properties.Resources.company_logo;
             pictureBox5.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox5.Location = new Point(2, 97);
-            pictureBox5.Margin = new Padding(2, 3, 2, 3);
+            pictureBox5.Location = new Point(2, 73);
+            pictureBox5.Margin = new Padding(2);
             pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(229, 81);
+            pictureBox5.Size = new Size(200, 61);
             pictureBox5.TabIndex = 0;
             pictureBox5.TabStop = false;
             // 
             // Login
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
-            ClientSize = new Size(750, 549);
+            ClientSize = new Size(656, 412);
             Controls.Add(panel1);
             Controls.Add(label1);
             Controls.Add(errolabel);
@@ -335,7 +378,7 @@ namespace ITP4519M
             Controls.Add(CloseButton);
             Controls.Add(pictureBox1);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(2, 3, 2, 3);
+            Margin = new Padding(2);
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "s";
@@ -350,6 +393,9 @@ namespace ITP4519M
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -378,6 +424,9 @@ namespace ITP4519M
         private Label label6;
         private Label label7;
         private PictureBox pictureBox5;
+        private PictureBox pictureBox6;
+        private PictureBox pictureBox8;
+        private PictureBox pictureBox7;
     }
 }
 

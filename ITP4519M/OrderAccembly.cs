@@ -301,5 +301,10 @@ namespace ITP4519M
                 MessageBox.Show("Item Not contain in order");
             }
         }
+
+        private void phoneNumBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
