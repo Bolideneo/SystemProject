@@ -21,14 +21,18 @@ namespace ITP4519M
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
         private string orderID;
         private string dealerID;
+        private DataTable dt;
+        private DataTable dt1;
         private OperationMode _mode;
 
 
 
-        public OrderAccembly(OperationMode mode)
+        public OrderAccembly(OperationMode mode, string orderID, string dealerID)
         {
             InitializeComponent();
             _mode = mode;
+            this.orderID = orderID;
+            this.dealerID = dealerID;
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
@@ -38,8 +42,6 @@ namespace ITP4519M
 
         private void SalesOrder_Load(object sender, EventArgs e)
         {
-
-
             switch (_mode)
             {
                 case OperationMode.View:
@@ -47,13 +49,23 @@ namespace ITP4519M
                     SetReadOnly(true);
                     break;
                 case OperationMode.New:
-                    productOfOrderdata.Columns.Add("ProductID", "Product ID");
-                    productOfOrderdata.Columns.Add("ProductName", "Product Name");
-                    productOfOrderdata.Columns.Add("Quantity", "Quantity");
-                    productOfOrderdata.Columns.Add("UnitPrice", "Unit Price");
-                    saveOrderbtn.Visible = false;
-                    ClearForm();
-                    SetReadOnly(false);
+                    dt = programMethod.getOrderDetails(orderID);
+                    dt1 = programMethod.getOrderDealerName(orderID, dealerID);
+                    orderIDBox.Text = orderID;
+                    dealerIDBox.Text = dealerID;
+                    dealerNameBox.Text = dt1.Rows[0]["DealerName"].ToString();
+                    phoneNumBox.Text = dt1.Rows[0]["DealerPhoneNum"].ToString();
+                    dealerCompanyBox.Text = dt1.Rows[0]["DealerCompanyName"].ToString();
+                    orderAccemblyOrderItemdata.DataSource = programMethod.getOrderItemDetailsForOrderAccembly(orderID);
+                    //dealerAddressBox.Text = dt1.Rows[0]["DealerRegionNum"].ToString();
+                    orderItemdata.Columns.Add("ProductID", "Product ID");
+                    orderItemdata.Columns.Add("ProductName", "Product Name");
+                    orderItemdata.Columns.Add("Quantity", "Quantity");
+                    orderItemdata.Columns.Add("OrderedQuantity", "OrderedQuantity");
+                    createOrderAccembly();
+                    saveOrderbtn.Visible = true;
+                    // ClearForm();
+                    //SetReadOnly(false);
                     break;
                 case OperationMode.Edit:
                     // SetReadOnly(true);
@@ -79,7 +91,7 @@ namespace ITP4519M
             dealerNameBox.ReadOnly = readOnly;
             dealerCompanyBox.ReadOnly = readOnly;
             phoneNumBox.ReadOnly = readOnly;
-            productOfOrderdata.ReadOnly = readOnly;
+            orderItemdata.ReadOnly = readOnly;
             disableFunction(readOnly);
 
 
@@ -98,77 +110,44 @@ namespace ITP4519M
         }
 
 
-        public void orderView(string orderID, string dealerID)
+        public void orderView(string orderID)
         {
-            this.orderID = orderID;
-            this.dealerID = dealerID;
 
-
-
-            try
-            {
-                DataTable orderDetails = programMethod.getOrderDetails(orderID);
-                DataTable dealerDetails = programMethod.getOrderDealerName(orderID, dealerID);
-                DataTable orderItemDeatails = programMethod.getOrderItemDetails(orderID);
+            //try
+            //{
+            //    DataTable orderDetails = programMethod.getOrderDetails(orderID);
+            //    DataTable dealerDetails = programMethod.getOrderDealerName(orderID, dealerID);
+            //    DataTable orderItemDeatails = programMethod.getOrderItemDetails(orderID);
 
 
 
 
-                if (orderDetails != null)
-                {
-                    this.orderIDBox.Text = orderID;
-                    this.dealerIDBox.Text = dealerID;
-                    this.dealerNameBox.Text = dealerDetails.Rows[0]["DealerName"].ToString();
-                    this.phoneNumBox.Text = dealerDetails.Rows[0]["DealerPhoneNum"].ToString();
-                    this.dealerCompanyBox.Text = dealerDetails.Rows[0]["DealerCompanyName"].ToString();
-                    productOfOrderdata.DataSource = orderItemDeatails;
+            //    if (orderDetails != null)
+            //    {
+            //        this.orderIDBox.Text = orderID;
+            //        this.dealerIDBox.Text = dealerID;
+            //        this.dealerNameBox.Text = dealerDetails.Rows[0]["DealerName"].ToString();
+            //        this.phoneNumBox.Text = dealerDetails.Rows[0]["DealerPhoneNum"].ToString();
+            //        this.dealerCompanyBox.Text = dealerDetails.Rows[0]["DealerCompanyName"].ToString();
+            //        orderItemdata.DataSource = orderItemDeatails;
 
-                }
-                else
-                {
-                    MessageBox.Show("User details not found.");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("User details not found.");
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
 
         }
 
-        public void orderEdit(string orderID, string dealerID)
+        public void createOrderAccembly()
         {
 
-            this.orderID = orderID;
 
-
-
-            try
-            {
-                DataTable orderDetails = programMethod.getOrderDetails(orderID);
-                DataTable dealerDetails = programMethod.getOrderDealerName(orderID, dealerID);
-                DataTable orderItemDeatails = programMethod.getOrderItemDetails(orderID);
-
-
-                if (orderDetails != null)
-                {
-                    this.orderIDBox.Text = orderID;
-                    this.dealerIDBox.Text = dealerID;
-                    this.dealerNameBox.Text = dealerDetails.Rows[0]["DealerName"].ToString();
-                    this.phoneNumBox.Text = dealerDetails.Rows[0]["DealerPhoneNum"].ToString();
-                    this.dealerCompanyBox.Text = dealerDetails.Rows[0]["DealerCompanyName"].ToString();
-                    productOfOrderdata.DataSource = orderItemDeatails;
-
-                }
-                else
-                {
-                    MessageBox.Show("User details not found.");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
 
         }
 
@@ -240,15 +219,15 @@ namespace ITP4519M
         //    }
         //}
 
-   
+
 
         private void disableFunction(bool readOnly)
         {
             if (readOnly)
             {
-                productOfOrderdata.CellContentDoubleClick -= productOfOrderdata_CellDoubleClick;
+                orderItemdata.CellContentDoubleClick -= productOfOrderdata_CellDoubleClick;
             }
-            else { productOfOrderdata.CellContentDoubleClick += productOfOrderdata_CellDoubleClick; }
+            else { orderItemdata.CellContentDoubleClick += productOfOrderdata_CellDoubleClick; }
         }
 
 
@@ -260,24 +239,67 @@ namespace ITP4519M
 
         private void saveOrderbtn_Click(object sender, EventArgs e)
         {
-
-            programMethod.orderDeleteItem(orderID);
-            for (int i = 0; i < productOfOrderdata.Rows.Count; i++)
+            if (programMethod.createOrderAsswmbly(orderItemdata, orderAccemblyOrderItemdata, orderID))
             {
-                programMethod.createOrderItem(orderID, productOfOrderdata.Rows[i].Cells[0].Value.ToString(), productOfOrderdata.Rows[i].Cells[2].Value.ToString());
+                MessageBox.Show("Save");
+                this.Close();
             }
-            MessageBox.Show("Order Edit Save");
+
+
         }
 
         private void productOfOrderdata_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow orderData = this.productOfOrderdata.CurrentRow;
-            if (orderData != null && orderData.Index >= 0 && orderData.Index < productOfOrderdata.Rows.Count)
+            DataGridViewRow orderData = this.orderItemdata.CurrentRow;
+            if (orderData != null && orderData.Index >= 0 && orderData.Index < orderItemdata.Rows.Count)
             {
-                this.productOfOrderdata.Rows.Remove(orderData);
+                this.orderItemdata.Rows.Remove(orderData);
             }
+        }
 
-            //totalpricelbl.Text = "" + programMethod.calProductTotalAmount(productOfOrderdata);
+        private void orderAccemblyAssignbtn_Click(object sender, EventArgs e)
+        {
+            if (programMethod.searchOrderEachItemDetail(orderAccemblyAssignbox.Text.Trim(), orderID))
+            {
+                for (int i = 0; i < orderItemdata.Rows.Count; i++)
+                {
+                    if (orderItemdata.Rows[i].Cells[0].Value.ToString() == orderAccemblyAssignbox.Text.Trim() && (int.Parse(orderItemdata.Rows[i].Cells[3].Value.ToString())) < 1)
+                    {
+                        MessageBox.Show(orderAccemblyAssignbox.Text.Trim() + " is Out-Of-Stock");
+                        return;
+                    }
+                }
+                DataTable result = programMethod.getOrderEachItemDetail(orderAccemblyAssignbox.Text.Trim(), orderID);
+              //  programMethod.ReduceStock(orderAccemblyAssignbox.Text.Trim(), "1");
+                orderAccemblyOrderItemdata.DataSource = programMethod.getOrderItemDetail(orderID);
+                this.orderItemdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, result.Rows[0]["OrderedQuantity"]);
+                if (orderItemdata.Rows.Count > 1)
+                {
+                    for (int i = 0; i < orderItemdata.Rows.Count; i++)
+                    {
+                        int count = 0;
+                        for (int j = 1; j < orderItemdata.Rows.Count; j++)
+                        {
+
+                            if (i == j)
+                                continue;
+                            if (orderItemdata.Rows[i].Cells[0].Value.ToString() == orderItemdata.Rows[j].Cells[0].Value.ToString())
+                            {
+                                DataGridViewRow dgvDelRow = orderItemdata.Rows[j];
+                                orderItemdata.Rows.Remove(dgvDelRow);
+                                count++;
+                            }
+
+                        }
+                        orderItemdata.Rows[i].Cells[2].Value = (int.Parse(orderItemdata.Rows[i].Cells[2].Value.ToString()) + count);
+                    }
+                }
+                orderAccemblyAssignbox.Text = "";
+            }
+            else
+            {
+                MessageBox.Show("Item Not contain in order");
+            }
         }
     }
 }

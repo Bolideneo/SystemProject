@@ -39,7 +39,7 @@
             orderIDBox = new TextBox();
             label8 = new Label();
             dealerCompanyBox = new TextBox();
-            productOfOrderdata = new DataGridView();
+            orderItemdata = new DataGridView();
             productIDColumn = new DataGridViewTextBoxColumn();
             productNameColumn = new DataGridViewTextBoxColumn();
             quantityColumn = new DataGridViewTextBoxColumn();
@@ -48,8 +48,10 @@
             saveOrderbtn = new Button();
             orderAccemblyOrderItemdata = new DataGridView();
             label4 = new Label();
-            textBox1 = new TextBox();
-            ((System.ComponentModel.ISupportInitialize)productOfOrderdata).BeginInit();
+            dealerAddressBox = new TextBox();
+            orderAccemblyAssignbox = new TextBox();
+            orderAccemblyAssignbtn = new Button();
+            ((System.ComponentModel.ISupportInitialize)orderItemdata).BeginInit();
             ((System.ComponentModel.ISupportInitialize)orderAccemblyOrderItemdata).BeginInit();
             SuspendLayout();
             // 
@@ -75,15 +77,15 @@
             label3.ForeColor = SystemColors.WindowText;
             label3.Location = new Point(11, 11);
             label3.Name = "label3";
-            label3.Size = new Size(166, 38);
+            label3.Size = new Size(227, 38);
             label3.TabIndex = 16;
-            label3.Text = "Sales Order";
+            label3.Text = "Order Accembly";
             // 
             // label11
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label11.Location = new Point(188, 166);
+            label11.Location = new Point(185, 173);
             label11.Margin = new Padding(5, 0, 5, 0);
             label11.Name = "label11";
             label11.Size = new Size(118, 20);
@@ -93,7 +95,7 @@
             // dealerNameBox
             // 
             dealerNameBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dealerNameBox.Location = new Point(337, 166);
+            dealerNameBox.Location = new Point(341, 173);
             dealerNameBox.Margin = new Padding(6, 7, 6, 7);
             dealerNameBox.Name = "dealerNameBox";
             dealerNameBox.Size = new Size(187, 27);
@@ -103,7 +105,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(176, 222);
+            label5.Location = new Point(173, 229);
             label5.Margin = new Padding(5, 0, 5, 0);
             label5.Name = "label5";
             label5.Size = new Size(130, 20);
@@ -114,7 +116,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(215, 112);
+            label1.Location = new Point(212, 119);
             label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
             label1.Size = new Size(91, 20);
@@ -124,7 +126,7 @@
             // dealerIDBox
             // 
             dealerIDBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dealerIDBox.Location = new Point(337, 109);
+            dealerIDBox.Location = new Point(341, 116);
             dealerIDBox.Margin = new Padding(6, 7, 6, 7);
             dealerIDBox.Name = "dealerIDBox";
             dealerIDBox.Size = new Size(187, 27);
@@ -135,7 +137,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(232, 58);
+            label2.Location = new Point(219, 62);
             label2.Margin = new Padding(5, 0, 5, 0);
             label2.Name = "label2";
             label2.Size = new Size(84, 20);
@@ -145,7 +147,7 @@
             // orderIDBox
             // 
             orderIDBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            orderIDBox.Location = new Point(337, 58);
+            orderIDBox.Location = new Point(341, 62);
             orderIDBox.Margin = new Padding(6, 7, 6, 7);
             orderIDBox.Name = "orderIDBox";
             orderIDBox.Size = new Size(185, 27);
@@ -155,7 +157,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label8.Location = new Point(149, 279);
+            label8.Location = new Point(159, 286);
             label8.Margin = new Padding(5, 0, 5, 0);
             label8.Name = "label8";
             label8.Size = new Size(144, 20);
@@ -165,27 +167,27 @@
             // dealerCompanyBox
             // 
             dealerCompanyBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dealerCompanyBox.Location = new Point(324, 279);
+            dealerCompanyBox.Location = new Point(341, 286);
             dealerCompanyBox.Margin = new Padding(6, 7, 6, 7);
             dealerCompanyBox.Name = "dealerCompanyBox";
             dealerCompanyBox.Size = new Size(268, 27);
             dealerCompanyBox.TabIndex = 59;
             // 
-            // productOfOrderdata
+            // orderItemdata
             // 
-            productOfOrderdata.AllowUserToAddRows = false;
-            productOfOrderdata.AllowUserToDeleteRows = false;
-            productOfOrderdata.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            productOfOrderdata.BackgroundColor = SystemColors.ButtonFace;
-            productOfOrderdata.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            productOfOrderdata.Location = new Point(59, 719);
-            productOfOrderdata.Margin = new Padding(3, 5, 3, 5);
-            productOfOrderdata.Name = "productOfOrderdata";
-            productOfOrderdata.RowHeadersWidth = 51;
-            productOfOrderdata.RowTemplate.Height = 24;
-            productOfOrderdata.Size = new Size(776, 221);
-            productOfOrderdata.TabIndex = 61;
-            productOfOrderdata.CellDoubleClick += productOfOrderdata_CellDoubleClick;
+            orderItemdata.AllowUserToAddRows = false;
+            orderItemdata.AllowUserToDeleteRows = false;
+            orderItemdata.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            orderItemdata.BackgroundColor = SystemColors.ButtonFace;
+            orderItemdata.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            orderItemdata.Location = new Point(78, 729);
+            orderItemdata.Margin = new Padding(3, 5, 3, 5);
+            orderItemdata.Name = "orderItemdata";
+            orderItemdata.RowHeadersWidth = 51;
+            orderItemdata.RowTemplate.Height = 24;
+            orderItemdata.Size = new Size(776, 221);
+            orderItemdata.TabIndex = 61;
+            orderItemdata.CellDoubleClick += productOfOrderdata_CellDoubleClick;
             // 
             // productIDColumn
             // 
@@ -218,7 +220,7 @@
             // phoneNumBox
             // 
             phoneNumBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            phoneNumBox.Location = new Point(332, 222);
+            phoneNumBox.Location = new Point(341, 229);
             phoneNumBox.Margin = new Padding(6, 7, 6, 7);
             phoneNumBox.Name = "phoneNumBox";
             phoneNumBox.Size = new Size(187, 27);
@@ -243,7 +245,7 @@
             orderAccemblyOrderItemdata.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             orderAccemblyOrderItemdata.BackgroundColor = SystemColors.ButtonFace;
             orderAccemblyOrderItemdata.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            orderAccemblyOrderItemdata.Location = new Point(60, 438);
+            orderAccemblyOrderItemdata.Location = new Point(78, 486);
             orderAccemblyOrderItemdata.Margin = new Padding(3, 5, 3, 5);
             orderAccemblyOrderItemdata.Name = "orderAccemblyOrderItemdata";
             orderAccemblyOrderItemdata.RowHeadersWidth = 51;
@@ -255,21 +257,38 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(149, 342);
+            label4.Location = new Point(172, 352);
             label4.Margin = new Padding(5, 0, 5, 0);
             label4.Name = "label4";
             label4.Size = new Size(131, 20);
             label4.TabIndex = 73;
             label4.Text = "Dealer Address:";
             // 
-            // textBox1
+            // dealerAddressBox
             // 
-            textBox1.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(324, 342);
-            textBox1.Margin = new Padding(6, 7, 6, 7);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(268, 27);
-            textBox1.TabIndex = 74;
+            dealerAddressBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dealerAddressBox.Location = new Point(341, 349);
+            dealerAddressBox.Margin = new Padding(6, 7, 6, 7);
+            dealerAddressBox.Name = "dealerAddressBox";
+            dealerAddressBox.Size = new Size(268, 27);
+            dealerAddressBox.TabIndex = 74;
+            // 
+            // orderAccemblyAssignbox
+            // 
+            orderAccemblyAssignbox.Location = new Point(141, 419);
+            orderAccemblyAssignbox.Name = "orderAccemblyAssignbox";
+            orderAccemblyAssignbox.Size = new Size(285, 27);
+            orderAccemblyAssignbox.TabIndex = 75;
+            // 
+            // orderAccemblyAssignbtn
+            // 
+            orderAccemblyAssignbtn.Location = new Point(460, 409);
+            orderAccemblyAssignbtn.Name = "orderAccemblyAssignbtn";
+            orderAccemblyAssignbtn.Size = new Size(117, 46);
+            orderAccemblyAssignbtn.TabIndex = 76;
+            orderAccemblyAssignbtn.Text = "button1";
+            orderAccemblyAssignbtn.UseVisualStyleBackColor = true;
+            orderAccemblyAssignbtn.Click += orderAccemblyAssignbtn_Click;
             // 
             // OrderAccembly
             // 
@@ -277,12 +296,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(931, 1036);
-            Controls.Add(textBox1);
+            Controls.Add(orderAccemblyAssignbtn);
+            Controls.Add(orderAccemblyAssignbox);
+            Controls.Add(dealerAddressBox);
             Controls.Add(label4);
             Controls.Add(orderAccemblyOrderItemdata);
             Controls.Add(saveOrderbtn);
             Controls.Add(phoneNumBox);
-            Controls.Add(productOfOrderdata);
+            Controls.Add(orderItemdata);
             Controls.Add(label8);
             Controls.Add(dealerCompanyBox);
             Controls.Add(label11);
@@ -300,7 +321,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "OrderForm1";
             Load += SalesOrder_Load;
-            ((System.ComponentModel.ISupportInitialize)productOfOrderdata).EndInit();
+            ((System.ComponentModel.ISupportInitialize)orderItemdata).EndInit();
             ((System.ComponentModel.ISupportInitialize)orderAccemblyOrderItemdata).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -319,7 +340,7 @@
         private System.Windows.Forms.TextBox orderIDBox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox dealerCompanyBox;
-        private System.Windows.Forms.DataGridView productOfOrderdata;
+        private System.Windows.Forms.DataGridView orderItemdata;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox phoneNumBox;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
@@ -338,6 +359,8 @@
         private Button saveOrderbtn;
         private DataGridView orderAccemblyOrderItemdata;
         private Label label4;
-        private TextBox textBox1;
+        private TextBox dealerAddressBox;
+        private TextBox orderAccemblyAssignbox;
+        private Button orderAccemblyAssignbtn;
     }
 }

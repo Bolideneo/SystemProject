@@ -48,6 +48,8 @@ namespace ITP4519M
         private string dealerID;
         private string deliveryID;
         private string contactID;
+        private string orderAccemblyOrderID;
+        private string orderAccemblyDealerID;
         private int PageSize = 5;
         private int index = -1;
         private int index2 = -1;
@@ -57,6 +59,7 @@ namespace ITP4519M
         private int deliveryindex = -1;
         private int contactindex = -1;
         private int stockindex = -1;
+        private int orderAceemblyindex = -1;
         private Button lastClickedButton = null;
         private Button[] buttons = new Button[2];
         private bool isFormDragging = false;
@@ -511,7 +514,7 @@ namespace ITP4519M
         private void newOrderbtn_Click(object sender, EventArgs e)
         {
             CreateOrder createOrder = new CreateOrder(OperationMode.New);
-           createOrder.ShowDialog();
+            createOrder.ShowDialog();
         }
 
         private void editOrdersbtn_Click(object sender, EventArgs e)
@@ -1199,7 +1202,63 @@ namespace ITP4519M
             }
         }
 
+        private void orderAccemblyData_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+            {
 
+                this.orderAccemblyData.Rows[e.RowIndex].Cells["orderAccemblyColumn"].Value = true;
+                orderAceemblyindex = e.RowIndex;
+                DataGridViewRow selectRow = this.orderAccemblyData.Rows[orderAceemblyindex];
+                orderAccemblyOrderID = selectRow.Cells[1].Value.ToString();
+                orderAccemblyDealerID = selectRow.Cells[2].Value.ToString();
+
+                foreach (DataGridViewRow row in orderAccemblyData.Rows)
+                {
+                    if (row.Index == e.RowIndex)
+                    {
+                        row.Cells["orderAccemblyColumn"].Value = !Convert.ToBoolean(row.Cells["orderAccemblyColumn"].EditedFormattedValue);
+                    }
+                    else
+                    {
+                        row.Cells["orderAccemblyColumn"].Value = false;
+                    }
+                }
+            }
+        }
+
+        private void orderAccemblyViewbtn_Click(object sender, EventArgs e)
+        {
+            if (orderAceemblyindex == -1)
+            {
+                MessageBox.Show("Please Select One Order");
+            }
+            else
+            {
+                OrderAccembly orderAccembly = new OrderAccembly(OperationMode.View, orderAccemblyOrderID, orderAccemblyDealerID);
+                orderAccembly.ShowDialog();
+
+            }
+        }
+
+        private void orderAccemblySearchbtn_Click(object sender, EventArgs e)
+        {
+     
+        }
+
+        private void accemblyCreatebtn_Click(object sender, EventArgs e)
+        {
+            if (orderAceemblyindex == -1)
+            {
+                MessageBox.Show("Please Select One Order");
+            }
+            else
+            {
+                OrderAccembly orderAccembly = new OrderAccembly(OperationMode.New, orderAccemblyOrderID, orderAccemblyDealerID);
+                orderAccembly.ShowDialog();
+
+            }
+        }
     }
 }
     

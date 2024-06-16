@@ -59,7 +59,6 @@
             productClosebtn = new Button();
             label2 = new Label();
             productUnitpricebox = new TextBox();
-            stockEditProuctbtn = new Button();
             productOutofStockbox = new TextBox();
             SuspendLayout();
             // 
@@ -88,11 +87,10 @@
             // 
             // productNamebox
             // 
-
-            productNamebox.Location = new Point(154, 91);
+            productNamebox.Location = new Point(154, 90);
             productNamebox.Margin = new Padding(4, 3, 4, 3);
             productNamebox.Name = "productNamebox";
-            productNamebox.Size = new Size(117, 23);
+            productNamebox.Size = new Size(117, 27);
             productNamebox.TabIndex = 4;
             // 
             // productCostlbl
@@ -111,7 +109,7 @@
             stockAddProuctbtn.BackColor = Color.FromArgb(0, 192, 0);
             stockAddProuctbtn.Font = new Font("Microsoft Sans Serif", 12F);
             stockAddProuctbtn.ForeColor = Color.White;
-            stockAddProuctbtn.Location = new Point(64, 494);
+            stockAddProuctbtn.Location = new Point(215, 502);
             stockAddProuctbtn.Margin = new Padding(4, 3, 4, 3);
             stockAddProuctbtn.Name = "stockAddProuctbtn";
             stockAddProuctbtn.Size = new Size(171, 39);
@@ -128,7 +126,7 @@
             productStatusbox.Location = new Point(439, 426);
             productStatusbox.Margin = new Padding(4, 3, 4, 3);
             productStatusbox.Name = "productStatusbox";
-            productStatusbox.Size = new Size(118, 24);
+            productStatusbox.Size = new Size(118, 28);
             productStatusbox.TabIndex = 18;
             // 
             // productDescriptionlbl
@@ -159,7 +157,7 @@
             productserialbox.Location = new Point(154, 256);
             productserialbox.Margin = new Padding(4, 3, 4, 3);
             productserialbox.Name = "productserialbox";
-            productserialbox.Size = new Size(117, 23);
+            productserialbox.Size = new Size(117, 27);
             productserialbox.TabIndex = 8;
             // 
             // productCostbox
@@ -167,7 +165,7 @@
             productCostbox.Location = new Point(154, 370);
             productCostbox.Margin = new Padding(4, 3, 4, 3);
             productCostbox.Name = "productCostbox";
-            productCostbox.Size = new Size(117, 23);
+            productCostbox.Size = new Size(117, 27);
             productCostbox.TabIndex = 10;
             // 
             // productWeightlbl
@@ -194,11 +192,10 @@
             // 
             // productWeightbox
             // 
-
             productWeightbox.Location = new Point(154, 425);
             productWeightbox.Margin = new Padding(4, 3, 4, 3);
             productWeightbox.Name = "productWeightbox";
-            productWeightbox.Size = new Size(117, 23);
+            productWeightbox.Size = new Size(117, 27);
             productWeightbox.TabIndex = 11;
             // 
             // productInStocklbl
@@ -214,20 +211,20 @@
             // 
             // productInStockbox
             // 
-            productInStockbox.Location = new Point(439, 147);
+            productInStockbox.Location = new Point(513, 148);
             productInStockbox.Margin = new Padding(4, 3, 4, 3);
             productInStockbox.Name = "productInStockbox";
-            productInStockbox.Size = new Size(118, 23);
+            productInStockbox.Size = new Size(118, 27);
             productInStockbox.TabIndex = 13;
             // 
             // productReOrderbox
             // 
             productReOrderbox.Enabled = false;
-            productReOrderbox.Location = new Point(439, 202);
+            productReOrderbox.Location = new Point(513, 199);
             productReOrderbox.Margin = new Padding(4, 3, 4, 3);
             productReOrderbox.Name = "productReOrderbox";
             productReOrderbox.ReadOnly = true;
-            productReOrderbox.Size = new Size(118, 23);
+            productReOrderbox.Size = new Size(118, 27);
             productReOrderbox.TabIndex = 14;
             // 
             // productReOrderlbl
@@ -254,21 +251,20 @@
             // 
             // productDescriptionbox
             // 
-
             productDescriptionbox.Location = new Point(439, 370);
             productDescriptionbox.Margin = new Padding(4, 3, 4, 3);
             productDescriptionbox.Name = "productDescriptionbox";
-            productDescriptionbox.Size = new Size(118, 23);
+            productDescriptionbox.Size = new Size(118, 27);
             productDescriptionbox.TabIndex = 17;
             // 
             // productDangerbox
             // 
             productDangerbox.Enabled = false;
-            productDangerbox.Location = new Point(439, 257);
+            productDangerbox.Location = new Point(513, 254);
             productDangerbox.Margin = new Padding(4, 3, 4, 3);
             productDangerbox.Name = "productDangerbox";
             productDangerbox.ReadOnly = true;
-            productDangerbox.Size = new Size(118, 23);
+            productDangerbox.Size = new Size(118, 27);
             productDangerbox.TabIndex = 15;
             // 
             // label12
@@ -304,7 +300,7 @@
             productCategorybox.Location = new Point(154, 147);
             productCategorybox.Margin = new Padding(4, 3, 4, 3);
             productCategorybox.Name = "productCategorybox";
-            productCategorybox.Size = new Size(117, 24);
+            productCategorybox.Size = new Size(117, 28);
             productCategorybox.TabIndex = 5;
             // 
             // productAutoOrderlbl
@@ -335,7 +331,7 @@
             productWarehousebox.Location = new Point(154, 201);
             productWarehousebox.Margin = new Padding(4, 3, 4, 3);
             productWarehousebox.Name = "productWarehousebox";
-            productWarehousebox.Size = new Size(117, 23);
+            productWarehousebox.Size = new Size(117, 27);
             productWarehousebox.TabIndex = 7;
             // 
             // productDemandlbl
@@ -355,7 +351,7 @@
             productdemandbox.Location = new Point(439, 312);
             productdemandbox.Margin = new Padding(4, 3, 4, 3);
             productdemandbox.Name = "productdemandbox";
-            productdemandbox.Size = new Size(118, 23);
+            productdemandbox.Size = new Size(118, 27);
             productdemandbox.TabIndex = 16;
             // 
             // productClosebtn
@@ -363,7 +359,7 @@
             productClosebtn.FlatAppearance.BorderSize = 0;
             productClosebtn.FlatStyle = FlatStyle.Flat;
             productClosebtn.Font = new Font("Verdana", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            productClosebtn.Location = new Point(517, 15);
+            productClosebtn.Location = new Point(604, 12);
             productClosebtn.Margin = new Padding(2);
             productClosebtn.Name = "productClosebtn";
             productClosebtn.Size = new Size(40, 49);
@@ -388,27 +384,13 @@
             productUnitpricebox.Location = new Point(154, 312);
             productUnitpricebox.Margin = new Padding(4, 3, 4, 3);
             productUnitpricebox.Name = "productUnitpricebox";
-            productUnitpricebox.Size = new Size(117, 23);
+            productUnitpricebox.Size = new Size(117, 27);
             productUnitpricebox.TabIndex = 9;
-            // 
-            // stockEditProuctbtn
-            // 
-            stockEditProuctbtn.BackColor = SystemColors.ButtonHighlight;
-            stockEditProuctbtn.Font = new Font("Microsoft Sans Serif", 12F);
-            stockEditProuctbtn.ForeColor = Color.Black;
-            stockEditProuctbtn.Location = new Point(330, 494);
-            stockEditProuctbtn.Margin = new Padding(4, 3, 4, 3);
-            stockEditProuctbtn.Name = "stockEditProuctbtn";
-            stockEditProuctbtn.Size = new Size(171, 39);
-            stockEditProuctbtn.TabIndex = 47;
-            stockEditProuctbtn.Text = "Edit";
-            stockEditProuctbtn.UseVisualStyleBackColor = false;
-            stockEditProuctbtn.Click += stockEditProuctbtn_Click;
             // 
             // productOutofStockbox
             // 
             productOutofStockbox.Enabled = false;
-            productOutofStockbox.Location = new Point(240, 633);
+            productOutofStockbox.Location = new Point(513, 88);
             productOutofStockbox.Margin = new Padding(5, 4, 5, 4);
             productOutofStockbox.Name = "productOutofStockbox";
             productOutofStockbox.ReadOnly = true;
@@ -420,7 +402,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
-            ClientSize = new Size(570, 570);
+            ClientSize = new Size(737, 712);
             Controls.Add(productOutofStockbox);
             Controls.Add(productUnitpricebox);
             Controls.Add(label2);
@@ -453,7 +435,6 @@
             Controls.Add(productNamebox);
             Controls.Add(label3);
             Controls.Add(prudctCategorylbl);
-            Controls.Add(stockEditProuctbtn);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(5, 4, 5, 4);
             Name = "ProductForm";
@@ -501,7 +482,6 @@
         private Button productClosebtn;
         private Label label2;
         private TextBox productUnitpricebox;
-        private Button stockEditProuctbtn;
         private TextBox productOutofStockbox;
     }
 }

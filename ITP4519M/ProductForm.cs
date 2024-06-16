@@ -38,18 +38,15 @@ namespace ITP4519M
             {
                 case OperationMode.View:
                     stockAddProuctbtn.Visible = false;
-                    stockEditProuctbtn.Visible = false;
                     SetReadOnly(true);
 
                     break;
                 case OperationMode.Edit:
                     stockAddProuctbtn.Visible = false;
-                    stockEditProuctbtn.Visible = true;
 
                     break;
                 case OperationMode.New:
                     stockAddProuctbtn.Visible = true;
-                    stockEditProuctbtn.Visible = false;
                     break;
 
             }

@@ -960,6 +960,159 @@ namespace ProgramMethod
                 gp.CloseFigure();
                 return gp;
             }
+
+         
+        }
+        public DataTable getOrderItemDetailsForOrderAccembly(string orderID)
+        {
+            return dataBaseMethod.getOrderItemDetailsForOrderAccembly(orderID);
+        }
+
+        public bool searchOrderEachItemDetail(string productID, string orderID)
+        {
+            DataTable result = dataBaseMethod.searchOrderEachItemDetail(orderID);
+            ArrayList checkList = new ArrayList();
+            for (int i = 0; i < result.Rows.Count; i++)
+            {
+                if (productID == result.Rows[i]["ProductID"].ToString())
+                {
+                    checkList.Add(true);
+                }
+            }
+            if (checkList.Contains(true))
+                return true;
+            else
+                return false;
+        }
+
+        public DataTable getOrderEachItemDetail(string itemID, string orderID)
+        {
+            return dataBaseMethod.getOrderEachItemDetail(itemID, orderID);
+        }
+
+        public DataTable getOrderItemDetail(string orderID)
+        {
+            return dataBaseMethod.getOrderItemDetailforAsb(orderID);
+        }
+
+        public bool createOrderAsswmbly(DataGridView orderAccemblyActualdata, DataGridView orderAccemblyOrderItemdata, string orderID)
+        {
+
+            for (int i = 0; i < orderAccemblyActualdata.Rows.Count; i++)
+            {
+                if (int.Parse(dataBaseMethod.getPrdocutQuantityInStock(orderAccemblyActualdata.Rows[i].Cells[0].Value.ToString())) > int.Parse(dataBaseMethod.getProdcutDangerQty((orderAccemblyActualdata.Rows[i].Cells[0].Value.ToString()))))
+                {
+                    dataBaseMethod.updateProductStatus(orderAccemblyActualdata.Rows[i].Cells[0].Value.ToString(), "Available");
+                }
+                if (int.Parse(dataBaseMethod.getPrdocutQuantityInStock(orderAccemblyActualdata.Rows[i].Cells[0].Value.ToString())) <= (int.Parse(dataBaseMethod.getProdcutDangerQty((orderAccemblyActualdata.Rows[i].Cells[0].Value.ToString())))))
+                {
+                    dataBaseMethod.updateProductStatus(orderAccemblyActualdata.Rows[i].Cells[0].Value.ToString(), "Re-order");
+                }
+
+                if (int.Parse(dataBaseMethod.getPrdocutQuantityInStock(orderAccemblyActualdata.Rows[i].Cells[0].Value.ToString())) <= (int.Parse(dataBaseMethod.getProdcutDangerQty((orderAccemblyActualdata.Rows[i].Cells[0].Value.ToString())))))
+                {
+                    dataBaseMethod.updateProductStatus(orderAccemblyActualdata.Rows[i].Cells[0].Value.ToString(), "Danger");
+                }
+                if (int.Parse(dataBaseMethod.getPrdocutQuantityInStock(orderAccemblyActualdata.Rows[i].Cells[0].Value.ToString())) == 0)
+                {
+                    dataBaseMethod.updateProductStatus(orderAccemblyActualdata.Rows[i].Cells[0].Value.ToString(), "Out-Of-Stock");
+                }
+
+
+
+
+
+                if (int.Parse(orderAccemblyActualdata.Rows[i].Cells[2].Value.ToString()) < int.Parse(orderAccemblyActualdata.Rows[i].Cells[3].Value.ToString()))
+                {
+                    string sum = ((int.Parse(orderAccemblyActualdata.Rows[i].Cells[3].Value.ToString()) - (int.Parse(orderAccemblyActualdata.Rows[i].Cells[2].Value.ToString())))).ToString();
+
+
+                    string oustID = "OUT" + (int.Parse(dataBaseMethod.getOutStandingID()) + 1).ToString("000000");
+                    while (!dataBaseMethod.createOutstandingOrder(oustID, orderID, orderAccemblyActualdata.Rows[i].Cells[0].Value.ToString(), dataBaseMethod.getOrderOfDealerID(orderID), sum))
+                    {
+                        oustID = "OUT" + (int.Parse(dataBaseMethod.getOutStandingID()) + 1).ToString("000000");
+                    }
+
+                    if (int.Parse(dataBaseMethod.getPrdocutQuantityInStock(orderAccemblyActualdata.Rows[i].Cells[0].Value.ToString())) < 0)
+                        dataBaseMethod.setDefualtInStock(orderAccemblyActualdata.Rows[i].Cells[0].Value.ToString());
+                }
+                //if (int.Parse(dataBaseMethod.getPrdocutQuantityInStock(orderAccemblyActualdata.Rows[i].Cells[0].Value.ToString())) < int.Parse(dataBaseMethod.getItemReorderLev(orderAccemblyActualdata.Rows[i].Cells[0].Value.ToString())))
+                //{
+                //    if (int.Parse(dataBaseMethod.searchPurchasesItem(orderAccemblyActualdata.Rows[i].Cells[0].Value.ToString())) < 1)
+                //    {
+                //        string PurID = "PUR" + (int.Parse(dataBaseMethod.getPurchasesID()) + 1).ToString("000000");
+                //        while (!dataBaseMethod.createPurchaseOrder(PurID, orderAccemblyActualdata.Rows[i].Cells[0].Value.ToString(), dataBaseMethod.getItemAutoPur(orderAccemblyActualdata.Rows[i].Cells[0].Value.ToString()), "In Procurement"))
+                //        {
+                //            PurID = "PUR" + (int.Parse(dataBaseMethod.getPurchasesOrderID()) + 1).ToString("000000");
+                //        }
+                //    }
+                //}
+                dataBaseMethod.updateOrderItemDemand(orderAccemblyActualdata.Rows[i].Cells[0].Value.ToString(), int.Parse(orderAccemblyActualdata.Rows[i].Cells[2].Value.ToString()));
+                dataBaseMethod.updateOrderItem(orderID, orderAccemblyActualdata.Rows[i].Cells[0].Value.ToString(), orderAccemblyActualdata.Rows[i].Cells[2].Value.ToString());
+            }
+            if (orderAccemblyActualdata.RowCount != 0)
+            { 
+                string invoiceID = "INV" + (int.Parse(dataBaseMethod.getInvoiceID()) + 1).ToString("000000");
+                while (!dataBaseMethod.createInvoice(invoiceID, orderID, dataBaseMethod.getOrderOfDealerID(orderID)))
+                {
+                    invoiceID = "INV" + (int.Parse(dataBaseMethod.getInvoiceID()) + 1).ToString("000000");
+                }
+            }
+            Debug.WriteLine(orderAccemblyActualdata.RowCount);
+            Debug.WriteLine(orderAccemblyOrderItemdata.RowCount);
+            if (orderAccemblyActualdata.RowCount == 0)
+            {
+
+                for (int j = 0; j < orderAccemblyOrderItemdata.RowCount; j++)
+                {
+                    Debug.WriteLine("TEST");
+                    string oustID = "OUT" + (int.Parse(dataBaseMethod.getOutStandingID()) + 1).ToString("000000");
+                    while (!dataBaseMethod.createOutstandingOrder(oustID, orderID, orderAccemblyOrderItemdata.Rows[j].Cells[0].Value.ToString(), orderAccemblyOrderItemdata.Rows[j].Cells[3].Value.ToString(), dataBaseMethod.getOrderOfDealerID(orderID)))
+                    {
+                        oustID = "OUT" + (int.Parse(dataBaseMethod.getOutStandingID()) + 1).ToString("000000");
+                    }
+                }
+
+            }
+            else if (orderAccemblyActualdata.RowCount < orderAccemblyOrderItemdata.RowCount)
+            {
+                Debug.WriteLine("Test01");
+                for (int i = 0; i < orderAccemblyOrderItemdata.RowCount; i++)
+                {
+                    Debug.WriteLine("Test02");
+                    int count = 0;
+                    for (int j = 0; j < orderAccemblyActualdata.RowCount; j++)
+                    {
+                        Debug.WriteLine("Test03");
+                        if (orderAccemblyOrderItemdata.Rows[i].Cells[0].Value.ToString() != orderAccemblyActualdata.Rows[j].Cells[0].Value.ToString())
+                        {
+                            count++;
+                        }
+                        if (count == orderAccemblyActualdata.RowCount - 1)
+                        {
+                            Debug.WriteLine("Test03");
+                            string oustID = "OUT" + (int.Parse(dataBaseMethod.getOutStandingID()) + 1).ToString("000000");
+                            while (!dataBaseMethod.createOutstandingOrder(oustID, orderID, orderAccemblyActualdata.Rows[i].Cells[0].Value.ToString(), orderAccemblyActualdata.Rows[i].Cells[3].Value.ToString(), dataBaseMethod.getOrderOfDealerID(orderID)))
+                            {
+                                oustID = "OUT" + (int.Parse(dataBaseMethod.getOutStandingID()) + 1).ToString("000000");
+                            }
+                            break;
+                        }
+                    }
+
+                }
+            }
+            int countNotMatch = 0;
+            for (int i = 0; i < orderAccemblyActualdata.RowCount; i++)
+            {
+                if (int.Parse(orderAccemblyActualdata.Rows[i].Cells[2].Value.ToString()) < int.Parse(orderAccemblyActualdata.Rows[i].Cells[3].Value.ToString()))
+                    countNotMatch++;
+            }
+            if (countNotMatch == orderAccemblyActualdata.RowCount)
+                dataBaseMethod.updateOrderStatus("Outstanding", orderID);
+            else
+                dataBaseMethod.updateOrderStatus("Packaged", orderID);
+            return true;
         }
     }
     }

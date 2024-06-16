@@ -3,16 +3,103 @@
   "WorkspaceRootPath": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\orderaccembly.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\orderaccembly.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\databasemethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\databasemethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\programmethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\programmethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\itp4519m\\registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\itp4519m\\orderaccembly.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\orderaccembly.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\itp4519m\\productform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\productform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\itp4519m\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\itp4519m\\dealercontactform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\dealercontactform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\itp4519m\\deliveryform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\deliveryform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\itp4519m\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\orderaccembly.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\orderaccembly.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\huili\\AppData\\Local\\SourceServer\\9b0d692028d5ad46c7a58732ad368a44fd31fe6731294a87a44c262451c1e297\\ITP4519M\\DataBaseMethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\itp4519m\\salesorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\salesorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\createorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\createorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\itp4519m\\createorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\createorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\salesorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\salesorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\itp4519m\\suppliercontactform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\suppliercontactform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\itp4519m\\grn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\grn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\itp4519m\\delivery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\delivery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\itp4519m.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\itp4519m.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\orderaccembly.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\orderaccembly.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\createorder.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\createorder.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\productform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\productform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\dashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\dashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\itp4519m\\login.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}",
@@ -23,60 +110,8 @@
       "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\login.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\itp4519m\\orderaccembly.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\orderaccembly.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\itp4519m\\suppliercontactform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\suppliercontactform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\itp4519m\\salesorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\salesorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\itp4519m\\deliveryform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\deliveryform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\itp4519m\\grn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\grn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\dashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\dashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\databasemethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\databasemethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\programmethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\programmethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\createorder.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\createorder.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\createorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\createorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\itp4519m.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
       "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\itp4519m.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\salesorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|solutionrelative:itp4519m\\salesorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6EC265E6-15CD-48EB-9EFB-A8B49D4F93AC}|ITP4519M\\ITP4519M.csproj|e:\\hd\\sem6\\coding\\itp4519m\\itp4519m_backup\\itp4519m\\productform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -90,28 +125,321 @@
       "DocumentGroups": [
         {
           "DockedHeight": 383,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DealerContactForm.cs [Design]",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\DealerContactForm.cs",
+              "RelativeDocumentMoniker": "ITP4519M\\DealerContactForm.cs",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\DealerContactForm.cs [Design]",
+              "RelativeToolTip": "ITP4519M\\DealerContactForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T12:48:16.66Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "OrderAccembly.cs [Design]",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\OrderAccembly.cs",
+              "RelativeDocumentMoniker": "ITP4519M\\OrderAccembly.cs",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\OrderAccembly.cs [Design]",
+              "RelativeToolTip": "ITP4519M\\OrderAccembly.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T08:05:23.346Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Dashboard.cs [Design]",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Dashboard.cs",
+              "RelativeDocumentMoniker": "ITP4519M\\Dashboard.cs",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Dashboard.cs [Design]",
+              "RelativeToolTip": "ITP4519M\\Dashboard.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T12:39:14.292Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DataBaseMethod.cs",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\DataBaseMethod.cs",
+              "RelativeDocumentMoniker": "ITP4519M\\DataBaseMethod.cs",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\DataBaseMethod.cs",
+              "RelativeToolTip": "ITP4519M\\DataBaseMethod.cs",
+              "ViewState": "AQIAADgGAAAAAAAAAAAAwAoGAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-14T04:42:18.178Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Program.cs",
+              "RelativeDocumentMoniker": "ITP4519M\\Program.cs",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Program.cs",
+              "RelativeToolTip": "ITP4519M\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T14:23:27.926Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProductForm.cs [Design]",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\ProductForm.cs",
+              "RelativeDocumentMoniker": "ITP4519M\\ProductForm.cs",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\ProductForm.cs [Design]",
+              "RelativeToolTip": "ITP4519M\\ProductForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T09:11:37.886Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RegisterForm.cs [Design]",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\RegisterForm.cs",
+              "RelativeDocumentMoniker": "ITP4519M\\RegisterForm.cs",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\RegisterForm.cs [Design]",
+              "RelativeToolTip": "ITP4519M\\RegisterForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T12:48:21.326Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProgramMethod.cs",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\ProgramMethod.cs",
+              "RelativeDocumentMoniker": "ITP4519M\\ProgramMethod.cs",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\ProgramMethod.cs",
+              "RelativeToolTip": "ITP4519M\\ProgramMethod.cs",
+              "ViewState": "AQIAACIEAAAAAAAAAAAUwAoEAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-14T16:52:16.6Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DeliveryForm.cs [Design]",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\DeliveryForm.cs",
+              "RelativeDocumentMoniker": "ITP4519M\\DeliveryForm.cs",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\DeliveryForm.cs [Design]",
+              "RelativeToolTip": "ITP4519M\\DeliveryForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T08:21:58.208Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Login.cs [Design]",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Login.cs",
+              "RelativeDocumentMoniker": "ITP4519M\\Login.cs",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Login.cs [Design]",
+              "RelativeToolTip": "ITP4519M\\Login.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T12:48:19.749Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "OrderAccembly.cs",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\OrderAccembly.cs",
+              "RelativeDocumentMoniker": "ITP4519M\\OrderAccembly.cs",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\OrderAccembly.cs",
+              "RelativeToolTip": "ITP4519M\\OrderAccembly.cs",
+              "ViewState": "AQIAAPgAAAAAAAAAAAAiwBIBAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T08:06:34.554Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Dashboard.cs",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Dashboard.cs",
+              "RelativeDocumentMoniker": "ITP4519M\\Dashboard.cs",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Dashboard.cs",
+              "RelativeToolTip": "ITP4519M\\Dashboard.cs",
+              "ViewState": "AQIAADwEAAAAAAAAAAAowOgEAAA5AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-14T03:29:18.262Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "SalesOrder.cs [Design]",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\SalesOrder.cs",
+              "RelativeDocumentMoniker": "ITP4519M\\SalesOrder.cs",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\SalesOrder.cs [Design]",
+              "RelativeToolTip": "ITP4519M\\SalesOrder.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T12:48:28.224Z"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 11,
+              "Title": "DataBaseMethod.cs",
+              "DocumentMoniker": "C:\\Users\\huili\\AppData\\Local\\SourceServer\\9b0d692028d5ad46c7a58732ad368a44fd31fe6731294a87a44c262451c1e297\\ITP4519M\\DataBaseMethod.cs",
+              "ToolTip": "C:\\Users\\huili\\AppData\\Local\\SourceServer\\9b0d692028d5ad46c7a58732ad368a44fd31fe6731294a87a44c262451c1e297\\ITP4519M\\DataBaseMethod.cs [Read Only]",
+              "ViewState": "AQIAAHoFAAAAAAAAAAAAAI0FAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-16T07:57:47.923Z",
+              "EditorCaption": " [Read Only]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "CreateOrder.cs",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\CreateOrder.cs",
+              "RelativeDocumentMoniker": "ITP4519M\\CreateOrder.cs",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\CreateOrder.cs",
+              "RelativeToolTip": "ITP4519M\\CreateOrder.cs",
+              "ViewState": "AQIAAOUAAAAAAAAAAAAlwP0AAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-14T04:30:02.71Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "CreateOrder.cs [Design]",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\CreateOrder.cs",
+              "RelativeDocumentMoniker": "ITP4519M\\CreateOrder.cs",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\CreateOrder.cs [Design]",
+              "RelativeToolTip": "ITP4519M\\CreateOrder.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T13:46:28.363Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "SalesOrder.cs",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\SalesOrder.cs",
+              "RelativeDocumentMoniker": "ITP4519M\\SalesOrder.cs",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\SalesOrder.cs",
+              "RelativeToolTip": "ITP4519M\\SalesOrder.cs",
+              "ViewState": "AQIAALMAAAAAAAAAAADwv8wAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-13T10:13:58.022Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "SupplierContactForm.cs [Design]",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\SupplierContactForm.cs",
+              "RelativeDocumentMoniker": "ITP4519M\\SupplierContactForm.cs",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\SupplierContactForm.cs [Design]",
+              "RelativeToolTip": "ITP4519M\\SupplierContactForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T08:22:06.453Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "GRN.cs [Design]",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\GRN.cs",
+              "RelativeDocumentMoniker": "ITP4519M\\GRN.cs",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\GRN.cs [Design]",
+              "RelativeToolTip": "ITP4519M\\GRN.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T08:21:57.564Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Delivery.cs [Design]",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Delivery.cs",
+              "RelativeDocumentMoniker": "ITP4519M\\Delivery.cs",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Delivery.cs [Design]",
+              "RelativeToolTip": "ITP4519M\\Delivery.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T14:03:54.394Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "ITP4519M.csproj",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\ITP4519M.csproj",
+              "RelativeDocumentMoniker": "ITP4519M\\ITP4519M.csproj",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\ITP4519M.csproj",
+              "RelativeToolTip": "ITP4519M\\ITP4519M.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-06-15T14:28:13.385Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
               "Title": "OrderAccembly.Designer.cs",
               "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\OrderAccembly.Designer.cs",
               "RelativeDocumentMoniker": "ITP4519M\\OrderAccembly.Designer.cs",
               "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\OrderAccembly.Designer.cs",
               "RelativeToolTip": "ITP4519M\\OrderAccembly.Designer.cs",
-              "ViewState": "AQIAADgAAAAAAAAAAAAEwE8AAAAoAAAA",
+              "ViewState": "AQIAAAoBAAAAAAAAAAAmwCEBAABCAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T09:10:18.058Z",
+              "WhenOpened": "2024-06-15T14:27:50.972Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 22,
+              "Title": "CreateOrder.Designer.cs",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\CreateOrder.Designer.cs",
+              "RelativeDocumentMoniker": "ITP4519M\\CreateOrder.Designer.cs",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\CreateOrder.Designer.cs",
+              "RelativeToolTip": "ITP4519M\\CreateOrder.Designer.cs",
+              "ViewState": "AQIAACIBAAAAAAAAAAAmwCsBAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-14T03:46:37.152Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "ProductForm.cs",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\ProductForm.cs",
+              "RelativeDocumentMoniker": "ITP4519M\\ProductForm.cs",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\ProductForm.cs",
+              "RelativeToolTip": "ITP4519M\\ProductForm.cs",
+              "ViewState": "AQIAADgAAAAAAAAAAAASwCcAAAA2AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T12:49:34.19Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Dashboard.Designer.cs",
+              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Dashboard.Designer.cs",
+              "RelativeDocumentMoniker": "ITP4519M\\Dashboard.Designer.cs",
+              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Dashboard.Designer.cs",
+              "RelativeToolTip": "ITP4519M\\Dashboard.Designer.cs",
+              "ViewState": "AQIAAGgHAAAAAAAAAAAmwH0HAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T07:45:29.793Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
               "Title": "Login.Designer.cs",
               "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Login.Designer.cs",
               "RelativeDocumentMoniker": "ITP4519M\\Login.Designer.cs",
@@ -124,100 +452,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "SupplierContactForm.cs [Design]",
-              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\SupplierContactForm.cs",
-              "RelativeDocumentMoniker": "ITP4519M\\SupplierContactForm.cs",
-              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\SupplierContactForm.cs [Design]",
-              "RelativeToolTip": "ITP4519M\\SupplierContactForm.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T08:22:06.453Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Program.cs",
-              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Program.cs",
-              "RelativeDocumentMoniker": "ITP4519M\\Program.cs",
-              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Program.cs",
-              "RelativeToolTip": "ITP4519M\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T08:22:03.904Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "OrderAccembly.cs [Design]",
-              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\OrderAccembly.cs",
-              "RelativeDocumentMoniker": "ITP4519M\\OrderAccembly.cs",
-              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\OrderAccembly.cs [Design]",
-              "RelativeToolTip": "ITP4519M\\OrderAccembly.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T08:05:23.346Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Login.cs [Design]",
-              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Login.cs",
-              "RelativeDocumentMoniker": "ITP4519M\\Login.cs",
-              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Login.cs [Design]",
-              "RelativeToolTip": "ITP4519M\\Login.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T08:21:56.61Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "SalesOrder.cs [Design]",
-              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\SalesOrder.cs",
-              "RelativeDocumentMoniker": "ITP4519M\\SalesOrder.cs",
-              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\SalesOrder.cs [Design]",
-              "RelativeToolTip": "ITP4519M\\SalesOrder.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T03:16:38.33Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "DeliveryForm.cs [Design]",
-              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\DeliveryForm.cs",
-              "RelativeDocumentMoniker": "ITP4519M\\DeliveryForm.cs",
-              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\DeliveryForm.cs [Design]",
-              "RelativeToolTip": "ITP4519M\\DeliveryForm.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T08:21:58.208Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "GRN.cs [Design]",
-              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\GRN.cs",
-              "RelativeDocumentMoniker": "ITP4519M\\GRN.cs",
-              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\GRN.cs [Design]",
-              "RelativeToolTip": "ITP4519M\\GRN.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T08:21:57.564Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "OrderAccembly.cs",
-              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\OrderAccembly.cs",
-              "RelativeDocumentMoniker": "ITP4519M\\OrderAccembly.cs",
-              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\OrderAccembly.cs",
-              "RelativeToolTip": "ITP4519M\\OrderAccembly.cs",
-              "ViewState": "AQIAAE8AAAAAAAAAAAAvwGUAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T08:06:34.554Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 25,
               "Title": "Login.resx",
               "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Login.resx",
               "RelativeDocumentMoniker": "ITP4519M\\Login.resx",
@@ -229,79 +464,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Dashboard.Designer.cs",
-              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Dashboard.Designer.cs",
-              "RelativeDocumentMoniker": "ITP4519M\\Dashboard.Designer.cs",
-              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Dashboard.Designer.cs",
-              "RelativeToolTip": "ITP4519M\\Dashboard.Designer.cs",
-              "ViewState": "AQIAAEwIAAAAAAAAAAAmwK8IAAAhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T07:45:29.793Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Dashboard.cs",
-              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Dashboard.cs",
-              "RelativeDocumentMoniker": "ITP4519M\\Dashboard.cs",
-              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\Dashboard.cs",
-              "RelativeToolTip": "ITP4519M\\Dashboard.cs",
-              "ViewState": "AQIAAIkBAAAAAAAAAAAcwKkBAABMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T03:29:18.262Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "ProgramMethod.cs",
-              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\ProgramMethod.cs",
-              "RelativeDocumentMoniker": "ITP4519M\\ProgramMethod.cs",
-              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\ProgramMethod.cs",
-              "RelativeToolTip": "ITP4519M\\ProgramMethod.cs",
-              "ViewState": "AQIAAK0AAAAAAAAAAAAIwMEAAAArAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T16:52:16.6Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "DataBaseMethod.cs",
-              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\DataBaseMethod.cs",
-              "RelativeDocumentMoniker": "ITP4519M\\DataBaseMethod.cs",
-              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\DataBaseMethod.cs",
-              "RelativeToolTip": "ITP4519M\\DataBaseMethod.cs",
-              "ViewState": "AQIAAKgCAAAAAAAAAAASwL4CAAAZAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T04:42:18.178Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "CreateOrder.Designer.cs",
-              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\CreateOrder.Designer.cs",
-              "RelativeDocumentMoniker": "ITP4519M\\CreateOrder.Designer.cs",
-              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\CreateOrder.Designer.cs",
-              "RelativeToolTip": "ITP4519M\\CreateOrder.Designer.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T03:46:37.152Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "CreateOrder.cs",
-              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\CreateOrder.cs",
-              "RelativeDocumentMoniker": "ITP4519M\\CreateOrder.cs",
-              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\CreateOrder.cs",
-              "RelativeToolTip": "ITP4519M\\CreateOrder.cs",
-              "ViewState": "AQIAALYAAAAAAAAAAAApwMAAAAArAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T04:30:02.71Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 27,
               "Title": "ITP4519M",
               "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\ITP4519M.csproj",
               "RelativeDocumentMoniker": "ITP4519M\\ITP4519M.csproj",
@@ -312,27 +475,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "SalesOrder.cs",
-              "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\SalesOrder.cs",
-              "RelativeDocumentMoniker": "ITP4519M\\SalesOrder.cs",
-              "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\SalesOrder.cs",
-              "RelativeToolTip": "ITP4519M\\SalesOrder.cs",
-              "ViewState": "AQIAALMAAAAAAAAAAADwv8wAAAAiAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-13T10:13:58.022Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 28,
               "Title": "ProductForm.Designer.cs",
               "DocumentMoniker": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\ProductForm.Designer.cs",
               "RelativeDocumentMoniker": "ITP4519M\\ProductForm.Designer.cs",
               "ToolTip": "E:\\HD\\Sem6\\Coding\\ITP4519M\\ITP4519M_backup\\ITP4519M\\ProductForm.Designer.cs",
               "RelativeToolTip": "ITP4519M\\ProductForm.Designer.cs",
-              "ViewState": "AQIAAMgBAAAAAAAAAAAkwOMBAAA8AAAA",
+              "ViewState": "AQIAABYAAAAAAAAAAAAkwMQBAAA8AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-13T16:27:49.153Z"
+              "WhenOpened": "2024-06-13T16:27:49.153Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -54,10 +54,10 @@ namespace ITP4519M
             panel1 = new Panel();
             dealerinfoBox = new TextBox();
             label10 = new Label();
-            ordertotallbl = new Label();
             label7 = new Label();
             label2 = new Label();
             orderDateBox = new DateTimePicker();
+            ordertotallbl = new Label();
             ((System.ComponentModel.ISupportInitialize)productOfOrderdata).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -197,7 +197,7 @@ namespace ITP4519M
             productOfOrderdata.AllowUserToDeleteRows = false;
             productOfOrderdata.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             productOfOrderdata.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            productOfOrderdata.Location = new Point(3, 444);
+            productOfOrderdata.Location = new Point(9, 437);
             productOfOrderdata.Margin = new Padding(3, 5, 3, 5);
             productOfOrderdata.Name = "productOfOrderdata";
             productOfOrderdata.RowHeadersWidth = 51;
@@ -331,17 +331,6 @@ namespace ITP4519M
             label10.TabIndex = 74;
             label10.Text = " Dealer Info :  ";
             // 
-            // ordertotallbl
-            // 
-            ordertotallbl.AutoSize = true;
-            ordertotallbl.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            ordertotallbl.Location = new Point(12, 832);
-            ordertotallbl.Name = "ordertotallbl";
-            ordertotallbl.Size = new Size(135, 32);
-            ordertotallbl.TabIndex = 73;
-            ordertotallbl.Text = "Total Price: ";
-            ordertotallbl.TextChanged += ordertotallbl_TextChanged;
-            // 
             // label7
             // 
             label7.AutoSize = true;
@@ -371,6 +360,17 @@ namespace ITP4519M
             orderDateBox.Name = "orderDateBox";
             orderDateBox.Size = new Size(250, 27);
             orderDateBox.TabIndex = 70;
+            // 
+            // ordertotallbl
+            // 
+            ordertotallbl.AutoSize = true;
+            ordertotallbl.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            ordertotallbl.Location = new Point(12, 832);
+            ordertotallbl.Name = "ordertotallbl";
+            ordertotallbl.Size = new Size(135, 32);
+            ordertotallbl.TabIndex = 73;
+            ordertotallbl.Text = "Total Price: ";
+            ordertotallbl.TextChanged += ordertotallbl_TextChanged;
             // 
             // CreateOrder
             // 
