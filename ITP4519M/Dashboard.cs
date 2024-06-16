@@ -73,6 +73,7 @@ namespace ITP4519M
 
             InitializeComponent();
             ShowPanel(dashboardpnl);
+            closebtn.BringToFront();
 
 
 
@@ -302,6 +303,9 @@ namespace ITP4519M
             OrderAccemblypnl.Visible = false;
             GRNpnl.Visible = false;
             deliverypnl.Visible = false;
+            POpnl.Visible = false;
+            outstandingOrderpnl.Visible = false;
+            invoicepnl.Visible = false;
             panelToShow.Visible = true;
 
         }
@@ -1243,7 +1247,7 @@ namespace ITP4519M
 
         private void orderAccemblySearchbtn_Click(object sender, EventArgs e)
         {
-     
+
         }
 
         private void accemblyCreatebtn_Click(object sender, EventArgs e)
@@ -1258,6 +1262,51 @@ namespace ITP4519M
                 orderAccembly.ShowDialog();
 
             }
+        }
+
+        private void PObtn_Click(object sender, EventArgs e)
+        {
+            if (lastClickedButton != null)
+            {
+                lastClickedButton.ForeColor = Color.White;
+            }
+
+            lastClickedButton = (Button)sender;
+            lastClickedButton.ForeColor = Color.Gray;
+
+            ShowPanel(POpnl);
+            //  grndata.DataSource = programMethod.overallGRNinfo();
+            //  grndata.Rows[0].Selected = false;
+        }
+
+        private void outstandingOrderbtn_Click_1(object sender, EventArgs e)
+        {
+            if (lastClickedButton != null)
+            {
+                lastClickedButton.ForeColor = Color.White;
+            }
+
+            lastClickedButton = (Button)sender;
+            lastClickedButton.ForeColor = Color.Gray;
+
+            ShowPanel(outstandingOrderpnl);
+            //  grndata.DataSource = programMethod.overallGRNinfo();
+            //  grndata.Rows[0].Selected = false;
+        }
+
+        private void invoicebtn_Click(object sender, EventArgs e)
+        {
+            if (lastClickedButton != null)
+            {
+                lastClickedButton.ForeColor = Color.White;
+            }
+
+            lastClickedButton = (Button)sender;
+            lastClickedButton.ForeColor = Color.Gray;
+
+            ShowPanel(invoicepnl);
+            //  grndata.DataSource = programMethod.overallGRNinfo();
+            //  grndata.Rows[0].Selected = false;
         }
     }
 }
