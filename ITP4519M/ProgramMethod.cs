@@ -308,25 +308,25 @@ namespace ProgramMethod
 
 
 
-        public bool createProductinfo(string productName, string productCategory, string wareHouse, string sn, string unitPrice, string costPrice, string weight, string outofStockQty, string quantityInStock, string demand, string description, string status)
+        public bool createProductinfo(string productName, string productCategory, string wareHouse, string sn, string unitPrice, string costPrice, string weight, string outofStockQty, string quantityInStock, string productReOrder, string productDanger,  string demand, string description, string status)
         {
             string productID = productCategory[0] + (int.Parse(dataBaseMethod.getProductID(productCategory[0]).Substring(1)) + 1).ToString("00000");
 
-            while (!dataBaseMethod.createNewProduct(productID, productName, productCategory, wareHouse, sn, unitPrice, costPrice, weight, outofStockQty, quantityInStock, demand, description, status))
+            while (!dataBaseMethod.createNewProduct(productID, productName, productCategory, wareHouse, sn, unitPrice, costPrice, weight, outofStockQty, quantityInStock, productReOrder, productDanger, demand, description, status))
             {
-                MessageBox.Show("something wrong");
-                productID = productCategory[0] + (int.Parse(dataBaseMethod.getProductID(productCategory[0]).Substring(1)) + 1).ToString("00000");
-                break;
+
+                return false;
 
             }
+            MessageBox.Show("Create new product successfully" );
             return true;
         }
-
-        public bool updateProductinfo(string productID, string productName, string productCategory, string wareHouse, string sn, string unitPrice, string costPrice, string weight, string autoOrder, string quantityInStock, string demand, string description, string status)
+        //productID, productName, productCategory, productWarehouse, productSerial, productUnitPrice, productCost, productWeight, productOutOfStock, productInStock, productReOrder, productDanger, productDemand, productDescription, productStatus
+        public bool updateProductinfo(string productID, string productName, string productCategory, string wareHouse, string sn, string unitPrice, string costPrice, string weight, string quantityOutStock, string quantityInStock, string productReOrder, string productDanger, string demand, string description, string status)
         {
 
 
-            if (dataBaseMethod.updateProductinfo(productID, productName, productCategory, wareHouse, sn, unitPrice, costPrice, weight, autoOrder, quantityInStock, demand, description, status))
+            if (dataBaseMethod.updateProductinfo(productID, productName, productCategory, wareHouse, sn, unitPrice, costPrice, weight, quantityOutStock, quantityInStock,  productReOrder,  productDanger, demand, description, status))
             {
                 return true;
 

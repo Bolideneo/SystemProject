@@ -722,28 +722,46 @@ namespace ITP4519M
             return productID.ToString();
         }
         //productID, productName, productCategory, wareHouse, sn, unitPrice, costPrice, weight, autoOrder, quantityInStock,  demand, description, status
-        public bool createNewProduct(string productID, string productname, string productcategory, string binlocation, String sn, string unitprice, string costprice, string weight, string outofStockQty, string quantitystock, string demandstock, string description, string status)
+        public bool createNewProduct(string productID, string productname, string productcategory, string binlocation, String sn, string unitprice, string costprice, string weight, string outofStockQty, string quantitystock, string productReOrder, string productDanger, string demandstock, string description, string status)
         {
             try
             {
-                string sql = "INSERT INTO product(ProductID, ProductName, SerialNumber, ProductCategory, BinLocation, Weight, UnitPrice, CostPrice, OutOfStockQty, QuantityInStock, DemandStock, Description, Status) VALUES (@pid, @pName, @sn, @pCategory, @binLocation, @weight, @uniPrice, @costPrice, @OutOfStockQty, @quantityStock, @demandStock,  @description, @status)";
-                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-                cmd.Parameters.AddWithValue("@pid", productID);
-                cmd.Parameters.AddWithValue("@pName", productname);
-                cmd.Parameters.AddWithValue("@sn", sn);
-                cmd.Parameters.AddWithValue("@pCategory", productcategory);
-                cmd.Parameters.AddWithValue("@binLocation", binlocation);
-                cmd.Parameters.AddWithValue("@weight", weight);
-                cmd.Parameters.AddWithValue("@uniPrice", unitprice);
-                cmd.Parameters.AddWithValue("@costPrice", costprice);
-                cmd.Parameters.AddWithValue("@OutOfStockQty", outofStockQty);
-                cmd.Parameters.AddWithValue("@quantityStock", quantitystock);
-                cmd.Parameters.AddWithValue("@demandStock", demandstock);
-                cmd.Parameters.AddWithValue("@description", description);
-                cmd.Parameters.AddWithValue("@status", status);
+                using (var connection = ServerConnect())
+                {
 
-                if (cmd.ExecuteNonQuery() > 0)
-                    return true;
+                    if (productExistsInDatabase(connection, "product", "ProductName", productname))
+                    {
+                        MessageBox.Show("The product name already exists. Please choose a different name.");
+                        return false;
+                    }
+
+                    if (productExistsInDatabase(connection, "product", "SerialNumber", sn))
+                    {
+                        MessageBox.Show("The serial number already exists. Please use a different serial number.");
+                        return false;
+                    }
+
+                    string sql = "INSERT INTO product(ProductID, ProductName, SerialNumber, ProductCategory, BinLocation, Weight, UnitPrice, CostPrice, OutOfStockQty, QuantityInStock, ReOrderQty, DangerQty, DemandStock, Description, Status) VALUES (@pid, @pName, @sn, @pCategory, @binLocation, @weight, @uniPrice, @costPrice, @OutOfStockQty, @quantityStock,  @reOrderQty, @dangerQty, @demandStock,  @description, @status)";
+                    MySqlCommand cmd = new MySqlCommand(sql, connection);
+                    cmd.Parameters.AddWithValue("@pid", productID);
+                    cmd.Parameters.AddWithValue("@pName", productname);
+                    cmd.Parameters.AddWithValue("@sn", sn);
+                    cmd.Parameters.AddWithValue("@pCategory", productcategory);
+                    cmd.Parameters.AddWithValue("@binLocation", binlocation);
+                    cmd.Parameters.AddWithValue("@weight", weight);
+                    cmd.Parameters.AddWithValue("@uniPrice", unitprice);
+                    cmd.Parameters.AddWithValue("@costPrice", costprice);
+                    cmd.Parameters.AddWithValue("@OutOfStockQty", outofStockQty);
+                    cmd.Parameters.AddWithValue("@quantityStock", quantitystock);
+                    cmd.Parameters.AddWithValue("@demandStock", demandstock);
+                    cmd.Parameters.AddWithValue("@description", description);
+                    cmd.Parameters.AddWithValue("@status", status); 
+                    cmd.Parameters.AddWithValue("@reOrderQty", productReOrder);
+                    cmd.Parameters.AddWithValue("@dangerQty", productDanger);
+
+                    if (cmd.ExecuteNonQuery() > 0)
+                        return true;
+                }
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
@@ -752,31 +770,48 @@ namespace ITP4519M
             return false;
         }
 
-        public bool updateProductinfo(string productID, string productname, string productcategory, string binlocation, string sn, string unitprice, string costprice, string weight, string autoOrder, string quantitystock, string demandstock, string description, string status)
+        //productID, productName, productCategory, productWarehouse, productSerial, productUnitPrice, productCost, productWeight, productOutOfStock, productInStock, productReOrder, productDanger, productDemand, productDescription, productStatus
+        public bool updateProductinfo(string productID, string productname, string productcategory, string binlocation, string sn, string unitprice, string costprice, string weight, string outOfStockQty, string quantityInStock, string productReOrder, string productDanger, string demandstock, string description, string status)
         {
             try
             {
+                using (var connection = ServerConnect())
+                {
 
-                string sql = "UPDATE product SET ProductName = @pName, SerialNumber = @sn, ProductCategory = @pCategory, BinLocation = @binLocation, Weight = @weight, UnitPrice = @unitPrice, CostPrice = @costPrice, autoOrder = @autoOrder, QuantityInStock = @quantityStock, DemandStock = @demandStock, Description = @description, Status = @status WHERE ProductID = @pid";
+                    if (productExistsInDatabase(connection, "product", "ProductName", productname, "ProductID", productID))
+                    {
+                        Console.WriteLine("The product name already exists. Please choose a different name.");
+                        return false;
+                    }
 
-                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-                cmd.Parameters.AddWithValue("@pid", productID);
-                cmd.Parameters.AddWithValue("@pName", productname);
-                cmd.Parameters.AddWithValue("@sn", sn);
-                cmd.Parameters.AddWithValue("@pCategory", productcategory);
-                cmd.Parameters.AddWithValue("@binLocation", binlocation);
-                cmd.Parameters.AddWithValue("@weight", weight);
-                cmd.Parameters.AddWithValue("@unitPrice", unitprice);
-                cmd.Parameters.AddWithValue("@costPrice", costprice);
-                cmd.Parameters.AddWithValue("@autoOrder", autoOrder);
-                cmd.Parameters.AddWithValue("@quantityStock", quantitystock);
-                cmd.Parameters.AddWithValue("@demandStock", demandstock);
-                cmd.Parameters.AddWithValue("@description", description);
-                cmd.Parameters.AddWithValue("@status", status);
+                    if (productExistsInDatabase(connection, "product", "SerialNumber", sn, "ProductID", productID))
+                    {
+                        Console.WriteLine("The serial number already exists. Please use a different serial number.");
+                        return false;
+                    }
 
+                    string sql = "UPDATE product SET ProductName = @pName, SerialNumber = @sn, ProductCategory = @pCategory, BinLocation = @binLocation, Weight = @weight, UnitPrice = @unitPrice, CostPrice = @costPrice, OutOfStockQty = @outOfStockQty, QuantityInStock = @quantityInStock, ReOrderQty = @reOrderQty, DangerQty = @dangerQty, DemandStock = @demandStock, Description = @description, Status = @status WHERE ProductID = @pid";
+         
+                    MySqlCommand cmd = new MySqlCommand(sql, connection);
+                    cmd.Parameters.AddWithValue("@pid", productID);
+                    cmd.Parameters.AddWithValue("@pName", productname);
+                    cmd.Parameters.AddWithValue("@sn", sn);
+                    cmd.Parameters.AddWithValue("@pCategory", productcategory);
+                    cmd.Parameters.AddWithValue("@binLocation", binlocation);
+                    cmd.Parameters.AddWithValue("@weight", weight);
+                    cmd.Parameters.AddWithValue("@unitPrice", unitprice);
+                    cmd.Parameters.AddWithValue("@costPrice", costprice);
+                    cmd.Parameters.AddWithValue("@outOfStockQty", outOfStockQty);
+                    cmd.Parameters.AddWithValue("@quantityInStock", quantityInStock);
+                    cmd.Parameters.AddWithValue("@demandStock", demandstock);
+                    cmd.Parameters.AddWithValue("@description", description);
+                    cmd.Parameters.AddWithValue("@status", status);
+                    cmd.Parameters.AddWithValue("@reOrderQty", productReOrder);
+                    cmd.Parameters.AddWithValue("@dangerQty", productDanger);
 
-                if (cmd.ExecuteNonQuery() > 0)
-                    return true;
+                    if (cmd.ExecuteNonQuery() > 0)
+                        return true;
+                }
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
@@ -784,7 +819,22 @@ namespace ITP4519M
             }
             return false;
         }
-        //dealerID, dealername, dealerCompanyName, dealerMailBox, DealerPhoneNumBox, dealerAddressBox
+
+        private bool productExistsInDatabase(MySqlConnection connection, string table, string column, string value, string idColumn = null, string idValue = null)
+        {
+            string sql = $"SELECT COUNT(*) FROM {table} WHERE {column} = @value";
+            if (!string.IsNullOrEmpty(idColumn) && !string.IsNullOrEmpty(idValue))
+            {
+                sql += $" AND {idColumn} != @idValue";
+            }
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+            cmd.Parameters.AddWithValue("@value", value);
+            if (!string.IsNullOrEmpty(idColumn) && !string.IsNullOrEmpty(idValue))
+            {
+                cmd.Parameters.AddWithValue("@idValue", idValue);
+            }
+            return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+        }
         public bool createDealer(string dealerID, string dealername, string dealerCompanyName, string dealerMailBox, string dealerPhoneNumBox, string dealerAddressBox)
         {
             try
@@ -1434,6 +1484,7 @@ namespace ITP4519M
         }
 
         public DataTable getDepartmentNameDataSource()
+
         {
             string sql = "SELECT DepartmentName FROM department";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
@@ -1455,7 +1506,7 @@ namespace ITP4519M
 
         public DataTable GetAccountCurrentRecords(int page,int pageSize)
         {
-            string sql = "SELECT * FROM staff ORDER BY UserID LIMIT @PgSize";
+            string sql = "SELECT UserID,DisplayName,UserName,Department,Title,AccountStatus FROM staff ORDER BY UserID LIMIT @PgSize";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
@@ -1466,7 +1517,7 @@ namespace ITP4519M
 
         public DataTable GetAccountCurrentRecords2(int page, int pageSize)
         {
-            string sql = "SELECT * FROM (SELECT * FROM staff ORDER BY UserID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY UserID";
+            string sql = "SELECT SELECT UserID,DisplayName,UserName,Department,Title,AccountStatus FROM (SELECT * FROM staff ORDER BY UserID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY UserID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);

@@ -721,12 +721,9 @@ namespace ITP4519M
         // Create product button
         private void newProductbtn_Click(object sender, EventArgs e)
         {
-
-
             ProductForm productForm = new ProductForm(OperationMode.New);
             productForm.StartPosition = FormStartPosition.CenterScreen;
             productForm.ShowDialog();
-
         }
 
         private void userbtn_MouseEnter(object sender, EventArgs e)
@@ -865,7 +862,7 @@ namespace ITP4519M
 
         private void delProductbtn_Click(object sender, EventArgs e)
         {
-            if (index == -1)
+            if (stockindex == -1)
             {
                 MessageBox.Show("Please Select One Option");
             }

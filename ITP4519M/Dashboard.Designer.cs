@@ -996,7 +996,7 @@ namespace ITP4519M
             newProductbtn.ForeColor = Color.White;
             newProductbtn.ImageAlign = ContentAlignment.MiddleLeft;
             newProductbtn.ImageIndex = 0;
-            newProductbtn.Location = new Point(1073, 19);
+            newProductbtn.Location = new Point(1059, 18);
             newProductbtn.Margin = new Padding(3, 4, 3, 4);
             newProductbtn.Name = "newProductbtn";
             newProductbtn.Size = new Size(174, 48);
@@ -1543,7 +1543,7 @@ namespace ITP4519M
             enableAccountbtn.BackColor = Color.LimeGreen;
             enableAccountbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             enableAccountbtn.ForeColor = Color.White;
-            enableAccountbtn.Location = new Point(536, 83);
+            enableAccountbtn.Location = new Point(533, 145);
             enableAccountbtn.Margin = new Padding(5);
             enableAccountbtn.Name = "enableAccountbtn";
             enableAccountbtn.Size = new Size(91, 47);
@@ -1558,7 +1558,7 @@ namespace ITP4519M
             disableAccountbtn.BackColor = Color.Red;
             disableAccountbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             disableAccountbtn.ForeColor = Color.White;
-            disableAccountbtn.Location = new Point(627, 83);
+            disableAccountbtn.Location = new Point(624, 145);
             disableAccountbtn.Margin = new Padding(5);
             disableAccountbtn.Name = "disableAccountbtn";
             disableAccountbtn.Size = new Size(91, 47);
@@ -1570,10 +1570,11 @@ namespace ITP4519M
             // accountSearchBox
             // 
             accountSearchBox.BorderStyle = BorderStyle.None;
-            accountSearchBox.Location = new Point(198, 165);
+            accountSearchBox.Location = new Point(855, 157);
+            accountSearchBox.Multiline = true;
             accountSearchBox.Name = "accountSearchBox";
             accountSearchBox.PlaceholderText = "   Search";
-            accountSearchBox.Size = new Size(847, 20);
+            accountSearchBox.Size = new Size(190, 27);
             accountSearchBox.TabIndex = 30;
             accountSearchBox.TextChanged += accountSearchBox_TextChanged;
             // 
@@ -1584,7 +1585,7 @@ namespace ITP4519M
             newAccountbtn.FlatStyle = FlatStyle.System;
             newAccountbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             newAccountbtn.ForeColor = Color.Black;
-            newAccountbtn.Location = new Point(42, 83);
+            newAccountbtn.Location = new Point(39, 145);
             newAccountbtn.Margin = new Padding(5);
             newAccountbtn.Name = "newAccountbtn";
             newAccountbtn.Size = new Size(159, 47);
@@ -1597,7 +1598,7 @@ namespace ITP4519M
             // 
             viewAccountbtn.AccessibleRole = AccessibleRole.None;
             viewAccountbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            viewAccountbtn.Location = new Point(368, 83);
+            viewAccountbtn.Location = new Point(365, 145);
             viewAccountbtn.Margin = new Padding(5);
             viewAccountbtn.Name = "viewAccountbtn";
             viewAccountbtn.Size = new Size(159, 47);
@@ -1610,7 +1611,7 @@ namespace ITP4519M
             // 
             editAccountbtn.AccessibleRole = AccessibleRole.None;
             editAccountbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            editAccountbtn.Location = new Point(204, 83);
+            editAccountbtn.Location = new Point(201, 145);
             editAccountbtn.Margin = new Padding(5);
             editAccountbtn.Name = "editAccountbtn";
             editAccountbtn.Size = new Size(159, 47);
@@ -2377,6 +2378,10 @@ namespace ITP4519M
             ClientSize = new Size(1500, 1000);
             Controls.Add(listpnl);
             Controls.Add(closebtn);
+            Controls.Add(userspnl);
+            Controls.Add(orderpnl);
+            Controls.Add(logpnl);
+            Controls.Add(contactpnl);
             Controls.Add(POpnl);
             Controls.Add(outstandingOrderpnl);
             Controls.Add(invoicepnl);
@@ -2386,10 +2391,6 @@ namespace ITP4519M
             Controls.Add(deliverypnl);
             Controls.Add(OrderAccemblypnl);
             Controls.Add(GRNpnl);
-            Controls.Add(userspnl);
-            Controls.Add(orderpnl);
-            Controls.Add(logpnl);
-            Controls.Add(contactpnl);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);

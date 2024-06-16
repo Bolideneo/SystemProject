@@ -43,10 +43,11 @@ namespace ITP4519M
                     break;
                 case OperationMode.Edit:
                     stockAddProuctbtn.Visible = false;
-
+                    stockEditProuctbtn.Visible = true;
                     break;
                 case OperationMode.New:
                     stockAddProuctbtn.Visible = true;
+                    stockEditProuctbtn.Visible = false;
                     break;
 
             }
@@ -68,7 +69,7 @@ namespace ITP4519M
                     this.productCategorybox.SelectedItem = productDetails.ProductCategory;
                     this.productUnitpricebox.Text = productDetails.UnitPrice;
                     this.productCostbox.Text = productDetails.CostPrice;
-
+                    this.productserialbox.Text = productDetails.SerialNumber;
                     this.productWeightbox.Text = productDetails.Weight;
                     this.productOutofStockbox.Text = productDetails.OutOfStockQty;
                     this.productInStockbox.Text = productDetails.QuantityInStock;
@@ -78,6 +79,7 @@ namespace ITP4519M
                     this.productdemandbox.Text = productDetails.DemandStock;
                     this.productDescriptionbox.Text = productDetails.Description;
                     this.productStatusbox.SelectedItem = productDetails.Status;
+
                 }
                 else
                 {
@@ -152,11 +154,42 @@ namespace ITP4519M
 
         private void stockAddProductbtn_Click(object sender, EventArgs e)
         {
-
             string selected = this.productCategorybox.GetItemText(this.productCategorybox.SelectedItem);
-            if (programMethod.createProductinfo(productNamebox.Text.Trim(), selected, productWarehousebox.Text.Trim(), productserialbox.Text.Trim(), productUnitpricebox.Text.Trim(), productCostbox.Text.Trim(), productWeightbox.Text.Trim(), productOutofStockbox.Text.Trim(), productInStockbox.Text.Trim(), productdemandbox.Text.Trim(), productDescriptionbox.Text.Trim(), productStatusbox.GetItemText(this.productStatusbox.SelectedItem)))
-            {
+            string productName = productNamebox.Text.Trim();
+            string productCategory = selected;
+            string productWarehouse = productWarehousebox.Text.Trim();
+            string productSerial = productserialbox.Text.Trim();
+            string productUnitPrice = productUnitpricebox.Text.Trim();
+            string productCost = productCostbox.Text.Trim();
+            string productWeight = productWeightbox.Text.Trim();
+            string productOutOfStock = productOutofStockbox.Text.Trim();
+            string productInStock = productInStockbox.Text.Trim();
+            string productDemand = productdemandbox.Text.Trim();
+            string productDescription = productDescriptionbox.Text.Trim();
+            string productReOrder = productReOrderbox.Text.Trim();
+            string productDanger = productDangerbox.Text.Trim();
+            string productStatus = productStatusbox.GetItemText(this.productStatusbox.SelectedItem);
 
+            if (!decimal.TryParse(productUnitPrice, out decimal unitPrice) || !decimal.TryParse(productCost, out decimal costPrice))
+            {
+                MessageBox.Show("Unit price and cost price must be valid decimal numbers.");
+                return;
+            }
+
+            if (unitPrice <= costPrice)
+            {
+                MessageBox.Show("Unit price must be greater than cost price.");
+                return;
+            }
+
+            if (productSerial.Length != 6 || !System.Text.RegularExpressions.Regex.IsMatch(productSerial, @"^[a-zA-Z0-9]{6}$"))
+            {
+                MessageBox.Show("Serial number must be exactly 6 characters long and can only contain letters and numbers.");
+                return;
+            }
+
+            if (programMethod.createProductinfo(productName, productCategory, productWarehouse, productSerial, productUnitPrice, productCost, productWeight, productOutOfStock, productInStock, productReOrder, productDanger, productDemand, productDescription, productStatus))
+            {
                 productNamebox.Text = "";
                 productCategorybox.SelectedItem = null;
                 productWarehousebox.Text = "";
@@ -169,11 +202,8 @@ namespace ITP4519M
                 productReOrderbox.Text = "";
                 productDangerbox.Text = "";
                 productdemandbox.Text = "";
-                productdemandbox.Text = "";
                 productStatusbox.SelectedItem = null;
             }
-
-
         }
 
         private void ProductForm_MouseDown(object sender, MouseEventArgs e)
@@ -206,26 +236,56 @@ namespace ITP4519M
 
         }
 
-        private void stockEditProuctbtn_Click(object sender, EventArgs e)
-        {
-            var productDetails = programMethod.getProductDetails(productID);
-            string productid = productDetails.ProductID;
-            string selected = this.productCategorybox.GetItemText(this.productCategorybox.SelectedItem);
-            if (programMethod.updateProductinfo(productid, productNamebox.Text.Trim(), selected, productWarehousebox.Text.Trim(), productserialbox.Text.Trim(), productUnitpricebox.Text.Trim(), productCostbox.Text.Trim(), productWeightbox.Text.Trim(), productOutofStockbox.Text.Trim(), productInStockbox.Text.Trim(), productdemandbox.Text.Trim(), productDescriptionbox.Text.Trim(), productStatusbox.GetItemText(this.productStatusbox.SelectedItem)))
-            {
-
-                MessageBox.Show("Saved");
-            }
-            else
-            {
-
-                MessageBox.Show("Please input xxxxxx");
-            }
-        }
 
         private void productReOrderbox_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void stockEditProuctbtn_Click_1(object sender, EventArgs e)
+        {
+
+            string productName = productNamebox.Text.Trim();
+            string productCategory = productCategorybox.GetItemText(productCategorybox.SelectedItem);
+            string productWarehouse = productWarehousebox.Text.Trim();
+            string productSerial = productserialbox.Text.Trim();
+            string productUnitPrice = productUnitpricebox.Text.Trim();
+            string productCost = productCostbox.Text.Trim();
+            string productWeight = productWeightbox.Text.Trim();
+            string productOutOfStock = productOutofStockbox.Text.Trim();
+            string productInStock = productInStockbox.Text.Trim();
+            string productDemand = productdemandbox.Text.Trim();
+            string productDescription = productDescriptionbox.Text.Trim();
+            string productReOrder = productReOrderbox.Text.Trim();
+            string productDanger = productDangerbox.Text.Trim();
+            string productStatus = productStatusbox.GetItemText(productStatusbox.SelectedItem);
+
+            if (!decimal.TryParse(productUnitPrice, out decimal unitPrice) || !decimal.TryParse(productCost, out decimal costPrice))
+            {
+                MessageBox.Show("Unit price and cost price must be valid decimal numbers.");
+                return;
+            }
+
+            if (unitPrice <= costPrice)
+            {
+                MessageBox.Show("Unit price must be greater than cost price.");
+                return;
+            }
+
+            if (productSerial.Length != 6 || !System.Text.RegularExpressions.Regex.IsMatch(productSerial, @"^[a-zA-Z0-9]{6}$"))
+            {
+                MessageBox.Show("Serial number must be exactly 6 characters long and can only contain letters and numbers.");
+                return;
+            }
+
+            if (programMethod.updateProductinfo(productID, productName, productCategory, productWarehouse, productSerial, productUnitPrice, productCost, productWeight, productOutOfStock, productInStock, productReOrder, productDanger, productDemand, productDescription, productStatus))
+            {
+                MessageBox.Show("Product updated successfully.");
+            }
+            else
+            {
+                MessageBox.Show("Failed to update product.");
+            }
         }
     }
 

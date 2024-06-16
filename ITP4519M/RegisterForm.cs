@@ -50,11 +50,11 @@ namespace ITP4519M
                     viewaccountlbl.Visible = true;
                     accountreadlbl.Visible = true;
                     accountlbl.Visible = false;
-                    passwordAgainlbl.Visible = false;
+           //         passwordAgainlbl.Visible = false;
                     accountEditlbl.Visible = false;
-                    passwordlbl.Visible = false;
-                    registerPasswordAgainBox.Visible = false;
-                    registerPasswordBox.Visible = false;
+             //       passwordlbl.Visible = false;
+            //        registerPasswordAgainBox.Visible = false;
+             //       registerPasswordBox.Visible = false;
                     registerClearBtn.Visible = false;
                     newAccountlabel.Visible = false;
                     createAccountBtn.Visible = false;
@@ -334,6 +334,7 @@ namespace ITP4519M
                     this.departBox.SelectedItem = userDetails.Department;
                     this.titleBox.Text = userDetails.Title;
                     this.registerDisplaynameBox.Text = userDetails.DisplayName;
+
                 }
                 else
                 {
