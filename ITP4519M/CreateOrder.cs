@@ -9,11 +9,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static ProgramMethod.ProgramMethod;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ITP4519M
@@ -27,6 +29,7 @@ namespace ITP4519M
         private string orderID;
         private string dealerID;
         private OperationMode _mode;
+        private bool DealerInfo;
 
 
 
@@ -87,6 +90,8 @@ namespace ITP4519M
             this.Close();
         }
 
+
+
         private void SalesOrder_Load(object sender, EventArgs e)
         {
             assistant = new TypeAssistant();
@@ -114,7 +119,15 @@ namespace ITP4519M
                     break;
             }
         }
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            System.Drawing.Rectangle rect = new Rectangle(dealerinfoBox.Location.X,
+            dealerinfoBox.Location.Y, dealerinfoBox.ClientSize.Width, dealerinfoBox.ClientSize.Height);
 
+            rect.Inflate(1, 1); // border thickness
+            System.Windows.Forms.ControlPaint.DrawBorder(e.Graphics, rect,
+            Color.DeepSkyBlue, ButtonBorderStyle.Solid);
+        }
         private void ClearForm()
         {
 
@@ -218,7 +231,21 @@ namespace ITP4519M
 
         private void createOrderbtn_Click(object sender, EventArgs e)
         {
-            if (dealerIDBox.Text == "")
+
+
+            if (dealerinfoBox.Text == "")
+            {
+                DealerInfo = true;
+                //this.Paint += this.panel2_Paint;
+                Refresh();
+            }
+            else if (dealerinfoBox.Text != "")
+            {
+                DealerInfo = false;
+                Refresh();
+            }
+
+            else if (dealerIDBox.Text == "")
                 MessageBox.Show("Please input Dealer ID");
             else if (dealerNameBox.Text == "")
             {
@@ -232,6 +259,7 @@ namespace ITP4519M
             if (productOfOrderdata.RowCount == 0)
             {
                 MessageBox.Show("Please Select atleast one product");
+
             }
 
 
@@ -324,5 +352,19 @@ namespace ITP4519M
             }
         }
 
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+            if (DealerInfo)
+                ControlPaint.DrawBorder(e.Graphics, this.panel2.ClientRectangle, Color.Red, ButtonBorderStyle.Solid);
+            else
+            {
+                ControlPaint.DrawBorder(e.Graphics, this.panel2.ClientRectangle, Color.White, ButtonBorderStyle.Solid);
+            }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

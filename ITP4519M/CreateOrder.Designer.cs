@@ -52,6 +52,9 @@ namespace ITP4519M
             createOrderbtn = new Button();
             productSearchbox = new TextBox();
             panel1 = new Panel();
+            panel3 = new Panel();
+            panel2 = new Panel();
+            pictureBox1 = new PictureBox();
             dealerinfoBox = new TextBox();
             label10 = new Label();
             label7 = new Label();
@@ -60,6 +63,8 @@ namespace ITP4519M
             ordertotallbl = new Label();
             ((System.ComponentModel.ISupportInitialize)productOfOrderdata).BeginInit();
             panel1.SuspendLayout();
+            panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // CloseButton
@@ -284,7 +289,8 @@ namespace ITP4519M
             // 
             panel1.BackColor = SystemColors.Window;
             panel1.BorderStyle = BorderStyle.Fixed3D;
-            panel1.Controls.Add(dealerinfoBox);
+            panel1.Controls.Add(panel3);
+            panel1.Controls.Add(panel2);
             panel1.Controls.Add(label10);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(label2);
@@ -308,15 +314,43 @@ namespace ITP4519M
             panel1.Size = new Size(783, 736);
             panel1.TabIndex = 72;
             // 
+            // panel3
+            // 
+            panel3.Location = new Point(600, 83);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(203, 70);
+            panel3.TabIndex = 77;
+            // 
+            // panel2
+            // 
+            panel2.AutoSize = true;
+            panel2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            panel2.Controls.Add(pictureBox1);
+            panel2.Controls.Add(dealerinfoBox);
+            panel2.Location = new Point(286, 11);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(261, 42);
+            panel2.TabIndex = 76;
+            panel2.Paint += panel2_Paint;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Location = new Point(221, 0);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(37, 39);
+            pictureBox1.TabIndex = 76;
+            pictureBox1.TabStop = false;
+            // 
             // dealerinfoBox
             // 
             dealerinfoBox.AutoCompleteMode = AutoCompleteMode.Suggest;
             dealerinfoBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            dealerinfoBox.BorderStyle = BorderStyle.None;
             dealerinfoBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dealerinfoBox.Location = new Point(257, 7);
+            dealerinfoBox.Location = new Point(6, 11);
             dealerinfoBox.Margin = new Padding(6, 7, 6, 7);
             dealerinfoBox.Name = "dealerinfoBox";
-            dealerinfoBox.Size = new Size(249, 27);
+            dealerinfoBox.Size = new Size(249, 20);
             dealerinfoBox.TabIndex = 75;
             dealerinfoBox.TextChanged += dealerinfoBox_TextChanged;
             // 
@@ -392,6 +426,9 @@ namespace ITP4519M
             ((System.ComponentModel.ISupportInitialize)productOfOrderdata).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -436,5 +473,8 @@ namespace ITP4519M
         private Label ordertotallbl;
         private Label label10;
         private TextBox dealerinfoBox;
+        private Panel panel2;
+        private Panel panel3;
+        private PictureBox pictureBox1;
     }
 }

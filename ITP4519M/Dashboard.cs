@@ -40,6 +40,13 @@ namespace ITP4519M
         private int CurrentPageIndex = 1;
         private int TotalPage = 0;
         //Paging
+
+        //Stock datagrid paging
+        private int StockPgSize = 15;
+        private int StockCurrentPageIndex = 1;
+        private int StockTotalPage = 0;
+        //Paging
+
         private Button currentButton;
         private string userID;
         private string productID;
@@ -94,7 +101,6 @@ namespace ITP4519M
             DoubleBuffered = true;
             programMethod = new ProgramMethod.ProgramMethod();
             closebtn.BringToFront();
-            CalculateTotalPages();
         }
 
         //        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
@@ -354,6 +360,10 @@ namespace ITP4519M
             ShowPanel(orderpnl);
             orderdata.DataSource = programMethod.overallOrderinfo();
             orderdata.Rows[0].Selected = false;
+            foreach (DataGridViewRow row in orderdata.Rows)
+            {
+                row.Height = (orderdata.ClientRectangle.Height - orderdata.ColumnHeadersHeight) / orderdata.Rows.Count;
+            }
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
@@ -371,11 +381,17 @@ namespace ITP4519M
 
             lastClickedButton = (Button)sender;
             lastClickedButton.ForeColor = Color.Gray;
-
+            CalculateStockTotalPages();
             ShowPanel(inventorypnl);
-            stockData.DataSource = programMethod.overviewStockinfo();
+            stockData.DataSource = programMethod.GetStockCurrentRecords(StockCurrentPageIndex, StockPgSize);
             productOverallLabel();
             stockData.Rows[0].Selected = false;
+            //accountIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + programMethod.getAccountRowCount();
+            foreach (DataGridViewRow row in stockData.Rows)
+            {
+                row.Height = (stockData.ClientRectangle.Height - stockData.ColumnHeadersHeight) / stockData.Rows.Count;
+            }
+
 
         }
 
@@ -389,18 +405,37 @@ namespace ITP4519M
 
             lastClickedButton = (Button)sender;
             lastClickedButton.ForeColor = Color.Gray;
-
+            CalculateTotalPages();
 
             ShowPanel(userspnl);
-            //accountPageSizeComboBox.TextColumn = 1;
+            AccountOverallLabel();
             accountSearchBox.AutoSize = false;
             userData.DataSource = programMethod.GetAccountCurrentRecords(CurrentPageIndex, PgSize);
+            userData.Rows[0].Selected = false;
+            //string words = userData.Rows[0].Cells["UserID"].Value.ToString();
+            //string lastTwoWords = string.Join(" ", words.Skip(words.Length - ));
+            //MessageBox.Show(lastTwoWords);
+            //int end = int.Parse(lastTwoWords) + 9;
+            accountIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + programMethod.getAccountRowCount();
+            foreach (DataGridViewRow row in userData.Rows)
+            {
+                row.Height = (userData.ClientRectangle.Height - userData.ColumnHeadersHeight) / userData.Rows.Count;
+            }
+
 
 
 
         }
+        //Account Label
 
-
+        private void AccountOverallLabel()
+        {
+            int temp = programMethod.getAccountRowCount();
+            accountUserCountlbl.Text = temp.ToString();
+            string RowCount = programMethod.getAccountStatusCount();
+            accountUserCountlbl2.Text = RowCount.ToString();
+            //accountUserCountlbl2.Text = RowCount.ToString();
+        }
 
         private void settingbtn_Click(object sender, EventArgs e)
         {
@@ -1155,10 +1190,23 @@ namespace ITP4519M
                 TotalPage += 1;
         }
 
+        private void CalculateStockTotalPages()
+        {
+            int rowCount = programMethod.getStockRowCount();
+            StockTotalPage = rowCount / StockPgSize;
+            // if any row left after calculated pages, add one more page 
+            if (rowCount % StockPgSize > 0)
+                TotalPage += 1;
+        }
+
         private void accountbtnFirstPage_Click(object sender, EventArgs e)
         {
             this.CurrentPageIndex = 1;
             this.userData.DataSource = programMethod.GetAccountCurrentRecords(this.CurrentPageIndex, PgSize);
+            foreach (DataGridViewRow row in userData.Rows)
+            {
+                row.Height = (userData.ClientRectangle.Height - userData.ColumnHeadersHeight) / userData.Rows.Count;
+            }
         }
 
         private void accountbtnNxtPage_Click(object sender, EventArgs e)
@@ -1167,6 +1215,10 @@ namespace ITP4519M
             {
                 this.CurrentPageIndex++;
                 this.userData.DataSource = programMethod.GetAccountCurrentRecords(this.CurrentPageIndex, PgSize);
+                foreach (DataGridViewRow row in userData.Rows)
+                {
+                    row.Height = (userData.ClientRectangle.Height - userData.ColumnHeadersHeight) / userData.Rows.Count;
+                }
             }
         }
 
@@ -1176,6 +1228,10 @@ namespace ITP4519M
             {
                 this.CurrentPageIndex--;
                 this.userData.DataSource = programMethod.GetAccountCurrentRecords(this.CurrentPageIndex, PgSize);
+                foreach (DataGridViewRow row in userData.Rows)
+                {
+                    row.Height = (userData.ClientRectangle.Height - userData.ColumnHeadersHeight) / userData.Rows.Count;
+                }
             }
         }
 
@@ -1183,6 +1239,10 @@ namespace ITP4519M
         {
             this.CurrentPageIndex = TotalPage;
             this.userData.DataSource = programMethod.GetAccountCurrentRecords(this.CurrentPageIndex, PgSize);
+            foreach (DataGridViewRow row in userData.Rows)
+            {
+                row.Height = (userData.ClientRectangle.Height - userData.ColumnHeadersHeight) / userData.Rows.Count;
+            }
         }
 
         private void deliveryViewDNbtn_Click(object sender, EventArgs e)
@@ -1272,8 +1332,7 @@ namespace ITP4519M
             lastClickedButton.ForeColor = Color.Gray;
 
             ShowPanel(POpnl);
-            //  grndata.DataSource = programMethod.overallGRNinfo();
-            //  grndata.Rows[0].Selected = false;
+
         }
 
         private void outstandingOrderbtn_Click_1(object sender, EventArgs e)
@@ -1287,8 +1346,6 @@ namespace ITP4519M
             lastClickedButton.ForeColor = Color.Gray;
 
             ShowPanel(outstandingOrderpnl);
-            //  grndata.DataSource = programMethod.overallGRNinfo();
-            //  grndata.Rows[0].Selected = false;
         }
 
         private void invoicebtn_Click(object sender, EventArgs e)
@@ -1302,9 +1359,192 @@ namespace ITP4519M
             lastClickedButton.ForeColor = Color.Gray;
 
             ShowPanel(invoicepnl);
-            //  grndata.DataSource = programMethod.overallGRNinfo();
-            //  grndata.Rows[0].Selected = false;
+
         }
+
+        private void sotckLastPagebtn_Click(object sender, EventArgs e)
+        {
+            this.StockCurrentPageIndex = StockTotalPage;
+            this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockCurrentPageIndex, StockPgSize);
+            foreach (DataGridViewRow row in stockData.Rows)
+            {
+                row.Height = (stockData.ClientRectangle.Height - stockData.ColumnHeadersHeight) / stockData.Rows.Count;
+            }
+        }
+
+        private void sotckNextPagebtn_Click(object sender, EventArgs e)
+        {
+            if (this.StockCurrentPageIndex < this.StockTotalPage)
+            {
+                this.StockCurrentPageIndex++;
+                this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockCurrentPageIndex, StockPgSize);
+                foreach (DataGridViewRow row in stockData.Rows)
+                {
+                    row.Height = (stockData.ClientRectangle.Height - stockData.ColumnHeadersHeight) / stockData.Rows.Count;
+                }
+            }
+        }
+
+        private void sotckPrevPagebtn_Click(object sender, EventArgs e)
+        {
+            if (this.StockCurrentPageIndex > 1)
+            {
+                this.StockCurrentPageIndex--;
+                this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockCurrentPageIndex, StockPgSize);
+                foreach (DataGridViewRow row in stockData.Rows)
+                {
+                    row.Height = (stockData.ClientRectangle.Height - stockData.ColumnHeadersHeight) / stockData.Rows.Count;
+                }
+            }
+        }
+
+        private void stockFirstPagebtn_Click(object sender, EventArgs e)
+        {
+            this.StockCurrentPageIndex = 1;
+            this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockCurrentPageIndex, StockPgSize);
+            foreach (DataGridViewRow row in stockData.Rows)
+            {
+                row.Height = (stockData.ClientRectangle.Height - stockData.ColumnHeadersHeight) / stockData.Rows.Count;
+            }
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        //    private void PopulatePager(int recordCount, int currentPage)
+        //    {
+        //        List<Page> pages = new List<Page>();
+        //        int startIndex, endIndex;
+        //        int pagerSpan = 10;
+
+        //        //Calculate the Start and End Index of pages to be displayed.
+        //        double dblPageCount = (double)((decimal)recordCount / Convert.ToDecimal(PageSize));
+        //        int pageCount = (int)Math.Ceiling(dblPageCount);
+        //        //startIndex = currentPage > 1 && currentPage + pagerSpan - 1 < pagerSpan ? currentPage : 1;
+        //        //endIndex = pageCount > pagerSpan ? pagerSpan : pageCount;
+        //        startIndex = currentPage > pagerSpan / 2 && currentPage + pagerSpan / 2 < pageCount ? currentPage - pagerSpan / 2 : 1;
+        //        endIndex = Math.Min(startIndex + pagerSpan - 1, pageCount);
+        //        if (currentPage > pagerSpan % 2)
+        //        {
+        //            //if (currentPage == 2)
+        //            //{
+        //            //    endIndex = 2;
+        //            //}
+        //            //else
+        //            //{
+        //            //    endIndex = currentPage + 2;
+        //            //}
+        //        }
+        //        else
+        //        {
+        //            endIndex = (pagerSpan - currentPage) + 1;
+        //        }
+
+        //        if (endIndex - (pagerSpan - 1) > startIndex)
+        //        {
+        //            startIndex = endIndex - (pagerSpan - 1);
+        //        }
+
+        //        if (endIndex > pageCount)
+        //        {
+        //            endIndex = pageCount;
+        //            startIndex = ((endIndex - pagerSpan) + 1) > 0 ? (endIndex - pagerSpan) + 1 : 1;
+        //        }
+
+        //        //Add the First Page Button.
+        //        if (currentPage > 1)
+        //        {
+        //            pages.Add(new Page { Text = "First", Value = "1" });
+        //        }
+
+        //        //Add the Previous Button.
+        //        if (currentPage > 1)
+        //        {
+        //            pages.Add(new Page { Text = "<<", Value = (currentPage - 1).ToString() });
+        //        }
+
+        //        for (int i = startIndex; i < endIndex; i++)
+        //        {
+        //            pages.Add(new Page { Text = i.ToString(), Value = i.ToString(), Selected = i == currentPage });
+        //        }
+
+        //        //Add the Next Button.
+        //        if (currentPage < pageCount)
+        //        {
+        //            pages.Add(new Page { Text = ">>", Value = (currentPage + 1).ToString() });
+        //        }
+
+        //        //Add the Last Button.
+        //        if (currentPage != pageCount)
+        //        {
+        //            pages.Add(new Page { Text = "Last", Value = pageCount.ToString() });
+        //        }
+
+        //        //Clear existing Pager Buttons.
+        //        accountPaginationpnl.Controls.Clear();
+
+        //        //Loop and add Buttons for Pager.
+        //        int count = 0;
+        //        foreach (Page page in pages)
+        //        {
+        //            ProgramMethod.ProgramMethod.RoundedButton btnPage = new ProgramMethod.ProgramMethod.RoundedButton();
+        //            btnPage.Location = new System.Drawing.Point(60 * count, 5);
+        //            btnPage.Size = new System.Drawing.Size(63, 33);
+        //            btnPage.Name = page.Value;
+        //            btnPage.Text = page.Text;
+        //            btnPage.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        //           // btnPage.Enabled = !page.Selected;
+        //            btnPage.BackColor = SystemColors.Menu;
+        //            btnPage.BackColor2 = Color.White;
+        //            btnPage.BorderColor = Color.Tomato;
+        //            btnPage.BorderSize = 2;
+        //            btnPage.ButtonBorderColor = Color.Gray;
+        //            btnPage.ButtonHighlightColor = Color.Empty;
+        //            btnPage.ButtonHighlightColor2 = Color.Empty;
+        //            btnPage.ButtonHighlightForeColor = Color.Black;
+        //            btnPage.ButtonPressedColor = Color.White;
+        //            btnPage.ButtonPressedColor2 = Color.Empty;
+        //            btnPage.ButtonPressedForeColor = Color.Gray;
+        //            btnPage.ButtonRoundRadius = 15;
+        //            btnPage.Click += new System.EventHandler(this.Page_Click);
+        //            accountPaginationpnl.Controls.Add(btnPage);
+        //            count++;
+        //        }
+        //    }
+
+        //    private void Page_Click(object sender, EventArgs e)
+        //    {
+        //        ProgramMethod.ProgramMethod.RoundedButton btnPager = (sender as ProgramMethod.ProgramMethod.RoundedButton);
+        //        this.BindGrid(int.Parse(btnPager.Name));
+        //    }
+
+        //    public class Page
+        //    {
+        //        public string Text { get; set; }
+        //        public string Value { get; set; }
+        //        public bool Selected { get; set; }
+        //    }
+
+
+
+
+
+
+        //    private void BindGrid(int pageIndex)
+        //    {
+        //        this.userData.DataSource = programMethod.GetAccountCurrentRecords(pageIndex, PgSize2);
+        //        int rowCount = programMethod.getAccountRowCount();
+        //        this.PopulatePager(rowCount, CurrentPageIndex2);
+        //    }
+
+        //    private int PgSize2 = 10;
+        //    private int CurrentPageIndex2 = 1;
+        //    private int TotalPage2 = 0;
+
+        //}
     }
 }
     

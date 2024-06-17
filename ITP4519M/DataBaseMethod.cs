@@ -20,6 +20,7 @@ using System.Windows.Forms;
 using Microsoft.VisualBasic.Devices;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using Org.BouncyCastle.Asn1.Ocsp;
+using System.Drawing.Printing;
 
 
 namespace ITP4519M
@@ -1445,6 +1446,7 @@ namespace ITP4519M
         {
             string sql = "SELECT MAX(DeliveryID) FROM delivery WHERE LEFT(DeliveryID,2)=@character";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@character", character);
             Object DeliveryID = cmd.ExecuteScalar();
             return DeliveryID.ToString();
         }
@@ -1503,6 +1505,25 @@ namespace ITP4519M
             return rowCount;
         }
 
+        public int getStockRowCount()
+        {
+            string sql = "SELECT COUNT(DISTINCT ProductID) FROM product";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            object result = cmd.ExecuteScalar();
+            int rowCount = Convert.ToInt32(result);
+            return rowCount;
+        }
+
+        public string getAccountStatusCount()
+        {
+            string sql = "SELECT COUNT(DISTINCT UserID) FROM staff WHERE AccountStatus = @status";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            string status = "Active";
+            cmd.Parameters.AddWithValue("@status", status);
+            object result = cmd.ExecuteScalar();
+            return result.ToString();
+        }
+
 
         public DataTable GetAccountCurrentRecords(int page,int pageSize)
         {
@@ -1517,7 +1538,30 @@ namespace ITP4519M
 
         public DataTable GetAccountCurrentRecords2(int page, int pageSize)
         {
-            string sql = "SELECT SELECT UserID,DisplayName,UserName,Department,Title,AccountStatus FROM (SELECT * FROM staff ORDER BY UserID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY UserID";
+            string sql = "SELECT UserID,DisplayName,UserName,Department,Title,AccountStatus FROM (SELECT * FROM staff ORDER BY UserID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY UserID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@PgSize", pageSize);
+            cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
+        public DataTable GetStockCurrentRecords(int page, int pageSize)
+        {
+            string sql = "SELECT ProductID,ProductName, ProductCategory, BinLocation, UnitPrice, CostPrice, QuantityInStock, DemandStock, Status FROM product ORDER BY ProductID LIMIT @PgSize";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@PgSize", pageSize);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
+        public DataTable GetStockCurrentRecords2(int page, int pageSize)
+        {
+            string sql = "SELECT ProductID,ProductName, ProductCategory, BinLocation, UnitPrice, CostPrice, QuantityInStock, DemandStock, Status FROM (SELECT * FROM product ORDER BY ProductID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY ProductID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);

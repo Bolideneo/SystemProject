@@ -44,6 +44,10 @@ namespace ITP4519M
             {
                 case OperationMode.View:
                     saveOrderbtn.Visible = false;
+                    label6.Visible = false;
+                    label9.Visible = false;
+                    label3.Visible = false;
+                    orderStatusBox.Visible = false;
                     SetReadOnly(true);
                     break;
                 case OperationMode.New:
@@ -68,9 +72,7 @@ namespace ITP4519M
             goodsAddressBox.Text = string.Empty;
             invoiceAddressBox.Text = string.Empty;
             orderCompleteDateBox.Text = string.Empty;
-            orderIDBox.Text = string.Empty;
             orderStatusBox.Text = string.Empty;
-            orderDateBox.Text = string.Empty;
             dealerIDBox.Text = string.Empty;
             dealerNameBox.Text = string.Empty;
             dealerCompanyBox.Text = string.Empty;
@@ -84,9 +86,7 @@ namespace ITP4519M
             goodsAddressBox.ReadOnly = readOnly;
             invoiceAddressBox.ReadOnly = readOnly;
             orderCompleteDateBox.ReadOnly = readOnly;
-            orderIDBox.ReadOnly = readOnly;
             orderStatusBox.ReadOnly = readOnly;
-            orderDateBox.ReadOnly = readOnly;
             dealerIDBox.ReadOnly = readOnly;
             dealerNameBox.ReadOnly = readOnly;
             dealerCompanyBox.ReadOnly = readOnly;
@@ -100,9 +100,7 @@ namespace ITP4519M
             goodsAddressBox.Enabled = !readOnly;
             invoiceAddressBox.Enabled = !readOnly;
             orderCompleteDateBox.Enabled = !readOnly;
-            orderIDBox.Enabled = !readOnly;
             orderStatusBox.Enabled = !readOnly;
-            orderDateBox.Enabled = !readOnly;
             dealerIDBox.Enabled = !readOnly;
             dealerNameBox.Enabled = !readOnly;
             dealerCompanyBox.Enabled = !readOnly;
@@ -136,10 +134,13 @@ namespace ITP4519M
 
                 if (orderDetails != null)
                 {
-                    this.orderIDBox.Text = orderID;
+                    //this.orderIDBox.Text = orderID;
+                    orderLabel.Text =  "Order #" + orderID;
+                    orderStatusLabel.Text = "Placed on " + orderDetails.Rows[0]["OrderDate"].ToString();
                     this.dealerIDBox.Text = dealerID;
-                    this.orderDateBox.Text = orderDetails.Rows[0]["OrderDate"].ToString();
-                    this.orderStatusBox.Text = orderDetails.Rows[0]["OrderStatus"].ToString();
+                    //this.orderDateBox.Text = orderDetails.Rows[0]["OrderDate"].ToString();
+                    //this.orderStatusBox.Text = orderDetails.Rows[0]["OrderStatus"].ToString();
+                    this.orderStatuslbl.Text = orderDetails.Rows[0]["OrderStatus"].ToString();
                     this.dealerNameBox.Text = dealerDetails.Rows[0]["DealerName"].ToString();
                     this.phoneNumBox.Text = dealerDetails.Rows[0]["DealerPhoneNum"].ToString();
                     this.dealerCompanyBox.Text = dealerDetails.Rows[0]["DealerCompanyName"].ToString();
@@ -174,10 +175,10 @@ namespace ITP4519M
 
                 if (orderDetails != null)
                 {
-                    this.orderIDBox.Text = orderID;
                     this.dealerIDBox.Text = dealerID;
-                    this.orderDateBox.Text = orderDetails.Rows[0]["OrderDate"].ToString();
-                    this.orderStatusBox.Text = programMethod.getOrderStatus(orderID);
+                    this.orderLabel.Text = "Order #" + orderID;
+                    this.orderStatusLabel.Text = "Placed on " + orderDetails.Rows[0]["OrderDate"].ToString();
+                    this.orderStatuslbl.Text = orderDetails.Rows[0]["OrderStatus"].ToString();
                     this.dealerNameBox.Text = dealerDetails.Rows[0]["DealerName"].ToString();
                     this.phoneNumBox.Text = dealerDetails.Rows[0]["DealerPhoneNum"].ToString();
                     this.dealerCompanyBox.Text = dealerDetails.Rows[0]["DealerCompanyName"].ToString();
