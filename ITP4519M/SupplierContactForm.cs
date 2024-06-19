@@ -19,10 +19,13 @@ namespace ITP4519M
         private OperationMode _mode;
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
         private string supplierID;
+        public event EventHandler OperationCompleted;
+        public bool IsOperationSuccessful { get; private set; }
         public SupplierContactForm(OperationMode mode)
         {
             InitializeComponent();
             _mode = mode;
+            IsOperationSuccessful = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -90,6 +93,8 @@ namespace ITP4519M
             {
 
                 MessageBox.Show("Saved");
+                OperationCompleted?.Invoke(this, new EventArgs());
+                IsOperationSuccessful = true;
             }
             else
             {
@@ -173,6 +178,8 @@ namespace ITP4519M
                 SupplierMailBox.Text = "";
                 SupplierPhoneNumBox.Text = "";
                 supplierAddressBox.Text = "";
+                OperationCompleted?.Invoke(this, new EventArgs());
+                IsOperationSuccessful = true;
             }
             else
             {

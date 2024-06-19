@@ -67,6 +67,7 @@ namespace ITP4519M
         private int contactindex = -1;
         private int stockindex = -1;
         private int orderAceemblyindex = -1;
+        private string currentDataSourceType = "";
         private Button lastClickedButton = null;
         private Button[] buttons = new Button[2];
         private bool isFormDragging = false;
@@ -81,7 +82,7 @@ namespace ITP4519M
             InitializeComponent();
             ShowPanel(dashboardpnl);
             closebtn.BringToFront();
-
+            SetRowHeights();
 
 
         }
@@ -101,6 +102,7 @@ namespace ITP4519M
             DoubleBuffered = true;
             programMethod = new ProgramMethod.ProgramMethod();
             closebtn.BringToFront();
+            SetRowHeights();
         }
 
         //        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
@@ -417,10 +419,7 @@ namespace ITP4519M
             //MessageBox.Show(lastTwoWords);
             //int end = int.Parse(lastTwoWords) + 9;
             accountIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + programMethod.getAccountRowCount();
-            foreach (DataGridViewRow row in userData.Rows)
-            {
-                row.Height = (userData.ClientRectangle.Height - userData.ColumnHeadersHeight) / userData.Rows.Count;
-            }
+            SetRowHeights();
 
 
 
@@ -434,6 +433,9 @@ namespace ITP4519M
             accountUserCountlbl.Text = temp.ToString();
             string RowCount = programMethod.getAccountStatusCount();
             accountUserCountlbl2.Text = RowCount.ToString();
+            string NewUser = programMethod.getNewUserName();
+            accountUserCountlbl3.Text = NewUser.ToString();
+
             //accountUserCountlbl2.Text = RowCount.ToString();
         }
 
@@ -505,7 +507,7 @@ namespace ITP4519M
             editDealerbtn.Visible = true;
             searchSupplierbtn.Visible = false;
             searchDealerbtn.Visible = true;
-
+            currentDataSourceType = "Dealer";
         }
 
         private void supplersbtn_Click(object sender, EventArgs e)
@@ -517,6 +519,7 @@ namespace ITP4519M
             editSupplierbtn.Visible = true;
             searchSupplierbtn.Visible = true;
             searchDealerbtn.Visible = false;
+            currentDataSourceType = "Supplier";
         }
 
         private void contactpnl_Paint(object sender, PaintEventArgs e)
@@ -586,12 +589,15 @@ namespace ITP4519M
                 registerForm.accountEdit(userID);
                 registerForm.ShowDialog();
             }
+
         }
 
         private void registerFormOperationCompleted(object sender, EventArgs e)
         {
             userData.DataSource = programMethod.GetAccountCurrentRecords(CurrentPageIndex, PgSize);
+            usersbtn.PerformClick();
         }
+
 
         private void viewAccountbtn_Click(object sender, EventArgs e)
         {
@@ -812,7 +818,7 @@ namespace ITP4519M
 
         private void disableAccountbtn_Click(object sender, EventArgs e)
         {
-            if (index == -1)
+            if (userindex == -1)
             {
                 MessageBox.Show("Please Select One User");
             }
@@ -821,12 +827,13 @@ namespace ITP4519M
 
                 programMethod.disableUserAccount(userID);
                 MessageBox.Show("This account disabled");
+                usersbtn.PerformClick();
             }
         }
 
         private void enableAccountbtn_Click(object sender, EventArgs e)
         {
-            if (index == -1)
+            if (userindex == -1)
             {
                 MessageBox.Show("Please Select One User");
             }
@@ -835,6 +842,7 @@ namespace ITP4519M
 
                 programMethod.enableUserAccount(userID);
                 MessageBox.Show("This account enabled");
+                usersbtn.PerformClick();
             }
         }
 
@@ -1015,7 +1023,7 @@ namespace ITP4519M
         {
 
 
-            if (index == -1)
+            if (contactindex == -1)
             {
                 MessageBox.Show("Please Select One Option");
             }
@@ -1023,8 +1031,24 @@ namespace ITP4519M
             {
                 programMethod.contactDel(contactID);
 
+
+                var dealerDataSource = programMethod.overviewDealerinfo();
+                var supplierDataSource = programMethod.overviewSupplierinfo();
+
+                if (currentDataSourceType == "Dealer")
+                {
+                    dealersbtn.PerformClick();
+                }
+                else if (currentDataSourceType == "Supplier")
+                {
+                    supplersbtn.PerformClick();
+                }
+
             }
+
+
         }
+
 
         private void newSupplierbtn_Click(object sender, EventArgs e)
         {
@@ -1044,8 +1068,10 @@ namespace ITP4519M
                 SupplierContactForm supplierContactForm = new SupplierContactForm(OperationMode.Edit);
                 supplierContactForm.supplierEdit(contactID);
                 supplierContactForm.ShowDialog();
+
             }
         }
+
 
         private void searchDealerbtn_Click(object sender, EventArgs e)
         {
@@ -1203,10 +1229,7 @@ namespace ITP4519M
         {
             this.CurrentPageIndex = 1;
             this.userData.DataSource = programMethod.GetAccountCurrentRecords(this.CurrentPageIndex, PgSize);
-            foreach (DataGridViewRow row in userData.Rows)
-            {
-                row.Height = (userData.ClientRectangle.Height - userData.ColumnHeadersHeight) / userData.Rows.Count;
-            }
+            SetRowHeights();
         }
 
         private void accountbtnNxtPage_Click(object sender, EventArgs e)
@@ -1215,12 +1238,12 @@ namespace ITP4519M
             {
                 this.CurrentPageIndex++;
                 this.userData.DataSource = programMethod.GetAccountCurrentRecords(this.CurrentPageIndex, PgSize);
-                foreach (DataGridViewRow row in userData.Rows)
-                {
-                    row.Height = (userData.ClientRectangle.Height - userData.ColumnHeadersHeight) / userData.Rows.Count;
-                }
+
             }
+            SetRowHeights();
         }
+
+
 
         private void accountbtnPrevPage_Click(object sender, EventArgs e)
         {
@@ -1228,21 +1251,16 @@ namespace ITP4519M
             {
                 this.CurrentPageIndex--;
                 this.userData.DataSource = programMethod.GetAccountCurrentRecords(this.CurrentPageIndex, PgSize);
-                foreach (DataGridViewRow row in userData.Rows)
-                {
-                    row.Height = (userData.ClientRectangle.Height - userData.ColumnHeadersHeight) / userData.Rows.Count;
-                }
+
             }
+            SetRowHeights();
         }
 
         private void accountbtnLastPage_Click(object sender, EventArgs e)
         {
             this.CurrentPageIndex = TotalPage;
             this.userData.DataSource = programMethod.GetAccountCurrentRecords(this.CurrentPageIndex, PgSize);
-            foreach (DataGridViewRow row in userData.Rows)
-            {
-                row.Height = (userData.ClientRectangle.Height - userData.ColumnHeadersHeight) / userData.Rows.Count;
-            }
+            SetRowHeights();
         }
 
         private void deliveryViewDNbtn_Click(object sender, EventArgs e)
@@ -1409,6 +1427,19 @@ namespace ITP4519M
         }
 
         private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public void SetRowHeights()
+        {
+            foreach (DataGridViewRow row in userData.Rows)
+            {
+                row.Height = (userData.ClientRectangle.Height - userData.ColumnHeadersHeight) / PgSize;
+            }
+        }
+
+        private void pageNumlbl_Click(object sender, EventArgs e)
         {
 
         }

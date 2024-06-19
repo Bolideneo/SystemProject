@@ -15,6 +15,7 @@ namespace ITP4519M
 {
     public partial class RegisterForm : Form
     {
+        private Dashboard _Dashboard;
         private OperationMode _mode;
         private string userID;
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
@@ -450,6 +451,8 @@ namespace ITP4519M
 
                 MessageBox.Show("Saved");
                 OperationCompleted?.Invoke(this, new EventArgs());
+   
+
             }
             else
             {

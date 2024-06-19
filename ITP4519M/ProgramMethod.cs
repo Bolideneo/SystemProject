@@ -216,7 +216,7 @@ namespace ProgramMethod
 
         }
         //
-        public bool createDealer(string dealername, string dealerCompanyName, string dealerMailBox, string DealerPhoneNumBox, string dealerAddressBox)
+        public bool createDealer(string dealername, string dealerCompanyName, string dealerMailBox, string DealerPhoneNumBox, string dealerRegionNum, string dealerAddressBox)
         {
             string lastDealerID = dataBaseMethod.getDealerID();
             string letterPart = new string(lastDealerID.TakeWhile(c => !char.IsDigit(c)).ToArray());
@@ -224,7 +224,7 @@ namespace ProgramMethod
             int lastDealerIDNum = int.Parse(numericPart);
             int newDealerIDNum = lastDealerIDNum + 1;
             string dealerID = $"{letterPart}{newDealerIDNum:D3}";
-            if (dataBaseMethod.createDealer(dealerID, dealername, dealerCompanyName, dealerMailBox, DealerPhoneNumBox, dealerAddressBox))
+            if (dataBaseMethod.createDealer(dealerID, dealername, dealerCompanyName, dealerMailBox, DealerPhoneNumBox, dealerRegionNum,dealerAddressBox))
             {
                 return true;
             }
@@ -240,7 +240,8 @@ namespace ProgramMethod
             string numericPart = new string(lastSupplierID.SkipWhile(c => !char.IsDigit(c)).ToArray());
             int lastSupplierIDNum = int.Parse(numericPart);
             int newSupplierIDNum = lastSupplierIDNum + 1;
-            string SupplierID = $"{letterPart}{newSupplierIDNum:D3}";
+            //string SupplierID = $"{letterPart}{newSupplierIDNum:D3}";
+            string SupplierID = $"{letterPart}{newSupplierIDNum.ToString(new string('0', numericPart.Length))}";
             if (dataBaseMethod.createSupplier(SupplierID, Suppliername, SupplierMailBox, SupplierPhoneNumBox, SupplierAddressBox))
             {
                 return true;
@@ -249,11 +250,11 @@ namespace ProgramMethod
                 return false;
 
         }
-        public bool updateDealerInfo(string dealerid, string dealerName, string dealerCompanyName, string dealerMail, string phoneNum, string dealerAddress)
+        public bool updateDealerInfo(string dealerid, string dealerName, string dealerCompanyName, string dealerMail, string phoneNum, string dealerRegionNum, string dealerAddress)
         {
 
 
-            if (dataBaseMethod.updateDealerInfo(dealerid, dealerName, dealerCompanyName, dealerMail, phoneNum, dealerAddress))
+            if (dataBaseMethod.updateDealerInfo(dealerid, dealerName, dealerCompanyName, dealerMail, phoneNum, dealerRegionNum, dealerAddress))
             {
                 return true;
             }
@@ -346,6 +347,7 @@ namespace ProgramMethod
                 return true;
             }
             else
+
                 return false;
 
         }
@@ -714,6 +716,11 @@ namespace ProgramMethod
             return dataBaseMethod.getAccountStatusCount();
         }
 
+        public string getNewUserName()
+        {
+            return dataBaseMethod.getNewUserName();
+        }
+
         public DataTable GetAccountCurrentRecords(int page, int pageSize)
         {
 
@@ -726,6 +733,7 @@ namespace ProgramMethod
                return dataBaseMethod.GetAccountCurrentRecords2(page, pageSize);
             }
         }
+
 
         public DataTable GetStockCurrentRecords(int page, int pageSize)
         {
