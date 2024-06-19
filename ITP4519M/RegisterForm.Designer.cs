@@ -424,7 +424,6 @@ namespace ITP4519M
             BackColor = SystemColors.Menu;
             ClientSize = new Size(807, 640);
             Controls.Add(label1);
-            Controls.Add(editAccountbtn);
             Controls.Add(viewaccountlbl);
             Controls.Add(accountEditlbl);
             Controls.Add(registerClearBtn);
@@ -448,6 +447,7 @@ namespace ITP4519M
             Controls.Add(createAccountBtn);
             Controls.Add(usernamelbl);
             Controls.Add(registerUsernameBox);
+            Controls.Add(editAccountbtn);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(2, 3, 2, 3);
             Name = "RegisterForm";

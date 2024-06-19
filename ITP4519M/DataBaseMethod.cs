@@ -526,8 +526,8 @@ namespace ITP4519M
                         DealerCompanyName = reader["DealerCompanyName"].ToString(),
                         DealerPhoneNum = reader["DealerPhoneNum"].ToString(),
                         DealerEmailAddress = reader["DealerEmailAddress"].ToString(),
-
-
+                        DealerRegionNum = reader["DealerRegionNum"].ToString(),
+                        DealerCompanyAddress = reader["DealerCompanyAddress"].ToString(),
                     };
                 }
             }
@@ -542,7 +542,8 @@ namespace ITP4519M
             public string DealerCompanyName { get; set; }
             public string DealerPhoneNum { get; set; }
             public string DealerEmailAddress { get; set; }
-
+            public string DealerRegionNum { get; set; }
+            public string DealerCompanyAddress { get; set; }
 
         }
 
@@ -836,7 +837,7 @@ namespace ITP4519M
             }
             return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
         }
-        public bool createDealer(string dealerID, string dealername, string dealerCompanyName, string dealerMailBox, string dealerPhoneNumBox, string dealerAddressBox)
+        public bool createDealer(string dealerID, string dealername, string dealerCompanyName, string dealerMailBox, string dealerPhoneNumBox, string dealerRegionNum, string dealerAddressBox)
         {
             try
             {
@@ -861,14 +862,16 @@ namespace ITP4519M
                         return false;
                     }
 
-                    string sql = "INSERT INTO dealer (DealerID, DealerName, DealerCompanyName, DealerPhoneNum, DealerEmailAddress) VALUES (@DealerID, @DealerName, @DealerCompanyName, @DealerPhoneNum, @DealerEmailAddress)";
+                    string sql = "INSERT INTO dealer (DealerID, DealerOrderNo, DealerName, DealerCompanyName, DealerPhoneNum, DealerRegionNum, DealerEmailAddress, DealerCompanyAddress) VALUES (@DealerID, @DealerOrderNo, @DealerName, @DealerCompanyName, @DealerPhoneNum, @DealerRegionNum, @DealerEmailAddress, @DealerCompanyAddress)";
                     MySqlCommand cmd = new MySqlCommand(sql, connection);
                     cmd.Parameters.AddWithValue("@DealerID", dealerID);
                     cmd.Parameters.AddWithValue("@DealerName", dealername);
                     cmd.Parameters.AddWithValue("@DealerCompanyName", dealerCompanyName);
                     cmd.Parameters.AddWithValue("@DealerEmailAddress", dealerMailBox);
                     cmd.Parameters.AddWithValue("@DealerPhoneNum", dealerPhoneNumBox);
-                    // cmd.Parameters.AddWithValue("@DealerAddressBox", dealerAddressBox);
+                    cmd.Parameters.AddWithValue("@DealerRegionNum", dealerRegionNum);
+                    cmd.Parameters.AddWithValue("@DealerCompanyAddress", dealerAddressBox);
+                    cmd.Parameters.AddWithValue("@DealerOrderNo", dealerID);
 
                     if (cmd.ExecuteNonQuery() > 0)
                         return true;
@@ -880,7 +883,7 @@ namespace ITP4519M
             }
             return false;
         }
-        public bool updateDealerInfo(string dealerid, String dealerName, string dealerCompanyName, string dealerMail, string dealerPhoneNum, string dealerAddress)
+        public bool updateDealerInfo(string dealerid, String dealerName, string dealerCompanyName, string dealerMail, string dealerPhoneNum, string dealerRegionNum, string dealerAddress)
         {
             try
             {
@@ -911,14 +914,15 @@ namespace ITP4519M
                         return false;
                     }
 
-                    string sql = "UPDATE dealer SET DealerName = @dealerName, DealerCompanyName = @dealerCompanyName, DealerPhoneNum = @dealerPhoneNum, DealerEmailAddress = @dealerEmailAddress WHERE DealerID = @dealerID";
+                    string sql = "UPDATE dealer SET DealerName = @dealerName, DealerCompanyName = @dealerCompanyName, DealerPhoneNum = @dealerPhoneNum, DealerRegionNum = @dealerRegionNum, DealerEmailAddress = @dealerEmailAddress WHERE DealerID = @dealerID";
                     MySqlCommand cmd = new MySqlCommand(sql, connection);
                     cmd.Parameters.AddWithValue("@dealerID", dealerid);
                     cmd.Parameters.AddWithValue("@dealerName", dealerName);
                     cmd.Parameters.AddWithValue("@dealerCompanyName", dealerCompanyName);
                     cmd.Parameters.AddWithValue("@dealerPhoneNum", dealerPhoneNum);
                     cmd.Parameters.AddWithValue("@dealerEmailAddress", dealerMail);
-                    // cmd.Parameters.AddWithValue("@DealerAddress", dealerAddress);
+                    cmd.Parameters.AddWithValue("@DealerRegionNum", dealerRegionNum);
+                    cmd.Parameters.AddWithValue("@DealerCompanyAddress", dealerAddress);
 
                     if (cmd.ExecuteNonQuery() > 0)
                         return true;
@@ -996,7 +1000,7 @@ namespace ITP4519M
             {
                 using (var connection = ServerConnect())
                 {
-                    connection.Open();
+
 
                     if (SupplierExistsInDatabase(connection, "SupplierName", supplierName, supplierid))
                     {

@@ -150,11 +150,11 @@ namespace ITP4519M
             searchContactbtn = new TextBox();
             contactsdata = new CustomDataGridView();
             newSupplierbtn = new Button();
-            editSupplierbtn = new Button();
             newDealerbtn = new Button();
             editDealerbtn = new Button();
             searchSupplierbtn = new Button();
             searchDealerbtn = new Button();
+            editSupplierbtn = new Button();
             label2 = new Label();
             settingpnl = new Panel();
             settinglbl = new Label();
@@ -189,7 +189,7 @@ namespace ITP4519M
             inventorypnl = new Panel();
             panel8 = new Panel();
             stockFirstPagebtn = new ProgramMethod.ProgramMethod.RoundedButton();
-            label4 = new Label();
+            pageNumlbl = new Label();
             sotckPrevPagebtn = new ProgramMethod.ProgramMethod.RoundedButton();
             sotckLastPagebtn = new ProgramMethod.ProgramMethod.RoundedButton();
             sotckNextPagebtn = new ProgramMethod.ProgramMethod.RoundedButton();
@@ -367,7 +367,7 @@ namespace ITP4519M
             outstandingOrderbtn.Location = new Point(25, 669);
             outstandingOrderbtn.Margin = new Padding(3, 4, 3, 4);
             outstandingOrderbtn.Name = "outstandingOrderbtn";
-            outstandingOrderbtn.Size = new Size(189, 75);
+            outstandingOrderbtn.Size = new Size(166, 56);
             outstandingOrderbtn.TabIndex = 13;
             outstandingOrderbtn.Text = "         Outstanding\r\n         Order";
             outstandingOrderbtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -444,7 +444,7 @@ namespace ITP4519M
             OrderAccemblybtn.Location = new Point(25, 349);
             OrderAccemblybtn.Margin = new Padding(3, 4, 3, 4);
             OrderAccemblybtn.Name = "OrderAccemblybtn";
-            OrderAccemblybtn.Size = new Size(169, 75);
+            OrderAccemblybtn.Size = new Size(166, 56);
             OrderAccemblybtn.TabIndex = 9;
             OrderAccemblybtn.Text = "         Order\r\n         Accembly ";
             OrderAccemblybtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -490,7 +490,7 @@ namespace ITP4519M
             contactsbtn.Location = new Point(25, 413);
             contactsbtn.Margin = new Padding(3, 4, 3, 4);
             contactsbtn.Name = "contactsbtn";
-            contactsbtn.Size = new Size(184, 75);
+            contactsbtn.Size = new Size(166, 56);
             contactsbtn.TabIndex = 7;
             contactsbtn.Text = "         Contacts\r\n         Information";
             contactsbtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -1452,11 +1452,11 @@ namespace ITP4519M
             contactpnl.Controls.Add(searchContactbtn);
             contactpnl.Controls.Add(contactsdata);
             contactpnl.Controls.Add(newSupplierbtn);
-            contactpnl.Controls.Add(editSupplierbtn);
             contactpnl.Controls.Add(newDealerbtn);
             contactpnl.Controls.Add(editDealerbtn);
             contactpnl.Controls.Add(searchSupplierbtn);
             contactpnl.Controls.Add(searchDealerbtn);
+            contactpnl.Controls.Add(editSupplierbtn);
             contactpnl.Location = new Point(201, 3);
             contactpnl.Margin = new Padding(3, 4, 3, 4);
             contactpnl.Name = "contactpnl";
@@ -1587,19 +1587,6 @@ namespace ITP4519M
             newSupplierbtn.UseVisualStyleBackColor = false;
             newSupplierbtn.Click += newSupplierbtn_Click;
             // 
-            // editSupplierbtn
-            // 
-            editSupplierbtn.AccessibleRole = AccessibleRole.None;
-            editSupplierbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            editSupplierbtn.Location = new Point(208, 113);
-            editSupplierbtn.Margin = new Padding(5);
-            editSupplierbtn.Name = "editSupplierbtn";
-            editSupplierbtn.Size = new Size(154, 47);
-            editSupplierbtn.TabIndex = 36;
-            editSupplierbtn.Text = "Edit Supplier";
-            editSupplierbtn.UseVisualStyleBackColor = true;
-            editSupplierbtn.Click += editSupplierbtn_Click;
-            // 
             // newDealerbtn
             // 
             newDealerbtn.AccessibleRole = AccessibleRole.None;
@@ -1667,6 +1654,19 @@ namespace ITP4519M
             searchDealerbtn.UseVisualStyleBackColor = false;
             searchDealerbtn.Click += searchDealerbtn_Click;
             // 
+            // editSupplierbtn
+            // 
+            editSupplierbtn.AccessibleRole = AccessibleRole.None;
+            editSupplierbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            editSupplierbtn.Location = new Point(208, 113);
+            editSupplierbtn.Margin = new Padding(5);
+            editSupplierbtn.Name = "editSupplierbtn";
+            editSupplierbtn.Size = new Size(154, 47);
+            editSupplierbtn.TabIndex = 36;
+            editSupplierbtn.Text = "Edit Supplier";
+            editSupplierbtn.UseVisualStyleBackColor = true;
+            editSupplierbtn.Click += editSupplierbtn_Click;
+            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -1727,7 +1727,7 @@ namespace ITP4519M
             accountSearchBox.Margin = new Padding(3, 5, 3, 5);
             accountSearchBox.Multiline = true;
             accountSearchBox.Name = "accountSearchBox";
-            accountSearchBox.PlaceholderText = "Search User ID";
+            accountSearchBox.PlaceholderText = "   Search Username";
             accountSearchBox.Size = new Size(659, 42);
             accountSearchBox.TabIndex = 41;
             // 
@@ -1760,7 +1760,7 @@ namespace ITP4519M
             accountbtnFirstPage.ButtonRoundRadius = 15;
             accountbtnFirstPage.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             accountbtnFirstPage.ForeColor = Color.Black;
-            accountbtnFirstPage.Location = new Point(72, 13);
+            accountbtnFirstPage.Location = new Point(55, 13);
             accountbtnFirstPage.Margin = new Padding(3, 4, 3, 4);
             accountbtnFirstPage.Name = "accountbtnFirstPage";
             accountbtnFirstPage.Size = new Size(79, 44);
@@ -1772,7 +1772,7 @@ namespace ITP4519M
             // 
             accountIndexlbl.AutoSize = true;
             accountIndexlbl.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            accountIndexlbl.Location = new Point(251, 21);
+            accountIndexlbl.Location = new Point(236, 22);
             accountIndexlbl.Name = "accountIndexlbl";
             accountIndexlbl.Size = new Size(100, 25);
             accountIndexlbl.TabIndex = 3;
@@ -1795,10 +1795,10 @@ namespace ITP4519M
             accountbtnPrevPage.ButtonRoundRadius = 15;
             accountbtnPrevPage.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             accountbtnPrevPage.ForeColor = Color.Black;
-            accountbtnPrevPage.Location = new Point(163, 13);
+            accountbtnPrevPage.Location = new Point(146, 13);
             accountbtnPrevPage.Margin = new Padding(3, 4, 3, 4);
             accountbtnPrevPage.Name = "accountbtnPrevPage";
-            accountbtnPrevPage.Size = new Size(72, 44);
+            accountbtnPrevPage.Size = new Size(79, 44);
             accountbtnPrevPage.TabIndex = 33;
             accountbtnPrevPage.Text = "Prev";
             accountbtnPrevPage.Click += accountbtnPrevPage_Click;
@@ -1819,10 +1819,10 @@ namespace ITP4519M
             accountbtnLastPage.ButtonRoundRadius = 15;
             accountbtnLastPage.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             accountbtnLastPage.ForeColor = Color.Black;
-            accountbtnLastPage.Location = new Point(454, 9);
+            accountbtnLastPage.Location = new Point(445, 13);
             accountbtnLastPage.Margin = new Padding(3, 4, 3, 4);
             accountbtnLastPage.Name = "accountbtnLastPage";
-            accountbtnLastPage.Size = new Size(75, 44);
+            accountbtnLastPage.Size = new Size(79, 44);
             accountbtnLastPage.TabIndex = 34;
             accountbtnLastPage.Text = "Last";
             accountbtnLastPage.Click += accountbtnLastPage_Click;
@@ -1843,10 +1843,10 @@ namespace ITP4519M
             accountbtnNxtPage.ButtonRoundRadius = 15;
             accountbtnNxtPage.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             accountbtnNxtPage.ForeColor = Color.Black;
-            accountbtnNxtPage.Location = new Point(354, 9);
+            accountbtnNxtPage.Location = new Point(354, 13);
             accountbtnNxtPage.Margin = new Padding(3, 4, 3, 4);
             accountbtnNxtPage.Name = "accountbtnNxtPage";
-            accountbtnNxtPage.Size = new Size(88, 44);
+            accountbtnNxtPage.Size = new Size(79, 44);
             accountbtnNxtPage.TabIndex = 32;
             accountbtnNxtPage.Text = "Next";
             accountbtnNxtPage.Click += accountbtnNxtPage_Click;
@@ -2130,7 +2130,7 @@ namespace ITP4519M
             // panel8
             // 
             panel8.Controls.Add(stockFirstPagebtn);
-            panel8.Controls.Add(label4);
+            panel8.Controls.Add(pageNumlbl);
             panel8.Controls.Add(sotckPrevPagebtn);
             panel8.Controls.Add(sotckLastPagebtn);
             panel8.Controls.Add(sotckNextPagebtn);
@@ -2164,15 +2164,16 @@ namespace ITP4519M
             stockFirstPagebtn.Text = "First";
             stockFirstPagebtn.Click += stockFirstPagebtn_Click;
             // 
-            // label4
+            // pageNumlbl
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(251, 21);
-            label4.Name = "label4";
-            label4.Size = new Size(100, 25);
-            label4.TabIndex = 3;
-            label4.Text = "LabelData";
+            pageNumlbl.AutoSize = true;
+            pageNumlbl.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            pageNumlbl.Location = new Point(251, 21);
+            pageNumlbl.Name = "pageNumlbl";
+            pageNumlbl.Size = new Size(100, 25);
+            pageNumlbl.TabIndex = 3;
+            pageNumlbl.Text = "LabelData";
+            pageNumlbl.Click += pageNumlbl_Click;
             // 
             // sotckPrevPagebtn
             // 
@@ -3156,13 +3157,11 @@ namespace ITP4519M
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
             ClientSize = new Size(1499, 1000);
-            Controls.Add(orderpnl);
-            Controls.Add(deliverypnl);
+            Controls.Add(listpnl);
+            Controls.Add(closebtn);
             Controls.Add(inventorypnl);
             Controls.Add(GRNpnl);
             Controls.Add(userspnl);
-            Controls.Add(listpnl);
-            Controls.Add(closebtn);
             Controls.Add(logpnl);
             Controls.Add(contactpnl);
             Controls.Add(POpnl);
@@ -3171,6 +3170,8 @@ namespace ITP4519M
             Controls.Add(dashboardpnl);
             Controls.Add(settingpnl);
             Controls.Add(OrderAccemblypnl);
+            Controls.Add(orderpnl);
+            Controls.Add(deliverypnl);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
@@ -3412,7 +3413,7 @@ namespace ITP4519M
         private Panel panel7;
         private Panel panel8;
         private ProgramMethod.ProgramMethod.RoundedButton stockFirstPagebtn;
-        private Label label4;
+        private Label pageNumlbl;
         private ProgramMethod.ProgramMethod.RoundedButton sotckPrevPagebtn;
         private ProgramMethod.ProgramMethod.RoundedButton sotckLastPagebtn;
         private ProgramMethod.ProgramMethod.RoundedButton sotckNextPagebtn;

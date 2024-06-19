@@ -17,6 +17,7 @@ namespace ITP4519M
         private OperationMode _mode;
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
         private string dealerID;
+        public event EventHandler OperationCompleted;
         public DealerContactForm(OperationMode mode)
         {
             InitializeComponent();
@@ -49,6 +50,7 @@ namespace ITP4519M
             string dealerMail = dealerMailBox.Text.Trim();
             string dealerPhoneNum = DealerPhoneNumBox.Text.Trim();
             string dealerAddress = dealerAddressBox.Text.Trim();
+            string dealerRegionNum = regionNumBox.Text.Trim();
             if (string.IsNullOrEmpty(dealername))
             {
                 MessageBox.Show("Please enter a dealer name.");
@@ -90,14 +92,15 @@ namespace ITP4519M
                 MessageBox.Show("Please enter a valid phone number.");
                 return;
             }
-            if (programMethod.createDealer(dealername, dealerCompany, dealerMail, dealerPhoneNum, dealerAddress))
+            if (programMethod.createDealer(dealername, dealerCompany, dealerMail, dealerPhoneNum, dealerRegionNum, dealerAddress))
             {
-                MessageBox.Show("Dealer Successfully Created");
+                MessageBox.Show("Dealer contract Successfully Added");
                 dealerNameBox.Text = "";
                 dealerCompanyNameBox.Text = "";
                 dealerMailBox.Text = "";
                 DealerPhoneNumBox.Text = "";
                 dealerAddressBox.Text = "";
+                OperationCompleted?.Invoke(this, new EventArgs());
             }
             else {
 
@@ -113,6 +116,7 @@ namespace ITP4519M
             string dealerMail = dealerMailBox.Text.Trim();
             string dealerPhoneNum = DealerPhoneNumBox.Text.Trim();
             string dealerAddress = dealerAddressBox.Text.Trim();
+            string dealerRegionNum = regionNumBox.Text.Trim();
             if (string.IsNullOrEmpty(dealername))
             {
                 MessageBox.Show("Please enter a dealer name.");
@@ -155,10 +159,11 @@ namespace ITP4519M
                 return;
             }
 
-            if (programMethod.updateDealerInfo(dealerid, dealername, dealerCompany, dealerMail, dealerPhoneNum, dealerAddress))
+            if (programMethod.updateDealerInfo(dealerid, dealername, dealerCompany, dealerMail, dealerPhoneNum, dealerRegionNum, dealerAddress))
             {
 
                 MessageBox.Show("Saved");
+                OperationCompleted?.Invoke(this, new EventArgs());
             }
             else
             {
@@ -181,7 +186,8 @@ namespace ITP4519M
                     this.dealerCompanyNameBox.Text = dealerDetails.DealerCompanyName;
                     this.dealerMailBox.Text = dealerDetails.DealerEmailAddress;
                     this.DealerPhoneNumBox.Text = dealerDetails.DealerPhoneNum;
-                    this.dealerAddressBox.Text = "STELLAR BEAUTY BIOTECH CO, LTD"; //dealerDetails.DealerEmailAddress;
+                    this.regionNumBox.Text = dealerDetails.DealerRegionNum;
+                    this.dealerAddressBox.Text = dealerDetails.DealerCompanyAddress; //dealerDetails.DealerEmailAddress;
 
                 }
                 else
