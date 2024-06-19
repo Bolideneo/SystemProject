@@ -84,8 +84,9 @@ namespace ITP4519M
             closebtn.BringToFront();
             SetRowHeights();
 
-
         }
+
+ 
 
         private void InitializeButtons()
         {
