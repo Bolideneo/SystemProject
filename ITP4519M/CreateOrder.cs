@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Drawing.Text;
@@ -59,6 +60,7 @@ namespace ITP4519M
 
                         }
                         dealerinfoBox.AutoCompleteCustomSource = coll;
+                        dealerIDBox.Text = result.Rows[0]["DealerID"].ToString();
                         dealerNameBox.Text = result.Rows[0]["DealerName"].ToString();
                         phoneNumBox.Text = result.Rows[0]["DealerPhoneNum"].ToString();
                         dealerCompanyBox.Text = result.Rows[0]["DealerCompanyName"].ToString();
@@ -236,8 +238,8 @@ namespace ITP4519M
             if (dealerinfoBox.Text == "")
             {
                 DealerInfo = true;
-                //this.Paint += this.panel2_Paint;
                 Refresh();
+                return;
             }
             else if (dealerinfoBox.Text != "")
             {
@@ -246,10 +248,14 @@ namespace ITP4519M
             }
 
             else if (dealerIDBox.Text == "")
+            {
                 MessageBox.Show("Please input Dealer ID");
+                return;
+            }
             else if (dealerNameBox.Text == "")
             {
                 MessageBox.Show("Please input Dealer Name");
+                return;
             }
             //else if (productSearchbox.Text == "")
             //{
@@ -259,6 +265,7 @@ namespace ITP4519M
             if (productOfOrderdata.RowCount == 0)
             {
                 MessageBox.Show("Please Select atleast one product");
+                return;
 
             }
 
@@ -358,7 +365,7 @@ namespace ITP4519M
                 ControlPaint.DrawBorder(e.Graphics, this.panel2.ClientRectangle, Color.Red, ButtonBorderStyle.Solid);
             else
             {
-                ControlPaint.DrawBorder(e.Graphics, this.panel2.ClientRectangle, Color.White, ButtonBorderStyle.Solid);
+                ControlPaint.DrawBorder(e.Graphics, this.panel2.ClientRectangle, Color.Gray, ButtonBorderStyle.Solid);
             }
         }
 

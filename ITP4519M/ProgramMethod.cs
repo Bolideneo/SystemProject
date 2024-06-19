@@ -29,6 +29,7 @@ using System.ComponentModel;
 using System.Drawing.Text;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Xml.Linq;
 
 
 
@@ -410,6 +411,20 @@ namespace ProgramMethod
             }
         }
 
+        public string getProductWeight(string orderID) { 
+
+            DataTable table = dataBaseMethod.getProductWeight(orderID);
+            int temp = 0;
+            for (int i = 0;i<table.Rows.Count; i++)
+             
+            {
+               temp =  temp +  (int.Parse(table.Rows[i]["Weight"].ToString()) * int.Parse(table.Rows[i]["OrderedQuantity"].ToString()));
+                
+            }
+            
+            return temp.ToString();
+        }
+
         //Search DealerID
         public bool searchDealerID(string dearlerID)
         {
@@ -659,21 +674,19 @@ namespace ProgramMethod
         }
 
 
-        public DataTable createDelivery(string orderID, string deliveryDate)
+        public void createDelivery(string orderID, string deliveryDate)
         {
+           // string oustID = "OUT" + (int.Parse(dataBaseMethod.getOutStandingID()) + 1).ToString("000000");
+            string deliveryID = "DE" + (int.Parse(dataBaseMethod.getDeliveryID()) + 1).ToString("00000");
+            while (!dataBaseMethod.createDelivery(deliveryID, orderID, deliveryDate))
+            {
+                deliveryID = "DE" + (int.Parse(dataBaseMethod.getDeliveryID()) + 1).ToString("00000");
+            }
 
-                string deliveryID = "DE" + (int.Parse(dataBaseMethod.getDeliveryID("DE").Substring(1)) + 1).ToString("000000");
-
-                 while (!dataBaseMethod.createDelivery(deliveryID, deliveryDate))
-                {
-                deliveryID = "DE" + (int.Parse(dataBaseMethod.getDeliveryID("DE").Substring(1)) + 1).ToString("000000");
-                }
-
-                //DataTable result = dataBaseMethod.getDelivery(orderID);
-                dataBaseMethod.updateOrderStatus("OrderInTransit", orderID);
-              //  return result;
+           // DataTable result = dataBaseMethod.getDelivery(orderID);
+            dataBaseMethod.updateOrderStatus("OrderDeliverying", orderID);
+           // return result;    
             
-               return null;
         }
 
         public DataTable getDeliveryDetails(string deliveryID)
@@ -761,6 +774,22 @@ namespace ProgramMethod
                 base.OnResize(e);
                 this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(2, 3, this.Width, this.Height, 40, 40));
             }
+
+            [DllImport("user32")]
+            private static extern IntPtr GetWindowDC(IntPtr hwnd);
+            private const int WM_NCPAINT = 0x85;
+            protected override void WndProc(ref Message m)
+            {
+                base.WndProc(ref m);
+                if (m.Msg == WM_NCPAINT && this.Focused)
+                {
+                    var dc = GetWindowDC(Handle);
+                    using (Graphics g = Graphics.FromHdc(dc))
+                    {
+                        g.DrawRectangle(Pens.Red, 0, 0, Width - 1, Height - 1);
+                    }
+                }
+            }
         }
 
         //Origninal rounded button
@@ -810,6 +839,8 @@ namespace ProgramMethod
             private bool IsHighlighted = false;
             private bool IsPressed = false;
 
+
+            
             public RoundedButton()
             {
                 SetStyle(ControlStyles.Opaque |
@@ -835,6 +866,7 @@ namespace ProgramMethod
                // ButtonPressedColor2 = Color.Maroon;
                 ButtonPressedForeColor = Color.White;
             }
+
 
             protected override CreateParams CreateParams
             {
@@ -1041,9 +1073,6 @@ namespace ProgramMethod
                 }
 
 
-
-
-
                 if (int.Parse(orderAccemblyActualdata.Rows[i].Cells[2].Value.ToString()) < int.Parse(orderAccemblyActualdata.Rows[i].Cells[3].Value.ToString()))
                 {
                     string sum = ((int.Parse(orderAccemblyActualdata.Rows[i].Cells[3].Value.ToString()) - (int.Parse(orderAccemblyActualdata.Rows[i].Cells[2].Value.ToString())))).ToString();
@@ -1089,7 +1118,7 @@ namespace ProgramMethod
                 {
                     Debug.WriteLine("TEST");
                     string oustID = "OUT" + (int.Parse(dataBaseMethod.getOutStandingID()) + 1).ToString("000000");
-                    while (!dataBaseMethod.createOutstandingOrder(oustID, orderID, orderAccemblyOrderItemdata.Rows[j].Cells[0].Value.ToString(), orderAccemblyOrderItemdata.Rows[j].Cells[3].Value.ToString(), dataBaseMethod.getOrderOfDealerID(orderID)))
+                    while (!dataBaseMethod.createOutstandingOrder(oustID, orderID, orderAccemblyOrderItemdata.Rows[j].Cells[0].Value.ToString(), dataBaseMethod.getOrderOfDealerID(orderID), orderAccemblyOrderItemdata.Rows[j].Cells[3].Value.ToString()) )
                     {
                         oustID = "OUT" + (int.Parse(dataBaseMethod.getOutStandingID()) + 1).ToString("000000");
                     }
@@ -1098,23 +1127,25 @@ namespace ProgramMethod
             }
             else if (orderAccemblyActualdata.RowCount < orderAccemblyOrderItemdata.RowCount)
             {
-                Debug.WriteLine("Test01");
-                for (int i = 0; i < orderAccemblyOrderItemdata.RowCount; i++)
+                Debug.WriteLine("TEST ELSE");
+                //Bug
+                for (int i = 0; i < orderAccemblyActualdata.RowCount; i++)
                 {
-                    Debug.WriteLine("Test02");
+                    Debug.WriteLine("TEST POIN0");
                     int count = 0;
                     for (int j = 0; j < orderAccemblyActualdata.RowCount; j++)
                     {
-                        Debug.WriteLine("Test03");
+                        Debug.WriteLine("TEST POIN1");
                         if (orderAccemblyOrderItemdata.Rows[i].Cells[0].Value.ToString() != orderAccemblyActualdata.Rows[j].Cells[0].Value.ToString())
                         {
                             count++;
                         }
                         if (count == orderAccemblyActualdata.RowCount - 1)
                         {
-                            Debug.WriteLine("Test03");
+                            MessageBox.Show(i.ToString());
+                            Debug.WriteLine("TEST POIN2");
                             string oustID = "OUT" + (int.Parse(dataBaseMethod.getOutStandingID()) + 1).ToString("000000");
-                            while (!dataBaseMethod.createOutstandingOrder(oustID, orderID, orderAccemblyActualdata.Rows[i].Cells[0].Value.ToString(), orderAccemblyActualdata.Rows[i].Cells[3].Value.ToString(), dataBaseMethod.getOrderOfDealerID(orderID)))
+                            while (!dataBaseMethod.createOutstandingOrder(oustID, orderID, orderAccemblyActualdata.Rows[i].Cells[0].Value.ToString(), dataBaseMethod.getOrderOfDealerID(orderID), orderAccemblyActualdata.Rows[i].Cells[3].Value.ToString()))
                             {
                                 oustID = "OUT" + (int.Parse(dataBaseMethod.getOutStandingID()) + 1).ToString("000000");
                             }
@@ -1133,7 +1164,7 @@ namespace ProgramMethod
             if (countNotMatch == orderAccemblyActualdata.RowCount)
                 dataBaseMethod.updateOrderStatus("Outstanding", orderID);
             else
-                dataBaseMethod.updateOrderStatus("Packaged", orderID);
+                dataBaseMethod.updateOrderStatus("ProductPackaged", orderID);
             return true;
         }
 

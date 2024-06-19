@@ -323,7 +323,7 @@
             orderStatuslbl.AutoSize = true;
             orderStatuslbl.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             orderStatuslbl.ForeColor = Color.Brown;
-            orderStatuslbl.Location = new Point(29, 427);
+            orderStatuslbl.Location = new Point(26, 388);
             orderStatuslbl.Name = "orderStatuslbl";
             orderStatuslbl.Size = new Size(141, 31);
             orderStatuslbl.TabIndex = 75;

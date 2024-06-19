@@ -21,6 +21,7 @@ using Microsoft.VisualBasic.Devices;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using Org.BouncyCastle.Asn1.Ocsp;
 using System.Drawing.Printing;
+//using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
 namespace ITP4519M
@@ -1342,7 +1343,7 @@ namespace ITP4519M
 
         public DataTable overallDeliveryinfo()
         {
-            string sql = "SELECT * FROM delivery ";
+            string sql = "SELECT DeliveryID,OrderID, DeliveryDate FROM delivery ";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
@@ -1442,22 +1443,24 @@ namespace ITP4519M
 
         }
 
-        public string getDeliveryID(string character)
+        public string getDeliveryID()
         {
-            string sql = "SELECT MAX(DeliveryID) FROM delivery WHERE LEFT(DeliveryID,2)=@character";
+            string sql = "SELECT MAX(RIGHT(DeliveryID,5)) FROM delivery";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-            cmd.Parameters.AddWithValue("@character", character);
             Object DeliveryID = cmd.ExecuteScalar();
             return DeliveryID.ToString();
         }
 
-        public bool createDelivery(string deliveryID, string deliveryDate)
+        public bool createDelivery(string deliveryID, string orderID, string deliveryDate)
         {
-
-            string sql = "INSERT INTO delivery (DeliveryID, DeliveryDate, ) VALUES(@deliveryID, @deliveryDate)";
+            DateTime dt = new DateTime();
+            dt = Convert.ToDateTime(deliveryDate);
+            var date = dt.ToString("yyyy-MM-dd");
+            string sql = "INSERT INTO delivery (DeliveryID, OrderID, DeliveryDate) VALUES(@deliveryID,@orderID, @deliveryDate)";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@deliveryID", deliveryID);
-            cmd.Parameters.AddWithValue("@deliveryDate", deliveryDate);
+            cmd.Parameters.AddWithValue("@orderID", orderID);
+            cmd.Parameters.AddWithValue("@deliveryDate", date);
             if (cmd.ExecuteNonQuery() > 0)
             {
                 return true;
@@ -1728,6 +1731,17 @@ namespace ITP4519M
             return false;
         }
 
+
+        public DataTable getProductWeight(string orderID)
+        {
+            string sql = "SELECT Weight, orderitem.OrderedQuantity FROM product, orderitem WHERE product.ProductID=orderitem.ProductID AND orderitem.OrderID=@orderID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@orderID", orderID);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
 
 
     }

@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Google.Protobuf.WellKnownTypes;
 using Microsoft.VisualBasic.ApplicationServices;
 using MySqlX.XDevAPI.Common;
 using ProgramMethod;
@@ -161,19 +162,18 @@ namespace ITP4519M
         {
             try
             {
-                DataTable deliveryDetail = programMethod.getOrderDetails(deliveryOrderidbox.Text.Trim());
+                programMethod.createDelivery(deliveryOrderidbox.Text.Trim(), DeliverydateTimePicker1.Value.Date.ToString());
                 
 
-                if (deliveryDetail.Rows.Count > 0)
-                {   
-                    deliveryInvoiceIDbox.Text = deliveryDetail.Rows[0]["InvoiceID"].ToString();
-                    //deliveryDeliveryidbox.Text = InvoiceDetail.Rows[0]["DeliveryID"].ToString();
+                //if (deliveryDetail.Rows.Count > 0)
+                //{   
+                //    //deliveryInvoiceIDbox.Text = deliveryDetail.Rows[0]["InvoiceID"].ToString();
 
-                }
-                else
-                {
-                    MessageBox.Show("Please Try again");
-                }
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Please Try again");
+                //}
             }
             catch
             {

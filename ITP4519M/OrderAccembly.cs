@@ -61,7 +61,7 @@ namespace ITP4519M
                     orderItemdata.Columns.Add("ProductID", "Product ID");
                     orderItemdata.Columns.Add("ProductName", "Product Name");
                     orderItemdata.Columns.Add("Quantity", "Quantity");
-                    orderItemdata.Columns.Add("OrderedQuantity", "OrderedQuantity");
+                    orderItemdata.Columns.Add("FollowQuantity", "FollowQuantity");
                     createOrderAccembly();
                     saveOrderbtn.Visible = true;
                     // ClearForm();
@@ -272,7 +272,8 @@ namespace ITP4519M
                 DataTable result = programMethod.getOrderEachItemDetail(orderAccemblyAssignbox.Text.Trim(), orderID);
               //  programMethod.ReduceStock(orderAccemblyAssignbox.Text.Trim(), "1");
                 orderAccemblyOrderItemdata.DataSource = programMethod.getOrderItemDetail(orderID);
-                this.orderItemdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, result.Rows[0]["OrderedQuantity"]);
+                //this.orderItemdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, result.Rows[0]["OrderedQuantity"]);
+                this.orderItemdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, 0);
                 if (orderItemdata.Rows.Count > 1)
                 {
                     for (int i = 0; i < orderItemdata.Rows.Count; i++)

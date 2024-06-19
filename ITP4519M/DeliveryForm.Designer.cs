@@ -180,6 +180,7 @@
             deliveryOrderidbox.Location = new Point(12, 5);
             deliveryOrderidbox.Margin = new Padding(5, 4, 5, 4);
             deliveryOrderidbox.Name = "deliveryOrderidbox";
+            deliveryOrderidbox.ReadOnly = true;
             deliveryOrderidbox.Size = new Size(149, 23);
             deliveryOrderidbox.TabIndex = 19;
             // 
@@ -199,6 +200,7 @@
             deliveryIDbox.Location = new Point(12, 5);
             deliveryIDbox.Margin = new Padding(5, 4, 5, 4);
             deliveryIDbox.Name = "deliveryIDbox";
+            deliveryIDbox.ReadOnly = true;
             deliveryIDbox.Size = new Size(149, 23);
             deliveryIDbox.TabIndex = 19;
             // 
@@ -238,6 +240,7 @@
             deliveryWeightBox.Location = new Point(12, 5);
             deliveryWeightBox.Margin = new Padding(5, 4, 5, 4);
             deliveryWeightBox.Name = "deliveryWeightBox";
+            deliveryWeightBox.ReadOnly = true;
             deliveryWeightBox.Size = new Size(149, 23);
             deliveryWeightBox.TabIndex = 19;
             // 
@@ -277,6 +280,7 @@
             deliveryDatebox.Location = new Point(12, 5);
             deliveryDatebox.Margin = new Padding(5, 4, 5, 4);
             deliveryDatebox.Name = "deliveryDatebox";
+            deliveryDatebox.ReadOnly = true;
             deliveryDatebox.Size = new Size(149, 23);
             deliveryDatebox.TabIndex = 19;
             // 
@@ -323,6 +327,7 @@
             deliveryPhoneBox.Location = new Point(7, 278);
             deliveryPhoneBox.Margin = new Padding(5, 4, 5, 4);
             deliveryPhoneBox.Name = "deliveryPhoneBox";
+            deliveryPhoneBox.ReadOnly = true;
             deliveryPhoneBox.Size = new Size(149, 23);
             deliveryPhoneBox.TabIndex = 30;
             // 
@@ -421,6 +426,7 @@
             deliveryAddressbox.Location = new Point(6, 9);
             deliveryAddressbox.Margin = new Padding(5, 4, 5, 4);
             deliveryAddressbox.Name = "deliveryAddressbox";
+            deliveryAddressbox.ReadOnly = true;
             deliveryAddressbox.Size = new Size(290, 23);
             deliveryAddressbox.TabIndex = 28;
             // 
@@ -440,6 +446,7 @@
             deliveryQuantityDeliverdbox.Location = new Point(12, 5);
             deliveryQuantityDeliverdbox.Margin = new Padding(5, 4, 5, 4);
             deliveryQuantityDeliverdbox.Name = "deliveryQuantityDeliverdbox";
+            deliveryQuantityDeliverdbox.ReadOnly = true;
             deliveryQuantityDeliverdbox.Size = new Size(149, 23);
             deliveryQuantityDeliverdbox.TabIndex = 19;
             // 
@@ -499,6 +506,7 @@
             deliveryPreQtyBox.Location = new Point(12, 11);
             deliveryPreQtyBox.Margin = new Padding(5, 4, 5, 4);
             deliveryPreQtyBox.Name = "deliveryPreQtyBox";
+            deliveryPreQtyBox.ReadOnly = true;
             deliveryPreQtyBox.Size = new Size(149, 23);
             deliveryPreQtyBox.TabIndex = 19;
             // 
@@ -539,6 +547,7 @@
             deliveryQuqntiyFollow.Location = new Point(12, 5);
             deliveryQuqntiyFollow.Margin = new Padding(5, 4, 5, 4);
             deliveryQuqntiyFollow.Name = "deliveryQuqntiyFollow";
+            deliveryQuqntiyFollow.ReadOnly = true;
             deliveryQuqntiyFollow.Size = new Size(149, 23);
             deliveryQuqntiyFollow.TabIndex = 19;
             // 
@@ -564,11 +573,14 @@
             // 
             // deliveryformData
             // 
+            deliveryformData.AllowUserToAddRows = false;
+            deliveryformData.AllowUserToDeleteRows = false;
             deliveryformData.BackgroundColor = SystemColors.Window;
             deliveryformData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             deliveryformData.Columns.AddRange(new DataGridViewColumn[] { ProductID, ProductName, QuantityDeliverd });
             deliveryformData.Location = new Point(37, 418);
             deliveryformData.Name = "deliveryformData";
+            deliveryformData.ReadOnly = true;
             deliveryformData.RowHeadersWidth = 51;
             deliveryformData.Size = new Size(503, 185);
             deliveryformData.TabIndex = 17;
@@ -580,6 +592,7 @@
             ProductID.HeaderText = "ProductID";
             ProductID.MinimumWidth = 6;
             ProductID.Name = "ProductID";
+            ProductID.ReadOnly = true;
             // 
             // ProductName
             // 
@@ -588,6 +601,7 @@
             ProductName.HeaderText = "Product Name";
             ProductName.MinimumWidth = 6;
             ProductName.Name = "ProductName";
+            ProductName.ReadOnly = true;
             // 
             // QuantityDeliverd
             // 
@@ -595,6 +609,7 @@
             QuantityDeliverd.HeaderText = "Quantity Deliverd";
             QuantityDeliverd.MinimumWidth = 6;
             QuantityDeliverd.Name = "QuantityDeliverd";
+            QuantityDeliverd.ReadOnly = true;
             // 
             // label13
             // 
