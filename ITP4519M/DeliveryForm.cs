@@ -89,7 +89,6 @@ namespace ITP4519M
                     // this.deliveryQuantityDeliverdbox.Text = deliveryDetails.Rows[0]["QuantityDelieverd"].ToString();//一次delivery嘅總數
                     for(int i = 0;i < orderItemDeatails.Rows.Count; i++)
                     {
-
                         deliveryWeightBox.Text= programMethod.getProductWeight(orderID);
                         temp1 = temp1 + int.Parse(orderItemDeatails.Rows[i]["ActualDespatchQuantity"].ToString());
                         temp2 = temp2 + int.Parse(orderItemDeatails.Rows[i]["OrderedQuantity"].ToString());

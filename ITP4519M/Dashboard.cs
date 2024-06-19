@@ -48,6 +48,7 @@ namespace ITP4519M
         //Paging
 
         private Button currentButton;
+        TypeAssistant assistant;
         private string userID;
         private string productID;
         private string orderID;
@@ -346,7 +347,25 @@ namespace ITP4519M
 
 
 
+        public class TypeAssistant
+        {
+            public event EventHandler Idled = delegate { };
+            public int WaitingMilliSeconds { get; set; }
+            System.Threading.Timer waitingTimer;
 
+            public TypeAssistant(int waitingMilliSeconds = 600)
+            {
+                WaitingMilliSeconds = waitingMilliSeconds;
+                waitingTimer = new System.Threading.Timer(p =>
+                {
+                    Idled(this, EventArgs.Empty);
+                });
+            }
+            public void TextChanged()
+            {
+                waitingTimer.Change(WaitingMilliSeconds, System.Threading.Timeout.Infinite);
+            }
+        }
 
         private void orderbtn_Click(object sender, EventArgs e)
         {
@@ -385,6 +404,8 @@ namespace ITP4519M
             lastClickedButton.ForeColor = Color.Gray;
             CalculateStockTotalPages();
             ShowPanel(inventorypnl);
+            assistant = new TypeAssistant();
+            assistant.Idled += assistant_Idled;
             stockData.DataSource = programMethod.GetStockCurrentRecords(StockCurrentPageIndex, StockPgSize);
             productOverallLabel();
             stockData.Rows[0].Selected = false;
@@ -972,10 +993,19 @@ namespace ITP4519M
             stockData.DataSource = programMethod.searchProductInformation(stockSearchBox.Text.Trim());
         }
 
+        void assistant_Idled(object sender, EventArgs e)
+        {
+            this.Invoke(
+            new System.Windows.Forms.MethodInvoker(() =>
+            {
+                stockData.DataSource = programMethod.searchProductInformation(stockSearchBox.Text.Trim());
+            }));
+        }
+
 
         private void stockSearchBox_TextChanged(object sender, EventArgs e)
         {
-            stockData.DataSource = programMethod.searchProductInformation(stockSearchBox.Text.Trim());
+            assistant.TextChanged();
         }
 
         private void orderdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -1133,7 +1163,7 @@ namespace ITP4519M
 
 
 
-                foreach (DataGridViewRow row in userData.Rows)
+                foreach (DataGridViewRow row in deliveryData.Rows)
                 {
                     if (row.Index == e.RowIndex)
                     {
@@ -1271,9 +1301,6 @@ namespace ITP4519M
             }
             else
             {
-                //SalesOrder salesOrder = new SalesOrder(OperationMode.View);
-                //salesOrder.orderView(orderID, dealerID);
-                //salesOrder.ShowDialog();
 
                 DeliveryForm deliveryform = new DeliveryForm();
                 deliveryform.viewDeliveryNote(deliveryID, orderID);

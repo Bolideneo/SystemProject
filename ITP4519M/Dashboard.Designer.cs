@@ -1551,19 +1551,6 @@ namespace ITP4519M
             newSupplierbtn.UseVisualStyleBackColor = false;
             newSupplierbtn.Click += newSupplierbtn_Click;
             // 
-            // editSupplierbtn
-            // 
-            editSupplierbtn.AccessibleRole = AccessibleRole.None;
-            editSupplierbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            editSupplierbtn.Location = new Point(182, 85);
-            editSupplierbtn.Margin = new Padding(4);
-            editSupplierbtn.Name = "editSupplierbtn";
-            editSupplierbtn.Size = new Size(135, 35);
-            editSupplierbtn.TabIndex = 36;
-            editSupplierbtn.Text = "Edit Supplier";
-            editSupplierbtn.UseVisualStyleBackColor = true;
-            editSupplierbtn.Click += editSupplierbtn_Click;
-            // 
             // newDealerbtn
             // 
             newDealerbtn.AccessibleRole = AccessibleRole.None;
@@ -2133,7 +2120,7 @@ namespace ITP4519M
             pageNumlbl.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             pageNumlbl.Location = new Point(251, 21);
             pageNumlbl.Name = "pageNumlbl";
-            pageNumlbl.Size = new Size(100, 25);
+            pageNumlbl.Size = new Size(79, 20);
             pageNumlbl.TabIndex = 3;
             pageNumlbl.Text = "LabelData";
             pageNumlbl.Click += pageNumlbl_Click;
@@ -2396,9 +2383,9 @@ namespace ITP4519M
             orderaccemblySearchpnl.Controls.Add(label5);
             orderaccemblySearchpnl.Controls.Add(orderAccemblydateTimePicker2);
             orderaccemblySearchpnl.Controls.Add(label6);
-            orderaccemblySearchpnl.Location = new Point(38, 49);
+            orderaccemblySearchpnl.Location = new Point(35, 86);
             orderaccemblySearchpnl.Name = "orderaccemblySearchpnl";
-            orderaccemblySearchpnl.Size = new Size(1050, 145);
+            orderaccemblySearchpnl.Size = new Size(980, 145);
             orderaccemblySearchpnl.TabIndex = 16;
             // 
             // orderAccemblyViewbtn
@@ -2435,7 +2422,7 @@ namespace ITP4519M
             // 
             // orderAccemblySearchbox
             // 
-            orderAccemblySearchbox.Location = new Point(578, 112);
+            orderAccemblySearchbox.Location = new Point(559, 107);
             orderAccemblySearchbox.Margin = new Padding(3, 2, 3, 2);
             orderAccemblySearchbox.Name = "orderAccemblySearchbox";
             orderAccemblySearchbox.Size = new Size(386, 23);
@@ -2498,12 +2485,12 @@ namespace ITP4519M
             dataGridViewCellStyle16.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle16.WrapMode = DataGridViewTriState.False;
             orderAccemblyData.DefaultCellStyle = dataGridViewCellStyle16;
-            orderAccemblyData.Location = new Point(38, 201);
+            orderAccemblyData.Location = new Point(23, 259);
             orderAccemblyData.Margin = new Padding(3, 2, 3, 2);
             orderAccemblyData.Name = "orderAccemblyData";
             orderAccemblyData.RowHeadersWidth = 51;
             orderAccemblyData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            orderAccemblyData.Size = new Size(1050, 495);
+            orderAccemblyData.Size = new Size(1050, 448);
             orderAccemblyData.TabIndex = 7;
             orderAccemblyData.CellClick += orderAccemblyData_CellClick;
             // 
@@ -2519,7 +2506,7 @@ namespace ITP4519M
             // 
             // accemblyCreatebtn
             // 
-            accemblyCreatebtn.Location = new Point(932, 3);
+            accemblyCreatebtn.Location = new Point(825, 30);
             accemblyCreatebtn.Margin = new Padding(3, 2, 3, 2);
             accemblyCreatebtn.Name = "accemblyCreatebtn";
             accemblyCreatebtn.Size = new Size(155, 38);
@@ -2660,7 +2647,7 @@ namespace ITP4519M
             panel1.Controls.Add(grnDatePicker2);
             panel1.Controls.Add(grnSearchBtn);
             panel1.Controls.Add(grnlbl2);
-            panel1.Location = new Point(38, 54);
+            panel1.Location = new Point(37, 100);
             panel1.Name = "panel1";
             panel1.Size = new Size(1031, 145);
             panel1.TabIndex = 15;
@@ -2726,7 +2713,7 @@ namespace ITP4519M
             // grnAddNoteBtn
             // 
             grnAddNoteBtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            grnAddNoteBtn.Location = new Point(930, 4);
+            grnAddNoteBtn.Location = new Point(865, 26);
             grnAddNoteBtn.Margin = new Padding(3, 2, 3, 2);
             grnAddNoteBtn.Name = "grnAddNoteBtn";
             grnAddNoteBtn.Size = new Size(155, 44);
@@ -2758,13 +2745,13 @@ namespace ITP4519M
             dataGridViewCellStyle18.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle18.WrapMode = DataGridViewTriState.False;
             grndata.DefaultCellStyle = dataGridViewCellStyle18;
-            grndata.Location = new Point(31, 239);
+            grndata.Location = new Point(31, 279);
             grndata.MultiSelect = false;
             grndata.Name = "grndata";
             grndata.RowHeadersVisible = false;
             grndata.RowHeadersWidth = 51;
             grndata.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            grndata.Size = new Size(1038, 434);
+            grndata.Size = new Size(1038, 394);
             grndata.TabIndex = 7;
             grndata.CellContentClick += grndata_CellContentClick;
             // 
@@ -3109,15 +3096,15 @@ namespace ITP4519M
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
-            ClientSize = new Size(1499, 1000);
+            ClientSize = new Size(1499, 920);
             Controls.Add(deliverypnl);
+            Controls.Add(GRNpnl);
+            Controls.Add(OrderAccemblypnl);
             Controls.Add(orderpnl);
             Controls.Add(inventorypnl);
-            Controls.Add(GRNpnl);
-            Controls.Add(userspnl);     
+            Controls.Add(userspnl);
             Controls.Add(listpnl);
             Controls.Add(closebtn);
-            Controls.Add(userspnl);
             Controls.Add(logpnl);
             Controls.Add(contactpnl);
             Controls.Add(POpnl);
@@ -3125,11 +3112,6 @@ namespace ITP4519M
             Controls.Add(invoicepnl);
             Controls.Add(dashboardpnl);
             Controls.Add(settingpnl);
-            Controls.Add(OrderAccemblypnl);
-            Controls.Add(orderpnl);
-            Controls.Add(deliverypnl);
-            Controls.Add(inventorypnl);
-            Controls.Add(GRNpnl);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Name = "Dashboard";

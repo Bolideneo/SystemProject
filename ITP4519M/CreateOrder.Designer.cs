@@ -161,7 +161,7 @@ namespace ITP4519M
             productSearchbox.BackColor = SystemColors.ButtonFace;
             productSearchbox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             productSearchbox.Location = new Point(22, 338);
-            productSearchbox.Margin = new Padding(5, 5, 5, 5);
+            productSearchbox.Margin = new Padding(5);
             productSearchbox.MaximumSize = new Size(263, 60);
             productSearchbox.Name = "productSearchbox";
             productSearchbox.PlaceholderText = "Search Product ID or Name";
@@ -228,7 +228,7 @@ namespace ITP4519M
             dealerinfoBox.BorderStyle = BorderStyle.None;
             dealerinfoBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dealerinfoBox.Location = new Point(5, 5);
-            dealerinfoBox.Margin = new Padding(5, 5, 5, 5);
+            dealerinfoBox.Margin = new Padding(5);
             dealerinfoBox.Name = "dealerinfoBox";
             dealerinfoBox.Size = new Size(218, 16);
             dealerinfoBox.TabIndex = 75;
@@ -238,12 +238,12 @@ namespace ITP4519M
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label10.Location = new Point(63, 14);
+            label10.Location = new Point(62, 13);
             label10.Margin = new Padding(4, 0, 4, 0);
             label10.Name = "label10";
-            label10.Size = new Size(97, 17);
+            label10.Size = new Size(106, 17);
             label10.TabIndex = 74;
-            label10.Text = " Dealer Info :  ";
+            label10.Text = " * Dealer Info :  ";
             // 
             // label7
             // 
@@ -280,7 +280,7 @@ namespace ITP4519M
             // 
             dealerIDBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dealerIDBox.Location = new Point(226, 57);
-            dealerIDBox.Margin = new Padding(5, 5, 5, 5);
+            dealerIDBox.Margin = new Padding(5);
             dealerIDBox.Name = "dealerIDBox";
             dealerIDBox.Size = new Size(218, 23);
             dealerIDBox.TabIndex = 43;
@@ -293,15 +293,15 @@ namespace ITP4519M
             label1.Location = new Point(78, 57);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(80, 17);
+            label1.Size = new Size(75, 17);
             label1.TabIndex = 44;
-            label1.Text = "*Dealer ID :";
+            label1.Text = "Dealer ID :";
             // 
             // goodsAddressBox
             // 
             goodsAddressBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             goodsAddressBox.Location = new Point(225, 208);
-            goodsAddressBox.Margin = new Padding(5, 5, 5, 5);
+            goodsAddressBox.Margin = new Padding(5);
             goodsAddressBox.Name = "goodsAddressBox";
             goodsAddressBox.Size = new Size(219, 23);
             goodsAddressBox.TabIndex = 47;
@@ -332,7 +332,7 @@ namespace ITP4519M
             // 
             dealerNameBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dealerNameBox.Location = new Point(226, 93);
-            dealerNameBox.Margin = new Padding(5, 5, 5, 5);
+            dealerNameBox.Margin = new Padding(5);
             dealerNameBox.Name = "dealerNameBox";
             dealerNameBox.Size = new Size(218, 23);
             dealerNameBox.TabIndex = 44;
@@ -363,7 +363,7 @@ namespace ITP4519M
             // 
             phoneNumBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             phoneNumBox.Location = new Point(225, 175);
-            phoneNumBox.Margin = new Padding(5, 5, 5, 5);
+            phoneNumBox.Margin = new Padding(5);
             phoneNumBox.Name = "phoneNumBox";
             phoneNumBox.Size = new Size(219, 23);
             phoneNumBox.TabIndex = 46;
@@ -383,7 +383,7 @@ namespace ITP4519M
             // 
             dealerCompanyBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dealerCompanyBox.Location = new Point(225, 130);
-            dealerCompanyBox.Margin = new Padding(5, 5, 5, 5);
+            dealerCompanyBox.Margin = new Padding(5);
             dealerCompanyBox.Name = "dealerCompanyBox";
             dealerCompanyBox.Size = new Size(218, 23);
             dealerCompanyBox.TabIndex = 45;

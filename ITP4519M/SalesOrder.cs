@@ -21,6 +21,7 @@ namespace ITP4519M
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
         private string orderID;
         private string dealerID;
+        private bool modifyProduct;
         private OperationMode _mode;
 
 
@@ -61,6 +62,14 @@ namespace ITP4519M
                     break;
                 case OperationMode.Edit:
                     // SetReadOnly(true);
+                    if(programMethod.getOrderStatus(orderID) == "OrderProcessing")
+                    {
+                        modifyProduct = true;
+                    }
+                    else
+                    {
+                        modifyProduct = false;
+                    }
                     orderStatusBox.ReadOnly = false;
                     break;
             }
@@ -135,7 +144,7 @@ namespace ITP4519M
                 if (orderDetails != null)
                 {
                     //this.orderIDBox.Text = orderID;
-                    orderLabel.Text =  "Order #" + orderID;
+                    orderLabel.Text = "Order #" + orderID;
                     orderStatusLabel.Text = "Placed on " + orderDetails.Rows[0]["OrderDate"].ToString();
                     this.dealerIDBox.Text = dealerID;
                     //this.orderDateBox.Text = orderDetails.Rows[0]["OrderDate"].ToString();
@@ -163,7 +172,7 @@ namespace ITP4519M
         {
 
             this.orderID = orderID;
-            
+
 
 
             try
@@ -240,29 +249,32 @@ namespace ITP4519M
         {
             if (e.KeyCode == Keys.Enter)
             {
-
-                if (programMethod.getValidProduct(productSearchbox.Text.Trim()))
+                if (modifyProduct)
                 {
-
-                    for (int i = 0; i < productOfOrderdata.Rows.Count; i++)
+                    if (programMethod.getValidProduct(productSearchbox.Text.Trim()))
                     {
-                        
-                        if (productOfOrderdata.Rows[i].Cells[0].Value.ToString() == productSearchbox.Text.Trim() || productOfOrderdata.Rows[i].Cells[1].Value.ToString() == productSearchbox.Text.Trim())
+
+                        for (int i = 0; i < productOfOrderdata.Rows.Count; i++)
                         {
-                            productSearchbox.Text = "";
-                            MessageBox.Show("Product is Added");
-                            return;
+
+                            if (productOfOrderdata.Rows[i].Cells[0].Value.ToString() == productSearchbox.Text.Trim() || productOfOrderdata.Rows[i].Cells[1].Value.ToString() == productSearchbox.Text.Trim())
+                            {
+                                productSearchbox.Text = "";
+                                MessageBox.Show("Product is Added");
+                                return;
+                            }
+                            if (int.Parse(productOfOrderdata.Rows[i].Cells[2].Value.ToString()) == 0)
+                            {
+                                productSearchbox.Text = "";
+                                MessageBox.Show("Please Add One quantity");
+                                return;
+                            }
                         }
-                        if (int.Parse(productOfOrderdata.Rows[i].Cells[2].Value.ToString()) == 0)
-                        {
-                            productSearchbox.Text = "";
-                            MessageBox.Show("Please Add One quantity");
-                            return;
-                        }
+                        DataTable result = programMethod.searchOrderItemDetail(productSearchbox.Text.Trim());
+                        this.productOfOrderdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, result.Rows[0]["UnitPrice"]);
+                        productSearchbox.Text = "";
                     }
-                    DataTable result = programMethod.searchOrderItemDetail(productSearchbox.Text.Trim());
-                    this.productOfOrderdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, result.Rows[0]["UnitPrice"]);
-                    productSearchbox.Text = "";
+
                 }
             }
         }
@@ -330,7 +342,7 @@ namespace ITP4519M
 
         private void saveOrderbtn_Click(object sender, EventArgs e)
         {
-            
+
             programMethod.orderDeleteItem(orderID);
             for (int i = 0; i < productOfOrderdata.Rows.Count; i++)
             {
@@ -341,13 +353,17 @@ namespace ITP4519M
 
         private void productOfOrderdata_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow orderData = this.productOfOrderdata.CurrentRow;
-            if (orderData != null && orderData.Index >= 0 && orderData.Index < productOfOrderdata.Rows.Count)
+            if (modifyProduct)
             {
-                this.productOfOrderdata.Rows.Remove(orderData);
+                DataGridViewRow orderData = this.productOfOrderdata.CurrentRow;
+                if (orderData != null && orderData.Index >= 0 && orderData.Index < productOfOrderdata.Rows.Count)
+                {
+                    this.productOfOrderdata.Rows.Remove(orderData);
+                }
+
+                //totalpricelbl.Text = "" + programMethod.calProductTotalAmount(productOfOrderdata)
             }
 
-            //totalpricelbl.Text = "" + programMethod.calProductTotalAmount(productOfOrderdata);
         }
     }
 }
