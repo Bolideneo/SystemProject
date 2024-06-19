@@ -3159,8 +3159,6 @@ namespace ITP4519M
             ClientSize = new Size(1499, 1000);
             Controls.Add(listpnl);
             Controls.Add(closebtn);
-            Controls.Add(inventorypnl);
-            Controls.Add(GRNpnl);
             Controls.Add(userspnl);
             Controls.Add(logpnl);
             Controls.Add(contactpnl);
@@ -3172,6 +3170,8 @@ namespace ITP4519M
             Controls.Add(OrderAccemblypnl);
             Controls.Add(orderpnl);
             Controls.Add(deliverypnl);
+            Controls.Add(inventorypnl);
+            Controls.Add(GRNpnl);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);

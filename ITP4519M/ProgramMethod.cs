@@ -703,6 +703,11 @@ namespace ProgramMethod
             return dataBaseMethod.getAccountStatusCount();
         }
 
+        public string getNewUserName()
+        {
+            return dataBaseMethod.getNewUserName();
+        }
+
         public DataTable GetAccountCurrentRecords(int page, int pageSize)
         {
 

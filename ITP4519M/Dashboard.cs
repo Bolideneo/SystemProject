@@ -433,6 +433,9 @@ namespace ITP4519M
             accountUserCountlbl.Text = temp.ToString();
             string RowCount = programMethod.getAccountStatusCount();
             accountUserCountlbl2.Text = RowCount.ToString();
+            string NewUser = programMethod.getNewUserName();
+            accountUserCountlbl3.Text = NewUser.ToString();
+
             //accountUserCountlbl2.Text = RowCount.ToString();
         }
 

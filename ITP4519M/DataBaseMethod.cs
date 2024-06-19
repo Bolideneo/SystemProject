@@ -1509,6 +1509,25 @@ namespace ITP4519M
             return rowCount;
         }
 
+        public string getNewUserName()
+        {
+            string sql = "SELECT UserName FROM staff WHERE UserID = (SELECT MAX(UserID) FROM staff)";
+            using (MySqlConnection conn = ServerConnect())
+            {
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                object result = cmd.ExecuteScalar();
+                if (result != null && result != DBNull.Value)
+                {
+                    return result.ToString();
+                }
+                else
+                {
+                    return null; 
+                }
+            }
+        }
+
         public int getStockRowCount()
         {
             string sql = "SELECT COUNT(DISTINCT ProductID) FROM product";
