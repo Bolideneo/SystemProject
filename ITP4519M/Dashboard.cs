@@ -1487,7 +1487,7 @@ namespace ITP4519M
 
         private void orderSearchbox_TextChanged(object sender, EventArgs e)
         {
-            orderdata.DataSource = programMethod.searchOrder(orderSearchbox.Text.Trim());
+            orderdata.DataSource = programMethod.searchOrder(orderStatusCombox.Text.Trim());
         }
 
         private void orderSearchbtn_Click(object sender, EventArgs e)
