@@ -76,6 +76,7 @@ namespace ITP4519M
                 DataTable deliveryDetails = programMethod.getDeliveryDetails(deliveryID);
                 DataTable orderDetails = programMethod.getOrderDetails(orderID);
                 DataTable orderItemDeatails = programMethod.getOrderItemDetailForDelivery(orderID);
+
                 int temp1 = 0;
                 int temp2 = 0;
 
@@ -85,28 +86,51 @@ namespace ITP4519M
                     this.deliveryIDbox.Text = deliveryID;
                     this.deliveryDatebox.Text = deliveryDetails.Rows[0]["DeliveryDate"].ToString();
                     this.deliveryWeightBox.Text = deliveryDetails.Rows[0]["TotalOfWeigth"].ToString();
+                    // this.deliveryQuqntiyFollow.Text = orderItemDeatails.Rows[0]["FollowUpQuantity"].ToString();// 總數之前加今次
                     //this.phoneNumBox.Text = dealerDetails.Rows[0]["DealerPhoneNum"].ToString();//Phone Number
+                    this.deliveryQuantityDeliverdbox.Text = deliveryDetails.Rows[0]["QuantityDelieverd"].ToString();//一次delivery嘅總數
+                    this.deliveryPreQtyBox.Text = deliveryDetails.Rows[0]["QuantityDelieverd"].ToString();
                     // this.deliveryQuantityDeliverdbox.Text = deliveryDetails.Rows[0]["QuantityDelieverd"].ToString();//一次delivery嘅總數
-                    for(int i = 0;i < orderItemDeatails.Rows.Count; i++)
+                    for (int i = 0; i < orderItemDeatails.Rows.Count; i++)
                     {
-                        deliveryWeightBox.Text= programMethod.getProductWeight(orderID);
-                        temp1 = temp1 + int.Parse(orderItemDeatails.Rows[i]["ActualDespatchQuantity"].ToString());
-                        temp2 = temp2 + int.Parse(orderItemDeatails.Rows[i]["OrderedQuantity"].ToString());
-                        deliveryQuantityDeliverdbox.Text = temp1.ToString();
-                        deliveryQuqntiyFollow.Text = (temp2 - temp1).ToString();
+                        string actualDespatchQuantityStr = orderItemDeatails.Rows[i]["ActualDespatchQuantity"].ToString();
+                        string orderedQuantityStr = orderItemDeatails.Rows[i]["OrderedQuantity"].ToString();
 
+                        if (int.TryParse(actualDespatchQuantityStr, out int actualDespatchQuantity))
+                        {
+                            temp1 += actualDespatchQuantity;
+                        }
+                        else
+                        {
+                            // Handle the parsing error, e.g., log it
+                            Console.WriteLine($"Invalid ActualDespatchQuantity: {actualDespatchQuantityStr}");
+                        }
+
+                        if (int.TryParse(orderedQuantityStr, out int orderedQuantity))
+                        {
+                            temp2 += orderedQuantity;
+                        }
+                        else
+                        {
+                            // Handle the parsing error, e.g., log it
+                            Console.WriteLine($"Invalid OrderedQuantity: {orderedQuantityStr}");
+                        }
                     }
-                    //this.deliveryPreQtyBox.Text = deliveryDetails.Rows[0]["QuantityDelieverd"].ToString();
-                    this.deliveryAddressbox.Text = orderDetails.Rows[0]["DeliveryAddress"].ToString();
+                    deliveryWeightBox.Text = programMethod.getProductWeight(orderID);
+                    deliveryQuantityDeliverdbox.Text = temp1.ToString();
+                    deliveryQuqntiyFollow.Text = (temp2 - temp1).ToString();
                     //Should use deliveryformData.DataSource instead of loop
-                    if(orderItemDeatails.Rows.Count > 0)
+                    if (orderItemDeatails.Rows.Count > 0)
                     {
-                        for (int i = 0; i < orderItemDeatails.Rows.Count; i++) { 
-                            this.deliveryformData.Rows.Add(orderItemDeatails.Rows[i]["ProductID"].ToString(), orderItemDeatails.Rows[i]["ProductName"].ToString(), orderItemDeatails.Rows[i]["ActualDespatchQuantity"]);
+                        for (int i = 0; i < orderItemDeatails.Rows.Count; i++)
+                        {
+                            this.deliveryformData.Rows.Add(orderItemDeatails.Rows[i]["ProductID"].ToString(), orderItemDeatails.Rows[i]["ProductName"].ToString(), orderItemDeatails.Rows[i]["ActualDespatchQuantity"].ToString());
+                        }
                     }
-                    }
-                    
+
                 }
+
+            
                 else
                 {
                     MessageBox.Show("Deliery Details not found.");

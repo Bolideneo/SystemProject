@@ -1,4 +1,5 @@
 ﻿using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace ITP4519M
 {
@@ -63,7 +64,8 @@ namespace ITP4519M
                 string[] permisson = programMethod.getPermission(usernameBox.Text.Trim());
                 dashboard.ButtonLocation(permisson[0], permisson[1]);
                 dashboard.currentUserDisplayName(userDisplayName, userDepartment);
-                dashboard.Show();
+               // dashboard.StartPosition = FormStartPosition.CenterParent;
+                dashboard.Show(this);
                 this.Hide();
             }
             else

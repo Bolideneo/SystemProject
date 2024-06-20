@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
+//using ProgramMethod;
 using ProgramMethod;
 using Org.BouncyCastle.Asn1.Cmp;
 using System.Reflection.Metadata.Ecma335;
@@ -20,6 +21,7 @@ using Google.Protobuf.WellKnownTypes;
 using System.Xml.Linq;
 using Org.BouncyCastle.Asn1.Sec;
 using System.Runtime.InteropServices;
+using System.Diagnostics;
 
 
 namespace ITP4519M
@@ -34,7 +36,7 @@ namespace ITP4519M
     public partial class Dashboard : Form
     {
 
-        private ProgramMethod.ProgramMethod programMethod;
+        private ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
         //datagrid paging
         private int PgSize = 10;
         private int CurrentPageIndex = 1;
@@ -55,6 +57,8 @@ namespace ITP4519M
         private string grnID;
         private string dealerID;
         private string deliveryID;
+        private string DeliverydeliveryID;
+        private string DeliveryorderID;
         private string contactID;
         private string orderAccemblyOrderID;
         private string orderAccemblyDealerID;
@@ -83,11 +87,10 @@ namespace ITP4519M
             InitializeComponent();
             ShowPanel(dashboardpnl);
             closebtn.BringToFront();
-            SetRowHeights();
-
+            this.StartPosition = FormStartPosition.CenterParent;
         }
 
- 
+
 
         private void InitializeButtons()
         {
@@ -104,7 +107,10 @@ namespace ITP4519M
             DoubleBuffered = true;
             programMethod = new ProgramMethod.ProgramMethod();
             closebtn.BringToFront();
-            SetRowHeights();
+            
+            if (Owner != null)
+                Location = new Point(Owner.Location.X + Owner.Width / 2 - Width / 2,
+                    Owner.Location.Y + Owner.Height / 2 - Height / 2);
         }
 
         //        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
@@ -382,6 +388,13 @@ namespace ITP4519M
             ShowPanel(orderpnl);
             orderdata.DataSource = programMethod.overallOrderinfo();
             orderdata.Rows[0].Selected = false;
+            string[] MinDate = programMethod.getOrderMinAndMaxDate();
+            orderdateTimePicker1.MinDate = DateTime.Parse(MinDate[0]);
+            orderdateTimePicker1.MaxDate = DateTime.Parse(MinDate[1]);
+            orderdateTimePicker1.Value = DateTime.Parse(MinDate[0]);
+            orderdateTimePicker2.MinDate = DateTime.Parse(MinDate[0]);
+            orderdateTimePicker2.MaxDate = DateTime.Parse(MinDate[1]);
+            orderdateTimePicker2.Value = DateTime.Parse(MinDate[1]);
             foreach (DataGridViewRow row in orderdata.Rows)
             {
                 row.Height = (orderdata.ClientRectangle.Height - orderdata.ColumnHeadersHeight) / orderdata.Rows.Count;
@@ -433,8 +446,8 @@ namespace ITP4519M
 
             ShowPanel(userspnl);
             AccountOverallLabel();
-            accountSearchBox.AutoSize = false;
             userData.DataSource = programMethod.GetAccountCurrentRecords(CurrentPageIndex, PgSize);
+            accountSearchBox.AutoSize = false;
             userData.Rows[0].Selected = false;
             //string words = userData.Rows[0].Cells["UserID"].Value.ToString();
             //string lastTwoWords = string.Join(" ", words.Skip(words.Length - ));
@@ -1159,8 +1172,8 @@ namespace ITP4519M
                 this.deliveryData.Rows[e.RowIndex].Cells["deliverycheckColumn"].Value = true;
                 deliveryindex = e.RowIndex;
                 DataGridViewRow selectRow = this.deliveryData.Rows[deliveryindex];
-                deliveryID = selectRow.Cells[1].Value.ToString();
-                orderID = selectRow.Cells[2].Value.ToString();
+                DeliverydeliveryID = selectRow.Cells[1].Value.ToString();
+                DeliveryorderID = selectRow.Cells[2].Value.ToString();
 
 
 
@@ -1304,7 +1317,7 @@ namespace ITP4519M
             {
 
                 DeliveryForm deliveryform = new DeliveryForm();
-                deliveryform.viewDeliveryNote(deliveryID, orderID);
+                deliveryform.viewDeliveryNote(DeliverydeliveryID, DeliveryorderID);
                 deliveryform.ShowDialog();
             }
         }
@@ -1472,6 +1485,70 @@ namespace ITP4519M
 
         }
 
+        private void orderSearchbox_TextChanged(object sender, EventArgs e)
+        {
+            orderdata.DataSource = programMethod.searchOrder(orderSearchbox.Text.Trim());
+        }
+
+        private void orderSearchbtn_Click(object sender, EventArgs e)
+        {
+            string formDate = orderdateTimePicker1.Value.Date.ToString("yyyy-MM-dd");
+            string toDate = orderdateTimePicker1.Value.Date.ToString("yyyy-MM-dd");
+
+
+            if (orderStatusCombox.SelectedIndex == -1)
+                orderdata.DataSource = programMethod.orderDateFilter(formDate, toDate);
+            else
+            {
+                string status = orderStatusCombox.Text.ToString();
+                Debug.WriteLine(orderStatusCombox.Text.ToString());
+                orderdata.DataSource = programMethod.orderDateStatusFilter(formDate, toDate, status);
+            }
+        }
+
+        private void orderClearbtn_Click(object sender, EventArgs e)
+        {
+            orderdata.DataSource = programMethod.overallOrderinfo();
+        }
+
+        private void orderCancelbtn_Click(object sender, EventArgs e)
+        {
+            DialogResult box = MessageBox.Show("Do you want to delete #" + orderID + " ?", "Cancel Order", MessageBoxButtons.YesNo);
+            switch (box)
+            {
+                case DialogResult.Yes:
+                    if (programMethod.cancelOrder(orderID))
+                        OrderLoad();
+                    break;
+                case DialogResult.No:
+                    break;
+            }
+        }
+
+
+        private void OrderLoad()
+        {
+            orderdata.DataSource = programMethod.overallOrderinfo();
+            foreach (DataGridViewRow row in orderdata.Rows)
+            {
+                row.Height = (orderdata.ClientRectangle.Height - orderdata.ColumnHeadersHeight) / orderdata.Rows.Count;
+            }
+            orderdata.Rows[0].Selected = false;
+
+        }
+
+        private void deliveryCompletebtn_Click(object sender, EventArgs e)
+        {
+            if (deliveryindex == -1)
+            {
+                MessageBox.Show("Please Select One Delivery");
+            }
+            else
+            {
+                //programMethod.updateDeliveryStatus(DeliverydeliveryID);
+
+            }
+        }
 
         //    private void PopulatePager(int recordCount, int currentPage)
         //    {

@@ -66,7 +66,7 @@ namespace ITP4519M
                         dealerCompanyBox.Text = result.Rows[0]["DealerCompanyName"].ToString();
                         goodsAddressBox.Text = result.Rows[0]["DealerRegionNum"].ToString();
 
-                        return;
+                       
                     }
                     else
                     {
@@ -106,6 +106,7 @@ namespace ITP4519M
                     SetReadOnly(true);
                     break;
                 case OperationMode.New:
+
                     orderDateBox.MinDate = DateTime.Today;
                     orderDateBox.MaxDate = DateTime.Today;
                     productOfOrderdata.Columns.Add("ProductID", "Product ID");
@@ -345,7 +346,7 @@ namespace ITP4519M
             public int WaitingMilliSeconds { get; set; }
             System.Threading.Timer waitingTimer;
 
-            public TypeAssistant(int waitingMilliSeconds = 600)
+            public TypeAssistant(int waitingMilliSeconds = 800)
             {
                 WaitingMilliSeconds = waitingMilliSeconds;
                 waitingTimer = new System.Threading.Timer(p =>

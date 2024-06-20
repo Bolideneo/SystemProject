@@ -275,6 +275,7 @@ namespace ITP4519M
             orderDateBox.Name = "orderDateBox";
             orderDateBox.Size = new Size(219, 23);
             orderDateBox.TabIndex = 70;
+            orderDateBox.Visible = false;
             // 
             // dealerIDBox
             // 
@@ -327,6 +328,7 @@ namespace ITP4519M
             label12.Size = new Size(150, 17);
             label12.TabIndex = 65;
             label12.Text = "Order Complete Date :";
+            label12.Visible = false;
             // 
             // dealerNameBox
             // 
@@ -391,12 +393,12 @@ namespace ITP4519M
             // ordertotallbl
             // 
             ordertotallbl.AutoSize = true;
-            ordertotallbl.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            ordertotallbl.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             ordertotallbl.Location = new Point(19, 678);
             ordertotallbl.Name = "ordertotallbl";
-            ordertotallbl.Size = new Size(108, 25);
+            ordertotallbl.Size = new Size(89, 21);
             ordertotallbl.TabIndex = 73;
-            ordertotallbl.Text = "Total Price: ";
+            ordertotallbl.Text = "Total: CN¥0";
             ordertotallbl.TextChanged += ordertotallbl_TextChanged;
             // 
             // CreateOrder

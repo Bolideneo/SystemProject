@@ -252,6 +252,7 @@
             label12.Size = new Size(149, 18);
             label12.TabIndex = 65;
             label12.Text = "Order Complete Date";
+            label12.Visible = false;
             // 
             // orderCompleteDateBox
             // 
@@ -261,6 +262,7 @@
             orderCompleteDateBox.Name = "orderCompleteDateBox";
             orderCompleteDateBox.Size = new Size(204, 23);
             orderCompleteDateBox.TabIndex = 64;
+            orderCompleteDateBox.Visible = false;
             // 
             // phoneNumBox
             // 
@@ -374,7 +376,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
-            ClientSize = new Size(621, 690);
+            ClientSize = new Size(621, 740);
             Controls.Add(label3);
             Controls.Add(orderStatusBox);
             Controls.Add(orderStatusLabel);

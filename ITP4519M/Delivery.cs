@@ -164,16 +164,9 @@ namespace ITP4519M
             {
                 programMethod.createDelivery(deliveryOrderidbox.Text.Trim(), DeliverydateTimePicker1.Value.Date.ToString());
                 
-
-                //if (deliveryDetail.Rows.Count > 0)
-                //{   
-                //    //deliveryInvoiceIDbox.Text = deliveryDetail.Rows[0]["InvoiceID"].ToString();
-
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Please Try again");
-                //}
+                
+                 MessageBox.Show("Create Successfully");
+  
             }
             catch
             {

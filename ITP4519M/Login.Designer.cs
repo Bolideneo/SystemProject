@@ -33,7 +33,6 @@ namespace ITP4519M
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
@@ -52,9 +51,6 @@ namespace ITP4519M
             errolabel = new Label();
             label1 = new Label();
             panel1 = new Panel();
-            pictureBox8 = new PictureBox();
-            pictureBox7 = new PictureBox();
-            pictureBox6 = new PictureBox();
             label2 = new Label();
             label6 = new Label();
             label7 = new Label();
@@ -66,9 +62,6 @@ namespace ITP4519M
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             SuspendLayout();
             // 
@@ -270,9 +263,6 @@ namespace ITP4519M
             // 
             panel1.BackColor = SystemColors.MenuText;
             panel1.BackgroundImageLayout = ImageLayout.Stretch;
-            panel1.Controls.Add(pictureBox8);
-            panel1.Controls.Add(pictureBox7);
-            panel1.Controls.Add(pictureBox6);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(label7);
@@ -282,39 +272,6 @@ namespace ITP4519M
             panel1.Name = "panel1";
             panel1.Size = new Size(203, 412);
             panel1.TabIndex = 24;
-            // 
-            // pictureBox8
-            // 
-            pictureBox8.BackgroundImage = (Image)resources.GetObject("pictureBox8.BackgroundImage");
-            pictureBox8.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox8.Location = new Point(139, 322);
-            pictureBox8.Margin = new Padding(2);
-            pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new Size(49, 40);
-            pictureBox8.TabIndex = 27;
-            pictureBox8.TabStop = false;
-            // 
-            // pictureBox7
-            // 
-            pictureBox7.BackgroundImage = (Image)resources.GetObject("pictureBox7.BackgroundImage");
-            pictureBox7.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox7.Location = new Point(80, 322);
-            pictureBox7.Margin = new Padding(2);
-            pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(45, 40);
-            pictureBox7.TabIndex = 26;
-            pictureBox7.TabStop = false;
-            // 
-            // pictureBox6
-            // 
-            pictureBox6.BackgroundImage = (Image)resources.GetObject("pictureBox6.BackgroundImage");
-            pictureBox6.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox6.Location = new Point(19, 322);
-            pictureBox6.Margin = new Padding(2);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(44, 40);
-            pictureBox6.TabIndex = 25;
-            pictureBox6.TabStop = false;
             // 
             // label2
             // 
@@ -393,9 +350,6 @@ namespace ITP4519M
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -424,9 +378,6 @@ namespace ITP4519M
         private Label label6;
         private Label label7;
         private PictureBox pictureBox5;
-        private PictureBox pictureBox6;
-        private PictureBox pictureBox8;
-        private PictureBox pictureBox7;
     }
 }
 

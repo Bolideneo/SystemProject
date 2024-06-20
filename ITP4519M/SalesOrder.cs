@@ -68,6 +68,7 @@ namespace ITP4519M
                     }
                     else
                     {
+                        productSearchbox.Visible = false;
                         modifyProduct = false;
                     }
                     orderStatusBox.ReadOnly = false;
@@ -271,7 +272,14 @@ namespace ITP4519M
                             }
                         }
                         DataTable result = programMethod.searchOrderItemDetail(productSearchbox.Text.Trim());
-                        this.productOfOrderdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, result.Rows[0]["UnitPrice"]);
+                        DataTable dt = productOfOrderdata.DataSource as DataTable;
+                        dt.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, result.Rows[0]["UnitPrice"]);
+                        productOfOrderdata.DataSource = dt;
+                        //this.productOfOrderdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, result.Rows[0]["UnitPrice"]);
+
+
+
+
                         productSearchbox.Text = "";
                     }
 

@@ -49,6 +49,12 @@ namespace ITP4519M
                     SetReadOnly(true);
                     break;
                 case OperationMode.New:
+                    orderIDBox.ReadOnly = true;
+                    dealerIDBox.ReadOnly = true;
+                    dealerNameBox.ReadOnly = true;
+                    phoneNumBox.ReadOnly = true;
+                    dealerCompanyBox.ReadOnly= true;
+                    dealerAddressBox.ReadOnly = true;
                     dt = programMethod.getOrderDetails(orderID);
                     dt1 = programMethod.getOrderDealerName(orderID, dealerID);
                     orderIDBox.Text = orderID;
@@ -299,7 +305,7 @@ namespace ITP4519M
             }
             else
             {
-                MessageBox.Show("Item Not contain in order");
+                MessageBox.Show("Proudct not contain in order");
             }
         }
 
