@@ -107,7 +107,7 @@ namespace ITP4519M
             DoubleBuffered = true;
             programMethod = new ProgramMethod.ProgramMethod();
             closebtn.BringToFront();
-            
+
             if (Owner != null)
                 Location = new Point(Owner.Location.X + Owner.Width / 2 - Width / 2,
                     Owner.Location.Y + Owner.Height / 2 - Height / 2);
@@ -1315,10 +1315,9 @@ namespace ITP4519M
             }
             else
             {
-
-                DeliveryForm deliveryform = new DeliveryForm();
-                deliveryform.viewDeliveryNote(DeliverydeliveryID, DeliveryorderID);
-                deliveryform.ShowDialog();
+                DeliveryForm deliveryFrom = new DeliveryForm();
+                deliveryFrom.viewDeliveryNote(DeliverydeliveryID, DeliveryorderID);
+                deliveryFrom.ShowDialog();
             }
         }
 
@@ -1539,13 +1538,46 @@ namespace ITP4519M
 
         private void deliveryCompletebtn_Click(object sender, EventArgs e)
         {
+            string deliveredDate = DeliverydeliveredDate.Value.Date.ToString("yyyy-MM-dd");
+
+            if (deliveryindex == -1)
+            {
+                MessageBox.Show("Please Select One Delivery");
+            }
+            else if (deliveredDate == "")
+            {
+                MessageBox.Show("Please Select Date");
+                return;
+            }
+            else
+            {
+                programMethod.updateDeliveryStatus(DeliverydeliveryID, deliveredDate);
+                MessageBox.Show("Save");
+            }
+        }
+
+        private void deliveryBackbtn_Click(object sender, EventArgs e)
+        {
+            ShowPanel(deliverypnl);
+            deliveryCompletepnl.Visible = false;
+        }
+
+        private void deliverypnl_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void deliverycompletedeliverybtn_Click(object sender, EventArgs e)
+        {
             if (deliveryindex == -1)
             {
                 MessageBox.Show("Please Select One Delivery");
             }
             else
             {
-                //programMethod.updateDeliveryStatus(DeliverydeliveryID);
+
+                ShowPanel(deliveryCompletepnl);
+                deliveryDeliveryIDlbl.Text = "Delivery ID : # " + DeliverydeliveryID.ToString();
 
             }
         }

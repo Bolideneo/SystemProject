@@ -23,6 +23,8 @@ namespace ITP4519M
         private string dealerID;
         private DataTable dt;
         private DataTable dt1;
+        private string QuantityFollow;
+        private int orderitemIndex = -1;
         private OperationMode _mode;
 
 
@@ -40,7 +42,7 @@ namespace ITP4519M
             this.Close();
         }
 
-        private void SalesOrder_Load(object sender, EventArgs e)
+        private void OrderAccembly_Load(object sender, EventArgs e)
         {
             switch (_mode)
             {
@@ -53,7 +55,7 @@ namespace ITP4519M
                     dealerIDBox.ReadOnly = true;
                     dealerNameBox.ReadOnly = true;
                     phoneNumBox.ReadOnly = true;
-                    dealerCompanyBox.ReadOnly= true;
+                    dealerCompanyBox.ReadOnly = true;
                     dealerAddressBox.ReadOnly = true;
                     dt = programMethod.getOrderDetails(orderID);
                     dt1 = programMethod.getOrderDealerName(orderID, dealerID);
@@ -261,10 +263,12 @@ namespace ITP4519M
             {
                 this.orderItemdata.Rows.Remove(orderData);
             }
+            orderitemIndex--;
         }
 
         private void orderAccemblyAssignbtn_Click(object sender, EventArgs e)
         {
+           
             if (programMethod.searchOrderEachItemDetail(orderAccemblyAssignbox.Text.Trim(), orderID))
             {
                 for (int i = 0; i < orderItemdata.Rows.Count; i++)
@@ -276,10 +280,12 @@ namespace ITP4519M
                     }
                 }
                 DataTable result = programMethod.getOrderEachItemDetail(orderAccemblyAssignbox.Text.Trim(), orderID);
-              //  programMethod.ReduceStock(orderAccemblyAssignbox.Text.Trim(), "1");
+                //  programMethod.ReduceStock(orderAccemblyAssignbox.Text.Trim(), "1");
                 orderAccemblyOrderItemdata.DataSource = programMethod.getOrderItemDetail(orderID);
-                //this.orderItemdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, result.Rows[0]["OrderedQuantity"]);
-                this.orderItemdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, 0);
+                this.orderItemdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, QuantityFollow);
+                orderitemIndex++;
+
+
                 if (orderItemdata.Rows.Count > 1)
                 {
                     for (int i = 0; i < orderItemdata.Rows.Count; i++)
@@ -312,6 +318,15 @@ namespace ITP4519M
         private void phoneNumBox_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+
+        private void orderItemdata_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            QuantityFollow = programMethod.calOrderItemQuantityFollow(orderItemdata, orderID);
+            MessageBox.Show(QuantityFollow);
+            this.orderItemdata["FollowQuantity", orderitemIndex].Value = QuantityFollow;
+            QuantityFollow = "";
         }
     }
 }

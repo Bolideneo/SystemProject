@@ -208,7 +208,8 @@ namespace ProgramMethod
                 return false;
             }
 
-            if (dataBaseMethod.updateUserInfor(userid, userName, EncodePasswordToBase64(password), dispalyName, departmentID, title, phonenum, email, department)) {
+            if (dataBaseMethod.updateUserInfor(userid, userName, EncodePasswordToBase64(password), dispalyName, departmentID, title, phonenum, email, department))
+            {
                 return true;
             }
             else
@@ -413,7 +414,8 @@ namespace ProgramMethod
             }
         }
 
-        public string getProductWeight(string orderID) {
+        public string getProductWeight(string orderID)
+        {
 
             DataTable table = dataBaseMethod.getProductWeight(orderID);
             int temp = 0;
@@ -497,7 +499,7 @@ namespace ProgramMethod
         public string createSalesOrder(string dealerID, string dealerName, string phoneNumber, string Address, DataGridView Order)
         {
 
-            //dealerID = "D" + (((int.Parse(dataBaseMethod.getDealerID()) + 1).ToString("0000")));
+
             string orderID = (int.Parse(dataBaseMethod.getOrderID()) + 1).ToString("000000");
             while (!dataBaseMethod.createSalesOrder(orderID, dealerID, "OrderProcessing"))
             {
@@ -555,15 +557,18 @@ namespace ProgramMethod
             string grnID = "G" + (int.Parse(dataBaseMethod.getGRNID('G').Substring(1)) + 1).ToString("000000");
 
             MessageBox.Show(grnID);
-            try {
+            try
+            {
                 while (!dataBaseMethod.createGRN(grnID, POID, productID, warehouse, receiveqty, receivedate))
                 {
                     grnID = "G" + (int.Parse(dataBaseMethod.getGRNID('G').Substring(1)) + 1).ToString("000000");
                 }
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
 
-                MessageBox.Show(e.ToString()); }
+                MessageBox.Show(e.ToString());
+            }
             return true;
 
 
@@ -678,26 +683,51 @@ namespace ProgramMethod
 
         public void createDelivery(string orderID, string deliveryDate)
         {
-
             string deliveryID = "DE" + (int.Parse(dataBaseMethod.getDeliveryID()) + 1).ToString("00000");
+            DataTable dt = dataBaseMethod.getOrderItemDetailForDelivery(orderID);
+            //if (!dataBaseMethod.checkDeliveryOrderIDExist(orderID))
+            //{
+            //    MessageBox.Show("First");
+            //    for (int i = 0; i < dt.Rows.Count; i++)
+            //    {
+            //        dataBaseMethod.createDeliveryNoteItem(deliveryID, dt.Rows[i]["ProductID"].ToString(), "0", dt.Rows[i]["ActualDespatchQuantity"].ToString(), dt.Rows[i]["QuantityFollow"].ToString());
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Not Yet");
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    dataBaseMethod.createDeliveryNoteItem(deliveryID, dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["PreQtyDelivered"].ToString(), dt.Rows[i]["ActualDespatchQuantity"].ToString(), dt.Rows[i]["QuantityFollow"].ToString());
+                    
+                }
+            // }
+            
             while (!dataBaseMethod.createDelivery(deliveryID, orderID, deliveryDate, "Shipped"))
             {
                 deliveryID = "DE" + (int.Parse(dataBaseMethod.getDeliveryID()) + 1).ToString("00000");
             }
 
-            // dataBaseMethod.updateDeliveryStatus("Shipped", deliveryID);
+
+            //dataBaseMethod.updateDeliveryStatus("Shipped", deliveryID);
             //dataBaseMethod.updateOrderStatus("Delivered", orderID);  
 
         }
 
-        //public bool updateDeliveryStatus(string deliveryID)
-        //{
-        //     return dataBaseMethod.updateDeliveryStatus("Deliverd" ,deliveryID);
-        //}
+        public void updateDeliveryStatus(string deliveryID, string deliveredDate)
+        {
+            dataBaseMethod.updateDeliveryStatus("Deliverd", deliveryID, deliveredDate);
+        }
 
         public DataTable getDeliveryDetails(string deliveryID)
         {
            return dataBaseMethod.getDeliveryDetails(deliveryID);
+        }
+
+        
+        public DataTable getDeliveryNoteItem(string deliveryID)
+        {
+            return dataBaseMethod.getDeliveryNoteItem(deliveryID);
         }
 
         public DataTable getDepartmentNameDataSource()
@@ -1111,7 +1141,9 @@ namespace ProgramMethod
                 //    }
                 //}
                 dataBaseMethod.updateOrderItemDemand(ActualDesptchData.Rows[i].Cells[0].Value.ToString(), int.Parse(ActualDesptchData.Rows[i].Cells[2].Value.ToString()));
-                dataBaseMethod.updateOrderItem(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString(), ActualDesptchData.Rows[i].Cells[2].Value.ToString());
+                dataBaseMethod.updateOrderItem(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString(), ActualDesptchData.Rows[i].Cells[2].Value.ToString(), ActualDesptchData.Rows[i].Cells[3].Value.ToString(), ActualDesptchData.Rows[i].Cells[2].Value.ToString());
+
+
             }
             if (ActualDesptchData.RowCount != 0)
             { 
@@ -1257,6 +1289,62 @@ namespace ProgramMethod
         public bool cancelOrder(string orderID)
         {
             return dataBaseMethod.cancelOrder(orderID);
+        }
+
+
+        public string calOrderItemQuantityFollow(DataGridView orderItemdata, string orderID)
+        {
+            int qty = 0;
+            try
+            {
+                if (dataBaseMethod.checkOrderItemFollowQuantity(orderID))
+                {
+                    for (int i = 0; i < orderItemdata.Rows.Count; i++)
+                    {
+                        string orderedQtyStr = dataBaseMethod.getOrderItemOrderedQuantity(orderID, orderItemdata.Rows[i].Cells[0].Value.ToString());
+                        string itemQtyStr = orderItemdata.Rows[i].Cells[2].Value.ToString();
+
+                        int orderedQty, itemQty;
+                        if (int.TryParse(orderedQtyStr, out orderedQty) && int.TryParse(itemQtyStr, out itemQty))
+                        {
+                            qty = orderedQty - itemQty;
+                        }
+                        else
+                        {
+                            // Handle the case where conversion was not successful
+                            // For example, log an error or set qty to a default value
+                            Console.WriteLine("Error: Invalid quantity format.");
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < orderItemdata.Rows.Count; i++)
+                    {
+                        string followQtyStr = dataBaseMethod.getOrderItemFollowQuantity(orderID, orderItemdata.Rows[i].Cells[0].Value.ToString());
+                        string itemQtyStr = orderItemdata.Rows[i].Cells[2].Value.ToString();
+
+                        int followQty, itemQty;
+                        if (int.TryParse(followQtyStr, out followQty) && int.TryParse(itemQtyStr, out itemQty))
+                        {
+                            qty = followQty - itemQty;
+                        }
+                        else
+                        {
+                            // Handle the case where conversion was not successful
+                            // For example, log an error or set qty to a default value
+                            Console.WriteLine("Error: Invalid quantity format.");
+                        }
+                    }
+                }
+
+            }
+            catch(Exception ex)
+            {
+               // MessageBox.Show(ex.Message);
+                MessageBox.Show("Please input number");
+            }
+            return qty.ToString();
         }
     }
     }

@@ -187,22 +187,31 @@
             orderItemdata.Size = new Size(679, 202);
             orderItemdata.TabIndex = 61;
             orderItemdata.CellDoubleClick += productOfOrderdata_CellDoubleClick;
+            orderItemdata.CellValueChanged += orderItemdata_CellValueChanged;
             // 
             // productIDColumn
             // 
+            productIDColumn.MinimumWidth = 6;
             productIDColumn.Name = "productIDColumn";
+            productIDColumn.Width = 125;
             // 
             // productNameColumn
             // 
+            productNameColumn.MinimumWidth = 6;
             productNameColumn.Name = "productNameColumn";
+            productNameColumn.Width = 125;
             // 
             // quantityColumn
             // 
+            quantityColumn.MinimumWidth = 6;
             quantityColumn.Name = "quantityColumn";
+            quantityColumn.Width = 125;
             // 
             // unitPriceColumn
             // 
+            unitPriceColumn.MinimumWidth = 6;
             unitPriceColumn.Name = "unitPriceColumn";
+            unitPriceColumn.Width = 125;
             // 
             // phoneNumBox
             // 
@@ -282,7 +291,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
-            ClientSize = new Size(827, 872);
+            ClientSize = new Size(829, 869);
             Controls.Add(orderAccemblyAssignbtn);
             Controls.Add(orderAccemblyAssignbox);
             Controls.Add(dealerAddressBox);
@@ -306,7 +315,7 @@
             Name = "OrderAccembly";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "OrderForm1";
-            Load += SalesOrder_Load;
+            Load += OrderAccembly_Load;
             ((System.ComponentModel.ISupportInitialize)orderItemdata).EndInit();
             ((System.ComponentModel.ISupportInitialize)orderAccemblyOrderItemdata).EndInit();
             ResumeLayout(false);

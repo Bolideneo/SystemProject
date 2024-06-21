@@ -164,8 +164,7 @@ namespace ITP4519M
             {
                 programMethod.createDelivery(deliveryOrderidbox.Text.Trim(), DeliverydateTimePicker1.Value.Date.ToString());
                 
-                
-                 MessageBox.Show("Create Successfully");
+                MessageBox.Show("Create Successfully");
   
             }
             catch

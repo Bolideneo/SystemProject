@@ -1233,7 +1233,7 @@ namespace ITP4519M
 
         public DataTable getOrderItemDetailsForOrderAccembly(string orderID)
         {
-            string sql = "SELECT orderitem.ProductID, ProductName, BinLocation, QuantityInStock, OrderedQuantity FROM product, orderitem WHERE orderitem.OrderID=@orderID AND orderitem.ProductID=product.ProductID";
+            string sql = "SELECT orderitem.ProductID, product.ProductName, BinLocation, QuantityInStock, OrderedQuantity FROM product, orderitem WHERE orderitem.OrderID=@orderID AND orderitem.ProductID=product.ProductID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@orderID", orderID);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
@@ -1242,6 +1242,61 @@ namespace ITP4519M
             return dataTable;
 
         }
+
+        public bool checkOrderItemFollowQuantity(string orderID)
+        {
+            string sql = "SELECT COUNT(*) FROM orderitem WHERE orderitem.OrderID=@orderID AND QuantityFollow IS NULL";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@orderID", orderID);
+            var result = cmd.ExecuteScalar();
+            if (result != null && Convert.ToInt32(result) > 0)
+            {
+                return true;
+            }
+
+            return false;
+
+        }
+
+
+        public bool checkDeliveryOrderIDExist(string orderID)
+        {
+            try
+            {
+                string sql = "SELECT COUNT(*) FROM delivery WHERE OrderID=@orderID";
+                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+                cmd.Parameters.AddWithValue("@orderID", orderID);
+                int count = (int)cmd.ExecuteScalar();
+                Console.WriteLine($"OrderID: {orderID}, Count: {count}");
+                return count > 0;
+            }
+            catch (Exception ex) {
+                Console.WriteLine("An error occurred: " + ex.Message);
+
+                return false;
+            }
+        }
+
+        public string getOrderItemOrderedQuantity(string orderID, string productID)
+        {
+            string sql = "SELECT OrderedQuantity FROM orderitem WHERE OrderID=@orderID AND ProductID =@productID ";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@orderID", orderID);
+            cmd.Parameters.AddWithValue("@productID", productID);
+            Object result = cmd.ExecuteScalar();
+            return result.ToString();
+        }
+
+        public string getOrderItemFollowQuantity(string orderID, string productID)
+        {
+            string sql = "SELECT QuantityFollow FROM orderitem WHERE OrderID =@orderID AND ProductID =@productID ";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@orderID", orderID);
+            cmd.Parameters.AddWithValue("@productID", productID);
+            Object result = cmd.ExecuteScalar();
+            return result.ToString();
+        }
+
 
         public DataTable getOrderDealerName(string orderID, string dealerID)
         {
@@ -1265,6 +1320,7 @@ namespace ITP4519M
             adat.Fill(dataTable);
             return dataTable;
         }
+
 
         public DataTable getOrderItemDetailForDelivery(string orderID)
         {
@@ -1473,6 +1529,19 @@ namespace ITP4519M
             return false;
         }
 
+        public void createDeliveryNoteItem(string deliveryID, string productID,string PreQtyDelivered, string DeliveryQuantity,string quantityToFollow)
+        {
+            string sql = "INSERT INTO deliverynoteitem VALUES(@deliveryID,@productID,@PreQtyDelivered, @deliveryQuantity, @quantityToFollow)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@deliveryID", deliveryID);
+            cmd.Parameters.AddWithValue("@productID", productID);
+            cmd.Parameters.AddWithValue("@PreQtyDelivered", PreQtyDelivered);
+            cmd.Parameters.AddWithValue("@deliveryQuantity", DeliveryQuantity);
+            cmd.Parameters.AddWithValue("@quantityToFollow", quantityToFollow);
+            cmd.ExecuteNonQuery();
+        }
+        
+
 
         public void updateOrderStatus(String status, String orderID)
         {
@@ -1483,17 +1552,15 @@ namespace ITP4519M
             cmd.ExecuteNonQuery();
         }
 
-        //public void updateDeliveryStatus(String status, String deliveryID)
-        //{
-        //    DateTime dt = new DateTime();
-        //    dt = Convert.ToDateTime(deliveryDate);
-        //    var date = dt.ToString("yyyy-MM-dd");
-        //    string sql = "UPDATE delivery Set DeliveryStatus=@status WHERE DeliveryID=@deliveryID";
-        //    MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-        //    cmd.Parameters.AddWithValue("@status", status);
-        //    cmd.Parameters.AddWithValue("@deliveryID", deliveryID);
-        //    cmd.ExecuteNonQuery();
-        //}
+        public void updateDeliveryStatus(String status, String deliveryID, string deliveredDate)
+        {
+            string sql = "UPDATE delivery Set DeliveryStatus=@status , DeliveredDate=@deliveredDate WHERE DeliveryID=@deliveryID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@status", status);
+            cmd.Parameters.AddWithValue("@deliveryID", deliveryID);
+            cmd.Parameters.AddWithValue("@deliveredDate", deliveredDate);
+            cmd.ExecuteNonQuery();
+        }
 
         public DataTable getDeliveryDetails(string deliveryID)
         {
@@ -1505,6 +1572,18 @@ namespace ITP4519M
             adat.Fill(dataTable);
             return dataTable;
         }
+
+       
+         public DataTable getDeliveryNoteItem(string deliveryID)
+         {
+            string sql = "SELECT * FROM deliverynoteitem WHERE DeliveryID=@deliveryID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@deliveryID", deliveryID);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+         }
 
         public DataTable getDepartmentNameDataSource()
 
@@ -1746,13 +1825,15 @@ namespace ITP4519M
             return purID.ToString();
         }
 
-        public bool updateOrderItem(string orderID, string productID, string Qty)
+        public bool updateOrderItem(string orderID, string productID, string Qty,string quantityFollow, string PreQtyDelivered)
         {
-            string sql = "UPDATE orderitem SET ActualDespatchQuantity=@Qty WHERE OrderID=@orderID AND ProductID=@productID";
+            string sql = "UPDATE orderitem SET ActualDespatchQuantity=@Qty, QuantityFollow = @quantityFollow, PreQtyDelivered = @PreQtyDelivered WHERE OrderID=@orderID AND ProductID=@productID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@orderID", orderID);
             cmd.Parameters.AddWithValue("@productID", productID);
             cmd.Parameters.AddWithValue("@Qty", Qty);
+            cmd.Parameters.AddWithValue("@quantityFollow", quantityFollow);
+            cmd.Parameters.AddWithValue("@PreQtyDelivered", PreQtyDelivered);
             if (cmd.ExecuteNonQuery() > 0)
                 return true;
             return false;

@@ -113,7 +113,7 @@
             // deliveryOrderidbox
             // 
             deliveryOrderidbox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryOrderidbox.Location = new Point(211, 63);
+            deliveryOrderidbox.Location = new Point(215, 63);
             deliveryOrderidbox.Margin = new Padding(5, 4, 5, 4);
             deliveryOrderidbox.Name = "deliveryOrderidbox";
             deliveryOrderidbox.Size = new Size(149, 23);
@@ -161,7 +161,7 @@
             // 
             DeliverydateTimePicker1.Location = new Point(214, 153);
             DeliverydateTimePicker1.Name = "DeliverydateTimePicker1";
-            DeliverydateTimePicker1.Size = new Size(200, 23);
+            DeliverydateTimePicker1.Size = new Size(215, 23);
             DeliverydateTimePicker1.TabIndex = 37;
             // 
             // deliveryerrorlbl
@@ -184,7 +184,7 @@
             CloseButton.FlatStyle = FlatStyle.Flat;
             CloseButton.Font = new Font("Verdana", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             CloseButton.Location = new Point(505, 5);
-            CloseButton.Margin = new Padding(2);
+            CloseButton.Margin = new Padding(2, 2, 2, 2);
             CloseButton.Name = "CloseButton";
             CloseButton.Size = new Size(35, 37);
             CloseButton.TabIndex = 36;
