@@ -288,10 +288,23 @@ namespace ProgramMethod
 
         }
 
-        public bool contactDel(string contactID)
+        public bool dealerDel(string contactID)
         {
 
-            if (dataBaseMethod.contactDel(contactID))
+            if (dataBaseMethod.dealerDel(contactID))
+            {
+                MessageBox.Show("Delete successfully");
+                return true;
+            }
+            else
+                return false;
+
+        }
+
+        public bool supplierDel(string contactID)
+        {
+
+            if (dataBaseMethod.supplierDel(contactID))
             {
                 MessageBox.Show("Delete successfully");
                 return true;
@@ -750,9 +763,14 @@ namespace ProgramMethod
             return dataBaseMethod.getAccountRowCount();
         }
 
-        public int getContactsRowCount()
+        public int getDealersRowCount()
         {
-            return dataBaseMethod.getContactsRowCount();
+            return dataBaseMethod.getDealersRowCount();
+        }
+
+        public int getSuppliersRowCount()
+        {
+            return dataBaseMethod.getSuppliersRowCount();
         }
 
         public int getStockRowCount()

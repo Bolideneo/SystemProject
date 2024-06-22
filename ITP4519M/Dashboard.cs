@@ -58,13 +58,13 @@ namespace ITP4519M
 
 
         //DealerContact datagrid paging
-        private int DealerPgSize = 15;
+        private int DealerPgSize = 10;
         private int DealerPageIndex = 1;
         private int DealerTotalPage = 0;
         //Paging
 
         //SupplierContact datagrid paging
-        private int SupplierPgSize = 15;
+        private int SupplierPgSize = 10;
         private int SupplierPageIndex = 1;
         private int SupplierTotalPage = 0;
         //Paging
@@ -91,7 +91,8 @@ namespace ITP4519M
         private int userindex = -1;
         private int grnindex = -1;
         private int deliveryindex = -1;
-        private int contactindex = -1;
+        private int dealerindex = -1;
+        private int supplierindex = -1;
         private int stockindex = -1;
         private int orderAceemblyindex = -1;
         private int outstandingIndex = -1;
@@ -541,8 +542,8 @@ namespace ITP4519M
 
             CalculateTotalPages("Dealer");
             ShowPanel(contactpnl);
-            contactsdata.DataSource = programMethod.GetDealerCurrentRecords(DealerPageIndex, DealerPgSize);
-            contactsdata.Rows[0].Selected = false;
+            dealersData.DataSource = programMethod.GetDealerCurrentRecords(DealerPageIndex, DealerPgSize);
+            dealersData.Rows[0].Selected = false;
             newSupplierbtn.Visible = false;
             editSupplierbtn.Visible = false;
             newDealerbtn.Visible = true;
@@ -550,7 +551,10 @@ namespace ITP4519M
             searchSupplierbtn.Visible = false;
             searchDealerbtn.Visible = true;
             contactOverallLabel();
-            SetRowHeights(contactsdata, DealerPgSize);
+            SetRowHeights(dealersData, DealerPgSize);
+            contactIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + programMethod.getDealersRowCount();
+            dealersData.Visible = true;
+            suppliersData.Visible = false;
 
         }
 
@@ -560,7 +564,7 @@ namespace ITP4519M
         {
             isDealerDVG = true;
             CalculateTotalPages("Dealer");
-            contactsdata.DataSource = programMethod.GetDealerCurrentRecords(DealerPageIndex, DealerPgSize);
+            dealersData.DataSource = programMethod.GetDealerCurrentRecords(DealerPageIndex, DealerPgSize);
             newSupplierbtn.Visible = false;
             editSupplierbtn.Visible = false;
             newDealerbtn.Visible = true;
@@ -569,15 +573,19 @@ namespace ITP4519M
             searchDealerbtn.Visible = true;
             currentDataSourceType = "Dealer";
             contactOverallLabel();
-            SetRowHeights(contactsdata, DealerPgSize);
-            
+            SetRowHeights(dealersData, DealerPgSize);
+            contactIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + programMethod.getDealersRowCount();
+            dealersData.Visible = true;
+            suppliersData.Visible = false;
+
+
         }
 
         private void supplersbtn_Click(object sender, EventArgs e)
         {
             isDealerDVG = false;
             CalculateTotalPages("Supplier");
-            contactsdata.DataSource = programMethod.GetSupplierCurrentRecords(SupplierPageIndex, SupplierPgSize);
+            suppliersData.DataSource = programMethod.GetSupplierCurrentRecords(SupplierPageIndex, SupplierPgSize);
             newDealerbtn.Visible = false;
             editDealerbtn.Visible = false;
             newSupplierbtn.Visible = true;
@@ -586,7 +594,10 @@ namespace ITP4519M
             searchDealerbtn.Visible = false;
             currentDataSourceType = "Supplier";
             contactOverallLabel();
-            SetRowHeights(contactsdata, SupplierPgSize);
+            SetRowHeights(suppliersData, SupplierPgSize);
+            contactIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + programMethod.getSuppliersRowCount();
+            dealersData.Visible = false;
+            suppliersData.Visible = true;
         }
 
         private void contactpnl_Paint(object sender, PaintEventArgs e)
@@ -755,27 +766,53 @@ namespace ITP4519M
             }
 
         }
-        private void contactsdata_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dealersdata_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
             if (e.RowIndex >= 0 && e.ColumnIndex == 0)
             {
 
-                this.contactsdata.Rows[e.RowIndex].Cells["contactcheckColumn"].Value = true;
-                contactindex = e.RowIndex;
-                DataGridViewRow selectRow = this.contactsdata.Rows[contactindex];
+                this.dealersData.Rows[e.RowIndex].Cells["dealercheckColumn"].Value = true;
+                dealerindex = e.RowIndex;
+                DataGridViewRow selectRow = this.dealersData.Rows[dealerindex];
                 contactID = selectRow.Cells[1].Value.ToString();
                 //dealerID = selectRow.Cells[2].Value.ToString();
 
-                foreach (DataGridViewRow row in contactsdata.Rows)
+                foreach (DataGridViewRow row in dealersData.Rows)
                 {
                     if (row.Index == e.RowIndex)
                     {
-                        row.Cells["contactcheckColumn"].Value = !Convert.ToBoolean(row.Cells["contactcheckColumn"].EditedFormattedValue);
+                        row.Cells["dealercheckColumn"].Value = !Convert.ToBoolean(row.Cells["dealercheckColumn"].EditedFormattedValue);
                     }
                     else
                     {
-                        row.Cells["contactcheckColumn"].Value = false;
+                        row.Cells["dealercheckColumn"].Value = false;
+                    }
+                }
+            }
+        }
+
+        private void suppliersdata_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+            {
+
+                this.suppliersData.Rows[e.RowIndex].Cells["suppliercheckColumn"].Value = true;
+                supplierindex = e.RowIndex;
+                DataGridViewRow selectRow = this.suppliersData.Rows[supplierindex];
+                contactID = selectRow.Cells[1].Value.ToString();
+                //dealerID = selectRow.Cells[2].Value.ToString();
+
+                foreach (DataGridViewRow row in suppliersData.Rows)
+                {
+                    if (row.Index == e.RowIndex)
+                    {
+                        row.Cells["suppliercheckColumn"].Value = !Convert.ToBoolean(row.Cells["suppliercheckColumn"].EditedFormattedValue);
+                    }
+                    else
+                    {
+                        row.Cells["suppliercheckColumn"].Value = false;
                     }
                 }
             }
@@ -832,25 +869,27 @@ namespace ITP4519M
             if (isDealerDVG)
             {
                 this.DealerPageIndex = 1;
-                this.contactsdata.DataSource = programMethod.GetDealerCurrentRecords(DealerPageIndex, DealerPgSize);
-                SetRowHeights(contactsdata, DealerPgSize);
-            } else
+                this.dealersData.DataSource = programMethod.GetDealerCurrentRecords(DealerPageIndex, DealerPgSize);
+                SetRowHeights(dealersData, DealerPgSize);
+            }
+            else
             {
                 this.SupplierPageIndex = 1;
-                this.contactsdata.DataSource = programMethod.GetSupplierCurrentRecords(SupplierPageIndex, SupplierPgSize);
-                SetRowHeights(contactsdata, SupplierPgSize);
+                this.suppliersData.DataSource = programMethod.GetSupplierCurrentRecords(SupplierPageIndex, SupplierPgSize);
+                SetRowHeights(suppliersData, SupplierPgSize);
             }
         }
 
         private void contactbtnNxtPage_Click(object sender, EventArgs e)
         {
-            if (isDealerDVG) {
+            if (isDealerDVG)
+            {
 
                 if (this.DealerPageIndex < this.DealerTotalPage)
                 {
                     this.DealerPageIndex++;
-                    this.contactsdata.DataSource = programMethod.GetDealerCurrentRecords(this.DealerPageIndex, DealerPgSize);
-                    SetRowHeights(contactsdata, DealerPgSize);
+                    this.dealersData.DataSource = programMethod.GetDealerCurrentRecords(this.DealerPageIndex, DealerPgSize);
+                    SetRowHeights(dealersData, DealerPgSize);
                 }
             }
             else
@@ -858,8 +897,8 @@ namespace ITP4519M
                 if (this.SupplierPageIndex < this.SupplierTotalPage)
                 {
                     this.SupplierPageIndex++;
-                    this.contactsdata.DataSource = programMethod.GetSupplierCurrentRecords(this.SupplierPageIndex, SupplierPgSize);
-                    SetRowHeights(contactsdata, SupplierPgSize);
+                    this.suppliersData.DataSource = programMethod.GetSupplierCurrentRecords(this.SupplierPageIndex, SupplierPgSize);
+                    SetRowHeights(suppliersData, SupplierPgSize);
                 }
             }
         }
@@ -868,12 +907,13 @@ namespace ITP4519M
 
         private void contactbtnPrevPage_Click(object sender, EventArgs e)
         {
-            if (isDealerDVG) {
+            if (isDealerDVG)
+            {
                 if (this.DealerPageIndex > 1)
                 {
                     this.DealerPageIndex--;
-                    this.contactsdata.DataSource = programMethod.GetDealerCurrentRecords(this.DealerPageIndex, DealerPgSize);
-                    SetRowHeights(contactsdata, DealerPgSize);
+                    this.dealersData.DataSource = programMethod.GetDealerCurrentRecords(this.DealerPageIndex, DealerPgSize);
+                    SetRowHeights(dealersData, DealerPgSize);
                 }
             }
             else
@@ -881,27 +921,28 @@ namespace ITP4519M
                 if (this.SupplierPageIndex > 1)
                 {
                     this.SupplierPageIndex--;
-                    this.contactsdata.DataSource = programMethod.GetSupplierCurrentRecords(this.SupplierPageIndex, SupplierPgSize);
-                    SetRowHeights(contactsdata, SupplierPgSize);
+                    this.suppliersData.DataSource = programMethod.GetSupplierCurrentRecords(this.SupplierPageIndex, SupplierPgSize);
+                    SetRowHeights(suppliersData, SupplierPgSize);
                 }
             }
         }
 
         private void contactbtnLastPage_Click(object sender, EventArgs e)
         {
-            if (isDealerDVG) {
+            if (isDealerDVG)
+            {
                 this.DealerPageIndex = DealerTotalPage;
-                this.contactsdata.DataSource = programMethod.GetDealerCurrentRecords(this.DealerPageIndex, DealerPgSize);
-                SetRowHeights(contactsdata, DealerPgSize);
+                this.dealersData.DataSource = programMethod.GetDealerCurrentRecords(this.DealerPageIndex, DealerPgSize);
+                SetRowHeights(dealersData, DealerPgSize);
 
             }
             else
             {
                 this.SupplierPageIndex = SupplierTotalPage;
-                this.contactsdata.DataSource = programMethod.GetSupplierCurrentRecords(this.SupplierPageIndex, SupplierPgSize);
-                SetRowHeights(contactsdata, SupplierPgSize);
+                this.suppliersData.DataSource = programMethod.GetSupplierCurrentRecords(this.SupplierPageIndex, SupplierPgSize);
+                SetRowHeights(suppliersData, SupplierPgSize);
             }
-          
+
         }
 
         private void inventorylbl_Click(object sender, EventArgs e)
@@ -1159,7 +1200,7 @@ namespace ITP4519M
 
         private void editDealerbtn_Click(object sender, EventArgs e)
         {
-            if (contactindex == -1)
+            if (dealerindex == -1)
             {
                 MessageBox.Show("Please Select One Option");
             }
@@ -1182,24 +1223,23 @@ namespace ITP4519M
         {
 
 
-            if (contactindex == -1)
+            if (dealerindex == -1 && supplierindex == -1)
             {
                 MessageBox.Show("Please Select One Option");
             }
             else
             {
-                programMethod.contactDel(contactID);
 
 
-                var dealerDataSource = programMethod.overviewDealerinfo();
-                var supplierDataSource = programMethod.overviewSupplierinfo();
 
                 if (currentDataSourceType == "Dealer")
                 {
+                    programMethod.dealerDel(contactID);
                     dealersbtn.PerformClick();
                 }
                 else if (currentDataSourceType == "Supplier")
                 {
+                    programMethod.supplierDel(contactID);
                     supplersbtn.PerformClick();
                 }
 
@@ -1217,7 +1257,7 @@ namespace ITP4519M
 
         private void editSupplierbtn_Click(object sender, EventArgs e)
         {
-            if (contactindex == -1)
+            if (supplierindex == -1)
             {
                 MessageBox.Show("Please Select One Option");
             }
@@ -1234,12 +1274,12 @@ namespace ITP4519M
 
         private void searchDealerbtn_Click(object sender, EventArgs e)
         {
-            contactsdata.DataSource = programMethod.searchDealerInformation(searchContactbtn.Text.Trim());
+            dealersData.DataSource = programMethod.searchDealerInformation(searchContactbtn.Text.Trim());
         }
 
         private void searchSupplierbtn_Click(object sender, EventArgs e)
         {
-            contactsdata.DataSource = programMethod.searchSupplierInformation(searchContactbtn.Text.Trim());
+            dealersData.DataSource = programMethod.searchSupplierInformation(searchContactbtn.Text.Trim());
         }
 
         private void deliveryclearbtn_Click(object sender, EventArgs e)
@@ -1811,6 +1851,11 @@ namespace ITP4519M
         {
             ShowPanel(outstandingOrderpnl);
             outstandingViewpnl.Visible = false;
+        }
+
+        private void suppliersData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
 
 
