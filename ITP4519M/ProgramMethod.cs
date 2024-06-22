@@ -187,6 +187,16 @@ namespace ProgramMethod
             return dataBaseMethod.overviewSupplierinfo();
         }
 
+        public int GetDealerCount()
+        {
+            return dataBaseMethod.GetDealerCount();
+        }
+
+        public int GetSupplierCount()
+        {
+            return dataBaseMethod.GetSupplierCount();
+        }
+
         public DataTable overviewStockinfo()
         {
             return dataBaseMethod.overallStockinfo();
@@ -740,6 +750,11 @@ namespace ProgramMethod
             return dataBaseMethod.getAccountRowCount();
         }
 
+        public int getContactsRowCount()
+        {
+            return dataBaseMethod.getContactsRowCount();
+        }
+
         public int getStockRowCount()
         {
             return dataBaseMethod.getStockRowCount();
@@ -768,6 +783,18 @@ namespace ProgramMethod
             }
         }
 
+        public DataTable GetDealerCurrentRecords(int page, int pageSize)
+        {
+
+            if (page == 1)
+            {
+                return dataBaseMethod.GetDealerCurrentRecords(page, pageSize);
+            }
+            else
+            {
+                return dataBaseMethod.GetDealerCurrentRecords2(page, pageSize);
+            }
+        }
 
         public DataTable GetStockCurrentRecords(int page, int pageSize)
         {

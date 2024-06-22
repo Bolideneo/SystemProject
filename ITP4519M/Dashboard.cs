@@ -520,7 +520,7 @@ namespace ITP4519M
             lastClickedButton.ForeColor = Color.Gray;
 
             ShowPanel(contactpnl);
-            contactsdata.DataSource = programMethod.overviewDealerinfo();
+            contactsdata.DataSource = programMethod.GetDealerCurrentRecords(CurrentPageIndex, PgSize);
             contactsdata.Rows[0].Selected = false;
             newSupplierbtn.Visible = false;
             editSupplierbtn.Visible = false;
@@ -528,6 +528,9 @@ namespace ITP4519M
             editDealerbtn.Visible = true;
             searchSupplierbtn.Visible = false;
             searchDealerbtn.Visible = true;
+            CalculateContactsTotalPages();
+            contactOverallLabel();
+            SetContactsRowHeights();
 
         }
 
@@ -535,7 +538,7 @@ namespace ITP4519M
 
         private void dealersbtn_Click(object sender, EventArgs e)
         {
-            contactsdata.DataSource = programMethod.overviewDealerinfo();
+            contactsdata.DataSource = programMethod.GetDealerCurrentRecords(CurrentPageIndex, PgSize);
             newSupplierbtn.Visible = false;
             editSupplierbtn.Visible = false;
             newDealerbtn.Visible = true;
@@ -543,6 +546,11 @@ namespace ITP4519M
             searchSupplierbtn.Visible = false;
             searchDealerbtn.Visible = true;
             currentDataSourceType = "Dealer";
+            contactOverallLabel();
+            SetContactsRowHeights();
+            CalculateContactsTotalPages();
+            SetContactsRowHeights();
+
         }
 
         private void supplersbtn_Click(object sender, EventArgs e)
@@ -555,6 +563,8 @@ namespace ITP4519M
             searchSupplierbtn.Visible = true;
             searchDealerbtn.Visible = false;
             currentDataSourceType = "Supplier";
+            contactOverallLabel();
+            SetContactsRowHeights();
         }
 
         private void contactpnl_Paint(object sender, PaintEventArgs e)
@@ -787,6 +797,50 @@ namespace ITP4519M
             string[] numberofProduct = programMethod.getStockLabelinfo(stockData);
             stockProductDatalbl2.Text = numberofProduct[0];
             stockProductDatalbl3.Text = numberofProduct[1];
+        }
+
+        private void contactOverallLabel()
+        {
+            dealerDatalbl.Text = programMethod.GetDealerCount().ToString();
+            supplierDatalbl.Text = programMethod.GetSupplierCount().ToString();
+        }
+
+        private void contactbtnFirstPage_Click(object sender, EventArgs e)
+        {
+            this.CurrentPageIndex = 1;
+            this.contactsdata.DataSource = programMethod.GetDealerCurrentRecords(this.CurrentPageIndex, PgSize);
+            SetContactsRowHeights();
+        }
+
+        private void contactbtnNxtPage_Click(object sender, EventArgs e)
+        {
+            if (this.CurrentPageIndex < this.TotalPage)
+            {
+                this.CurrentPageIndex++;
+                this.contactsdata.DataSource = programMethod.GetDealerCurrentRecords(this.CurrentPageIndex, PgSize);
+
+            }
+            SetContactsRowHeights();
+        }
+
+
+
+        private void contactbtnPrevPage_Click(object sender, EventArgs e)
+        {
+            if (this.CurrentPageIndex > 1)
+            {
+                this.CurrentPageIndex--;
+                this.contactsdata.DataSource = programMethod.GetDealerCurrentRecords(this.CurrentPageIndex, PgSize);
+
+            }
+            SetContactsRowHeights();
+        }
+
+        private void contactbtnLastPage_Click(object sender, EventArgs e)
+        {
+            this.CurrentPageIndex = TotalPage;
+            this.contactsdata.DataSource = programMethod.GetDealerCurrentRecords(this.CurrentPageIndex, PgSize);
+            SetContactsRowHeights();
         }
 
         private void inventorylbl_Click(object sender, EventArgs e)
@@ -1269,6 +1323,15 @@ namespace ITP4519M
                 TotalPage += 1;
         }
 
+        private void CalculateContactsTotalPages()
+        {
+            int rowCount = programMethod.getContactsRowCount();
+            TotalPage = rowCount / PgSize;
+            // if any row left after calculated pages, add one more page 
+            if (rowCount % PgSize > 0)
+                TotalPage += 1;
+        }
+
         private void accountbtnFirstPage_Click(object sender, EventArgs e)
         {
             this.CurrentPageIndex = 1;
@@ -1479,6 +1542,14 @@ namespace ITP4519M
             }
         }
 
+        public void SetContactsRowHeights()
+        {
+            foreach (DataGridViewRow row in contactsdata.Rows)
+            {
+                row.Height = (contactsdata.ClientRectangle.Height - contactsdata.ColumnHeadersHeight) / PgSize;
+            }
+        }
+
         private void pageNumlbl_Click(object sender, EventArgs e)
         {
 
@@ -1581,6 +1652,9 @@ namespace ITP4519M
 
             }
         }
+
+
+
 
         //    private void PopulatePager(int recordCount, int currentPage)
         //    {
