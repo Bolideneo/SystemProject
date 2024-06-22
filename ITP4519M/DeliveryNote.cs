@@ -117,28 +117,28 @@ namespace ITP4519M
 
         private void SetReadOnly(bool readOnly)
         {
-            deliveryOrderidbox.ReadOnly = readOnly;
-            deliveryIDbox.ReadOnly = readOnly;
-            deliveryDatebox.ReadOnly = readOnly;
-            deliveryWeightBox.ReadOnly = readOnly;
-            deliveryQuqntiyFollow.ReadOnly = readOnly;
-            deliveryQuantityDeliverdbox.ReadOnly = readOnly;
-            deliveryPreQtyBox.ReadOnly = readOnly;
-            deliveryAddressbox.ReadOnly = readOnly;
-            deliveryPhoneBox.ReadOnly = readOnly;
-            deliveryformData.ReadOnly = readOnly;
+        //    deliveryOrderidbox.ReadOnly = readOnly;
+        //    deliveryIDbox.ReadOnly = readOnly;
+        //    deliveryDatebox.ReadOnly = readOnly;
+        //    deliveryWeightBox.ReadOnly = readOnly;
+        //    deliveryQuqntiyFollow.ReadOnly = readOnly;
+        //    deliveryQuantityDeliverdbox.ReadOnly = readOnly;
+        //    deliveryPreQtyBox.ReadOnly = readOnly;
+        //    deliveryAddressbox.ReadOnly = readOnly;
+        //    deliveryPhoneBox.ReadOnly = readOnly;
+        //    deliveryformData.ReadOnly = readOnly;
 
 
-            deliveryOrderidbox.ReadOnly = !readOnly;
-            deliveryIDbox.ReadOnly = !readOnly;
-            deliveryDatebox.ReadOnly = !readOnly;
-            deliveryWeightBox.ReadOnly = !readOnly;
-            deliveryQuqntiyFollow.ReadOnly = !readOnly;
-            deliveryQuantityDeliverdbox.ReadOnly = !readOnly;
-            deliveryPreQtyBox.ReadOnly = !readOnly;
-            deliveryAddressbox.ReadOnly = !readOnly;
-            deliveryPhoneBox.ReadOnly = !readOnly;
-            deliveryformData.ReadOnly = !readOnly;
+        //    deliveryOrderidbox.ReadOnly = !readOnly;
+        //    deliveryIDbox.ReadOnly = !readOnly;
+        //    deliveryDatebox.ReadOnly = !readOnly;
+        //    deliveryWeightBox.ReadOnly = !readOnly;
+        //    deliveryQuqntiyFollow.ReadOnly = !readOnly;
+        //    deliveryQuantityDeliverdbox.ReadOnly = !readOnly;
+        //    deliveryPreQtyBox.ReadOnly = !readOnly;
+        //    deliveryAddressbox.ReadOnly = !readOnly;
+        //    deliveryPhoneBox.ReadOnly = !readOnly;
+        //    deliveryformData.ReadOnly = !readOnly;
 
 
 
@@ -188,6 +188,16 @@ namespace ITP4519M
         }
 
         private void panel18_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void deliveryQuantityDeliverdbox_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void deliveryIDbox_Click(object sender, EventArgs e)
         {
 
         }

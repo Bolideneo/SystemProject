@@ -30,48 +30,13 @@ namespace ITP4519M
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new Panel();
-            DelFormTopic = new Label();
-            panel2 = new Panel();
-            panel4 = new Panel();
             DelFormOrderID = new Label();
-            panel5 = new Panel();
-            deliveryOrderidbox = new TextBox();
-            panel6 = new Panel();
-            deliveryIDbox = new TextBox();
-            panel7 = new Panel();
             DelFormDeliveryID = new Label();
-            panel8 = new Panel();
-            deliveryWeightBox = new TextBox();
-            panel9 = new Panel();
             DelFormTotalOfWeight = new Label();
-            panel10 = new Panel();
-            deliveryDatebox = new TextBox();
-            panel11 = new Panel();
             DelFormDeliveryDate = new Label();
-            panel12 = new Panel();
-            deliveryPhoneBox = new TextBox();
-            DelFormOurEmail = new Label();
-            DelFormOurFax = new Label();
-            DelFormOurAddress = new Label();
-            DelFormPhone = new Label();
-            DelFormToContactUs = new Label();
-            panel18 = new Panel();
-            deliveryPreQtyBox = new TextBox();
             DelFormDeliveryAddress = new Label();
-            panel14 = new Panel();
-            deliveryAddressbox = new TextBox();
-            panel15 = new Panel();
-            deliveryQuantityDeliverdbox = new TextBox();
-            panel16 = new Panel();
-            DelFormPS = new Label();
-            panel17 = new Panel();
             DelFormQtyDelivered = new Label();
-            panel19 = new Panel();
             DelFormPerQty = new Label();
-            panel20 = new Panel();
-            deliveryQuqntiyFollow = new TextBox();
-            panel21 = new Panel();
             DelFormQtyFollow = new Label();
             deliveryformData = new DataGridView();
             ProductID = new DataGridViewTextBoxColumn();
@@ -84,487 +49,111 @@ namespace ITP4519M
             printDocument1 = new System.Drawing.Printing.PrintDocument();
             printPreviewDialog1 = new PrintDialog();
             deliveryExitbtn = new Button();
-            panel1.SuspendLayout();
-            panel4.SuspendLayout();
-            panel5.SuspendLayout();
-            panel6.SuspendLayout();
-            panel7.SuspendLayout();
-            panel8.SuspendLayout();
-            panel9.SuspendLayout();
-            panel10.SuspendLayout();
-            panel11.SuspendLayout();
-            panel12.SuspendLayout();
-            panel18.SuspendLayout();
-            panel14.SuspendLayout();
-            panel15.SuspendLayout();
-            panel16.SuspendLayout();
-            panel17.SuspendLayout();
-            panel19.SuspendLayout();
-            panel20.SuspendLayout();
-            panel21.SuspendLayout();
+            DelFormPhone = new Label();
+            DelFormTopic = new Label();
+            DelFormLabel1 = new Label();
+            label1 = new Label();
+            deliveryAddressbox = new Label();
+            pictureBox5 = new PictureBox();
+            deliveryPhoneBox = new Label();
+            InvoiceLine1 = new Panel();
+            deliveryIDbox = new Label();
+            deliveryDatebox = new Label();
+            deliveryOrderidbox = new Label();
+            deliveryWeightBox = new Label();
+            deliveryQuqntiyFollow = new Label();
+            deliveryQuantityDeliverdbox = new Label();
+            deliveryPreQtyBox = new Label();
             ((System.ComponentModel.ISupportInitialize)deliveryformData).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             SuspendLayout();
-            // 
-            // panel1
-            // 
-            panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.Controls.Add(DelFormTopic);
-            panel1.Cursor = Cursors.No;
-            panel1.Location = new Point(37, 33);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(365, 50);
-            panel1.TabIndex = 0;
-            // 
-            // DelFormTopic
-            // 
-            DelFormTopic.AutoSize = true;
-            DelFormTopic.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
-            DelFormTopic.Location = new Point(75, 12);
-            DelFormTopic.Name = "DelFormTopic";
-            DelFormTopic.Size = new Size(154, 25);
-            DelFormTopic.TabIndex = 9;
-            DelFormTopic.Text = "Delivery Note";
-            // 
-            // panel2
-            // 
-            panel2.BorderStyle = BorderStyle.FixedSingle;
-            panel2.Cursor = Cursors.No;
-            panel2.Location = new Point(403, 33);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(299, 50);
-            panel2.TabIndex = 1;
-            // 
-            // panel4
-            // 
-            panel4.BorderStyle = BorderStyle.FixedSingle;
-            panel4.Controls.Add(DelFormOrderID);
-            panel4.Cursor = Cursors.No;
-            panel4.Location = new Point(37, 82);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(135, 35);
-            panel4.TabIndex = 1;
             // 
             // DelFormOrderID
             // 
             DelFormOrderID.AutoSize = true;
-            DelFormOrderID.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            DelFormOrderID.Location = new Point(60, 8);
+            DelFormOrderID.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            DelFormOrderID.ForeColor = Color.DarkOrange;
+            DelFormOrderID.Location = new Point(443, 128);
             DelFormOrderID.Name = "DelFormOrderID";
-            DelFormOrderID.Size = new Size(72, 18);
+            DelFormOrderID.Size = new Size(96, 18);
             DelFormOrderID.TabIndex = 9;
-            DelFormOrderID.Text = "Order ID :";
-            // 
-            // panel5
-            // 
-            panel5.BorderStyle = BorderStyle.FixedSingle;
-            panel5.Controls.Add(deliveryOrderidbox);
-            panel5.Cursor = Cursors.No;
-            panel5.Location = new Point(172, 82);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(230, 35);
-            panel5.TabIndex = 2;
-            // 
-            // deliveryOrderidbox
-            // 
-            deliveryOrderidbox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryOrderidbox.Location = new Point(12, 5);
-            deliveryOrderidbox.Margin = new Padding(5, 4, 5, 4);
-            deliveryOrderidbox.Name = "deliveryOrderidbox";
-            deliveryOrderidbox.ReadOnly = true;
-            deliveryOrderidbox.Size = new Size(196, 23);
-            deliveryOrderidbox.TabIndex = 19;
-            // 
-            // panel6
-            // 
-            panel6.BorderStyle = BorderStyle.FixedSingle;
-            panel6.Controls.Add(deliveryIDbox);
-            panel6.Cursor = Cursors.No;
-            panel6.Location = new Point(172, 115);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(230, 34);
-            panel6.TabIndex = 4;
-            // 
-            // deliveryIDbox
-            // 
-            deliveryIDbox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryIDbox.Location = new Point(12, 5);
-            deliveryIDbox.Margin = new Padding(5, 4, 5, 4);
-            deliveryIDbox.Name = "deliveryIDbox";
-            deliveryIDbox.ReadOnly = true;
-            deliveryIDbox.Size = new Size(196, 23);
-            deliveryIDbox.TabIndex = 19;
-            // 
-            // panel7
-            // 
-            panel7.BorderStyle = BorderStyle.FixedSingle;
-            panel7.Controls.Add(DelFormDeliveryID);
-            panel7.Cursor = Cursors.No;
-            panel7.Location = new Point(37, 115);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(135, 34);
-            panel7.TabIndex = 3;
+            DelFormOrderID.Text = "# Order ID :";
             // 
             // DelFormDeliveryID
             // 
             DelFormDeliveryID.AutoSize = true;
-            DelFormDeliveryID.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            DelFormDeliveryID.Location = new Point(47, 8);
+            DelFormDeliveryID.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            DelFormDeliveryID.ForeColor = Color.DarkOrange;
+            DelFormDeliveryID.Location = new Point(443, 154);
             DelFormDeliveryID.Name = "DelFormDeliveryID";
-            DelFormDeliveryID.Size = new Size(86, 18);
+            DelFormDeliveryID.Size = new Size(99, 18);
             DelFormDeliveryID.TabIndex = 9;
             DelFormDeliveryID.Text = "Delivery ID :";
-            // 
-            // panel8
-            // 
-            panel8.BorderStyle = BorderStyle.FixedSingle;
-            panel8.Controls.Add(deliveryWeightBox);
-            panel8.Cursor = Cursors.No;
-            panel8.Location = new Point(172, 180);
-            panel8.Name = "panel8";
-            panel8.Size = new Size(230, 35);
-            panel8.TabIndex = 8;
-            // 
-            // deliveryWeightBox
-            // 
-            deliveryWeightBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryWeightBox.Location = new Point(12, 5);
-            deliveryWeightBox.Margin = new Padding(5, 4, 5, 4);
-            deliveryWeightBox.Name = "deliveryWeightBox";
-            deliveryWeightBox.ReadOnly = true;
-            deliveryWeightBox.Size = new Size(196, 23);
-            deliveryWeightBox.TabIndex = 19;
-            // 
-            // panel9
-            // 
-            panel9.BorderStyle = BorderStyle.FixedSingle;
-            panel9.Controls.Add(DelFormTotalOfWeight);
-            panel9.Cursor = Cursors.No;
-            panel9.Location = new Point(37, 180);
-            panel9.Name = "panel9";
-            panel9.Size = new Size(135, 35);
-            panel9.TabIndex = 7;
             // 
             // DelFormTotalOfWeight
             // 
             DelFormTotalOfWeight.AutoSize = true;
-            DelFormTotalOfWeight.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            DelFormTotalOfWeight.Location = new Point(12, 7);
+            DelFormTotalOfWeight.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            DelFormTotalOfWeight.ForeColor = Color.DarkOrange;
+            DelFormTotalOfWeight.Location = new Point(409, 209);
             DelFormTotalOfWeight.Name = "DelFormTotalOfWeight";
-            DelFormTotalOfWeight.Size = new Size(116, 18);
+            DelFormTotalOfWeight.Size = new Size(133, 18);
             DelFormTotalOfWeight.TabIndex = 17;
             DelFormTotalOfWeight.Text = "Total of Weight :";
-            // 
-            // panel10
-            // 
-            panel10.BorderStyle = BorderStyle.FixedSingle;
-            panel10.Controls.Add(deliveryDatebox);
-            panel10.Cursor = Cursors.No;
-            panel10.Location = new Point(172, 148);
-            panel10.Name = "panel10";
-            panel10.Size = new Size(230, 34);
-            panel10.TabIndex = 6;
-            // 
-            // deliveryDatebox
-            // 
-            deliveryDatebox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryDatebox.Location = new Point(12, 5);
-            deliveryDatebox.Margin = new Padding(5, 4, 5, 4);
-            deliveryDatebox.Name = "deliveryDatebox";
-            deliveryDatebox.ReadOnly = true;
-            deliveryDatebox.Size = new Size(196, 23);
-            deliveryDatebox.TabIndex = 19;
-            // 
-            // panel11
-            // 
-            panel11.BorderStyle = BorderStyle.FixedSingle;
-            panel11.Controls.Add(DelFormDeliveryDate);
-            panel11.Cursor = Cursors.No;
-            panel11.Location = new Point(37, 148);
-            panel11.Name = "panel11";
-            panel11.Size = new Size(135, 34);
-            panel11.TabIndex = 5;
             // 
             // DelFormDeliveryDate
             // 
             DelFormDeliveryDate.AutoSize = true;
-            DelFormDeliveryDate.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            DelFormDeliveryDate.Location = new Point(31, 6);
+            DelFormDeliveryDate.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            DelFormDeliveryDate.ForeColor = Color.DarkOrange;
+            DelFormDeliveryDate.Location = new Point(424, 181);
             DelFormDeliveryDate.Name = "DelFormDeliveryDate";
-            DelFormDeliveryDate.Size = new Size(103, 18);
+            DelFormDeliveryDate.Size = new Size(118, 18);
             DelFormDeliveryDate.TabIndex = 12;
             DelFormDeliveryDate.Text = "Delivery Date :";
-            // 
-            // panel12
-            // 
-            panel12.BorderStyle = BorderStyle.FixedSingle;
-            panel12.Controls.Add(deliveryPhoneBox);
-            panel12.Controls.Add(DelFormOurEmail);
-            panel12.Controls.Add(DelFormOurFax);
-            panel12.Controls.Add(DelFormOurAddress);
-            panel12.Controls.Add(DelFormPhone);
-            panel12.Controls.Add(DelFormToContactUs);
-            panel12.Cursor = Cursors.No;
-            panel12.Location = new Point(466, 110);
-            panel12.Margin = new Padding(3, 4, 3, 4);
-            panel12.Name = "panel12";
-            panel12.Size = new Size(336, 455);
-            panel12.TabIndex = 3;
-            // 
-            // deliveryPhoneBox
-            // 
-            deliveryPhoneBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryPhoneBox.Location = new Point(95, 278);
-            deliveryPhoneBox.Margin = new Padding(5, 4, 5, 4);
-            deliveryPhoneBox.Name = "deliveryPhoneBox";
-            deliveryPhoneBox.ReadOnly = true;
-            deliveryPhoneBox.Size = new Size(149, 23);
-            deliveryPhoneBox.TabIndex = 30;
-            // 
-            // DelFormOurEmail
-            // 
-            DelFormOurEmail.AutoSize = true;
-            DelFormOurEmail.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
-            DelFormOurEmail.Location = new Point(93, 140);
-            DelFormOurEmail.Name = "DelFormOurEmail";
-            DelFormOurEmail.Size = new Size(134, 13);
-            DelFormOurEmail.TabIndex = 24;
-            DelFormOurEmail.Text = "Email: cs-dilwl@vtc.edu.hk";
-            // 
-            // DelFormOurFax
-            // 
-            DelFormOurFax.AutoSize = true;
-            DelFormOurFax.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
-            DelFormOurFax.Location = new Point(93, 113);
-            DelFormOurFax.Name = "DelFormOurFax";
-            DelFormOurFax.Size = new Size(81, 13);
-            DelFormOurFax.TabIndex = 23;
-            DelFormOurFax.Text = "Fax: 3928 2024";
-            // 
-            // DelFormOurAddress
-            // 
-            DelFormOurAddress.AutoSize = true;
-            DelFormOurAddress.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            DelFormOurAddress.Location = new Point(93, 42);
-            DelFormOurAddress.Name = "DelFormOurAddress";
-            DelFormOurAddress.Size = new Size(178, 26);
-            DelFormOurAddress.TabIndex = 21;
-            DelFormOurAddress.Text = "3 King Ling Road, Tseung Kwan O, \r\nNew Territories, Hong Kong, China";
-            // 
-            // DelFormPhone
-            // 
-            DelFormPhone.AutoSize = true;
-            DelFormPhone.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
-            DelFormPhone.Location = new Point(95, 247);
-            DelFormPhone.Name = "DelFormPhone";
-            DelFormPhone.Size = new Size(156, 18);
-            DelFormPhone.TabIndex = 20;
-            DelFormPhone.Text = "Customer Contact :";
-            // 
-            // DelFormToContactUs
-            // 
-            DelFormToContactUs.AutoSize = true;
-            DelFormToContactUs.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
-            DelFormToContactUs.Location = new Point(93, 16);
-            DelFormToContactUs.Name = "DelFormToContactUs";
-            DelFormToContactUs.Size = new Size(125, 18);
-            DelFormToContactUs.TabIndex = 19;
-            DelFormToContactUs.Text = "To Contact us :";
-            // 
-            // panel18
-            // 
-            panel18.Controls.Add(deliveryPreQtyBox);
-            panel18.Cursor = Cursors.No;
-            panel18.Location = new Point(196, 372);
-            panel18.Margin = new Padding(1);
-            panel18.Name = "panel18";
-            panel18.Size = new Size(263, 62);
-            panel18.TabIndex = 14;
-            // 
-            // deliveryPreQtyBox
-            // 
-            deliveryPreQtyBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryPreQtyBox.Location = new Point(14, 20);
-            deliveryPreQtyBox.Margin = new Padding(6, 5, 6, 5);
-            deliveryPreQtyBox.Name = "deliveryPreQtyBox";
-            deliveryPreQtyBox.ReadOnly = true;
-            deliveryPreQtyBox.Size = new Size(223, 27);
-            deliveryPreQtyBox.TabIndex = 19;
             // 
             // DelFormDeliveryAddress
             // 
             DelFormDeliveryAddress.AutoSize = true;
-            DelFormDeliveryAddress.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
-            DelFormDeliveryAddress.Location = new Point(6, 6);
+            DelFormDeliveryAddress.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            DelFormDeliveryAddress.ForeColor = Color.DarkOrange;
+            DelFormDeliveryAddress.Location = new Point(51, 205);
             DelFormDeliveryAddress.Name = "DelFormDeliveryAddress";
-            DelFormDeliveryAddress.Size = new Size(144, 18);
+            DelFormDeliveryAddress.Size = new Size(128, 24);
             DelFormDeliveryAddress.TabIndex = 18;
-            DelFormDeliveryAddress.Text = "Delivery Address :";
-            // 
-            // panel14
-            // 
-            panel14.BorderStyle = BorderStyle.FixedSingle;
-            panel14.Controls.Add(deliveryAddressbox);
-            panel14.Cursor = Cursors.No;
-            panel14.Location = new Point(37, 351);
-            panel14.Name = "panel14";
-            panel14.Size = new Size(365, 73);
-            panel14.TabIndex = 16;
-            // 
-            // deliveryAddressbox
-            // 
-            deliveryAddressbox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryAddressbox.Location = new Point(6, 9);
-            deliveryAddressbox.Margin = new Padding(5, 4, 5, 4);
-            deliveryAddressbox.Name = "deliveryAddressbox";
-            deliveryAddressbox.ReadOnly = true;
-            deliveryAddressbox.Size = new Size(290, 23);
-            deliveryAddressbox.TabIndex = 28;
-            // 
-            // panel15
-            // 
-            panel15.BorderStyle = BorderStyle.FixedSingle;
-            panel15.Controls.Add(deliveryQuantityDeliverdbox);
-            panel15.Cursor = Cursors.No;
-            panel15.Location = new Point(172, 247);
-            panel15.Name = "panel15";
-            panel15.Size = new Size(230, 34);
-            panel15.TabIndex = 12;
-            // 
-            // deliveryQuantityDeliverdbox
-            // 
-            deliveryQuantityDeliverdbox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryQuantityDeliverdbox.Location = new Point(12, 5);
-            deliveryQuantityDeliverdbox.Margin = new Padding(5, 4, 5, 4);
-            deliveryQuantityDeliverdbox.Name = "deliveryQuantityDeliverdbox";
-            deliveryQuantityDeliverdbox.ReadOnly = true;
-            deliveryQuantityDeliverdbox.Size = new Size(196, 23);
-            deliveryQuantityDeliverdbox.TabIndex = 19;
-            // 
-            // panel16
-            // 
-            panel16.BorderStyle = BorderStyle.FixedSingle;
-            panel16.Controls.Add(DelFormPS);
-            panel16.Controls.Add(DelFormDeliveryAddress);
-            panel16.Cursor = Cursors.No;
-            panel16.Location = new Point(37, 323);
-            panel16.Name = "panel16";
-            panel16.Size = new Size(365, 31);
-            panel16.TabIndex = 15;
-            // 
-            // DelFormPS
-            // 
-            DelFormPS.AutoSize = true;
-            DelFormPS.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            DelFormPS.Location = new Point(70, 3);
-            DelFormPS.Name = "DelFormPS";
-            DelFormPS.Size = new Size(0, 20);
-            DelFormPS.TabIndex = 17;
-            // 
-            // panel17
-            // 
-            panel17.BorderStyle = BorderStyle.FixedSingle;
-            panel17.Controls.Add(DelFormQtyDelivered);
-            panel17.Cursor = Cursors.No;
-            panel17.Location = new Point(37, 247);
-            panel17.Name = "panel17";
-            panel17.Size = new Size(135, 34);
-            panel17.TabIndex = 11;
+            DelFormDeliveryAddress.Text = "Delivery To :";
             // 
             // DelFormQtyDelivered
             // 
             DelFormQtyDelivered.AutoSize = true;
-            DelFormQtyDelivered.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            DelFormQtyDelivered.Location = new Point(-1, 5);
+            DelFormQtyDelivered.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            DelFormQtyDelivered.ForeColor = Color.DarkOrange;
+            DelFormQtyDelivered.Location = new Point(396, 265);
             DelFormQtyDelivered.Name = "DelFormQtyDelivered";
-            DelFormQtyDelivered.Size = new Size(127, 18);
+            DelFormQtyDelivered.Size = new Size(146, 18);
             DelFormQtyDelivered.TabIndex = 17;
             DelFormQtyDelivered.Text = "Quantity Deliverd :";
-            // 
-            // panel19
-            // 
-            panel19.Controls.Add(DelFormPerQty);
-            panel19.Cursor = Cursors.No;
-            panel19.Location = new Point(42, 371);
-            panel19.Margin = new Padding(1);
-            // panel18
-            // 
-            panel18.BorderStyle = BorderStyle.FixedSingle;
-            panel18.Controls.Add(deliveryPreQtyBox);
-            panel18.Cursor = Cursors.No;
-            panel18.Location = new Point(172, 278);
-            panel18.Name = "panel18";
-            panel18.Size = new Size(230, 47);
-            panel18.TabIndex = 14;
-            panel18.Paint += panel18_Paint;
-            // 
-            // deliveryPreQtyBox
-            // 
-            deliveryPreQtyBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryPreQtyBox.Location = new Point(12, 11);
-            deliveryPreQtyBox.Margin = new Padding(5, 4, 5, 4);
-            deliveryPreQtyBox.Name = "deliveryPreQtyBox";
-            deliveryPreQtyBox.ReadOnly = true;
-            deliveryPreQtyBox.Size = new Size(196, 23);
-            deliveryPreQtyBox.TabIndex = 19;
-            // 
-            // panel19
-            // 
-            panel19.BorderStyle = BorderStyle.FixedSingle;
-            panel19.Controls.Add(DelFormPerQty);
-            panel19.Cursor = Cursors.No;
-            panel19.Location = new Point(37, 278);
-            panel19.Name = "panel19";
-            panel19.Size = new Size(135, 47);
-            panel19.TabIndex = 13;
             // 
             // DelFormPerQty
             // 
             DelFormPerQty.AutoSize = true;
-            DelFormPerQty.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            DelFormPerQty.Location = new Point(3, 4);
+            DelFormPerQty.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            DelFormPerQty.ForeColor = Color.DarkOrange;
+            DelFormPerQty.Location = new Point(401, 294);
             DelFormPerQty.Name = "DelFormPerQty";
-            DelFormPerQty.Size = new Size(124, 36);
+            DelFormPerQty.Size = new Size(141, 36);
             DelFormPerQty.TabIndex = 17;
             DelFormPerQty.Text = "Pervious Quantity\r\nUnder Delivered :";
             DelFormPerQty.Click += label5_Click;
             // 
-            // panel20
-            // 
-            panel20.BorderStyle = BorderStyle.FixedSingle;
-            panel20.Controls.Add(deliveryQuqntiyFollow);
-            panel20.Cursor = Cursors.No;
-            panel20.Location = new Point(172, 214);
-            panel20.Name = "panel20";
-            panel20.Size = new Size(230, 34);
-            panel20.TabIndex = 10;
-            // 
-            // deliveryQuqntiyFollow
-            // 
-            deliveryQuqntiyFollow.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryQuqntiyFollow.Location = new Point(12, 5);
-            deliveryQuqntiyFollow.Margin = new Padding(5, 4, 5, 4);
-            deliveryQuqntiyFollow.Name = "deliveryQuqntiyFollow";
-            deliveryQuqntiyFollow.ReadOnly = true;
-            deliveryQuqntiyFollow.Size = new Size(196, 23);
-            deliveryQuqntiyFollow.TabIndex = 19;
-            // 
-            // panel21
-            // 
-            panel21.BorderStyle = BorderStyle.FixedSingle;
-            panel21.Controls.Add(DelFormQtyFollow);
-            panel21.Cursor = Cursors.No;
-            panel21.Location = new Point(37, 214);
-            panel21.Name = "panel21";
-            panel21.Size = new Size(135, 34);
-            panel21.TabIndex = 9;
-            // 
             // DelFormQtyFollow
             // 
             DelFormQtyFollow.AutoSize = true;
-            DelFormQtyFollow.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            DelFormQtyFollow.Location = new Point(10, 5);
+            DelFormQtyFollow.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            DelFormQtyFollow.ForeColor = Color.DarkOrange;
+            DelFormQtyFollow.Location = new Point(407, 236);
             DelFormQtyFollow.Name = "DelFormQtyFollow";
-            DelFormQtyFollow.Size = new Size(118, 18);
+            DelFormQtyFollow.Size = new Size(135, 18);
             DelFormQtyFollow.TabIndex = 17;
             DelFormQtyFollow.Text = "Quantity Follow :";
             // 
@@ -575,7 +164,7 @@ namespace ITP4519M
             deliveryformData.BackgroundColor = SystemColors.Window;
             deliveryformData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             deliveryformData.Columns.AddRange(new DataGridViewColumn[] { ProductID, ProductName, PrevQtyunderDelivered, QuantityToFollow, QuantityDeliverd });
-            deliveryformData.Location = new Point(37, 418);
+            deliveryformData.Location = new Point(25, 387);
             deliveryformData.Name = "deliveryformData";
             deliveryformData.ReadOnly = true;
             deliveryformData.RowHeadersVisible = false;
@@ -631,21 +220,21 @@ namespace ITP4519M
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Microsoft Tai Le", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label13.Location = new Point(347, 727);
+            label13.Location = new Point(503, 713);
             label13.Name = "label13";
-            label13.Size = new Size(201, 21);
+            label13.Size = new Size(187, 21);
             label13.TabIndex = 18;
-            label13.Text = "Signature : _______________";
+            label13.Text = "Signature : _____________\r\n";
             // 
             // deliveryPrintbtn
             // 
             deliveryPrintbtn.BackColor = Color.Green;
             deliveryPrintbtn.Font = new Font("Microsoft Sans Serif", 12F);
             deliveryPrintbtn.ForeColor = Color.White;
-            deliveryPrintbtn.Location = new Point(37, 719);
+            deliveryPrintbtn.Location = new Point(230, 706);
             deliveryPrintbtn.Margin = new Padding(4, 3, 4, 3);
             deliveryPrintbtn.Name = "deliveryPrintbtn";
-            deliveryPrintbtn.Size = new Size(106, 29);
+            deliveryPrintbtn.Size = new Size(115, 32);
             deliveryPrintbtn.TabIndex = 30;
             deliveryPrintbtn.Text = "Print";
             deliveryPrintbtn.UseVisualStyleBackColor = false;
@@ -664,14 +253,170 @@ namespace ITP4519M
             deliveryExitbtn.BackColor = Color.DarkGray;
             deliveryExitbtn.Font = new Font("Microsoft Sans Serif", 12F);
             deliveryExitbtn.ForeColor = Color.White;
-            deliveryExitbtn.Location = new Point(207, 719);
+            deliveryExitbtn.Location = new Point(372, 706);
             deliveryExitbtn.Margin = new Padding(4, 3, 4, 3);
             deliveryExitbtn.Name = "deliveryExitbtn";
-            deliveryExitbtn.Size = new Size(94, 29);
+            deliveryExitbtn.Size = new Size(115, 32);
             deliveryExitbtn.TabIndex = 31;
             deliveryExitbtn.Text = "Exit";
             deliveryExitbtn.UseVisualStyleBackColor = false;
             deliveryExitbtn.Click += deliveryExitbtn_Click;
+            // 
+            // DelFormPhone
+            // 
+            DelFormPhone.AutoSize = true;
+            DelFormPhone.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            DelFormPhone.ForeColor = Color.DarkOrange;
+            DelFormPhone.Location = new Point(51, 278);
+            DelFormPhone.Name = "DelFormPhone";
+            DelFormPhone.Size = new Size(164, 20);
+            DelFormPhone.TabIndex = 20;
+            DelFormPhone.Text = "Customer Contact :";
+            // 
+            // DelFormTopic
+            // 
+            DelFormTopic.AutoSize = true;
+            DelFormTopic.Font = new Font("Haettenschweiler", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            DelFormTopic.ForeColor = Color.DarkOrange;
+            DelFormTopic.Location = new Point(37, 38);
+            DelFormTopic.Name = "DelFormTopic";
+            DelFormTopic.Size = new Size(221, 50);
+            DelFormTopic.TabIndex = 9;
+            DelFormTopic.Text = "Delivery Note";
+            // 
+            // DelFormLabel1
+            // 
+            DelFormLabel1.AutoSize = true;
+            DelFormLabel1.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            DelFormLabel1.Location = new Point(51, 120);
+            DelFormLabel1.Name = "DelFormLabel1";
+            DelFormLabel1.Size = new Size(241, 24);
+            DelFormLabel1.TabIndex = 78;
+            DelFormLabel1.Text = "Legend MOTOR Co. Ltd.";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label1.Location = new Point(51, 160);
+            label1.Name = "label1";
+            label1.Size = new Size(252, 16);
+            label1.TabIndex = 79;
+            label1.Text = "SMLC District, Tienhou, Guangzhou.";
+            // 
+            // deliveryAddressbox
+            // 
+            deliveryAddressbox.AutoSize = true;
+            deliveryAddressbox.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            deliveryAddressbox.Location = new Point(51, 238);
+            deliveryAddressbox.Name = "deliveryAddressbox";
+            deliveryAddressbox.Size = new Size(128, 16);
+            deliveryAddressbox.TabIndex = 80;
+            deliveryAddressbox.Text = "deliveryAddressbox";
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.BackColor = SystemColors.ActiveCaptionText;
+            pictureBox5.BackgroundImage = Properties.Resources.company_logo;
+            pictureBox5.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox5.Location = new Point(25, 685);
+            pictureBox5.Margin = new Padding(2);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(176, 59);
+            pictureBox5.TabIndex = 81;
+            pictureBox5.TabStop = false;
+            // 
+            // deliveryPhoneBox
+            // 
+            deliveryPhoneBox.AutoSize = true;
+            deliveryPhoneBox.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            deliveryPhoneBox.Location = new Point(51, 314);
+            deliveryPhoneBox.Name = "deliveryPhoneBox";
+            deliveryPhoneBox.Size = new Size(117, 16);
+            deliveryPhoneBox.TabIndex = 82;
+            deliveryPhoneBox.Text = "deliveryPhoneBox";
+            // 
+            // InvoiceLine1
+            // 
+            InvoiceLine1.BackColor = SystemColors.ControlDark;
+            InvoiceLine1.BorderStyle = BorderStyle.Fixed3D;
+            InvoiceLine1.ForeColor = SystemColors.ControlText;
+            InvoiceLine1.Location = new Point(20, 360);
+            InvoiceLine1.Name = "InvoiceLine1";
+            InvoiceLine1.Size = new Size(670, 5);
+            InvoiceLine1.TabIndex = 83;
+            // 
+            // deliveryIDbox
+            // 
+            deliveryIDbox.AutoSize = true;
+            deliveryIDbox.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            deliveryIDbox.Location = new Point(548, 156);
+            deliveryIDbox.Name = "deliveryIDbox";
+            deliveryIDbox.Size = new Size(90, 16);
+            deliveryIDbox.TabIndex = 84;
+            deliveryIDbox.Text = "deliveryIDbox";
+            deliveryIDbox.Click += deliveryIDbox_Click;
+            // 
+            // deliveryDatebox
+            // 
+            deliveryDatebox.AutoSize = true;
+            deliveryDatebox.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            deliveryDatebox.Location = new Point(548, 184);
+            deliveryDatebox.Name = "deliveryDatebox";
+            deliveryDatebox.Size = new Size(106, 16);
+            deliveryDatebox.TabIndex = 85;
+            deliveryDatebox.Text = "deliveryDatebox";
+            // 
+            // deliveryOrderidbox
+            // 
+            deliveryOrderidbox.AutoSize = true;
+            deliveryOrderidbox.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            deliveryOrderidbox.Location = new Point(548, 128);
+            deliveryOrderidbox.Name = "deliveryOrderidbox";
+            deliveryOrderidbox.Size = new Size(122, 16);
+            deliveryOrderidbox.TabIndex = 86;
+            deliveryOrderidbox.Text = "deliveryOrderidbox";
+            // 
+            // deliveryWeightBox
+            // 
+            deliveryWeightBox.AutoSize = true;
+            deliveryWeightBox.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            deliveryWeightBox.Location = new Point(550, 209);
+            deliveryWeightBox.Name = "deliveryWeightBox";
+            deliveryWeightBox.Size = new Size(120, 16);
+            deliveryWeightBox.TabIndex = 87;
+            deliveryWeightBox.Text = "deliveryWeightBox";
+            // 
+            // deliveryQuqntiyFollow
+            // 
+            deliveryQuqntiyFollow.AutoSize = true;
+            deliveryQuqntiyFollow.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            deliveryQuqntiyFollow.Location = new Point(548, 238);
+            deliveryQuqntiyFollow.Name = "deliveryQuqntiyFollow";
+            deliveryQuqntiyFollow.Size = new Size(139, 16);
+            deliveryQuqntiyFollow.TabIndex = 88;
+            deliveryQuqntiyFollow.Text = "deliveryQuqntiyFollow";
+            // 
+            // deliveryQuantityDeliverdbox
+            // 
+            deliveryQuantityDeliverdbox.AutoSize = true;
+            deliveryQuantityDeliverdbox.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            deliveryQuantityDeliverdbox.Location = new Point(544, 267);
+            deliveryQuantityDeliverdbox.Name = "deliveryQuantityDeliverdbox";
+            deliveryQuantityDeliverdbox.Size = new Size(176, 16);
+            deliveryQuantityDeliverdbox.TabIndex = 89;
+            deliveryQuantityDeliverdbox.Text = "deliveryQuantityDeliverdbox";
+            deliveryQuantityDeliverdbox.Click += deliveryQuantityDeliverdbox_Click;
+            // 
+            // deliveryPreQtyBox
+            // 
+            deliveryPreQtyBox.AutoSize = true;
+            deliveryPreQtyBox.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            deliveryPreQtyBox.Location = new Point(548, 314);
+            deliveryPreQtyBox.Name = "deliveryPreQtyBox";
+            deliveryPreQtyBox.Size = new Size(119, 16);
+            deliveryPreQtyBox.TabIndex = 90;
+            deliveryPreQtyBox.Text = "deliveryPreQtyBox";
             // 
             // DeliveryForm
             // 
@@ -679,130 +424,78 @@ namespace ITP4519M
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(732, 776);
+            Controls.Add(deliveryPreQtyBox);
+            Controls.Add(deliveryQuantityDeliverdbox);
+            Controls.Add(deliveryQuqntiyFollow);
+            Controls.Add(deliveryWeightBox);
+            Controls.Add(deliveryOrderidbox);
+            Controls.Add(deliveryDatebox);
+            Controls.Add(deliveryIDbox);
+            Controls.Add(InvoiceLine1);
+            Controls.Add(deliveryPhoneBox);
+            Controls.Add(pictureBox5);
+            Controls.Add(deliveryAddressbox);
+            Controls.Add(label1);
+            Controls.Add(DelFormLabel1);
+            Controls.Add(DelFormTopic);
+            Controls.Add(DelFormPhone);
+            Controls.Add(DelFormOrderID);
+            Controls.Add(DelFormDeliveryID);
+            Controls.Add(DelFormDeliveryDate);
+            Controls.Add(DelFormTotalOfWeight);
+            Controls.Add(DelFormQtyFollow);
+            Controls.Add(DelFormQtyDelivered);
+            Controls.Add(DelFormPerQty);
+            Controls.Add(DelFormDeliveryAddress);
             Controls.Add(deliveryExitbtn);
             Controls.Add(deliveryPrintbtn);
             Controls.Add(label13);
             Controls.Add(deliveryformData);
-            Controls.Add(panel14);
-            Controls.Add(panel16);
-            Controls.Add(panel12);
-            Controls.Add(panel18);
-            Controls.Add(panel15);
-            Controls.Add(panel8);
-            Controls.Add(panel6);
-            Controls.Add(panel17);
-            Controls.Add(panel9);
-            Controls.Add(panel7);
-            Controls.Add(panel19);
-            Controls.Add(panel10);
-            Controls.Add(panel20);
-            Controls.Add(panel21);
-            Controls.Add(panel11);
-            Controls.Add(panel5);
-            Controls.Add(panel4);
-            Controls.Add(panel2);
-            Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "DeliveryForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "DeliveryForm";
             Load += DeliveryForm_Load;
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
-            panel6.ResumeLayout(false);
-            panel6.PerformLayout();
-            panel7.ResumeLayout(false);
-            panel7.PerformLayout();
-            panel8.ResumeLayout(false);
-            panel8.PerformLayout();
-            panel9.ResumeLayout(false);
-            panel9.PerformLayout();
-            panel10.ResumeLayout(false);
-            panel10.PerformLayout();
-            panel11.ResumeLayout(false);
-            panel11.PerformLayout();
-            panel12.ResumeLayout(false);
-            panel12.PerformLayout();
-            panel18.ResumeLayout(false);
-            panel18.PerformLayout();
-            panel14.ResumeLayout(false);
-            panel14.PerformLayout();
-            panel15.ResumeLayout(false);
-            panel15.PerformLayout();
-            panel16.ResumeLayout(false);
-            panel16.PerformLayout();
-            panel17.ResumeLayout(false);
-            panel17.PerformLayout();
-            panel19.ResumeLayout(false);
-            panel19.PerformLayout();
-            panel20.ResumeLayout(false);
-            panel20.PerformLayout();
-            panel21.ResumeLayout(false);
-            panel21.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)deliveryformData).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Panel panel1;
-        private Panel panel2;
-        private Panel panel4;
-        private Panel panel5;
-        private Panel panel6;
-        private Panel panel7;
-        private Panel panel8;
-        private Panel panel9;
-        private Panel panel10;
-        private Panel panel11;
         private Label DelFormOrderID;
         private Label DelFormDeliveryID;
-        private Label DelFormTopic;
-        private Panel panel12;
         private Label DelFormDeliveryDate;
-        private Panel panel14;
-        private Panel panel15;
-        private Panel panel16;
-        private Panel panel17;
-        private Panel panel20;
-        private Panel panel21;
         private Label DelFormTotalOfWeight;
         private Label DelFormQtyFollow;
         private Label DelFormQtyDelivered;
         private Label DelFormPerQty;
         private Label DelFormDeliveryAddress;
-        private Label DelFormPS;
-        private Label DelFormPhone;
-        private Label DelFormToContactUs;
-        private Label DelFormOurAddress;
-        private Label DelFormOurEmail;
-        private Label DelFormOurFax;
         private DataGridView deliveryformData;
         private Label label13;
         private Button deliveryPrintbtn;
         private System.Drawing.Printing.PrintDocument printDocument1;
         private PrintDialog printPreviewDialog1;
         private Button deliveryExitbtn;
-        private TextBox deliveryOrderidbox;
-        private TextBox deliveryIDbox;
-        private TextBox deliveryWeightBox;
-        private TextBox deliveryDatebox;
-        private TextBox deliveryPhoneBox;
-        private TextBox deliveryAddressbox;
-        private TextBox deliveryQuantityDeliverdbox;
-        private TextBox deliveryPreQtyBox;
-        private TextBox deliveryQuqntiyFollow;
         private DataGridViewTextBoxColumn ProductID;
         private DataGridViewTextBoxColumn ProductName;
         private DataGridViewTextBoxColumn PrevQtyunderDelivered;
         private DataGridViewTextBoxColumn QuantityToFollow;
         private DataGridViewTextBoxColumn QuantityDeliverd;
-        private Panel panel18;
-        private Panel panel19;
+        private Label DelFormPhone;
+        private Label DelFormTopic;
+        private Label DelFormLabel1;
+        private Label label1;
+        private Label deliveryAddressbox;
+        private PictureBox pictureBox5;
+        private Label deliveryPhoneBox;
+        private Panel InvoiceLine1;
+        private Label deliveryIDbox;
+        private Label deliveryDatebox;
+        private Label deliveryOrderidbox;
+        private Label deliveryWeightBox;
+        private Label deliveryQuqntiyFollow;
+        private Label deliveryQuantityDeliverdbox;
+        private Label deliveryPreQtyBox;
     }
 }

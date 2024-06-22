@@ -1436,7 +1436,7 @@ namespace ProgramMethod
             {
                 BorderStyle = BorderStyle.FixedSingle;
             }
-            private Color borderColor = Color.Orange;
+            private Color borderColor = Color.DarkOrange;
             [DefaultValue(typeof(Color), "Blue")]
             public Color BorderColor
             {
