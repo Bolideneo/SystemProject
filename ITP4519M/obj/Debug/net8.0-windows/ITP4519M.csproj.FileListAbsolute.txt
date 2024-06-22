@@ -136,3 +136,4 @@ E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ref
 E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.pdb
 E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.genruntimeconfig.cache
 E:\HD\Sem6\Coding\ITP4519M\ITP4519M_backup\ITP4519M\obj\Debug\net8.0-windows\ref\ITP4519M.dll
+C:\Users\Nicky Tse\SystemProject\ITP4519M\obj\Debug\net8.0-windows\ITP4519M.InvoiceForm.resources

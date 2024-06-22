@@ -316,7 +316,7 @@ namespace ITP4519M
 
                 }
 
-            
+
                 else
                 {
                     MessageBox.Show("Deliery Details not found.");
@@ -337,7 +337,7 @@ namespace ITP4519M
             deliveryQuqntiyFollow.ReadOnly = readOnly;
             deliveryQuantityDeliverdbox.ReadOnly = readOnly;
             deliveryPreQtyBox.ReadOnly = readOnly;
-            deliveryAddressbox.ReadOnly =  readOnly;
+            deliveryAddressbox.ReadOnly = readOnly;
             deliveryPhoneBox.ReadOnly = readOnly;
             deliveryformData.ReadOnly = readOnly;
 
@@ -398,6 +398,11 @@ namespace ITP4519M
         private void deliveryExitbtn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void panel18_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
