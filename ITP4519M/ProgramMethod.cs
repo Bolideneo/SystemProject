@@ -745,6 +745,16 @@ namespace ProgramMethod
             return dataBaseMethod.getStockRowCount();
         }
 
+        public int getOutstandingRowCount()
+        {
+            return dataBaseMethod.getOutstandingRowCount();
+        }
+
+        public int getOrderRowCount()
+        {
+            return dataBaseMethod.getOrderRowCount();
+        }
+
         public string getAccountStatusCount()
         {
             return dataBaseMethod.getAccountStatusCount();
@@ -770,6 +780,32 @@ namespace ProgramMethod
 
 
         public DataTable GetStockCurrentRecords(int page, int pageSize)
+        {
+
+            if (page == 1)
+            {
+                return dataBaseMethod.GetStockCurrentRecords(page, pageSize);
+            }
+            else
+            {
+                return dataBaseMethod.GetStockCurrentRecords2(page, pageSize);
+            }
+        }
+
+        public DataTable GetOutstandingCurrentRecords(int page, int pageSize)
+        {
+
+            if (page == 1)
+            {
+                return dataBaseMethod.GetOutstandingCurrentRecords(page, pageSize);
+            }
+            else
+            {
+                return dataBaseMethod.GetOutstandingCurrentRecords2(page, pageSize);
+            }
+        }
+
+        public DataTable GetOrderCurrentRecords(int page, int pageSize)
         {
 
             if (page == 1)
@@ -1345,6 +1381,12 @@ namespace ProgramMethod
                 MessageBox.Show("Please input number");
             }
             return qty.ToString();
+        }
+
+
+        public DataTable getOutstandingOrder(string outID)
+        {
+            return dataBaseMethod.getOutstandingOrder(outID);
         }
     }
     }

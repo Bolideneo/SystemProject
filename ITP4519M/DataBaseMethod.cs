@@ -1633,6 +1633,24 @@ namespace ITP4519M
             return rowCount;
         }
 
+        public int getOrderRowCount()
+        {
+            string sql = "SELECT COUNT(DISTINCT OrderID) FROM `order`";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            object result = cmd.ExecuteScalar();
+            int rowCount = Convert.ToInt32(result);
+            return rowCount;
+        }
+
+        public int getOutstandingRowCount()
+        {
+            string sql = "SELECT COUNT(DISTINCT OutstandingOrderID) FROM outstandingorder";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            object result = cmd.ExecuteScalar();
+            int rowCount = Convert.ToInt32(result);
+            return rowCount;
+        }
+
         public string getAccountStatusCount()
         {
             string sql = "SELECT COUNT(DISTINCT UserID) FROM staff WHERE AccountStatus = @status";
@@ -1681,6 +1699,29 @@ namespace ITP4519M
         public DataTable GetStockCurrentRecords2(int page, int pageSize)
         {
             string sql = "SELECT ProductID,ProductName, ProductCategory, BinLocation, UnitPrice, CostPrice, QuantityInStock, DemandStock, Status FROM (SELECT * FROM product ORDER BY ProductID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY ProductID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@PgSize", pageSize);
+            cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
+        public DataTable GetOutstandingCurrentRecords(int page, int pageSize)
+        {
+            string sql = "SELECT * FROM outstandingorder ORDER BY OutstandingOrderID LIMIT @PgSize";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@PgSize", pageSize);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
+        public DataTable GetOutstandingCurrentRecords2(int page, int pageSize)
+        {
+            string sql = "SELECT * FROM (SELECT * FROM outstandingorder ORDER BY OutstandingOrderID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY OutstandingOrderID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);
@@ -1925,6 +1966,16 @@ namespace ITP4519M
 
         }
 
+        public DataTable getOutstandingOrder(string outid)
+        {
+            string sql = "SELECT dealer.*, outstandingorder.*, product.ProductName, Product.UnitPrice FROM outstandingorder, dealer, product WHERE OutstandingOrderID=@outid AND outstandingorder.DealerID=dealer.DealerID AND product.ProductID=outstandingorder.ProductID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@outid", outid);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
 
     }
 

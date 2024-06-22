@@ -22,6 +22,7 @@ using System.Xml.Linq;
 using Org.BouncyCastle.Asn1.Sec;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
+using MySqlX.XDevAPI.Common;
 
 
 namespace ITP4519M
@@ -37,7 +38,7 @@ namespace ITP4519M
     {
 
         private ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
-        //datagrid paging
+        //Account datagrid paging
         private int PgSize = 10;
         private int CurrentPageIndex = 1;
         private int TotalPage = 0;
@@ -45,8 +46,14 @@ namespace ITP4519M
 
         //Stock datagrid paging
         private int StockPgSize = 15;
-        private int StockCurrentPageIndex = 1;
+        private int StockPageIndex = 1;
         private int StockTotalPage = 0;
+        //Paging
+
+        //outstadning datagrid paging
+        private int outstandingPgSize = 15;
+        private int outstandingPageIndex = 1;
+        private int outstandingTotalPage = 0;
         //Paging
 
         private Button currentButton;
@@ -60,6 +67,7 @@ namespace ITP4519M
         private string DeliverydeliveryID;
         private string DeliveryorderID;
         private string contactID;
+        private string outstandingOrderID;
         private string orderAccemblyOrderID;
         private string orderAccemblyDealerID;
         private int PageSize = 5;
@@ -72,6 +80,8 @@ namespace ITP4519M
         private int contactindex = -1;
         private int stockindex = -1;
         private int orderAceemblyindex = -1;
+        private int outstandingIndex = -1;
+        private int outstandingTotalIndex = -1;
         private string currentDataSourceType = "";
         private Button lastClickedButton = null;
         private Button[] buttons = new Button[2];
@@ -416,18 +426,13 @@ namespace ITP4519M
 
             lastClickedButton = (Button)sender;
             lastClickedButton.ForeColor = Color.Gray;
-            CalculateStockTotalPages();
+            CalculateTotalPages("Stock");
             ShowPanel(inventorypnl);
-            assistant = new TypeAssistant();
-            assistant.Idled += assistant_Idled;
-            stockData.DataSource = programMethod.GetStockCurrentRecords(StockCurrentPageIndex, StockPgSize);
+            stockData.DataSource = programMethod.GetStockCurrentRecords(StockPageIndex, StockPgSize);
             productOverallLabel();
             stockData.Rows[0].Selected = false;
             //accountIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + programMethod.getAccountRowCount();
-            foreach (DataGridViewRow row in stockData.Rows)
-            {
-                row.Height = (stockData.ClientRectangle.Height - stockData.ColumnHeadersHeight) / stockData.Rows.Count;
-            }
+            SetRowHeights(stockData, StockPgSize);
 
 
         }
@@ -442,7 +447,7 @@ namespace ITP4519M
 
             lastClickedButton = (Button)sender;
             lastClickedButton.ForeColor = Color.Gray;
-            CalculateTotalPages();
+            CalculateTotalPages("Account");
 
             ShowPanel(userspnl);
             AccountOverallLabel();
@@ -454,7 +459,7 @@ namespace ITP4519M
             //MessageBox.Show(lastTwoWords);
             //int end = int.Parse(lastTwoWords) + 9;
             accountIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + programMethod.getAccountRowCount();
-            SetRowHeights();
+            SetRowHeights(userData, PgSize);
 
 
 
@@ -493,18 +498,19 @@ namespace ITP4519M
         private void outstandingOrderbtn_Click(object sender, EventArgs e)
         {
 
-
             if (lastClickedButton != null)
             {
                 lastClickedButton.ForeColor = Color.White;
             }
-
+            CalculateTotalPages("Outstanding");
             lastClickedButton = (Button)sender;
             lastClickedButton.ForeColor = Color.Gray;
+            ShowPanel(outstandingOrderpnl);
+            outstandingdata.DataSource = programMethod.GetOutstandingCurrentRecords(outstandingPageIndex, outstandingPgSize);
+            outstandingdata.Rows[0].Selected = false;
+            SetRowHeights(outstandingdata, outstandingPgSize);
 
-            orderAccemblyData.DataSource = programMethod.overallOrderinfo();
 
-            ShowPanel(OrderAccemblypnl);
 
         }
 
@@ -1251,29 +1257,61 @@ namespace ITP4519M
 
         }
 
-        private void CalculateTotalPages()
+        private void CalculateTotalPages(string function)
         {
-            int rowCount = programMethod.getAccountRowCount();
-            TotalPage = rowCount / PgSize;
-            // if any row left after calculated pages, add one more page 
-            if (rowCount % PgSize > 0)
-                TotalPage += 1;
-        }
+            int rowCount = 0;
+            switch (function)
+            {
+                case "Stock":
+                    rowCount = programMethod.getStockRowCount();
+                    StockTotalPage = rowCount / StockPgSize;
+                    if (rowCount % StockPgSize > 0)
+                        StockTotalPage += 1;
+                    break;
 
-        private void CalculateStockTotalPages()
-        {
-            int rowCount = programMethod.getStockRowCount();
-            StockTotalPage = rowCount / StockPgSize;
-            // if any row left after calculated pages, add one more page 
-            if (rowCount % StockPgSize > 0)
-                TotalPage += 1;
+                case "Outstanding":
+                    rowCount = programMethod.getOutstandingRowCount();
+                    outstandingTotalPage = rowCount / outstandingPgSize;
+                    if (rowCount % outstandingPgSize > 0)
+                        outstandingTotalPage += 1;
+                    break;
+
+                case "Order":
+                    rowCount = programMethod.getOrderRowCount();
+                    //outstandingTotalPage = rowCount / outstandingPgSize;
+                    break;
+
+                case "Account":
+                    rowCount = programMethod.getAccountRowCount();
+                    TotalPage = rowCount / PgSize;
+                    if (rowCount % PgSize > 0)
+                        TotalPage += 1;
+                    break;
+
+                case "Delivery":
+                    //rowCount = programMethod.getAccountRowCount();
+                    //TotalPage = rowCount / PgSize;
+                    break;
+
+
+                case "GRN":
+                    //rowCount = programMethod.getAccountRowCount();
+                    //TotalPage = rowCount / PgSize;
+                    break;
+
+                case "OrderAccembly":
+                    //rowCount = programMethod.getAccountRowCount();
+                    //TotalPage = rowCount / PgSize;
+                    break;
+
+            }
         }
 
         private void accountbtnFirstPage_Click(object sender, EventArgs e)
         {
             this.CurrentPageIndex = 1;
             this.userData.DataSource = programMethod.GetAccountCurrentRecords(this.CurrentPageIndex, PgSize);
-            SetRowHeights();
+            SetRowHeights(userData, PgSize);
         }
 
         private void accountbtnNxtPage_Click(object sender, EventArgs e)
@@ -1284,7 +1322,7 @@ namespace ITP4519M
                 this.userData.DataSource = programMethod.GetAccountCurrentRecords(this.CurrentPageIndex, PgSize);
 
             }
-            SetRowHeights();
+            SetRowHeights(userData, PgSize);
         }
 
 
@@ -1297,14 +1335,14 @@ namespace ITP4519M
                 this.userData.DataSource = programMethod.GetAccountCurrentRecords(this.CurrentPageIndex, PgSize);
 
             }
-            SetRowHeights();
+            SetRowHeights(userData, PgSize);
         }
 
         private void accountbtnLastPage_Click(object sender, EventArgs e)
         {
             this.CurrentPageIndex = TotalPage;
             this.userData.DataSource = programMethod.GetAccountCurrentRecords(this.CurrentPageIndex, PgSize);
-            SetRowHeights();
+            SetRowHeights(userData, PgSize);
         }
 
         private void deliveryViewDNbtn_Click(object sender, EventArgs e)
@@ -1393,19 +1431,6 @@ namespace ITP4519M
 
         }
 
-        private void outstandingOrderbtn_Click_1(object sender, EventArgs e)
-        {
-            if (lastClickedButton != null)
-            {
-                lastClickedButton.ForeColor = Color.White;
-            }
-
-            lastClickedButton = (Button)sender;
-            lastClickedButton.ForeColor = Color.Gray;
-
-            ShowPanel(outstandingOrderpnl);
-        }
-
         private void invoicebtn_Click(object sender, EventArgs e)
         {
             if (lastClickedButton != null)
@@ -1422,48 +1447,36 @@ namespace ITP4519M
 
         private void sotckLastPagebtn_Click(object sender, EventArgs e)
         {
-            this.StockCurrentPageIndex = StockTotalPage;
-            this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockCurrentPageIndex, StockPgSize);
-            foreach (DataGridViewRow row in stockData.Rows)
-            {
-                row.Height = (stockData.ClientRectangle.Height - stockData.ColumnHeadersHeight) / stockData.Rows.Count;
-            }
+            this.StockPageIndex = StockTotalPage;
+            this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockPageIndex, StockPgSize);
+            SetRowHeights(stockData, StockPgSize);
         }
 
         private void sotckNextPagebtn_Click(object sender, EventArgs e)
         {
-            if (this.StockCurrentPageIndex < this.StockTotalPage)
+            if (this.StockPageIndex < this.StockTotalPage)
             {
-                this.StockCurrentPageIndex++;
-                this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockCurrentPageIndex, StockPgSize);
-                foreach (DataGridViewRow row in stockData.Rows)
-                {
-                    row.Height = (stockData.ClientRectangle.Height - stockData.ColumnHeadersHeight) / stockData.Rows.Count;
-                }
+                this.StockPageIndex++;
+                this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockPageIndex, StockPgSize);
+                SetRowHeights(stockData, StockPgSize);
             }
         }
 
         private void sotckPrevPagebtn_Click(object sender, EventArgs e)
         {
-            if (this.StockCurrentPageIndex > 1)
+            if (this.StockPageIndex > 1)
             {
-                this.StockCurrentPageIndex--;
-                this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockCurrentPageIndex, StockPgSize);
-                foreach (DataGridViewRow row in stockData.Rows)
-                {
-                    row.Height = (stockData.ClientRectangle.Height - stockData.ColumnHeadersHeight) / stockData.Rows.Count;
-                }
+                this.StockPageIndex--;
+                this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockPageIndex, StockPgSize);
+                SetRowHeights(stockData, StockPgSize);
             }
         }
 
         private void stockFirstPagebtn_Click(object sender, EventArgs e)
         {
-            this.StockCurrentPageIndex = 1;
-            this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockCurrentPageIndex, StockPgSize);
-            foreach (DataGridViewRow row in stockData.Rows)
-            {
-                row.Height = (stockData.ClientRectangle.Height - stockData.ColumnHeadersHeight) / stockData.Rows.Count;
-            }
+            this.StockPageIndex = 1;
+            this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockPageIndex, StockPgSize);
+            SetRowHeights(stockData, StockPgSize);
         }
 
         private void label10_Click(object sender, EventArgs e)
@@ -1471,13 +1484,48 @@ namespace ITP4519M
 
         }
 
-        public void SetRowHeights()
+        public void SetRowHeights(DataGridView Data, int pageSize)
         {
-            foreach (DataGridViewRow row in userData.Rows)
+            foreach (DataGridViewRow row in Data.Rows)
             {
-                row.Height = (userData.ClientRectangle.Height - userData.ColumnHeadersHeight) / PgSize;
+                row.Height = (Data.ClientRectangle.Height - Data.ColumnHeadersHeight) / pageSize;
             }
         }
+
+        private void outstandingLastPagebtn_Click(object sender, EventArgs e)
+        {
+            this.outstandingPageIndex = outstandingTotalPage;
+            this.outstandingdata.DataSource = programMethod.GetOutstandingCurrentRecords(this.outstandingPageIndex, outstandingPgSize);
+            SetRowHeights(outstandingdata, outstandingPgSize);
+        }
+
+        private void outstandingNextPagebtn_Click(object sender, EventArgs e)
+        {
+            if (this.outstandingPageIndex < this.outstandingTotalPage)
+            {
+                this.outstandingPageIndex++;
+                this.outstandingdata.DataSource = programMethod.GetOutstandingCurrentRecords(this.outstandingPageIndex, outstandingPgSize);
+                SetRowHeights(outstandingdata, outstandingPgSize);
+            }
+        }
+
+        private void outstandingPrevPagebtn_Click(object sender, EventArgs e)
+        {
+            if (this.outstandingPageIndex > 1)
+            {
+                this.outstandingPageIndex--;
+                this.outstandingdata.DataSource = programMethod.GetOutstandingCurrentRecords(this.outstandingPageIndex, outstandingPgSize);
+                SetRowHeights(outstandingdata, outstandingPgSize);
+            }
+        }
+
+        private void outstandingFirstPagebtn_Click(object sender, EventArgs e)
+        {
+            this.outstandingPageIndex = 1;
+            this.outstandingdata.DataSource = programMethod.GetOutstandingCurrentRecords(this.outstandingPageIndex, outstandingPgSize);
+            SetRowHeights(outstandingdata, outstandingPgSize);
+        }
+
 
         private void pageNumlbl_Click(object sender, EventArgs e)
         {
@@ -1581,6 +1629,68 @@ namespace ITP4519M
 
             }
         }
+
+        private void outstandingViewbtn_Click(object sender, EventArgs e)
+        {
+            if (outstandingIndex == -1)
+            {
+                MessageBox.Show("Please Select One Outstanding");
+            }
+            else
+            {
+
+                ShowPanel(outstandingViewpnl);
+                //deliveryDeliveryIDlbl.Text = "Delivery ID : # " + DeliverydeliveryID.ToString();
+                DataTable dt = programMethod.getOutstandingOrder(outstandingOrderID);
+                outstandingIDlbl.Text = "Outstanding ID : #" + outstandingOrderID;
+                outstandingOrderIDlbl.Text = "Order ID :  # " + dt.Rows[0]["OrderID"].ToString();
+                outstandingDealerIDlbl.Text = "Dealer ID : " + dt.Rows[0]["DealerID"].ToString();
+                outstandingDealerNamelbl.Text = "Delaer Name : " + dt.Rows[0]["DealerName"].ToString();
+                outstandingViewData.Rows.Add(dt.Rows[0]["ProductID"].ToString(), dt.Rows[0]["ProductName"].ToString(), dt.Rows[0]["FollowUpQuantity"].ToString(), dt.Rows[0]["UnitPrice"].ToString());
+            }
+        }
+        private void outstandingdata_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+            {
+                this.outstandingdata.Rows[e.RowIndex].Cells["outstandingcheckColumn"].Value = true;
+                outstandingIndex = e.RowIndex;
+                DataGridViewRow selectRow = this.outstandingdata.Rows[outstandingIndex];
+                outstandingOrderID = selectRow.Cells[1].Value.ToString();
+
+                foreach (DataGridViewRow row in outstandingdata.Rows)
+                {
+                    if (row.Index == e.RowIndex)
+                    {
+                        row.Cells["outstandingcheckColumn"].Value = !Convert.ToBoolean(row.Cells["outstandingcheckColumn"].EditedFormattedValue);
+                    }
+                    else
+                    {
+                        row.Cells["outstandingcheckColumn"].Value = false;
+                    }
+                }
+            }
+        }
+
+
+        private void outstandingdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (outstandingdata.Columns[e.ColumnIndex].Name != "outstandingcheckColumn")
+            {
+                outstandingdata.Columns[e.ColumnIndex].ReadOnly = true;
+
+            }
+        }
+
+        private void outstandingBackbtn_Click(object sender, EventArgs e)
+        {
+            ShowPanel(outstandingOrderpnl);
+        }
+
+
+
+
+
 
         //    private void PopulatePager(int recordCount, int currentPage)
         //    {
