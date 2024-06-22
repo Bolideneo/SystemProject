@@ -1810,6 +1810,7 @@ namespace ITP4519M
         private void outstandingBackbtn_Click(object sender, EventArgs e)
         {
             ShowPanel(outstandingOrderpnl);
+            outstandingViewpnl.Visible = false;
         }
 
 

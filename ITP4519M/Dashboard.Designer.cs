@@ -4798,11 +4798,11 @@ namespace ITP4519M
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
             ClientSize = new Size(1499, 1000);
-            Controls.Add(contactpnl);
             Controls.Add(outstandingViewpnl);
+            Controls.Add(deliveryCompletepnl);
+            Controls.Add(contactpnl);
             Controls.Add(listpnl);
             Controls.Add(closebtn);
-            Controls.Add(deliveryCompletepnl);
             Controls.Add(POpnl);
             Controls.Add(invoicepnl);
             Controls.Add(deliverypnl);

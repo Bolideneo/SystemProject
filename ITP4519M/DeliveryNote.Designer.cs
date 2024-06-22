@@ -57,6 +57,8 @@ namespace ITP4519M
             DelFormOurAddress = new Label();
             DelFormPhone = new Label();
             DelFormToContactUs = new Label();
+            panel18 = new Panel();
+            deliveryPreQtyBox = new TextBox();
             DelFormDeliveryAddress = new Label();
             panel14 = new Panel();
             deliveryAddressbox = new TextBox();
@@ -66,9 +68,7 @@ namespace ITP4519M
             DelFormPS = new Label();
             panel17 = new Panel();
             DelFormQtyDelivered = new Label();
-            panel18 = new PanelEx();
-            deliveryPreQtyBox = new TextBox();
-            panel19 = new PanelEx();
+            panel19 = new Panel();
             DelFormPerQty = new Label();
             panel20 = new Panel();
             deliveryQuqntiyFollow = new TextBox();
@@ -95,11 +95,11 @@ namespace ITP4519M
             panel10.SuspendLayout();
             panel11.SuspendLayout();
             panel12.SuspendLayout();
+            panel18.SuspendLayout();
             panel14.SuspendLayout();
             panel15.SuspendLayout();
             panel16.SuspendLayout();
             panel17.SuspendLayout();
-            panel18.SuspendLayout();
             panel19.SuspendLayout();
             panel20.SuspendLayout();
             panel21.SuspendLayout();
@@ -316,10 +316,10 @@ namespace ITP4519M
             panel12.Controls.Add(DelFormPhone);
             panel12.Controls.Add(DelFormToContactUs);
             panel12.Cursor = Cursors.No;
-            panel12.Location = new Point(461, 109);
+            panel12.Location = new Point(466, 110);
             panel12.Margin = new Padding(3, 4, 3, 4);
             panel12.Name = "panel12";
-            panel12.Size = new Size(341, 455);
+            panel12.Size = new Size(336, 455);
             panel12.TabIndex = 3;
             // 
             // deliveryPhoneBox
@@ -391,6 +391,26 @@ namespace ITP4519M
             DelFormToContactUs.Size = new Size(151, 24);
             DelFormToContactUs.TabIndex = 19;
             DelFormToContactUs.Text = "To Contact us :";
+            // 
+            // panel18
+            // 
+            panel18.Controls.Add(deliveryPreQtyBox);
+            panel18.Cursor = Cursors.No;
+            panel18.Location = new Point(196, 372);
+            panel18.Margin = new Padding(1);
+            panel18.Name = "panel18";
+            panel18.Size = new Size(263, 62);
+            panel18.TabIndex = 14;
+            // 
+            // deliveryPreQtyBox
+            // 
+            deliveryPreQtyBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            deliveryPreQtyBox.Location = new Point(14, 20);
+            deliveryPreQtyBox.Margin = new Padding(6, 5, 6, 5);
+            deliveryPreQtyBox.Name = "deliveryPreQtyBox";
+            deliveryPreQtyBox.ReadOnly = true;
+            deliveryPreQtyBox.Size = new Size(223, 27);
+            deliveryPreQtyBox.TabIndex = 19;
             // 
             // DelFormDeliveryAddress
             // 
@@ -486,34 +506,12 @@ namespace ITP4519M
             DelFormQtyDelivered.TabIndex = 17;
             DelFormQtyDelivered.Text = "Quantity Deliverd :";
             // 
-            // panel18
-            // 
-            panel18.BorderStyle = BorderStyle.FixedSingle;
-            panel18.Controls.Add(deliveryPreQtyBox);
-            panel18.Cursor = Cursors.No;
-            panel18.Location = new Point(197, 371);
-            panel18.Margin = new Padding(3, 4, 3, 4);
-            panel18.Name = "panel18";
-            panel18.Size = new Size(263, 62);
-            panel18.TabIndex = 14;
-            // 
-            // deliveryPreQtyBox
-            // 
-            deliveryPreQtyBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryPreQtyBox.Location = new Point(14, 15);
-            deliveryPreQtyBox.Margin = new Padding(6, 5, 6, 5);
-            deliveryPreQtyBox.Name = "deliveryPreQtyBox";
-            deliveryPreQtyBox.ReadOnly = true;
-            deliveryPreQtyBox.Size = new Size(223, 27);
-            deliveryPreQtyBox.TabIndex = 19;
-            // 
             // panel19
             // 
-            panel19.BorderStyle = BorderStyle.FixedSingle;
             panel19.Controls.Add(DelFormPerQty);
             panel19.Cursor = Cursors.No;
             panel19.Location = new Point(42, 371);
-            panel19.Margin = new Padding(3, 4, 3, 4);
+            panel19.Margin = new Padding(1);
             panel19.Name = "panel19";
             panel19.Size = new Size(154, 62);
             panel19.TabIndex = 13;
@@ -690,12 +688,12 @@ namespace ITP4519M
             Controls.Add(panel14);
             Controls.Add(panel16);
             Controls.Add(panel12);
+            Controls.Add(panel18);
             Controls.Add(panel15);
             Controls.Add(panel8);
             Controls.Add(panel6);
             Controls.Add(panel17);
             Controls.Add(panel9);
-            Controls.Add(panel18);
             Controls.Add(panel7);
             Controls.Add(panel19);
             Controls.Add(panel10);
@@ -732,6 +730,8 @@ namespace ITP4519M
             panel11.PerformLayout();
             panel12.ResumeLayout(false);
             panel12.PerformLayout();
+            panel18.ResumeLayout(false);
+            panel18.PerformLayout();
             panel14.ResumeLayout(false);
             panel14.PerformLayout();
             panel15.ResumeLayout(false);
@@ -740,8 +740,6 @@ namespace ITP4519M
             panel16.PerformLayout();
             panel17.ResumeLayout(false);
             panel17.PerformLayout();
-            panel18.ResumeLayout(false);
-            panel18.PerformLayout();
             panel19.ResumeLayout(false);
             panel19.PerformLayout();
             panel20.ResumeLayout(false);
@@ -774,8 +772,6 @@ namespace ITP4519M
         private Panel panel15;
         private Panel panel16;
         private Panel panel17;
-        private Panel panel18;
-        private Panel panel19;
         private Panel panel20;
         private Panel panel21;
         private Label DelFormTotalOfWeight;
@@ -810,5 +806,7 @@ namespace ITP4519M
         private DataGridViewTextBoxColumn PrevQtyunderDelivered;
         private DataGridViewTextBoxColumn QuantityToFollow;
         private DataGridViewTextBoxColumn QuantityDeliverd;
+        private Panel panel18;
+        private Panel panel19;
     }
 }
