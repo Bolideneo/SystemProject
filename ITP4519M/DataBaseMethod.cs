@@ -407,6 +407,53 @@ namespace ITP4519M
             return dataTable;
         }
 
+
+        public DataTable GetDealerCurrentRecords(int page, int pageSize)
+        {
+            string sql = "SELECT * FROM dealer ORDER BY DealerID LIMIT @PgSize";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@PgSize", pageSize);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
+        public DataTable GetDealerCurrentRecords2(int page, int pageSize)
+        {
+            string sql = "SELECT * FROM (SELECT * FROM dealer ORDER BY DealerID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY DealerID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@PgSize", pageSize);
+            cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
+        public DataTable GetSupplierCurrentRecords(int page, int pageSize)
+        {
+            string sql = "SELECT * FROM supplier ORDER BY SupplierID LIMIT @PgSize";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@PgSize", pageSize);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
+        public DataTable GetSupplierCurrentRecords2(int page, int pageSize)
+        {
+            string sql = "SELECT * FROM (SELECT * FROM supplier ORDER BY SupplierID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY SupplierID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@PgSize", pageSize);
+            cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
         //search product information
         public DataTable searchProductInfo(string keyword)
         {
@@ -464,6 +511,22 @@ namespace ITP4519M
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
             return dataTable;
+        }
+
+        public int GetDealerCount()
+        {
+            string sql = "SELECT COUNT(*) FROM dealer";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            int count = Convert.ToInt32(cmd.ExecuteScalar());
+            return count;
+        }
+
+        public int GetSupplierCount()
+        {
+            string sql = "SELECT COUNT(*) FROM supplier";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            int count = Convert.ToInt32(cmd.ExecuteScalar());
+            return count;
         }
 
         public UserDetails GetUserDetails(MySqlConnection connection, string userID)
@@ -1599,6 +1662,15 @@ namespace ITP4519M
         public int getAccountRowCount()
         {
             string sql = "SELECT COUNT(DISTINCT UserID) FROM staff";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            object result = cmd.ExecuteScalar();
+            int rowCount = Convert.ToInt32(result);
+            return rowCount;
+        }
+
+        public int getContactsRowCount()
+        {
+            string sql = "SELECT COUNT(DISTINCT DealerID) FROM dealer";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             object result = cmd.ExecuteScalar();
             int rowCount = Convert.ToInt32(result);
