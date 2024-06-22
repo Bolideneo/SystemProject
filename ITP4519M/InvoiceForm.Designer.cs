@@ -38,51 +38,51 @@
             mySqlCommand1 = new MySqlConnector.MySqlCommand();
             InvoiceLine1 = new Panel();
             panel3 = new Panel();
+            InvoiceValue8 = new Label();
             panel4 = new Panel();
+            InvoiceValue9 = new Label();
             panel5 = new Panel();
+            InvoiceValue7 = new Label();
             InvoiceLabel8 = new Label();
             InvoiceLabel9 = new Label();
             InvoiceLabel10 = new Label();
             InvoiceLabel11 = new Label();
             panel2 = new Panel();
+            InvoiceValue10 = new Label();
             InvoiceLabel16 = new Label();
             panel9 = new Panel();
+            InvoiceValue15 = new Label();
             InvoiceLabel15 = new Label();
             panel10 = new Panel();
+            InvoiceValue14 = new Label();
             InvoiceLabel13 = new Label();
             InvoiceLabel14 = new Label();
             InvoiceLabel12 = new Label();
             panel11 = new Panel();
+            InvoiceValue11 = new Label();
             panel12 = new Panel();
+            InvoiceValue13 = new Label();
             panel13 = new Panel();
+            InvoiceValue12 = new Label();
             panel14 = new Panel();
             InvoiceFormData = new DataGridView();
+            ProductID = new DataGridViewTextBoxColumn();
+            ProductName = new DataGridViewTextBoxColumn();
+            Qty = new DataGridViewTextBoxColumn();
+            Unit_Price = new DataGridViewTextBoxColumn();
+            Discount = new DataGridViewTextBoxColumn();
             InvoiceLabel21 = new Label();
             InvoiceLabel17 = new Label();
             pictureBox5 = new PictureBox();
             InvoiceLabel19 = new Label();
             InvoiceLabel18 = new Label();
             InvoiceLabel20 = new Label();
-            Discount = new DataGridViewTextBoxColumn();
-            Unit_Price = new DataGridViewTextBoxColumn();
-            Qty = new DataGridViewTextBoxColumn();
-            ProductName = new DataGridViewTextBoxColumn();
-            ProductID = new DataGridViewTextBoxColumn();
             InvoiceValue1 = new Label();
             InvoiceValue2 = new Label();
             InvoiceValue3 = new Label();
             InvoiceValue4 = new Label();
             InvoiceValue5 = new Label();
             InvoiceValue6 = new Label();
-            InvoiceValue7 = new Label();
-            InvoiceValue8 = new Label();
-            InvoiceValue9 = new Label();
-            InvoiceValue10 = new Label();
-            InvoiceValue11 = new Label();
-            InvoiceValue12 = new Label();
-            InvoiceValue13 = new Label();
-            InvoiceValue14 = new Label();
-            InvoiceValue15 = new Label();
             panel3.SuspendLayout();
             panel4.SuspendLayout();
             panel5.SuspendLayout();
@@ -207,6 +207,16 @@
             panel3.Size = new Size(149, 48);
             panel3.TabIndex = 46;
             // 
+            // InvoiceValue8
+            // 
+            InvoiceValue8.AutoSize = true;
+            InvoiceValue8.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
+            InvoiceValue8.Location = new Point(8, 18);
+            InvoiceValue8.Name = "InvoiceValue8";
+            InvoiceValue8.Size = new Size(96, 17);
+            InvoiceValue8.TabIndex = 84;
+            InvoiceValue8.Text = "InvoiceValue8";
+            // 
             // panel4
             // 
             panel4.BorderStyle = BorderStyle.FixedSingle;
@@ -215,6 +225,16 @@
             panel4.Name = "panel4";
             panel4.Size = new Size(226, 48);
             panel4.TabIndex = 47;
+            // 
+            // InvoiceValue9
+            // 
+            InvoiceValue9.AutoSize = true;
+            InvoiceValue9.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
+            InvoiceValue9.Location = new Point(12, 18);
+            InvoiceValue9.Name = "InvoiceValue9";
+            InvoiceValue9.Size = new Size(96, 17);
+            InvoiceValue9.TabIndex = 85;
+            InvoiceValue9.Text = "InvoiceValue9";
             // 
             // panel5
             // 
@@ -225,6 +245,16 @@
             panel5.Name = "panel5";
             panel5.Size = new Size(227, 48);
             panel5.TabIndex = 48;
+            // 
+            // InvoiceValue7
+            // 
+            InvoiceValue7.AutoSize = true;
+            InvoiceValue7.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
+            InvoiceValue7.Location = new Point(9, 18);
+            InvoiceValue7.Name = "InvoiceValue7";
+            InvoiceValue7.Size = new Size(96, 17);
+            InvoiceValue7.TabIndex = 83;
+            InvoiceValue7.Text = "InvoiceValue7";
             // 
             // InvoiceLabel8
             // 
@@ -283,13 +313,23 @@
             panel2.Size = new Size(169, 48);
             panel2.TabIndex = 53;
             // 
+            // InvoiceValue10
+            // 
+            InvoiceValue10.AutoSize = true;
+            InvoiceValue10.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
+            InvoiceValue10.Location = new Point(9, 18);
+            InvoiceValue10.Name = "InvoiceValue10";
+            InvoiceValue10.Size = new Size(104, 17);
+            InvoiceValue10.TabIndex = 86;
+            InvoiceValue10.Text = "InvoiceValue10";
+            // 
             // InvoiceLabel16
             // 
             InvoiceLabel16.AutoSize = true;
             InvoiceLabel16.BackColor = SystemColors.ButtonFace;
             InvoiceLabel16.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             InvoiceLabel16.ForeColor = Color.Black;
-            InvoiceLabel16.Location = new Point(675, 586);
+            InvoiceLabel16.Location = new Point(675, 592);
             InvoiceLabel16.Name = "InvoiceLabel16";
             InvoiceLabel16.Size = new Size(49, 20);
             InvoiceLabel16.TabIndex = 69;
@@ -304,13 +344,23 @@
             panel9.Size = new Size(142, 48);
             panel9.TabIndex = 64;
             // 
+            // InvoiceValue15
+            // 
+            InvoiceValue15.AutoSize = true;
+            InvoiceValue15.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
+            InvoiceValue15.Location = new Point(5, 18);
+            InvoiceValue15.Name = "InvoiceValue15";
+            InvoiceValue15.Size = new Size(104, 17);
+            InvoiceValue15.TabIndex = 88;
+            InvoiceValue15.Text = "InvoiceValue15";
+            // 
             // InvoiceLabel15
             // 
             InvoiceLabel15.AutoSize = true;
             InvoiceLabel15.BackColor = SystemColors.ButtonFace;
             InvoiceLabel15.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             InvoiceLabel15.ForeColor = Color.Black;
-            InvoiceLabel15.Location = new Point(531, 586);
+            InvoiceLabel15.Location = new Point(531, 592);
             InvoiceLabel15.Name = "InvoiceLabel15";
             InvoiceLabel15.Size = new Size(99, 20);
             InvoiceLabel15.TabIndex = 68;
@@ -325,13 +375,23 @@
             panel10.Size = new Size(154, 48);
             panel10.TabIndex = 62;
             // 
+            // InvoiceValue14
+            // 
+            InvoiceValue14.AutoSize = true;
+            InvoiceValue14.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
+            InvoiceValue14.Location = new Point(9, 18);
+            InvoiceValue14.Name = "InvoiceValue14";
+            InvoiceValue14.Size = new Size(104, 17);
+            InvoiceValue14.TabIndex = 87;
+            InvoiceValue14.Text = "InvoiceValue14";
+            // 
             // InvoiceLabel13
             // 
             InvoiceLabel13.AutoSize = true;
             InvoiceLabel13.BackColor = SystemColors.ButtonFace;
             InvoiceLabel13.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             InvoiceLabel13.ForeColor = Color.Black;
-            InvoiceLabel13.Location = new Point(233, 586);
+            InvoiceLabel13.Location = new Point(233, 592);
             InvoiceLabel13.Name = "InvoiceLabel13";
             InvoiceLabel13.Size = new Size(89, 20);
             InvoiceLabel13.TabIndex = 66;
@@ -343,7 +403,7 @@
             InvoiceLabel14.BackColor = SystemColors.ButtonFace;
             InvoiceLabel14.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             InvoiceLabel14.ForeColor = Color.Black;
-            InvoiceLabel14.Location = new Point(391, 586);
+            InvoiceLabel14.Location = new Point(391, 592);
             InvoiceLabel14.Name = "InvoiceLabel14";
             InvoiceLabel14.Size = new Size(76, 20);
             InvoiceLabel14.TabIndex = 67;
@@ -355,7 +415,7 @@
             InvoiceLabel12.BackColor = SystemColors.ButtonFace;
             InvoiceLabel12.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             InvoiceLabel12.ForeColor = Color.Black;
-            InvoiceLabel12.Location = new Point(61, 586);
+            InvoiceLabel12.Location = new Point(61, 592);
             InvoiceLabel12.Name = "InvoiceLabel12";
             InvoiceLabel12.Size = new Size(77, 20);
             InvoiceLabel12.TabIndex = 65;
@@ -371,6 +431,16 @@
             panel11.Size = new Size(169, 48);
             panel11.TabIndex = 63;
             // 
+            // InvoiceValue11
+            // 
+            InvoiceValue11.AutoSize = true;
+            InvoiceValue11.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
+            InvoiceValue11.Location = new Point(15, 18);
+            InvoiceValue11.Name = "InvoiceValue11";
+            InvoiceValue11.Size = new Size(104, 17);
+            InvoiceValue11.TabIndex = 84;
+            InvoiceValue11.Text = "InvoiceValue11";
+            // 
             // panel12
             // 
             panel12.BorderStyle = BorderStyle.FixedSingle;
@@ -380,6 +450,16 @@
             panel12.Size = new Size(146, 48);
             panel12.TabIndex = 61;
             // 
+            // InvoiceValue13
+            // 
+            InvoiceValue13.AutoSize = true;
+            InvoiceValue13.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
+            InvoiceValue13.Location = new Point(9, 18);
+            InvoiceValue13.Name = "InvoiceValue13";
+            InvoiceValue13.Size = new Size(104, 17);
+            InvoiceValue13.TabIndex = 86;
+            InvoiceValue13.Text = "InvoiceValue13";
+            // 
             // panel13
             // 
             panel13.BorderStyle = BorderStyle.FixedSingle;
@@ -388,6 +468,16 @@
             panel13.Name = "panel13";
             panel13.Size = new Size(165, 48);
             panel13.TabIndex = 60;
+            // 
+            // InvoiceValue12
+            // 
+            InvoiceValue12.AutoSize = true;
+            InvoiceValue12.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
+            InvoiceValue12.Location = new Point(19, 18);
+            InvoiceValue12.Name = "InvoiceValue12";
+            InvoiceValue12.Size = new Size(104, 17);
+            InvoiceValue12.TabIndex = 85;
+            InvoiceValue12.Text = "InvoiceValue12";
             // 
             // panel14
             // 
@@ -413,6 +503,50 @@
             InvoiceFormData.RowHeadersWidth = 51;
             InvoiceFormData.Size = new Size(767, 233);
             InvoiceFormData.TabIndex = 70;
+            // 
+            // ProductID
+            // 
+            ProductID.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ProductID.FillWeight = 70F;
+            ProductID.HeaderText = "ProductID";
+            ProductID.MinimumWidth = 6;
+            ProductID.Name = "ProductID";
+            ProductID.ReadOnly = true;
+            // 
+            // ProductName
+            // 
+            ProductName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ProductName.FillWeight = 130F;
+            ProductName.HeaderText = "ProductName";
+            ProductName.MinimumWidth = 6;
+            ProductName.Name = "ProductName";
+            ProductName.ReadOnly = true;
+            // 
+            // Qty
+            // 
+            Qty.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Qty.FillWeight = 130F;
+            Qty.HeaderText = "Qty";
+            Qty.MinimumWidth = 6;
+            Qty.Name = "Qty";
+            Qty.ReadOnly = true;
+            // 
+            // Unit_Price
+            // 
+            Unit_Price.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Unit_Price.FillWeight = 130F;
+            Unit_Price.HeaderText = "Unit Price";
+            Unit_Price.MinimumWidth = 6;
+            Unit_Price.Name = "Unit_Price";
+            Unit_Price.ReadOnly = true;
+            // 
+            // Discount
+            // 
+            Discount.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Discount.HeaderText = "Discount";
+            Discount.MinimumWidth = 6;
+            Discount.Name = "Discount";
+            Discount.ReadOnly = true;
             // 
             // InvoiceLabel21
             // 
@@ -483,50 +617,6 @@
             InvoiceLabel20.Text = "Legend MOTOR Co. Ltd.";
             InvoiceLabel20.Click += label7_Click;
             // 
-            // Discount
-            // 
-            Discount.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Discount.HeaderText = "Discount";
-            Discount.MinimumWidth = 6;
-            Discount.Name = "Discount";
-            Discount.ReadOnly = true;
-            // 
-            // Unit_Price
-            // 
-            Unit_Price.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Unit_Price.FillWeight = 130F;
-            Unit_Price.HeaderText = "Unit Price";
-            Unit_Price.MinimumWidth = 6;
-            Unit_Price.Name = "Unit_Price";
-            Unit_Price.ReadOnly = true;
-            // 
-            // Qty
-            // 
-            Qty.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Qty.FillWeight = 130F;
-            Qty.HeaderText = "Qty";
-            Qty.MinimumWidth = 6;
-            Qty.Name = "Qty";
-            Qty.ReadOnly = true;
-            // 
-            // ProductName
-            // 
-            ProductName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            ProductName.FillWeight = 130F;
-            ProductName.HeaderText = "ProductName";
-            ProductName.MinimumWidth = 6;
-            ProductName.Name = "ProductName";
-            ProductName.ReadOnly = true;
-            // 
-            // ProductID
-            // 
-            ProductID.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            ProductID.FillWeight = 70F;
-            ProductID.HeaderText = "ProductID";
-            ProductID.MinimumWidth = 6;
-            ProductID.Name = "ProductID";
-            ProductID.ReadOnly = true;
-            // 
             // InvoiceValue1
             // 
             InvoiceValue1.AutoSize = true;
@@ -586,96 +676,6 @@
             InvoiceValue6.Size = new Size(96, 17);
             InvoiceValue6.TabIndex = 82;
             InvoiceValue6.Text = "InvoiceValue6";
-            // 
-            // InvoiceValue7
-            // 
-            InvoiceValue7.AutoSize = true;
-            InvoiceValue7.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
-            InvoiceValue7.Location = new Point(9, 18);
-            InvoiceValue7.Name = "InvoiceValue7";
-            InvoiceValue7.Size = new Size(96, 17);
-            InvoiceValue7.TabIndex = 83;
-            InvoiceValue7.Text = "InvoiceValue7";
-            // 
-            // InvoiceValue8
-            // 
-            InvoiceValue8.AutoSize = true;
-            InvoiceValue8.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
-            InvoiceValue8.Location = new Point(8, 18);
-            InvoiceValue8.Name = "InvoiceValue8";
-            InvoiceValue8.Size = new Size(96, 17);
-            InvoiceValue8.TabIndex = 84;
-            InvoiceValue8.Text = "InvoiceValue8";
-            // 
-            // InvoiceValue9
-            // 
-            InvoiceValue9.AutoSize = true;
-            InvoiceValue9.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
-            InvoiceValue9.Location = new Point(12, 18);
-            InvoiceValue9.Name = "InvoiceValue9";
-            InvoiceValue9.Size = new Size(96, 17);
-            InvoiceValue9.TabIndex = 85;
-            InvoiceValue9.Text = "InvoiceValue9";
-            // 
-            // InvoiceValue10
-            // 
-            InvoiceValue10.AutoSize = true;
-            InvoiceValue10.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
-            InvoiceValue10.Location = new Point(9, 18);
-            InvoiceValue10.Name = "InvoiceValue10";
-            InvoiceValue10.Size = new Size(104, 17);
-            InvoiceValue10.TabIndex = 86;
-            InvoiceValue10.Text = "InvoiceValue10";
-            // 
-            // InvoiceValue11
-            // 
-            InvoiceValue11.AutoSize = true;
-            InvoiceValue11.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
-            InvoiceValue11.Location = new Point(15, 18);
-            InvoiceValue11.Name = "InvoiceValue11";
-            InvoiceValue11.Size = new Size(104, 17);
-            InvoiceValue11.TabIndex = 84;
-            InvoiceValue11.Text = "InvoiceValue11";
-            // 
-            // InvoiceValue12
-            // 
-            InvoiceValue12.AutoSize = true;
-            InvoiceValue12.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
-            InvoiceValue12.Location = new Point(19, 18);
-            InvoiceValue12.Name = "InvoiceValue12";
-            InvoiceValue12.Size = new Size(104, 17);
-            InvoiceValue12.TabIndex = 85;
-            InvoiceValue12.Text = "InvoiceValue12";
-            // 
-            // InvoiceValue13
-            // 
-            InvoiceValue13.AutoSize = true;
-            InvoiceValue13.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
-            InvoiceValue13.Location = new Point(9, 18);
-            InvoiceValue13.Name = "InvoiceValue13";
-            InvoiceValue13.Size = new Size(104, 17);
-            InvoiceValue13.TabIndex = 86;
-            InvoiceValue13.Text = "InvoiceValue13";
-            // 
-            // InvoiceValue14
-            // 
-            InvoiceValue14.AutoSize = true;
-            InvoiceValue14.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
-            InvoiceValue14.Location = new Point(9, 18);
-            InvoiceValue14.Name = "InvoiceValue14";
-            InvoiceValue14.Size = new Size(104, 17);
-            InvoiceValue14.TabIndex = 87;
-            InvoiceValue14.Text = "InvoiceValue14";
-            // 
-            // InvoiceValue15
-            // 
-            InvoiceValue15.AutoSize = true;
-            InvoiceValue15.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
-            InvoiceValue15.Location = new Point(5, 18);
-            InvoiceValue15.Name = "InvoiceValue15";
-            InvoiceValue15.Size = new Size(104, 17);
-            InvoiceValue15.TabIndex = 88;
-            InvoiceValue15.Text = "InvoiceValue15";
             // 
             // InvoiceForm
             // 
