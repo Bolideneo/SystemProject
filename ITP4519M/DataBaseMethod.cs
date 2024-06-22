@@ -1958,6 +1958,15 @@ namespace ITP4519M
             return purID.ToString();
         }
 
+        public int checkPurchaseOrderExist(string productID)
+        {
+            string sql = "SELECT COUNT(productID) FROM purchaseorder WHERE ProductID=@productID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@productID", productID);
+            int count = Convert.ToInt32(cmd.ExecuteScalar());
+            return count;
+        }
+
         public bool updateOrderItem(string orderID, string productID, string Qty,string quantityFollow, string PreQtyDelivered)
         {
             string sql = "UPDATE orderitem SET ActualDespatchQuantity=@Qty, QuantityFollow = @quantityFollow, PreQtyDelivered = @PreQtyDelivered WHERE OrderID=@orderID AND ProductID=@productID";

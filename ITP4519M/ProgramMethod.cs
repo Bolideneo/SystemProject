@@ -1190,6 +1190,7 @@ namespace ProgramMethod
 
             for (int i = 0; i < ActualDesptchData.Rows.Count; i++)
             {
+                ReduceStock(ActualDesptchData.Rows[i].Cells[0].Value.ToString(), ActualDesptchData.Rows[i].Cells[2].Value.ToString());
                 if (int.Parse(dataBaseMethod.getPrdocutQuantityInStock(ActualDesptchData.Rows[i].Cells[0].Value.ToString())) > int.Parse(dataBaseMethod.getProdcutDangerQty((ActualDesptchData.Rows[i].Cells[0].Value.ToString()))))
                 {
                     dataBaseMethod.updateProductStatus(ActualDesptchData.Rows[i].Cells[0].Value.ToString(), "Available");
@@ -1223,17 +1224,17 @@ namespace ProgramMethod
                     if (int.Parse(dataBaseMethod.getPrdocutQuantityInStock(ActualDesptchData.Rows[i].Cells[0].Value.ToString())) < 0)
                         dataBaseMethod.setDefualtInStock(ActualDesptchData.Rows[i].Cells[0].Value.ToString());
                 }
-                //if (int.Parse(dataBaseMethod.getPrdocutQuantityInStock(ActualDesptchData.Rows[i].Cells[0].Value.ToString())) < int.Parse(dataBaseMethod.getItemReorderLev(ActualDesptchData.Rows[i].Cells[0].Value.ToString())))
-                //{
-                //    if (int.Parse(dataBaseMethod.searchPurchasesItem(ActualDesptchData.Rows[i].Cells[0].Value.ToString())) < 1)
-                //    {
-                //        string PurID = "PUR" + (int.Parse(dataBaseMethod.getPurchasesID()) + 1).ToString("000000");
-                //        while (!dataBaseMethod.createPurchaseOrder(PurID, ActualDesptchData.Rows[i].Cells[0].Value.ToString(), dataBaseMethod.getItemAutoPur(ActualDesptchData.Rows[i].Cells[0].Value.ToString()), "In Procurement"))
-                //        {
-                //            PurID = "PUR" + (int.Parse(dataBaseMethod.getPurchasesOrderID()) + 1).ToString("000000");
-                //        }
-                //    }
-                //}
+                if (int.Parse(dataBaseMethod.getPrdocutQuantityInStock(ActualDesptchData.Rows[i].Cells[0].Value.ToString())) < int.Parse(dataBaseMethod.getProdcutReOrderQty(ActualDesptchData.Rows[i].Cells[0].Value.ToString())))
+                {
+                    if (dataBaseMethod.checkPurchaseOrderExist(ActualDesptchData.Rows[i].Cells[0].Value.ToString()) < 1)
+                    {
+                        string PurID = "PUR" + (int.Parse(dataBaseMethod.getPurchasesOrderID()) + 1).ToString("000000");
+                        while (!dataBaseMethod.createPurchaseOrder(PurID, ActualDesptchData.Rows[i].Cells[0].Value.ToString(), dataBaseMethod.getProdcutReOrderQty(ActualDesptchData.Rows[i].Cells[0].Value.ToString()), "In Procurement"))
+                        {
+                            PurID = "PUR" + (int.Parse(dataBaseMethod.getPurchasesOrderID()) + 1).ToString("000000");
+                        }
+                    }
+                }
                 dataBaseMethod.updateOrderItemDemand(ActualDesptchData.Rows[i].Cells[0].Value.ToString(), int.Parse(ActualDesptchData.Rows[i].Cells[2].Value.ToString()));
                 dataBaseMethod.updateOrderItem(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString(), ActualDesptchData.Rows[i].Cells[2].Value.ToString(), ActualDesptchData.Rows[i].Cells[3].Value.ToString(), ActualDesptchData.Rows[i].Cells[2].Value.ToString());
 
@@ -1296,7 +1297,6 @@ namespace ProgramMethod
             int countNotMatch = 0;
             for (int i = 0; i < ActualDesptchData.RowCount; i++)
             {
-                //int.Parse(ActualDesptchData.Rows[i].Cells[3].Value.ToString() > 0;
                 // if (int.Parse(ActualDesptchData.Rows[i].Cells[2].Value.ToString()) < int.Parse(ActualDesptchData.Rows[i].Cells[3].Value.ToString()))
                 if (int.Parse(ActualDesptchData.Rows[i].Cells[3].Value.ToString()) > 0)
                 {

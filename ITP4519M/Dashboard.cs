@@ -1858,6 +1858,41 @@ namespace ITP4519M
 
         }
 
+        private void OrderAccemblybtn_Click(object sender, EventArgs e)
+        {
+            if (lastClickedButton != null)
+            {
+                lastClickedButton.ForeColor = Color.White;
+            }
+
+            lastClickedButton = (Button)sender;
+            lastClickedButton.ForeColor = Color.Gray;
+
+            orderAccemblyData.DataSource = programMethod.overallOrderinfo();
+
+            ShowPanel(OrderAccemblypnl);
+        }
+
+        private void poLastPagebtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void poFirstPageBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void poPrevPageBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void poNextPageBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
 
 

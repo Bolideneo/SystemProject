@@ -196,37 +196,6 @@ namespace ITP4519M
 
         }
 
-        //private void productSearchbox_KeyDown(object sender, KeyEventArgs e)
-        //{
-        //    if (e.KeyCode == Keys.Enter)
-        //    {
-
-        //        if (programMethod.getValidProduct(productSearchbox.Text.Trim()))
-        //        {
-
-        //            for (int i = 0; i < productOfOrderdata.Rows.Count; i++)
-        //            {
-
-        //                if (productOfOrderdata.Rows[i].Cells[0].Value.ToString() == productSearchbox.Text.Trim() || productOfOrderdata.Rows[i].Cells[1].Value.ToString() == productSearchbox.Text.Trim())
-        //                {
-        //                    productSearchbox.Text = "";
-        //                    MessageBox.Show("Product is Added");
-        //                    return;
-        //                }
-        //                if (int.Parse(productOfOrderdata.Rows[i].Cells[2].Value.ToString()) == 0)
-        //                {
-        //                    productSearchbox.Text = "";
-        //                    MessageBox.Show("Please Add One quantity");
-        //                    return;
-        //                }
-        //            }
-        //            DataTable result = programMethod.searchOrderItemDetail(productSearchbox.Text.Trim());
-        //            this.productOfOrderdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, result.Rows[0]["UnitPrice"]);
-        //            productSearchbox.Text = "";
-        //        }
-        //    }
-        //}
-
 
 
         private void disableFunction(bool readOnly)
@@ -268,7 +237,7 @@ namespace ITP4519M
 
         private void orderAccemblyAssignbtn_Click(object sender, EventArgs e)
         {
-           
+            orderitemIndex++;
             if (programMethod.searchOrderEachItemDetail(orderAccemblyAssignbox.Text.Trim(), orderID))
             {
                 for (int i = 0; i < orderItemdata.Rows.Count; i++)
@@ -280,10 +249,8 @@ namespace ITP4519M
                     }
                 }
                 DataTable result = programMethod.getOrderEachItemDetail(orderAccemblyAssignbox.Text.Trim(), orderID);
-                //  programMethod.ReduceStock(orderAccemblyAssignbox.Text.Trim(), "1");
                 orderAccemblyOrderItemdata.DataSource = programMethod.getOrderItemDetail(orderID);
                 this.orderItemdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, QuantityFollow);
-                orderitemIndex++;
 
 
                 if (orderItemdata.Rows.Count > 1)
@@ -321,12 +288,49 @@ namespace ITP4519M
         }
 
 
-        private void orderItemdata_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+
+        private void orderItemdata_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-            QuantityFollow = programMethod.calOrderItemQuantityFollow(orderItemdata, orderID);
-            MessageBox.Show(QuantityFollow);
-            this.orderItemdata["FollowQuantity", orderitemIndex].Value = QuantityFollow;
-            QuantityFollow = "";
+            try
+            {
+                QuantityFollow = programMethod.calOrderItemQuantityFollow(orderItemdata, orderID);
+                this.orderItemdata["FollowQuantity", orderitemIndex].Value = QuantityFollow;
+                QuantityFollow = "";
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+        }
+
+        private void orderItemdata_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            int quantityFollow = int.Parse(orderItemdata["FollowQuantity", orderitemIndex].Value.ToString());
+            int result = quantityFollow - int.Parse(orderItemdata.Rows[orderitemIndex].Cells[2].Value.ToString());
+            orderItemdata.Rows[orderitemIndex].Cells[3].Value = result.ToString();
+        }
+
+        private void orderAccemblyOrderItemdata_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+           
+                string[] rowData = new string[orderAccemblyOrderItemdata.Columns.Count];
+                //int iOffset = 0;
+                MessageBox.Show(e.RowIndex.ToString());
+            orderitemIndex++;
+              // foreach (DataGridViewCell dgvCell in orderAccemblyOrderItemdata.Rows[e.RowIndex].Cells)
+               // {
+                //if (dgvCell.EditedFormattedValue != null)
+                //{
+                   // rowData[iOffset] = dgvCell.EditedFormattedValue.ToString();
+                    DataTable result = programMethod.getOrderEachItemDetail(orderAccemblyOrderItemdata.Rows[e.RowIndex].Cells[0].Value.ToString(), orderID);
+            orderAccemblyOrderItemdata.DataSource = programMethod.getOrderItemDetail(orderID);
+            this.orderItemdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, QuantityFollow);
+            // }
+            //iOffset++;
+            //}
+            // orderItemdata.Rows.Add(rowData); 
         }
     }
 }
