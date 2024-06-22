@@ -324,20 +324,31 @@ namespace ITP4519M
             return false;
         }
 
-        public bool contactDel(string contactID)
+        public bool dealerDel(string contactID)
         {
             string sql;
             try
             {
-                if (contactID.StartsWith("D"))
-                {
-                    sql = "DELETE FROM dealer WHERE DealerID=@ContactID";
-                }
-                else
-                {
-                    sql = "DELETE FROM supplier WHERE SupplierID=@ContactID";
-                }
 
+                sql = "DELETE FROM dealer WHERE DealerID=@ContactID";
+                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+                cmd.Parameters.AddWithValue("@ContactID", contactID);
+                if (cmd.ExecuteNonQuery() > 0)
+                    return true;
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine("An exception occurred: " + ex.Message);
+            }
+            return false;
+        }
+
+        public bool supplierDel(string contactID)
+        {
+            string sql;
+            try
+            {
+                sql = "DELETE FROM supplier WHERE SupplierID=@ContactID";
                 MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
                 cmd.Parameters.AddWithValue("@ContactID", contactID);
                 if (cmd.ExecuteNonQuery() > 0)
@@ -1668,9 +1679,18 @@ namespace ITP4519M
             return rowCount;
         }
 
-        public int getContactsRowCount()
+        public int getDealersRowCount()
         {
             string sql = "SELECT COUNT(DISTINCT DealerID) FROM dealer";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            object result = cmd.ExecuteScalar();
+            int rowCount = Convert.ToInt32(result);
+            return rowCount;
+        }
+
+        public int getSuppliersRowCount()
+        {
+            string sql = "SELECT COUNT(DISTINCT SupplierID) FROM supplier";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             object result = cmd.ExecuteScalar();
             int rowCount = Convert.ToInt32(result);
