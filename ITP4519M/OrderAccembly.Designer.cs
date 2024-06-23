@@ -262,7 +262,7 @@ namespace ITP4519M
             // 
             // check
             // 
-            check.HeaderText = "check";
+            check.HeaderText = "Select";
             check.MinimumWidth = 6;
             check.Name = "check";
             // 

@@ -197,6 +197,33 @@ namespace ProgramMethod
             return dataBaseMethod.GetSupplierCount();
         }
 
+        public int GetPOCount()
+        {
+            return dataBaseMethod.GetPOCount();
+        }
+
+        public int GetInvoiceCount()
+        {
+            return dataBaseMethod.GetInvoiceCount();
+        }
+
+        public int GetOrderCount()
+        {
+            return dataBaseMethod.GetOrderCount();
+        }
+
+
+        public int GetDeliveryCount()
+        {
+            return dataBaseMethod.GetDeliveryCount();
+        }
+
+        public int GetGRNCount()
+        {
+            return dataBaseMethod.GetGRNCount();
+        }
+
+
         public DataTable overviewStockinfo()
         {
             return dataBaseMethod.overallStockinfo();
@@ -849,6 +876,58 @@ namespace ProgramMethod
             else
             {
                 return dataBaseMethod.GetStockCurrentRecords2(page, pageSize);
+            }
+        }
+
+        public DataTable GetPOCurrentRecords(int page, int pageSize)
+        {
+
+            if (page == 1)
+            {
+                return dataBaseMethod.GetPOCurrentRecords(page, pageSize);
+            }
+            else
+            {
+                return dataBaseMethod.GetPOCurrentRecords2(page, pageSize);
+            }
+        }
+
+        public DataTable GetInvoiceCurrentRecords(int page, int pageSize)
+        {
+
+            if (page == 1)
+            {
+                return dataBaseMethod.GetInvoiceCurrentRecords(page, pageSize);
+            }
+            else
+            {
+                return dataBaseMethod.GetInvoiceCurrentRecords2(page, pageSize);
+            }
+        }
+
+        public DataTable GetDeliveryCurrentRecords(int page, int pageSize)
+        {
+
+            if (page == 1)
+            {
+                return dataBaseMethod.GetDeliveryCurrentRecords(page, pageSize);
+            }
+            else
+            {
+                return dataBaseMethod.GetDeliveryCurrentRecords2(page, pageSize);
+            }
+        }
+
+        public DataTable GetGRNCurrentRecords(int page, int pageSize)
+        {
+
+            if (page == 1)
+            {
+                return dataBaseMethod.GetGRNCurrentRecords(page, pageSize);
+            }
+            else
+            {
+                return dataBaseMethod.GetGRNCurrentRecords2(page, pageSize);
             }
         }
 

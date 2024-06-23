@@ -238,7 +238,7 @@ namespace ITP4519M
             inventorypnl = new Panel();
             panel8 = new Panel();
             stockFirstPagebtn = new ProgramMethod.ProgramMethod.RoundedButton();
-            pageNumlbl = new Label();
+            StockpageNumlbl = new Label();
             sotckPrevPagebtn = new ProgramMethod.ProgramMethod.RoundedButton();
             sotckLastPagebtn = new ProgramMethod.ProgramMethod.RoundedButton();
             sotckNextPagebtn = new ProgramMethod.ProgramMethod.RoundedButton();
@@ -355,7 +355,7 @@ namespace ITP4519M
             oustadningPrevPagebtn = new ProgramMethod.ProgramMethod.RoundedButton();
             outstandingLastPagebtn = new ProgramMethod.ProgramMethod.RoundedButton();
             outstandingNextPagebtn = new ProgramMethod.ProgramMethod.RoundedButton();
-            label30 = new Label();
+            oustandingPagelbl = new Label();
             panel21 = new Panel();
             outstandingSearchbox = new ProgramMethod.ProgramMethod.RoundedTextBox();
             outstandingViewbtn = new Button();
@@ -388,7 +388,7 @@ namespace ITP4519M
             label23 = new Label();
             button11 = new Button();
             dateTimePicker2 = new DateTimePicker();
-            customDataGridView1 = new CustomDataGridView();
+            invoiceData = new CustomDataGridView();
             dataGridViewCheckBoxColumn1 = new DataGridViewCheckBoxColumn();
             button12 = new Button();
             invoicelbl = new Label();
@@ -457,7 +457,7 @@ namespace ITP4519M
             invoicepnl.SuspendLayout();
             panel14.SuspendLayout();
             panel15.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)customDataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)invoiceData).BeginInit();
             outstandingViewpnl.SuspendLayout();
             SuspendLayout();
             // 
@@ -2796,7 +2796,7 @@ namespace ITP4519M
             // panel8
             // 
             panel8.Controls.Add(stockFirstPagebtn);
-            panel8.Controls.Add(pageNumlbl);
+            panel8.Controls.Add(StockpageNumlbl);
             panel8.Controls.Add(sotckPrevPagebtn);
             panel8.Controls.Add(sotckLastPagebtn);
             panel8.Controls.Add(sotckNextPagebtn);
@@ -2825,21 +2825,21 @@ namespace ITP4519M
             stockFirstPagebtn.Location = new Point(70, 9);
             stockFirstPagebtn.Margin = new Padding(3, 4, 3, 4);
             stockFirstPagebtn.Name = "stockFirstPagebtn";
-            stockFirstPagebtn.Size = new Size(79, 44);
+            stockFirstPagebtn.Size = new Size(74, 44);
             stockFirstPagebtn.TabIndex = 31;
             stockFirstPagebtn.Text = "First";
             stockFirstPagebtn.Click += stockFirstPagebtn_Click;
             // 
-            // pageNumlbl
+            // StockpageNumlbl
             // 
-            pageNumlbl.AutoSize = true;
-            pageNumlbl.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            pageNumlbl.Location = new Point(248, 21);
-            pageNumlbl.Name = "pageNumlbl";
-            pageNumlbl.Size = new Size(100, 25);
-            pageNumlbl.TabIndex = 3;
-            pageNumlbl.Text = "LabelData";
-            pageNumlbl.Click += pageNumlbl_Click;
+            StockpageNumlbl.AutoSize = true;
+            StockpageNumlbl.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            StockpageNumlbl.Location = new Point(229, 19);
+            StockpageNumlbl.Name = "StockpageNumlbl";
+            StockpageNumlbl.Size = new Size(100, 25);
+            StockpageNumlbl.TabIndex = 3;
+            StockpageNumlbl.Text = "LabelData";
+            StockpageNumlbl.Click += pageNumlbl_Click;
             // 
             // sotckPrevPagebtn
             // 
@@ -2858,7 +2858,7 @@ namespace ITP4519M
             sotckPrevPagebtn.ButtonRoundRadius = 15;
             sotckPrevPagebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             sotckPrevPagebtn.ForeColor = Color.Black;
-            sotckPrevPagebtn.Location = new Point(167, 9);
+            sotckPrevPagebtn.Location = new Point(156, 8);
             sotckPrevPagebtn.Margin = new Padding(3, 4, 3, 4);
             sotckPrevPagebtn.Name = "sotckPrevPagebtn";
             sotckPrevPagebtn.Size = new Size(72, 44);
@@ -2882,7 +2882,7 @@ namespace ITP4519M
             sotckLastPagebtn.ButtonRoundRadius = 15;
             sotckLastPagebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             sotckLastPagebtn.ForeColor = Color.Black;
-            sotckLastPagebtn.Location = new Point(454, 9);
+            sotckLastPagebtn.Location = new Point(460, 9);
             sotckLastPagebtn.Margin = new Padding(3, 4, 3, 4);
             sotckLastPagebtn.Name = "sotckLastPagebtn";
             sotckLastPagebtn.Size = new Size(75, 44);
@@ -2906,10 +2906,10 @@ namespace ITP4519M
             sotckNextPagebtn.ButtonRoundRadius = 15;
             sotckNextPagebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             sotckNextPagebtn.ForeColor = Color.Black;
-            sotckNextPagebtn.Location = new Point(354, 9);
+            sotckNextPagebtn.Location = new Point(374, 9);
             sotckNextPagebtn.Margin = new Padding(3, 4, 3, 4);
             sotckNextPagebtn.Name = "sotckNextPagebtn";
-            sotckNextPagebtn.Size = new Size(88, 44);
+            sotckNextPagebtn.Size = new Size(80, 44);
             sotckNextPagebtn.TabIndex = 32;
             sotckNextPagebtn.Text = "Next";
             sotckNextPagebtn.Click += sotckNextPagebtn_Click;
@@ -4352,7 +4352,7 @@ namespace ITP4519M
             panel20.Controls.Add(oustadningPrevPagebtn);
             panel20.Controls.Add(outstandingLastPagebtn);
             panel20.Controls.Add(outstandingNextPagebtn);
-            panel20.Controls.Add(label30);
+            panel20.Controls.Add(oustandingPagelbl);
             panel20.Location = new Point(651, 908);
             panel20.Margin = new Padding(3, 4, 3, 4);
             panel20.Name = "panel20";
@@ -4375,7 +4375,7 @@ namespace ITP4519M
             outstandingFirstPagebtn.ButtonRoundRadius = 15;
             outstandingFirstPagebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             outstandingFirstPagebtn.ForeColor = Color.Black;
-            outstandingFirstPagebtn.Location = new Point(70, 9);
+            outstandingFirstPagebtn.Location = new Point(65, 9);
             outstandingFirstPagebtn.Margin = new Padding(3, 4, 3, 4);
             outstandingFirstPagebtn.Name = "outstandingFirstPagebtn";
             outstandingFirstPagebtn.Size = new Size(79, 44);
@@ -4400,7 +4400,7 @@ namespace ITP4519M
             oustadningPrevPagebtn.ButtonRoundRadius = 15;
             oustadningPrevPagebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             oustadningPrevPagebtn.ForeColor = Color.Black;
-            oustadningPrevPagebtn.Location = new Point(167, 9);
+            oustadningPrevPagebtn.Location = new Point(159, 9);
             oustadningPrevPagebtn.Margin = new Padding(3, 4, 3, 4);
             oustadningPrevPagebtn.Name = "oustadningPrevPagebtn";
             oustadningPrevPagebtn.Size = new Size(72, 44);
@@ -4424,7 +4424,7 @@ namespace ITP4519M
             outstandingLastPagebtn.ButtonRoundRadius = 15;
             outstandingLastPagebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             outstandingLastPagebtn.ForeColor = Color.Black;
-            outstandingLastPagebtn.Location = new Point(454, 9);
+            outstandingLastPagebtn.Location = new Point(461, 9);
             outstandingLastPagebtn.Margin = new Padding(3, 4, 3, 4);
             outstandingLastPagebtn.Name = "outstandingLastPagebtn";
             outstandingLastPagebtn.Size = new Size(75, 44);
@@ -4448,23 +4448,23 @@ namespace ITP4519M
             outstandingNextPagebtn.ButtonRoundRadius = 15;
             outstandingNextPagebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             outstandingNextPagebtn.ForeColor = Color.Black;
-            outstandingNextPagebtn.Location = new Point(354, 9);
+            outstandingNextPagebtn.Location = new Point(365, 9);
             outstandingNextPagebtn.Margin = new Padding(3, 4, 3, 4);
             outstandingNextPagebtn.Name = "outstandingNextPagebtn";
-            outstandingNextPagebtn.Size = new Size(88, 44);
+            outstandingNextPagebtn.Size = new Size(77, 44);
             outstandingNextPagebtn.TabIndex = 32;
             outstandingNextPagebtn.Text = "Next";
             outstandingNextPagebtn.Click += outstandingNextPagebtn_Click;
             // 
-            // label30
+            // oustandingPagelbl
             // 
-            label30.AutoSize = true;
-            label30.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label30.Location = new Point(251, 21);
-            label30.Name = "label30";
-            label30.Size = new Size(100, 25);
-            label30.TabIndex = 3;
-            label30.Text = "LabelData";
+            oustandingPagelbl.AutoSize = true;
+            oustandingPagelbl.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            oustandingPagelbl.Location = new Point(237, 20);
+            oustandingPagelbl.Name = "oustandingPagelbl";
+            oustandingPagelbl.Size = new Size(100, 25);
+            oustandingPagelbl.TabIndex = 3;
+            oustandingPagelbl.Text = "LabelData";
             // 
             // panel21
             // 
@@ -4636,7 +4636,7 @@ namespace ITP4519M
             // 
             invoicepnl.Controls.Add(panel14);
             invoicepnl.Controls.Add(panel15);
-            invoicepnl.Controls.Add(customDataGridView1);
+            invoicepnl.Controls.Add(invoiceData);
             invoicepnl.Controls.Add(button12);
             invoicepnl.Controls.Add(invoicelbl);
             invoicepnl.Location = new Point(201, 3);
@@ -4861,11 +4861,11 @@ namespace ITP4519M
             dateTimePicker2.Size = new Size(251, 27);
             dateTimePicker2.TabIndex = 9;
             // 
-            // customDataGridView1
+            // invoiceData
             // 
-            customDataGridView1.AllowUserToAddRows = false;
-            customDataGridView1.AllowUserToDeleteRows = false;
-            customDataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            invoiceData.AllowUserToAddRows = false;
+            invoiceData.AllowUserToDeleteRows = false;
+            invoiceData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle27.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle27.BackColor = SystemColors.Control;
             dataGridViewCellStyle27.Font = new Font("Segoe UI", 9F);
@@ -4873,9 +4873,9 @@ namespace ITP4519M
             dataGridViewCellStyle27.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle27.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle27.WrapMode = DataGridViewTriState.True;
-            customDataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle27;
-            customDataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            customDataGridView1.Columns.AddRange(new DataGridViewColumn[] { dataGridViewCheckBoxColumn1 });
+            invoiceData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle27;
+            invoiceData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            invoiceData.Columns.AddRange(new DataGridViewColumn[] { dataGridViewCheckBoxColumn1 });
             dataGridViewCellStyle28.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle28.BackColor = SystemColors.Window;
             dataGridViewCellStyle28.Font = new Font("Segoe UI", 9F);
@@ -4883,14 +4883,14 @@ namespace ITP4519M
             dataGridViewCellStyle28.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle28.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle28.WrapMode = DataGridViewTriState.False;
-            customDataGridView1.DefaultCellStyle = dataGridViewCellStyle28;
-            customDataGridView1.Location = new Point(31, 292);
-            customDataGridView1.Name = "customDataGridView1";
-            customDataGridView1.RowHeadersVisible = false;
-            customDataGridView1.RowHeadersWidth = 51;
-            customDataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            customDataGridView1.Size = new Size(1189, 604);
-            customDataGridView1.TabIndex = 35;
+            invoiceData.DefaultCellStyle = dataGridViewCellStyle28;
+            invoiceData.Location = new Point(31, 292);
+            invoiceData.Name = "invoiceData";
+            invoiceData.RowHeadersVisible = false;
+            invoiceData.RowHeadersWidth = 51;
+            invoiceData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            invoiceData.Size = new Size(1189, 604);
+            invoiceData.TabIndex = 35;
             // 
             // dataGridViewCheckBoxColumn1
             // 
@@ -4945,21 +4945,21 @@ namespace ITP4519M
             ClientSize = new Size(1499, 1050);
             Controls.Add(listpnl);
             Controls.Add(closebtn);
-            Controls.Add(contactpnl);
-            Controls.Add(POpnl);
-            Controls.Add(outstandingViewpnl);
-            Controls.Add(deliveryCompletepnl);
-            Controls.Add(outstandingOrderpnl);
-            Controls.Add(invoicepnl);
-            Controls.Add(deliverypnl);
-            Controls.Add(orderpnl);
             Controls.Add(inventorypnl);
             Controls.Add(GRNpnl);
-            Controls.Add(userspnl);
             Controls.Add(dashboardpnl);
             Controls.Add(settingpnl);
             Controls.Add(OrderAccemblypnl);
             Controls.Add(logpnl);
+            Controls.Add(contactpnl);
+            Controls.Add(invoicepnl);
+            Controls.Add(POpnl);
+            Controls.Add(deliverypnl);
+            Controls.Add(userspnl);
+            Controls.Add(outstandingOrderpnl);
+            Controls.Add(outstandingViewpnl);
+            Controls.Add(deliveryCompletepnl);
+            Controls.Add(orderpnl);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
@@ -5079,7 +5079,7 @@ namespace ITP4519M
             panel14.PerformLayout();
             panel15.ResumeLayout(false);
             panel15.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)customDataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)invoiceData).EndInit();
             outstandingViewpnl.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -5234,7 +5234,7 @@ namespace ITP4519M
         private Panel panel7;
         private Panel panel8;
         private ProgramMethod.ProgramMethod.RoundedButton stockFirstPagebtn;
-        private Label pageNumlbl;
+        private Label StockpageNumlbl;
         private ProgramMethod.ProgramMethod.RoundedButton sotckPrevPagebtn;
         private ProgramMethod.ProgramMethod.RoundedButton sotckLastPagebtn;
         private ProgramMethod.ProgramMethod.RoundedButton sotckNextPagebtn;
@@ -5303,7 +5303,7 @@ namespace ITP4519M
         private Label label23;
         private Button button11;
         private DateTimePicker dateTimePicker2;
-        private CustomDataGridView customDataGridView1;
+        private CustomDataGridView invoiceData;
         private DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
         private Button button12;
         private Panel panel16;
@@ -5345,7 +5345,7 @@ namespace ITP4519M
         private Button button19;
         private Panel panel20;
         private ProgramMethod.ProgramMethod.RoundedButton outstandingFirstPagebtn;
-        private Label label30;
+        private Label oustandingPagelbl;
         private ProgramMethod.ProgramMethod.RoundedButton oustadningPrevPagebtn;
         private ProgramMethod.ProgramMethod.RoundedButton outstandingLastPagebtn;
         private ProgramMethod.ProgramMethod.RoundedButton outstandingNextPagebtn;

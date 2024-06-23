@@ -323,6 +323,7 @@ namespace ITP4519M
             {
                 Console.WriteLine("An exception occurred: " + ex.Message);
             }
+            ServerConnect().Close();
             return false;
         }
 
@@ -342,6 +343,7 @@ namespace ITP4519M
             {
                 Console.WriteLine("An exception occurred: " + ex.Message);
             }
+            ServerConnect().Close();
             return false;
         }
 
@@ -360,6 +362,7 @@ namespace ITP4519M
             {
                 Console.WriteLine("An exception occurred: " + ex.Message);
             }
+            ServerConnect().Close();
             return false;
         }
 
@@ -382,6 +385,7 @@ namespace ITP4519M
             {
                 Console.WriteLine("An exception occurred: " + ex.Message);
             }
+            ServerConnect().Close();
             return false;
         }
 
@@ -395,6 +399,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
         //searchSupplierInfoByName
@@ -407,6 +412,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
@@ -419,6 +425,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
@@ -431,6 +438,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
@@ -443,6 +451,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
@@ -454,6 +463,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
 
         }
@@ -467,6 +477,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
@@ -481,6 +492,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
@@ -495,6 +507,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
@@ -505,6 +518,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
@@ -516,6 +530,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
@@ -526,6 +541,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
@@ -534,6 +550,7 @@ namespace ITP4519M
             string sql = "SELECT COUNT(*) FROM dealer";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             int count = Convert.ToInt32(cmd.ExecuteScalar());
+            ServerConnect().Close();
             return count;
         }
 
@@ -542,8 +559,56 @@ namespace ITP4519M
             string sql = "SELECT COUNT(*) FROM supplier";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             int count = Convert.ToInt32(cmd.ExecuteScalar());
+            ServerConnect().Close();
             return count;
         }
+
+        public int GetPOCount()
+        {
+            string sql = "SELECT COUNT(PurchaseOrderID) FROM purchaseorder";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            int count = Convert.ToInt32(cmd.ExecuteScalar());
+            ServerConnect().Close();
+            return count;
+        }
+
+        public int GetInvoiceCount()
+        {
+            string sql = "SELECT COUNT(InvoiceID) FROM invoice";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            int count = Convert.ToInt32(cmd.ExecuteScalar());
+            ServerConnect().Close();
+            return count;
+        }
+
+        public int GetOrderCount()
+        {
+            string sql = "SELECT COUNT(OrderID) FROM `order`";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            int count = Convert.ToInt32(cmd.ExecuteScalar());
+            ServerConnect().Close();
+            return count;
+        }
+
+        public int GetDeliveryCount()
+        {
+            string sql = "SELECT COUNT(DeliveryID) FROM delivery";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            int count = Convert.ToInt32(cmd.ExecuteScalar());
+            ServerConnect().Close();
+            return count;
+        }
+
+        public int GetGRNCount()
+        {
+            string sql = "SELECT COUNT(grnID) FROM grn";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            int count = Convert.ToInt32(cmd.ExecuteScalar());
+            ServerConnect().Close();
+            return count;
+        }
+
+
 
         public UserDetails GetUserDetails(MySqlConnection connection, string userID)
         {
@@ -1810,6 +1875,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
@@ -1821,6 +1887,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
@@ -1833,6 +1900,107 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+
+        public DataTable GetPOCurrentRecords(int page, int pageSize)
+        {
+            string sql = "SELECT * FROM purchaseorder ORDER BY PurchaseOrderID LIMIT @PgSize";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@PgSize", pageSize);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+
+        public DataTable GetPOCurrentRecords2(int page, int pageSize)
+        {
+            string sql = "SELECT * FROM (SELECT * FROM purchaseorder ORDER BY PurchaseOrderID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY PurchaseOrderID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@PgSize", pageSize);
+            cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+
+        public DataTable GetInvoiceCurrentRecords(int page, int pageSize)
+        {
+            string sql = "SELECT * FROM invoice ORDER BY InvoiceID LIMIT @PgSize";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@PgSize", pageSize);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+
+        public DataTable GetInvoiceCurrentRecords2(int page, int pageSize)
+        {
+            string sql = "SELECT * FROM (SELECT * FROM invoice ORDER BY InvoiceID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY InvoiceID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@PgSize", pageSize);
+            cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+
+        public DataTable GetDeliveryCurrentRecords(int page, int pageSize)
+        {
+            string sql = "SELECT * FROM delivery ORDER BY DeliveryID LIMIT @PgSize";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@PgSize", pageSize);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+
+        public DataTable GetDeliveryCurrentRecords2(int page, int pageSize)
+        {
+            string sql = "SELECT * FROM (SELECT * FROM delivery ORDER BY DeliveryID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY DeliveryID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@PgSize", pageSize);
+            cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+
+        public DataTable GetGRNCurrentRecords(int page, int pageSize)
+        {
+            string sql = "SELECT * FROM grn ORDER BY grnID LIMIT @PgSize";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@PgSize", pageSize);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+
+        public DataTable GetGRNCurrentRecords2(int page, int pageSize)
+        {
+            string sql = "SELECT * FROM (SELECT * FROM grn ORDER BY grnID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY grnID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@PgSize", pageSize);
+            cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
@@ -1844,6 +2012,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
@@ -1856,6 +2025,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 

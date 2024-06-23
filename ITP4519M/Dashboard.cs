@@ -69,6 +69,19 @@ namespace ITP4519M
         private int SupplierTotalPage = 0;
         //Paging
 
+
+        //PO datagrid paging
+        private int POPgSize = 15;
+        private int POPageIndex = 1;
+        private int POTotalPage = 0;
+        //Paging
+
+        //Invoice datagrid paging
+        private int InvoicePgSize = 15;
+        private int InvoicePageIndex = 1;
+        private int InvoiceTotalPage = 0;
+        //Paging
+
         private Button currentButton;
         TypeAssistant assistant;
         private string userID;
@@ -98,6 +111,14 @@ namespace ITP4519M
         private int outstandingIndex = -1;
         private int outstandingTotalIndex = -1;
         private string currentDataSourceType = "";
+        private int OutstandingRowCount;
+        private int AccountRowCount;
+        private int DeliveryRowCount;
+        private int OrderRowCount;
+        private int GRNRowCount;
+        private int OrderAccemblyRowCount;
+        private int InvoiceRowCount;
+        private int StockRowCount;
         private Button lastClickedButton = null;
         private Button[] buttons = new Button[2];
         private bool isFormDragging = false;
@@ -133,84 +154,12 @@ namespace ITP4519M
             programMethod = new ProgramMethod.ProgramMethod();
             closebtn.BringToFront();
 
-            if (Owner != null)
-                Location = new Point(Owner.Location.X + Owner.Width / 2 - Width / 2,
-                    Owner.Location.Y + Owner.Height / 2 - Height / 2);
+            //if (Owner != null)
+            //    Location = new Point(Owner.Location.X + Owner.Width / 2 - Width / 2,
+            //        Owner.Location.Y + Owner.Height / 2 - Height / 2);
         }
 
-        //        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-        //        private static extern IntPtr CreateRoundRectRgn
-        // (
-        //    int nLeftRect,     // x-coordinate of upper-left corner
-        //    int nTopRect,      // y-coordinate of upper-left corner
-        //    int nRightRect,    // x-coordinate of lower-right corner
-        //    int nBottomRect,   // y-coordinate of lower-right corner
-        //    int nWidthEllipse, // height of ellipse
-        //    int nHeightEllipse // width of ellipse
-        //);
-
-        //        [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
-        //        private static extern bool DeleteObject(System.IntPtr hObject);
-
-
-        //        class RoundTextBox : TextBox
-        //        {
-        //            [System.Runtime.InteropServices.DllImport("gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-        //            private static extern IntPtr CreateRoundRectRgn
-        //            (
-        //                int nLeftRect, // X-coordinate of upper-left corner or padding at start
-        //                int nTopRect,// Y-coordinate of upper-left corner or padding at the top of the textbox
-        //                int nRightRect, // X-coordinate of lower-right corner or Width of the object
-        //                int nBottomRect,// Y-coordinate of lower-right corner or Height of the object
-        //                                //RADIUS, 
-        //                int nheightRect, //height of ellipse 
-        //                int nweightRect //width of ellipse
-        //            );
-
-        //            protected override void OnResize(EventArgs e)
-        //            {
-        //                base.OnResize(e);
-        //                this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(2, 3, this.Width, this.Height, 30, 30));
-        //            }
-        //        }
-
-
-
-        //        class RoundedButton : Button
-        //        {
-        //            public int rdus = 30;
-        //            System.Drawing.Drawing2D.GraphicsPath GetRoundPath(RectangleF Rect, int radius)
-        //            {
-        //                float r2 = radius / 2f;
-        //                System.Drawing.Drawing2D.GraphicsPath GraphPath = new System.Drawing.Drawing2D.GraphicsPath();
-        //                GraphPath.AddArc(Rect.X, Rect.Y, radius, radius, 180, 90);
-        //                GraphPath.AddLine(Rect.X + r2, Rect.Y, Rect.Width - r2, Rect.Y);
-        //                GraphPath.AddArc(Rect.X + Rect.Width - radius, Rect.Y, radius, radius, 270, 90);
-        //                GraphPath.AddLine(Rect.Width, Rect.Y + r2, Rect.Width, Rect.Height - r2);
-        //                GraphPath.AddArc(Rect.X + Rect.Width - radius,
-        //                        Rect.Y + Rect.Height - radius, radius, radius, 0, 90);
-        //                GraphPath.AddLine(Rect.Width - r2, Rect.Height, Rect.X + r2, Rect.Height);
-        //                GraphPath.AddArc(Rect.X, Rect.Y + Rect.Height - radius, radius, radius, 90, 90);
-        //                GraphPath.AddLine(Rect.X, Rect.Height - r2, Rect.X, Rect.Y + r2);
-        //                GraphPath.CloseFigure();
-        //                return GraphPath;
-        //            }
-        //            protected override void OnPaint(PaintEventArgs e)
-        //            {
-        //                base.OnPaint(e);
-        //                RectangleF Rect = new RectangleF(0, 0, this.Width, this.Height);
-        //                using (System.Drawing.Drawing2D.GraphicsPath GraphPath = GetRoundPath(Rect, rdus))
-        //                {
-        //                    this.Region = new Region(GraphPath);
-        //                    using (Pen pen = new Pen(Color.CadetBlue, 1.75f))
-        //                    {
-        //                        pen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
-        //                        e.Graphics.DrawPath(pen, GraphPath);
-        //                    }
-        //                }
-        //            }
-        //        }
-
+      
         public void ButtonLocation(string departmentID, string title)
         {
             switch (departmentID)
@@ -446,8 +395,8 @@ namespace ITP4519M
             stockData.DataSource = programMethod.GetStockCurrentRecords(StockPageIndex, StockPgSize);
             productOverallLabel();
             stockData.Rows[0].Selected = false;
-            //accountIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + programMethod.getAccountRowCount();
             SetRowHeights(stockData, StockPgSize);
+            StockpageNumlbl.Text = "1" + " - " + StockPgSize + " of " + StockRowCount;
 
 
         }
@@ -475,6 +424,7 @@ namespace ITP4519M
             //int end = int.Parse(lastTwoWords) + 9;
             accountIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + programMethod.getAccountRowCount();
             SetRowHeights(userData, PgSize);
+            oustandingPagelbl.Text = "01" + "-" + PgSize + " of " + AccountRowCount;
 
 
 
@@ -518,8 +468,7 @@ namespace ITP4519M
             outstandingdata.DataSource = programMethod.GetOutstandingCurrentRecords(outstandingPageIndex, outstandingPgSize);
             outstandingdata.Rows[0].Selected = false;
             SetRowHeights(outstandingdata, outstandingPgSize);
-
-
+            oustandingPagelbl.Text = (outstandingPgSize * outstandingPageIndex - (outstandingPgSize - 1)) + " - " + (outstandingPgSize * outstandingPageIndex) + " of " + OutstandingRowCount;
 
         }
 
@@ -1409,13 +1358,16 @@ namespace ITP4519M
             {
                 case "Stock":
                     rowCount = programMethod.getStockRowCount();
+                    StockRowCount = rowCount;
                     StockTotalPage = rowCount / StockPgSize;
                     if (rowCount % StockPgSize > 0)
                         StockTotalPage += 1;
                     break;
 
                 case "Outstanding":
+
                     rowCount = programMethod.getOutstandingRowCount();
+                    OutstandingRowCount = rowCount;
                     outstandingTotalPage = rowCount / outstandingPgSize;
                     if (rowCount % outstandingPgSize > 0)
                         outstandingTotalPage += 1;
@@ -1423,11 +1375,13 @@ namespace ITP4519M
 
                 case "Order":
                     rowCount = programMethod.getOrderRowCount();
+                    OrderRowCount = rowCount;
                     //outstandingTotalPage = rowCount / outstandingPgSize;
                     break;
 
                 case "Account":
                     rowCount = programMethod.getAccountRowCount();
+                    AccountRowCount = rowCount;
                     TotalPage = rowCount / PgSize;
                     if (rowCount % PgSize > 0)
                         TotalPage += 1;
@@ -1465,6 +1419,21 @@ namespace ITP4519M
                         SupplierTotalPage += 1;
                     break;
 
+                case "PO":
+                    rowCount = programMethod.GetPOCount();
+                    POTotalPage = rowCount / POPgSize;
+                    if (rowCount % POPgSize > 0)
+                        POTotalPage += 1;
+                    break;
+
+                case "Invoice":
+                    rowCount = programMethod.GetInvoiceCount();
+                    InvoiceRowCount = rowCount;
+                    POTotalPage = rowCount / InvoicePgSize;
+                    if (rowCount % InvoicePgSize > 0)
+                        InvoiceTotalPage += 1;
+                 break;
+
             }
         }
 
@@ -1473,6 +1442,8 @@ namespace ITP4519M
             this.CurrentPageIndex = 1;
             this.userData.DataSource = programMethod.GetAccountCurrentRecords(this.CurrentPageIndex, PgSize);
             SetRowHeights(userData, PgSize);
+
+            accountIndexlbl.Text = "1" + " - " + PgSize + " of " + AccountRowCount;
         }
 
         private void accountbtnNxtPage_Click(object sender, EventArgs e)
@@ -1484,6 +1455,15 @@ namespace ITP4519M
 
             }
             SetRowHeights(userData, PgSize);
+
+            if(CurrentPageIndex != TotalPage)
+            {
+                accountIndexlbl.Text = (PgSize * CurrentPageIndex - (PgSize - 1)) + " - " + (PgSize * CurrentPageIndex) + " of " + AccountRowCount;
+            }
+            else
+            {
+                accountIndexlbl.Text = (PgSize * CurrentPageIndex - (PgSize - 1)) + " - " + AccountRowCount + " of " + AccountRowCount;
+            }
         }
 
 
@@ -1494,9 +1474,9 @@ namespace ITP4519M
             {
                 this.CurrentPageIndex--;
                 this.userData.DataSource = programMethod.GetAccountCurrentRecords(this.CurrentPageIndex, PgSize);
-
             }
             SetRowHeights(userData, PgSize);
+            accountIndexlbl.Text = (PgSize * CurrentPageIndex - (PgSize - 1)) + " - " + (PgSize * CurrentPageIndex) + " of " + AccountRowCount;
         }
 
         private void accountbtnLastPage_Click(object sender, EventArgs e)
@@ -1504,6 +1484,7 @@ namespace ITP4519M
             this.CurrentPageIndex = TotalPage;
             this.userData.DataSource = programMethod.GetAccountCurrentRecords(this.CurrentPageIndex, PgSize);
             SetRowHeights(userData, PgSize);
+            accountIndexlbl.Text = (PgSize * CurrentPageIndex - (PgSize - 1)) + "-" + AccountRowCount + " of " + AccountRowCount;
         }
 
         private void deliveryViewDNbtn_Click(object sender, EventArgs e)
@@ -1580,6 +1561,7 @@ namespace ITP4519M
 
         private void PObtn_Click(object sender, EventArgs e)
         {
+           
             if (lastClickedButton != null)
             {
                 lastClickedButton.ForeColor = Color.White;
@@ -1587,8 +1569,11 @@ namespace ITP4519M
 
             lastClickedButton = (Button)sender;
             lastClickedButton.ForeColor = Color.Gray;
-
+            CalculateTotalPages("PO");
             ShowPanel(POpnl);
+            poData.DataSource = programMethod.GetPOCurrentRecords(POPageIndex, POPgSize);
+            poData.Rows[0].Selected = false;
+            SetRowHeights(poData, POPgSize);
 
         }
 
@@ -1602,7 +1587,14 @@ namespace ITP4519M
             lastClickedButton = (Button)sender;
             lastClickedButton.ForeColor = Color.Gray;
 
+            lastClickedButton = (Button)sender;
+            lastClickedButton.ForeColor = Color.Gray;
+            CalculateTotalPages("Invoice");
             ShowPanel(invoicepnl);
+            invoiceData.DataSource = programMethod.GetInvoiceCurrentRecords(InvoicePageIndex, InvoicePgSize);
+            invoiceData.Rows[0].Selected = false;
+            SetRowHeights(invoiceData, InvoicePgSize);
+
 
         }
 
@@ -1611,6 +1603,7 @@ namespace ITP4519M
             this.StockPageIndex = StockTotalPage;
             this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockPageIndex, StockPgSize);
             SetRowHeights(stockData, StockPgSize);
+            StockpageNumlbl.Text = (StockPgSize * StockPageIndex - (StockPgSize - 1)) + "-" + StockRowCount + " of " + StockRowCount;
         }
 
         private void sotckNextPagebtn_Click(object sender, EventArgs e)
@@ -1620,6 +1613,15 @@ namespace ITP4519M
                 this.StockPageIndex++;
                 this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockPageIndex, StockPgSize);
                 SetRowHeights(stockData, StockPgSize);
+
+                if(StockPageIndex != StockTotalPage)
+                {
+                    StockpageNumlbl.Text = (StockPgSize * StockPageIndex - (StockPgSize - 1)) + "-" + (StockPgSize * StockPageIndex) + " of " + StockRowCount;
+                }
+                else
+                {
+                    StockpageNumlbl.Text = (StockPgSize * StockPageIndex - (StockPgSize - 1)) + "-" + StockRowCount + " of " + StockRowCount;
+                }
             }
         }
 
@@ -1630,6 +1632,7 @@ namespace ITP4519M
                 this.StockPageIndex--;
                 this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockPageIndex, StockPgSize);
                 SetRowHeights(stockData, StockPgSize);
+                StockpageNumlbl.Text = (StockPgSize * StockPageIndex - (StockPgSize - 1)) + "-" + (StockPgSize * StockPageIndex) + " of " + StockRowCount;
             }
         }
 
@@ -1638,6 +1641,7 @@ namespace ITP4519M
             this.StockPageIndex = 1;
             this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockPageIndex, StockPgSize);
             SetRowHeights(stockData, StockPgSize);
+            StockpageNumlbl.Text = "1" + "-" + StockPgSize + " of " + StockRowCount;
         }
 
         private void label10_Click(object sender, EventArgs e)
@@ -1658,6 +1662,7 @@ namespace ITP4519M
             this.outstandingPageIndex = outstandingTotalPage;
             this.outstandingdata.DataSource = programMethod.GetOutstandingCurrentRecords(this.outstandingPageIndex, outstandingPgSize);
             SetRowHeights(outstandingdata, outstandingPgSize);
+            oustandingPagelbl.Text = (outstandingPgSize * outstandingPageIndex - (outstandingPgSize - 1)) + " - " + OutstandingRowCount + " of " + OutstandingRowCount;
         }
 
         private void outstandingNextPagebtn_Click(object sender, EventArgs e)
@@ -1668,6 +1673,16 @@ namespace ITP4519M
                 this.outstandingdata.DataSource = programMethod.GetOutstandingCurrentRecords(this.outstandingPageIndex, outstandingPgSize);
                 SetRowHeights(outstandingdata, outstandingPgSize);
             }
+
+            if(outstandingPageIndex != outstandingTotalPage)
+            {
+                oustandingPagelbl.Text = (outstandingPgSize * outstandingPageIndex - (outstandingPgSize - 1)) + " - " + (outstandingPgSize * outstandingPageIndex) + " of " + OutstandingRowCount;
+            }
+            else
+            {
+                oustandingPagelbl.Text = (outstandingPgSize * outstandingPageIndex - (outstandingPgSize - 1)) + " - " + OutstandingRowCount + " of " + OutstandingRowCount;
+            }
+            
         }
 
         private void outstandingPrevPagebtn_Click(object sender, EventArgs e)
@@ -1678,6 +1693,7 @@ namespace ITP4519M
                 this.outstandingdata.DataSource = programMethod.GetOutstandingCurrentRecords(this.outstandingPageIndex, outstandingPgSize);
                 SetRowHeights(outstandingdata, outstandingPgSize);
             }
+            oustandingPagelbl.Text = (outstandingPgSize * outstandingPageIndex - (outstandingPgSize - 1)) + " - " + (outstandingPgSize * outstandingPageIndex) + " of " + OutstandingRowCount;
         }
 
         private void outstandingFirstPagebtn_Click(object sender, EventArgs e)
@@ -1685,6 +1701,7 @@ namespace ITP4519M
             this.outstandingPageIndex = 1;
             this.outstandingdata.DataSource = programMethod.GetOutstandingCurrentRecords(this.outstandingPageIndex, outstandingPgSize);
             SetRowHeights(outstandingdata, outstandingPgSize);
+            oustandingPagelbl.Text = "1" + " - " + outstandingPgSize + " of " + OutstandingRowCount;
         }
 
 

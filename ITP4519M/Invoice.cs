@@ -26,5 +26,10 @@ namespace ITP4519M
         {
 
         }
+
+        private void invoiceExitbtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
