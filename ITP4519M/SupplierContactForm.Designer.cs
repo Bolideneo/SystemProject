@@ -40,13 +40,18 @@
             suppliernamelbl = new Label();
             suppliernameBox = new TextBox();
             supplierAddressBox = new TextBox();
+            label2 = new Label();
+            supplierContactBox = new TextBox();
+            dataGridView1 = new DataGridView();
+            label3 = new Label();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(13, 367);
+            label1.Location = new Point(13, 331);
             label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
             label1.Size = new Size(80, 24);
@@ -57,7 +62,7 @@
             // 
             editSupplierbtn.AccessibleRole = AccessibleRole.None;
             editSupplierbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            editSupplierbtn.Location = new Point(240, 468);
+            editSupplierbtn.Location = new Point(329, 658);
             editSupplierbtn.Margin = new Padding(5, 4, 5, 4);
             editSupplierbtn.Name = "editSupplierbtn";
             editSupplierbtn.Size = new Size(183, 48);
@@ -71,7 +76,7 @@
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Verdana", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(394, 12);
+            button1.Location = new Point(516, 12);
             button1.Margin = new Padding(2, 3, 2, 3);
             button1.Name = "button1";
             button1.Size = new Size(40, 49);
@@ -84,7 +89,7 @@
             // 
             phoneNumlbl.AutoSize = true;
             phoneNumlbl.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            phoneNumlbl.Location = new Point(13, 279);
+            phoneNumlbl.Location = new Point(296, 181);
             phoneNumlbl.Margin = new Padding(5, 0, 5, 0);
             phoneNumlbl.Name = "phoneNumlbl";
             phoneNumlbl.Size = new Size(140, 24);
@@ -94,7 +99,7 @@
             // SupplierPhoneNumBox
             // 
             SupplierPhoneNumBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            SupplierPhoneNumBox.Location = new Point(13, 308);
+            SupplierPhoneNumBox.Location = new Point(296, 212);
             SupplierPhoneNumBox.Margin = new Padding(5, 4, 5, 4);
             SupplierPhoneNumBox.Name = "SupplierPhoneNumBox";
             SupplierPhoneNumBox.Size = new Size(250, 27);
@@ -104,20 +109,20 @@
             // 
             maillbl.AutoSize = true;
             maillbl.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            maillbl.Location = new Point(11, 191);
+            maillbl.Location = new Point(13, 256);
             maillbl.Margin = new Padding(5, 0, 5, 0);
             maillbl.Name = "maillbl";
-            maillbl.Size = new Size(119, 24);
+            maillbl.Size = new Size(57, 24);
             maillbl.TabIndex = 79;
-            maillbl.Text = "Mail Address";
+            maillbl.Text = "Email";
             // 
             // SupplierMailBox
             // 
             SupplierMailBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            SupplierMailBox.Location = new Point(11, 220);
+            SupplierMailBox.Location = new Point(13, 287);
             SupplierMailBox.Margin = new Padding(5, 4, 5, 4);
             SupplierMailBox.Name = "SupplierMailBox";
-            SupplierMailBox.Size = new Size(250, 27);
+            SupplierMailBox.Size = new Size(316, 27);
             SupplierMailBox.TabIndex = 78;
             // 
             // supplierInfolabel
@@ -137,7 +142,7 @@
             // 
             createSupplierBtn.AccessibleRole = AccessibleRole.None;
             createSupplierBtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            createSupplierBtn.Location = new Point(15, 468);
+            createSupplierBtn.Location = new Point(329, 658);
             createSupplierBtn.Margin = new Padding(5, 4, 5, 4);
             createSupplierBtn.Name = "createSupplierBtn";
             createSupplierBtn.Size = new Size(183, 48);
@@ -153,9 +158,9 @@
             suppliernamelbl.Location = new Point(11, 104);
             suppliernamelbl.Margin = new Padding(5, 0, 5, 0);
             suppliernamelbl.Name = "suppliernamelbl";
-            suppliernamelbl.Size = new Size(136, 24);
+            suppliernamelbl.Size = new Size(222, 24);
             suppliernamelbl.TabIndex = 73;
-            suppliernamelbl.Text = "Supplier Name";
+            suppliernamelbl.Text = "Supplier Company Name";
             // 
             // suppliernameBox
             // 
@@ -169,17 +174,61 @@
             // supplierAddressBox
             // 
             supplierAddressBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            supplierAddressBox.Location = new Point(13, 401);
+            supplierAddressBox.Location = new Point(13, 365);
             supplierAddressBox.Margin = new Padding(5, 4, 5, 4);
             supplierAddressBox.Name = "supplierAddressBox";
             supplierAddressBox.Size = new Size(410, 27);
             supplierAddressBox.TabIndex = 89;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Location = new Point(11, 181);
+            label2.Margin = new Padding(5, 0, 5, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(138, 24);
+            label2.TabIndex = 91;
+            label2.Text = "Contact Person";
+            // 
+            // supplierContactBox
+            // 
+            supplierContactBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            supplierContactBox.Location = new Point(13, 212);
+            supplierContactBox.Margin = new Padding(5, 4, 5, 4);
+            supplierContactBox.Name = "supplierContactBox";
+            supplierContactBox.Size = new Size(252, 27);
+            supplierContactBox.TabIndex = 90;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(11, 447);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(533, 195);
+            dataGridView1.TabIndex = 92;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(13, 420);
+            label3.Margin = new Padding(5, 0, 5, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(161, 24);
+            label3.TabIndex = 93;
+            label3.Text = "Products supplied";
+            // 
             // SupplierContactForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(441, 552);
+            ClientSize = new Size(567, 729);
+            Controls.Add(label3);
+            Controls.Add(dataGridView1);
+            Controls.Add(label2);
+            Controls.Add(supplierContactBox);
             Controls.Add(supplierAddressBox);
             Controls.Add(label1);
             Controls.Add(button1);
@@ -196,6 +245,7 @@
             Name = "SupplierContactForm";
             Text = "SupplierContactForm";
             Load += SupplierContactForm_Load;
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -217,5 +267,9 @@
         private Label suppliernamelbl;
         private TextBox suppliernameBox;
         private TextBox supplierAddressBox;
+        private Label label2;
+        private TextBox supplierContactBox;
+        private DataGridView dataGridView1;
+        private Label label3;
     }
 }
