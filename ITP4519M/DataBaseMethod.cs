@@ -1371,7 +1371,6 @@ namespace ITP4519M
             return result.ToString();
         }
 
-
         public DataTable getOrderDealerName(string orderID, string dealerID)
         {
             string sql = "SELECT DealerName, DealerCompanyName, DealerPhoneNum FROM dealer, `order` WHERE dealer.DealerID = `order`.DealerID AND dealer.DealerID = @dealerID AND `order`.OrderID = @orderID";

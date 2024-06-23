@@ -1175,9 +1175,9 @@ namespace ProgramMethod
                 return false;
         }
 
-        public DataTable getOrderEachItemDetail(string itemID, string orderID)
+        public DataTable getOrderEachItemDetail(string productID, string orderID)
         {
-            return dataBaseMethod.getOrderEachItemDetail(itemID, orderID);
+            return dataBaseMethod.getOrderEachItemDetail(productID, orderID);
         }
 
         public DataTable getOrderItemDetail(string orderID)
@@ -1439,6 +1439,11 @@ namespace ProgramMethod
                 MessageBox.Show("Please input number");
             }
             return qty.ToString();
+        }
+
+        public string getOrderItemFollowQuantity(string orderID, string productID)
+        {
+            return dataBaseMethod.getOrderItemFollowQuantity(orderID, productID);
         }
 
 

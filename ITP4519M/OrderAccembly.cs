@@ -25,6 +25,7 @@ namespace ITP4519M
         private DataTable dt1;
         private string QuantityFollow;
         private int orderitemIndex = -1;
+        private int SelectColumnIndex = 0;
         private OperationMode _mode;
 
 
@@ -44,6 +45,7 @@ namespace ITP4519M
 
         private void OrderAccembly_Load(object sender, EventArgs e)
         {
+            
             switch (_mode)
             {
                 case OperationMode.View:
@@ -72,6 +74,7 @@ namespace ITP4519M
                     orderItemdata.Columns.Add("FollowQuantity", "FollowQuantity");
                     createOrderAccembly();
                     saveOrderbtn.Visible = true;
+                    orderAccemblyOrderItemdata.Rows[0].Selected = false;
                     // ClearForm();
                     //SetReadOnly(false);
                     break;
@@ -294,7 +297,7 @@ namespace ITP4519M
             try
             {
                 QuantityFollow = programMethod.calOrderItemQuantityFollow(orderItemdata, orderID);
-                this.orderItemdata["FollowQuantity", orderitemIndex].Value = QuantityFollow;
+                this.orderItemdata["FollowQuantity", e.RowIndex].Value = QuantityFollow;
                 QuantityFollow = "";
 
             }
@@ -307,30 +310,63 @@ namespace ITP4519M
 
         private void orderItemdata_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            int quantityFollow = int.Parse(orderItemdata["FollowQuantity", orderitemIndex].Value.ToString());
-            int result = quantityFollow - int.Parse(orderItemdata.Rows[orderitemIndex].Cells[2].Value.ToString());
-            orderItemdata.Rows[orderitemIndex].Cells[3].Value = result.ToString();
+                
+                //int.Parse(orderItemdata["FollowQuantity", e.RowIndex].Value.ToString());
+                int quantityFollow = int.Parse(programMethod.getOrderItemFollowQuantity(orderID, orderItemdata.Rows[e.RowIndex].Cells[0].Value.ToString()));
+                int result = quantityFollow - int.Parse(orderItemdata.Rows[e.RowIndex].Cells[2].Value.ToString());
+                orderItemdata.Rows[e.RowIndex].Cells[3].Value = result.ToString();
         }
 
         private void orderAccemblyOrderItemdata_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-           
-                string[] rowData = new string[orderAccemblyOrderItemdata.Columns.Count];
-                //int iOffset = 0;
-                MessageBox.Show(e.RowIndex.ToString());
+
             orderitemIndex++;
-              // foreach (DataGridViewCell dgvCell in orderAccemblyOrderItemdata.Rows[e.RowIndex].Cells)
-               // {
-                //if (dgvCell.EditedFormattedValue != null)
-                //{
-                   // rowData[iOffset] = dgvCell.EditedFormattedValue.ToString();
-                    DataTable result = programMethod.getOrderEachItemDetail(orderAccemblyOrderItemdata.Rows[e.RowIndex].Cells[0].Value.ToString(), orderID);
+            DataTable result = programMethod.getOrderEachItemDetail(orderAccemblyOrderItemdata.Rows[e.RowIndex].Cells[1].Value.ToString(), orderID);
             orderAccemblyOrderItemdata.DataSource = programMethod.getOrderItemDetail(orderID);
             this.orderItemdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, QuantityFollow);
-            // }
-            //iOffset++;
-            //}
-            // orderItemdata.Rows.Add(rowData); 
+
+        }
+
+        private void checkboxSelectedbtn_Click(object sender, EventArgs e)
+        {
+            
+            for (int i = 0; i < orderAccemblyOrderItemdata.Rows.Count; i++)
+            {
+                // Refresh cause uncheck box
+                if (orderAccemblyOrderItemdata.Rows[i].Cells[0].Value != null && Convert.ToBoolean(orderAccemblyOrderItemdata.Rows[i].Cells[0].Value) == true)
+                {
+
+                    orderitemIndex++;
+                    DataTable result = programMethod.getOrderEachItemDetail(orderAccemblyOrderItemdata.Rows[i].Cells[1].Value.ToString(), orderID);
+                    orderItemdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, QuantityFollow);
+                }
+            }
+
+            orderAccemblyOrderItemdata.DataSource = programMethod.getOrderItemDetail(orderID);
+            orderAccemblyOrderItemdata.Rows[0].Selected = false;
+
+            if (orderItemdata.Rows.Count > 1)
+            {
+                for (int i = 0; i < orderItemdata.Rows.Count; i++)
+                {
+                    int count = 0;
+                    for (int j = 1; j < orderItemdata.Rows.Count; j++)
+                    {
+                      //  MessageBox.Show(j.ToString());
+                        if (i == j)
+                            continue;
+                        if (orderItemdata.Rows[i].Cells[0].Value.ToString() == orderItemdata.Rows[j].Cells[0].Value.ToString())
+                        {
+                            DataGridViewRow dgvDelRow = orderItemdata.Rows[j];
+                            orderItemdata.Rows.Remove(dgvDelRow);
+                            count++;
+                        }
+
+                    }
+                    //orderItemdata.Rows[i].Cells[2].Value = (int.Parse(orderItemdata.Rows[i].Cells[2].Value.ToString()) + count);
+                }
+            }
+
         }
     }
 }

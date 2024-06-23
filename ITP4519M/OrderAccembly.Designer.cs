@@ -49,11 +49,12 @@ namespace ITP4519M
             phoneNumBox = new TextBox();
             saveOrderbtn = new Button();
             orderAccemblyOrderItemdata = new DataGridView();
+            check = new DataGridViewCheckBoxColumn();
             label4 = new Label();
             dealerAddressBox = new TextBox();
             orderAccemblyAssignbox = new TextBox();
             orderAccemblyAssignbtn = new Button();
-            button1 = new Button();
+            checkboxSelectedbtn = new Button();
             ((System.ComponentModel.ISupportInitialize)orderItemdata).BeginInit();
             ((System.ComponentModel.ISupportInitialize)orderAccemblyOrderItemdata).BeginInit();
             SuspendLayout();
@@ -178,6 +179,7 @@ namespace ITP4519M
             // 
             // orderItemdata
             // 
+            orderItemdata.RowHeadersVisible = false;
             orderItemdata.AllowUserToAddRows = false;
             orderItemdata.AllowUserToDeleteRows = false;
             orderItemdata.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -242,11 +244,13 @@ namespace ITP4519M
             // 
             // orderAccemblyOrderItemdata
             // 
+            orderAccemblyOrderItemdata.RowHeadersVisible = false;
             orderAccemblyOrderItemdata.AllowUserToAddRows = false;
             orderAccemblyOrderItemdata.AllowUserToDeleteRows = false;
             orderAccemblyOrderItemdata.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             orderAccemblyOrderItemdata.BackgroundColor = SystemColors.ButtonFace;
             orderAccemblyOrderItemdata.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            orderAccemblyOrderItemdata.Columns.AddRange(new DataGridViewColumn[] { check });
             orderAccemblyOrderItemdata.Location = new Point(79, 461);
             orderAccemblyOrderItemdata.Margin = new Padding(3, 7, 3, 7);
             orderAccemblyOrderItemdata.Name = "orderAccemblyOrderItemdata";
@@ -255,6 +259,12 @@ namespace ITP4519M
             orderAccemblyOrderItemdata.Size = new Size(776, 268);
             orderAccemblyOrderItemdata.TabIndex = 72;
             orderAccemblyOrderItemdata.CellDoubleClick += orderAccemblyOrderItemdata_CellDoubleClick;
+            // 
+            // check
+            // 
+            check.HeaderText = "check";
+            check.MinimumWidth = 6;
+            check.Name = "check";
             // 
             // label4
             // 
@@ -295,15 +305,16 @@ namespace ITP4519M
             orderAccemblyAssignbtn.UseVisualStyleBackColor = true;
             orderAccemblyAssignbtn.Click += orderAccemblyAssignbtn_Click;
             // 
-            // button1
+            // checkboxSelectedbtn
             // 
-            button1.Location = new Point(401, 740);
-            button1.Margin = new Padding(3, 4, 3, 4);
-            button1.Name = "button1";
-            button1.Size = new Size(133, 61);
-            button1.TabIndex = 77;
-            button1.Text = "Assgin";
-            button1.UseVisualStyleBackColor = true;
+            checkboxSelectedbtn.Location = new Point(401, 740);
+            checkboxSelectedbtn.Margin = new Padding(3, 4, 3, 4);
+            checkboxSelectedbtn.Name = "checkboxSelectedbtn";
+            checkboxSelectedbtn.Size = new Size(133, 61);
+            checkboxSelectedbtn.TabIndex = 77;
+            checkboxSelectedbtn.Text = "Assgin";
+            checkboxSelectedbtn.UseVisualStyleBackColor = true;
+            checkboxSelectedbtn.Click += checkboxSelectedbtn_Click;
             // 
             // OrderAccembly
             // 
@@ -311,7 +322,7 @@ namespace ITP4519M
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
             ClientSize = new Size(947, 1159);
-            Controls.Add(button1);
+            Controls.Add(checkboxSelectedbtn);
             Controls.Add(orderAccemblyAssignbtn);
             Controls.Add(orderAccemblyAssignbox);
             Controls.Add(dealerAddressBox);
@@ -378,6 +389,7 @@ namespace ITP4519M
         private TextBox dealerAddressBox;
         private TextBox orderAccemblyAssignbox;
         private Button orderAccemblyAssignbtn;
-        private Button button1;
+        private Button checkboxSelectedbtn;
+        private DataGridViewCheckBoxColumn check;
     }
 }
