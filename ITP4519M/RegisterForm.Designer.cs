@@ -90,7 +90,7 @@ namespace ITP4519M
             registerDisplaynameBox.BackColor = SystemColors.Menu;
             registerDisplaynameBox.BorderStyle = BorderStyle.None;
             registerDisplaynameBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            registerDisplaynameBox.Location = new Point(5, 7);
+            registerDisplaynameBox.Location = new Point(5, 4);
             registerDisplaynameBox.Margin = new Padding(5, 4, 5, 4);
             registerDisplaynameBox.Name = "registerDisplaynameBox";
             registerDisplaynameBox.Size = new Size(179, 20);
@@ -444,6 +444,8 @@ namespace ITP4519M
             // 
             // pictureBox1
             // 
+            pictureBox1.Image = Properties.Resources.red_alert;
+            pictureBox1.InitialImage = null;
             pictureBox1.Location = new Point(187, 2);
             pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
@@ -460,16 +462,17 @@ namespace ITP4519M
             panel3.Controls.Add(registerDisplaynameBox);
             panel3.Location = new Point(532, 165);
             panel3.Name = "panel3";
-            panel3.Size = new Size(216, 31);
+            panel3.Size = new Size(218, 28);
             panel3.TabIndex = 78;
             panel3.Paint += panel3_Paint;
             // 
             // pictureBox3
             // 
-            pictureBox3.Location = new Point(183, 2);
+            pictureBox3.Image = Properties.Resources.red_alert;
+            pictureBox3.Location = new Point(188, 2);
             pictureBox3.Margin = new Padding(3, 2, 3, 2);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(30, 26);
+            pictureBox3.Size = new Size(24, 24);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 76;
             pictureBox3.TabStop = false;
