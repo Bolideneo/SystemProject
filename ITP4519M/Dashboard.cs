@@ -124,7 +124,7 @@ namespace ITP4519M
             buttons[2] = orderbtn;
             buttons[3] = contactsbtn;
             buttons[4] = Logbtn;
-            buttons[5] = settingbtn;
+            buttons[5] = logoutbtn;
 
         }
         private void Dashboard_Load(object sender, EventArgs e)
@@ -219,9 +219,9 @@ namespace ITP4519M
                 case "001":
                     ShowButton(false);
                     usersbtn.Visible = true;
-                    settingbtn.Visible = true;
+                    logoutbtn.Visible = true;
                     usersbtn.Location = new Point(25, buttonLocationIndex[0]);
-                    settingbtn.Location = new Point(25, buttonLocationIndex[8]);
+                    logoutbtn.Location = new Point(25, buttonLocationIndex[8]);
                     break;
 
 
@@ -240,10 +240,10 @@ namespace ITP4519M
                         ShowButton(false);
                         orderbtn.Visible = true;
                         OrderAccemblybtn.Visible = true;
-                        settingbtn.Visible = true;
+                        logoutbtn.Visible = true;
                         orderbtn.Location = new Point(25, buttonLocationIndex[0]);
                         OrderAccemblybtn.Location = new Point(25, buttonLocationIndex[1]);
-                        settingbtn.Location = new Point(25, buttonLocationIndex[8]);
+                        logoutbtn.Location = new Point(25, buttonLocationIndex[8]);
 
                         newOrderbtn.Visible = true;
                         viewOrderbtn.Visible = true;
@@ -255,9 +255,9 @@ namespace ITP4519M
                     {
                         ShowButton(false);
                         orderbtn.Visible = true;
-                        settingbtn.Visible = true;
+                        logoutbtn.Visible = true;
                         orderbtn.Location = new Point(25, buttonLocationIndex[0]);
-                        settingbtn.Location = new Point(25, buttonLocationIndex[8]);
+                        logoutbtn.Location = new Point(25, buttonLocationIndex[8]);
 
                         newOrderbtn.Visible = true;
                         viewOrderbtn.Visible = true;
@@ -275,7 +275,7 @@ namespace ITP4519M
                     OrderAccemblybtn.Location = new Point(25, buttonLocationIndex[1]);
                     GRNbtn.Location = new Point(25, buttonLocationIndex[2]);
                     deliverybtn.Location = new Point(25, buttonLocationIndex[3]);
-                    settingbtn.Location = new Point(25, buttonLocationIndex[8]);
+                    logoutbtn.Location = new Point(25, buttonLocationIndex[8]);
                     break;
 
 
@@ -285,7 +285,7 @@ namespace ITP4519M
                 case "005":
                     stockbtn.Location = new Point(25, buttonLocationIndex[0]);
                     contactsbtn.Location = new Point(25, buttonLocationIndex[1]);
-                    settingbtn.Location = new Point(25, buttonLocationIndex[8]);
+                    logoutbtn.Location = new Point(25, buttonLocationIndex[8]);
                     break;
 
 
@@ -317,7 +317,7 @@ namespace ITP4519M
             GRNbtn.Visible = ReadyOnly;
             deliverybtn.Visible = ReadyOnly;
             Logbtn.Visible = ReadyOnly;
-            settingbtn.Visible = ReadyOnly;
+            logoutbtn.Visible = ReadyOnly;
 
             //Enabled
 
@@ -494,19 +494,13 @@ namespace ITP4519M
             //accountUserCountlbl2.Text = RowCount.ToString();
         }
 
-        private void settingbtn_Click(object sender, EventArgs e)
+        private void logoutbtn_Click(object sender, EventArgs e)
         {
+            this.Hide();
 
-
-            if (lastClickedButton != null)
-            {
-                lastClickedButton.ForeColor = Color.White;
-            }
-
-            lastClickedButton = (Button)sender;
-            lastClickedButton.ForeColor = Color.Gray;
-
-            ShowPanel(settingpnl);
+            // Show the login form
+            Login loginForm = new Login();
+            loginForm.Show(this);
 
         }
 
@@ -1891,6 +1885,33 @@ namespace ITP4519M
         private void poNextPageBtn_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void homebtn_Click(object sender, EventArgs e)
+        {
+            if (lastClickedButton != null)
+            {
+                lastClickedButton.ForeColor = Color.White;
+            }
+
+            lastClickedButton = (Button)sender;
+            lastClickedButton.ForeColor = Color.Gray;
+
+            ShowPanel(dashboardpnl);
+        }
+
+        private void reportbtn_Click(object sender, EventArgs e)
+        {
+
+            if (lastClickedButton != null)
+            {
+                lastClickedButton.ForeColor = Color.White;
+            }
+
+            lastClickedButton = (Button)sender;
+            lastClickedButton.ForeColor = Color.Gray;
+
+            ShowPanel(settingpnl);
         }
 
 

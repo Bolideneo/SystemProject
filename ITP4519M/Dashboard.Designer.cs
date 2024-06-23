@@ -74,8 +74,11 @@ namespace ITP4519M
             DataGridViewCellStyle dataGridViewCellStyle55 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle56 = new DataGridViewCellStyle();
             listpnl = new Panel();
-            invoicebtn = new Button();
+            reportbtn = new Button();
             log_logo = new ImageList(components);
+            homebtn = new Button();
+            home_logo = new ImageList(components);
+            invoicebtn = new Button();
             outstandingOrderbtn = new Button();
             PObtn = new Button();
             deliverybtn = new Button();
@@ -85,7 +88,7 @@ namespace ITP4519M
             Logbtn = new Button();
             contactsbtn = new Button();
             contact_logo = new ImageList(components);
-            settingbtn = new Button();
+            logoutbtn = new Button();
             setting_logo = new ImageList(components);
             usersbtn = new Button();
             Accounts_logo = new ImageList(components);
@@ -203,7 +206,7 @@ namespace ITP4519M
             outstandingBackbtn = new Button();
             label2 = new Label();
             settingpnl = new Panel();
-            settinglbl = new Label();
+            reportlbl = new Label();
             userspnl = new Panel();
             accountSearchBox = new ProgramMethod.ProgramMethod.RoundedTextBox();
             panel7 = new Panel();
@@ -325,6 +328,8 @@ namespace ITP4519M
             DeliveryCancelbtn = new Button();
             deliveryNextbtn = new Button();
             POpnl = new Panel();
+            poData = new CustomDataGridView();
+            dataGridViewCheckBoxColumn6 = new DataGridViewCheckBoxColumn();
             panel16 = new Panel();
             poFirstPageBtn = new ProgramMethod.ProgramMethod.RoundedButton();
             label24 = new Label();
@@ -389,8 +394,6 @@ namespace ITP4519M
             invoicelbl = new Label();
             outstandingViewpnl = new Panel();
             panel45 = new Panel();
-            poData = new CustomDataGridView();
-            dataGridViewCheckBoxColumn6 = new DataGridViewCheckBoxColumn();
             listpnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)avatarbox).BeginInit();
             orderpnl.SuspendLayout();
@@ -443,6 +446,7 @@ namespace ITP4519M
             ((System.ComponentModel.ISupportInitialize)deliveryData).BeginInit();
             deliveryCompletepnl.SuspendLayout();
             POpnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)poData).BeginInit();
             panel16.SuspendLayout();
             panel17.SuspendLayout();
             outstandingOrderpnl.SuspendLayout();
@@ -455,13 +459,14 @@ namespace ITP4519M
             panel15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)customDataGridView1).BeginInit();
             outstandingViewpnl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)poData).BeginInit();
             SuspendLayout();
             // 
             // listpnl
             // 
             listpnl.BackColor = SystemColors.MenuText;
             listpnl.BackgroundImageLayout = ImageLayout.Stretch;
+            listpnl.Controls.Add(reportbtn);
+            listpnl.Controls.Add(homebtn);
             listpnl.Controls.Add(invoicebtn);
             listpnl.Controls.Add(outstandingOrderbtn);
             listpnl.Controls.Add(PObtn);
@@ -470,7 +475,7 @@ namespace ITP4519M
             listpnl.Controls.Add(OrderAccemblybtn);
             listpnl.Controls.Add(Logbtn);
             listpnl.Controls.Add(contactsbtn);
-            listpnl.Controls.Add(settingbtn);
+            listpnl.Controls.Add(logoutbtn);
             listpnl.Controls.Add(usersbtn);
             listpnl.Controls.Add(stockbtn);
             listpnl.Controls.Add(orderbtn);
@@ -480,9 +485,60 @@ namespace ITP4519M
             listpnl.Location = new Point(0, 1);
             listpnl.Margin = new Padding(3, 4, 3, 4);
             listpnl.Name = "listpnl";
-            listpnl.Size = new Size(200, 1000);
+            listpnl.Size = new Size(200, 1050);
             listpnl.TabIndex = 14;
             listpnl.Paint += listpnl_Paint;
+            // 
+            // reportbtn
+            // 
+            reportbtn.AutoSize = true;
+            reportbtn.FlatAppearance.BorderSize = 0;
+            reportbtn.FlatStyle = FlatStyle.Flat;
+            reportbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            reportbtn.ForeColor = Color.White;
+            reportbtn.ImageAlign = ContentAlignment.MiddleLeft;
+            reportbtn.ImageIndex = 0;
+            reportbtn.ImageList = log_logo;
+            reportbtn.Location = new Point(25, 905);
+            reportbtn.Margin = new Padding(3, 4, 3, 4);
+            reportbtn.Name = "reportbtn";
+            reportbtn.Size = new Size(166, 51);
+            reportbtn.TabIndex = 16;
+            reportbtn.Text = "Reports";
+            reportbtn.UseVisualStyleBackColor = true;
+            reportbtn.Click += reportbtn_Click;
+            // 
+            // log_logo
+            // 
+            log_logo.ColorDepth = ColorDepth.Depth24Bit;
+            log_logo.ImageStream = (ImageListStreamer)resources.GetObject("log_logo.ImageStream");
+            log_logo.TransparentColor = Color.Transparent;
+            log_logo.Images.SetKeyName(0, "log_logo.png");
+            // 
+            // homebtn
+            // 
+            homebtn.AutoSize = true;
+            homebtn.FlatAppearance.BorderSize = 0;
+            homebtn.FlatStyle = FlatStyle.Flat;
+            homebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            homebtn.ForeColor = Color.White;
+            homebtn.ImageIndex = 0;
+            homebtn.ImageList = home_logo;
+            homebtn.Location = new Point(58, 12);
+            homebtn.Margin = new Padding(3, 4, 3, 4);
+            homebtn.Name = "homebtn";
+            homebtn.Size = new Size(74, 42);
+            homebtn.TabIndex = 15;
+            homebtn.TextAlign = ContentAlignment.MiddleRight;
+            homebtn.UseVisualStyleBackColor = true;
+            homebtn.Click += homebtn_Click;
+            // 
+            // home_logo
+            // 
+            home_logo.ColorDepth = ColorDepth.Depth24Bit;
+            home_logo.ImageStream = (ImageListStreamer)resources.GetObject("home_logo.ImageStream");
+            home_logo.TransparentColor = Color.Transparent;
+            home_logo.Images.SetKeyName(0, "home_button.png");
             // 
             // invoicebtn
             // 
@@ -494,7 +550,7 @@ namespace ITP4519M
             invoicebtn.ImageAlign = ContentAlignment.MiddleLeft;
             invoicebtn.ImageIndex = 0;
             invoicebtn.ImageList = log_logo;
-            invoicebtn.Location = new Point(25, 733);
+            invoicebtn.Location = new Point(25, 720);
             invoicebtn.Margin = new Padding(3, 4, 3, 4);
             invoicebtn.Name = "invoicebtn";
             invoicebtn.Size = new Size(166, 56);
@@ -502,13 +558,6 @@ namespace ITP4519M
             invoicebtn.Text = "Invoice";
             invoicebtn.UseVisualStyleBackColor = true;
             invoicebtn.Click += invoicebtn_Click;
-            // 
-            // log_logo
-            // 
-            log_logo.ColorDepth = ColorDepth.Depth24Bit;
-            log_logo.ImageStream = (ImageListStreamer)resources.GetObject("log_logo.ImageStream");
-            log_logo.TransparentColor = Color.Transparent;
-            log_logo.Images.SetKeyName(0, "log_logo.png");
             // 
             // outstandingOrderbtn
             // 
@@ -520,10 +569,10 @@ namespace ITP4519M
             outstandingOrderbtn.ImageAlign = ContentAlignment.MiddleLeft;
             outstandingOrderbtn.ImageIndex = 0;
             outstandingOrderbtn.ImageList = log_logo;
-            outstandingOrderbtn.Location = new Point(25, 669);
+            outstandingOrderbtn.Location = new Point(25, 647);
             outstandingOrderbtn.Margin = new Padding(3, 4, 3, 4);
             outstandingOrderbtn.Name = "outstandingOrderbtn";
-            outstandingOrderbtn.Size = new Size(189, 75);
+            outstandingOrderbtn.Size = new Size(166, 56);
             outstandingOrderbtn.TabIndex = 13;
             outstandingOrderbtn.Text = "         Outstanding\r\n         Order";
             outstandingOrderbtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -540,7 +589,7 @@ namespace ITP4519M
             PObtn.ImageAlign = ContentAlignment.MiddleLeft;
             PObtn.ImageIndex = 0;
             PObtn.ImageList = log_logo;
-            PObtn.Location = new Point(25, 605);
+            PObtn.Location = new Point(25, 583);
             PObtn.Margin = new Padding(3, 4, 3, 4);
             PObtn.Name = "PObtn";
             PObtn.Size = new Size(166, 56);
@@ -559,7 +608,7 @@ namespace ITP4519M
             deliverybtn.ImageAlign = ContentAlignment.MiddleLeft;
             deliverybtn.ImageIndex = 0;
             deliverybtn.ImageList = log_logo;
-            deliverybtn.Location = new Point(25, 541);
+            deliverybtn.Location = new Point(25, 519);
             deliverybtn.Margin = new Padding(3, 4, 3, 4);
             deliverybtn.Name = "deliverybtn";
             deliverybtn.Size = new Size(166, 56);
@@ -578,7 +627,7 @@ namespace ITP4519M
             GRNbtn.ImageAlign = ContentAlignment.MiddleLeft;
             GRNbtn.ImageIndex = 0;
             GRNbtn.ImageList = log_logo;
-            GRNbtn.Location = new Point(25, 477);
+            GRNbtn.Location = new Point(25, 455);
             GRNbtn.Margin = new Padding(3, 4, 3, 4);
             GRNbtn.Name = "GRNbtn";
             GRNbtn.Size = new Size(166, 56);
@@ -597,10 +646,10 @@ namespace ITP4519M
             OrderAccemblybtn.ImageAlign = ContentAlignment.MiddleLeft;
             OrderAccemblybtn.ImageIndex = 0;
             OrderAccemblybtn.ImageList = Order_logo;
-            OrderAccemblybtn.Location = new Point(25, 349);
+            OrderAccemblybtn.Location = new Point(25, 327);
             OrderAccemblybtn.Margin = new Padding(3, 4, 3, 4);
             OrderAccemblybtn.Name = "OrderAccemblybtn";
-            OrderAccemblybtn.Size = new Size(169, 75);
+            OrderAccemblybtn.Size = new Size(166, 56);
             OrderAccemblybtn.TabIndex = 9;
             OrderAccemblybtn.Text = "         Order\r\n         Accembly ";
             OrderAccemblybtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -624,7 +673,7 @@ namespace ITP4519M
             Logbtn.ImageAlign = ContentAlignment.MiddleLeft;
             Logbtn.ImageIndex = 0;
             Logbtn.ImageList = log_logo;
-            Logbtn.Location = new Point(25, 856);
+            Logbtn.Location = new Point(25, 842);
             Logbtn.Margin = new Padding(3, 4, 3, 4);
             Logbtn.Name = "Logbtn";
             Logbtn.Size = new Size(166, 51);
@@ -643,10 +692,10 @@ namespace ITP4519M
             contactsbtn.ImageAlign = ContentAlignment.MiddleLeft;
             contactsbtn.ImageIndex = 0;
             contactsbtn.ImageList = contact_logo;
-            contactsbtn.Location = new Point(25, 413);
+            contactsbtn.Location = new Point(25, 391);
             contactsbtn.Margin = new Padding(3, 4, 3, 4);
             contactsbtn.Name = "contactsbtn";
-            contactsbtn.Size = new Size(184, 75);
+            contactsbtn.Size = new Size(166, 56);
             contactsbtn.TabIndex = 7;
             contactsbtn.Text = "         Contacts\r\n         Information";
             contactsbtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -660,24 +709,24 @@ namespace ITP4519M
             contact_logo.TransparentColor = Color.Transparent;
             contact_logo.Images.SetKeyName(0, "contact_new.jpg");
             // 
-            // settingbtn
+            // logoutbtn
             // 
-            settingbtn.AutoSize = true;
-            settingbtn.FlatAppearance.BorderSize = 0;
-            settingbtn.FlatStyle = FlatStyle.Flat;
-            settingbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            settingbtn.ForeColor = Color.White;
-            settingbtn.ImageAlign = ContentAlignment.MiddleLeft;
-            settingbtn.ImageIndex = 0;
-            settingbtn.ImageList = setting_logo;
-            settingbtn.Location = new Point(25, 915);
-            settingbtn.Margin = new Padding(3, 4, 3, 4);
-            settingbtn.Name = "settingbtn";
-            settingbtn.Size = new Size(166, 51);
-            settingbtn.TabIndex = 6;
-            settingbtn.Text = "Log Out";
-            settingbtn.UseVisualStyleBackColor = true;
-            settingbtn.Click += settingbtn_Click;
+            logoutbtn.AutoSize = true;
+            logoutbtn.FlatAppearance.BorderSize = 0;
+            logoutbtn.FlatStyle = FlatStyle.Flat;
+            logoutbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            logoutbtn.ForeColor = Color.White;
+            logoutbtn.ImageAlign = ContentAlignment.MiddleLeft;
+            logoutbtn.ImageIndex = 0;
+            logoutbtn.ImageList = setting_logo;
+            logoutbtn.Location = new Point(25, 975);
+            logoutbtn.Margin = new Padding(3, 4, 3, 4);
+            logoutbtn.Name = "logoutbtn";
+            logoutbtn.Size = new Size(166, 51);
+            logoutbtn.TabIndex = 6;
+            logoutbtn.Text = "Log Out";
+            logoutbtn.UseVisualStyleBackColor = true;
+            logoutbtn.Click += logoutbtn_Click;
             // 
             // setting_logo
             // 
@@ -697,7 +746,7 @@ namespace ITP4519M
             usersbtn.ImageAlign = ContentAlignment.MiddleLeft;
             usersbtn.ImageIndex = 0;
             usersbtn.ImageList = Accounts_logo;
-            usersbtn.Location = new Point(25, 797);
+            usersbtn.Location = new Point(25, 784);
             usersbtn.Margin = new Padding(3, 4, 3, 4);
             usersbtn.Name = "usersbtn";
             usersbtn.Size = new Size(166, 51);
@@ -724,7 +773,7 @@ namespace ITP4519M
             stockbtn.ImageAlign = ContentAlignment.MiddleLeft;
             stockbtn.ImageIndex = 0;
             stockbtn.ImageList = stock_logo;
-            stockbtn.Location = new Point(25, 285);
+            stockbtn.Location = new Point(25, 265);
             stockbtn.Margin = new Padding(3, 4, 3, 4);
             stockbtn.Name = "stockbtn";
             stockbtn.Size = new Size(166, 56);
@@ -750,7 +799,7 @@ namespace ITP4519M
             orderbtn.ImageAlign = ContentAlignment.MiddleLeft;
             orderbtn.ImageIndex = 0;
             orderbtn.ImageList = Order_logo;
-            orderbtn.Location = new Point(25, 220);
+            orderbtn.Location = new Point(25, 206);
             orderbtn.Margin = new Padding(3, 4, 3, 4);
             orderbtn.Name = "orderbtn";
             orderbtn.Size = new Size(166, 57);
@@ -788,10 +837,10 @@ namespace ITP4519M
             // 
             avatarbox.BackgroundImage = Properties.Resources.company_logo;
             avatarbox.BackgroundImageLayout = ImageLayout.Stretch;
-            avatarbox.Location = new Point(3, 49);
+            avatarbox.Location = new Point(3, 67);
             avatarbox.Margin = new Padding(3, 4, 3, 4);
             avatarbox.Name = "avatarbox";
-            avatarbox.Size = new Size(197, 83);
+            avatarbox.Size = new Size(197, 65);
             avatarbox.TabIndex = 0;
             avatarbox.TabStop = false;
             // 
@@ -827,7 +876,7 @@ namespace ITP4519M
             orderpnl.Location = new Point(201, 3);
             orderpnl.Margin = new Padding(3, 4, 3, 4);
             orderpnl.Name = "orderpnl";
-            orderpnl.Size = new Size(1250, 1000);
+            orderpnl.Size = new Size(1250, 1050);
             orderpnl.TabIndex = 16;
             orderpnl.Visible = false;
             // 
@@ -2296,23 +2345,23 @@ namespace ITP4519M
             // 
             // settingpnl
             // 
-            settingpnl.Controls.Add(settinglbl);
+            settingpnl.Controls.Add(reportlbl);
             settingpnl.Location = new Point(201, 3);
             settingpnl.Margin = new Padding(3, 4, 3, 4);
             settingpnl.Name = "settingpnl";
-            settingpnl.Size = new Size(1250, 1000);
+            settingpnl.Size = new Size(1250, 1050);
             settingpnl.TabIndex = 5;
             settingpnl.Visible = false;
             // 
-            // settinglbl
+            // reportlbl
             // 
-            settinglbl.AutoSize = true;
-            settinglbl.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            settinglbl.Location = new Point(18, 24);
-            settinglbl.Name = "settinglbl";
-            settinglbl.Size = new Size(92, 31);
-            settinglbl.TabIndex = 6;
-            settinglbl.Text = "Setting";
+            reportlbl.AutoSize = true;
+            reportlbl.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            reportlbl.Location = new Point(18, 24);
+            reportlbl.Name = "reportlbl";
+            reportlbl.Size = new Size(97, 31);
+            reportlbl.TabIndex = 6;
+            reportlbl.Text = "Reports";
             // 
             // userspnl
             // 
@@ -2333,7 +2382,7 @@ namespace ITP4519M
             userspnl.Location = new Point(201, 3);
             userspnl.Margin = new Padding(3, 4, 3, 4);
             userspnl.Name = "userspnl";
-            userspnl.Size = new Size(1250, 1000);
+            userspnl.Size = new Size(1250, 1050);
             userspnl.TabIndex = 3;
             userspnl.Visible = false;
             // 
@@ -2740,7 +2789,7 @@ namespace ITP4519M
             inventorypnl.Location = new Point(201, 3);
             inventorypnl.Margin = new Padding(3, 4, 3, 4);
             inventorypnl.Name = "inventorypnl";
-            inventorypnl.Size = new Size(1247, 1000);
+            inventorypnl.Size = new Size(1247, 1050);
             inventorypnl.TabIndex = 16;
             inventorypnl.Visible = false;
             // 
@@ -2900,7 +2949,7 @@ namespace ITP4519M
             dashboardpnl.Location = new Point(201, 3);
             dashboardpnl.Margin = new Padding(3, 4, 3, 4);
             dashboardpnl.Name = "dashboardpnl";
-            dashboardpnl.Size = new Size(1301, 1000);
+            dashboardpnl.Size = new Size(1301, 1050);
             dashboardpnl.TabIndex = 1;
             // 
             // label1
@@ -2924,7 +2973,7 @@ namespace ITP4519M
             logpnl.Location = new Point(201, 3);
             logpnl.Margin = new Padding(3, 4, 3, 4);
             logpnl.Name = "logpnl";
-            logpnl.Size = new Size(1250, 1000);
+            logpnl.Size = new Size(1250, 1050);
             logpnl.TabIndex = 26;
             logpnl.Visible = false;
             // 
@@ -3189,7 +3238,7 @@ namespace ITP4519M
             OrderAccemblypnl.Location = new Point(201, 3);
             OrderAccemblypnl.Margin = new Padding(3, 4, 3, 4);
             OrderAccemblypnl.Name = "OrderAccemblypnl";
-            OrderAccemblypnl.Size = new Size(1250, 1000);
+            OrderAccemblypnl.Size = new Size(1250, 1050);
             OrderAccemblypnl.TabIndex = 7;
             OrderAccemblypnl.Visible = false;
             // 
@@ -3342,7 +3391,7 @@ namespace ITP4519M
             GRNpnl.Location = new Point(201, 3);
             GRNpnl.Margin = new Padding(3, 4, 3, 4);
             GRNpnl.Name = "GRNpnl";
-            GRNpnl.Size = new Size(1250, 1000);
+            GRNpnl.Size = new Size(1250, 1050);
             GRNpnl.TabIndex = 8;
             GRNpnl.Visible = false;
             // 
@@ -3606,7 +3655,7 @@ namespace ITP4519M
             deliverypnl.Location = new Point(201, 3);
             deliverypnl.Margin = new Padding(3, 4, 3, 4);
             deliverypnl.Name = "deliverypnl";
-            deliverypnl.Size = new Size(1250, 1000);
+            deliverypnl.Size = new Size(1250, 1050);
             deliverypnl.TabIndex = 9;
             deliverypnl.Visible = false;
             deliverypnl.Paint += deliverypnl_Paint;
@@ -3993,8 +4042,49 @@ namespace ITP4519M
             POpnl.Controls.Add(POlbl);
             POpnl.Location = new Point(201, 3);
             POpnl.Name = "POpnl";
-            POpnl.Size = new Size(1250, 1000);
+            POpnl.Size = new Size(1250, 1050);
             POpnl.TabIndex = 32;
+            // 
+            // poData
+            // 
+            poData.AllowUserToAddRows = false;
+            poData.AllowUserToDeleteRows = false;
+            poData.AllowUserToResizeRows = false;
+            dataGridViewCellStyle49.BackColor = Color.Gainsboro;
+            poData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle49;
+            poData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle50.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle50.BackColor = SystemColors.Control;
+            dataGridViewCellStyle50.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle50.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle50.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle50.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle50.WrapMode = DataGridViewTriState.True;
+            poData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle50;
+            poData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            poData.Columns.AddRange(new DataGridViewColumn[] { dataGridViewCheckBoxColumn6 });
+            dataGridViewCellStyle51.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle51.BackColor = SystemColors.Window;
+            dataGridViewCellStyle51.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle51.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle51.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle51.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle51.WrapMode = DataGridViewTriState.False;
+            poData.DefaultCellStyle = dataGridViewCellStyle51;
+            poData.Location = new Point(35, 297);
+            poData.Name = "poData";
+            poData.RowHeadersVisible = false;
+            poData.RowHeadersWidth = 51;
+            poData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            poData.Size = new Size(1181, 604);
+            poData.TabIndex = 39;
+            // 
+            // dataGridViewCheckBoxColumn6
+            // 
+            dataGridViewCheckBoxColumn6.FillWeight = 35F;
+            dataGridViewCheckBoxColumn6.HeaderText = "Select";
+            dataGridViewCheckBoxColumn6.MinimumWidth = 35;
+            dataGridViewCheckBoxColumn6.Name = "dataGridViewCheckBoxColumn6";
             // 
             // panel16
             // 
@@ -4253,7 +4343,7 @@ namespace ITP4519M
             outstandingOrderpnl.Controls.Add(outstandingOrderlbl);
             outstandingOrderpnl.Location = new Point(201, 3);
             outstandingOrderpnl.Name = "outstandingOrderpnl";
-            outstandingOrderpnl.Size = new Size(1250, 1000);
+            outstandingOrderpnl.Size = new Size(1250, 1050);
             outstandingOrderpnl.TabIndex = 33;
             // 
             // panel20
@@ -4472,27 +4562,27 @@ namespace ITP4519M
             outstandingdata.AllowUserToAddRows = false;
             outstandingdata.AllowUserToDeleteRows = false;
             outstandingdata.AllowUserToResizeRows = false;
-            dataGridViewCellStyle49.BackColor = Color.Gainsboro;
-            outstandingdata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle49;
+            dataGridViewCellStyle52.BackColor = Color.Gainsboro;
+            outstandingdata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle52;
             outstandingdata.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle50.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle50.BackColor = SystemColors.Control;
-            dataGridViewCellStyle50.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle50.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle50.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle50.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle50.WrapMode = DataGridViewTriState.True;
-            outstandingdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle50;
+            dataGridViewCellStyle53.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle53.BackColor = SystemColors.Control;
+            dataGridViewCellStyle53.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle53.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle53.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle53.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle53.WrapMode = DataGridViewTriState.True;
+            outstandingdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle53;
             outstandingdata.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             outstandingdata.Columns.AddRange(new DataGridViewColumn[] { outstandingcheckColumn });
-            dataGridViewCellStyle51.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle51.BackColor = SystemColors.Window;
-            dataGridViewCellStyle51.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle51.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle51.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle51.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle51.WrapMode = DataGridViewTriState.False;
-            outstandingdata.DefaultCellStyle = dataGridViewCellStyle51;
+            dataGridViewCellStyle54.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle54.BackColor = SystemColors.Window;
+            dataGridViewCellStyle54.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle54.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle54.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle54.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle54.WrapMode = DataGridViewTriState.False;
+            outstandingdata.DefaultCellStyle = dataGridViewCellStyle54;
             outstandingdata.Location = new Point(31, 292);
             outstandingdata.Name = "outstandingdata";
             outstandingdata.RowHeadersVisible = false;
@@ -4551,7 +4641,7 @@ namespace ITP4519M
             invoicepnl.Controls.Add(invoicelbl);
             invoicepnl.Location = new Point(201, 3);
             invoicepnl.Name = "invoicepnl";
-            invoicepnl.Size = new Size(1250, 1000);
+            invoicepnl.Size = new Size(1250, 1050);
             invoicepnl.TabIndex = 33;
             // 
             // panel14
@@ -4776,24 +4866,24 @@ namespace ITP4519M
             customDataGridView1.AllowUserToAddRows = false;
             customDataGridView1.AllowUserToDeleteRows = false;
             customDataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle52.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle52.BackColor = SystemColors.Control;
-            dataGridViewCellStyle52.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle52.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle52.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle52.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle52.WrapMode = DataGridViewTriState.True;
-            customDataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle52;
+            dataGridViewCellStyle55.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle55.BackColor = SystemColors.Control;
+            dataGridViewCellStyle55.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle55.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle55.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle55.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle55.WrapMode = DataGridViewTriState.True;
+            customDataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle55;
             customDataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             customDataGridView1.Columns.AddRange(new DataGridViewColumn[] { dataGridViewCheckBoxColumn1 });
-            dataGridViewCellStyle53.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle53.BackColor = SystemColors.Window;
-            dataGridViewCellStyle53.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle53.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle53.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle53.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle53.WrapMode = DataGridViewTriState.False;
-            customDataGridView1.DefaultCellStyle = dataGridViewCellStyle53;
+            dataGridViewCellStyle56.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle56.BackColor = SystemColors.Window;
+            dataGridViewCellStyle56.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle56.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle56.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle56.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle56.WrapMode = DataGridViewTriState.False;
+            customDataGridView1.DefaultCellStyle = dataGridViewCellStyle56;
             customDataGridView1.Location = new Point(31, 292);
             customDataGridView1.Name = "customDataGridView1";
             customDataGridView1.RowHeadersVisible = false;
@@ -4847,57 +4937,19 @@ namespace ITP4519M
             panel45.Size = new Size(200, 100);
             panel45.TabIndex = 0;
             // 
-            // poData
-            // 
-            poData.AllowUserToAddRows = false;
-            poData.AllowUserToDeleteRows = false;
-            poData.AllowUserToResizeRows = false;
-            dataGridViewCellStyle54.BackColor = Color.Gainsboro;
-            poData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle54;
-            poData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle55.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle55.BackColor = SystemColors.Control;
-            dataGridViewCellStyle55.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle55.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle55.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle55.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle55.WrapMode = DataGridViewTriState.True;
-            poData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle55;
-            poData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            poData.Columns.AddRange(new DataGridViewColumn[] { dataGridViewCheckBoxColumn6 });
-            dataGridViewCellStyle56.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle56.BackColor = SystemColors.Window;
-            dataGridViewCellStyle56.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle56.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle56.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle56.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle56.WrapMode = DataGridViewTriState.False;
-            poData.DefaultCellStyle = dataGridViewCellStyle56;
-            poData.Location = new Point(35, 297);
-            poData.Name = "poData";
-            poData.RowHeadersVisible = false;
-            poData.RowHeadersWidth = 51;
-            poData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            poData.Size = new Size(1181, 604);
-            poData.TabIndex = 39;
-            // 
-            // dataGridViewCheckBoxColumn6
-            // 
-            dataGridViewCheckBoxColumn6.FillWeight = 35F;
-            dataGridViewCheckBoxColumn6.HeaderText = "Select";
-            dataGridViewCheckBoxColumn6.MinimumWidth = 35;
-            dataGridViewCheckBoxColumn6.Name = "dataGridViewCheckBoxColumn6";
-            // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
-            ClientSize = new Size(1499, 1000);
-            Controls.Add(POpnl);
-            Controls.Add(outstandingOrderpnl);
+            ClientSize = new Size(1499, 1050);
             Controls.Add(listpnl);
             Controls.Add(closebtn);
+            Controls.Add(contactpnl);
+            Controls.Add(outstandingViewpnl);
+            Controls.Add(POpnl);
+            Controls.Add(deliveryCompletepnl);
+            Controls.Add(outstandingOrderpnl);
             Controls.Add(invoicepnl);
             Controls.Add(deliverypnl);
             Controls.Add(orderpnl);
@@ -4908,9 +4960,6 @@ namespace ITP4519M
             Controls.Add(settingpnl);
             Controls.Add(OrderAccemblypnl);
             Controls.Add(logpnl);
-            Controls.Add(outstandingViewpnl);
-            Controls.Add(deliveryCompletepnl);
-            Controls.Add(contactpnl);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
@@ -5011,6 +5060,7 @@ namespace ITP4519M
             deliveryCompletepnl.PerformLayout();
             POpnl.ResumeLayout(false);
             POpnl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)poData).EndInit();
             panel16.ResumeLayout(false);
             panel16.PerformLayout();
             panel17.ResumeLayout(false);
@@ -5031,7 +5081,6 @@ namespace ITP4519M
             panel15.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)customDataGridView1).EndInit();
             outstandingViewpnl.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)poData).EndInit();
             ResumeLayout(false);
         }
 
@@ -5048,14 +5097,14 @@ namespace ITP4519M
         private System.Windows.Forms.ImageList stock_logo;
         private System.Windows.Forms.Button usersbtn;
         private System.Windows.Forms.ImageList Accounts_logo;
-        private System.Windows.Forms.Button settingbtn;
+        private System.Windows.Forms.Button logoutbtn;
         private System.Windows.Forms.ImageList setting_logo;
         private System.Windows.Forms.Panel orderpnl;
         private System.Windows.Forms.Panel inventorypnl;
         private System.Windows.Forms.Panel userspnl;
         private System.Windows.Forms.Label stocklbl;
         private System.Windows.Forms.Panel settingpnl;
-        private System.Windows.Forms.Label settinglbl;
+        private System.Windows.Forms.Label reportlbl;
         private System.Windows.Forms.Label userslbl;
         private System.Windows.Forms.Panel dashboardpnl;
         private System.Windows.Forms.Button contactsbtn;
@@ -5357,5 +5406,8 @@ namespace ITP4519M
         private DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn5;
         private CustomDataGridView poData;
         private DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn6;
+        private Button homebtn;
+        public ImageList home_logo;
+        private Button reportbtn;
     }
 }

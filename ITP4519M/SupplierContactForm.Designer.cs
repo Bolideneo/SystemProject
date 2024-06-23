@@ -42,9 +42,9 @@
             supplierAddressBox = new TextBox();
             label2 = new Label();
             supplierContactBox = new TextBox();
-            dataGridView1 = new DataGridView();
+            suppliedProductData = new DataGridView();
             label3 = new Label();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)suppliedProductData).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -133,9 +133,9 @@
             supplierInfolabel.Location = new Point(13, 29);
             supplierInfolabel.Margin = new Padding(2, 0, 2, 0);
             supplierInfolabel.Name = "supplierInfolabel";
-            supplierInfolabel.Size = new Size(289, 32);
+            supplierInfolabel.Size = new Size(366, 32);
             supplierInfolabel.TabIndex = 77;
-            supplierInfolabel.Text = "Supplier Information";
+            supplierInfolabel.Text = "Supplier Information Form";
             supplierInfolabel.TextAlign = ContentAlignment.BottomRight;
             // 
             // createSupplierBtn
@@ -200,20 +200,20 @@
             supplierContactBox.Size = new Size(252, 27);
             supplierContactBox.TabIndex = 90;
             // 
-            // dataGridView1
+            // suppliedProductData
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(11, 447);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(533, 195);
-            dataGridView1.TabIndex = 92;
+            suppliedProductData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            suppliedProductData.Location = new Point(13, 447);
+            suppliedProductData.Name = "suppliedProductData";
+            suppliedProductData.RowHeadersWidth = 51;
+            suppliedProductData.Size = new Size(531, 195);
+            suppliedProductData.TabIndex = 92;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(13, 420);
+            label3.Location = new Point(13, 411);
             label3.Margin = new Padding(5, 0, 5, 0);
             label3.Name = "label3";
             label3.Size = new Size(161, 24);
@@ -226,7 +226,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(567, 729);
             Controls.Add(label3);
-            Controls.Add(dataGridView1);
+            Controls.Add(suppliedProductData);
             Controls.Add(label2);
             Controls.Add(supplierContactBox);
             Controls.Add(supplierAddressBox);
@@ -245,7 +245,7 @@
             Name = "SupplierContactForm";
             Text = "SupplierContactForm";
             Load += SupplierContactForm_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)suppliedProductData).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -269,7 +269,7 @@
         private TextBox supplierAddressBox;
         private Label label2;
         private TextBox supplierContactBox;
-        private DataGridView dataGridView1;
+        private DataGridView suppliedProductData;
         private Label label3;
     }
 }
