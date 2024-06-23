@@ -66,7 +66,7 @@ namespace ITP4519M
                         dealerCompanyBox.Text = result.Rows[0]["DealerCompanyName"].ToString();
                         goodsAddressBox.Text = result.Rows[0]["DealerRegionNum"].ToString();
 
-                       
+
                     }
                     else
                     {
@@ -146,11 +146,11 @@ namespace ITP4519M
         private void SetReadOnly(bool readOnly)
         {
 
-            goodsAddressBox.ReadOnly = readOnly;
-            dealerIDBox.ReadOnly = readOnly;
-            dealerNameBox.ReadOnly = readOnly;
-            dealerCompanyBox.ReadOnly = readOnly;
-            phoneNumBox.ReadOnly = readOnly;
+            //goodsAddressBox.ReadOnly = readOnly;
+            //dealerIDBox.ReadOnly = readOnly;
+            //dealerNameBox.ReadOnly = readOnly;
+            // dealerCompanyBox.ReadOnly = readOnly;
+            // phoneNumBox.ReadOnly = readOnly;
             productOfOrderdata.ReadOnly = readOnly;
             disableFunction(readOnly);
 
@@ -361,7 +361,7 @@ namespace ITP4519M
             }
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
+        private void panel5_Paint(object sender, PaintEventArgs e)
         {
             if (DealerInfo)
             {
@@ -374,6 +374,16 @@ namespace ITP4519M
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
         }
