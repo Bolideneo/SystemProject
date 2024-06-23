@@ -240,6 +240,7 @@ namespace ITP4519M
             {
                 DealerInfo = true;
                 Refresh();
+                pictureBox1.Visible = true;
                 return;
             }
             else if (dealerinfoBox.Text != "")
@@ -363,7 +364,9 @@ namespace ITP4519M
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
             if (DealerInfo)
+            {
                 ControlPaint.DrawBorder(e.Graphics, this.panel2.ClientRectangle, Color.Red, ButtonBorderStyle.Solid);
+            }
             else
             {
                 ControlPaint.DrawBorder(e.Graphics, this.panel2.ClientRectangle, Color.Gray, ButtonBorderStyle.Solid);

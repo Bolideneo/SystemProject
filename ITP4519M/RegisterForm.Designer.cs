@@ -60,8 +60,18 @@ namespace ITP4519M
             viewaccountlbl = new Label();
             editAccountbtn = new Button();
             label1 = new Label();
+            panel2 = new Panel();
+            pictureBox1 = new PictureBox();
+            panel3 = new Panel();
+            pictureBox3 = new PictureBox();
+            label2 = new Label();
+            label3 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
             // 
             // displaynamelbl
@@ -77,11 +87,13 @@ namespace ITP4519M
             // 
             // registerDisplaynameBox
             // 
+            registerDisplaynameBox.BackColor = SystemColors.Menu;
+            registerDisplaynameBox.BorderStyle = BorderStyle.None;
             registerDisplaynameBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            registerDisplaynameBox.Location = new Point(530, 168);
+            registerDisplaynameBox.Location = new Point(5, 7);
             registerDisplaynameBox.Margin = new Padding(5, 4, 5, 4);
             registerDisplaynameBox.Name = "registerDisplaynameBox";
-            registerDisplaynameBox.Size = new Size(218, 27);
+            registerDisplaynameBox.Size = new Size(179, 20);
             registerDisplaynameBox.TabIndex = 21;
             registerDisplaynameBox.TextChanged += PasswordBox_TextChanged;
             // 
@@ -89,7 +101,7 @@ namespace ITP4519M
             // 
             createAccountBtn.AccessibleRole = AccessibleRole.None;
             createAccountBtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            createAccountBtn.Location = new Point(403, 501);
+            createAccountBtn.Location = new Point(403, 548);
             createAccountBtn.Margin = new Padding(5, 4, 5, 4);
             createAccountBtn.Name = "createAccountBtn";
             createAccountBtn.Size = new Size(248, 48);
@@ -127,7 +139,7 @@ namespace ITP4519M
             // 
             maillbl.AutoSize = true;
             maillbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            maillbl.Location = new Point(294, 342);
+            maillbl.Location = new Point(294, 363);
             maillbl.Margin = new Padding(5, 0, 5, 0);
             maillbl.Name = "maillbl";
             maillbl.Size = new Size(107, 20);
@@ -137,7 +149,7 @@ namespace ITP4519M
             // mailBox
             // 
             mailBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            mailBox.Location = new Point(294, 371);
+            mailBox.Location = new Point(294, 392);
             mailBox.Margin = new Padding(5, 4, 5, 4);
             mailBox.Name = "mailBox";
             mailBox.Size = new Size(250, 27);
@@ -147,7 +159,7 @@ namespace ITP4519M
             // 
             phoneNumlbl.AutoSize = true;
             phoneNumlbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            phoneNumlbl.Location = new Point(554, 342);
+            phoneNumlbl.Location = new Point(554, 363);
             phoneNumlbl.Margin = new Padding(5, 0, 5, 0);
             phoneNumlbl.Name = "phoneNumlbl";
             phoneNumlbl.Size = new Size(120, 20);
@@ -157,7 +169,7 @@ namespace ITP4519M
             // phoneNumBox
             // 
             phoneNumBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            phoneNumBox.Location = new Point(554, 371);
+            phoneNumBox.Location = new Point(554, 392);
             phoneNumBox.Margin = new Padding(5, 4, 5, 4);
             phoneNumBox.Name = "phoneNumBox";
             phoneNumBox.Size = new Size(194, 27);
@@ -167,7 +179,7 @@ namespace ITP4519M
             // 
             departlbl.AutoSize = true;
             departlbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            departlbl.Location = new Point(554, 412);
+            departlbl.Location = new Point(554, 433);
             departlbl.Margin = new Padding(5, 0, 5, 0);
             departlbl.Name = "departlbl";
             departlbl.Size = new Size(97, 20);
@@ -182,7 +194,7 @@ namespace ITP4519M
             departBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             departBox.FormattingEnabled = true;
             departBox.Items.AddRange(new object[] { "IT", "Account", "Sales", "WareHouse", "Purchasing", "Invoice" });
-            departBox.Location = new Point(554, 439);
+            departBox.Location = new Point(554, 460);
             departBox.Margin = new Padding(2, 3, 2, 3);
             departBox.Name = "departBox";
             departBox.Size = new Size(194, 28);
@@ -281,18 +293,20 @@ namespace ITP4519M
             // 
             // registerUsernameBox
             // 
+            registerUsernameBox.BackColor = SystemColors.Menu;
+            registerUsernameBox.BorderStyle = BorderStyle.None;
             registerUsernameBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            registerUsernameBox.Location = new Point(294, 168);
+            registerUsernameBox.Location = new Point(5, 4);
             registerUsernameBox.Margin = new Padding(5, 4, 5, 4);
             registerUsernameBox.Name = "registerUsernameBox";
-            registerUsernameBox.Size = new Size(218, 27);
+            registerUsernameBox.Size = new Size(174, 20);
             registerUsernameBox.TabIndex = 17;
             registerUsernameBox.TextChanged += registerUsernameBox_TextChanged;
             // 
             // registerPasswordBox
             // 
             registerPasswordBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            registerPasswordBox.Location = new Point(294, 247);
+            registerPasswordBox.Location = new Point(294, 268);
             registerPasswordBox.Margin = new Padding(5, 4, 5, 4);
             registerPasswordBox.Name = "registerPasswordBox";
             registerPasswordBox.PasswordChar = '*';
@@ -303,7 +317,7 @@ namespace ITP4519M
             // 
             passwordlbl.AutoSize = true;
             passwordlbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            passwordlbl.Location = new Point(294, 217);
+            passwordlbl.Location = new Point(294, 238);
             passwordlbl.Margin = new Padding(5, 0, 5, 0);
             passwordlbl.Name = "passwordlbl";
             passwordlbl.Size = new Size(83, 20);
@@ -315,7 +329,7 @@ namespace ITP4519M
             // 
             passwordAgainlbl.AutoSize = true;
             passwordAgainlbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            passwordAgainlbl.Location = new Point(528, 217);
+            passwordAgainlbl.Location = new Point(528, 238);
             passwordAgainlbl.Margin = new Padding(5, 0, 5, 0);
             passwordAgainlbl.Name = "passwordAgainlbl";
             passwordAgainlbl.Size = new Size(130, 20);
@@ -326,7 +340,7 @@ namespace ITP4519M
             // registerPasswordAgainBox
             // 
             registerPasswordAgainBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            registerPasswordAgainBox.Location = new Point(530, 247);
+            registerPasswordAgainBox.Location = new Point(530, 268);
             registerPasswordAgainBox.Margin = new Padding(5, 4, 5, 4);
             registerPasswordAgainBox.Name = "registerPasswordAgainBox";
             registerPasswordAgainBox.PasswordChar = '*';
@@ -337,7 +351,7 @@ namespace ITP4519M
             // 
             titlelbl.AutoSize = true;
             titlelbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            titlelbl.Location = new Point(294, 412);
+            titlelbl.Location = new Point(294, 433);
             titlelbl.Margin = new Padding(5, 0, 5, 0);
             titlelbl.Name = "titlelbl";
             titlelbl.Size = new Size(41, 20);
@@ -347,7 +361,7 @@ namespace ITP4519M
             // titleBox
             // 
             titleBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            titleBox.Location = new Point(294, 440);
+            titleBox.Location = new Point(294, 461);
             titleBox.Margin = new Padding(5, 4, 5, 4);
             titleBox.Name = "titleBox";
             titleBox.Size = new Size(250, 27);
@@ -357,7 +371,7 @@ namespace ITP4519M
             // 
             registerClearBtn.AccessibleRole = AccessibleRole.None;
             registerClearBtn.Font = new Font("Arial Narrow", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            registerClearBtn.Location = new Point(475, 557);
+            registerClearBtn.Location = new Point(475, 604);
             registerClearBtn.Margin = new Padding(5, 4, 5, 4);
             registerClearBtn.Name = "registerClearBtn";
             registerClearBtn.Size = new Size(96, 28);
@@ -396,7 +410,7 @@ namespace ITP4519M
             // 
             editAccountbtn.AccessibleRole = AccessibleRole.None;
             editAccountbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            editAccountbtn.Location = new Point(403, 501);
+            editAccountbtn.Location = new Point(403, 548);
             editAccountbtn.Margin = new Padding(5, 4, 5, 4);
             editAccountbtn.Name = "editAccountbtn";
             editAccountbtn.Size = new Size(248, 48);
@@ -410,12 +424,82 @@ namespace ITP4519M
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.SteelBlue;
-            label1.Location = new Point(293, 278);
+            label1.Location = new Point(293, 299);
             label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
             label1.Size = new Size(428, 40);
             label1.TabIndex = 47;
             label1.Text = "Note: Password must be at least 8 characters long with \r\nuppercase, lowercase, digit, and special character.";
+            // 
+            // panel2
+            // 
+            panel2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            panel2.Controls.Add(registerUsernameBox);
+            panel2.Controls.Add(pictureBox1);
+            panel2.Location = new Point(294, 166);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(218, 28);
+            panel2.TabIndex = 77;
+            panel2.Paint += panel2_Paint;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Location = new Point(187, 2);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(24, 24);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 76;
+            pictureBox1.TabStop = false;
+            pictureBox1.Visible = false;
+            // 
+            // panel3
+            // 
+            panel3.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            panel3.Controls.Add(pictureBox3);
+            panel3.Controls.Add(registerDisplaynameBox);
+            panel3.Location = new Point(532, 165);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(216, 31);
+            panel3.TabIndex = 78;
+            panel3.Paint += panel3_Paint;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Location = new Point(183, 2);
+            pictureBox3.Margin = new Padding(3, 2, 3, 2);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(30, 26);
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox3.TabIndex = 76;
+            pictureBox3.TabStop = false;
+            pictureBox3.Visible = false;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.Red;
+            label2.Location = new Point(294, 202);
+            label2.Margin = new Padding(5, 0, 5, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(200, 20);
+            label2.TabIndex = 79;
+            label2.Text = "Please enter a username.";
+            label2.Visible = false;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.Red;
+            label3.Location = new Point(528, 202);
+            label3.Margin = new Padding(5, 0, 5, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(224, 20);
+            label3.TabIndex = 80;
+            label3.Text = "Please enter a display name.";
+            label3.Visible = false;
             // 
             // RegisterForm
             // 
@@ -423,6 +507,10 @@ namespace ITP4519M
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
             ClientSize = new Size(807, 640);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(panel3);
+            Controls.Add(panel2);
             Controls.Add(label1);
             Controls.Add(viewaccountlbl);
             Controls.Add(accountEditlbl);
@@ -443,10 +531,8 @@ namespace ITP4519M
             Controls.Add(mailBox);
             Controls.Add(newAccountlabel);
             Controls.Add(displaynamelbl);
-            Controls.Add(registerDisplaynameBox);
             Controls.Add(createAccountBtn);
             Controls.Add(usernamelbl);
-            Controls.Add(registerUsernameBox);
             Controls.Add(editAccountbtn);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(2, 3, 2, 3);
@@ -460,6 +546,12 @@ namespace ITP4519M
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -495,5 +587,11 @@ namespace ITP4519M
         private Button editAccountbtn;
         private Label accountreadlbl;
         private Label label1;
+        private Panel panel2;
+        private PictureBox pictureBox1;
+        private Panel panel3;
+        private PictureBox pictureBox3;
+        private Label label2;
+        private Label label3;
     }
 }

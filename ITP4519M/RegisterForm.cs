@@ -21,6 +21,8 @@ namespace ITP4519M
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
         private bool isFormDragging = false;
         private Point formStartPoint;
+        private bool isWrongFormat = false;
+        private bool isWrongFormat2 = false;
         public event EventHandler OperationCompleted;
 
 
@@ -43,7 +45,7 @@ namespace ITP4519M
 
         private void RegisterForm_Load(object sender, EventArgs e)
         {
-           
+
 
             switch (_mode)
             {
@@ -51,11 +53,11 @@ namespace ITP4519M
                     viewaccountlbl.Visible = true;
                     accountreadlbl.Visible = true;
                     accountlbl.Visible = false;
-           //         passwordAgainlbl.Visible = false;
+                    //         passwordAgainlbl.Visible = false;
                     accountEditlbl.Visible = false;
-             //       passwordlbl.Visible = false;
-            //        registerPasswordAgainBox.Visible = false;
-             //       registerPasswordBox.Visible = false;
+                    //       passwordlbl.Visible = false;
+                    //        registerPasswordAgainBox.Visible = false;
+                    //       registerPasswordBox.Visible = false;
                     registerClearBtn.Visible = false;
                     newAccountlabel.Visible = false;
                     createAccountBtn.Visible = false;
@@ -143,7 +145,7 @@ namespace ITP4519M
 
         }
 
-        
+
         private void createAccountBtn_Click(object sender, EventArgs e)
         {
             string username = registerUsernameBox.Text.Trim();
@@ -158,16 +160,38 @@ namespace ITP4519M
 
             if (string.IsNullOrEmpty(username))
             {
-                MessageBox.Show("Please enter a username.");
-                registerUsernameBox.Focus();
-                return;
+                //MessageBox.Show("Please enter a username.");
+                label2.Visible = true;
+                pictureBox1.Visible = true;
+                isWrongFormat = true;
+                registerPasswordAgainBox.Focus();
+                Refresh(); 
+                //registerUsernameBox.Focus();
+                //return;
+            }
+            else
+            {
+                label2.Visible = false;
+                isWrongFormat = false;
+                Refresh();
             }
 
             if (string.IsNullOrEmpty(displayName))
             {
-                MessageBox.Show("Please enter a display name.");
-                registerDisplaynameBox.Focus();
-                return;
+                //MessageBox.Show("Please enter a display name.");
+                label3.Visible = true;
+                isWrongFormat2 = true;
+                pictureBox3.Visible = true;
+                registerPasswordAgainBox.Focus();
+                // registerUsernameBox.Focus();
+                Refresh();
+                //return;
+            }
+            else
+            {
+                label3.Visible = false;
+                isWrongFormat2 = false;
+                Refresh();
             }
 
             if (string.IsNullOrEmpty(password))
@@ -372,7 +396,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(displayName))
             {
                 MessageBox.Show("Please enter a display name.");
-                registerDisplaynameBox.Focus();
+                registerPasswordBox.Focus();
                 return;
             }
 
@@ -451,15 +475,15 @@ namespace ITP4519M
 
                 MessageBox.Show("Saved");
                 OperationCompleted?.Invoke(this, new EventArgs());
-   
+
 
             }
             else
             {
 
-                
+
             }
-            
+
         }
 
         private void RegisterForm_MouseDown(object sender, MouseEventArgs e)
@@ -484,6 +508,31 @@ namespace ITP4519M
         private void RegisterForm_MouseUp(object sender, MouseEventArgs e)
         {
             isFormDragging = false;
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+            if (isWrongFormat)
+            {
+                ControlPaint.DrawBorder(e.Graphics, this.panel2.ClientRectangle, Color.Red, ButtonBorderStyle.Solid);
+            }
+            else
+            {
+                ControlPaint.DrawBorder(e.Graphics, this.panel2.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
+            }
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+            if (isWrongFormat2)
+            {
+                ControlPaint.DrawBorder(e.Graphics, this.panel3.ClientRectangle, Color.Red, ButtonBorderStyle.Solid);
+            }
+            else
+            {
+                ControlPaint.DrawBorder(e.Graphics, this.panel3.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
+            }
         }
     }
 }
