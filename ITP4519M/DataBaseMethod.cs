@@ -350,8 +350,10 @@ namespace ITP4519M
         public bool supplierDel(string contactID)
         {
             string sql;
+
             try
             {
+                MessageBox.Show(contactID);
                 sql = "DELETE FROM supplier WHERE SupplierID=@ContactID";
                 MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
                 cmd.Parameters.AddWithValue("@ContactID", contactID);
@@ -419,7 +421,7 @@ namespace ITP4519M
         public DataTable searchSupplierInfoByName(string contactname)
         {
 
-            string sql = "SELECT * FROM supplier WHERE SupplierName LIKE @contactname";
+            string sql = "SELECT * FROM supplier WHERE SupplierCompanyName LIKE @contactname";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@contactname", "%" + contactname + "%");
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
@@ -457,7 +459,7 @@ namespace ITP4519M
 
         public DataTable GetSupplierCurrentRecords(int page, int pageSize)
         {
-            string sql = "SELECT s.SupplierID, s.SupplierCompanyName, s.SupplierContactPerson, s.SupplierPhoneNum, s.SupplierEmail, s.SupplierAddress, p.ProductName FROM supplier s LEFT JOIN supplierProducts sp ON s.SupplierID = sp.SupplierID LEFT JOIN product p ON sp.ProductID = p.ProductID ORDER BY s.SupplierID LIMIT @PgSize";
+            string sql = "SELECT s.SupplierID, s.SupplierCompanyName, s.SupplierContactPerson, s.SupplierPhoneNum, s.SupplierEmail, s.SupplierAddress, p.ProductName FROM supplier s LEFT JOIN supplierproducts sp ON s.SupplierID = sp.SupplierID LEFT JOIN product p ON sp.ProductID = p.ProductID ORDER BY s.SupplierID LIMIT @PgSize";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
@@ -470,7 +472,7 @@ namespace ITP4519M
 
         public DataTable GetSupplierCurrentRecords2(int page, int pageSize)
         {
-            string sql = "SELECT* FROM(SELECT s.SupplierID, s.SupplierCompanyName, s.SupplierContactPerson, s.SupplierPhoneNum, s.SupplierEmail, s.SupplierAddress, p.ProductName FROM supplier s LEFT JOIN supplierProducts sp ON s.SupplierID = sp.SupplierID LEFT JOIN product p ON sp.ProductID = p.ProductID ORDER BY s.SupplierID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY SupplierID";
+            string sql = "SELECT* FROM(SELECT s.SupplierID, s.SupplierCompanyName, s.SupplierContactPerson, s.SupplierPhoneNum, s.SupplierEmail, s.SupplierAddress, p.ProductName FROM supplier s LEFT JOIN supplierproducts sp ON s.SupplierID = sp.SupplierID LEFT JOIN product p ON sp.ProductID = p.ProductID ORDER BY s.SupplierID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY SupplierID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);
@@ -707,7 +709,8 @@ namespace ITP4519M
                     supplierDetails = new SupplierDetails
                     {
                         SupplierID = reader["SupplierID"].ToString(),
-                        SupplierName = reader["SupplierName"].ToString(),
+                        SupplierCompanyName = reader["SupplierCompanyName"].ToString(),
+                        SupplierContactPerson = reader["SupplierContactPerson"].ToString(),
                         SupplierPhoneNum = reader["SupplierPhoneNum"].ToString(),
                         SupplierEmail = reader["SupplierEmail"].ToString(),
                         SupplierAddress = reader["SupplierAddress"].ToString(),
@@ -723,7 +726,8 @@ namespace ITP4519M
         public class SupplierDetails
         {
             public string SupplierID { get; set; }
-            public string SupplierName { get; set; }
+            public string SupplierCompanyName { get; set; }
+            public string SupplierContactPerson { get; set; }
             public string SupplierPhoneNum { get; set; }
             public string SupplierEmail { get; set; }
             public string SupplierAddress { get; set; }
@@ -1143,7 +1147,7 @@ namespace ITP4519M
                             foreach (DataRow row in GetProducts.Rows)
                             {
                                 string productID = row["ProductID"].ToString();
-                                string productSql = "INSERT INTO supplierProducts (SupplierID, ProductID) VALUES (@SupplierID, @ProductID)";
+                                string productSql = "INSERT INTO supplierproducts (SupplierID, ProductID) VALUES (@SupplierID, @ProductID)";
                                 MySqlCommand productCmd = new MySqlCommand(productSql, connection);
                                 productCmd.Parameters.AddWithValue("@SupplierID", SupplierID);
                                 productCmd.Parameters.AddWithValue("@ProductID", productID);
@@ -1169,7 +1173,7 @@ namespace ITP4519M
         }
 
 
-        public bool updateSupplierInfo(string supplierid, String supplierName, string supplierMail, string supplierPhoneNum, string supplierAddress)
+        public bool updateSupplierInfo(string supplierid, string supplierCompanyName, string supplierContactPerson, string supplierMail, string supplierPhoneNum, string supplierAddress, DataTable GetProducts)
         {
             try
             {
@@ -1177,7 +1181,7 @@ namespace ITP4519M
                 {
 
 
-                    if (SupplierExistsInDatabase(connection, "SupplierName", supplierName, supplierid))
+                    if (SupplierExistsInDatabase(connection, "SupplierCompanyName", supplierCompanyName, supplierid))
                     {
                         MessageBox.Show("The supplier name already exists. Please choose a different name.");
                         return false;
@@ -1195,16 +1199,31 @@ namespace ITP4519M
                         return false;
                     }
 
-                    string sql = "UPDATE Supplier SET SupplierName = @SupplierName, SupplierPhoneNum = @SupplierPhoneNum, SupplierEmail = @SupplierEmail, SupplierAddress = @SupplierAddress WHERE SupplierID = @SupplierID";
+                    string sql = "UPDATE Supplier SET SupplierCompanyName = @SupplierCompanyName, SupplierContactPerson = @SupplierContactPerson, SupplierPhoneNum = @SupplierPhoneNum, SupplierEmail = @SupplierEmail, SupplierAddress = @SupplierAddress WHERE SupplierID = @SupplierID";
                     MySqlCommand cmd = new MySqlCommand(sql, connection);
                     cmd.Parameters.AddWithValue("@SupplierID", supplierid);
-                    cmd.Parameters.AddWithValue("@SupplierName", supplierName);
+                    cmd.Parameters.AddWithValue("@SupplierCompanyName", supplierCompanyName);
+                    cmd.Parameters.AddWithValue("@SupplierContactPerson", supplierContactPerson);
                     cmd.Parameters.AddWithValue("@SupplierPhoneNum", supplierPhoneNum);
                     cmd.Parameters.AddWithValue("@SupplierEmail", supplierMail);
                     cmd.Parameters.AddWithValue("@SupplierAddress", supplierAddress);
 
-                    if (cmd.ExecuteNonQuery() > 0)
-                        return true;
+                    cmd.ExecuteNonQuery();
+                    if (GetProducts != null && GetProducts.Rows.Count > 0)
+                    {
+
+                        foreach (DataRow row in GetProducts.Rows)
+                        {
+                            string productID = row["ProductID"].ToString();
+                            string productSql = "INSERT INTO supplierproducts (SupplierID, ProductID) VALUES (@SupplierID, @ProductID)";
+                            // string productSql = "UPDATE supplierproducts SET SupplierID = @SupplierID, ProductID = @ProductID";
+                            MySqlCommand productCmd = new MySqlCommand(productSql, connection);
+                            productCmd.Parameters.AddWithValue("@SupplierID", supplierid);
+                            productCmd.Parameters.AddWithValue("@ProductID", productID);
+                            productCmd.ExecuteNonQuery();
+                        }
+                    }
+                    return true;
                 }
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
@@ -2294,15 +2313,12 @@ namespace ITP4519M
             //    adat.Fill(dataTable);
             //    return dataTable;
             string sql = $"SELECT * FROM product WHERE ProductID IN ({string.Join(",", productIDs.Select(id => $"'{id}'"))})";
-            MessageBox.Show("test");
-            // 创建 MySQL 命令
+       
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
 
-            // 创建数据适配器和数据表
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
 
-            // 填充数据表
             adat.Fill(dataTable);
 
             return dataTable;

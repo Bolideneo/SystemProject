@@ -304,11 +304,11 @@ namespace ProgramMethod
         }
 
 
-        public bool updateSupplierInfo(string supplierid, string supplierName, string supplierMail, string supplierPhoneNum, string supplierAddress)
+        public bool updateSupplierInfo(string supplierid, string supplierCompanyName, string supplierContactPerson, string supplierMail, string supplierPhoneNum, string supplierAddress, DataTable products)
         {
 
 
-            if (dataBaseMethod.updateSupplierInfo(supplierid, supplierName, supplierMail, supplierPhoneNum, supplierAddress))
+            if (dataBaseMethod.updateSupplierInfo(supplierid, supplierCompanyName, supplierContactPerson, supplierMail, supplierPhoneNum, supplierAddress, products))
             {
                 return true;
             }

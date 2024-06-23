@@ -67,11 +67,26 @@ namespace ITP4519M
         {
             var supplierDetails = programMethod.getSupplierDetails(supplierID);
             string supplierid = supplierDetails.SupplierID;
-            string suppliername = suppliernameBox.Text.Trim();
+            string supplierCompanyName = suppliernameBox.Text.Trim();
+            string supplierContactPerson = supplierContactBox.Text.Trim();
             string supplierMail = SupplierMailBox.Text.Trim();
             string supplierPhoneNum = SupplierPhoneNumBox.Text.Trim();
             string supplierAddress = supplierAddressBox.Text.Trim();
-            if (string.IsNullOrEmpty(suppliername))
+            List<string> selectedProductIDs = GetSelectedProductIDs();
+            if (selectedProductIDs.Count == 0)
+            {
+
+                MessageBox.Show("No products selected.");
+                return;
+            }
+            DataTable products = programMethod.GetProducts(selectedProductIDs);
+            if (products == null || products.Rows.Count == 0)
+            {
+
+                MessageBox.Show("No products selected.");
+                return;
+            }
+            if (string.IsNullOrEmpty(supplierCompanyName))
             {
                 MessageBox.Show("Please enter a supplier name.");
                 suppliernameBox.Focus();
@@ -106,7 +121,7 @@ namespace ITP4519M
                 MessageBox.Show("Please enter a valid phone number.");
                 return;
             }
-            if (programMethod.updateSupplierInfo(supplierid, suppliername, supplierMail, supplierPhoneNum, supplierAddress))
+            if (programMethod.updateSupplierInfo(supplierid, supplierCompanyName, supplierContactPerson, supplierMail, supplierPhoneNum, supplierAddress, products))
             {
 
                 MessageBox.Show("Saved");
@@ -129,7 +144,8 @@ namespace ITP4519M
                 var supplierDetails = programMethod.getSupplierDetails(supplierID);
                 if (supplierDetails != null)
                 {
-                    this.suppliernameBox.Text = supplierDetails.SupplierName;
+                    this.suppliernameBox.Text = supplierDetails.SupplierCompanyName;
+                    this.supplierContactBox.Text = supplierDetails.SupplierContactPerson;
                     this.SupplierMailBox.Text = supplierDetails.SupplierEmail;
                     this.SupplierPhoneNumBox.Text = supplierDetails.SupplierPhoneNum;
                     this.supplierAddressBox.Text = supplierDetails.SupplierAddress;
@@ -150,7 +166,6 @@ namespace ITP4519M
         {
             if (e.RowIndex >= 0 && e.ColumnIndex == 0)
             {
-                // 切换点击单元格的值
                 bool currentValue = Convert.ToBoolean(this.suppliedProductData.Rows[e.RowIndex].Cells["stockcheckColumn"].Value);
                 this.suppliedProductData.Rows[e.RowIndex].Cells["stockcheckColumn"].Value = !currentValue;
             }

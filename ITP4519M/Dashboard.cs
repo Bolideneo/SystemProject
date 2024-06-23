@@ -495,6 +495,7 @@ namespace ITP4519M
             searchDealerbtn.Visible = true;
             contactOverallLabel();
             SetRowHeights(dealersData, DealerPgSize);
+
             contactIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + programMethod.getDealersRowCount();
             dealersData.Visible = true;
             suppliersData.Visible = false;
@@ -1139,6 +1140,7 @@ namespace ITP4519M
         {
 
             DealerContactForm dealerContactForm = new DealerContactForm(OperationMode.New);
+            dealerContactForm.OperationCompleted += dealerContactFormOperationCompleted;
             dealerContactForm.ShowDialog();
 
         }
@@ -1153,9 +1155,16 @@ namespace ITP4519M
             {
 
                 DealerContactForm dealerContactForm = new DealerContactForm(OperationMode.Edit);
+                dealerContactForm.OperationCompleted += dealerContactFormOperationCompleted;
                 dealerContactForm.dealerEdit(contactID);
                 dealerContactForm.ShowDialog();
             }
+        }
+
+        private void dealerContactFormOperationCompleted(object sender, EventArgs e)
+        {
+            dealersData.DataSource = programMethod.GetDealerCurrentRecords(CurrentPageIndex, PgSize);
+            dealersbtn.PerformClick();
         }
 
         private void contactsdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -1197,7 +1206,14 @@ namespace ITP4519M
         private void newSupplierbtn_Click(object sender, EventArgs e)
         {
             SupplierContactForm supplierContactForm = new SupplierContactForm(OperationMode.New);
+            supplierContactForm.OperationCompleted += supplierContactFormOperationCompleted;
             supplierContactForm.ShowDialog();
+        }
+
+        private void supplierContactFormOperationCompleted(object sender, EventArgs e)
+        {
+            suppliersData.DataSource = programMethod.GetSupplierCurrentRecords(CurrentPageIndex, PgSize);
+            supplersbtn.PerformClick();
         }
 
         private void editSupplierbtn_Click(object sender, EventArgs e)
@@ -1210,6 +1226,7 @@ namespace ITP4519M
             {
 
                 SupplierContactForm supplierContactForm = new SupplierContactForm(OperationMode.Edit);
+                supplierContactForm.OperationCompleted += supplierContactFormOperationCompleted;
                 supplierContactForm.supplierEdit(contactID);
                 supplierContactForm.ShowDialog();
 
