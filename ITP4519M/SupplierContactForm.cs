@@ -20,14 +20,29 @@ namespace ITP4519M
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
         private string supplierID;
         public event EventHandler OperationCompleted;
+        private string productID;
+        private int stockindex = -1;
         public bool IsOperationSuccessful { get; private set; }
         public SupplierContactForm(OperationMode mode)
         {
             InitializeComponent();
             _mode = mode;
             IsOperationSuccessful = false;
+            LoadProducts();
         }
 
+        private void LoadProducts()
+        {
+            var products = programMethod.overviewStockinfo();
+            suppliedProductData.DataSource = products;
+            suppliedProductData.Columns["ProductCategory"].Visible = false;
+            suppliedProductData.Columns["BinLocation"].Visible = false;
+            suppliedProductData.Columns["UnitPrice"].Visible = false;
+            suppliedProductData.Columns["CostPrice"].Visible = false;
+            suppliedProductData.Columns["QuantityInStock"].Visible = false;
+            suppliedProductData.Columns["DemandStock"].Visible = false;
+            suppliedProductData.Columns["Status"].Visible = false;
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -45,6 +60,8 @@ namespace ITP4519M
                     break;
             }
         }
+
+
 
         private void editSupplierbtn_Click(object sender, EventArgs e)
         {
@@ -101,7 +118,6 @@ namespace ITP4519M
 
             }
         }
-
         public void supplierEdit(string supplierID)
         {
 
@@ -130,13 +146,41 @@ namespace ITP4519M
             }
         }
 
+        private void suppliedProductData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+            {
+
+                this.suppliedProductData.Rows[e.RowIndex].Cells["stockcheckColumn"].Value = true;
+                stockindex = e.RowIndex;
+                DataGridViewRow selectRow = this.suppliedProductData.Rows[stockindex];
+                productID = selectRow.Cells[1].Value.ToString();
+
+                //  dealerID = selectRow.Cells[2].Value.ToString();
+
+            }
+
+        }
+
         private void createSupplierBtn_Click(object sender, EventArgs e)
         {
-            string suppliername = suppliernameBox.Text.Trim();
+            string supplierCompanyName = suppliernameBox.Text.Trim();
             string supplierMail = SupplierMailBox.Text.Trim();
             string supplierPhoneNum = SupplierPhoneNumBox.Text.Trim();
             string supplierAddress = supplierAddressBox.Text.Trim();
-            if (string.IsNullOrEmpty(suppliername))
+            string supplierContactName = supplierContactBox.Text.Trim();
+            string productID = this.productID;
+            DataTable products = programMethod.GetProducts(productID);
+            if (products == null || products.Rows.Count == 0)
+            {
+                MessageBox.Show("No products selected.");
+            }
+            else
+            {
+                MessageBox.Show($"Number of products selected: {products.Rows.Count}");
+            }
+            if (string.IsNullOrEmpty(supplierCompanyName))
             {
                 MessageBox.Show("Please enter a supplier name.");
                 suppliernameBox.Focus();
@@ -171,7 +215,13 @@ namespace ITP4519M
                 MessageBox.Show("Please enter a valid phone number.");
                 return;
             }
-            if (programMethod.createSupplier(suppliername, supplierMail, supplierPhoneNum, supplierAddress))
+
+            if (string.IsNullOrEmpty(supplierContactName))
+            {
+                MessageBox.Show("Please enter a valid contact person name.");
+                return;
+            }
+            if (programMethod.createSupplier(supplierCompanyName, supplierMail, supplierPhoneNum, supplierAddress, supplierContactName, products))
             {
                 MessageBox.Show("Supplier Contacts Successfully Added");
                 suppliernameBox.Text = "";

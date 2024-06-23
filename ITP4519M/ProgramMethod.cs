@@ -244,7 +244,7 @@ namespace ProgramMethod
 
         }
 
-        public bool createSupplier(string Suppliername, string SupplierMailBox, string SupplierPhoneNumBox, string SupplierAddressBox)
+        public bool createSupplier(string Suppliername, string SupplierMailBox, string SupplierPhoneNumBox, string SupplierAddressBox, string SupplierContactNameBox, DataTable products)
         {
             string lastSupplierID = dataBaseMethod.getSupplierID();
             string letterPart = new string(lastSupplierID.TakeWhile(c => !char.IsDigit(c)).ToArray());
@@ -253,8 +253,10 @@ namespace ProgramMethod
             int newSupplierIDNum = lastSupplierIDNum + 1;
             //string SupplierID = $"{letterPart}{newSupplierIDNum:D3}";
             string SupplierID = $"{letterPart}{newSupplierIDNum.ToString(new string('0', numericPart.Length))}";
-            if (dataBaseMethod.createSupplier(SupplierID, Suppliername, SupplierMailBox, SupplierPhoneNumBox, SupplierAddressBox))
+
+            if (dataBaseMethod.createSupplier(SupplierID, Suppliername, SupplierMailBox, SupplierPhoneNumBox, SupplierAddressBox, SupplierContactNameBox, products))
             {
+                
                 return true;
             }
             else
@@ -1665,6 +1667,11 @@ namespace ProgramMethod
             [DllImport("user32.dll", EntryPoint = "SetWindowPos")]
             public static extern IntPtr SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int Y, int cx, int cy, int wFlags);
         }
+        public DataTable GetProducts(string productid)
+        {
+            return dataBaseMethod.GetProducts(productid);
+        }
+
 
     }
 }
