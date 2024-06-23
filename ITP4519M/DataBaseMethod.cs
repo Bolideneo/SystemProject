@@ -2325,6 +2325,35 @@ namespace ITP4519M
         }
 
 
+        public string getLogID()
+        {
+            string sql = "SELECT MAX(RIGHT(logID,6)) FROM log";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            Object logID = cmd.ExecuteScalar();
+            ServerConnect().Close();
+            return logID.ToString();
+        }
+
+        public bool LogCreateSalesOrder(string logID, string userID, string orderID)
+        {
+            DateTime Date = DateTime.Now;
+            string Desc = "Create Order #" + orderID;
+            Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string sql = "INSERT INTO log VALUES(@logID, @Desc, @userID, 1, @Date)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@Desc", Desc);
+            cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@Date", Date);
+            if (cmd.ExecuteNonQuery() > 0)
+                return true;
+            else
+                return false;
+        }
+
+
+
+
     }
 
 }

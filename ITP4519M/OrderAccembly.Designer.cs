@@ -179,7 +179,6 @@ namespace ITP4519M
             // 
             // orderItemdata
             // 
-            orderItemdata.RowHeadersVisible = false;
             orderItemdata.AllowUserToAddRows = false;
             orderItemdata.AllowUserToDeleteRows = false;
             orderItemdata.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -188,6 +187,7 @@ namespace ITP4519M
             orderItemdata.Location = new Point(79, 834);
             orderItemdata.Margin = new Padding(3, 7, 3, 7);
             orderItemdata.Name = "orderItemdata";
+            orderItemdata.RowHeadersVisible = false;
             orderItemdata.RowHeadersWidth = 51;
             orderItemdata.RowTemplate.Height = 24;
             orderItemdata.Size = new Size(776, 248);
@@ -233,7 +233,7 @@ namespace ITP4519M
             // saveOrderbtn
             // 
             saveOrderbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            saveOrderbtn.Location = new Point(731, 1093);
+            saveOrderbtn.Location = new Point(731, 1102);
             saveOrderbtn.Margin = new Padding(3, 4, 3, 4);
             saveOrderbtn.Name = "saveOrderbtn";
             saveOrderbtn.Size = new Size(171, 53);
@@ -244,7 +244,6 @@ namespace ITP4519M
             // 
             // orderAccemblyOrderItemdata
             // 
-            orderAccemblyOrderItemdata.RowHeadersVisible = false;
             orderAccemblyOrderItemdata.AllowUserToAddRows = false;
             orderAccemblyOrderItemdata.AllowUserToDeleteRows = false;
             orderAccemblyOrderItemdata.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -254,9 +253,10 @@ namespace ITP4519M
             orderAccemblyOrderItemdata.Location = new Point(79, 461);
             orderAccemblyOrderItemdata.Margin = new Padding(3, 7, 3, 7);
             orderAccemblyOrderItemdata.Name = "orderAccemblyOrderItemdata";
+            orderAccemblyOrderItemdata.RowHeadersVisible = false;
             orderAccemblyOrderItemdata.RowHeadersWidth = 51;
             orderAccemblyOrderItemdata.RowTemplate.Height = 24;
-            orderAccemblyOrderItemdata.Size = new Size(776, 268);
+            orderAccemblyOrderItemdata.Size = new Size(776, 279);
             orderAccemblyOrderItemdata.TabIndex = 72;
             orderAccemblyOrderItemdata.CellDoubleClick += orderAccemblyOrderItemdata_CellDoubleClick;
             // 
@@ -307,13 +307,14 @@ namespace ITP4519M
             // 
             // checkboxSelectedbtn
             // 
-            checkboxSelectedbtn.Location = new Point(401, 740);
+            checkboxSelectedbtn.BackColor = Color.LimeGreen;
+            checkboxSelectedbtn.Location = new Point(378, 741);
             checkboxSelectedbtn.Margin = new Padding(3, 4, 3, 4);
             checkboxSelectedbtn.Name = "checkboxSelectedbtn";
             checkboxSelectedbtn.Size = new Size(133, 61);
             checkboxSelectedbtn.TabIndex = 77;
-            checkboxSelectedbtn.Text = "Assgin";
-            checkboxSelectedbtn.UseVisualStyleBackColor = true;
+            checkboxSelectedbtn.Text = "Assgin ↓";
+            checkboxSelectedbtn.UseVisualStyleBackColor = false;
             checkboxSelectedbtn.Click += checkboxSelectedbtn_Click;
             // 
             // OrderAccembly

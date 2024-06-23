@@ -99,6 +99,7 @@ namespace ITP4519M
             assistant = new TypeAssistant();
             assistant.Idled += assistant_Idled;
 
+
             switch (_mode)
             {
                 case OperationMode.View:
@@ -377,5 +378,6 @@ namespace ITP4519M
         {
 
         }
+            
     }
 }

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 using System.Linq;
 using System.Text;
@@ -45,7 +46,36 @@ namespace ITP4519M
 
         private void OrderAccembly_Load(object sender, EventArgs e)
         {
-            
+
+            // Define the points in the polygonal path for a downward arrow with reduced width and height.
+            Point[] pts = {
+        new Point(30, 10),  // Top left corner
+        new Point(70, 10),  // Top right corner
+        new Point(70, 40),  // Right point of the arrow's base
+        new Point(90, 40),  // Right point of the arrow's head
+        new Point(50, 90),  // Bottom point of the arrow
+        new Point(10, 40),  // Left point of the arrow's head
+        new Point(30, 40)   // Left point of the arrow's base
+    };
+
+            // Make the GraphicsPath.
+            GraphicsPath polygon_path = new GraphicsPath(FillMode.Winding);
+            polygon_path.AddPolygon(pts);
+
+            // Convert the GraphicsPath into a Region.
+            Region polygon_region = new Region(polygon_path);
+
+            // Constrain the button to the region.
+            checkboxSelectedbtn.Region = polygon_region;
+
+            // Make the button big enough to hold the whole region.
+            checkboxSelectedbtn.SetBounds(
+            checkboxSelectedbtn.Location.X,
+            checkboxSelectedbtn.Location.Y,
+                pts[3].X + 5, // Width based on the rightmost point
+                pts[4].Y + 5  // Height based on the lowest point
+            );
+
             switch (_mode)
             {
                 case OperationMode.View:
@@ -81,6 +111,9 @@ namespace ITP4519M
                 case OperationMode.Edit:
                     // SetReadOnly(true);
                     break;
+
+
+            
             }
         }
 
@@ -310,11 +343,11 @@ namespace ITP4519M
 
         private void orderItemdata_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-                
-                //int.Parse(orderItemdata["FollowQuantity", e.RowIndex].Value.ToString());
-                int quantityFollow = int.Parse(programMethod.getOrderItemFollowQuantity(orderID, orderItemdata.Rows[e.RowIndex].Cells[0].Value.ToString()));
-                int result = quantityFollow - int.Parse(orderItemdata.Rows[e.RowIndex].Cells[2].Value.ToString());
-                orderItemdata.Rows[e.RowIndex].Cells[3].Value = result.ToString();
+
+            //int.Parse(orderItemdata["FollowQuantity", e.RowIndex].Value.ToString());
+            int quantityFollow = int.Parse(programMethod.getOrderItemFollowQuantity(orderID, orderItemdata.Rows[e.RowIndex].Cells[0].Value.ToString()));
+            int result = quantityFollow - int.Parse(orderItemdata.Rows[e.RowIndex].Cells[2].Value.ToString());
+            orderItemdata.Rows[e.RowIndex].Cells[3].Value = result.ToString();
         }
 
         private void orderAccemblyOrderItemdata_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -329,7 +362,7 @@ namespace ITP4519M
 
         private void checkboxSelectedbtn_Click(object sender, EventArgs e)
         {
-            
+
             for (int i = 0; i < orderAccemblyOrderItemdata.Rows.Count; i++)
             {
                 // Refresh cause uncheck box
@@ -352,7 +385,7 @@ namespace ITP4519M
                     int count = 0;
                     for (int j = 1; j < orderItemdata.Rows.Count; j++)
                     {
-                      //  MessageBox.Show(j.ToString());
+                        //  MessageBox.Show(j.ToString());
                         if (i == j)
                             continue;
                         if (orderItemdata.Rows[i].Cells[0].Value.ToString() == orderItemdata.Rows[j].Cells[0].Value.ToString())
@@ -368,5 +401,6 @@ namespace ITP4519M
             }
 
         }
+
     }
 }

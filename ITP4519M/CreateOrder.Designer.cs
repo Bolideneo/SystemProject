@@ -59,6 +59,8 @@ namespace ITP4519M
             phoneNumBox = new TextBox();
             label8 = new Label();
             dealerCompanyBox = new TextBox();
+            label14 = new Label();
+            label13 = new Label();
             ordertotallbl = new Label();
             ((System.ComponentModel.ISupportInitialize)productOfOrderdata).BeginInit();
             panel1.SuspendLayout();
@@ -109,7 +111,7 @@ namespace ITP4519M
             productOfOrderdata.AllowUserToDeleteRows = false;
             productOfOrderdata.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             productOfOrderdata.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            productOfOrderdata.Location = new Point(11, 523);
+            productOfOrderdata.Location = new Point(9, 495);
             productOfOrderdata.Margin = new Padding(3, 5, 3, 5);
             productOfOrderdata.Name = "productOfOrderdata";
             productOfOrderdata.RowHeadersWidth = 51;
@@ -162,12 +164,12 @@ namespace ITP4519M
             // 
             productSearchbox.BackColor = SystemColors.ButtonFace;
             productSearchbox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            productSearchbox.Location = new Point(25, 451);
+            productSearchbox.Location = new Point(190, 456);
             productSearchbox.Margin = new Padding(6, 7, 6, 7);
             productSearchbox.MaximumSize = new Size(300, 60);
             productSearchbox.Name = "productSearchbox";
             productSearchbox.PlaceholderText = "Search Product ID or Name";
-            productSearchbox.Size = new Size(255, 27);
+            productSearchbox.Size = new Size(300, 27);
             productSearchbox.TabIndex = 48;
             productSearchbox.TextChanged += productSearchbox_TextChanged;
             productSearchbox.KeyDown += productSearchbox_KeyDown;
@@ -213,7 +215,6 @@ namespace ITP4519M
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = (Bitmap)Properties.Resources.ResourceManager.GetObject("red_Alert");
             pictureBox1.Location = new Point(231, 5);
             pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
@@ -252,7 +253,7 @@ namespace ITP4519M
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Red;
-            label7.Location = new Point(326, 451);
+            label7.Location = new Point(418, 400);
             label7.Name = "label7";
             label7.Size = new Size(358, 23);
             label7.TabIndex = 72;
@@ -263,7 +264,7 @@ namespace ITP4519M
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Red;
-            label2.Location = new Point(326, 477);
+            label2.Location = new Point(418, 426);
             label2.Name = "label2";
             label2.Size = new Size(345, 23);
             label2.TabIndex = 71;
@@ -276,7 +277,6 @@ namespace ITP4519M
             orderDateBox.Name = "orderDateBox";
             orderDateBox.Size = new Size(250, 27);
             orderDateBox.TabIndex = 70;
-            orderDateBox.Visible = false;
             // 
             // dealerIDBox
             // 
@@ -329,7 +329,6 @@ namespace ITP4519M
             label12.Size = new Size(179, 20);
             label12.TabIndex = 65;
             label12.Text = "Order Complete Date :";
-            label12.Visible = false;
             // 
             // dealerNameBox
             // 
@@ -390,6 +389,28 @@ namespace ITP4519M
             dealerCompanyBox.Name = "dealerCompanyBox";
             dealerCompanyBox.Size = new Size(249, 27);
             dealerCompanyBox.TabIndex = 45;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label14.Location = new Point(55, 69);
+            label14.Margin = new Padding(5, 0, 5, 0);
+            label14.Name = "label14";
+            label14.Size = new Size(91, 20);
+            label14.TabIndex = 79;
+            label14.Text = "Dealer ID :";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label13.Location = new Point(136, 48);
+            label13.Margin = new Padding(5, 0, 5, 0);
+            label13.Name = "label13";
+            label13.Size = new Size(91, 20);
+            label13.TabIndex = 78;
+            label13.Text = "Dealer ID :";
             // 
             // ordertotallbl
             // 
@@ -471,5 +492,8 @@ namespace ITP4519M
         private TextBox phoneNumBox;
         private Label label8;
         private TextBox dealerCompanyBox;
+        private SplitContainer splitContainer1;
+        private Label label14;
+        private Label label13;
     }
 }
