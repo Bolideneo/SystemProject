@@ -45,6 +45,7 @@
             suppliedProductData = new DataGridView();
             label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)suppliedProductData).BeginInit();
+            stockcheckColumn = new DataGridViewCheckBoxColumn();
             SuspendLayout();
             // 
             // label1
@@ -177,7 +178,7 @@
             supplierAddressBox.Location = new Point(13, 365);
             supplierAddressBox.Margin = new Padding(5, 4, 5, 4);
             supplierAddressBox.Name = "supplierAddressBox";
-            supplierAddressBox.Size = new Size(410, 27);
+            supplierAddressBox.Size = new Size(531, 27);
             supplierAddressBox.TabIndex = 89;
             // 
             // label2
@@ -202,12 +203,15 @@
             // 
             // suppliedProductData
             // 
+            suppliedProductData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             suppliedProductData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            suppliedProductData.Columns.AddRange(new DataGridViewColumn[] { stockcheckColumn });
             suppliedProductData.Location = new Point(13, 447);
             suppliedProductData.Name = "suppliedProductData";
             suppliedProductData.RowHeadersWidth = 51;
             suppliedProductData.Size = new Size(531, 195);
             suppliedProductData.TabIndex = 92;
+            suppliedProductData.CellContentClick += suppliedProductData_CellContentClick;
             // 
             // label3
             // 
@@ -219,6 +223,13 @@
             label3.Size = new Size(161, 24);
             label3.TabIndex = 93;
             label3.Text = "Products supplied";
+
+            // stockcheckColumn
+            // 
+            stockcheckColumn.FillWeight = 50F;
+            stockcheckColumn.HeaderText = "Select";
+            stockcheckColumn.MinimumWidth = 40;
+            stockcheckColumn.Name = "stockcheckColumn";
             // 
             // SupplierContactForm
             // 
@@ -271,5 +282,6 @@
         private TextBox supplierContactBox;
         private DataGridView suppliedProductData;
         private Label label3;
+        private DataGridViewCheckBoxColumn stockcheckColumn;
     }
 }

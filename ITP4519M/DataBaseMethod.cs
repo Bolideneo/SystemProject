@@ -21,6 +21,8 @@ using Microsoft.VisualBasic.Devices;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using Org.BouncyCastle.Asn1.Ocsp;
 using System.Drawing.Printing;
+using Org.BouncyCastle.Asn1.X509;
+using System.Drawing;
 //using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
@@ -361,6 +363,8 @@ namespace ITP4519M
             return false;
         }
 
+
+
         //enable a new user account
         public bool enableUser(string userID)
         {
@@ -444,18 +448,19 @@ namespace ITP4519M
 
         public DataTable GetSupplierCurrentRecords(int page, int pageSize)
         {
-            string sql = "SELECT * FROM supplier ORDER BY SupplierID LIMIT @PgSize";
+            string sql = "SELECT s.SupplierID, s.SupplierCompanyName, s.SupplierContactPerson, s.SupplierPhoneNum, s.SupplierEmail, s.SupplierAddress, p.ProductName FROM supplier s LEFT JOIN supplierProducts sp ON s.SupplierID = sp.SupplierID LEFT JOIN product p ON sp.ProductID = p.ProductID ORDER BY s.SupplierID LIMIT @PgSize";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
             return dataTable;
+
         }
 
         public DataTable GetSupplierCurrentRecords2(int page, int pageSize)
         {
-            string sql = "SELECT * FROM (SELECT * FROM supplier ORDER BY SupplierID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY SupplierID";
+            string sql = "SELECT* FROM(SELECT s.SupplierID, s.SupplierCompanyName, s.SupplierContactPerson, s.SupplierPhoneNum, s.SupplierEmail, s.SupplierAddress, p.ProductName FROM supplier s LEFT JOIN supplierProducts sp ON s.SupplierID = sp.SupplierID LEFT JOIN product p ON sp.ProductID = p.ProductID ORDER BY s.SupplierID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY SupplierID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);
@@ -696,6 +701,7 @@ namespace ITP4519M
             }
             return productDetails;
         }
+
 
 
         public class ProductDetails
@@ -1026,48 +1032,77 @@ namespace ITP4519M
             return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
         }
 
-        public bool createSupplier(string SupplierID, string Suppliername, string SupplierMailBox, string SupplierPhoneNumBox, string SupplierAddressBox)
+        public bool createSupplier(string SupplierID, string SupplierCompanyName, string SupplierMailBox, string SupplierPhoneNumBox, string SupplierAddressBox, string SupplierContactNameBox, DataTable GetProducts)
         {
+
+            
             try
             {
                 using (var connection = ServerConnect())
                 {
 
-                    if (SupplierExistsInDatabase(connection, "SupplierName", Suppliername))
+            
+                    try
                     {
-                        MessageBox.Show("The supplier name already exists. Please choose a different name.");
-                        return false;
-                    }
+                        if (SupplierExistsInDatabase(connection, "SupplierCompanyName", SupplierCompanyName))
+                        {
+                            MessageBox.Show("The supplier name already exists. Please choose a different name.");
+                            return false;
+                        }
 
-                    if (SupplierExistsInDatabase(connection, "SupplierEmail", SupplierMailBox))
-                    {
-                        MessageBox.Show("The supplier email already exists. Please use a different email address.");
-                        return false;
-                    }
+                        if (SupplierExistsInDatabase(connection, "SupplierEmail", SupplierMailBox))
+                        {
+                            MessageBox.Show("The supplier email already exists. Please use a different email address.");
+                            return false;
+                        }
 
-                    if (SupplierExistsInDatabase(connection, "SupplierPhoneNum", SupplierPhoneNumBox))
-                    {
-                        MessageBox.Show("The supplier phone number already exists. Please use a different phone number.");
-                        return false;
-                    }
+                        if (SupplierExistsInDatabase(connection, "SupplierPhoneNum", SupplierPhoneNumBox))
+                        {
+                            MessageBox.Show("The supplier phone number already exists. Please use a different phone number.");
+                            return false;
+                        }
 
-                    string sql = "INSERT INTO Supplier(SupplierID, SupplierName, SupplierPhoneNum, SupplierEmail) VALUES(@SupplierID, @SupplierName, @SupplierPhoneNum, @SupplierEmail)";
-                    MySqlCommand cmd = new MySqlCommand(sql, connection);
-                    cmd.Parameters.AddWithValue("@SupplierID", SupplierID);
-                    cmd.Parameters.AddWithValue("@SupplierName", Suppliername);
-                    cmd.Parameters.AddWithValue("@SupplierEmail", SupplierMailBox);
-                    cmd.Parameters.AddWithValue("@SupplierPhoneNum", SupplierPhoneNumBox);
+                        string sql = "INSERT INTO supplier(SupplierID, SupplierCompanyName, SupplierContactPerson, SupplierPhoneNum, SupplierEmail, SupplierAddress ) VALUES(@SupplierID, @SupplierCompanyName, @supplierContactPerson, @SupplierPhoneNum, @SupplierEmail, @SupplierAddress)";
+                        MySqlCommand cmd = new MySqlCommand(sql, connection);
+                        cmd.Parameters.AddWithValue("@SupplierID", SupplierID);
+                        cmd.Parameters.AddWithValue("@SupplierCompanyName", SupplierCompanyName);
+                        cmd.Parameters.AddWithValue("@SupplierContactPerson", SupplierContactNameBox);
+                        cmd.Parameters.AddWithValue("@SupplierEmail", SupplierMailBox);
+                        cmd.Parameters.AddWithValue("@SupplierPhoneNum", SupplierPhoneNumBox);
+                        cmd.Parameters.AddWithValue("@SupplierAddress", SupplierAddressBox);
 
-                    if (cmd.ExecuteNonQuery() > 0)
+                        cmd.ExecuteNonQuery();
+                        if (GetProducts != null && GetProducts.Rows.Count > 0)
+                        {
+                  
+                            foreach (DataRow row in GetProducts.Rows)
+                            {
+                                string productID = row["ProductID"].ToString();
+                                string productSql = "INSERT INTO supplierProducts (SupplierID, ProductID) VALUES (@SupplierID, @ProductID)";
+                                MySqlCommand productCmd = new MySqlCommand(productSql, connection);
+                                productCmd.Parameters.AddWithValue("@SupplierID", SupplierID);
+                                productCmd.Parameters.AddWithValue("@ProductID", productID);
+                                productCmd.ExecuteNonQuery();
+                            }
+                        }
+
+
                         return true;
+                    }
+                    catch (MySql.Data.MySqlClient.MySqlException ex)
+                    {
+     
+                        Console.WriteLine("An exception occurred: " + ex.Message);
+                    }
                 }
             }
-            catch (MySql.Data.MySqlClient.MySqlException ex)
+            catch (Exception ex)
             {
                 Console.WriteLine("An exception occurred: " + ex.Message);
             }
             return false;
         }
+
 
         public bool updateSupplierInfo(string supplierid, String supplierName, string supplierMail, string supplierPhoneNum, string supplierAddress)
         {
@@ -1697,6 +1732,8 @@ namespace ITP4519M
             return rowCount;
         }
 
+
+
         public string getNewUserName()
         {
             string sql = "SELECT UserName FROM staff WHERE UserID = (SELECT MAX(UserID) FROM staff)";
@@ -2077,6 +2114,18 @@ namespace ITP4519M
             adat.Fill(dataTable);
             return dataTable;
         }
+
+        public DataTable GetProducts(string productID)
+        {
+            string sql = "SELECT * FROM product WHERE ProductID = @productID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect()); ;
+            cmd.Parameters.AddWithValue("@productID", productID);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
 
     }
 
