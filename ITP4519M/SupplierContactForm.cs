@@ -148,19 +148,30 @@ namespace ITP4519M
 
         private void suppliedProductData_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
             if (e.RowIndex >= 0 && e.ColumnIndex == 0)
             {
+                // 切换点击单元格的值
+                bool currentValue = Convert.ToBoolean(this.suppliedProductData.Rows[e.RowIndex].Cells["stockcheckColumn"].Value);
+                this.suppliedProductData.Rows[e.RowIndex].Cells["stockcheckColumn"].Value = !currentValue;
+            }
+        }
 
-                this.suppliedProductData.Rows[e.RowIndex].Cells["stockcheckColumn"].Value = true;
-                stockindex = e.RowIndex;
-                DataGridViewRow selectRow = this.suppliedProductData.Rows[stockindex];
-                productID = selectRow.Cells[1].Value.ToString();
+        private List<string> GetSelectedProductIDs()
+        {
+            List<string> selectedProductIDs = new List<string>();
 
-                //  dealerID = selectRow.Cells[2].Value.ToString();
+            foreach (DataGridViewRow row in suppliedProductData.Rows)
+            {
+                if (Convert.ToBoolean(row.Cells["stockcheckColumn"].Value))
+                {
+                    string productID = row.Cells[1].Value.ToString();
+                    selectedProductIDs.Add(productID);
 
+  
+                }
             }
 
+            return selectedProductIDs;
         }
 
         private void createSupplierBtn_Click(object sender, EventArgs e)
@@ -170,15 +181,19 @@ namespace ITP4519M
             string supplierPhoneNum = SupplierPhoneNumBox.Text.Trim();
             string supplierAddress = supplierAddressBox.Text.Trim();
             string supplierContactName = supplierContactBox.Text.Trim();
-            string productID = this.productID;
-            DataTable products = programMethod.GetProducts(productID);
+            List<string> selectedProductIDs = GetSelectedProductIDs();
+            if (selectedProductIDs.Count == 0)
+            {
+             
+                MessageBox.Show("No products selected.");
+                return;
+            }
+            DataTable products = programMethod.GetProducts(selectedProductIDs);
             if (products == null || products.Rows.Count == 0)
             {
+        
                 MessageBox.Show("No products selected.");
-            }
-            else
-            {
-                MessageBox.Show($"Number of products selected: {products.Rows.Count}");
+                return;
             }
             if (string.IsNullOrEmpty(supplierCompanyName))
             {

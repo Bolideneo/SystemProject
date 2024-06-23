@@ -1667,9 +1667,9 @@ namespace ProgramMethod
             [DllImport("user32.dll", EntryPoint = "SetWindowPos")]
             public static extern IntPtr SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int Y, int cx, int cy, int wFlags);
         }
-        public DataTable GetProducts(string productid)
+        public DataTable GetProducts(List<string> productIDs)
         {
-            return dataBaseMethod.GetProducts(productid);
+            return dataBaseMethod.GetProducts(productIDs);
         }
 
 

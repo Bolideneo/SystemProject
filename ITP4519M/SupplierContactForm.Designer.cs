@@ -43,9 +43,9 @@
             label2 = new Label();
             supplierContactBox = new TextBox();
             suppliedProductData = new DataGridView();
+            stockcheckColumn = new DataGridViewCheckBoxColumn();
             label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)suppliedProductData).BeginInit();
-            stockcheckColumn = new DataGridViewCheckBoxColumn();
             SuspendLayout();
             // 
             // label1
@@ -209,9 +209,17 @@
             suppliedProductData.Location = new Point(13, 447);
             suppliedProductData.Name = "suppliedProductData";
             suppliedProductData.RowHeadersWidth = 51;
+            suppliedProductData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             suppliedProductData.Size = new Size(531, 195);
             suppliedProductData.TabIndex = 92;
             suppliedProductData.CellContentClick += suppliedProductData_CellContentClick;
+            // 
+            // stockcheckColumn
+            // 
+            stockcheckColumn.FillWeight = 50F;
+            stockcheckColumn.HeaderText = "Select";
+            stockcheckColumn.MinimumWidth = 40;
+            stockcheckColumn.Name = "stockcheckColumn";
             // 
             // label3
             // 
@@ -223,13 +231,6 @@
             label3.Size = new Size(161, 24);
             label3.TabIndex = 93;
             label3.Text = "Products supplied";
-
-            // stockcheckColumn
-            // 
-            stockcheckColumn.FillWeight = 50F;
-            stockcheckColumn.HeaderText = "Select";
-            stockcheckColumn.MinimumWidth = 40;
-            stockcheckColumn.Name = "stockcheckColumn";
             // 
             // SupplierContactForm
             // 

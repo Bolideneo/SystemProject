@@ -2114,14 +2114,27 @@ namespace ITP4519M
             return dataTable;
         }
 
-        public DataTable GetProducts(string productID)
+        public DataTable GetProducts(List<string> productIDs)
         {
-            string sql = "SELECT * FROM product WHERE ProductID = @productID";
-            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect()); ;
-            cmd.Parameters.AddWithValue("@productID", productID);
+            //    string sql = "SELECT * FROM product WHERE ProductID = @productID";
+            //   MySqlCommand cmd = new MySqlCommand(sql, ServerConnect()); ;
+            //    cmd.Parameters.AddWithValue("@productID", productIDs);
+            //    MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            //   DataTable dataTable = new DataTable();
+            //    adat.Fill(dataTable);
+            //    return dataTable;
+            string sql = $"SELECT * FROM product WHERE ProductID IN ({string.Join(",", productIDs.Select(id => $"'{id}'"))})";
+            MessageBox.Show("test");
+            // 创建 MySQL 命令
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+
+            // 创建数据适配器和数据表
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
+
+            // 填充数据表
             adat.Fill(dataTable);
+
             return dataTable;
         }
 
