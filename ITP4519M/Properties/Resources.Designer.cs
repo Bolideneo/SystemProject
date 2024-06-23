@@ -119,6 +119,15 @@ namespace ITP4519M.Properties {
             }
         }
 
+        internal static System.Drawing.Bitmap red_alert
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("red_alert", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
         internal static System.Drawing.Bitmap dashboard_background
         {
             get
