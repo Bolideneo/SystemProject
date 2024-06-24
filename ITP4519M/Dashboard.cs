@@ -32,12 +32,12 @@ namespace ITP4519M
         View,
         New,
         Edit,
-        Disable
     }
     public partial class Dashboard : Form
     {
 
-        private ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
+        private ProgramMethod.ProgramMethod programMethod;
+
         //Account datagrid paging
         private int PgSize = 10;
         private int CurrentPageIndex = 1;
@@ -85,6 +85,8 @@ namespace ITP4519M
         private Button currentButton;
         TypeAssistant assistant;
         private string userID;
+        private string LoginUserID;
+        private string LoginUserName;
         private string productID;
         private string orderID;
         private string grnID;
@@ -133,7 +135,6 @@ namespace ITP4519M
             InitializeComponent();
             ShowPanel(dashboardpnl);
             closebtn.BringToFront();
-            this.StartPosition = FormStartPosition.CenterParent;
         }
 
 
@@ -152,14 +153,15 @@ namespace ITP4519M
         {
             DoubleBuffered = true;
             programMethod = new ProgramMethod.ProgramMethod();
+            programMethod.CurrentUserIDAndName(LoginUserID, LoginUserName);
             closebtn.BringToFront();
 
-            //if (Owner != null)
-            //    Location = new Point(Owner.Location.X + Owner.Width / 2 - Width / 2,
-            //        Owner.Location.Y + Owner.Height / 2 - Height / 2);
+            if (Owner != null)
+                Location = new Point(Owner.Location.X + Owner.Width / 2 - Width / 2,
+                    Owner.Location.Y + Owner.Height / 2 - Height / 2);
         }
 
-      
+
         public void ButtonLocation(string departmentID, string title)
         {
             switch (departmentID)
@@ -300,34 +302,6 @@ namespace ITP4519M
 
         }
 
-
-        //// Round Corner TextBox
-        //class round : TextBox
-        //{
-        //    [System.Runtime.InteropServices.DllImport("gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-        //    private static extern IntPtr CreateRoundRectRgn
-        //    (
-        //        int nLeftRect, // X-coordinate of upper-left corner or padding at start
-        //        int nTopRect,// Y-coordinate of upper-left corner or padding at the top of the textbox
-        //        int nRightRect, // X-coordinate of lower-right corner or Width of the object
-        //        int nBottomRect,// Y-coordinate of lower-right corner or Height of the object
-        //                        //RADIUS, how round do you want it to be?
-        //        int nheightRect, //height of ellipse 
-        //        int nweightRect //width of ellipse
-        //    );
-
-
-
-        //    protected override void OnResize(EventArgs e)
-        //    {
-        //        base.OnResize(e);
-        //        this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(2, 3, this.Width, this.Height, 15, 15)); //play with these values till you are happy
-        //    }
-
-        //}
-
-
-
         public class TypeAssistant
         {
             public event EventHandler Idled = delegate { };
@@ -448,7 +422,7 @@ namespace ITP4519M
         {
             this.Hide();
 
-            // Show the login form
+            programMethod.LogUserLogOut(LoginUserID, LoginUserName);
             Login loginForm = new Login();
             loginForm.Show(this);
 
@@ -578,6 +552,7 @@ namespace ITP4519M
         private void newOrderbtn_Click(object sender, EventArgs e)
         {
             CreateOrder createOrder = new CreateOrder(OperationMode.New);
+            createOrder.CurrentUserIDAndName(LoginUserID, LoginUserName);
             createOrder.ShowDialog();
         }
 
@@ -641,6 +616,7 @@ namespace ITP4519M
             lastClickedButton.ForeColor = Color.Gray;
 
             ShowPanel(logpnl);
+            auditLogdata.DataSource = programMethod.overallLoginfo();
         }
 
         private void namelbl_Click(object sender, EventArgs e)
@@ -983,10 +959,12 @@ namespace ITP4519M
             }
         }
 
-        public void currentUserDisplayName(string displayName, string department)
+        public void currentUserDisplayName(string displayName, string department, string userID, string userName)
         {
             namelbl.Text = displayName;
             usertypelbl.Text = department;
+            this.LoginUserID = userID;
+            this.LoginUserName = userName;
         }
 
         public void currentUserDepartment(string department)
@@ -1449,7 +1427,7 @@ namespace ITP4519M
                     POTotalPage = rowCount / InvoicePgSize;
                     if (rowCount % InvoicePgSize > 0)
                         InvoiceTotalPage += 1;
-                 break;
+                    break;
 
             }
         }
@@ -1473,7 +1451,7 @@ namespace ITP4519M
             }
             SetRowHeights(userData, PgSize);
 
-            if(CurrentPageIndex != TotalPage)
+            if (CurrentPageIndex != TotalPage)
             {
                 accountIndexlbl.Text = (PgSize * CurrentPageIndex - (PgSize - 1)) + " - " + (PgSize * CurrentPageIndex) + " of " + AccountRowCount;
             }
@@ -1578,7 +1556,7 @@ namespace ITP4519M
 
         private void PObtn_Click(object sender, EventArgs e)
         {
-           
+
             if (lastClickedButton != null)
             {
                 lastClickedButton.ForeColor = Color.White;
@@ -1631,7 +1609,7 @@ namespace ITP4519M
                 this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockPageIndex, StockPgSize);
                 SetRowHeights(stockData, StockPgSize);
 
-                if(StockPageIndex != StockTotalPage)
+                if (StockPageIndex != StockTotalPage)
                 {
                     StockpageNumlbl.Text = (StockPgSize * StockPageIndex - (StockPgSize - 1)) + "-" + (StockPgSize * StockPageIndex) + " of " + StockRowCount;
                 }
@@ -1691,7 +1669,7 @@ namespace ITP4519M
                 SetRowHeights(outstandingdata, outstandingPgSize);
             }
 
-            if(outstandingPageIndex != outstandingTotalPage)
+            if (outstandingPageIndex != outstandingTotalPage)
             {
                 oustandingPagelbl.Text = (outstandingPgSize * outstandingPageIndex - (outstandingPgSize - 1)) + " - " + (outstandingPgSize * outstandingPageIndex) + " of " + OutstandingRowCount;
             }
@@ -1699,7 +1677,7 @@ namespace ITP4519M
             {
                 oustandingPagelbl.Text = (outstandingPgSize * outstandingPageIndex - (outstandingPgSize - 1)) + " - " + OutstandingRowCount + " of " + OutstandingRowCount;
             }
-            
+
         }
 
         private void outstandingPrevPagebtn_Click(object sender, EventArgs e)
@@ -1950,142 +1928,20 @@ namespace ITP4519M
             ShowPanel(settingpnl);
         }
 
+        private void CancelOrderbtn_Click(object sender, EventArgs e)
+        {
+            DialogResult mesBox = MessageBox.Show("Do you want to delete #" + orderID + " ?", "Cancel Order", MessageBoxButtons.YesNo);
+            switch (mesBox)
+            {
+                case DialogResult.Yes:
+                    if (programMethod.cancelOrder(orderID))
+                        ShowPanel(orderpnl);
+                    break;
+                case DialogResult.No:
+                    break;
+            }
+        }
 
-
-
-
-
-        //    private void PopulatePager(int recordCount, int currentPage)
-        //    {
-        //        List<Page> pages = new List<Page>();
-        //        int startIndex, endIndex;
-        //        int pagerSpan = 10;
-
-        //        //Calculate the Start and End Index of pages to be displayed.
-        //        double dblPageCount = (double)((decimal)recordCount / Convert.ToDecimal(PageSize));
-        //        int pageCount = (int)Math.Ceiling(dblPageCount);
-        //        //startIndex = currentPage > 1 && currentPage + pagerSpan - 1 < pagerSpan ? currentPage : 1;
-        //        //endIndex = pageCount > pagerSpan ? pagerSpan : pageCount;
-        //        startIndex = currentPage > pagerSpan / 2 && currentPage + pagerSpan / 2 < pageCount ? currentPage - pagerSpan / 2 : 1;
-        //        endIndex = Math.Min(startIndex + pagerSpan - 1, pageCount);
-        //        if (currentPage > pagerSpan % 2)
-        //        {
-        //            //if (currentPage == 2)
-        //            //{
-        //            //    endIndex = 2;
-        //            //}
-        //            //else
-        //            //{
-        //            //    endIndex = currentPage + 2;
-        //            //}
-        //        }
-        //        else
-        //        {
-        //            endIndex = (pagerSpan - currentPage) + 1;
-        //        }
-
-        //        if (endIndex - (pagerSpan - 1) > startIndex)
-        //        {
-        //            startIndex = endIndex - (pagerSpan - 1);
-        //        }
-
-        //        if (endIndex > pageCount)
-        //        {
-        //            endIndex = pageCount;
-        //            startIndex = ((endIndex - pagerSpan) + 1) > 0 ? (endIndex - pagerSpan) + 1 : 1;
-        //        }
-
-        //        //Add the First Page Button.
-        //        if (currentPage > 1)
-        //        {
-        //            pages.Add(new Page { Text = "First", Value = "1" });
-        //        }
-
-        //        //Add the Previous Button.
-        //        if (currentPage > 1)
-        //        {
-        //            pages.Add(new Page { Text = "<<", Value = (currentPage - 1).ToString() });
-        //        }
-
-        //        for (int i = startIndex; i < endIndex; i++)
-        //        {
-        //            pages.Add(new Page { Text = i.ToString(), Value = i.ToString(), Selected = i == currentPage });
-        //        }
-
-        //        //Add the Next Button.
-        //        if (currentPage < pageCount)
-        //        {
-        //            pages.Add(new Page { Text = ">>", Value = (currentPage + 1).ToString() });
-        //        }
-
-        //        //Add the Last Button.
-        //        if (currentPage != pageCount)
-        //        {
-        //            pages.Add(new Page { Text = "Last", Value = pageCount.ToString() });
-        //        }
-
-        //        //Clear existing Pager Buttons.
-        //        accountPaginationpnl.Controls.Clear();
-
-        //        //Loop and add Buttons for Pager.
-        //        int count = 0;
-        //        foreach (Page page in pages)
-        //        {
-        //            ProgramMethod.ProgramMethod.RoundedButton btnPage = new ProgramMethod.ProgramMethod.RoundedButton();
-        //            btnPage.Location = new System.Drawing.Point(60 * count, 5);
-        //            btnPage.Size = new System.Drawing.Size(63, 33);
-        //            btnPage.Name = page.Value;
-        //            btnPage.Text = page.Text;
-        //            btnPage.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        //           // btnPage.Enabled = !page.Selected;
-        //            btnPage.BackColor = SystemColors.Menu;
-        //            btnPage.BackColor2 = Color.White;
-        //            btnPage.BorderColor = Color.Tomato;
-        //            btnPage.BorderSize = 2;
-        //            btnPage.ButtonBorderColor = Color.Gray;
-        //            btnPage.ButtonHighlightColor = Color.Empty;
-        //            btnPage.ButtonHighlightColor2 = Color.Empty;
-        //            btnPage.ButtonHighlightForeColor = Color.Black;
-        //            btnPage.ButtonPressedColor = Color.White;
-        //            btnPage.ButtonPressedColor2 = Color.Empty;
-        //            btnPage.ButtonPressedForeColor = Color.Gray;
-        //            btnPage.ButtonRoundRadius = 15;
-        //            btnPage.Click += new System.EventHandler(this.Page_Click);
-        //            accountPaginationpnl.Controls.Add(btnPage);
-        //            count++;
-        //        }
-        //    }
-
-        //    private void Page_Click(object sender, EventArgs e)
-        //    {
-        //        ProgramMethod.ProgramMethod.RoundedButton btnPager = (sender as ProgramMethod.ProgramMethod.RoundedButton);
-        //        this.BindGrid(int.Parse(btnPager.Name));
-        //    }
-
-        //    public class Page
-        //    {
-        //        public string Text { get; set; }
-        //        public string Value { get; set; }
-        //        public bool Selected { get; set; }
-        //    }
-
-
-
-
-
-
-        //    private void BindGrid(int pageIndex)
-        //    {
-        //        this.userData.DataSource = programMethod.GetAccountCurrentRecords(pageIndex, PgSize2);
-        //        int rowCount = programMethod.getAccountRowCount();
-        //        this.PopulatePager(rowCount, CurrentPageIndex2);
-        //    }
-
-        //    private int PgSize2 = 10;
-        //    private int CurrentPageIndex2 = 1;
-        //    private int TotalPage2 = 0;
-
-        //}
     }
 }
     

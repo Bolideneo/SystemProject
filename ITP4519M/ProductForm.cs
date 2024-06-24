@@ -14,6 +14,7 @@ using ProgramMethod;
 using MySql.Data.MySqlClient;
 using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 using static System.ComponentModel.Design.ObjectSelectorEditor;
+using Org.BouncyCastle.Crypto.Paddings;
 
 namespace ITP4519M
 {
@@ -190,6 +191,7 @@ namespace ITP4519M
 
             if (programMethod.createProductinfo(productName, productCategory, productWarehouse, productSerial, productUnitPrice, productCost, productWeight, productOutOfStock, productInStock, productReOrder, productDanger, productDemand, productDescription, productStatus))
             {
+                
                 productNamebox.Text = "";
                 productCategorybox.SelectedItem = null;
                 productWarehousebox.Text = "";

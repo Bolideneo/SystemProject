@@ -23,7 +23,6 @@ using Org.BouncyCastle.Asn1.Ocsp;
 using System.Drawing.Printing;
 using Org.BouncyCastle.Asn1.X509;
 using System.Drawing;
-//using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
 namespace ITP4519M
@@ -97,6 +96,15 @@ namespace ITP4519M
             }
         }
 
+        public bool getUserName(string userName)
+        {
+            string sql = "SELECT COUNT(UserName) FROM staff WHERE UserName=@userName";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@userName", userName);
+            return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+
+        }
+
 
         //Checking user general role
         public string getDepartmentIDByDepartName(string departName)
@@ -143,6 +151,16 @@ namespace ITP4519M
         {
             string sql = "SELECT MAX(userID) FROM staff";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            object userID = cmd.ExecuteScalar();
+            ServerConnect().Close();
+            return userID.ToString();
+        }
+
+        public string getUserID(string userName)
+        {
+            string sql = "SELECT UserID FROM staff WHERE UserName =@userName";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@userName", userName);
             object userID = cmd.ExecuteScalar();
             ServerConnect().Close();
             return userID.ToString();
@@ -1681,8 +1699,6 @@ namespace ITP4519M
             cmd.ExecuteNonQuery();
         }
 
-
-
         public DataTable getInvoiceDetails(string orderID)
         {
             string sql = "SELECT * FROM invoice WHERE OrderID=@orderID";
@@ -2334,24 +2350,420 @@ namespace ITP4519M
             return logID.ToString();
         }
 
-        public bool LogCreateSalesOrder(string logID, string userID, string orderID)
+        public void LogCreateSalesOrder(string logID, string userID, string userName, string orderID)
         {
             DateTime Date = DateTime.Now;
-            string Desc = "Create Order #" + orderID;
+            string Desc = "#" + userID +  " " + userName + " Create Order #" + orderID;
             Date.ToString("yyyy-MM-dd HH:mm:ss");
-            string sql = "INSERT INTO log VALUES(@logID, @Desc, @userID, 1, @Date)";
+            string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 1, 'Order' , @TypeID,  @Desc,  @Date)";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@logID", logID);
-            cmd.Parameters.AddWithValue("@Desc", Desc);
             cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@userName", userName);
+            cmd.Parameters.AddWithValue("@TypeID", orderID);
+            cmd.Parameters.AddWithValue("@Desc", Desc);
             cmd.Parameters.AddWithValue("@Date", Date);
-            if (cmd.ExecuteNonQuery() > 0)
-                return true;
-            else
-                return false;
+            ServerConnect().Close();
+            cmd.ExecuteNonQuery();
+        }
+
+        public void LogCreateProduct(string logID, string userID, string userName, string productID)
+        {
+            DateTime Date = DateTime.Now;
+            Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string Desc = "#" + userID + " " + userName + " Create Product#" + productID;
+            string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 1, 'Product', @TypeID,  @Desc,  @Date)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@userName", userName);
+            cmd.Parameters.AddWithValue("@TypeID", productID);
+            cmd.Parameters.AddWithValue("@Desc", Desc);
+            cmd.Parameters.AddWithValue("@Date", Date);
+            ServerConnect().Close();
+            cmd.ExecuteNonQuery();
+        }
+
+        public void LogUpdateProduct(string logID, string userID, string userName, string productID)
+        {
+            DateTime Date = DateTime.Now;
+            Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string Desc = "#" + userID + " " + userName +" Update Product#" + productID;
+            string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 2, 'Product', @TypeID,  @Desc,  @Date)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@userName", userName);
+            cmd.Parameters.AddWithValue("@TypeID", productID);
+            cmd.Parameters.AddWithValue("@Desc", Desc);
+            cmd.Parameters.AddWithValue("@Date", Date);
+            ServerConnect().Close();
+            cmd.ExecuteNonQuery();
+        }
+
+        public void LogDeleteProduct(string logID, string userID, string userName, string productID)
+        {
+            DateTime Date = DateTime.Now;
+            Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string Desc = "#" + userID + " " + userName + " Delete Product#" + productID;
+            string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 3, 'Product', @TypeID,  @Desc,  @Date)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@userName", userName);
+            cmd.Parameters.AddWithValue("@TypeID", productID);
+            cmd.Parameters.AddWithValue("@Desc", Desc);
+            cmd.Parameters.AddWithValue("@Date", Date);
+            ServerConnect().Close();
+            cmd.ExecuteNonQuery();
         }
 
 
+
+        public void LogCreateDeliveryNote(string logID, string userID, string userName, string deliveryID)
+        {
+            DateTime Date = DateTime.Now;
+            Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string Desc = "#" + userID + " " + userName + " Create Delivery#" + deliveryID;
+            string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 1, 'Delivery', @TypeID,  @Desc,  @Date)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@userName", userName);
+            cmd.Parameters.AddWithValue("@TypeID", deliveryID);
+            cmd.Parameters.AddWithValue("@Desc", Desc);
+            cmd.Parameters.AddWithValue("@Date", Date);
+            ServerConnect().Close();
+            cmd.ExecuteNonQuery();
+        }
+
+
+        public void LogCreateOrderAccembly(string logID, string userID, string userName, string orderID)
+        {
+            DateTime Date = DateTime.Now;
+            Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string Desc = "#" + userID + " " + userName + " Create OrderAccembly For#" + orderID;
+            string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 1, 'OrderAccembly', @TypeID,  @Desc,  @Date)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@userName", userName);
+            cmd.Parameters.AddWithValue("@TypeID", orderID);
+            cmd.Parameters.AddWithValue("@Desc", Desc);
+            cmd.Parameters.AddWithValue("@Date", Date);
+            ServerConnect().Close();
+            cmd.ExecuteNonQuery();
+        }
+
+
+        public void LogCreateDealerContact(string logID, string userID, string userName, string dealerID)
+        {
+            DateTime Date = DateTime.Now;
+            Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string Desc = "#" + userID + " " + userName + " Create Dealer Contact#" + dealerID;
+            string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 1, 'Contact', @TypeID,  @Desc,  @Date)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@userName", userName);
+            cmd.Parameters.AddWithValue("@TypeID", dealerID);
+            cmd.Parameters.AddWithValue("@Desc", Desc);
+            cmd.Parameters.AddWithValue("@Date", Date);
+            ServerConnect().Close();
+            cmd.ExecuteNonQuery();
+        }
+
+
+        public void LogUpdateDealerContact(string logID, string userID, string userName, string dealerID)
+        {
+            DateTime Date = DateTime.Now;
+            Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string Desc = "#" + userID + " " + userName + " Update Dealer Contact#" + dealerID;
+            string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 2, 'Contact', @TypeID,  @Desc,  @Date)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@userName", userName);
+            cmd.Parameters.AddWithValue("@TypeID", dealerID);
+            cmd.Parameters.AddWithValue("@Desc", Desc);
+            cmd.Parameters.AddWithValue("@Date", Date);
+            ServerConnect().Close();
+            cmd.ExecuteNonQuery();
+        }
+
+        public void LogDeleteDealerContact(string logID, string userID, string userName, string dealerID)
+        {
+            DateTime Date = DateTime.Now;
+            Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string Desc = "#" + userID + " " + userName + " Delete Dealer Contact#" + dealerID;
+            string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 3, 'Contact', @TypeID,  @Desc,  @Date)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@userName", userName);
+            cmd.Parameters.AddWithValue("@TypeID", dealerID);
+            cmd.Parameters.AddWithValue("@Desc", Desc);
+            cmd.Parameters.AddWithValue("@Date", Date);
+            ServerConnect().Close();
+            cmd.ExecuteNonQuery();
+        }
+
+        public void LogCreateSupplierContact(string logID, string userID, string userName, string supplierID)
+        {
+            DateTime Date = DateTime.Now;
+            Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string Desc = "#" + userID + " " + userName + " Create Supplier Contact#" + supplierID;
+            string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 1, 'Contact', @TypeID,  @Desc,  @Date)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@userName", userName);
+            cmd.Parameters.AddWithValue("@TypeID", supplierID);
+            cmd.Parameters.AddWithValue("@Desc", Desc);
+            cmd.Parameters.AddWithValue("@Date", Date);
+            ServerConnect().Close();
+            cmd.ExecuteNonQuery();
+        }
+
+        public void LogUpdateSupplierContact(string logID, string userID, string userName, string supplierID)
+        {
+            DateTime Date = DateTime.Now;
+            Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string Desc = "#" + userID + " " + userName + " Update Supplier Contact#" + supplierID;
+            string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 2, 'Contact', @TypeID,  @Desc,  @Date)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@userName", userName);
+            cmd.Parameters.AddWithValue("@TypeID", supplierID);
+            cmd.Parameters.AddWithValue("@Desc", Desc);
+            cmd.Parameters.AddWithValue("@Date", Date);
+            ServerConnect().Close();
+            cmd.ExecuteNonQuery();
+        }
+
+        public void LogDeleteSupplierContact(string logID, string userID, string userName, string supplierID)
+        {
+            DateTime Date = DateTime.Now;
+            Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string Desc = "#" + userID + " " + userName + " Delete Supplier Contact#" + supplierID;
+            string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 3, 'Contact', @TypeID,  @Desc,  @Date)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@userName", userName);
+            cmd.Parameters.AddWithValue("@TypeID", supplierID);
+            cmd.Parameters.AddWithValue("@Desc", Desc);
+            cmd.Parameters.AddWithValue("@Date", Date);
+            ServerConnect().Close();
+            cmd.ExecuteNonQuery();
+        }
+        
+
+        
+
+        public void LogCreateGRN(string logID, string userID, string userName, string grnID, string PurID, string productID, string qty)
+        {
+
+            DateTime Date = DateTime.Now;
+            Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string Desc = "#" + userID + " " + userName + " Create GRN (#" + PurID + ") product#" + productID + " Received " + qty + "qty";
+            string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 1, 'GRN', @TypeID,  @Desc,  @Date)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@userName", userName);
+            cmd.Parameters.AddWithValue("@TypeID", grnID);
+            cmd.Parameters.AddWithValue("@Desc", Desc);
+            cmd.Parameters.AddWithValue("@Date", Date);
+            ServerConnect().Close();
+            cmd.ExecuteNonQuery();
+        }
+
+
+
+        public void LogCreateInvoice(string logID,  string invoiceID, string orderID)
+        {
+
+            DateTime Date = DateTime.Now;
+            Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string Desc = " Create Invoice (#" + invoiceID + ") Order#" + orderID;
+            string sql = "INSERT (LogID, Action, Type, TypeID, Desc, LogDate) INTO log VALUES(@logID, 1, 'Invoice', @TypeID,  @Desc,  @Date)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@TypeID", invoiceID);
+            cmd.Parameters.AddWithValue("@Desc", Desc);
+            cmd.Parameters.AddWithValue("@Date", Date);
+            ServerConnect().Close();
+            cmd.ExecuteNonQuery();
+        }
+
+        public void LogCreatetUserAccount(string logID, string userID, string userName,string newUserID, string title)
+        {
+            DateTime Date = DateTime.Now;
+            Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string Desc = "#" + userID + " " + userName + " Create " + title + " (#" + newUserID + ")";
+            string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 1, 'Account', @TypeID,  @Desc,  @Date)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@userName", userName);
+            cmd.Parameters.AddWithValue("@TypeID", newUserID);
+            cmd.Parameters.AddWithValue("@Desc", Desc);
+            cmd.Parameters.AddWithValue("@Date", Date);
+            ServerConnect().Close();
+            cmd.ExecuteNonQuery();
+        }
+
+
+        public void LogUpdateUserInfo(string logID, string userID, string userName, string affectUserID)
+        {
+            DateTime Date = DateTime.Now;
+            Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string Desc = "#" + userID + " " + userName + " Update User#" + affectUserID;
+            string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 2, 'Account', @TypeID,  @Desc,  @Date)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@userName", userName);
+            cmd.Parameters.AddWithValue("@TypeID", affectUserID);
+            cmd.Parameters.AddWithValue("@Desc", Desc);
+            cmd.Parameters.AddWithValue("@Date", Date);
+            ServerConnect().Close();
+            cmd.ExecuteNonQuery();
+        }
+
+        public void LogEnableUserAccount(string logID, string userID, string userName, string affectUserID)
+        {
+            DateTime Date = DateTime.Now;
+            Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string Desc = "#" + userID + " " + userName + " Enable User#" + affectUserID;
+            string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 7, 'Account', @TypeID,  @Desc,  @Date)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@userName", userName);
+            cmd.Parameters.AddWithValue("@TypeID", affectUserID);
+            cmd.Parameters.AddWithValue("@Desc", Desc);
+            cmd.Parameters.AddWithValue("@Date", Date);
+            ServerConnect().Close();
+            cmd.ExecuteNonQuery();
+        }
+
+
+        public void LogDisableUserAccount(string logID, string userID, string userName, string affectUserID)
+        {
+            DateTime Date = DateTime.Now;
+            Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string Desc = "#" + userID + " " + userName + " Disable user#" + affectUserID;
+            string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 8, 'Account', @TypeID,  @Desc,  @Date)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@userName", userName);
+            cmd.Parameters.AddWithValue("@TypeID", affectUserID);
+            cmd.Parameters.AddWithValue("@Desc", Desc);
+            cmd.Parameters.AddWithValue("@Date", Date);
+            ServerConnect().Close();
+            cmd.ExecuteNonQuery();
+        }
+
+
+
+        public void LogUpdateSalesOrder(string logID, string userID, string userName, string orderID)
+        {
+            DateTime Date = DateTime.Now;
+            Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string Desc = "#" + userID + " " + userName + " Update Order#" + orderID;
+            string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 2, 'Order', @TypeID,  @Desc,  @Date)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@userName", userName);
+            cmd.Parameters.AddWithValue("@TypeID", orderID);
+            cmd.Parameters.AddWithValue("@Desc", Desc);
+            cmd.Parameters.AddWithValue("@Date", Date);
+            ServerConnect().Close();
+            cmd.ExecuteNonQuery();
+        }
+
+
+        public void LogCancelSalesOrder(string logID, string userID, string userName, string orderID)
+        {
+            DateTime Date = DateTime.Now;
+            Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string Desc = "#" + userID +  " " + userName +  " Cancel Order#" + orderID;
+            string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 3, 'Order', @TypeID,  @Desc,  @Date)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@userName", userName);
+            cmd.Parameters.AddWithValue("@TypeID", orderID);
+            cmd.Parameters.AddWithValue("@Desc", Desc);
+            cmd.Parameters.AddWithValue("@Date", Date);
+            ServerConnect().Close();
+            cmd.ExecuteNonQuery();
+        }
+
+
+        public void LogUserLoginAttempt(string logID, string userID, string userName)
+        {
+            DateTime Date = DateTime.Now;
+            Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string Desc = "#" + userID + " " + userName + " Login Successfully at " + Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string sql = "INSERT INTO log (LogID, UserID, UserName, Action, Type, Description, LogDate) VALUES(@logID, @userID, @userName, 4, 'Account', @Desc,  @Date)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@userName", userName);
+            cmd.Parameters.AddWithValue("@Desc", Desc);
+            cmd.Parameters.AddWithValue("@Date", Date);
+            cmd.ExecuteNonQuery();
+        }
+
+        public void LogUserLoginFailureAttempt(string logID, string userID, string userName)
+        {
+            DateTime Date = DateTime.Now;
+            Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string Desc = "#" + userID + " " + userName + " Login Failed at " + Date.ToString("yyyy-MM-dd HH:mm:ss") ;
+            string sql = "INSERT INTO log (LogID, UserID, UserName, Action, Type, Description, LogDate) VALUES(@logID, @userID, @userName, 4, 'Account', @Desc,  @Date)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@userName", userName);
+            cmd.Parameters.AddWithValue("@Desc", Desc);
+            cmd.Parameters.AddWithValue("@Date", Date);
+            ServerConnect().Close();
+            cmd.ExecuteNonQuery();
+        }
+
+
+        public void LogUserLogOut(string logID, string userID, string userName)
+        {
+            DateTime Date = DateTime.Now;
+            Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string Desc = "#" + userID + " " + userName + " Logout Successfully at " + Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string sql = "INSERT INTO log(LogID, UserID, UserName, Action, Type, Description, LogDate) VALUES(@logID, @userID, @userName, 5, 'Account', @Desc,  @Date)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@userName", userName);
+            cmd.Parameters.AddWithValue("@Desc", Desc);
+            cmd.Parameters.AddWithValue("@Date", Date);
+            ServerConnect().Close();
+            cmd.ExecuteNonQuery();
+        }
+
+        public DataTable overallLogInfo()
+        {
+            string sql = "SELECT * FROM log";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
 
 
     }

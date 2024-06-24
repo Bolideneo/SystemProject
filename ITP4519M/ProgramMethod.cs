@@ -30,6 +30,7 @@ using System.Drawing.Text;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Xml.Linq;
+using Org.BouncyCastle.Asn1.X509;
 
 
 
@@ -38,6 +39,8 @@ namespace ProgramMethod
     class ProgramMethod
     {
         DataBaseMethod dataBaseMethod;
+        private string LoginUserID;
+        private string LoginUserName;
 
         public ProgramMethod()
         {
@@ -75,10 +78,16 @@ namespace ProgramMethod
         {
             try
             {
-                if (password == DecodeFrom64(dataBaseMethod.getPassword(username)))
+                if (!dataBaseMethod.getUserName(username)){
+                    return false;
+                }
+                else if (password == DecodeFrom64(dataBaseMethod.getPassword(username)))
                 {
+                    LogUserLoginAttempt(dataBaseMethod.getUserID(username), dataBaseMethod.getUserDisplayName(username));
                     return true;
                 }
+                LogUserLoginFailureAttempt(dataBaseMethod.getUserID(username),dataBaseMethod.getUserDisplayName(username));  
+              
             }
             catch (Exception ex)
             {
@@ -88,10 +97,22 @@ namespace ProgramMethod
             return false;
         }
 
+        public void CurrentUserIDAndName(string userID, string userName)
+        {
+          this.LoginUserID = userID;
+          this.LoginUserName = userName;
+        }
+
         public string getUserDisplayName(string username)
         {
 
             return dataBaseMethod.getUserDisplayName(username);
+        }
+
+        public string getUserID(string username)
+        {
+
+            return dataBaseMethod.getUserID(username);
         }
 
         public string getUserDepartment(string username)
@@ -118,6 +139,7 @@ namespace ProgramMethod
             string userID = (int.Parse(dataBaseMethod.getUserID()) + 1).ToString("0000");
             if (dataBaseMethod.createUser(userID, username, EncodePasswordToBase64(password), dispalynanme, deptID, title, phonenum, email, department))
             {
+                LogCreatetUserAccount(LoginUserID, LoginUserName, userID, title);
                 return true;
 
             }
@@ -132,6 +154,7 @@ namespace ProgramMethod
 
             if (dataBaseMethod.disableUser(userID))
             {
+                LogDisableUserAccount(LoginUserID, LoginUserName, userID);
                 return true;
             }
             else
@@ -145,6 +168,7 @@ namespace ProgramMethod
 
             if (dataBaseMethod.enableUser(userID))
             {
+                LogEnableUserAccount(LoginUserID,LoginUserName,userID);
                 return true;
             }
             else
@@ -247,6 +271,7 @@ namespace ProgramMethod
 
             if (dataBaseMethod.updateUserInfor(userid, userName, EncodePasswordToBase64(password), dispalyName, departmentID, title, phonenum, email, department))
             {
+                LogUpdateUserInfo(LoginUserID, LoginUserName, userid);
                 return true;
             }
             else
@@ -264,6 +289,7 @@ namespace ProgramMethod
             string dealerID = $"{letterPart}{newDealerIDNum:D3}";
             if (dataBaseMethod.createDealer(dealerID, dealername, dealerCompanyName, dealerMailBox, DealerPhoneNumBox, dealerRegionNum, dealerAddressBox))
             {
+                LogCreateDealerContact(LoginUserID, LoginUserName, dealerID);
                 return true;
             }
             else
@@ -283,7 +309,7 @@ namespace ProgramMethod
 
             if (dataBaseMethod.createSupplier(SupplierID, Suppliername, SupplierMailBox, SupplierPhoneNumBox, SupplierAddressBox, SupplierContactNameBox, products))
             {
-                
+                LogCreateSupplierContact(LoginUserID, LoginUserName, SupplierID);   
                 return true;
             }
             else
@@ -296,6 +322,7 @@ namespace ProgramMethod
 
             if (dataBaseMethod.updateDealerInfo(dealerid, dealerName, dealerCompanyName, dealerMail, phoneNum, dealerRegionNum, dealerAddress))
             {
+                LogUpdateDealerContact(LoginUserID, LoginUserName, dealerid);
                 return true;
             }
             else
@@ -310,6 +337,7 @@ namespace ProgramMethod
 
             if (dataBaseMethod.updateSupplierInfo(supplierid, supplierCompanyName, supplierContactPerson, supplierMail, supplierPhoneNum, supplierAddress, products))
             {
+                LogUpdateSupplierContact(LoginUserID, LoginUserName, supplierid);
                 return true;
             }
             else
@@ -322,6 +350,7 @@ namespace ProgramMethod
 
             if (dataBaseMethod.dealerDel(contactID))
             {
+                LogDeleteDealerContact(LoginUserID,LoginUserName, contactID);
                 MessageBox.Show("Delete successfully");
                 return true;
             }
@@ -335,6 +364,7 @@ namespace ProgramMethod
 
             if (dataBaseMethod.supplierDel(contactID))
             {
+                LogDeleteSupplierContact(LoginUserID, LoginUserName, contactID);
                 MessageBox.Show("Delete successfully");
                 return true;
             }
@@ -371,8 +401,9 @@ namespace ProgramMethod
             {
 
                 return false;
-
+        
             }
+            LogCreateProduct(LoginUserID,LoginUserName,productID);
             MessageBox.Show("Create new product successfully");
             return true;
         }
@@ -383,8 +414,9 @@ namespace ProgramMethod
 
             if (dataBaseMethod.updateProductinfo(productID, productName, productCategory, wareHouse, sn, unitPrice, costPrice, weight, quantityOutStock, quantityInStock, productReOrder, productDanger, demand, description, status))
             {
+                LogUpdateProduct(LoginUserID, LoginUserName, productID);
                 return true;
-
+                
             }
             else
                 return false;
@@ -396,6 +428,7 @@ namespace ProgramMethod
 
             if (dataBaseMethod.delProduct(productID))
             {
+                LogDeleteProduct(LoginUserID, LoginUserName, productID);
                 MessageBox.Show("Delete successfully");
                 return true;
             }
@@ -611,9 +644,9 @@ namespace ProgramMethod
             MessageBox.Show(grnID);
             try
             {
-                while (!dataBaseMethod.createGRN(grnID, POID, productID, warehouse, receiveqty, receivedate))
+                if(dataBaseMethod.createGRN(grnID, POID, productID, warehouse, receiveqty, receivedate))
                 {
-                    grnID = "G" + (int.Parse(dataBaseMethod.getGRNID('G').Substring(1)) + 1).ToString("000000");
+                    LogCreateGRN(LoginUserID, LoginUserName, grnID, POID, productID, receiveqty);
                 }
             }
             catch (Exception e)
@@ -720,6 +753,7 @@ namespace ProgramMethod
         public void createOrderItem(string orderID, string product, string qty)
         {
             dataBaseMethod.createOrderItem(orderID, product, qty);
+            LogUpdateSalesOrder(LoginUserID,LoginUserName,orderID);
         }
 
         public DataTable overallDeliveryinfo()
@@ -733,7 +767,7 @@ namespace ProgramMethod
         }
 
 
-        public void createDelivery(string orderID, string deliveryDate)
+        public bool createDelivery(string orderID, string deliveryDate)
         {
             string deliveryID = "DE" + (int.Parse(dataBaseMethod.getDeliveryID()) + 1).ToString("00000");
             DataTable dt = dataBaseMethod.getOrderItemDetailForDelivery(orderID);
@@ -755,14 +789,15 @@ namespace ProgramMethod
                 }
             // }
             
-            while (!dataBaseMethod.createDelivery(deliveryID, orderID, deliveryDate, "Shipped"))
+            if(dataBaseMethod.createDelivery(deliveryID, orderID, deliveryDate, "Shipped"))
             {
-                deliveryID = "DE" + (int.Parse(dataBaseMethod.getDeliveryID()) + 1).ToString("00000");
+               LogCreateDeliveryNote(LoginUserID,LoginUserName,deliveryID);
+               return true;
             }
-
-
-            //dataBaseMethod.updateDeliveryStatus("Shipped", deliveryID);
-            //dataBaseMethod.updateOrderStatus("Delivered", orderID);  
+            else
+            {
+                return false;
+            }
 
         }
 
@@ -1266,7 +1301,7 @@ namespace ProgramMethod
             return dataBaseMethod.getOrderItemDetailforAsb(orderID);
         }
 
-        public bool createOrderAsswmbly(DataGridView ActualDesptchData, DataGridView orderItemData, string orderID)
+        public bool createOrderAssembly(DataGridView ActualDesptchData, DataGridView orderItemData, string orderID)
         {
 
             for (int i = 0; i < ActualDesptchData.Rows.Count; i++)
@@ -1318,7 +1353,7 @@ namespace ProgramMethod
                 }
                 dataBaseMethod.updateOrderItemDemand(ActualDesptchData.Rows[i].Cells[0].Value.ToString(), int.Parse(ActualDesptchData.Rows[i].Cells[2].Value.ToString()));
                 dataBaseMethod.updateOrderItem(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString(), ActualDesptchData.Rows[i].Cells[2].Value.ToString(), ActualDesptchData.Rows[i].Cells[3].Value.ToString(), ActualDesptchData.Rows[i].Cells[2].Value.ToString());
-
+                LogCreateOrderAccembly(LoginUserID, LoginUserName, orderID);
 
             }
             if (ActualDesptchData.RowCount != 0)
@@ -1463,6 +1498,7 @@ namespace ProgramMethod
 
         public bool cancelOrder(string orderID)
         {
+            LogCancelSalesOrder(LoginUserID,LoginUserName,orderID);
             return dataBaseMethod.cancelOrder(orderID);
         }
 
@@ -1752,7 +1788,231 @@ namespace ProgramMethod
         }
 
 
+        public void LogCreateSalesOrder(string userID,string userName, string orderID)
+        {
+            string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
+            if (logID != null)
+            {
+                dataBaseMethod.LogCreateSalesOrder(logID, userID, userName, orderID);
+            }
+        }
+
+
+        public void LogCreateProduct(string userID, string userName, string productID)
+        {
+            string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
+            if (logID != null)
+            {
+                dataBaseMethod.LogCreateProduct(logID, userID, userName, productID);
+            }
+        }
+
+        public void LogUpdateProduct(string userID, string userName, string productID)
+        {
+            string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
+            if (logID != null)
+            {
+                dataBaseMethod.LogUpdateProduct(logID, userID, userName, productID);
+            }
+        }
+
+        public void LogDeleteProduct(string userID, string userName, string productID)
+        {
+            string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
+            if (logID != null)
+            {
+                dataBaseMethod.LogDeleteProduct(logID, userID, userName, productID);
+            }
+        }
+        
+
+         public void LogCreateDeliveryNote(string userID, string userName, string deliveryID)
+        {
+            string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
+            if (logID != null)
+            {
+                dataBaseMethod.LogCreateDeliveryNote(logID, userID, userName, deliveryID);
+            }
+        }
+
+        
+
+         public void LogCreateOrderAccembly(string userID, string userName, string orderID)
+        {
+            string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
+            if (logID != null)
+            {
+                dataBaseMethod.LogCreateOrderAccembly(logID, userID, userName, orderID);
+            }
+        }
+
+       
+
+        public void LogCreateDealerContact(string userID, string userName, string dealerID)
+        {
+            string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
+            if (logID != null)
+            {
+                dataBaseMethod.LogCreateDealerContact(logID, userID, userName, dealerID);
+            }
+        }
+        
+        public void LogUpdateDealerContact(string userID, string userName, string dealerID)
+        {
+            string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
+            if (logID != null)
+            {
+                dataBaseMethod.LogUpdateDealerContact(logID, userID, userName, dealerID);
+            }
+        }
+        
+        public void LogDeleteDealerContact(string userID, string userName, string dealerID)
+        {
+            string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
+            if (logID != null)
+            {
+                dataBaseMethod.LogDeleteDealerContact(logID, userID, userName, dealerID);
+            }
+        }
+        
+        public void LogCreateSupplierContact(string userID, string userName, string supplierID)
+        {
+            string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
+            if (logID != null)
+            {
+                dataBaseMethod.LogCreateSupplierContact(logID, userID, userName, supplierID);
+            }
+        }
+
+        public void LogUpdateSupplierContact(string userID, string userName, string supplierID)
+        {
+            string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
+            if (logID != null)
+            {
+                dataBaseMethod.LogUpdateSupplierContact(logID, userID, userName, supplierID);
+            }
+        }
+        
+
+        public void LogDeleteSupplierContact(string userID, string userName, string supplierID)
+        {
+            string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
+            if (logID != null)
+            {
+                dataBaseMethod.LogDeleteSupplierContact(logID, userID, userName, supplierID);
+            }
+        }
+
+        public void LogCreateGRN(string userID, string userName, string grnID, string PurID, string productID, string qty)
+        {
+            string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
+            if (logID != null)
+            {
+                dataBaseMethod.LogCreateGRN(logID, userID, userName, grnID, PurID, productID, qty);
+            }
+        }
+
+        public void LogCreateInvoice(string userID,string invoiceID, string orderID)
+        {
+            string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
+            if (logID != null)
+            {
+                dataBaseMethod.LogCreateInvoice(logID,invoiceID, orderID);
+            }
+        }
+                 
+        public void LogCreatetUserAccount(string userID, string userName, string newUserID, string title)
+        {
+            string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
+            if (logID != null)
+            {
+                dataBaseMethod.LogCreatetUserAccount(logID, userID, userName, newUserID,title);
+            }
+        }
+
+        public void LogUpdateUserInfo(string userID, string userName, string affectUserID)
+        {
+            string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
+            if (logID != null)
+            {
+                dataBaseMethod.LogUpdateUserInfo(logID, userID, userName, affectUserID);
+            }
+        }
+
+       
+         public void LogEnableUserAccount(string userID, string userName, string affectUserID)
+        {
+            string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
+            if (logID != null)
+            {
+                dataBaseMethod.LogEnableUserAccount(logID, userID, userName, affectUserID);
+            }
+        }
+
+        public void LogDisableUserAccount(string userID, string userName, string affectUserID)
+        {
+            string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
+            if (logID != null)
+            {
+                dataBaseMethod.LogDisableUserAccount(logID, userID, userName, affectUserID);
+            }
+        }
+
+        public void LogUpdateSalesOrder(string userID, string userName, string orderID)
+        {
+            string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
+            if (logID != null)
+            {
+                dataBaseMethod.LogUpdateSalesOrder(logID, userID, userName, orderID);
+            }
+        }
+
+        public void LogCancelSalesOrder(string userID, string userName, string orderID)
+        {
+            string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
+            if (logID != null)
+            {
+                dataBaseMethod.LogCancelSalesOrder(logID, userID, userName, orderID);
+            }
+        }
+
+        public void LogUserLoginAttempt(string userID, string userName)
+        {
+            string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
+            if (logID != null)
+            {
+                dataBaseMethod.LogUserLoginAttempt(logID, userID, userName);
+            }
+        }
+
+        public void LogUserLoginFailureAttempt(string userID, string userName)
+        {
+            string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
+
+            if (logID != null)
+            {
+              dataBaseMethod.LogUserLoginFailureAttempt(logID, userID, userName);
+            }
+        }
+
+         public void LogUserLogOut(string userID, string userName)
+        {
+            string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
+            if (logID != null)
+            {
+                dataBaseMethod.LogUserLogOut(logID, userID, userName);
+            }
+        }
+
+        public DataTable overallLoginfo()
+        {
+            return dataBaseMethod.overallLoginfo();
+        }
+
+
+
     }
+
 }
 
     

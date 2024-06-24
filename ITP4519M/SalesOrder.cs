@@ -351,7 +351,7 @@ namespace ITP4519M
         private void saveOrderbtn_Click(object sender, EventArgs e)
         {
 
-            programMethod.orderDeleteItem(orderID);
+           // programMethod.orderDeleteItem(orderID);
             for (int i = 0; i < productOfOrderdata.Rows.Count; i++)
             {
                 programMethod.createOrderItem(orderID, productOfOrderdata.Rows[i].Cells[0].Value.ToString(), productOfOrderdata.Rows[i].Cells[2].Value.ToString());

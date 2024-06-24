@@ -252,7 +252,7 @@ namespace ITP4519M
 
         private void saveOrderbtn_Click(object sender, EventArgs e)
         {
-            if (programMethod.createOrderAsswmbly(orderItemdata, orderAccemblyOrderItemdata, orderID))
+            if (programMethod.createOrderAssembly(orderItemdata, orderAccemblyOrderItemdata, orderID))
             {
                 MessageBox.Show("Save");
                 this.Close();

@@ -84,14 +84,14 @@ namespace ITP4519M
                     viewaccountlbl.Visible = false;
                     SetReadOnly(false);
                     break;
-                case OperationMode.Disable:
-                    accountEditlbl.Visible = true;
-                    editAccountbtn.Visible = true;
-                    createAccountBtn.Visible = false;
-                    newAccountlabel.Visible = false;
-                    viewaccountlbl.Visible = false;
-                    SetReadOnly(false);
-                    break;
+                //case OperationMode.Disable:
+                //    accountEditlbl.Visible = true;
+                //    editAccountbtn.Visible = true;
+                //    createAccountBtn.Visible = false;
+                //    newAccountlabel.Visible = false;
+                //    viewaccountlbl.Visible = false;
+                //    SetReadOnly(false);
+                //    break;
 
 
             }

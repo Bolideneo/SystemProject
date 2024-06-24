@@ -162,10 +162,16 @@ namespace ITP4519M
         {
             try
             {
-                programMethod.createDelivery(deliveryOrderidbox.Text.Trim(), DeliverydateTimePicker1.Value.Date.ToString());
-                
-                MessageBox.Show("Create Successfully");
-  
+               if(programMethod.createDelivery(deliveryOrderidbox.Text.Trim(), DeliverydateTimePicker1.Value.Date.ToString()))
+                {
+                    
+                    MessageBox.Show("Create Successfully");
+                }
+                else
+                {
+                    MessageBox.Show("Order ID is wrong!");
+                }               
+              
             }
             catch
             {

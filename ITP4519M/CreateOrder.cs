@@ -29,6 +29,8 @@ namespace ITP4519M
         TypeAssistant assistant;
         private string orderID;
         private string dealerID;
+        private string userID;
+        private string userName;
         private OperationMode _mode;
         private bool DealerInfo;
 
@@ -38,6 +40,13 @@ namespace ITP4519M
         {
             InitializeComponent();
             _mode = mode;
+        }
+
+
+        public void CurrentUserIDAndName(string userID, string userName)
+        {
+            this.userID = userID;
+            this.userName = userName;
         }
 
         void assistant_Idled(object sender, EventArgs e)
@@ -50,34 +59,29 @@ namespace ITP4519M
                    // coll.Clear();
 
                     DataTable result = programMethod.searchDealerDetail(comboBox1.Text.Trim());
-                    DataRow row2 = result.NewRow();
-                   // row2.ItemArray = new object[] { 0, "--Select Movie--" };
-                    result.Rows.InsertAt(row2, 0);
-                    
+                    //DataRow row2 = result.NewRow();
+                    //result.Rows.InsertAt(row2, 0);
 
+                    //comboBox1.DataSource = result;
+                    //comboBox1.DisplayMember = "DealerName";
 
-                    //if (result.Rows.Count > 0)
-                    //{
+                    //comboBox1.AutoCompleteMode = AutoCompleteMode.Suggest;
+                    //comboBox1.AutoCompleteSource = AutoCompleteSource.ListItems;
+                    if (result.Rows.Count > 0)
+                    {
 
-                    //    foreach (DataRow row in result.Rows)
-                    //    {
-                    //        row2["DealerName"].ToString();
-                    //        result.Rows.InsertAt(row2, 0);
+                        foreach (DataRow row in result.Rows)
+                        {
+                            coll.Add(row["DealerName"].ToString());
 
-                    //       // coll.Add(row["DealerName"].ToString());
-
-                    //    }
-                        comboBox1.DataSource = result;
-                        comboBox1.DisplayMember = "DealerName";
-                       
-                        //comboBox1.AutoCompleteMode = AutoCompleteMode.Suggest;
-                       // comboBox1.AutoCompleteSource = AutoCompleteSource.ListItems;
-                        dealerIDBox.Text = result.Rows[0]["DealerID"].ToString();
-                        dealerNameBox.Text = result.Rows[0]["DealerName"].ToString();
-                        phoneNumBox.Text = result.Rows[0]["DealerPhoneNum"].ToString();
-                        dealerCompanyBox.Text = result.Rows[0]["DealerCompanyName"].ToString();
-                        goodsAddressBox.Text = result.Rows[0]["DealerRegionNum"].ToString();
-
+                        }
+                    }
+                    dealerinfoBox.AutoCompleteCustomSource = coll;
+                    dealerIDBox1.Text = result.Rows[0]["DealerID"].ToString();
+                    dealerNameBox1.Text = result.Rows[0]["DealerName"].ToString();
+                    phoneNumBox.Text = result.Rows[0]["DealerPhoneNum"].ToString();
+                    dealerCompanyBox.Text = result.Rows[0]["DealerCompanyName"].ToString();
+                    goodsAddressBox.Text = result.Rows[0]["DealerRegionNum"].ToString();
 
                     //}
                     //else
@@ -103,6 +107,7 @@ namespace ITP4519M
         {
             this.Close();
         }
+
 
 
 
@@ -149,8 +154,8 @@ namespace ITP4519M
 
             goodsAddressBox.Text = string.Empty;
             orderDateBox.Text = string.Empty;
-            dealerIDBox.Text = string.Empty;
-            dealerNameBox.Text = string.Empty;
+            dealerIDBox1.Text = string.Empty;
+            dealerNameBox1.Text = string.Empty;
             dealerCompanyBox.Text = string.Empty;
             phoneNumBox.Text = string.Empty;
             productOfOrderdata.Rows.Clear();
@@ -159,11 +164,11 @@ namespace ITP4519M
         private void SetReadOnly(bool readOnly)
         {
 
-            goodsAddressBox.ReadOnly = readOnly;
-            dealerIDBox.ReadOnly = readOnly;
-            dealerNameBox.ReadOnly = readOnly;
-            dealerCompanyBox.ReadOnly = readOnly;
-            phoneNumBox.ReadOnly = readOnly;
+            //goodsAddressBox.ReadOnly = readOnly;
+            //dealerIDBox.ReadOnly = readOnly;
+            //dealerNameBox.ReadOnly = readOnly;
+            // dealerCompanyBox.ReadOnly = readOnly;
+            // phoneNumBox.ReadOnly = readOnly;
             productOfOrderdata.ReadOnly = readOnly;
             disableFunction(readOnly);
 
@@ -172,8 +177,8 @@ namespace ITP4519M
 
             goodsAddressBox.Enabled = !readOnly;
             orderDateBox.Enabled = !readOnly;
-            dealerIDBox.Enabled = !readOnly;
-            dealerNameBox.Enabled = !readOnly;
+            dealerIDBox1.Enabled = !readOnly;
+            dealerNameBox1.Enabled = !readOnly;
             dealerCompanyBox.Enabled = !readOnly;
             phoneNumBox.Enabled = !readOnly;
 
@@ -186,17 +191,17 @@ namespace ITP4519M
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (programMethod.searchDealerID(dealerIDBox.Text.Trim()))
+                if (programMethod.searchDealerID(dealerIDBox1.Text.Trim()))
                 {
-                    DataTable result = programMethod.searchDealerDetail(dealerIDBox.Text.Trim());
-                    dealerNameBox.Text = result.Rows[0]["DealerName"].ToString();
+                    DataTable result = programMethod.searchDealerDetail(dealerIDBox1.Text.Trim());
+                    dealerNameBox1.Text = result.Rows[0]["DealerName"].ToString();
                     phoneNumBox.Text = result.Rows[0]["DealerPhoneNum"].ToString();
                     dealerCompanyBox.Text = result.Rows[0]["DealerCompanyName"].ToString();
                     goodsAddressBox.Text = result.Rows[0]["DealerRegionNum"].ToString();
                 }
                 else
                 {
-                    dealerNameBox.Text = "";
+                    dealerNameBox1.Text = "";
                     phoneNumBox.Text = "";
                     dealerCompanyBox.Text = "";
                     goodsAddressBox.Text = "";
@@ -262,12 +267,12 @@ namespace ITP4519M
                 Refresh();
             }
 
-            else if (dealerIDBox.Text == "")
+            else if (dealerIDBox1.Text == "")
             {
                 MessageBox.Show("Please input Dealer ID");
                 return;
             }
-            else if (dealerNameBox.Text == "")
+            else if (dealerNameBox1.Text == "")
             {
                 MessageBox.Show("Please input Dealer Name");
                 return;
@@ -301,7 +306,13 @@ namespace ITP4519M
             }
 
             string orderID;
-            orderID = programMethod.createSalesOrder(dealerIDBox.Text.Trim(), dealerNameBox.Text.Trim(), phoneNumBox.Text.Trim(), goodsAddressBox.Text.Trim(), productOfOrderdata);
+            orderID = programMethod.createSalesOrder(dealerIDBox1.Text.Trim(), dealerNameBox1.Text.Trim(), phoneNumBox.Text.Trim(), goodsAddressBox.Text.Trim(), productOfOrderdata);
+            if (orderID != null)
+            {
+                MessageBox.Show(userID);
+                programMethod.LogCreateSalesOrder(this.userID, this.userName, orderID);
+            }
+
             ClearForm();
             MessageBox.Show("Order Create Successfully " + "Order ID: " + orderID);
 
@@ -373,7 +384,7 @@ namespace ITP4519M
             }
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
+        private void panel5_Paint(object sender, PaintEventArgs e)
         {
             if (DealerInfo)
             {
@@ -393,6 +404,12 @@ namespace ITP4519M
         private void comboBox1_TextChanged(object sender, EventArgs e)
         {
             assistant.TextChanged();
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

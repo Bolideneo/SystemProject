@@ -58,18 +58,19 @@ namespace ITP4519M
             if (programMethod.verifyUser(usernameBox.Text.Trim(), passwordBox.Text.Trim()))
             {
                 errolabel.Visible = false;
-                var userDisplayName = programMethod.getUserDisplayName(usernameBox.Text.Trim());
-                var userDepartment = programMethod.getUserDepartment(usernameBox.Text.Trim());
+                string userDisplayName = programMethod.getUserDisplayName(usernameBox.Text.Trim());
+                string userDepartment = programMethod.getUserDepartment(usernameBox.Text.Trim());
                 Dashboard dashboard = new Dashboard();
                 string[] permisson = programMethod.getPermission(usernameBox.Text.Trim());
                 dashboard.ButtonLocation(permisson[0], permisson[1]);
-                dashboard.currentUserDisplayName(userDisplayName, userDepartment);
-               // dashboard.StartPosition = FormStartPosition.CenterParent;
+                dashboard.currentUserDisplayName(userDisplayName, userDepartment, programMethod.getUserID(usernameBox.Text.Trim()), userDisplayName);
+                dashboard.StartPosition = FormStartPosition.CenterParent;
                 dashboard.Show(this);
                 this.Hide();
             }
             else
             {
+                
                 errolabel.Visible = true;
             }
         }
