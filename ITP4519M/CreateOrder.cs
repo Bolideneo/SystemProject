@@ -47,31 +47,43 @@ namespace ITP4519M
             {
                 try
                 {  //Enable This
-                    coll.Clear();
+                   // coll.Clear();
 
-                    DataTable result = programMethod.searchDealerDetail(dealerinfoBox.Text.Trim());
+                    DataTable result = programMethod.searchDealerDetail(comboBox1.Text.Trim());
+                    DataRow row2 = result.NewRow();
+                   // row2.ItemArray = new object[] { 0, "--Select Movie--" };
+                    result.Rows.InsertAt(row2, 0);
+                    
 
-                    if (result.Rows.Count > 0)
-                    {
 
-                        foreach (DataRow row in result.Rows)
-                        {
-                            coll.Add(row["DealerName"].ToString());
+                    //if (result.Rows.Count > 0)
+                    //{
 
-                        }
-                        dealerinfoBox.AutoCompleteCustomSource = coll;
+                    //    foreach (DataRow row in result.Rows)
+                    //    {
+                    //        row2["DealerName"].ToString();
+                    //        result.Rows.InsertAt(row2, 0);
+
+                    //       // coll.Add(row["DealerName"].ToString());
+
+                    //    }
+                        comboBox1.DataSource = result;
+                        comboBox1.DisplayMember = "DealerName";
+                       
+                        //comboBox1.AutoCompleteMode = AutoCompleteMode.Suggest;
+                       // comboBox1.AutoCompleteSource = AutoCompleteSource.ListItems;
                         dealerIDBox.Text = result.Rows[0]["DealerID"].ToString();
                         dealerNameBox.Text = result.Rows[0]["DealerName"].ToString();
                         phoneNumBox.Text = result.Rows[0]["DealerPhoneNum"].ToString();
                         dealerCompanyBox.Text = result.Rows[0]["DealerCompanyName"].ToString();
                         goodsAddressBox.Text = result.Rows[0]["DealerRegionNum"].ToString();
 
-                       
-                    }
-                    else
-                    {
-                        MessageBox.Show("Name not found");
-                    }
+
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Name not found");
+                    //}
 
 
                 }
@@ -316,8 +328,7 @@ namespace ITP4519M
             }
 
             ordertotallbl.Text = "" + programMethod.calProductTotalAmount(productOfOrderdata);
-            //float temp = programMethod.calProductTotalAmount(productOfOrderdata);
-            //MessageBox.Show(temp.ToString());
+
         }
 
         private void ordertotallbl_TextChanged(object sender, EventArgs e)
@@ -378,6 +389,10 @@ namespace ITP4519M
         {
 
         }
-            
+
+        private void comboBox1_TextChanged(object sender, EventArgs e)
+        {
+            assistant.TextChanged();
+        }
     }
 }

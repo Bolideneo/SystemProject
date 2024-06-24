@@ -41,6 +41,7 @@ namespace ITP4519M
             createOrderbtn = new Button();
             productSearchbox = new TextBox();
             panel1 = new Panel();
+            comboBox1 = new ComboBox();
             panel2 = new Panel();
             pictureBox1 = new PictureBox();
             dealerinfoBox = new TextBox();
@@ -178,6 +179,7 @@ namespace ITP4519M
             // 
             panel1.BackColor = SystemColors.Window;
             panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(comboBox1);
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(label10);
             panel1.Controls.Add(label7);
@@ -201,6 +203,15 @@ namespace ITP4519M
             panel1.Name = "panel1";
             panel1.Size = new Size(783, 823);
             panel1.TabIndex = 72;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(537, 68);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(197, 28);
+            comboBox1.TabIndex = 77;
+            comboBox1.TextChanged += comboBox1_TextChanged;
             // 
             // panel2
             // 
@@ -495,5 +506,6 @@ namespace ITP4519M
         private SplitContainer splitContainer1;
         private Label label14;
         private Label label13;
+        private ComboBox comboBox1;
     }
 }
