@@ -15,6 +15,7 @@ using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
 using static ProgramMethod.ProgramMethod;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -59,14 +60,7 @@ namespace ITP4519M
                    // coll.Clear();
 
                     DataTable result = programMethod.searchDealerDetail(comboBox1.Text.Trim());
-                    //DataRow row2 = result.NewRow();
-                    //result.Rows.InsertAt(row2, 0);
 
-                    //comboBox1.DataSource = result;
-                    //comboBox1.DisplayMember = "DealerName";
-
-                    //comboBox1.AutoCompleteMode = AutoCompleteMode.Suggest;
-                    //comboBox1.AutoCompleteSource = AutoCompleteSource.ListItems;
                     if (result.Rows.Count > 0)
                     {
 
@@ -81,7 +75,8 @@ namespace ITP4519M
                     dealerNameBox1.Text = result.Rows[0]["DealerName"].ToString();
                     phoneNumBox.Text = result.Rows[0]["DealerPhoneNum"].ToString();
                     dealerCompanyBox.Text = result.Rows[0]["DealerCompanyName"].ToString();
-                    goodsAddressBox.Text = result.Rows[0]["DealerRegionNum"].ToString();
+                    invoiceAddressBox.Text = result.Rows[0]["DealerCompanyName"].ToString();
+                    goodsAddressBox.Text = result.Rows[0]["DealerCompanyName"].ToString();
 
                     //}
                     //else
@@ -115,7 +110,8 @@ namespace ITP4519M
         {
             assistant = new TypeAssistant();
             assistant.Idled += assistant_Idled;
-
+            comboBox2.AutoCompleteMode = AutoCompleteMode.Suggest;
+            comboBox2.AutoCompleteSource = AutoCompleteSource.ListItems;
 
             switch (_mode)
             {
@@ -409,6 +405,65 @@ namespace ITP4519M
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
+
+        }
+
+        private void comboBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void comboBox2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                
+                DataTable result = programMethod.searchDealerDetail(comboBox2.Text.Trim());
+                //  comboBox2.Items.Insert(0, new ListItem("Select here...", string.Empty));
+
+                //MessageBox.Show("Enter pressed", "KeyPress Event");
+
+                if (result.Rows.Count > 0)
+                {
+                    comboBox2.DroppedDown = true;
+                    //    foreach (DataRow row in result.Rows)
+                    //    {
+                    //        coll.Add(row["DealerName"].ToString());
+
+                    //    }
+                }
+                else
+                {
+                    comboBox2.DroppedDown = false;
+                    return;
+                }
+                DataRow row2 = result.NewRow();
+                row2.ItemArray = new object[] { 0, "--Close Suggestion--" };
+                result.Rows.InsertAt(row2, 0);
+                comboBox2.DisplayMember = "DealerName";
+                comboBox2.DataSource = result;
+
+
+
+              
+                    //dealerinfoBox.AutoCompleteCustomSource = coll;
+                  
+                dealerIDBox1.Text = result.Rows[0]["DealerID"].ToString();
+                dealerNameBox1.Text = result.Rows[0]["DealerName"].ToString();
+                phoneNumBox.Text = result.Rows[0]["DealerPhoneNum"].ToString();
+                dealerCompanyBox.Text = result.Rows[0]["DealerCompanyName"].ToString();
+                goodsAddressBox.Text = result.Rows[0]["DealerRegionNum"].ToString();
+                comboBox2.PreviewKeyDown += new PreviewKeyDownEventHandler(comboBox2_PreviewKeyDown);
+
+
+
+            }
+        }
+
+        private void comboBox2_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            comboBox2.PreviewKeyDown -= comboBox2_PreviewKeyDown;
+            if (comboBox2.DroppedDown) comboBox2.Focus();
 
         }
     }

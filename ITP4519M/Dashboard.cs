@@ -390,10 +390,12 @@ namespace ITP4519M
                     if (stockData.Rows[i].Cells["Status"].Value.ToString() == "Out-Of-Stock")
                     {
                         stockData.Rows[i].Cells["Status"].Style.ForeColor = Color.Red;
+                        stockData.Rows[i].Cells["Status"].Style.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
                     }
                     else if (stockData.Rows[i].Cells["Status"].Value.ToString() == "Danger")
                     {
-                        stockData.Rows[i].Cells["Status"].Style.ForeColor = Color.Orange;
+                        stockData.Rows[i].Cells["Status"].Style.ForeColor = Color.DarkOrange;
+                        stockData.Rows[i].Cells["Status"].Style.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
                     }
 
                 }
@@ -1976,7 +1978,7 @@ namespace ITP4519M
             stockData.Size = new Size(1050, 730);
         }
 
-        private void FirstpageBtnClick(DataGridView data,string type, int PgSize, int PageIndex, Label lbl, int rowCount)
+        private void FirstpageBtnClick(DataGridView data, string type, int PgSize, int PageIndex, Label lbl, int rowCount)
         {
             data.DataSource = programMethod.GetCurrentRecords(type, PageIndex, PgSize);
             SetRowHeights(data, PgSize);
@@ -2010,12 +2012,12 @@ namespace ITP4519M
         {
             this.OrderPageIndex = 1;
             FirstpageBtnClick(orderdata, "Order", OrderPgSize, OrderPageIndex, orderIndexlbl, OrderRowCount);
-           
+
         }
 
         private void orderPrevPagebtn_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void orderNextPagebtn_Click(object sender, EventArgs e)
@@ -2026,6 +2028,26 @@ namespace ITP4519M
         private void orderLastPagebtn_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void panel26_Paint(object sender, PaintEventArgs e)
+        {
+            ControlPaint.DrawBorder(e.Graphics, this.panel26.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
+        }
+
+        private void panel27_Paint(object sender, PaintEventArgs e)
+        {
+            ControlPaint.DrawBorder(e.Graphics, this.panel27.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
+        }
+
+        private void panel28_Paint(object sender, PaintEventArgs e)
+        {
+            ControlPaint.DrawBorder(e.Graphics, this.panel28.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
+        }
+
+        private void panel29_Paint(object sender, PaintEventArgs e)
+        {
+            ControlPaint.DrawBorder(e.Graphics, this.panel29.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
         }
     }
 }
