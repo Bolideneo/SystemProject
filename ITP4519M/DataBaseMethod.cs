@@ -577,6 +577,15 @@ namespace ITP4519M
 
         public int GetSupplierCount()
         {
+            string sql = "SELECT COUNT(*) FROM supplierproducts";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            int count = Convert.ToInt32(cmd.ExecuteScalar());
+            ServerConnect().Close();
+            return count;
+        }
+
+        public int GetSupplierNum()
+        {
             string sql = "SELECT COUNT(*) FROM supplier";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             int count = Convert.ToInt32(cmd.ExecuteScalar());
@@ -1842,7 +1851,7 @@ namespace ITP4519M
 
         public int getSuppliersRowCount()
         {
-            string sql = "SELECT COUNT(DISTINCT SupplierID) FROM supplier";
+            string sql = "SELECT COUNT(*) FROM supplier WHERE 1=1";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             object result = cmd.ExecuteScalar();
             int rowCount = Convert.ToInt32(result);

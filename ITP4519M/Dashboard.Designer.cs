@@ -379,11 +379,11 @@ namespace ITP4519M
             button24 = new Button();
             invoicepnl = new Panel();
             panel14 = new Panel();
-            roundedButton13 = new ProgramMethod.ProgramMethod.RoundedButton();
-            label21 = new Label();
-            roundedButton14 = new ProgramMethod.ProgramMethod.RoundedButton();
-            roundedButton15 = new ProgramMethod.ProgramMethod.RoundedButton();
-            roundedButton16 = new ProgramMethod.ProgramMethod.RoundedButton();
+            invoiceFirstPagebtn = new ProgramMethod.ProgramMethod.RoundedButton();
+            invoiceIndexlbl = new Label();
+            invoicePrevPagebtn = new ProgramMethod.ProgramMethod.RoundedButton();
+            invoiceLastPagebtn = new ProgramMethod.ProgramMethod.RoundedButton();
+            invoiceNextPagebtn = new ProgramMethod.ProgramMethod.RoundedButton();
             panel15 = new Panel();
             button7 = new Button();
             roundedTextBox1 = new ProgramMethod.ProgramMethod.RoundedTextBox();
@@ -1298,6 +1298,7 @@ namespace ITP4519M
             viewOrderbtn.ImageAlign = ContentAlignment.MiddleLeft;
             viewOrderbtn.ImageIndex = 0;
             viewOrderbtn.Location = new Point(245, 294);
+
             viewOrderbtn.Margin = new Padding(3, 4, 3, 4);
             viewOrderbtn.Name = "viewOrderbtn";
             viewOrderbtn.Size = new Size(173, 49);
@@ -4704,119 +4705,120 @@ namespace ITP4519M
             // 
             // panel14
             // 
-            panel14.Controls.Add(roundedButton13);
-            panel14.Controls.Add(label21);
-            panel14.Controls.Add(roundedButton14);
-            panel14.Controls.Add(roundedButton15);
-            panel14.Controls.Add(roundedButton16);
+            panel14.Controls.Add(invoiceFirstPagebtn);
+            panel14.Controls.Add(invoiceIndexlbl);
+            panel14.Controls.Add(invoicePrevPagebtn);
+            panel14.Controls.Add(invoiceLastPagebtn);
+            panel14.Controls.Add(invoiceNextPagebtn);
             panel14.Location = new Point(651, 908);
             panel14.Margin = new Padding(3, 4, 3, 4);
             panel14.Name = "panel14";
             panel14.Size = new Size(566, 67);
             panel14.TabIndex = 38;
             // 
-            // roundedButton13
+            // invoiceFirstPagebtn
             // 
-            roundedButton13.BackColor = SystemColors.Menu;
-            roundedButton13.BackColor2 = Color.White;
-            roundedButton13.BorderColor = Color.Tomato;
-            roundedButton13.BorderSize = 2;
-            roundedButton13.ButtonBorderColor = Color.Gray;
-            roundedButton13.ButtonHighlightColor = Color.Empty;
-            roundedButton13.ButtonHighlightColor2 = Color.Empty;
-            roundedButton13.ButtonHighlightForeColor = Color.Black;
-            roundedButton13.ButtonPressedColor = Color.White;
-            roundedButton13.ButtonPressedColor2 = Color.Empty;
-            roundedButton13.ButtonPressedForeColor = Color.Gray;
-            roundedButton13.ButtonRoundRadius = 15;
-            roundedButton13.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            roundedButton13.ForeColor = Color.Black;
-            roundedButton13.Location = new Point(70, 9);
-            roundedButton13.Margin = new Padding(3, 4, 3, 4);
-            roundedButton13.Name = "roundedButton13";
-            roundedButton13.Size = new Size(79, 44);
-            roundedButton13.TabIndex = 31;
-            roundedButton13.Text = "First";
+            invoiceFirstPagebtn.BackColor = SystemColors.Menu;
+            invoiceFirstPagebtn.BackColor2 = Color.White;
+            invoiceFirstPagebtn.BorderColor = Color.Tomato;
+            invoiceFirstPagebtn.BorderSize = 2;
+            invoiceFirstPagebtn.ButtonBorderColor = Color.Gray;
+            invoiceFirstPagebtn.ButtonHighlightColor = Color.Empty;
+            invoiceFirstPagebtn.ButtonHighlightColor2 = Color.Empty;
+            invoiceFirstPagebtn.ButtonHighlightForeColor = Color.Black;
+            invoiceFirstPagebtn.ButtonPressedColor = Color.White;
+            invoiceFirstPagebtn.ButtonPressedColor2 = Color.Empty;
+            invoiceFirstPagebtn.ButtonPressedForeColor = Color.Gray;
+            invoiceFirstPagebtn.ButtonRoundRadius = 15;
+            invoiceFirstPagebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            invoiceFirstPagebtn.ForeColor = Color.Black;
+            invoiceFirstPagebtn.Location = new Point(70, 9);
+            invoiceFirstPagebtn.Margin = new Padding(3, 4, 3, 4);
+            invoiceFirstPagebtn.Name = "invoiceFirstPagebtn";
+            invoiceFirstPagebtn.Size = new Size(79, 44);
+            invoiceFirstPagebtn.TabIndex = 31;
+            invoiceFirstPagebtn.Text = "First";
             // 
-            // label21
+            // invoiceIndexlbl
             // 
-            label21.AutoSize = true;
-            label21.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label21.Location = new Point(251, 21);
-            label21.Name = "label21";
-            label21.Size = new Size(100, 25);
-            label21.TabIndex = 3;
-            label21.Text = "LabelData";
+            invoiceIndexlbl.AutoSize = true;
+            invoiceIndexlbl.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            invoiceIndexlbl.Location = new Point(251, 21);
+            invoiceIndexlbl.Name = "invoiceIndexlbl";
+            invoiceIndexlbl.Size = new Size(100, 25);
+            invoiceIndexlbl.TabIndex = 3;
+            invoiceIndexlbl.Text = "LabelData";
             // 
-            // roundedButton14
+            // invoicePrevPagebtn
             // 
-            roundedButton14.AccessibleRole = AccessibleRole.None;
-            roundedButton14.BackColor = SystemColors.Menu;
-            roundedButton14.BackColor2 = Color.White;
-            roundedButton14.BorderColor = Color.Tomato;
-            roundedButton14.BorderSize = 2;
-            roundedButton14.ButtonBorderColor = Color.Gray;
-            roundedButton14.ButtonHighlightColor = Color.Empty;
-            roundedButton14.ButtonHighlightColor2 = Color.Empty;
-            roundedButton14.ButtonHighlightForeColor = Color.Black;
-            roundedButton14.ButtonPressedColor = Color.White;
-            roundedButton14.ButtonPressedColor2 = Color.Empty;
-            roundedButton14.ButtonPressedForeColor = Color.Gray;
-            roundedButton14.ButtonRoundRadius = 15;
-            roundedButton14.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            roundedButton14.ForeColor = Color.Black;
-            roundedButton14.Location = new Point(167, 9);
-            roundedButton14.Margin = new Padding(3, 4, 3, 4);
-            roundedButton14.Name = "roundedButton14";
-            roundedButton14.Size = new Size(72, 44);
-            roundedButton14.TabIndex = 33;
-            roundedButton14.Text = "Prev";
+            invoicePrevPagebtn.AccessibleRole = AccessibleRole.None;
+            invoicePrevPagebtn.BackColor = SystemColors.Menu;
+            invoicePrevPagebtn.BackColor2 = Color.White;
+            invoicePrevPagebtn.BorderColor = Color.Tomato;
+            invoicePrevPagebtn.BorderSize = 2;
+            invoicePrevPagebtn.ButtonBorderColor = Color.Gray;
+            invoicePrevPagebtn.ButtonHighlightColor = Color.Empty;
+            invoicePrevPagebtn.ButtonHighlightColor2 = Color.Empty;
+            invoicePrevPagebtn.ButtonHighlightForeColor = Color.Black;
+            invoicePrevPagebtn.ButtonPressedColor = Color.White;
+            invoicePrevPagebtn.ButtonPressedColor2 = Color.Empty;
+            invoicePrevPagebtn.ButtonPressedForeColor = Color.Gray;
+            invoicePrevPagebtn.ButtonRoundRadius = 15;
+            invoicePrevPagebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            invoicePrevPagebtn.ForeColor = Color.Black;
+            invoicePrevPagebtn.Location = new Point(167, 9);
+            invoicePrevPagebtn.Margin = new Padding(3, 4, 3, 4);
+            invoicePrevPagebtn.Name = "invoicePrevPagebtn";
+            invoicePrevPagebtn.Size = new Size(72, 44);
+            invoicePrevPagebtn.TabIndex = 33;
+            invoicePrevPagebtn.Text = "Prev";
             // 
-            // roundedButton15
+            // invoiceLastPagebtn
             // 
-            roundedButton15.BackColor = SystemColors.Menu;
-            roundedButton15.BackColor2 = Color.White;
-            roundedButton15.BorderColor = Color.White;
-            roundedButton15.BorderSize = 2;
-            roundedButton15.ButtonBorderColor = Color.Gray;
-            roundedButton15.ButtonHighlightColor = Color.Empty;
-            roundedButton15.ButtonHighlightColor2 = Color.Empty;
-            roundedButton15.ButtonHighlightForeColor = Color.Black;
-            roundedButton15.ButtonPressedColor = Color.White;
-            roundedButton15.ButtonPressedColor2 = Color.Empty;
-            roundedButton15.ButtonPressedForeColor = Color.Gray;
-            roundedButton15.ButtonRoundRadius = 15;
-            roundedButton15.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            roundedButton15.ForeColor = Color.Black;
-            roundedButton15.Location = new Point(454, 9);
-            roundedButton15.Margin = new Padding(3, 4, 3, 4);
-            roundedButton15.Name = "roundedButton15";
-            roundedButton15.Size = new Size(75, 44);
-            roundedButton15.TabIndex = 34;
-            roundedButton15.Text = "Last";
+            invoiceLastPagebtn.BackColor = SystemColors.Menu;
+            invoiceLastPagebtn.BackColor2 = Color.White;
+            invoiceLastPagebtn.BorderColor = Color.White;
+            invoiceLastPagebtn.BorderSize = 2;
+            invoiceLastPagebtn.ButtonBorderColor = Color.Gray;
+            invoiceLastPagebtn.ButtonHighlightColor = Color.Empty;
+            invoiceLastPagebtn.ButtonHighlightColor2 = Color.Empty;
+            invoiceLastPagebtn.ButtonHighlightForeColor = Color.Black;
+            invoiceLastPagebtn.ButtonPressedColor = Color.White;
+            invoiceLastPagebtn.ButtonPressedColor2 = Color.Empty;
+            invoiceLastPagebtn.ButtonPressedForeColor = Color.Gray;
+            invoiceLastPagebtn.ButtonRoundRadius = 15;
+            invoiceLastPagebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            invoiceLastPagebtn.ForeColor = Color.Black;
+            invoiceLastPagebtn.Location = new Point(454, 9);
+            invoiceLastPagebtn.Margin = new Padding(3, 4, 3, 4);
+            invoiceLastPagebtn.Name = "invoiceLastPagebtn";
+            invoiceLastPagebtn.Size = new Size(75, 44);
+            invoiceLastPagebtn.TabIndex = 34;
+            invoiceLastPagebtn.Text = "Last";
             // 
-            // roundedButton16
+            // invoiceNextPagebtn
             // 
-            roundedButton16.BackColor = SystemColors.HighlightText;
-            roundedButton16.BackColor2 = Color.White;
-            roundedButton16.BorderColor = Color.Tomato;
-            roundedButton16.BorderSize = 2;
-            roundedButton16.ButtonBorderColor = Color.Gray;
-            roundedButton16.ButtonHighlightColor = Color.Empty;
-            roundedButton16.ButtonHighlightColor2 = Color.Empty;
-            roundedButton16.ButtonHighlightForeColor = Color.Black;
-            roundedButton16.ButtonPressedColor = Color.White;
-            roundedButton16.ButtonPressedColor2 = Color.Empty;
-            roundedButton16.ButtonPressedForeColor = Color.Gray;
-            roundedButton16.ButtonRoundRadius = 15;
-            roundedButton16.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            roundedButton16.ForeColor = Color.Black;
-            roundedButton16.Location = new Point(354, 9);
-            roundedButton16.Margin = new Padding(3, 4, 3, 4);
-            roundedButton16.Name = "roundedButton16";
-            roundedButton16.Size = new Size(88, 44);
-            roundedButton16.TabIndex = 32;
-            roundedButton16.Text = "Next";
+            invoiceNextPagebtn.BackColor = SystemColors.HighlightText;
+            invoiceNextPagebtn.BackColor2 = Color.White;
+            invoiceNextPagebtn.BorderColor = Color.Tomato;
+            invoiceNextPagebtn.BorderSize = 2;
+            invoiceNextPagebtn.ButtonBorderColor = Color.Gray;
+            invoiceNextPagebtn.ButtonHighlightColor = Color.Empty;
+            invoiceNextPagebtn.ButtonHighlightColor2 = Color.Empty;
+            invoiceNextPagebtn.ButtonHighlightForeColor = Color.Black;
+            invoiceNextPagebtn.ButtonPressedColor = Color.White;
+            invoiceNextPagebtn.ButtonPressedColor2 = Color.Empty;
+            invoiceNextPagebtn.ButtonPressedForeColor = Color.Gray;
+            invoiceNextPagebtn.ButtonRoundRadius = 15;
+            invoiceNextPagebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            invoiceNextPagebtn.ForeColor = Color.Black;
+            invoiceNextPagebtn.Location = new Point(354, 9);
+            invoiceNextPagebtn.Margin = new Padding(3, 4, 3, 4);
+            invoiceNextPagebtn.Name = "invoiceNextPagebtn";
+            invoiceNextPagebtn.Size = new Size(88, 44);
+            invoiceNextPagebtn.TabIndex = 32;
+            invoiceNextPagebtn.Text = "Next";
+            invoiceNextPagebtn.Click += invoiceNextPagebtn_Click;
             // 
             // panel15
             // 
@@ -5003,21 +5005,21 @@ namespace ITP4519M
             ClientSize = new Size(1499, 1051);
             Controls.Add(listpnl);
             Controls.Add(closebtn);
+            Controls.Add(invoicepnl);
+            Controls.Add(POpnl);
+            Controls.Add(deliverypnl);
+            Controls.Add(userspnl);
+            Controls.Add(outstandingOrderpnl);
             Controls.Add(orderpnl);
+            Controls.Add(GRNpnl);
             Controls.Add(outstandingViewpnl);
             Controls.Add(deliveryCompletepnl);
-            Controls.Add(GRNpnl);
             Controls.Add(dashboardpnl);
             Controls.Add(settingpnl);
             Controls.Add(OrderAccemblypnl);
             Controls.Add(logpnl);
             Controls.Add(inventorypnl);
             Controls.Add(contactpnl);
-            Controls.Add(invoicepnl);
-            Controls.Add(POpnl);
-            Controls.Add(deliverypnl);
-            Controls.Add(userspnl);
-            Controls.Add(outstandingOrderpnl);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
@@ -5350,11 +5352,11 @@ namespace ITP4519M
         private Label label19;
         private Button deliverycompletedeliverybtn;
         private Panel panel14;
-        private ProgramMethod.ProgramMethod.RoundedButton roundedButton13;
-        private Label label21;
-        private ProgramMethod.ProgramMethod.RoundedButton roundedButton14;
-        private ProgramMethod.ProgramMethod.RoundedButton roundedButton15;
-        private ProgramMethod.ProgramMethod.RoundedButton roundedButton16;
+        private ProgramMethod.ProgramMethod.RoundedButton invoiceFirstPagebtn;
+        private Label invoiceIndexlbl;
+        private ProgramMethod.ProgramMethod.RoundedButton invoicePrevPagebtn;
+        private ProgramMethod.ProgramMethod.RoundedButton invoiceLastPagebtn;
+        private ProgramMethod.ProgramMethod.RoundedButton invoiceNextPagebtn;
         private Panel panel15;
         private Button button7;
         private ProgramMethod.ProgramMethod.RoundedTextBox roundedTextBox1;

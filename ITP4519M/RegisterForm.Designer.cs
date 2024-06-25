@@ -59,26 +59,50 @@ namespace ITP4519M
             accountEditlbl = new Label();
             viewaccountlbl = new Label();
             editAccountbtn = new Button();
-            label1 = new Label();
-            panel2 = new Panel();
-            pictureBox1 = new PictureBox();
-            panel3 = new Panel();
-            pictureBox3 = new PictureBox();
-            label2 = new Label();
-            label3 = new Label();
+            passwordNotelbl = new Label();
+            usernamepnl = new Panel();
+            usernameAlertBox = new PictureBox();
+            displaynamepnl = new Panel();
+            displaynameAlertBox = new PictureBox();
+            usernameAlertlbl = new Label();
+            displaynameAlertlbl = new Label();
+            emailAlertlbl = new Label();
+            phoneAlertlbl = new Label();
+            passwordpnl = new Panel();
+            passwordAlertBox = new PictureBox();
+            passwordAgainpnl = new Panel();
+            passwordAgainAlertBox = new PictureBox();
+            mailpnl = new Panel();
+            mailAlertBox = new PictureBox();
+            phonepnl = new Panel();
+            phoneAlertBox = new PictureBox();
+            titilepnl = new Panel();
+            titleAlertBox = new PictureBox();
+            titleAlertlbl = new Label();
+            departAlertlbl = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            usernamepnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)usernameAlertBox).BeginInit();
+            displaynamepnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)displaynameAlertBox).BeginInit();
+            passwordpnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)passwordAlertBox).BeginInit();
+            passwordAgainpnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)passwordAgainAlertBox).BeginInit();
+            mailpnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)mailAlertBox).BeginInit();
+            phonepnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)phoneAlertBox).BeginInit();
+            titilepnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)titleAlertBox).BeginInit();
             SuspendLayout();
             // 
             // displaynamelbl
             // 
             displaynamelbl.AutoSize = true;
             displaynamelbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            displaynamelbl.Location = new Point(528, 137);
+            displaynamelbl.Location = new Point(528, 126);
             displaynamelbl.Margin = new Padding(5, 0, 5, 0);
             displaynamelbl.Name = "displaynamelbl";
             displaynamelbl.Size = new Size(109, 20);
@@ -87,13 +111,13 @@ namespace ITP4519M
             // 
             // registerDisplaynameBox
             // 
-            registerDisplaynameBox.BackColor = SystemColors.Menu;
+            registerDisplaynameBox.BackColor = SystemColors.Window;
             registerDisplaynameBox.BorderStyle = BorderStyle.None;
             registerDisplaynameBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             registerDisplaynameBox.Location = new Point(5, 4);
             registerDisplaynameBox.Margin = new Padding(5, 4, 5, 4);
             registerDisplaynameBox.Name = "registerDisplaynameBox";
-            registerDisplaynameBox.Size = new Size(179, 20);
+            registerDisplaynameBox.Size = new Size(180, 20);
             registerDisplaynameBox.TabIndex = 21;
             registerDisplaynameBox.TextChanged += PasswordBox_TextChanged;
             // 
@@ -101,7 +125,7 @@ namespace ITP4519M
             // 
             createAccountBtn.AccessibleRole = AccessibleRole.None;
             createAccountBtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            createAccountBtn.Location = new Point(403, 548);
+            createAccountBtn.Location = new Point(403, 537);
             createAccountBtn.Margin = new Padding(5, 4, 5, 4);
             createAccountBtn.Name = "createAccountBtn";
             createAccountBtn.Size = new Size(248, 48);
@@ -114,7 +138,7 @@ namespace ITP4519M
             // 
             usernamelbl.AutoSize = true;
             usernamelbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            usernamelbl.Location = new Point(293, 137);
+            usernamelbl.Location = new Point(293, 126);
             usernamelbl.Margin = new Padding(5, 0, 5, 0);
             usernamelbl.Name = "usernamelbl";
             usernamelbl.Size = new Size(89, 20);
@@ -139,7 +163,7 @@ namespace ITP4519M
             // 
             maillbl.AutoSize = true;
             maillbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            maillbl.Location = new Point(294, 363);
+            maillbl.Location = new Point(294, 352);
             maillbl.Margin = new Padding(5, 0, 5, 0);
             maillbl.Name = "maillbl";
             maillbl.Size = new Size(107, 20);
@@ -148,18 +172,19 @@ namespace ITP4519M
             // 
             // mailBox
             // 
+            mailBox.BorderStyle = BorderStyle.None;
             mailBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            mailBox.Location = new Point(294, 392);
+            mailBox.Location = new Point(5, 4);
             mailBox.Margin = new Padding(5, 4, 5, 4);
             mailBox.Name = "mailBox";
-            mailBox.Size = new Size(250, 27);
+            mailBox.Size = new Size(220, 20);
             mailBox.TabIndex = 26;
             // 
             // phoneNumlbl
             // 
             phoneNumlbl.AutoSize = true;
             phoneNumlbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            phoneNumlbl.Location = new Point(554, 363);
+            phoneNumlbl.Location = new Point(561, 352);
             phoneNumlbl.Margin = new Padding(5, 0, 5, 0);
             phoneNumlbl.Name = "phoneNumlbl";
             phoneNumlbl.Size = new Size(120, 20);
@@ -168,18 +193,19 @@ namespace ITP4519M
             // 
             // phoneNumBox
             // 
+            phoneNumBox.BorderStyle = BorderStyle.None;
             phoneNumBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            phoneNumBox.Location = new Point(554, 392);
+            phoneNumBox.Location = new Point(5, 4);
             phoneNumBox.Margin = new Padding(5, 4, 5, 4);
             phoneNumBox.Name = "phoneNumBox";
-            phoneNumBox.Size = new Size(194, 27);
+            phoneNumBox.Size = new Size(180, 20);
             phoneNumBox.TabIndex = 28;
             // 
             // departlbl
             // 
             departlbl.AutoSize = true;
             departlbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            departlbl.Location = new Point(554, 433);
+            departlbl.Location = new Point(561, 449);
             departlbl.Margin = new Padding(5, 0, 5, 0);
             departlbl.Name = "departlbl";
             departlbl.Size = new Size(97, 20);
@@ -194,10 +220,10 @@ namespace ITP4519M
             departBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             departBox.FormattingEnabled = true;
             departBox.Items.AddRange(new object[] { "IT", "Account", "Sales", "WareHouse", "Purchasing", "Invoice" });
-            departBox.Location = new Point(554, 460);
+            departBox.Location = new Point(561, 476);
             departBox.Margin = new Padding(2, 3, 2, 3);
             departBox.Name = "departBox";
-            departBox.Size = new Size(194, 28);
+            departBox.Size = new Size(218, 28);
             departBox.TabIndex = 32;
             departBox.ValueMember = "DepartmentName";
             departBox.SelectedIndexChanged += departBox_SelectedIndexChanged;
@@ -293,31 +319,32 @@ namespace ITP4519M
             // 
             // registerUsernameBox
             // 
-            registerUsernameBox.BackColor = SystemColors.Menu;
+            registerUsernameBox.BackColor = SystemColors.Window;
             registerUsernameBox.BorderStyle = BorderStyle.None;
             registerUsernameBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             registerUsernameBox.Location = new Point(5, 4);
             registerUsernameBox.Margin = new Padding(5, 4, 5, 4);
             registerUsernameBox.Name = "registerUsernameBox";
-            registerUsernameBox.Size = new Size(174, 20);
+            registerUsernameBox.Size = new Size(180, 20);
             registerUsernameBox.TabIndex = 17;
             registerUsernameBox.TextChanged += registerUsernameBox_TextChanged;
             // 
             // registerPasswordBox
             // 
+            registerPasswordBox.BorderStyle = BorderStyle.None;
             registerPasswordBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            registerPasswordBox.Location = new Point(294, 268);
+            registerPasswordBox.Location = new Point(5, 4);
             registerPasswordBox.Margin = new Padding(5, 4, 5, 4);
             registerPasswordBox.Name = "registerPasswordBox";
             registerPasswordBox.PasswordChar = '*';
-            registerPasswordBox.Size = new Size(218, 27);
+            registerPasswordBox.Size = new Size(180, 20);
             registerPasswordBox.TabIndex = 35;
             // 
             // passwordlbl
             // 
             passwordlbl.AutoSize = true;
             passwordlbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            passwordlbl.Location = new Point(294, 238);
+            passwordlbl.Location = new Point(294, 227);
             passwordlbl.Margin = new Padding(5, 0, 5, 0);
             passwordlbl.Name = "passwordlbl";
             passwordlbl.Size = new Size(83, 20);
@@ -329,7 +356,7 @@ namespace ITP4519M
             // 
             passwordAgainlbl.AutoSize = true;
             passwordAgainlbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            passwordAgainlbl.Location = new Point(528, 238);
+            passwordAgainlbl.Location = new Point(528, 227);
             passwordAgainlbl.Margin = new Padding(5, 0, 5, 0);
             passwordAgainlbl.Name = "passwordAgainlbl";
             passwordAgainlbl.Size = new Size(130, 20);
@@ -339,19 +366,20 @@ namespace ITP4519M
             // 
             // registerPasswordAgainBox
             // 
+            registerPasswordAgainBox.BorderStyle = BorderStyle.None;
             registerPasswordAgainBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            registerPasswordAgainBox.Location = new Point(530, 268);
+            registerPasswordAgainBox.Location = new Point(5, 4);
             registerPasswordAgainBox.Margin = new Padding(5, 4, 5, 4);
             registerPasswordAgainBox.Name = "registerPasswordAgainBox";
             registerPasswordAgainBox.PasswordChar = '*';
-            registerPasswordAgainBox.Size = new Size(218, 27);
+            registerPasswordAgainBox.Size = new Size(180, 20);
             registerPasswordAgainBox.TabIndex = 37;
             // 
             // titlelbl
             // 
             titlelbl.AutoSize = true;
             titlelbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            titlelbl.Location = new Point(294, 433);
+            titlelbl.Location = new Point(294, 449);
             titlelbl.Margin = new Padding(5, 0, 5, 0);
             titlelbl.Name = "titlelbl";
             titlelbl.Size = new Size(41, 20);
@@ -360,18 +388,19 @@ namespace ITP4519M
             // 
             // titleBox
             // 
+            titleBox.BorderStyle = BorderStyle.None;
             titleBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            titleBox.Location = new Point(294, 461);
+            titleBox.Location = new Point(5, 4);
             titleBox.Margin = new Padding(5, 4, 5, 4);
             titleBox.Name = "titleBox";
-            titleBox.Size = new Size(250, 27);
+            titleBox.Size = new Size(220, 20);
             titleBox.TabIndex = 42;
             // 
             // registerClearBtn
             // 
             registerClearBtn.AccessibleRole = AccessibleRole.None;
             registerClearBtn.Font = new Font("Arial Narrow", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            registerClearBtn.Location = new Point(475, 604);
+            registerClearBtn.Location = new Point(475, 593);
             registerClearBtn.Margin = new Padding(5, 4, 5, 4);
             registerClearBtn.Name = "registerClearBtn";
             registerClearBtn.Size = new Size(96, 28);
@@ -410,7 +439,7 @@ namespace ITP4519M
             // 
             editAccountbtn.AccessibleRole = AccessibleRole.None;
             editAccountbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            editAccountbtn.Location = new Point(403, 548);
+            editAccountbtn.Location = new Point(403, 537);
             editAccountbtn.Margin = new Padding(5, 4, 5, 4);
             editAccountbtn.Name = "editAccountbtn";
             editAccountbtn.Size = new Size(248, 48);
@@ -419,90 +448,256 @@ namespace ITP4519M
             editAccountbtn.UseVisualStyleBackColor = true;
             editAccountbtn.Click += editAccountbtn_Click;
             // 
-            // label1
+            // passwordNotelbl
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.SteelBlue;
-            label1.Location = new Point(293, 299);
-            label1.Margin = new Padding(5, 0, 5, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(428, 40);
-            label1.TabIndex = 47;
-            label1.Text = "Note: Password must be at least 8 characters long with \r\nuppercase, lowercase, digit, and special character.";
+            passwordNotelbl.AutoSize = true;
+            passwordNotelbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            passwordNotelbl.ForeColor = Color.SteelBlue;
+            passwordNotelbl.Location = new Point(293, 288);
+            passwordNotelbl.Margin = new Padding(5, 0, 5, 0);
+            passwordNotelbl.Name = "passwordNotelbl";
+            passwordNotelbl.Size = new Size(428, 40);
+            passwordNotelbl.TabIndex = 47;
+            passwordNotelbl.Text = "Note: Password must be at least 8 characters long with \r\nuppercase, lowercase, digit, and special character.";
             // 
-            // panel2
+            // usernamepnl
             // 
-            panel2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            panel2.Controls.Add(registerUsernameBox);
-            panel2.Controls.Add(pictureBox1);
-            panel2.Location = new Point(294, 166);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(218, 28);
-            panel2.TabIndex = 77;
-            panel2.Paint += panel2_Paint;
+            usernamepnl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            usernamepnl.BackColor = SystemColors.Window;
+            usernamepnl.Controls.Add(registerUsernameBox);
+            usernamepnl.Controls.Add(usernameAlertBox);
+            usernamepnl.Location = new Point(294, 154);
+            usernamepnl.Name = "usernamepnl";
+            usernamepnl.Size = new Size(218, 28);
+            usernamepnl.TabIndex = 77;
+            usernamepnl.Paint += panel2_Paint;
             // 
-            // pictureBox1
+            // usernameAlertBox
             // 
-            pictureBox1.Image = Properties.Resources.red_alert;
-            pictureBox1.InitialImage = null;
-            pictureBox1.Location = new Point(187, 2);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(24, 24);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 76;
-            pictureBox1.TabStop = false;
-            pictureBox1.Visible = false;
+            usernameAlertBox.Image = Properties.Resources.red_alert;
+            usernameAlertBox.InitialImage = null;
+            usernameAlertBox.Location = new Point(190, 2);
+            usernameAlertBox.Margin = new Padding(3, 2, 3, 2);
+            usernameAlertBox.Name = "usernameAlertBox";
+            usernameAlertBox.Size = new Size(24, 24);
+            usernameAlertBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            usernameAlertBox.TabIndex = 76;
+            usernameAlertBox.TabStop = false;
+            usernameAlertBox.Visible = false;
             // 
-            // panel3
+            // displaynamepnl
             // 
-            panel3.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            panel3.Controls.Add(pictureBox3);
-            panel3.Controls.Add(registerDisplaynameBox);
-            panel3.Location = new Point(532, 165);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(218, 28);
-            panel3.TabIndex = 78;
-            panel3.Paint += panel3_Paint;
+            displaynamepnl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            displaynamepnl.BackColor = SystemColors.Window;
+            displaynamepnl.Controls.Add(displaynameAlertBox);
+            displaynamepnl.Controls.Add(registerDisplaynameBox);
+            displaynamepnl.Location = new Point(530, 154);
+            displaynamepnl.Name = "displaynamepnl";
+            displaynamepnl.Size = new Size(218, 28);
+            displaynamepnl.TabIndex = 78;
+            displaynamepnl.Paint += panel3_Paint;
             // 
-            // pictureBox3
+            // displaynameAlertBox
             // 
-            pictureBox3.Image = Properties.Resources.red_alert;
-            pictureBox3.Location = new Point(188, 2);
-            pictureBox3.Margin = new Padding(3, 2, 3, 2);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(24, 24);
-            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox3.TabIndex = 76;
-            pictureBox3.TabStop = false;
-            pictureBox3.Visible = false;
+            displaynameAlertBox.Image = Properties.Resources.red_alert;
+            displaynameAlertBox.Location = new Point(190, 2);
+            displaynameAlertBox.Margin = new Padding(3, 2, 3, 2);
+            displaynameAlertBox.Name = "displaynameAlertBox";
+            displaynameAlertBox.Size = new Size(24, 24);
+            displaynameAlertBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            displaynameAlertBox.TabIndex = 76;
+            displaynameAlertBox.TabStop = false;
+            displaynameAlertBox.Visible = false;
             // 
-            // label2
+            // usernameAlertlbl
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.Red;
-            label2.Location = new Point(294, 202);
-            label2.Margin = new Padding(5, 0, 5, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(200, 20);
-            label2.TabIndex = 79;
-            label2.Text = "Please enter a username.";
-            label2.Visible = false;
+            usernameAlertlbl.AutoSize = true;
+            usernameAlertlbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            usernameAlertlbl.ForeColor = Color.Red;
+            usernameAlertlbl.Location = new Point(294, 185);
+            usernameAlertlbl.Margin = new Padding(5, 0, 5, 0);
+            usernameAlertlbl.Name = "usernameAlertlbl";
+            usernameAlertlbl.Size = new Size(200, 20);
+            usernameAlertlbl.TabIndex = 79;
+            usernameAlertlbl.Text = "Please enter a username.";
+            usernameAlertlbl.Visible = false;
             // 
-            // label3
+            // displaynameAlertlbl
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.Red;
-            label3.Location = new Point(528, 202);
-            label3.Margin = new Padding(5, 0, 5, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(224, 20);
-            label3.TabIndex = 80;
-            label3.Text = "Please enter a display name.";
-            label3.Visible = false;
+            displaynameAlertlbl.AutoSize = true;
+            displaynameAlertlbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            displaynameAlertlbl.ForeColor = Color.Red;
+            displaynameAlertlbl.Location = new Point(528, 185);
+            displaynameAlertlbl.Margin = new Padding(5, 0, 5, 0);
+            displaynameAlertlbl.Name = "displaynameAlertlbl";
+            displaynameAlertlbl.Size = new Size(224, 20);
+            displaynameAlertlbl.TabIndex = 80;
+            displaynameAlertlbl.Text = "Please enter a display name.";
+            displaynameAlertlbl.Visible = false;
+            // 
+            // emailAlertlbl
+            // 
+            emailAlertlbl.AutoSize = true;
+            emailAlertlbl.Font = new Font("Microsoft Sans Serif", 10.2F);
+            emailAlertlbl.ForeColor = Color.SteelBlue;
+            emailAlertlbl.Location = new Point(294, 412);
+            emailAlertlbl.Name = "emailAlertlbl";
+            emailAlertlbl.Size = new Size(186, 20);
+            emailAlertlbl.TabIndex = 81;
+            emailAlertlbl.Text = "example@example.com";
+            // 
+            // phoneAlertlbl
+            // 
+            phoneAlertlbl.AutoSize = true;
+            phoneAlertlbl.Font = new Font("Microsoft Sans Serif", 10.2F);
+            phoneAlertlbl.ForeColor = Color.SteelBlue;
+            phoneAlertlbl.Location = new Point(561, 412);
+            phoneAlertlbl.Name = "phoneAlertlbl";
+            phoneAlertlbl.Size = new Size(130, 20);
+            phoneAlertlbl.TabIndex = 82;
+            phoneAlertlbl.Text = "6 to 13 numbers";
+            // 
+            // passwordpnl
+            // 
+            passwordpnl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            passwordpnl.BackColor = SystemColors.Window;
+            passwordpnl.Controls.Add(passwordAlertBox);
+            passwordpnl.Controls.Add(registerPasswordBox);
+            passwordpnl.Location = new Point(294, 257);
+            passwordpnl.Name = "passwordpnl";
+            passwordpnl.Size = new Size(218, 28);
+            passwordpnl.TabIndex = 78;
+            // 
+            // passwordAlertBox
+            // 
+            passwordAlertBox.Image = Properties.Resources.red_alert;
+            passwordAlertBox.InitialImage = null;
+            passwordAlertBox.Location = new Point(190, 2);
+            passwordAlertBox.Margin = new Padding(3, 2, 3, 2);
+            passwordAlertBox.Name = "passwordAlertBox";
+            passwordAlertBox.Size = new Size(24, 24);
+            passwordAlertBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            passwordAlertBox.TabIndex = 76;
+            passwordAlertBox.TabStop = false;
+            passwordAlertBox.Visible = false;
+            // 
+            // passwordAgainpnl
+            // 
+            passwordAgainpnl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            passwordAgainpnl.BackColor = SystemColors.Window;
+            passwordAgainpnl.Controls.Add(passwordAgainAlertBox);
+            passwordAgainpnl.Controls.Add(registerPasswordAgainBox);
+            passwordAgainpnl.Location = new Point(530, 257);
+            passwordAgainpnl.Name = "passwordAgainpnl";
+            passwordAgainpnl.Size = new Size(218, 28);
+            passwordAgainpnl.TabIndex = 79;
+            // 
+            // passwordAgainAlertBox
+            // 
+            passwordAgainAlertBox.Image = Properties.Resources.red_alert;
+            passwordAgainAlertBox.Location = new Point(190, 2);
+            passwordAgainAlertBox.Margin = new Padding(3, 2, 3, 2);
+            passwordAgainAlertBox.Name = "passwordAgainAlertBox";
+            passwordAgainAlertBox.Size = new Size(24, 24);
+            passwordAgainAlertBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            passwordAgainAlertBox.TabIndex = 76;
+            passwordAgainAlertBox.TabStop = false;
+            passwordAgainAlertBox.Visible = false;
+            // 
+            // mailpnl
+            // 
+            mailpnl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            mailpnl.BackColor = SystemColors.Window;
+            mailpnl.Controls.Add(mailAlertBox);
+            mailpnl.Controls.Add(mailBox);
+            mailpnl.Location = new Point(293, 381);
+            mailpnl.Name = "mailpnl";
+            mailpnl.Size = new Size(259, 28);
+            mailpnl.TabIndex = 79;
+            // 
+            // mailAlertBox
+            // 
+            mailAlertBox.Image = Properties.Resources.red_alert;
+            mailAlertBox.Location = new Point(232, 2);
+            mailAlertBox.Margin = new Padding(3, 2, 3, 2);
+            mailAlertBox.Name = "mailAlertBox";
+            mailAlertBox.Size = new Size(24, 24);
+            mailAlertBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            mailAlertBox.TabIndex = 76;
+            mailAlertBox.TabStop = false;
+            mailAlertBox.Visible = false;
+            // 
+            // phonepnl
+            // 
+            phonepnl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            phonepnl.BackColor = SystemColors.Window;
+            phonepnl.Controls.Add(phoneAlertBox);
+            phonepnl.Controls.Add(phoneNumBox);
+            phonepnl.Location = new Point(561, 381);
+            phonepnl.Name = "phonepnl";
+            phonepnl.Size = new Size(218, 28);
+            phonepnl.TabIndex = 79;
+            // 
+            // phoneAlertBox
+            // 
+            phoneAlertBox.Image = Properties.Resources.red_alert;
+            phoneAlertBox.Location = new Point(190, 2);
+            phoneAlertBox.Margin = new Padding(3, 2, 3, 2);
+            phoneAlertBox.Name = "phoneAlertBox";
+            phoneAlertBox.Size = new Size(24, 24);
+            phoneAlertBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            phoneAlertBox.TabIndex = 76;
+            phoneAlertBox.TabStop = false;
+            phoneAlertBox.Visible = false;
+            // 
+            // titilepnl
+            // 
+            titilepnl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            titilepnl.BackColor = SystemColors.Window;
+            titilepnl.Controls.Add(titleAlertBox);
+            titilepnl.Controls.Add(titleBox);
+            titilepnl.Location = new Point(293, 476);
+            titilepnl.Name = "titilepnl";
+            titilepnl.Size = new Size(259, 28);
+            titilepnl.TabIndex = 80;
+            // 
+            // titleAlertBox
+            // 
+            titleAlertBox.Image = Properties.Resources.red_alert;
+            titleAlertBox.Location = new Point(232, 2);
+            titleAlertBox.Margin = new Padding(3, 2, 3, 2);
+            titleAlertBox.Name = "titleAlertBox";
+            titleAlertBox.Size = new Size(24, 24);
+            titleAlertBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            titleAlertBox.TabIndex = 76;
+            titleAlertBox.TabStop = false;
+            titleAlertBox.Visible = false;
+            // 
+            // titleAlertlbl
+            // 
+            titleAlertlbl.AutoSize = true;
+            titleAlertlbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            titleAlertlbl.ForeColor = Color.Red;
+            titleAlertlbl.Location = new Point(294, 507);
+            titleAlertlbl.Margin = new Padding(5, 0, 5, 0);
+            titleAlertlbl.Name = "titleAlertlbl";
+            titleAlertlbl.Size = new Size(153, 20);
+            titleAlertlbl.TabIndex = 83;
+            titleAlertlbl.Text = "Please enter a title.";
+            titleAlertlbl.Visible = false;
+            // 
+            // departAlertlbl
+            // 
+            departAlertlbl.AutoSize = true;
+            departAlertlbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            departAlertlbl.ForeColor = Color.Red;
+            departAlertlbl.Location = new Point(566, 507);
+            departAlertlbl.Margin = new Padding(5, 0, 5, 0);
+            departAlertlbl.Name = "departAlertlbl";
+            departAlertlbl.Size = new Size(217, 20);
+            departAlertlbl.TabIndex = 84;
+            departAlertlbl.Text = "Please select a department.";
+            departAlertlbl.Visible = false;
             // 
             // RegisterForm
             // 
@@ -510,28 +705,32 @@ namespace ITP4519M
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
             ClientSize = new Size(807, 640);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(panel3);
-            Controls.Add(panel2);
-            Controls.Add(label1);
+            Controls.Add(departAlertlbl);
+            Controls.Add(titleAlertlbl);
+            Controls.Add(titilepnl);
+            Controls.Add(phonepnl);
+            Controls.Add(mailpnl);
+            Controls.Add(passwordAgainpnl);
+            Controls.Add(passwordpnl);
+            Controls.Add(phoneAlertlbl);
+            Controls.Add(emailAlertlbl);
+            Controls.Add(displaynameAlertlbl);
+            Controls.Add(usernameAlertlbl);
+            Controls.Add(displaynamepnl);
+            Controls.Add(usernamepnl);
+            Controls.Add(passwordNotelbl);
             Controls.Add(viewaccountlbl);
             Controls.Add(accountEditlbl);
             Controls.Add(registerClearBtn);
-            Controls.Add(titleBox);
             Controls.Add(titlelbl);
             Controls.Add(passwordAgainlbl);
-            Controls.Add(registerPasswordAgainBox);
             Controls.Add(passwordlbl);
-            Controls.Add(registerPasswordBox);
             Controls.Add(panel1);
             Controls.Add(button1);
             Controls.Add(departBox);
             Controls.Add(departlbl);
             Controls.Add(phoneNumlbl);
-            Controls.Add(phoneNumBox);
             Controls.Add(maillbl);
-            Controls.Add(mailBox);
             Controls.Add(newAccountlabel);
             Controls.Add(displaynamelbl);
             Controls.Add(createAccountBtn);
@@ -549,12 +748,27 @@ namespace ITP4519M
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            usernamepnl.ResumeLayout(false);
+            usernamepnl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)usernameAlertBox).EndInit();
+            displaynamepnl.ResumeLayout(false);
+            displaynamepnl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)displaynameAlertBox).EndInit();
+            passwordpnl.ResumeLayout(false);
+            passwordpnl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)passwordAlertBox).EndInit();
+            passwordAgainpnl.ResumeLayout(false);
+            passwordAgainpnl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)passwordAgainAlertBox).EndInit();
+            mailpnl.ResumeLayout(false);
+            mailpnl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)mailAlertBox).EndInit();
+            phonepnl.ResumeLayout(false);
+            phonepnl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)phoneAlertBox).EndInit();
+            titilepnl.ResumeLayout(false);
+            titilepnl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)titleAlertBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -589,12 +803,26 @@ namespace ITP4519M
         private Label viewaccountlbl;
         private Button editAccountbtn;
         private Label accountreadlbl;
-        private Label label1;
-        private Panel panel2;
-        private PictureBox pictureBox1;
-        private Panel panel3;
-        private PictureBox pictureBox3;
-        private Label label2;
-        private Label label3;
+        private Label passwordNotelbl;
+        private Panel usernamepnl;
+        private PictureBox usernameAlertBox;
+        private Panel displaynamepnl;
+        private PictureBox displaynameAlertBox;
+        private Label usernameAlertlbl;
+        private Label displaynameAlertlbl;
+        private Label emailAlertlbl;
+        private Label phoneAlertlbl;
+        private Panel passwordpnl;
+        private PictureBox passwordAlertBox;
+        private Panel passwordAgainpnl;
+        private PictureBox passwordAgainAlertBox;
+        private Panel mailpnl;
+        private PictureBox mailAlertBox;
+        private Panel phonepnl;
+        private PictureBox phoneAlertBox;
+        private Panel titilepnl;
+        private PictureBox titleAlertBox;
+        private Label titleAlertlbl;
+        private Label departAlertlbl;
     }
 }

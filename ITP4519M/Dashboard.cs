@@ -124,6 +124,8 @@ namespace ITP4519M
         private string currentDataSourceType = "";
         private int OutstandingRowCount;
         private int AccountRowCount;
+        private int SupplierRowCount;
+        private int DealerRowCount;
         private int DeliveryRowCount;
         private int OrderRowCount;
         private int GRNRowCount;
@@ -521,7 +523,7 @@ namespace ITP4519M
             currentDataSourceType = "Dealer";
             contactOverallLabel();
             SetRowHeights(dealersData, DealerPgSize);
-            contactIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + programMethod.getDealersRowCount();
+            contactIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + DealerRowCount;
             dealersData.Visible = true;
             suppliersData.Visible = false;
 
@@ -542,7 +544,7 @@ namespace ITP4519M
             currentDataSourceType = "Supplier";
             contactOverallLabel();
             SetRowHeights(suppliersData, SupplierPgSize);
-            contactIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + programMethod.getSuppliersRowCount();
+            contactIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + SupplierRowCount;
             dealersData.Visible = false;
             suppliersData.Visible = true;
         }
@@ -812,7 +814,7 @@ namespace ITP4519M
         private void contactOverallLabel()
         {
             dealerDatalbl.Text = programMethod.GetDealerCount().ToString();
-            supplierDatalbl.Text = programMethod.GetSupplierCount().ToString();
+            supplierDatalbl.Text = programMethod.GetSupplierNum().ToString();
         }
 
         private void contactbtnFirstPage_Click(object sender, EventArgs e)
@@ -822,12 +824,15 @@ namespace ITP4519M
                 this.DealerPageIndex = 1;
                 this.dealersData.DataSource = programMethod.GetDealerCurrentRecords(DealerPageIndex, DealerPgSize);
                 SetRowHeights(dealersData, DealerPgSize);
+                contactIndexlbl.Text = "1" + " - " + PgSize + " of " + DealerRowCount;
             }
+
             else
             {
                 this.SupplierPageIndex = 1;
                 this.suppliersData.DataSource = programMethod.GetSupplierCurrentRecords(SupplierPageIndex, SupplierPgSize);
                 SetRowHeights(suppliersData, SupplierPgSize);
+                contactIndexlbl.Text = "1" + " - " + PgSize + " of " + SupplierRowCount;
             }
         }
 
@@ -842,6 +847,14 @@ namespace ITP4519M
                     this.dealersData.DataSource = programMethod.GetDealerCurrentRecords(this.DealerPageIndex, DealerPgSize);
                     SetRowHeights(dealersData, DealerPgSize);
                 }
+                if (DealerPageIndex != DealerTotalPage)
+                {
+                    contactIndexlbl.Text = (PgSize * DealerPageIndex - (PgSize - 1)) + " - " + (PgSize * DealerPageIndex) + " of " + DealerRowCount;
+                }
+                else
+                {
+                    contactIndexlbl.Text = (PgSize * DealerPageIndex - (PgSize - 1)) + " - " + DealerRowCount + " of " + DealerRowCount;
+                }
             }
             else
             {
@@ -850,6 +863,14 @@ namespace ITP4519M
                     this.SupplierPageIndex++;
                     this.suppliersData.DataSource = programMethod.GetSupplierCurrentRecords(this.SupplierPageIndex, SupplierPgSize);
                     SetRowHeights(suppliersData, SupplierPgSize);
+                }
+                if (SupplierPageIndex != SupplierTotalPage)
+                {
+                    contactIndexlbl.Text = (PgSize * SupplierPageIndex - (PgSize - 1)) + " - " + (PgSize * SupplierPageIndex) + " of " + SupplierRowCount;
+                }
+                else
+                {
+                    contactIndexlbl.Text = (PgSize * SupplierPageIndex - (PgSize - 1)) + " - " + SupplierRowCount + " of " + SupplierRowCount;
                 }
             }
         }
@@ -866,6 +887,7 @@ namespace ITP4519M
                     this.dealersData.DataSource = programMethod.GetDealerCurrentRecords(this.DealerPageIndex, DealerPgSize);
                     SetRowHeights(dealersData, DealerPgSize);
                 }
+                contactIndexlbl.Text = (PgSize * DealerPageIndex - (PgSize - 1)) + " - " + (PgSize * DealerPageIndex) + " of " + DealerRowCount;
             }
             else
             {
@@ -875,6 +897,7 @@ namespace ITP4519M
                     this.suppliersData.DataSource = programMethod.GetSupplierCurrentRecords(this.SupplierPageIndex, SupplierPgSize);
                     SetRowHeights(suppliersData, SupplierPgSize);
                 }
+                contactIndexlbl.Text = (PgSize * SupplierPageIndex - (PgSize - 1)) + " - " + (PgSize * SupplierPageIndex) + " of " + SupplierRowCount;
             }
         }
 
@@ -885,13 +908,14 @@ namespace ITP4519M
                 this.DealerPageIndex = DealerTotalPage;
                 this.dealersData.DataSource = programMethod.GetDealerCurrentRecords(this.DealerPageIndex, DealerPgSize);
                 SetRowHeights(dealersData, DealerPgSize);
-
+                contactIndexlbl.Text = (PgSize * DealerPageIndex - (PgSize - 1)) + "-" + DealerRowCount + " of " + DealerRowCount;
             }
             else
             {
                 this.SupplierPageIndex = SupplierTotalPage;
                 this.suppliersData.DataSource = programMethod.GetSupplierCurrentRecords(this.SupplierPageIndex, SupplierPgSize);
                 SetRowHeights(suppliersData, SupplierPgSize);
+                contactIndexlbl.Text = (PgSize * SupplierPageIndex - (PgSize - 1)) + "-" + SupplierRowCount + " of " + SupplierRowCount;
             }
 
         }
@@ -1431,6 +1455,7 @@ namespace ITP4519M
 
                 case "Dealer":
                     rowCount = programMethod.GetDealerCount();
+                    DealerRowCount = rowCount;
                     DealerTotalPage = rowCount / DealerPgSize;
                     if (rowCount % DealerPgSize > 0)
                         DealerTotalPage += 1;
@@ -1439,6 +1464,7 @@ namespace ITP4519M
 
                 case "Supplier":
                     rowCount = programMethod.GetSupplierCount();
+                    SupplierRowCount = rowCount;
                     SupplierTotalPage = rowCount / SupplierPgSize;
                     if (rowCount % SupplierPgSize > 0)
                         SupplierTotalPage += 1;
@@ -1617,6 +1643,7 @@ namespace ITP4519M
             CalculateTotalPages("Invoice");
             ShowPanel(invoicepnl);
             invoiceData.DataSource = programMethod.GetInvoiceCurrentRecords(InvoicePageIndex, InvoicePgSize);
+            invoiceIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + InvoiceRowCount;
             invoiceData.Rows[0].Selected = false;
             SetRowHeights(invoiceData, InvoicePgSize);
 
@@ -2048,6 +2075,12 @@ namespace ITP4519M
         private void panel29_Paint(object sender, PaintEventArgs e)
         {
             ControlPaint.DrawBorder(e.Graphics, this.panel29.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
+
+        }
+
+        private void invoiceNextPagebtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
