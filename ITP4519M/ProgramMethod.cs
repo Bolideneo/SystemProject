@@ -220,6 +220,12 @@ namespace ProgramMethod
         {
             return dataBaseMethod.GetSupplierCount();
         }
+        public int GetSupplierNum() 
+        {
+            return dataBaseMethod.GetSupplierNum();
+        }
+
+
 
         public int GetPOCount()
         {
