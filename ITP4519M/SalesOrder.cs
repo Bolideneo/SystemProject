@@ -287,49 +287,7 @@ namespace ITP4519M
             }
         }
 
-        private void createOrderbtn_Click(object sender, EventArgs e)
-        {
-            if (dealerIDBox.Text == "")
-                MessageBox.Show("Please input Dealer ID");
-            else if (dealerNameBox.Text == "")
-            {
-                MessageBox.Show("Please input Dealer Name");
-            }
-            //else if (productSearchbox.Text == "")
-            //{
-            //    MessageBox.Show("Please Input Product ID ");
-            //}
-
-
-
-            if (productOfOrderdata.RowCount == 0)
-            {
-                MessageBox.Show("Please Select atleast one product");
-            }
-
-
-            List<bool> checkList = new List<bool>();
-
-            for (int i = 0; i < productOfOrderdata.Rows.Count; i++)
-            {
-                int quantity = Convert.ToInt32(productOfOrderdata.Rows[i].Cells[2].Value);
-
-                bool isGreaterThanZero = (quantity > 0);
-                checkList.Add(isGreaterThanZero);
-            }
-
-            if (checkList.Contains(false))
-            {
-                MessageBox.Show("Product quantity should not be 0");
-            }
-
-            string orderID;
-            orderID = programMethod.createSalesOrder(dealerIDBox.Text.Trim(), dealerNameBox.Text.Trim(), phoneNumBox.Text.Trim(), goodsAddressBox.Text.Trim(), productOfOrderdata);
-            ClearForm();
-
-
-
-        }
+     
 
 
         private void disableFunction(bool readOnly)
@@ -354,7 +312,7 @@ namespace ITP4519M
            // programMethod.orderDeleteItem(orderID);
             for (int i = 0; i < productOfOrderdata.Rows.Count; i++)
             {
-                programMethod.createOrderItem(orderID, productOfOrderdata.Rows[i].Cells[0].Value.ToString(), productOfOrderdata.Rows[i].Cells[2].Value.ToString());
+                //programMethod.createOrderItem(orderID, productOfOrderdata.Rows[i].Cells[0].Value.ToString(), productOfOrderdata.Rows[i].Cells[2].Value.ToString());
             }
             MessageBox.Show("Order Edit Save");
         }

@@ -582,12 +582,12 @@ namespace ProgramMethod
             return dataBaseMethod.getOrderItemProductDeatails(orderID, productID);
         }
 
-        public string createSalesOrder(string dealerID, string dealerName, string phoneNumber, string Address, DataGridView Order)
+        public string createSalesOrder(string dealerID, string dealerName,string dealerContactName, string dealerContactPhone, string phoneNumber, string Address, string CompleteDate,string price, DataGridView Order)
         {
 
 
             string orderID = (int.Parse(dataBaseMethod.getOrderID()) + 1).ToString("000000");
-            while (!dataBaseMethod.createSalesOrder(orderID, dealerID, "OrderProcessing"))
+            while (!dataBaseMethod.createSalesOrder(orderID, dealerID, "OrderProcessing",Address,dealerContactName,dealerContactPhone,price))
             {
                 orderID = (int.Parse(dataBaseMethod.getOrderID()) + 1).ToString("000000");
             }
@@ -595,7 +595,7 @@ namespace ProgramMethod
 
             for (int i = 0; i < Order.Rows.Count; i++)
             {
-                dataBaseMethod.createOrderItem(orderID, Order.Rows[i].Cells[0].Value.ToString(), Order.Rows[i].Cells[2].Value.ToString());
+                dataBaseMethod.createOrderItem(orderID, Order.Rows[i].Cells[0].Value.ToString(), Order.Rows[i].Cells[1].Value.ToString(), Order.Rows[i].Cells[2].Value.ToString(),Order.Rows[i].Cells[3].Value.ToString(), Order.Rows[i].Cells[4].Value.ToString());
                 dataBaseMethod.updateOrderItemDemand(Order.Rows[i].Cells[0].Value.ToString(), (int.Parse(Order.Rows[i].Cells[2].Value.ToString())));
             }
 
@@ -751,9 +751,9 @@ namespace ProgramMethod
             dataBaseMethod.orderDeleteItem(orderID);
         }
 
-        public void createOrderItem(string orderID, string product, string qty)
+        public void createOrderItem(string orderID, string product, string productName, string qty,string price, string discount)
         {
-            dataBaseMethod.createOrderItem(orderID, product, qty);
+            //dataBaseMethod.createOrderItem(orderID, product, productName,qty,price,discount);
             LogUpdateSalesOrder(LoginUserID,LoginUserName,orderID);
         }
 
@@ -1572,6 +1572,7 @@ namespace ProgramMethod
             return dataBaseMethod.getOutstandingOrder(outID);
         }
 
+    
 
         public class PanelBorderColor : Panel
         {

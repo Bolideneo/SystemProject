@@ -71,12 +71,13 @@ namespace ITP4519M
                         }
                     }
                     dealerinfoBox.AutoCompleteCustomSource = coll;
-                    dealerIDBox1.Text = result.Rows[0]["DealerID"].ToString();
-                    dealerNameBox1.Text = result.Rows[0]["DealerName"].ToString();
+                    dealerIDBox.Text = result.Rows[0]["DealerID"].ToString();
+                    dealerNameBox.Text = result.Rows[0]["DealerName"].ToString();
                     phoneNumBox.Text = result.Rows[0]["DealerPhoneNum"].ToString();
                     dealerCompanyBox.Text = result.Rows[0]["DealerCompanyName"].ToString();
-                    invoiceAddressBox.Text = result.Rows[0]["DealerCompanyName"].ToString();
-                    goodsAddressBox.Text = result.Rows[0]["DealerCompanyName"].ToString();
+                    invoiceAddressBox.Text = result.Rows[0]["DealerCompanyAddress"].ToString();
+                    goodsAddressBox.Text = result.Rows[0]["DealerCompanyAddress"].ToString();
+                    orderEmailAddressbox.Text = result.Rows[0]["DealerEmailAddress"].ToString();
 
                     //}
                     //else
@@ -127,6 +128,7 @@ namespace ITP4519M
                     productOfOrderdata.Columns.Add("ProductName", "Product Name");
                     productOfOrderdata.Columns.Add("Quantity", "Quantity");
                     productOfOrderdata.Columns.Add("UnitPrice", "Unit Price");
+                    productOfOrderdata.Columns.Add("Discount", "Discount (%)");
                     createOrderbtn.Visible = true;
                     ClearForm();
                     SetReadOnly(false);
@@ -150,8 +152,8 @@ namespace ITP4519M
 
             goodsAddressBox.Text = string.Empty;
             orderDateBox.Text = string.Empty;
-            dealerIDBox1.Text = string.Empty;
-            dealerNameBox1.Text = string.Empty;
+            dealerIDBox.Text = string.Empty;
+            dealerNameBox.Text = string.Empty;
             dealerCompanyBox.Text = string.Empty;
             phoneNumBox.Text = string.Empty;
             productOfOrderdata.Rows.Clear();
@@ -173,7 +175,7 @@ namespace ITP4519M
 
             goodsAddressBox.Enabled = !readOnly;
             orderDateBox.Enabled = !readOnly;
-            dealerIDBox1.Enabled = !readOnly;
+            dealerIDBox.Enabled = !readOnly;
             dealerNameBox1.Enabled = !readOnly;
             dealerCompanyBox.Enabled = !readOnly;
             phoneNumBox.Enabled = !readOnly;
@@ -187,20 +189,25 @@ namespace ITP4519M
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (programMethod.searchDealerID(dealerIDBox1.Text.Trim()))
+                if (programMethod.searchDealerID(dealerIDBox.Text.Trim()))
                 {
-                    DataTable result = programMethod.searchDealerDetail(dealerIDBox1.Text.Trim());
-                    dealerNameBox1.Text = result.Rows[0]["DealerName"].ToString();
+                    DataTable result = programMethod.searchDealerDetail(dealerIDBox.Text.Trim());
+                    dealerIDBox.Text = result.Rows[0]["DealerID"].ToString();
+                    dealerNameBox.Text = result.Rows[0]["DealerName"].ToString();
                     phoneNumBox.Text = result.Rows[0]["DealerPhoneNum"].ToString();
                     dealerCompanyBox.Text = result.Rows[0]["DealerCompanyName"].ToString();
-                    goodsAddressBox.Text = result.Rows[0]["DealerRegionNum"].ToString();
+                    invoiceAddressBox.Text = result.Rows[0]["DealerCompanyAddress"].ToString();
+                    goodsAddressBox.Text = result.Rows[0]["DealerCompanyAddress"].ToString();
+                    orderEmailAddressbox.Text = result.Rows[0]["DealerEmailAddress"].ToString();
                 }
                 else
                 {
-                    dealerNameBox1.Text = "";
+                    dealerNameBox.Text = "";
                     phoneNumBox.Text = "";
+                    invoiceAddressBox.Text = "";
                     dealerCompanyBox.Text = "";
                     goodsAddressBox.Text = "";
+                    orderEmailAddressbox.Text = "";
 
                 }
 
@@ -239,8 +246,9 @@ namespace ITP4519M
                             return;
                         }
                     }
+                  
                     DataTable result = programMethod.searchOrderItemDetail(productSearchbox.Text.Trim());
-                    this.productOfOrderdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, result.Rows[0]["UnitPrice"]);
+                    this.productOfOrderdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, result.Rows[0]["UnitPrice"],"100");
                     productSearchbox.Text = "";
                 }
             }
@@ -263,7 +271,7 @@ namespace ITP4519M
                 Refresh();
             }
 
-            else if (dealerIDBox1.Text == "")
+            else if (dealerIDBox.Text == "")
             {
                 MessageBox.Show("Please input Dealer ID");
                 return;
@@ -302,7 +310,7 @@ namespace ITP4519M
             }
 
             string orderID;
-            orderID = programMethod.createSalesOrder(dealerIDBox1.Text.Trim(), dealerNameBox1.Text.Trim(), phoneNumBox.Text.Trim(), goodsAddressBox.Text.Trim(), productOfOrderdata);
+            orderID = programMethod.createSalesOrder(dealerIDBox.Text.Trim(), dealerNameBox.Text.Trim(), orderContactNamebox.Text.Trim(), OrderContactPhonebox.Text.Trim(), phoneNumBox.Text.Trim(), goodsAddressBox.Text.Trim(), orderDateBox.Value.ToString(), ordertotallbl.Text.ToString(), productOfOrderdata);
             if (orderID != null)
             {
                 MessageBox.Show(userID);

@@ -23,6 +23,7 @@ using Org.BouncyCastle.Asn1.Ocsp;
 using System.Drawing.Printing;
 using Org.BouncyCastle.Asn1.X509;
 using System.Drawing;
+using System.Diagnostics.Tracing;
 
 
 namespace ITP4519M
@@ -1311,8 +1312,9 @@ namespace ITP4519M
 
             // string sql = "SELECT DealerID, DealerName, DealerCompanyName, DealerPhoneNum, DealerRegionNum FROM dealer WHERE DealerID LIKE @keyword1 OR DealerID LIKE @keyword2 OR DealerName LIKE @keyword1 OR DealerName LIKE @keyword2 OR DealerCompanyName LIKE @keyword1 OR DealerCompanyName LIKE @keyword2 OR DealerPhoneNum LIKE @keyword2";
             //string sql = "SELECT DealerID, DealerName, DealerCompanyName, DealerPhoneNum, DealerRegionNum FROM dealer WHERE DealerID LIKE @keyword1 OR DealerID LIKE @keyword2 OR DealerName LIKE @keyword1 OR DealerName LIKE @keyword2 OR DealerCompanyName LIKE @keyword1 OR DealerCompanyName LIKE @keyword2";
-           // string sql = "SELECT DealerID, DealerName, DealerCompanyName, DealerPhoneNum, DealerRegionNum FROM dealer WHERE DealerID LIKE @keyword1 OR DealerID LIKE @keyword2 OR TRIM(DealerName) LIKE @keyword1 OR TRIM(DealerName) LIKE @keyword2 OR DealerCompanyName LIKE @keyword1 OR TRIM(DealerCompanyName) LIKE @keyword2 LIMIT 5";
-            string sql = "SELECT DealerID, DealerName, DealerCompanyName, DealerPhoneNum, DealerRegionNum FROM dealer WHERE DealerID LIKE @keyword1 OR DealerID LIKE @keyword2 OR TRIM(DealerName) LIKE @keyword1 OR TRIM(DealerName) LIKE @keyword2 LIMIT 10";
+            // string sql = "SELECT DealerID, DealerName, DealerCompanyName, DealerPhoneNum, DealerRegionNum FROM dealer WHERE DealerID LIKE @keyword1 OR DealerID LIKE @keyword2 OR TRIM(DealerName) LIKE @keyword1 OR TRIM(DealerName) LIKE @keyword2 OR DealerCompanyName LIKE @keyword1 OR TRIM(DealerCompanyName) LIKE @keyword2 LIMIT 5";
+            // string sql = "SELECT DealerID, DealerName, DealerCompanyName, DealerPhoneNum, DealerRegionNum FROM dealer WHERE DealerID LIKE @keyword1 OR DealerID LIKE @keyword2 OR TRIM(DealerName) LIKE @keyword1 OR TRIM(DealerName) LIKE @keyword2 LIMIT 10";
+            string sql = "SELECT * FROM dealer WHERE DealerID LIKE @keyword1 OR DealerID LIKE @keyword2 OR TRIM(DealerName) LIKE @keyword1 OR TRIM(DealerName) LIKE @keyword2 LIMIT 10";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@keyword1", "%" + keyword + "%");
             string keyword2 = keyword.Length > 0 ? $"%{char.ToUpper(keyword[0])}{keyword.Substring(1)}%" : keyword;
@@ -1390,30 +1392,45 @@ namespace ITP4519M
         }
 
 
-        public bool createSalesOrder(string orderID, string dealerID, string orderstatusID)
+        public bool createSalesOrder(string orderID, string dealerID, string orderstatus, string deliveryAddress, string DealerContactName, string DealerContactPhoneNum, string TotalPrice)
         {
             DateTime orderDate = DateTime.Now;
             orderDate.ToString("yyyy-MM-dd HH:mm");
             Console.WriteLine(orderDate);
-            string sql = "INSERT INTO `order` (OrderID, DealerID, OrderStatus, OrderDate) VALUES(@orderID, @dealerID, @orderStatusID, @orderDate)";
+            string sql = "INSERT INTO `order` (OrderID, DealerID, OrderStatus, OrderDate,DeliveryAddress, DealerContactName, DealerContactPhoneNum, TotalPrice) VALUES(@orderID, @dealerID, @orderStatus, @orderDate,@DeliveryAddress, @DealerContactName,@DealerContactPhoneNum, @TotalPrice)";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@orderID", orderID);
             cmd.Parameters.AddWithValue("@dealerID", dealerID);
-            cmd.Parameters.AddWithValue("@orderStatusID", orderstatusID);
+            cmd.Parameters.AddWithValue("@orderStatus", orderstatus);
             cmd.Parameters.AddWithValue("@orderDate", orderDate);
-
+            cmd.Parameters.AddWithValue("@DeliveryAddress", deliveryAddress);
+            cmd.Parameters.AddWithValue("@DealerContactName", DealerContactName);
+            cmd.Parameters.AddWithValue("@DealerContactPhoneNum", DealerContactPhoneNum);
+            cmd.Parameters.AddWithValue("@TotalPrice", TotalPrice);
             if (cmd.ExecuteNonQuery() > 0)
                 return true;
             return false;
         }
 
-        public bool createOrderItem(string orderID, string productID, string orderQty)
+        public bool createOrderItem(string orderID, string productID, string productName, string orderQty, string price, string discount)
         {
-            string sql = "INSERT INTO orderitem (OrderID,ProductID, OrderedQuantity) VALUES(@orderID,@productID,@orderQty)";
+            float finalPrice = 0;
+            if (discount != "100")
+            {
+                finalPrice = (float.Parse(price) * ((100 - float.Parse(discount)) / 100)) * int.Parse(orderQty);
+            }
+            else
+            {
+                finalPrice = int.Parse(price) * int.Parse(orderQty);
+            }
+            string sql = "INSERT INTO orderitem (OrderID,ProductID, OrderedQuantity,ProductName, Price ,Discount) VALUES(@orderID,@productID,@orderQty,@productName,@price, @discount)";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@orderID", orderID);
             cmd.Parameters.AddWithValue("@productID", productID);
             cmd.Parameters.AddWithValue("@orderQty", orderQty);
+            cmd.Parameters.AddWithValue("@productName", productName);
+            cmd.Parameters.AddWithValue("@price", finalPrice);
+            cmd.Parameters.AddWithValue("@discount", discount);
             if (cmd.ExecuteNonQuery() > 0)
                 return true;
             return false;
