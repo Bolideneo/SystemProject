@@ -23,6 +23,7 @@ using Org.BouncyCastle.Asn1.Sec;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 using MySqlX.XDevAPI.Common;
+using System.Security.Policy;
 
 
 namespace ITP4519M
@@ -80,6 +81,14 @@ namespace ITP4519M
         private int InvoicePgSize = 15;
         private int InvoicePageIndex = 1;
         private int InvoiceTotalPage = 0;
+        //Paging
+
+
+
+        //Order datagrid paging
+        private int OrderPgSize = 15;
+        private int OrderPageIndex = 1;
+        private int OrderTotalPage = 0;
         //Paging
 
         private Button currentButton;
@@ -333,9 +342,13 @@ namespace ITP4519M
             lastClickedButton = (Button)sender;
             lastClickedButton.ForeColor = Color.Gray;
 
+
+            CalculateTotalPages("Order");
             ShowPanel(orderpnl);
-            orderdata.DataSource = programMethod.overallOrderinfo();
+            //orderdata.DataSource = programMethod.GetOrderCurrentRecords(OrderPageIndex, OrderPgSize);
+            FirstpageBtnClick(orderdata, "Order", OrderPgSize, OrderPageIndex, orderIndexlbl, OrderRowCount);
             orderdata.Rows[0].Selected = false;
+            SetRowHeights(orderdata, OrderPgSize);
             string[] MinDate = programMethod.getOrderMinAndMaxDate();
             orderdateTimePicker1.MinDate = DateTime.Parse(MinDate[0]);
             orderdateTimePicker1.MaxDate = DateTime.Parse(MinDate[1]);
@@ -343,10 +356,7 @@ namespace ITP4519M
             orderdateTimePicker2.MinDate = DateTime.Parse(MinDate[0]);
             orderdateTimePicker2.MaxDate = DateTime.Parse(MinDate[1]);
             orderdateTimePicker2.Value = DateTime.Parse(MinDate[1]);
-            foreach (DataGridViewRow row in orderdata.Rows)
-            {
-                row.Height = (orderdata.ClientRectangle.Height - orderdata.ColumnHeadersHeight) / orderdata.Rows.Count;
-            }
+
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
@@ -371,6 +381,23 @@ namespace ITP4519M
             stockData.Rows[0].Selected = false;
             SetRowHeights(stockData, StockPgSize);
             StockpageNumlbl.Text = "1" + " - " + StockPgSize + " of " + StockRowCount;
+
+
+            if (stockData.Rows.Count > 0)
+            {
+                for (int i = 0; i < stockData.Rows.Count; i++)
+                {
+                    if (stockData.Rows[i].Cells["Status"].Value.ToString() == "Out-Of-Stock")
+                    {
+                        stockData.Rows[i].Cells["Status"].Style.ForeColor = Color.Red;
+                    }
+                    else if (stockData.Rows[i].Cells["Status"].Value.ToString() == "Danger")
+                    {
+                        stockData.Rows[i].Cells["Status"].Style.ForeColor = Color.Orange;
+                    }
+
+                }
+            }
 
 
         }
@@ -1371,7 +1398,8 @@ namespace ITP4519M
                 case "Order":
                     rowCount = programMethod.getOrderRowCount();
                     OrderRowCount = rowCount;
-                    //outstandingTotalPage = rowCount / outstandingPgSize;
+                    if (rowCount % OrderPgSize > 0)
+                        OrderTotalPage += 1;
                     break;
 
                 case "Account":
@@ -1942,6 +1970,63 @@ namespace ITP4519M
             }
         }
 
+        private void button8_Click(object sender, EventArgs e)
+        {
+            stockData.Location = new Point(13, 35);
+            stockData.Size = new Size(1050, 730);
+        }
+
+        private void FirstpageBtnClick(DataGridView data,string type, int PgSize, int PageIndex, Label lbl, int rowCount)
+        {
+            data.DataSource = programMethod.GetCurrentRecords(type, PageIndex, PgSize);
+            SetRowHeights(data, PgSize);
+            SetRowHeights(data, PgSize);
+            lbl.Text = "1" + " - " + PgSize + " of " + rowCount;
+
+        }
+        private void NextpageBtnClick(DataGridView data, string type, int PgSize, int PageIndex, Label lbl, int TotalPage, int rowCount)
+        {
+            if (PageIndex < TotalPage)
+            {
+                PageIndex++;
+                MessageBox.Show(PageIndex++.ToString());
+                MessageBox.Show(OrderPageIndex.ToString());
+                data.DataSource = programMethod.GetCurrentRecords(type, PageIndex, PgSize);
+                SetRowHeights(data, PgSize);
+            }
+
+            if (PageIndex != TotalPage)
+            {
+                lbl.Text = (PgSize * PageIndex - (PgSize - 1)) + " - " + (PgSize * PageIndex) + " of " + rowCount;
+            }
+            else
+            {
+                lbl.Text = (PgSize * PageIndex - (PgSize - 1)) + " - " + rowCount + " of " + rowCount;
+            }
+
+        }
+
+        private void orderFirstPagebtn_Click(object sender, EventArgs e)
+        {
+            this.OrderPageIndex = 1;
+            FirstpageBtnClick(orderdata, "Order", OrderPgSize, OrderPageIndex, orderIndexlbl, OrderRowCount);
+           
+        }
+
+        private void orderPrevPagebtn_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void orderNextPagebtn_Click(object sender, EventArgs e)
+        {
+            NextpageBtnClick(orderdata, "Order", OrderPgSize, OrderPageIndex, orderIndexlbl, OrderTotalPage, OrderRowCount);
+        }
+
+        private void orderLastPagebtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
     

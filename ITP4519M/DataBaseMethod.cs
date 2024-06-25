@@ -1914,9 +1914,23 @@ namespace ITP4519M
             return dataTable;
         }
 
+        //public DataTable GetStockCurrentRecords(int page, int pageSize)
+        //{
+        //    string sql = "SELECT ProductID,ProductName, ProductCategory, BinLocation, UnitPrice, CostPrice, QuantityInStock, DemandStock, Status FROM product ORDER BY ProductID LIMIT @PgSize";
+        //    MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+        //    cmd.Parameters.AddWithValue("@PgSize", pageSize);
+        //    MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+        //    DataTable dataTable = new DataTable();
+        //    adat.Fill(dataTable);
+        //    ServerConnect().Close();
+        //    return dataTable;
+        //}
+
         public DataTable GetStockCurrentRecords(int page, int pageSize)
         {
-            string sql = "SELECT ProductID,ProductName, ProductCategory, BinLocation, UnitPrice, CostPrice, QuantityInStock, DemandStock, Status FROM product ORDER BY ProductID LIMIT @PgSize";
+
+            //Out-Of-Stock, Danger, Re-Order, Available
+            string sql = "SELECT ProductID,ProductName, SerialNumber, BinLocation, DemandStock, Status, QuantityInStock, UnitPrice FROM product ORDER BY FIELD(Status, 'Re-Order', 'Danger','Out-Of-Stock' ) DESC, ProductID LIMIT @PgSize";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
@@ -1926,9 +1940,10 @@ namespace ITP4519M
             return dataTable;
         }
 
+
         public DataTable GetStockCurrentRecords2(int page, int pageSize)
         {
-            string sql = "SELECT ProductID,ProductName, ProductCategory, BinLocation, UnitPrice, CostPrice, QuantityInStock, DemandStock, Status FROM (SELECT * FROM product ORDER BY ProductID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY ProductID";
+            string sql = "SELECT ProductID,ProductName, SerialNumber, BinLocation, DemandStock, Status, QuantityInStock, UnitPrice FROM (SELECT * FROM product ORDER BY FIELD(Status, 'Re-Order', 'Danger','Out-Of-Stock' ) DESC, ProductID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY ProductID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);
@@ -1954,6 +1969,31 @@ namespace ITP4519M
         public DataTable GetPOCurrentRecords2(int page, int pageSize)
         {
             string sql = "SELECT * FROM (SELECT * FROM purchaseorder ORDER BY PurchaseOrderID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY PurchaseOrderID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@PgSize", pageSize);
+            cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+
+        public DataTable GetOrderCurrentRecords(int page, int pageSize)
+        {
+            string sql = "SELECT OrderID, DealerID, OrderStatus, OrderDate FROM `order` ORDER BY OrderID LIMIT @PgSize";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@PgSize", pageSize);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+
+        public DataTable GetOrderCurrentRecords2(int page, int pageSize)
+        {
+            string sql = "SELECT OrderID, DealerID, OrderStatus, OrderDate FROM (SELECT * FROM `order` ORDER BY OrderID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY OrderID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);

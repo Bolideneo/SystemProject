@@ -257,6 +257,7 @@ namespace ProgramMethod
         {
             return dataBaseMethod.overallOrderinfo();
         }
+
         //updateUserInfor(userid, username, password, confirmPassword, displayName, department, title, phoneNum, email)
         public bool updateUserInfor(string userid, string userName, string password, string passwordagain, string dispalyName, string department, string title, string phonenum, string email)
         {
@@ -940,31 +941,7 @@ namespace ProgramMethod
             }
         }
 
-        public DataTable GetDeliveryCurrentRecords(int page, int pageSize)
-        {
 
-            if (page == 1)
-            {
-                return dataBaseMethod.GetDeliveryCurrentRecords(page, pageSize);
-            }
-            else
-            {
-                return dataBaseMethod.GetDeliveryCurrentRecords2(page, pageSize);
-            }
-        }
-
-        public DataTable GetGRNCurrentRecords(int page, int pageSize)
-        {
-
-            if (page == 1)
-            {
-                return dataBaseMethod.GetGRNCurrentRecords(page, pageSize);
-            }
-            else
-            {
-                return dataBaseMethod.GetGRNCurrentRecords2(page, pageSize);
-            }
-        }
 
         public DataTable GetOutstandingCurrentRecords(int page, int pageSize)
         {
@@ -979,17 +956,43 @@ namespace ProgramMethod
             }
         }
 
-        public DataTable GetOrderCurrentRecords(int page, int pageSize)
+        public DataTable GetCurrentRecords(string type, int page, int pageSize)
         {
+            switch (type)
+            {
+                case "Order":
+                if (page == 1)
+                 {
+                        return dataBaseMethod.GetOrderCurrentRecords(page, pageSize);
+                 }
+                 else
+                 {
+                        return dataBaseMethod.GetOrderCurrentRecords2(page, pageSize);
+                 }
 
-            if (page == 1)
-            {
-                return dataBaseMethod.GetStockCurrentRecords(page, pageSize);
+                case "GRN":
+                 if (page == 1)
+                  {
+                        return dataBaseMethod.GetGRNCurrentRecords(page, pageSize);
+                  }
+                 else
+                  {
+                        return dataBaseMethod.GetGRNCurrentRecords2(page, pageSize);
+                 }
+
+                case "Delivery":
+
+                    if (page == 1)
+                    {
+                        return dataBaseMethod.GetDeliveryCurrentRecords(page, pageSize);
+                    }
+                    else
+                    {
+                        return dataBaseMethod.GetDeliveryCurrentRecords2(page, pageSize);
+                    }
             }
-            else
-            {
-                return dataBaseMethod.GetStockCurrentRecords2(page, pageSize);
-            }
+            return null;
+           
         }
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
@@ -2006,7 +2009,7 @@ namespace ProgramMethod
 
         public DataTable overallLoginfo()
         {
-            return dataBaseMethod.overallLoginfo();
+            return dataBaseMethod.overallLogInfo();
         }
 
 
