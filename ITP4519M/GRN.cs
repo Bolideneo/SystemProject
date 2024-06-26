@@ -111,12 +111,12 @@ namespace ITP4519M
                     if (programMethod.createGRN(grnPOIDbox.Text.Trim(), grnProductIDbox.Text.Trim(), grnwarehousebox.Text.Trim(), grnreceivedqtybox.Text.Trim(), grnDateTimePicker.Value.Date.ToString()))
                     {
                         programMethod.increaseStock(grnProductIDbox.Text.Trim(), grnreceivedqtybox.Text.Trim());
-                        MessageBox.Show("Good Received Note Saved");
+                        MessageBox.Show("Good Received Note Created Successfully");
                         ClearForm();
                     }
                     else
                     {
-                        MessageBox.Show("Purchase ID  Recevied");
+                        MessageBox.Show("Please try again!");
                     }
                 }
                 catch(Exception ex) 

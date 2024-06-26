@@ -1430,9 +1430,9 @@ namespace ITP4519M
             }
             else
             {
-                finalPrice = int.Parse(price) * int.Parse(orderQty);
+                finalPrice = float.Parse(price) * int.Parse(orderQty);
             }
-            string sql = "INSERT INTO orderitem (OrderID,ProductID, OrderedQuantity,ProductName, Price ,Discount) VALUES(@orderID,@productID,@orderQty,@productName,@price, @discount)";
+            string sql = "INSERT INTO orderitem (OrderID,ProductID, OrderedQuantity,ProductName, Price ,Discount, QuantityFollow) VALUES(@orderID,@productID,@orderQty,@productName,@price, @discount,@orderQty)";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@orderID", orderID);
             cmd.Parameters.AddWithValue("@productID", productID);
@@ -1440,6 +1440,7 @@ namespace ITP4519M
             cmd.Parameters.AddWithValue("@productName", productName);
             cmd.Parameters.AddWithValue("@price", finalPrice);
             cmd.Parameters.AddWithValue("@discount", discount);
+            cmd.Parameters.AddWithValue("@followQuantity", discount);
             if (cmd.ExecuteNonQuery() > 0)
                 return true;
             return false;
@@ -1504,9 +1505,10 @@ namespace ITP4519M
                 string sql = "SELECT COUNT(*) FROM delivery WHERE OrderID=@orderID";
                 MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
                 cmd.Parameters.AddWithValue("@orderID", orderID);
-                int count = (int)cmd.ExecuteScalar();
-                Console.WriteLine($"OrderID: {orderID}, Count: {count}");
+                int count = Convert.ToInt32(cmd.ExecuteScalar());
+                ServerConnect().Close();
                 return count > 0;
+
             }
             catch (Exception ex) {
                 Console.WriteLine("An error occurred: " + ex.Message);
@@ -1532,6 +1534,7 @@ namespace ITP4519M
             cmd.Parameters.AddWithValue("@orderID", orderID);
             cmd.Parameters.AddWithValue("@productID", productID);
             Object result = cmd.ExecuteScalar();
+            ServerConnect().Close();
             return result.ToString();
         }
 
@@ -1544,6 +1547,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
@@ -2156,7 +2160,18 @@ namespace ITP4519M
 
         public DataTable getOrderItemDetailforAsb(string orderID)
         {
-            string sql = "SELECT product.ProductID, product.ProductName, BinLocation, QuantityInStock, OrderedQuantity FROM product, orderitem WHERE product.ProductID=orderitem.ProductID AND orderitem.OrderID=@orderID";
+            string sql = "SELECT orderitem.ProductID, orderitem.ProductName, BinLocation, QuantityInStock, OrderedQuantity FROM product, orderitem WHERE product.ProductID=orderitem.ProductID AND orderitem.OrderID=@orderID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@orderID", orderID);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
+        public DataTable getOrderItemDetailforInvoice(string orderID)
+        {
+            string sql = "SELECT orderitem.ProductID, orderitem.ProductName, OrderedQuantity , Discount FROM product, orderitem WHERE product.ProductID=orderitem.ProductID AND orderitem.OrderID=@orderID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@orderID", orderID);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
@@ -2273,6 +2288,26 @@ namespace ITP4519M
             cmd.Parameters.AddWithValue("@productID", productID);
             int count = Convert.ToInt32(cmd.ExecuteScalar());
             return count;
+        }
+
+        public String getPurchaseOrderQty(string POID)
+        {
+            string sql = "SELECT OrderQuantity FROM purchaseorder WHERE PurchaseOrderID=@POID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@POID", POID);
+            object orderQty = cmd.ExecuteScalar();
+            return orderQty.ToString();
+        }
+
+        public bool updatePurchaseOrder(string POID, string status)
+        {
+            string sql = "UPDATE purchaseorder SET Status=@status WHERE PurchaseOrderID=@POID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@POID", POID);
+            cmd.Parameters.AddWithValue("@status", status);
+            if (cmd.ExecuteNonQuery() > 0)
+                return true;
+            return false;
         }
 
         public bool updateOrderItem(string orderID, string productID, string Qty,string quantityFollow, string PreQtyDelivered)

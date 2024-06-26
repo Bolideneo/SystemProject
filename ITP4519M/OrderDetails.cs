@@ -22,7 +22,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ITP4519M
 {
-    public partial class CreateOrder : Form
+    public partial class OrderDetails : Form
     {
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
         Dashboard dashboard = new Dashboard();
@@ -40,7 +40,7 @@ namespace ITP4519M
 
 
 
-        public CreateOrder(OperationMode mode)
+        public OrderDetails(OperationMode mode)
         {
             InitializeComponent();
             _mode = mode;
@@ -268,7 +268,8 @@ namespace ITP4519M
                 usernameAlertBox.Visible = true;
                 usernameAlertlbl.Visible = true;
             }
-            else           {
+            else
+            {
                 isWrongFormat = false;
                 usernameAlertBox.Visible = false;
                 usernameAlertlbl.Visible = false;
@@ -288,7 +289,7 @@ namespace ITP4519M
                 Refresh();
 
             }
-            else 
+            else
             {
 
                 isWrongFormat2 = false;
@@ -297,7 +298,7 @@ namespace ITP4519M
                 Refresh();
             }
 
-            if(OrderContactPhonebox.Text == "")
+            if (OrderContactPhonebox.Text == "")
             {
                 isWrongFormat3 = true;
                 label2.Visible = true;
@@ -313,7 +314,7 @@ namespace ITP4519M
                 Refresh();
 
             }
-            
+
             //else if (productSearchbox.Text == "")
             //{
             //    MessageBox.Show("Please Input Product ID ");
@@ -391,8 +392,8 @@ namespace ITP4519M
                 {
                     this.productOfOrderdata.EndEdit();
                     if (this.productOfOrderdata.CurrentRow.IsNewRow && this.productOfOrderdata.Rows.Count > 1)
-                         this.productOfOrderdata.CurrentCell = this.productOfOrderdata.Rows[this.productOfOrderdata.Rows.Count - 1].Cells[2];
-                        ordertotallbl.Text = "" + programMethod.calProductTotalAmount(productOfOrderdata);
+                        this.productOfOrderdata.CurrentCell = this.productOfOrderdata.Rows[this.productOfOrderdata.Rows.Count - 1].Cells[2];
+                    ordertotallbl.Text = "" + programMethod.calProductTotalAmount(productOfOrderdata);
                     return true;
                 }
             }

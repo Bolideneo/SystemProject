@@ -42,16 +42,16 @@
             panel4 = new ProgramMethod.ProgramMethod.PanelBorderColor();
             InvoiceValue9 = new Label();
             panel5 = new ProgramMethod.ProgramMethod.PanelBorderColor();
-            InvoiceValue7 = new Label();
+            InvoiceOrderDatelbl = new Label();
             InvoiceLabel8 = new Label();
             InvoiceLabel9 = new Label();
             InvoiceLabel10 = new Label();
             InvoiceLabel11 = new Label();
             panel2 = new ProgramMethod.ProgramMethod.PanelBorderColor();
-            InvoiceValue10 = new Label();
+            InvoiceDeliveryDatelbl = new Label();
             InvoiceLabel16 = new Label();
             panel9 = new ProgramMethod.ProgramMethod.PanelBorderColor();
-            InvoiceValue15 = new Label();
+            InvoiceTotalPricelbl = new Label();
             InvoiceLabel15 = new Label();
             panel10 = new ProgramMethod.ProgramMethod.PanelBorderColor();
             InvoiceValue14 = new Label();
@@ -77,12 +77,12 @@
             InvoiceLabel19 = new Label();
             InvoiceLabel18 = new Label();
             InvoiceLabel20 = new Label();
-            InvoiceValue1 = new Label();
-            InvoiceValue2 = new Label();
-            InvoiceValue3 = new Label();
+            InvoiceInvoiceDatelbl = new Label();
+            InvoiceOrderIDlbl = new Label();
+            InvoiceDealerIDlbl = new Label();
             InvoiceValue4 = new Label();
-            InvoiceValue5 = new Label();
-            InvoiceValue6 = new Label();
+            InvoiceBillingAddresslbl = new Label();
+            InvoiceAddresslbl = new Label();
             invoicePrintbtn = new Button();
             invoiceExitbtn = new Button();
             panel3.SuspendLayout();
@@ -121,7 +121,6 @@
             InvoiceLabel2.Size = new Size(119, 24);
             InvoiceLabel2.TabIndex = 1;
             InvoiceLabel2.Text = "Date issued";
-            InvoiceLabel2.Click += InvoiceLabel2_Click;
             // 
             // InvoiceLabel3
             // 
@@ -141,7 +140,7 @@
             InvoiceLabel4.BackColor = SystemColors.ButtonFace;
             InvoiceLabel4.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             InvoiceLabel4.ForeColor = Color.Black;
-            InvoiceLabel4.Location = new Point(673, 40);
+            InvoiceLabel4.Location = new Point(667, 41);
             InvoiceLabel4.Name = "InvoiceLabel4";
             InvoiceLabel4.Size = new Size(124, 24);
             InvoiceLabel4.TabIndex = 3;
@@ -165,7 +164,7 @@
             InvoiceLabel6.BackColor = SystemColors.ButtonFace;
             InvoiceLabel6.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             InvoiceLabel6.ForeColor = Color.Black;
-            InvoiceLabel6.Location = new Point(408, 154);
+            InvoiceLabel6.Location = new Point(355, 154);
             InvoiceLabel6.Name = "InvoiceLabel6";
             InvoiceLabel6.Size = new Size(73, 24);
             InvoiceLabel6.TabIndex = 5;
@@ -177,7 +176,7 @@
             InvoiceLabel7.BackColor = SystemColors.ButtonFace;
             InvoiceLabel7.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             InvoiceLabel7.ForeColor = Color.Black;
-            InvoiceLabel7.Location = new Point(675, 154);
+            InvoiceLabel7.Location = new Point(614, 154);
             InvoiceLabel7.Name = "InvoiceLabel7";
             InvoiceLabel7.Size = new Size(87, 24);
             InvoiceLabel7.TabIndex = 6;
@@ -206,7 +205,7 @@
             panel3.BorderStyle = BorderStyle.FixedSingle;
             panel3.BorderWidth = 3;
             panel3.Controls.Add(InvoiceValue8);
-            panel3.Location = new Point(283, 252);
+            panel3.Location = new Point(279, 271);
             panel3.Name = "panel3";
             panel3.Size = new Size(149, 48);
             panel3.TabIndex = 46;
@@ -227,7 +226,7 @@
             panel4.BorderStyle = BorderStyle.FixedSingle;
             panel4.BorderWidth = 3;
             panel4.Controls.Add(InvoiceValue9);
-            panel4.Location = new Point(430, 252);
+            panel4.Location = new Point(426, 271);
             panel4.Name = "panel4";
             panel4.Size = new Size(226, 48);
             panel4.TabIndex = 47;
@@ -247,22 +246,22 @@
             panel5.BorderColor = Color.DarkOrange;
             panel5.BorderStyle = BorderStyle.FixedSingle;
             panel5.BorderWidth = 3;
-            panel5.Controls.Add(InvoiceValue7);
+            panel5.Controls.Add(InvoiceOrderDatelbl);
             panel5.Cursor = Cursors.No;
-            panel5.Location = new Point(59, 252);
+            panel5.Location = new Point(55, 271);
             panel5.Name = "panel5";
             panel5.Size = new Size(227, 48);
             panel5.TabIndex = 48;
             // 
-            // InvoiceValue7
+            // InvoiceOrderDatelbl
             // 
-            InvoiceValue7.AutoSize = true;
-            InvoiceValue7.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
-            InvoiceValue7.Location = new Point(7, 16);
-            InvoiceValue7.Name = "InvoiceValue7";
-            InvoiceValue7.Size = new Size(96, 17);
-            InvoiceValue7.TabIndex = 83;
-            InvoiceValue7.Text = "InvoiceValue7";
+            InvoiceOrderDatelbl.AutoSize = true;
+            InvoiceOrderDatelbl.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
+            InvoiceOrderDatelbl.Location = new Point(7, 16);
+            InvoiceOrderDatelbl.Name = "InvoiceOrderDatelbl";
+            InvoiceOrderDatelbl.Size = new Size(96, 17);
+            InvoiceOrderDatelbl.TabIndex = 83;
+            InvoiceOrderDatelbl.Text = "InvoiceValue7";
             // 
             // InvoiceLabel8
             // 
@@ -270,7 +269,7 @@
             InvoiceLabel8.BackColor = SystemColors.ButtonFace;
             InvoiceLabel8.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             InvoiceLabel8.ForeColor = Color.Black;
-            InvoiceLabel8.Location = new Point(69, 242);
+            InvoiceLabel8.Location = new Point(65, 261);
             InvoiceLabel8.Name = "InvoiceLabel8";
             InvoiceLabel8.Size = new Size(98, 20);
             InvoiceLabel8.TabIndex = 49;
@@ -282,7 +281,7 @@
             InvoiceLabel9.BackColor = SystemColors.ButtonFace;
             InvoiceLabel9.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             InvoiceLabel9.ForeColor = Color.Black;
-            InvoiceLabel9.Location = new Point(294, 241);
+            InvoiceLabel9.Location = new Point(290, 260);
             InvoiceLabel9.Name = "InvoiceLabel9";
             InvoiceLabel9.Size = new Size(58, 20);
             InvoiceLabel9.TabIndex = 50;
@@ -294,7 +293,7 @@
             InvoiceLabel10.BackColor = SystemColors.ButtonFace;
             InvoiceLabel10.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             InvoiceLabel10.ForeColor = Color.Black;
-            InvoiceLabel10.Location = new Point(443, 241);
+            InvoiceLabel10.Location = new Point(439, 260);
             InvoiceLabel10.Name = "InvoiceLabel10";
             InvoiceLabel10.Size = new Size(109, 20);
             InvoiceLabel10.TabIndex = 51;
@@ -306,7 +305,7 @@
             InvoiceLabel11.BackColor = SystemColors.ButtonFace;
             InvoiceLabel11.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             InvoiceLabel11.ForeColor = Color.Black;
-            InvoiceLabel11.Location = new Point(662, 241);
+            InvoiceLabel11.Location = new Point(658, 260);
             InvoiceLabel11.Name = "InvoiceLabel11";
             InvoiceLabel11.Size = new Size(116, 20);
             InvoiceLabel11.TabIndex = 57;
@@ -317,21 +316,21 @@
             panel2.BorderColor = Color.DarkOrange;
             panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.BorderWidth = 3;
-            panel2.Controls.Add(InvoiceValue10);
-            panel2.Location = new Point(652, 252);
+            panel2.Controls.Add(InvoiceDeliveryDatelbl);
+            panel2.Location = new Point(648, 271);
             panel2.Name = "panel2";
             panel2.Size = new Size(169, 48);
             panel2.TabIndex = 53;
             // 
-            // InvoiceValue10
+            // InvoiceDeliveryDatelbl
             // 
-            InvoiceValue10.AutoSize = true;
-            InvoiceValue10.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
-            InvoiceValue10.Location = new Point(12, 16);
-            InvoiceValue10.Name = "InvoiceValue10";
-            InvoiceValue10.Size = new Size(104, 17);
-            InvoiceValue10.TabIndex = 86;
-            InvoiceValue10.Text = "InvoiceValue10";
+            InvoiceDeliveryDatelbl.AutoSize = true;
+            InvoiceDeliveryDatelbl.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
+            InvoiceDeliveryDatelbl.Location = new Point(12, 16);
+            InvoiceDeliveryDatelbl.Name = "InvoiceDeliveryDatelbl";
+            InvoiceDeliveryDatelbl.Size = new Size(104, 17);
+            InvoiceDeliveryDatelbl.TabIndex = 86;
+            InvoiceDeliveryDatelbl.Text = "InvoiceValue10";
             // 
             // InvoiceLabel16
             // 
@@ -350,21 +349,21 @@
             panel9.BorderColor = Color.DarkOrange;
             panel9.BorderStyle = BorderStyle.FixedSingle;
             panel9.BorderWidth = 3;
-            panel9.Controls.Add(InvoiceValue15);
+            panel9.Controls.Add(InvoiceTotalPricelbl);
             panel9.Location = new Point(667, 603);
             panel9.Name = "panel9";
             panel9.Size = new Size(142, 48);
             panel9.TabIndex = 64;
             // 
-            // InvoiceValue15
+            // InvoiceTotalPricelbl
             // 
-            InvoiceValue15.AutoSize = true;
-            InvoiceValue15.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
-            InvoiceValue15.Location = new Point(5, 16);
-            InvoiceValue15.Name = "InvoiceValue15";
-            InvoiceValue15.Size = new Size(104, 17);
-            InvoiceValue15.TabIndex = 88;
-            InvoiceValue15.Text = "InvoiceValue15";
+            InvoiceTotalPricelbl.AutoSize = true;
+            InvoiceTotalPricelbl.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
+            InvoiceTotalPricelbl.Location = new Point(5, 16);
+            InvoiceTotalPricelbl.Name = "InvoiceTotalPricelbl";
+            InvoiceTotalPricelbl.Size = new Size(104, 17);
+            InvoiceTotalPricelbl.TabIndex = 88;
+            InvoiceTotalPricelbl.Text = "InvoiceValue15";
             // 
             // InvoiceLabel15
             // 
@@ -516,7 +515,7 @@
             InvoiceFormData.BackgroundColor = SystemColors.Window;
             InvoiceFormData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             InvoiceFormData.Columns.AddRange(new DataGridViewColumn[] { ProductID, ProductName, Qty, Unit_Price, Discount });
-            InvoiceFormData.Location = new Point(53, 325);
+            InvoiceFormData.Location = new Point(49, 344);
             InvoiceFormData.Name = "InvoiceFormData";
             InvoiceFormData.ReadOnly = true;
             InvoiceFormData.RowHeadersVisible = false;
@@ -563,7 +562,7 @@
             // Discount
             // 
             Discount.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Discount.HeaderText = "Discount";
+            Discount.HeaderText = "Discount (%)";
             Discount.MinimumWidth = 6;
             Discount.Name = "Discount";
             Discount.ReadOnly = true;
@@ -596,7 +595,7 @@
             pictureBox5.BackgroundImage = Properties.Resources.company_logo;
             pictureBox5.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox5.Location = new Point(53, 709);
-            pictureBox5.Margin = new Padding(2, 2, 2, 2);
+            pictureBox5.Margin = new Padding(2);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(220, 80);
             pictureBox5.TabIndex = 73;
@@ -635,67 +634,66 @@
             InvoiceLabel20.Size = new Size(174, 16);
             InvoiceLabel20.TabIndex = 76;
             InvoiceLabel20.Text = "Legend MOTOR Co. Ltd.";
-            InvoiceLabel20.Click += label7_Click;
             // 
-            // InvoiceValue1
+            // InvoiceInvoiceDatelbl
             // 
-            InvoiceValue1.AutoSize = true;
-            InvoiceValue1.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
-            InvoiceValue1.Location = new Point(277, 80);
-            InvoiceValue1.Name = "InvoiceValue1";
-            InvoiceValue1.Size = new Size(96, 17);
-            InvoiceValue1.TabIndex = 77;
-            InvoiceValue1.Text = "InvoiceValue1";
+            InvoiceInvoiceDatelbl.AutoSize = true;
+            InvoiceInvoiceDatelbl.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
+            InvoiceInvoiceDatelbl.Location = new Point(277, 80);
+            InvoiceInvoiceDatelbl.Name = "InvoiceInvoiceDatelbl";
+            InvoiceInvoiceDatelbl.Size = new Size(96, 17);
+            InvoiceInvoiceDatelbl.TabIndex = 77;
+            InvoiceInvoiceDatelbl.Text = "InvoiceValue1";
             // 
-            // InvoiceValue2
+            // InvoiceOrderIDlbl
             // 
-            InvoiceValue2.AutoSize = true;
-            InvoiceValue2.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
-            InvoiceValue2.Location = new Point(493, 80);
-            InvoiceValue2.Name = "InvoiceValue2";
-            InvoiceValue2.Size = new Size(96, 17);
-            InvoiceValue2.TabIndex = 78;
-            InvoiceValue2.Text = "InvoiceValue2";
+            InvoiceOrderIDlbl.AutoSize = true;
+            InvoiceOrderIDlbl.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
+            InvoiceOrderIDlbl.Location = new Point(488, 80);
+            InvoiceOrderIDlbl.Name = "InvoiceOrderIDlbl";
+            InvoiceOrderIDlbl.Size = new Size(96, 17);
+            InvoiceOrderIDlbl.TabIndex = 78;
+            InvoiceOrderIDlbl.Text = "InvoiceValue2";
             // 
-            // InvoiceValue3
+            // InvoiceDealerIDlbl
             // 
-            InvoiceValue3.AutoSize = true;
-            InvoiceValue3.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
-            InvoiceValue3.Location = new Point(673, 80);
-            InvoiceValue3.Name = "InvoiceValue3";
-            InvoiceValue3.Size = new Size(96, 17);
-            InvoiceValue3.TabIndex = 79;
-            InvoiceValue3.Text = "InvoiceValue3";
+            InvoiceDealerIDlbl.AutoSize = true;
+            InvoiceDealerIDlbl.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
+            InvoiceDealerIDlbl.Location = new Point(673, 80);
+            InvoiceDealerIDlbl.Name = "InvoiceDealerIDlbl";
+            InvoiceDealerIDlbl.Size = new Size(96, 17);
+            InvoiceDealerIDlbl.TabIndex = 79;
+            InvoiceDealerIDlbl.Text = "InvoiceValue3";
             // 
             // InvoiceValue4
             // 
             InvoiceValue4.AutoSize = true;
             InvoiceValue4.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
-            InvoiceValue4.Location = new Point(72, 191);
+            InvoiceValue4.Location = new Point(61, 191);
             InvoiceValue4.Name = "InvoiceValue4";
             InvoiceValue4.Size = new Size(96, 17);
             InvoiceValue4.TabIndex = 80;
             InvoiceValue4.Text = "InvoiceValue4";
             // 
-            // InvoiceValue5
+            // InvoiceBillingAddresslbl
             // 
-            InvoiceValue5.AutoSize = true;
-            InvoiceValue5.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
-            InvoiceValue5.Location = new Point(408, 191);
-            InvoiceValue5.Name = "InvoiceValue5";
-            InvoiceValue5.Size = new Size(96, 17);
-            InvoiceValue5.TabIndex = 81;
-            InvoiceValue5.Text = "InvoiceValue5";
+            InvoiceBillingAddresslbl.AutoSize = true;
+            InvoiceBillingAddresslbl.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
+            InvoiceBillingAddresslbl.Location = new Point(320, 191);
+            InvoiceBillingAddresslbl.Name = "InvoiceBillingAddresslbl";
+            InvoiceBillingAddresslbl.Size = new Size(96, 17);
+            InvoiceBillingAddresslbl.TabIndex = 81;
+            InvoiceBillingAddresslbl.Text = "InvoiceValue5";
             // 
-            // InvoiceValue6
+            // InvoiceAddresslbl
             // 
-            InvoiceValue6.AutoSize = true;
-            InvoiceValue6.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
-            InvoiceValue6.Location = new Point(675, 191);
-            InvoiceValue6.Name = "InvoiceValue6";
-            InvoiceValue6.Size = new Size(96, 17);
-            InvoiceValue6.TabIndex = 82;
-            InvoiceValue6.Text = "InvoiceValue6";
+            InvoiceAddresslbl.AutoSize = true;
+            InvoiceAddresslbl.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
+            InvoiceAddresslbl.Location = new Point(568, 191);
+            InvoiceAddresslbl.Name = "InvoiceAddresslbl";
+            InvoiceAddresslbl.Size = new Size(96, 17);
+            InvoiceAddresslbl.TabIndex = 82;
+            InvoiceAddresslbl.Text = "InvoiceValue6";
             // 
             // invoicePrintbtn
             // 
@@ -731,12 +729,12 @@
             ClientSize = new Size(868, 825);
             Controls.Add(invoiceExitbtn);
             Controls.Add(invoicePrintbtn);
-            Controls.Add(InvoiceValue6);
-            Controls.Add(InvoiceValue5);
+            Controls.Add(InvoiceAddresslbl);
+            Controls.Add(InvoiceBillingAddresslbl);
             Controls.Add(InvoiceValue4);
-            Controls.Add(InvoiceValue3);
-            Controls.Add(InvoiceValue2);
-            Controls.Add(InvoiceValue1);
+            Controls.Add(InvoiceDealerIDlbl);
+            Controls.Add(InvoiceOrderIDlbl);
+            Controls.Add(InvoiceInvoiceDatelbl);
             Controls.Add(InvoiceLabel20);
             Controls.Add(InvoiceLabel18);
             Controls.Add(InvoiceLabel19);
@@ -773,8 +771,10 @@
             Controls.Add(InvoiceLabel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Invoice";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "InvoiceForm";
             TopMost = true;
+            Load += Invoice_Load;
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             panel4.ResumeLayout(false);
@@ -839,26 +839,21 @@
         private Label InvoiceLabel19;
         private Label InvoiceLabel18;
         private Label InvoiceLabel20;
-        private DataGridViewTextBoxColumn ProductID;
-        private DataGridViewTextBoxColumn ProductName;
-        private DataGridViewTextBoxColumn Qty;
-        private DataGridViewTextBoxColumn Unit_Price;
-        private DataGridViewTextBoxColumn Discount;
-        private Label InvoiceValue1;
-        private Label InvoiceValue2;
+        private Label InvoiceInvoiceDatelbl;
+        private Label InvoiceOrderIDlbl;
         private Label InvoiceValue8;
         private Label InvoiceValue9;
-        private Label InvoiceValue7;
-        private Label InvoiceValue10;
-        private Label InvoiceValue15;
+        private Label InvoiceOrderDatelbl;
+        private Label InvoiceDeliveryDatelbl;
+        private Label InvoiceTotalPricelbl;
         private Label InvoiceValue14;
         private Label InvoiceValue11;
         private Label InvoiceValue13;
         private Label InvoiceValue12;
-        private Label InvoiceValue3;
+        private Label InvoiceDealerIDlbl;
         private Label InvoiceValue4;
-        private Label InvoiceValue5;
-        private Label InvoiceValue6;
+        private Label InvoiceBillingAddresslbl;
+        private Label InvoiceAddresslbl;
         private ProgramMethod.ProgramMethod.PanelBorderColor panel5;
         private ProgramMethod.ProgramMethod.PanelBorderColor panel3;
         private ProgramMethod.ProgramMethod.PanelBorderColor panel4;
@@ -870,5 +865,10 @@
         private ProgramMethod.ProgramMethod.PanelBorderColor panel9;
         private Button invoicePrintbtn;
         private Button invoiceExitbtn;
+        private DataGridViewTextBoxColumn ProductID;
+        private DataGridViewTextBoxColumn ProductName;
+        private DataGridViewTextBoxColumn Qty;
+        private DataGridViewTextBoxColumn Unit_Price;
+        private DataGridViewTextBoxColumn Discount;
     }
 }

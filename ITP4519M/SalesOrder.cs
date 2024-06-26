@@ -47,8 +47,6 @@ namespace ITP4519M
                     saveOrderbtn.Visible = false;
                     label6.Visible = false;
                     label9.Visible = false;
-                    label3.Visible = false;
-                    orderStatusBox.Visible = false;
                     SetReadOnly(true);
                     break;
                 case OperationMode.New:
@@ -71,7 +69,6 @@ namespace ITP4519M
                         productSearchbox.Visible = false;
                         modifyProduct = false;
                     }
-                    orderStatusBox.ReadOnly = false;
                     break;
             }
         }
@@ -82,7 +79,6 @@ namespace ITP4519M
             goodsAddressBox.Text = string.Empty;
             invoiceAddressBox.Text = string.Empty;
             orderCompleteDateBox.Text = string.Empty;
-            orderStatusBox.Text = string.Empty;
             dealerIDBox.Text = string.Empty;
             dealerNameBox.Text = string.Empty;
             dealerCompanyBox.Text = string.Empty;
@@ -96,7 +92,6 @@ namespace ITP4519M
             goodsAddressBox.ReadOnly = readOnly;
             invoiceAddressBox.ReadOnly = readOnly;
             orderCompleteDateBox.ReadOnly = readOnly;
-            orderStatusBox.ReadOnly = readOnly;
             dealerIDBox.ReadOnly = readOnly;
             dealerNameBox.ReadOnly = readOnly;
             dealerCompanyBox.ReadOnly = readOnly;
@@ -110,7 +105,6 @@ namespace ITP4519M
             goodsAddressBox.Enabled = !readOnly;
             invoiceAddressBox.Enabled = !readOnly;
             orderCompleteDateBox.Enabled = !readOnly;
-            orderStatusBox.Enabled = !readOnly;
             dealerIDBox.Enabled = !readOnly;
             dealerNameBox.Enabled = !readOnly;
             dealerCompanyBox.Enabled = !readOnly;
@@ -312,7 +306,7 @@ namespace ITP4519M
            // programMethod.orderDeleteItem(orderID);
             for (int i = 0; i < productOfOrderdata.Rows.Count; i++)
             {
-                //programMethod.createOrderItem(orderID, productOfOrderdata.Rows[i].Cells[0].Value.ToString(), productOfOrderdata.Rows[i].Cells[2].Value.ToString());
+               // programMethod.createOrderItem(orderID, productOfOrderdata.Rows[i].Cells[0].Value.ToString(), productOfOrderdata.Rows[i].Cells[2].Value.ToString());
             }
             MessageBox.Show("Order Edit Save");
         }

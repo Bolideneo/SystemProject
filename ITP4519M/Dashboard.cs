@@ -24,6 +24,7 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using MySqlX.XDevAPI.Common;
 using System.Security.Policy;
+using System.Net.NetworkInformation;
 
 
 namespace ITP4519M
@@ -107,6 +108,9 @@ namespace ITP4519M
         private string outstandingOrderID;
         private string orderAccemblyOrderID;
         private string orderAccemblyDealerID;
+        private string invoiceID;
+        private string invoiceOrderID;
+        private string invoiceDealerID;
         private bool isDealerDVG;
         private int PageSize = 5;
         private int index = -1;
@@ -121,6 +125,7 @@ namespace ITP4519M
         private int orderAceemblyindex = -1;
         private int outstandingIndex = -1;
         private int outstandingTotalIndex = -1;
+        private int invoiceIndex = -1;
         private string currentDataSourceType = "";
         private int OutstandingRowCount;
         private int AccountRowCount;
@@ -2081,6 +2086,47 @@ namespace ITP4519M
         private void invoiceNextPagebtn_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void invoiceData_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+            {
+
+                this.invoiceData.Rows[e.RowIndex].Cells["invoicecheckbox"].Value = true;
+                invoiceIndex = e.RowIndex;
+                DataGridViewRow selectRow = this.invoiceData.Rows[invoiceIndex];
+                invoiceID = selectRow.Cells[1].Value.ToString();
+                invoiceOrderID = selectRow.Cells[2].Value.ToString();
+                invoiceDealerID = selectRow.Cells[3].Value.ToString();
+
+
+                foreach (DataGridViewRow row in invoiceData.Rows)
+                {
+                    if (row.Index == e.RowIndex)
+                    {
+                        row.Cells["invoicecheckbox"].Value = !Convert.ToBoolean(row.Cells["invoicecheckbox"].EditedFormattedValue);
+                    }
+                    else
+                    {
+                        row.Cells["invoicecheckbox"].Value = false;
+                    }
+                }
+            }
+        }
+
+        private void invoiceViewBtn_Click(object sender, EventArgs e)
+        {
+            if (invoiceIndex == -1)
+            {
+                MessageBox.Show("Please Select One Invoice");
+            }
+            else
+            {
+                Invoice invoice = new Invoice(invoiceID, invoiceOrderID, invoiceDealerID);
+                invoice.ShowDialog();
+
+            }
         }
     }
 }

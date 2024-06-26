@@ -2,7 +2,7 @@
 
 namespace ITP4519M
 {
-    partial class CreateOrder
+    partial class OrderDetails
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@ namespace ITP4519M
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateOrder));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrderDetails));
             CloseButton = new Button();
             label3 = new Label();
             productOfOrderdata = new DataGridView();
@@ -778,7 +778,7 @@ namespace ITP4519M
             panel4.Size = new Size(255, 5);
             panel4.TabIndex = 82;
             // 
-            // CreateOrder
+            // CreateOrder1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -790,7 +790,7 @@ namespace ITP4519M
             Controls.Add(label3);
             Controls.Add(CloseButton);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "CreateOrder";
+            Name = "CreateOrder1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "OrderForm1";
             Load += SalesOrder_Load;

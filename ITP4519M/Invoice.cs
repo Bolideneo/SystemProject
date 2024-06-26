@@ -7,23 +7,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ITP4519M
 {
     public partial class Invoice : Form
     {
-        public Invoice()
+
+        private string invoiceID;
+        private string orderID;
+        private string dealerID;
+        ProgramMethod.ProgramMethod programMethod;
+        public Invoice(string invoiceID, string orderID, string dealerID)
         {
             InitializeComponent();
+            this.invoiceID = invoiceID;
+            this.orderID = orderID;
+            this.dealerID = dealerID;
         }
 
-        private void InvoiceLabel2_Click(object sender, EventArgs e)
+        private void Invoice_Load(object sender, EventArgs e)
         {
+            programMethod = new ProgramMethod.ProgramMethod();
+            DataTable result = programMethod.getInvoiceDetails(orderID);
+            DataTable OrderItem = programMethod.getOrderItemDetail(orderID);
+            DataTable orderDetails = programMethod.getOrderDetails(orderID);
+            InvoiceInvoiceDatelbl.Text = result.Rows[0]["IssueDate"].ToString();
+            InvoiceOrderIDlbl.Text = orderID;
+            InvoiceDealerIDlbl.Text = dealerID;
+            InvoiceBillingAddresslbl.Text = orderDetails.Rows[0]["InvoiceAddress"].ToString();
+            InvoiceAddresslbl.Text = orderDetails.Rows[0]["DeliveryAddress"].ToString();
+            InvoiceOrderDatelbl.Text = orderDetails.Rows[0]["OrderDate"].ToString();
+            //Delivery Date //InvoiceDeliveryDatelbl.Text 
 
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
+            InvoiceFormData.DataSource = OrderItem;
 
         }
 
@@ -31,5 +48,7 @@ namespace ITP4519M
         {
             this.Close();
         }
+
+     
     }
 }

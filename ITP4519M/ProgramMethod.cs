@@ -31,6 +31,8 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Xml.Linq;
 using Org.BouncyCastle.Asn1.X509;
+using static ProgramMethod.ProgramMethod.Win32Helpers;
+using System.Windows.Forms.DataVisualization.Charting;
 
 
 
@@ -557,8 +559,17 @@ namespace ProgramMethod
 
                 for (int i = 0; i < productOfOrder.Rows.Count; i++)
                 {
-                    sum += (int.Parse(productOfOrder.Rows[i].Cells[2].Value.ToString())) * (float.Parse(productOfOrder.Rows[i].Cells[3].Value.ToString()));
+                    if (productOfOrder.Rows[i].Cells[4].Value.ToString() == "100")
+                    {
+                        sum += int.Parse(productOfOrder.Rows[i].Cells[2].Value.ToString()) * float.Parse(productOfOrder.Rows[i].Cells[3].Value.ToString());
+                    }
+                    else
+                    {
+                        sum += int.Parse(productOfOrder.Rows[i].Cells[2].Value.ToString()) * float.Parse(productOfOrder.Rows[i].Cells[3].Value.ToString()) * (100 - int.Parse(productOfOrder.Rows[i].Cells[4].Value.ToString())) / 100;
+                    }
                 }
+                   
+                
             }
             catch
             {
@@ -640,20 +651,30 @@ namespace ProgramMethod
 
         public bool createGRN(string POID, string productID, string warehouse, string receiveqty, string receivedate)
         {
-            //datatable temp = new datatable();
-            if (dataBaseMethod.overallGRNinfo().Rows.Count == 0)
-            {
-                dataBaseMethod.createGRN("00001", POID, productID, warehouse, receiveqty, receivedate);
-                return true;
-            }
             string grnID = "G" + (int.Parse(dataBaseMethod.getGRNID('G').Substring(1)) + 1).ToString("000000");
-
-            MessageBox.Show(grnID);
             try
             {
                 if(dataBaseMethod.createGRN(grnID, POID, productID, warehouse, receiveqty, receivedate))
                 {
                     LogCreateGRN(LoginUserID, LoginUserName, grnID, POID, productID, receiveqty);
+                }
+
+                if (int.Parse(dataBaseMethod.getPurchaseOrderQty(POID)) == int.Parse(receiveqty))
+                {
+
+                    if (dataBaseMethod.updatePurchaseOrder(POID, "Recevied"))
+                    {
+                     //   dataBaseMethod.updateProductStatus(productID, "Available");
+                        return true;
+                    }
+                }
+                else
+                {
+                    if (dataBaseMethod.updatePurchaseOrder(POID, "Outstanding"))
+                    {
+                       // dataBaseMethod.updateProductStatus(productID, "Available");
+                        return true;
+                    }
                 }
             }
             catch (Exception e)
@@ -778,23 +799,21 @@ namespace ProgramMethod
         {
             string deliveryID = "DE" + (int.Parse(dataBaseMethod.getDeliveryID()) + 1).ToString("00000");
             DataTable dt = dataBaseMethod.getOrderItemDetailForDelivery(orderID);
-            //if (!dataBaseMethod.checkDeliveryOrderIDExist(orderID))
-            //{
-            //    MessageBox.Show("First");
-            //    for (int i = 0; i < dt.Rows.Count; i++)
-            //    {
-            //        dataBaseMethod.createDeliveryNoteItem(deliveryID, dt.Rows[i]["ProductID"].ToString(), "0", dt.Rows[i]["ActualDespatchQuantity"].ToString(), dt.Rows[i]["QuantityFollow"].ToString());
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Not Yet");
+            if (!dataBaseMethod.checkDeliveryOrderIDExist(orderID))
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    dataBaseMethod.createDeliveryNoteItem(deliveryID, dt.Rows[i]["ProductID"].ToString(), "N/A", dt.Rows[i]["ActualDespatchQuantity"].ToString(), dt.Rows[i]["QuantityFollow"].ToString());
+                }
+            }
+            else
+            {
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     dataBaseMethod.createDeliveryNoteItem(deliveryID, dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["PreQtyDelivered"].ToString(), dt.Rows[i]["ActualDespatchQuantity"].ToString(), dt.Rows[i]["QuantityFollow"].ToString());
                     
                 }
-            // }
+             }
             
             if(dataBaseMethod.createDelivery(deliveryID, orderID, deliveryDate, "Shipped"))
             {
@@ -2018,7 +2037,6 @@ namespace ProgramMethod
         {
             return dataBaseMethod.overallLogInfo();
         }
-
 
 
     }
