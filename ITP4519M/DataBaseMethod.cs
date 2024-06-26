@@ -24,6 +24,7 @@ using System.Drawing.Printing;
 using Org.BouncyCastle.Asn1.X509;
 using System.Drawing;
 using System.Diagnostics.Tracing;
+using System.Globalization;
 
 
 namespace ITP4519M
@@ -2831,7 +2832,165 @@ namespace ITP4519M
             ServerConnect().Close();
             return dataTable;
         }
+        //Test
+        public static List<SupplierDetails> GetSuppliers()
+        {
+            List<SupplierDetails> suppliers = new List<SupplierDetails>();
+            string query = "SELECT SupplierID, SupplierCompanyName,SupplierContactPerson,SupplierPhoneNum,SupplierEmail FROM supplier";
 
+            using (MySqlConnection conn = new DataBaseMethod().ServerConnect())
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        suppliers.Add(new SupplierDetails
+                        {
+                            SupplierID = reader.GetString("SupplierID"),
+                            SupplierCompanyName = reader.GetString("SupplierCompanyName"),
+                            SupplierContactPerson = reader.GetString("SupplierContactPerson"),
+                            SupplierPhoneNum = reader.GetString("SupplierPhoneNum"),
+                            SupplierEmail = reader.GetString("SupplierEmail")
+                        });
+                    }
+                }
+            }
+            
+            return suppliers;
+        }
+
+        public static List<ProductDetails> GetProductsBySupplier(string supplierID)
+        {
+            List<ProductDetails> products = new List<ProductDetails>();
+            string query = "SELECT p.ProductID, p.ProductName, p.CostPrice FROM supplier s " +
+                           "LEFT JOIN supplierproducts sp ON s.SupplierID = sp.SupplierID " +
+                           "LEFT JOIN product p ON sp.ProductID = p.ProductID " +
+                           "WHERE s.SupplierID = @SupplierID " +
+                           "ORDER BY s.SupplierID";
+
+            using (MySqlConnection conn = new DataBaseMethod().ServerConnect())
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@SupplierID", supplierID);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        products.Add(new ProductDetails
+                        {
+                            ProductID = reader.GetString("ProductID"),
+                            ProductName = reader.GetString("ProductName"),
+                            CostPrice = reader.GetString("CostPrice")
+                        });
+                    }
+                }
+            }
+
+            return products;
+        }
+
+        public static ProductDetails GetProductDetails(string productID)
+        {
+            ProductDetails product = null;
+            string query = "SELECT ProductID, ProductName, UnitPrice FROM product WHERE ProductID = @ProductID";
+
+            using (MySqlConnection conn = new DataBaseMethod().ServerConnect())
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@ProductID", productID);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        product = new ProductDetails
+                        {
+                            ProductID = reader.GetString("ProductID"),
+                            ProductName = reader.GetString("ProductName"),
+                            UnitPrice = reader.GetString("UnitPrice")
+                        };
+                    }
+                }
+            }
+
+            return product;
+        }
+
+        public static int InsertPurchaseOrder(string supplierID, string userID, DateTime orderDate, string totalPrice, string status)
+        {
+            int purchaseOrderID;
+            string query = "INSERT INTO purchaseorder (SupplierID, UserID, Date, TotalPrice, Status) VALUES (@SupplierID, @UserID, @Date, @TotalPrice, @Status)";
+
+            using (MySqlConnection conn = new DataBaseMethod().ServerConnect())
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@SupplierID", supplierID);
+                cmd.Parameters.AddWithValue("@UserID", userID);
+                cmd.Parameters.AddWithValue("@Date", orderDate.ToString("yyyy-MM-dd HH:mm:ss"));
+                cmd.Parameters.AddWithValue("@TotalPrice", totalPrice);
+                cmd.Parameters.AddWithValue("@Status", status);
+
+                cmd.ExecuteNonQuery();
+                purchaseOrderID = (int)cmd.LastInsertedId;
+            }
+
+            return purchaseOrderID;
+        }
+
+        public static void InsertPurchaseOrderDetail(string purchaseOrderID, string productID, string quantity, string unitPrice)
+        {
+            string query = "INSERT INTO purchaseorderitem (PurchaseOrderID, ProductID, Quantity, UnitPrice, TotalPrice) VALUES (@PurchaseOrderID, @ProductID, @Quantity, @UnitPrice, @TotalPrice)";
+
+            using (MySqlConnection conn = new DataBaseMethod().ServerConnect())
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@PurchaseOrderID", purchaseOrderID);
+                cmd.Parameters.AddWithValue("@ProductID", productID);
+                cmd.Parameters.AddWithValue("@Quantity", quantity);
+                cmd.Parameters.AddWithValue("@UnitPrice", unitPrice);
+                cmd.Parameters.AddWithValue("@TotalPrice", (Int32.Parse(quantity) * Int32.Parse(unitPrice)).ToString(CultureInfo.InvariantCulture));
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public static void UpdateProductStock(string productID, int newStock)
+        {
+            string query = "UPDATE product SET Stock = @Stock WHERE ProductID = @ProductID";
+
+            using (MySqlConnection conn = new DataBaseMethod().ServerConnect())
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@ProductID", productID);
+                cmd.Parameters.AddWithValue("@Stock", newStock.ToString());
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public static string GetUserIDFromStaffInfo(string PhoneNum)
+        {
+            string userID = null;
+            string query = "SELECT UserID FROM staff WHERE PhoneNum = @PhoneNum";
+
+            using (MySqlConnection conn = new DataBaseMethod().ServerConnect())
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@PhoneNum", PhoneNum);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        userID = reader.GetString("UserID");
+                    }
+                }
+            }
+
+            return userID;
+        }
 
     }
 

@@ -14,7 +14,7 @@ namespace ITP4519M
             // see https://aka.ms/applicationconfiguration.
              ApplicationConfiguration.Initialize();
           // Application.Run(new Login());
-           Application.Run(new Dashboard());
+           Application.Run(new CreatePurchaseOrder());
         }
 
         private static void ThreadException(object sender, ThreadExceptionEventArgs e)

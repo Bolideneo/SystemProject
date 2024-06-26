@@ -2018,8 +2018,39 @@ namespace ProgramMethod
         {
             return dataBaseMethod.overallLogInfo();
         }
+        // Test
+        public List<SupplierDetails> GetSuppliers()
+        {
+            return DataBaseMethod.GetSuppliers();
+        }
 
+        public  List<ProductDetails> GetProductsBySupplier(string supplierID)
+        {
+            return DataBaseMethod.GetProductsBySupplier(supplierID);
+        }
 
+     
+        public static ProductDetails GetProductDetails(string productID)
+        {
+            return DataBaseMethod.GetProductDetails(productID);
+        }
+
+    
+        public static void CreatePurchaseOrder(string supplierID, string userID, string productID, string quantity, string unitPrice, string totalPrice, string status)
+        {
+            int purchaseOrderID = DataBaseMethod.InsertPurchaseOrder(supplierID, userID, DateTime.Now, totalPrice, "Pending");
+            DataBaseMethod.InsertPurchaseOrderDetail(purchaseOrderID.ToString(), productID, quantity, unitPrice);
+            if (status == "Complete")
+            {
+                DataBaseMethod.UpdateProductStock(productID, Int32.Parse(quantity));
+            }
+        }
+
+     
+        public static string GetUserIDFromStaffInfo(string PhoneNum)
+        {
+            return DataBaseMethod.GetUserIDFromStaffInfo(PhoneNum);
+        }
 
     }
 

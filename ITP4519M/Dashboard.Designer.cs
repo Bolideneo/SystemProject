@@ -1298,7 +1298,6 @@ namespace ITP4519M
             viewOrderbtn.ImageAlign = ContentAlignment.MiddleLeft;
             viewOrderbtn.ImageIndex = 0;
             viewOrderbtn.Location = new Point(245, 294);
-
             viewOrderbtn.Margin = new Padding(3, 4, 3, 4);
             viewOrderbtn.Name = "viewOrderbtn";
             viewOrderbtn.Size = new Size(173, 49);
@@ -5005,9 +5004,6 @@ namespace ITP4519M
             ClientSize = new Size(1499, 1051);
             Controls.Add(listpnl);
             Controls.Add(closebtn);
-            Controls.Add(invoicepnl);
-            Controls.Add(POpnl);
-            Controls.Add(deliverypnl);
             Controls.Add(userspnl);
             Controls.Add(outstandingOrderpnl);
             Controls.Add(orderpnl);
@@ -5020,6 +5016,9 @@ namespace ITP4519M
             Controls.Add(logpnl);
             Controls.Add(inventorypnl);
             Controls.Add(contactpnl);
+            Controls.Add(invoicepnl);
+            Controls.Add(POpnl);
+            Controls.Add(deliverypnl);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
