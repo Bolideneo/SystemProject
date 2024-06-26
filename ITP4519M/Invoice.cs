@@ -30,7 +30,7 @@ namespace ITP4519M
         {
             programMethod = new ProgramMethod.ProgramMethod();
             DataTable result = programMethod.getInvoiceDetails(orderID);
-            DataTable OrderItem = programMethod.getOrderItemDetail(orderID);
+            DataTable OrderItem = programMethod.getOrderItemDetailforInvoice(orderID);
             DataTable orderDetails = programMethod.getOrderDetails(orderID);
             InvoiceInvoiceDatelbl.Text = result.Rows[0]["IssueDate"].ToString();
             InvoiceOrderIDlbl.Text = orderID;
@@ -39,9 +39,8 @@ namespace ITP4519M
             InvoiceAddresslbl.Text = orderDetails.Rows[0]["DeliveryAddress"].ToString();
             InvoiceOrderDatelbl.Text = orderDetails.Rows[0]["OrderDate"].ToString();
             //Delivery Date //InvoiceDeliveryDatelbl.Text 
-
-            InvoiceFormData.DataSource = OrderItem;
-
+            this.InvoiceFormData.Rows.Add(OrderItem.Rows[0]["ProductID"].ToString(), OrderItem.Rows[0]["ProductName"].ToString(), OrderItem.Rows[0]["OrderedQuantity"].ToString(), OrderItem.Rows[0]["Price"].ToString(), OrderItem.Rows[0]["Discount"].ToString());
+            InvoiceTotalPricelbl.Text = orderDetails.Rows[0]["TotalPrice"].ToString();
         }
 
         private void invoiceExitbtn_Click(object sender, EventArgs e)

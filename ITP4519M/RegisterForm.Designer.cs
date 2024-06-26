@@ -470,7 +470,7 @@ namespace ITP4519M
             usernamepnl.Name = "usernamepnl";
             usernamepnl.Size = new Size(218, 28);
             usernamepnl.TabIndex = 77;
-            usernamepnl.Paint += panel2_Paint;
+            usernamepnl.Paint += usernamepnl_Paint;
             // 
             // usernameAlertBox
             // 
@@ -495,7 +495,7 @@ namespace ITP4519M
             displaynamepnl.Name = "displaynamepnl";
             displaynamepnl.Size = new Size(218, 28);
             displaynamepnl.TabIndex = 78;
-            displaynamepnl.Paint += panel3_Paint;
+            displaynamepnl.Paint += displaynamepnl_Paint;
             // 
             // displaynameAlertBox
             // 
@@ -567,6 +567,7 @@ namespace ITP4519M
             passwordpnl.Name = "passwordpnl";
             passwordpnl.Size = new Size(218, 28);
             passwordpnl.TabIndex = 78;
+            passwordpnl.Paint += passwordpnl_Paint;
             // 
             // passwordAlertBox
             // 
@@ -591,6 +592,7 @@ namespace ITP4519M
             passwordAgainpnl.Name = "passwordAgainpnl";
             passwordAgainpnl.Size = new Size(218, 28);
             passwordAgainpnl.TabIndex = 79;
+            passwordAgainpnl.Paint += passwordAgainpnl_Paint;
             // 
             // passwordAgainAlertBox
             // 
@@ -614,6 +616,7 @@ namespace ITP4519M
             mailpnl.Name = "mailpnl";
             mailpnl.Size = new Size(259, 28);
             mailpnl.TabIndex = 79;
+            mailpnl.Paint += mailpnl_Paint;
             // 
             // mailAlertBox
             // 
@@ -637,6 +640,7 @@ namespace ITP4519M
             phonepnl.Name = "phonepnl";
             phonepnl.Size = new Size(218, 28);
             phonepnl.TabIndex = 79;
+            phonepnl.Paint += phonepnl_Paint;
             // 
             // phoneAlertBox
             // 
@@ -660,6 +664,7 @@ namespace ITP4519M
             titilepnl.Name = "titilepnl";
             titilepnl.Size = new Size(259, 28);
             titilepnl.TabIndex = 80;
+            titilepnl.Paint += titilepnl_Paint;
             // 
             // titleAlertBox
             // 
@@ -691,7 +696,7 @@ namespace ITP4519M
             departAlertlbl.AutoSize = true;
             departAlertlbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             departAlertlbl.ForeColor = Color.Red;
-            departAlertlbl.Location = new Point(566, 507);
+            departAlertlbl.Location = new Point(561, 507);
             departAlertlbl.Margin = new Padding(5, 0, 5, 0);
             departAlertlbl.Name = "departAlertlbl";
             departAlertlbl.Size = new Size(217, 20);

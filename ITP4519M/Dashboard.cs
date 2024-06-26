@@ -91,9 +91,8 @@ namespace ITP4519M
         private int OrderPageIndex = 1;
         private int OrderTotalPage = 0;
         //Paging
-
-        private Button currentButton;
         TypeAssistant assistant;
+        private Button currentButton;
         private string userID;
         private string LoginUserID;
         private string LoginUserName;
@@ -332,6 +331,7 @@ namespace ITP4519M
                     Idled(this, EventArgs.Empty);
                 });
             }
+
             public void TextChanged()
             {
                 waitingTimer.Change(WaitingMilliSeconds, System.Threading.Timeout.Infinite);
@@ -348,11 +348,12 @@ namespace ITP4519M
 
             lastClickedButton = (Button)sender;
             lastClickedButton.ForeColor = Color.Gray;
-
+            orderStatusCombox.DataSource = programMethod.getOrerStatus();
+            orderStatusCombox.DisplayMember = "Name";
 
             CalculateTotalPages("Order");
             ShowPanel(orderpnl);
-            //orderdata.DataSource = programMethod.GetOrderCurrentRecords(OrderPageIndex, OrderPgSize);
+            orderdata.DataSource = programMethod.GetCurrentRecords("Order", OrderPageIndex, OrderPgSize);
             FirstpageBtnClick(orderdata, "Order", OrderPgSize, OrderPageIndex, orderIndexlbl, OrderRowCount);
             orderdata.Rows[0].Selected = false;
             SetRowHeights(orderdata, OrderPgSize);
@@ -373,6 +374,8 @@ namespace ITP4519M
 
         private void inventorybtn_Click(object sender, EventArgs e)
         {
+            assistant = new TypeAssistant();
+            assistant.Idled += assistant_Idled;
 
             if (lastClickedButton != null)
             {
@@ -402,6 +405,11 @@ namespace ITP4519M
                     else if (stockData.Rows[i].Cells["Status"].Value.ToString() == "Danger")
                     {
                         stockData.Rows[i].Cells["Status"].Style.ForeColor = Color.DarkOrange;
+                        stockData.Rows[i].Cells["Status"].Style.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+                    }
+                    else if (stockData.Rows[i].Cells["Status"].Value.ToString() == "Re-Order")
+                    {
+                        stockData.Rows[i].Cells["Status"].Style.ForeColor = Color.Green;
                         stockData.Rows[i].Cells["Status"].Style.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
                     }
 
@@ -1783,7 +1791,6 @@ namespace ITP4519M
             else
             {
                 string status = orderStatusCombox.Text.ToString();
-                Debug.WriteLine(orderStatusCombox.Text.ToString());
                 orderdata.DataSource = programMethod.orderDateStatusFilter(formDate, toDate, status);
             }
         }
@@ -2128,6 +2135,7 @@ namespace ITP4519M
 
             }
         }
+
     }
 }
     

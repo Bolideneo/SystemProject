@@ -21,8 +21,14 @@ namespace ITP4519M
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
         private bool isFormDragging = false;
         private Point formStartPoint;
-        private bool isWrongFormat = false;
-        private bool isWrongFormat2 = false;
+        private bool isWrongFormat_username = false;
+        private bool isWrongFormat_displayname = false;
+        private bool isWrongFormat_password = false;
+        private bool isWrongFormat_passwordAgain = false;
+        private bool isWrongFormat_mail = false;
+        private bool isWrongFormat_phone = false;
+        private bool isWrongFormat_title = false;
+        private bool isWrongFormat_department = false;
         public event EventHandler OperationCompleted;
 
 
@@ -84,14 +90,14 @@ namespace ITP4519M
                     viewaccountlbl.Visible = false;
                     SetReadOnly(false);
                     break;
-                //case OperationMode.Disable:
-                //    accountEditlbl.Visible = true;
-                //    editAccountbtn.Visible = true;
-                //    createAccountBtn.Visible = false;
-                //    newAccountlabel.Visible = false;
-                //    viewaccountlbl.Visible = false;
-                //    SetReadOnly(false);
-                //    break;
+                    //case OperationMode.Disable:
+                    //    accountEditlbl.Visible = true;
+                    //    editAccountbtn.Visible = true;
+                    //    createAccountBtn.Visible = false;
+                    //    newAccountlabel.Visible = false;
+                    //    viewaccountlbl.Visible = false;
+                    //    SetReadOnly(false);
+                    //    break;
 
 
             }
@@ -163,9 +169,9 @@ namespace ITP4519M
                 //MessageBox.Show("Please enter a username.");
                 usernameAlertlbl.Visible = true;
                 usernameAlertBox.Visible = true;
-                isWrongFormat = true;
+                isWrongFormat_username = true;
                 registerPasswordAgainBox.Focus();
-                Refresh(); 
+                Refresh();
                 //registerUsernameBox.Focus();
                 //return;
             }
@@ -173,7 +179,7 @@ namespace ITP4519M
             {
                 usernameAlertlbl.Visible = false;
                 usernameAlertBox.Visible = false;
-                isWrongFormat = false;
+                isWrongFormat_username = false;
                 Refresh();
             }
 
@@ -181,7 +187,7 @@ namespace ITP4519M
             {
                 //MessageBox.Show("Please enter a display name.");
                 displaynameAlertlbl.Visible = true;
-                isWrongFormat2 = true;
+                isWrongFormat_displayname = true;
                 displaynameAlertBox.Visible = true;
                 registerDisplaynameBox.Focus();
                 // registerUsernameBox.Focus();
@@ -192,7 +198,7 @@ namespace ITP4519M
             {
                 displaynameAlertlbl.Visible = false;
                 displaynameAlertBox.Visible = false;
-                isWrongFormat2 = false;
+                isWrongFormat_displayname = false;
                 Refresh();
             }
 
@@ -200,44 +206,56 @@ namespace ITP4519M
             {
                 passwordNotelbl.ForeColor = Color.Red;
                 passwordAlertBox.Visible = true;
-                isWrongFormat = true;
+                isWrongFormat_password = true;
                 registerPasswordBox.Focus();
                 Refresh();
             }
             else
             {
                 passwordAlertBox.Visible = false;
-                isWrongFormat2 = false;
+                isWrongFormat_password = false;
                 Refresh();
             }
 
-            if (string.IsNullOrEmpty(confirmPassword) || password != confirmPassword)
+            if (string.IsNullOrEmpty(confirmPassword) || !IsPasswordValid(confirmPassword))
             {
                 passwordNotelbl.ForeColor = Color.Red;
                 passwordAgainAlertBox.Visible = true;
-                isWrongFormat = true;
+                isWrongFormat_passwordAgain = true;
                 registerPasswordAgainBox.Focus();
                 Refresh();
             }
             else
             {
-                passwordAgainAlertBox.Visible = false;
-                isWrongFormat2 = false;
-                Refresh();
+                if (password != confirmPassword)
+                {
+                    passwordNotelbl.Text = "Passwords do not match!";
+                    passwordAgainAlertBox.Visible = true;
+                    passwordNotelbl.ForeColor = Color.Red;
+                    isWrongFormat_passwordAgain = true;
+                    registerPasswordAgainBox.Focus();
+                    Refresh();
+                }
+                else
+                {
+                    passwordAgainAlertBox.Visible = false;
+                    isWrongFormat_passwordAgain = false;
+                    Refresh();
+                }
             }
 
             if (string.IsNullOrEmpty(title))
             {
                 titleAlertlbl.Visible = true;
                 titleAlertBox.Visible = true;
-                isWrongFormat = true;
+                isWrongFormat_title = true;
                 titleBox.Focus();
                 Refresh();
             }
             else
             {
                 titleAlertlbl.Visible = false;
-                isWrongFormat2 = false;
+                isWrongFormat_title = false;
                 Refresh();
             }
 
@@ -245,14 +263,14 @@ namespace ITP4519M
             {
                 emailAlertlbl.ForeColor = Color.Red;
                 mailAlertBox.Visible = true;
-                isWrongFormat = true;
+                isWrongFormat_mail = true;
                 mailBox.Focus();
                 Refresh();
             }
             else
             {
                 emailAlertlbl.Visible = false;
-                isWrongFormat2 = false;
+                isWrongFormat_mail = false;
                 Refresh();
             }
 
@@ -260,21 +278,21 @@ namespace ITP4519M
             {
                 phoneAlertlbl.ForeColor = Color.Red;
                 phoneAlertBox.Visible = true;
-                isWrongFormat = true;
+                isWrongFormat_phone = true;
                 phoneNumBox.Focus();
                 Refresh();
             }
             else
             {
                 phoneAlertlbl.Visible = false;
-                isWrongFormat2 = false;
+                isWrongFormat_phone = false;
                 Refresh();
             }
 
             if (string.IsNullOrEmpty(department))
             {
                 departAlertlbl.Visible = true;
-                isWrongFormat = true;
+                isWrongFormat_department = true;
                 departBox.Focus();
                 Refresh();
             }
@@ -524,9 +542,9 @@ namespace ITP4519M
             isFormDragging = false;
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
+        private void usernamepnl_Paint(object sender, PaintEventArgs e)
         {
-            if (isWrongFormat)
+            if (isWrongFormat_username)
             {
                 ControlPaint.DrawBorder(e.Graphics, this.usernamepnl.ClientRectangle, Color.Red, ButtonBorderStyle.Solid);
             }
@@ -536,16 +554,76 @@ namespace ITP4519M
             }
         }
 
-        private void panel3_Paint(object sender, PaintEventArgs e)
+        private void displaynamepnl_Paint(object sender, PaintEventArgs e)
         {
 
-            if (isWrongFormat2)
+            if (isWrongFormat_displayname)
             {
                 ControlPaint.DrawBorder(e.Graphics, this.displaynamepnl.ClientRectangle, Color.Red, ButtonBorderStyle.Solid);
             }
             else
             {
                 ControlPaint.DrawBorder(e.Graphics, this.displaynamepnl.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
+            }
+        }//passwordpnl
+
+        private void passwordpnl_Paint(object sender, PaintEventArgs e)
+        {
+            if (isWrongFormat_password)
+            {
+                ControlPaint.DrawBorder(e.Graphics, this.passwordpnl.ClientRectangle, Color.Red, ButtonBorderStyle.Solid);
+            }
+            else
+            {
+                ControlPaint.DrawBorder(e.Graphics, this.passwordpnl.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
+            }
+        }
+
+        private void passwordAgainpnl_Paint(object sender, PaintEventArgs e)
+        {
+            if (isWrongFormat_passwordAgain)
+            {
+                ControlPaint.DrawBorder(e.Graphics, this.passwordAgainpnl.ClientRectangle, Color.Red, ButtonBorderStyle.Solid);
+            }
+            else
+            {
+                ControlPaint.DrawBorder(e.Graphics, this.passwordAgainpnl.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
+            }
+        }
+
+        private void mailpnl_Paint(object sender, PaintEventArgs e)
+        {
+            if (isWrongFormat_mail)
+            {
+                ControlPaint.DrawBorder(e.Graphics, this.mailpnl.ClientRectangle, Color.Red, ButtonBorderStyle.Solid);
+            }
+            else
+            {
+                ControlPaint.DrawBorder(e.Graphics, this.mailpnl.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
+            }
+        }
+
+        private void phonepnl_Paint(object sender, PaintEventArgs e)
+        {
+            if (isWrongFormat_phone)
+            {
+                ControlPaint.DrawBorder(e.Graphics, this.phonepnl.ClientRectangle, Color.Red, ButtonBorderStyle.Solid);
+            }
+            else
+            {
+                ControlPaint.DrawBorder(e.Graphics, this.phonepnl.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
+            }
+        }
+
+        private void titilepnl_Paint(object sender, PaintEventArgs e)
+        {
+            if (isWrongFormat_title)
+            {
+                ControlPaint.DrawBorder(e.Graphics, this.titilepnl.ClientRectangle, Color.Red, ButtonBorderStyle.Solid);
+            }
+            else
+            {
+                ControlPaint.DrawBorder(e.Graphics, this.titilepnl.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
             }
         }
     }
