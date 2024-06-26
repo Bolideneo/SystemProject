@@ -740,7 +740,7 @@ namespace ITP4519M
                 dealerindex = e.RowIndex;
                 DataGridViewRow selectRow = this.dealersData.Rows[dealerindex];
                 contactID = selectRow.Cells[1].Value.ToString();
-                //dealerID = selectRow.Cells[2].Value.ToString();
+  
 
                 foreach (DataGridViewRow row in dealersData.Rows)
                 {
@@ -766,7 +766,7 @@ namespace ITP4519M
                 supplierindex = e.RowIndex;
                 DataGridViewRow selectRow = this.suppliersData.Rows[supplierindex];
                 contactID = selectRow.Cells[1].Value.ToString();
-                //dealerID = selectRow.Cells[2].Value.ToString();
+                productID = selectRow.Cells[2].Value.ToString();
 
                 foreach (DataGridViewRow row in suppliersData.Rows)
                 {
@@ -1237,7 +1237,7 @@ namespace ITP4519M
                 }
                 else if (currentDataSourceType == "Supplier")
                 {
-                    programMethod.supplierDel(contactID);
+                    programMethod.supplierDel(contactID, productID);
                     supplersbtn.PerformClick();
                 }
 
@@ -2134,6 +2134,19 @@ namespace ITP4519M
                 invoice.ShowDialog();
 
             }
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            CreatePurchaseOrder CreatePurchaseForm = new CreatePurchaseOrder(OperationMode.New);
+            CreatePurchaseForm.OperationCompleted += CreatePurchaseOrderOperationCompleted;
+            CreatePurchaseForm.ShowDialog();
+        }
+
+        private void CreatePurchaseOrderOperationCompleted(object sender, EventArgs e)
+        {
+            poData.DataSource = programMethod.GetPOCurrentRecords(CurrentPageIndex, PgSize);
+            PObtn.PerformClick();
         }
 
     }

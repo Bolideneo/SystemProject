@@ -367,18 +367,39 @@ namespace ITP4519M
             return false;
         }
 
-        public bool supplierDel(string contactID)
+        public bool supplierDel(string contactID, string productID)
         {
-            string sql;
-
+            string sql1;
+            string sql2;
+            string sqlCheck;
             try
             {
                 MessageBox.Show(contactID);
-                sql = "DELETE FROM supplier WHERE SupplierID=@ContactID";
-                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+                MessageBox.Show(productID);
+                sql1 = "DELETE FROM supplierproducts WHERE SupplierID=@ContactID and ProductID=@ProductID";
+                sql2 = "DELETE FROM supplier WHERE SupplierID=@ContactID";
+                sqlCheck = "SELECT COUNT(*) FROM supplierproducts WHERE SupplierID=@ContactID";
+
+                MySqlCommand cmd = new MySqlCommand(sql1, ServerConnect());
                 cmd.Parameters.AddWithValue("@ContactID", contactID);
+                cmd.Parameters.AddWithValue("@ProductID", productID);
                 if (cmd.ExecuteNonQuery() > 0)
+                {
+                    MySqlCommand cmdCheck = new MySqlCommand(sqlCheck, ServerConnect());
+                    cmdCheck.Parameters.AddWithValue("@ContactID", contactID);
+
+                    int count = Convert.ToInt32(cmdCheck.ExecuteScalar());
+
+                    // If no other records exist for this SupplierID, delete the supplier
+                    if (count == 0)
+                    {
+                        sql2 = "DELETE FROM supplier WHERE SupplierID=@ContactID";
+                        MySqlCommand cmd2 = new MySqlCommand(sql2, ServerConnect());
+                        cmd2.Parameters.AddWithValue("@ContactID", contactID);
+                        cmd2.ExecuteNonQuery();
+                    }
                     return true;
+                }
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
@@ -479,7 +500,7 @@ namespace ITP4519M
 
         public DataTable GetSupplierCurrentRecords(int page, int pageSize)
         {
-            string sql = "SELECT s.SupplierID, s.SupplierCompanyName, s.SupplierContactPerson, s.SupplierPhoneNum, s.SupplierEmail, s.SupplierAddress, p.ProductName FROM supplier s LEFT JOIN supplierproducts sp ON s.SupplierID = sp.SupplierID LEFT JOIN product p ON sp.ProductID = p.ProductID ORDER BY s.SupplierID LIMIT @PgSize";
+            string sql = "SELECT s.SupplierID, p.ProductID, s.SupplierCompanyName, s.SupplierContactPerson, s.SupplierPhoneNum, s.SupplierEmail, s.SupplierAddress, p.ProductName FROM supplier s LEFT JOIN supplierproducts sp ON s.SupplierID = sp.SupplierID LEFT JOIN product p ON sp.ProductID = p.ProductID ORDER BY s.SupplierID LIMIT @PgSize";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
@@ -1988,7 +2009,7 @@ namespace ITP4519M
 
         public DataTable GetPOCurrentRecords(int page, int pageSize)
         {
-            string sql = "SELECT * FROM purchaseorder ORDER BY PurchaseOrderID LIMIT @PgSize";
+            string sql = "SELECT PurchaseOrderID,OrderQuantity,Status,Date FROM purchaseorder ORDER BY PurchaseOrderID LIMIT @PgSize";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);

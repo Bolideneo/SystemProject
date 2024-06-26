@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
 using static ITP4519M.DataBaseMethod;
+using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 using static ProgramMethod.ProgramMethod;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -27,10 +28,13 @@ namespace ITP4519M
     {
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
         string SupplierID;
-        public CreatePurchaseOrder()
+        private OperationMode _mode;
+        public event EventHandler OperationCompleted;
+        public CreatePurchaseOrder(OperationMode mode)
         {
             InitializeComponent();
             LoadSuppliers();
+            _mode = mode;
         }
 
         private void LoadSuppliers()
@@ -44,6 +48,39 @@ namespace ITP4519M
         }
         private void CreatePurchaseOrder_Load(object sender, EventArgs e)
         {
+            switch (_mode)
+            {
+                case OperationMode.View:
+
+                    SetReadOnly(true);
+                    break;
+                case OperationMode.New:
+
+                    SetReadOnly(false);
+                    break;
+                case OperationMode.Edit:
+
+                    SetReadOnly(false);
+                    break;
+
+
+
+            }
+        }
+
+        private void SetReadOnly(bool readOnly)
+        {
+
+            quanBox.ReadOnly = readOnly;
+            supplierContactPersonBox.ReadOnly = readOnly;
+            supplierMailBox.ReadOnly = readOnly;
+            supplierPhoneBox.ReadOnly = readOnly;
+
+
+            quanBox.Enabled = !readOnly;
+            supplierContactPersonBox.Enabled = !readOnly;
+            supplierMailBox.Enabled = !readOnly;
+            supplierPhoneBox.Enabled = !readOnly;
 
         }
 
