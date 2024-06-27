@@ -177,6 +177,7 @@
             supplierPhoneBox.Location = new Point(467, 333);
             supplierPhoneBox.Margin = new Padding(5, 4, 5, 4);
             supplierPhoneBox.Name = "supplierPhoneBox";
+            supplierPhoneBox.ReadOnly = true;
             supplierPhoneBox.Size = new Size(180, 27);
             supplierPhoneBox.TabIndex = 107;
             // 
@@ -186,6 +187,7 @@
             supplierMailBox.Location = new Point(224, 333);
             supplierMailBox.Margin = new Padding(5, 4, 5, 4);
             supplierMailBox.Name = "supplierMailBox";
+            supplierMailBox.ReadOnly = true;
             supplierMailBox.Size = new Size(220, 27);
             supplierMailBox.TabIndex = 106;
             // 
@@ -225,6 +227,7 @@
             // 
             supplierContactPersonBox.Location = new Point(32, 333);
             supplierContactPersonBox.Name = "supplierContactPersonBox";
+            supplierContactPersonBox.ReadOnly = true;
             supplierContactPersonBox.Size = new Size(166, 27);
             supplierContactPersonBox.TabIndex = 111;
             // 

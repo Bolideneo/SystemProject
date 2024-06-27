@@ -371,10 +371,10 @@ namespace ProgramMethod
 
         }
 
-        public bool supplierDel(string contactID)
+        public bool supplierDel(string contactID, string productID)
         {
 
-            if (dataBaseMethod.supplierDel(contactID))
+            if (dataBaseMethod.supplierDel(contactID, productID))
             {
                 LogDeleteSupplierContact(LoginUserID, LoginUserName, contactID);
                 MessageBox.Show("Delete successfully");

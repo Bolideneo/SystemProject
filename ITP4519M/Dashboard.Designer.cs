@@ -3866,10 +3866,12 @@ namespace ITP4519M
             // 
             // auditLogdata
             // 
-            auditLogdata.ColumnHeadersHeight = 29;
+            auditLogdata.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            auditLogdata.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             auditLogdata.Location = new Point(35, 297);
             auditLogdata.Name = "auditLogdata";
             auditLogdata.RowHeadersWidth = 51;
+            auditLogdata.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             auditLogdata.Size = new Size(1174, 639);
             auditLogdata.TabIndex = 39;
             // 
@@ -4986,6 +4988,7 @@ namespace ITP4519M
             button17.TabIndex = 36;
             button17.Text = "Add";
             button17.UseVisualStyleBackColor = true;
+            button17.Click += button17_Click;
             // 
             // POlbl
             // 
