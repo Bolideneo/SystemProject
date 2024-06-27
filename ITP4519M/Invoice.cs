@@ -50,6 +50,9 @@ namespace ITP4519M
             this.Close();
         }
 
-     
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

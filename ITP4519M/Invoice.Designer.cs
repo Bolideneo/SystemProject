@@ -321,6 +321,7 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(169, 48);
             panel2.TabIndex = 53;
+            panel2.Paint += panel2_Paint;
             // 
             // InvoiceDeliveryDatelbl
             // 

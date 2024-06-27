@@ -60,7 +60,7 @@ namespace ITP4519M
                     break;
                 case OperationMode.Edit:
                     // SetReadOnly(true);
-                    if(programMethod.getOrderStatus(orderID) == "OrderProcessing")
+                    if (programMethod.getOrderStatus(orderID) == "OrderProcessing")
                     {
                         modifyProduct = true;
                     }
@@ -281,7 +281,7 @@ namespace ITP4519M
             }
         }
 
-     
+
 
 
         private void disableFunction(bool readOnly)
@@ -303,10 +303,10 @@ namespace ITP4519M
         private void saveOrderbtn_Click(object sender, EventArgs e)
         {
 
-           // programMethod.orderDeleteItem(orderID);
+            // programMethod.orderDeleteItem(orderID);
             for (int i = 0; i < productOfOrderdata.Rows.Count; i++)
             {
-               // programMethod.createOrderItem(orderID, productOfOrderdata.Rows[i].Cells[0].Value.ToString(), productOfOrderdata.Rows[i].Cells[2].Value.ToString());
+                // programMethod.createOrderItem(orderID, productOfOrderdata.Rows[i].Cells[0].Value.ToString(), productOfOrderdata.Rows[i].Cells[2].Value.ToString());
             }
             MessageBox.Show("Order Edit Save");
         }
@@ -323,6 +323,16 @@ namespace ITP4519M
 
                 //totalpricelbl.Text = "" + programMethod.calProductTotalAmount(productOfOrderdata)
             }
+
+        }
+
+        private void orderCompleteDateBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }
