@@ -150,6 +150,7 @@ namespace ITP4519M
             InitializeComponent();
             ShowPanel(dashboardpnl);
             closebtn.BringToFront();
+
         }
 
 
@@ -1493,7 +1494,7 @@ namespace ITP4519M
                 case "Invoice":
                     rowCount = programMethod.GetInvoiceCount();
                     InvoiceRowCount = rowCount;
-                    POTotalPage = rowCount / InvoicePgSize;
+                    InvoiceTotalPage = rowCount / InvoicePgSize;
                     if (rowCount % InvoicePgSize > 0)
                         InvoiceTotalPage += 1;
                     break;
@@ -1994,7 +1995,16 @@ namespace ITP4519M
             lastClickedButton = (Button)sender;
             lastClickedButton.ForeColor = Color.Gray;
 
+
+            orderReportdata.DataSource = programMethod.getTopSellingProductReport();
+            DataTable dt = programMethod.getReportCount();
+            for (int i = 0; i < 5; i++)
+            {
+                orderchart1.Series["Order"].Points.AddXY(dt.Rows[i][0].ToString(), dt.Rows[i][1].ToString());
+            }
+
             ShowPanel(settingpnl);
+
         }
 
         private void CancelOrderbtn_Click(object sender, EventArgs e)
@@ -2136,6 +2146,79 @@ namespace ITP4519M
             }
         }
 
+        private void panel30_Paint(object sender, PaintEventArgs e)
+        {
+            ControlPaint.DrawBorder(e.Graphics, this.panel30.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
+        }
+
+        private void orderdateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            orderdateTimePicker2.MinDate = orderdateTimePicker1.Value;
+        }
+
+        private void invoiceLastPagebtn_Click(object sender, EventArgs e)
+        {
+            this.InvoicePageIndex = InvoiceTotalPage;
+            this.invoiceData.DataSource = programMethod.GetInvoiceCurrentRecords(this.InvoicePageIndex, InvoicePgSize);
+            SetRowHeights(invoiceData, InvoicePgSize);
+            invoiceIndexlbl.Text = (InvoicePgSize * InvoicePageIndex - (InvoicePgSize - 1)) + " - " + InvoiceRowCount + " of " + InvoiceRowCount;
+        }
+
+        private void invoicePrevPagebtn_Click(object sender, EventArgs e)
+        {
+            if (this.InvoicePageIndex > 1)
+            {
+                this.InvoicePageIndex--;
+                this.invoiceData.DataSource = programMethod.GetInvoiceCurrentRecords(this.InvoicePageIndex, InvoicePgSize);
+            }
+            SetRowHeights(invoiceData, InvoicePgSize);
+            invoiceIndexlbl.Text = (InvoicePgSize * InvoicePageIndex - (InvoicePgSize - 1)) + " - " + (InvoicePgSize * InvoicePageIndex) + " of " + InvoiceRowCount;
+        }
+
+        private void invoiceFirstPagebtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void reportOrdercsvbtn_Click(object sender, EventArgs e)
+        {
+            string text = "";
+            int countRows = orderReportdata.RowCount;
+            int countCells = orderReportdata.Rows[0].Cells.Count;
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string filepath = path + "\\salesOrderReport.csv";
+
+            for (int row_index = 0; row_index < orderReportdata.RowCount; row_index++)
+            {
+                for (int cell_index = 0; cell_index < countCells; cell_index++)
+                {
+                    text = text + orderReportdata.Rows[row_index].Cells[cell_index].Value.ToString() + ", ";
+                }
+                text += "\r\n";
+            }
+            System.IO.File.WriteAllText(filepath, text);
+            MessageBox.Show("Sales Order Report Saved");
+            programMethod.LogPrintSalesOrderReportCSV(LoginUserID, LoginUserName);
+        }
+
+
+        private void reportShowStockbtn_Click(object sender, EventArgs e)
+        {
+            ShowPanel(StockReportpnl);
+            reportStockdata.DataSource = programMethod.getTopSellingProductReport();
+
+            DataTable dt = programMethod.getStockReportForCategory();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                reportStockPie.Series["Stock"].Points.AddXY(dt.Rows[i][0].ToString(), dt.Rows[i][1].ToString());
+            }
+        }
+        private void reportOrderpdfbtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }
     

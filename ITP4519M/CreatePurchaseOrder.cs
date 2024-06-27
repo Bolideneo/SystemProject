@@ -36,7 +36,6 @@ namespace ITP4519M
         private void LoadSuppliers()
         {
 
-            Dashboard dashboard = new Dashboard();
             List<SupplierDetails> suppliers = programMethod.GetSuppliers();
             supplierBox.DataSource = suppliers;
             supplierBox.DisplayMember = "SupplierCompanyName";

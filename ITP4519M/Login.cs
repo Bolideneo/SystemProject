@@ -68,9 +68,9 @@ namespace ITP4519M
                 dashboard.Show(this);
                 this.Hide();
             }
+            
             else
             {
-                
                 errolabel.Visible = true;
             }
         }

@@ -33,6 +33,7 @@ using System.Xml.Linq;
 using Org.BouncyCastle.Asn1.X509;
 using static ProgramMethod.ProgramMethod.Win32Helpers;
 using System.Windows.Forms.DataVisualization.Charting;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 
 
@@ -83,13 +84,14 @@ namespace ProgramMethod
                 if (!dataBaseMethod.getUserName(username)){
                     return false;
                 }
-                else if (password == DecodeFrom64(dataBaseMethod.getPassword(username)))
+               else  if (password == DecodeFrom64(dataBaseMethod.getPassword(username)) )
                 {
                     LogUserLoginAttempt(dataBaseMethod.getUserID(username), dataBaseMethod.getUserDisplayName(username));
                     return true;
                 }
-                LogUserLoginFailureAttempt(dataBaseMethod.getUserID(username),dataBaseMethod.getUserDisplayName(username));  
-              
+
+                LogUserLoginFailureAttempt(dataBaseMethod.getUserID(username),dataBaseMethod.getUserDisplayName(username));
+
             }
             catch (Exception ex)
             {
@@ -98,6 +100,7 @@ namespace ProgramMethod
             }
             return false;
         }
+
 
         public void CurrentUserIDAndName(string userID, string userName)
         {
@@ -797,34 +800,49 @@ namespace ProgramMethod
 
         public bool createDelivery(string orderID, string deliveryDate)
         {
-            string deliveryID = "DE" + (int.Parse(dataBaseMethod.getDeliveryID()) + 1).ToString("00000");
-            DataTable dt = dataBaseMethod.getOrderItemDetailForDelivery(orderID);
-            if (!dataBaseMethod.checkDeliveryOrderIDExist(orderID))
+            try
             {
-                for (int i = 0; i < dt.Rows.Count; i++)
+                string deliveryID = "DE" + (int.Parse(dataBaseMethod.getDeliveryID()) + 1).ToString("00000");
+                DataTable dt = dataBaseMethod.getOrderItemDetailForDelivery(orderID);
+                if (!dataBaseMethod.checkDeliveryOrderIDExist(orderID))
                 {
-                    dataBaseMethod.createDeliveryNoteItem(deliveryID, dt.Rows[i]["ProductID"].ToString(), "N/A", dt.Rows[i]["ActualDespatchQuantity"].ToString(), dt.Rows[i]["QuantityFollow"].ToString());
-                }
-            }
-            else
-            {
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-                    dataBaseMethod.createDeliveryNoteItem(deliveryID, dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["PreQtyDelivered"].ToString(), dt.Rows[i]["ActualDespatchQuantity"].ToString(), dt.Rows[i]["QuantityFollow"].ToString());
-                    
-                }
-             }
-            
-            if(dataBaseMethod.createDelivery(deliveryID, orderID, deliveryDate, "Shipped"))
-            {
-               LogCreateDeliveryNote(LoginUserID,LoginUserName,deliveryID);
-               return true;
-            }
-            else
-            {
-                return false;
-            }
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        dataBaseMethod.createDeliveryNoteItem(deliveryID, dt.Rows[i]["ProductID"].ToString(), "N/A", dt.Rows[i]["ActualDespatchQuantity"].ToString(), dt.Rows[i]["QuantityFollow"].ToString());
 
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+
+                        dataBaseMethod.createDeliveryNoteItem(deliveryID, dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["PreQtyDelivered"].ToString(), dt.Rows[i]["ActualDespatchQuantity"].ToString(), dt.Rows[i]["QuantityFollow"].ToString());
+
+                    }
+                }
+
+                string invoiceID = "INV" + (int.Parse(dataBaseMethod.getInvoiceID()) + 1).ToString("000000");
+                if (dataBaseMethod.createInvoice(invoiceID, orderID, dataBaseMethod.getOrderOfDealerID(orderID), deliveryID))
+                {
+                    LogCreateInvoice(LoginUserID,invoiceID,orderID);
+                }
+
+
+                if (dataBaseMethod.createDelivery(deliveryID, orderID, deliveryDate, "Shipped"))
+                {
+                    LogCreateDeliveryNote(LoginUserID, LoginUserName, deliveryID);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
+            return false;
         }
 
         public void updateDeliveryStatus(string deliveryID, string deliveredDate)
@@ -1385,18 +1403,18 @@ namespace ProgramMethod
                     }
                 }
                 dataBaseMethod.updateOrderItemDemand(ActualDesptchData.Rows[i].Cells[0].Value.ToString(), int.Parse(ActualDesptchData.Rows[i].Cells[2].Value.ToString()));
-                dataBaseMethod.updateOrderItem(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString(), ActualDesptchData.Rows[i].Cells[2].Value.ToString(), ActualDesptchData.Rows[i].Cells[3].Value.ToString(), ActualDesptchData.Rows[i].Cells[2].Value.ToString());
+                dataBaseMethod.updateOrderItem(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString(), ActualDesptchData.Rows[i].Cells[2].Value.ToString(), ActualDesptchData.Rows[i].Cells[3].Value.ToString(), dataBaseMethod.getOrderItemActualDespatchQuantity(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString()));
                 LogCreateOrderAccembly(LoginUserID, LoginUserName, orderID);
 
             }
-            if (ActualDesptchData.RowCount != 0)
-            { 
-                string invoiceID = "INV" + (int.Parse(dataBaseMethod.getInvoiceID()) + 1).ToString("000000");
-                while (!dataBaseMethod.createInvoice(invoiceID, orderID, dataBaseMethod.getOrderOfDealerID(orderID)))
-                {
-                    invoiceID = "INV" + (int.Parse(dataBaseMethod.getInvoiceID()) + 1).ToString("000000");
-                }
-            }
+            //if (ActualDesptchData.RowCount != 0)
+            //{ 
+            //    string invoiceID = "INV" + (int.Parse(dataBaseMethod.getInvoiceID()) + 1).ToString("000000");
+            //    while (!dataBaseMethod.createInvoice(invoiceID, orderID, dataBaseMethod.getOrderOfDealerID(orderID)))
+            //    {
+            //        invoiceID = "INV" + (int.Parse(dataBaseMethod.getInvoiceID()) + 1).ToString("000000");
+            //    }
+            //}
             Debug.WriteLine(ActualDesptchData.RowCount);
             Debug.WriteLine(orderItemData.RowCount);
             if (ActualDesptchData.RowCount == 0)
@@ -1424,7 +1442,7 @@ namespace ProgramMethod
                     for (int j = 0; j < ActualDesptchData.RowCount; j++)
                     {
                         Debug.WriteLine("TEST POIN1");
-                        if (orderItemData.Rows[i].Cells[0].Value.ToString() != ActualDesptchData.Rows[j].Cells[0].Value.ToString())
+                        if (orderItemData.Rows[i].Cells[1].Value.ToString() != ActualDesptchData.Rows[j].Cells[0].Value.ToString())
                         {
                             count++;
                         }
@@ -2029,6 +2047,7 @@ namespace ProgramMethod
             }
         }
 
+
          public void LogUserLogOut(string userID, string userName)
         {
             string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
@@ -2083,8 +2102,37 @@ namespace ProgramMethod
             return dataBaseMethod.getOrderStatus();
         }
 
-    }
+        public DataTable getReportCount()
+        {
+            return dataBaseMethod.getReportCount();
+        }
 
+        public DataTable getTopSellingProductReport()
+        {
+            return dataBaseMethod.getTopSellingProductReport();
+        }
+
+        public DataTable getAllSalesReport()
+        {
+            return dataBaseMethod.getAllSalesReport();
+        }
+        public DataTable getStockReportForCategory()
+        {
+            return dataBaseMethod.getStockReportForCategory();
+        }
+        
+
+        public void LogPrintSalesOrderReportCSV(string userID,string userName)
+        {
+            string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
+            if (logID != null)
+            {
+                dataBaseMethod.LogPrintSalesOrderReportCSV(logID, userID, userName);
+            }
+
+        }
+    }
+  
 }
 
     

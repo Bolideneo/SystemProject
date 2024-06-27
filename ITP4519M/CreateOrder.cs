@@ -25,7 +25,6 @@ namespace ITP4519M
     public partial class CreateOrder : Form
     {
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
-        Dashboard dashboard = new Dashboard();
         AutoCompleteStringCollection coll = new AutoCompleteStringCollection();
         TypeAssistant assistant;
         private string orderID;

@@ -726,7 +726,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(868, 825);
+            ClientSize = new Size(852, 863);
             Controls.Add(invoiceExitbtn);
             Controls.Add(invoicePrintbtn);
             Controls.Add(InvoiceAddresslbl);

@@ -172,7 +172,7 @@ namespace ITP4519M
             // createOrderbtn
             // 
             createOrderbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            createOrderbtn.Location = new Point(509, 631);
+            createOrderbtn.Location = new Point(511, 623);
             createOrderbtn.Name = "createOrderbtn";
             createOrderbtn.Size = new Size(150, 40);
             createOrderbtn.TabIndex = 68;
@@ -783,7 +783,7 @@ namespace ITP4519M
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
-            ClientSize = new Size(1032, 751);
+            ClientSize = new Size(1034, 766);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
