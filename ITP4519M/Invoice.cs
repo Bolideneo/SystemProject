@@ -36,6 +36,7 @@ namespace ITP4519M
             InvoiceInvoiceDatelbl.Text = result.Rows[0]["IssueDate"].ToString();
             InvoiceOrderIDlbl.Text = orderID;
             InvoiceDealerIDlbl.Text = dealerID;
+            //InvoicesubTotallbl.Text = 
             InvoiceBillingAddresslbl.Text = orderDetails.Rows[0]["InvoiceAddress"].ToString();
             InvoiceAddresslbl.Text = orderDetails.Rows[0]["DeliveryAddress"].ToString();
             InvoiceOrderDatelbl.Text = orderDetails.Rows[0]["OrderDate"].ToString();

@@ -34,6 +34,7 @@ using Org.BouncyCastle.Asn1.X509;
 using static ProgramMethod.ProgramMethod.Win32Helpers;
 using System.Windows.Forms.DataVisualization.Charting;
 using static System.ComponentModel.Design.ObjectSelectorEditor;
+using System.Configuration;
 
 
 
@@ -81,7 +82,7 @@ namespace ProgramMethod
         {
             try
             {
-                if (!dataBaseMethod.getUserName(username)){
+                if (!dataBaseMethod.getUserNameAndCheckStaus(username)){
                     return false;
                 }
                else  if (password == DecodeFrom64(dataBaseMethod.getPassword(username)) )
@@ -592,9 +593,9 @@ namespace ProgramMethod
             return dataBaseMethod.getOrderItemDetails(orderID);
         }
 
-        public DataTable getOrderItemDetailForDelivery(string orderID)
+        public DataTable getOrderItemDetailForDelivery(string orderID, int num)
         {
-            return dataBaseMethod.getOrderItemDetailForDelivery(orderID);
+            return dataBaseMethod.getOrderItemDetailForDelivery(orderID, num);
         }
 
         public DataTable getOrderItemProductDeatails(string orderID, string productID)
@@ -803,11 +804,16 @@ namespace ProgramMethod
             try
             {
                 string deliveryID = "DE" + (int.Parse(dataBaseMethod.getDeliveryID()) + 1).ToString("00000");
-                DataTable dt = dataBaseMethod.getOrderItemDetailForDelivery(orderID);
+                int orderCount = dataBaseMethod.getMaxUpdateCount(orderID);
+                MessageBox.Show(orderCount.ToString());
+                DataTable dt = dataBaseMethod.getOrderItemDetailForDelivery(orderID, orderCount);
+                MessageBox.Show(dt.Rows.Count.ToString());
+                //Count number of order and assign the number + 1 to orderitem_audit(num)
                 if (!dataBaseMethod.checkDeliveryOrderIDExist(orderID))
                 {
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
+                        MessageBox.Show("yes");
                         dataBaseMethod.createDeliveryNoteItem(deliveryID, dt.Rows[i]["ProductID"].ToString(), "N/A", dt.Rows[i]["ActualDespatchQuantity"].ToString(), dt.Rows[i]["QuantityFollow"].ToString());
 
                     }
@@ -816,7 +822,7 @@ namespace ProgramMethod
                 {
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
-
+                        MessageBox.Show("No");
                         dataBaseMethod.createDeliveryNoteItem(deliveryID, dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["PreQtyDelivered"].ToString(), dt.Rows[i]["ActualDespatchQuantity"].ToString(), dt.Rows[i]["QuantityFollow"].ToString());
 
                     }
@@ -828,16 +834,17 @@ namespace ProgramMethod
                     LogCreateInvoice(LoginUserID,invoiceID,orderID);
                 }
 
-
                 if (dataBaseMethod.createDelivery(deliveryID, orderID, deliveryDate, "Shipped"))
                 {
                     LogCreateDeliveryNote(LoginUserID, LoginUserName, deliveryID);
                     return true;
+
                 }
                 else
                 {
                     return false;
                 }
+
             }
             catch (Exception ex) {
                 MessageBox.Show(ex.Message);
@@ -859,6 +866,13 @@ namespace ProgramMethod
         public DataTable getDeliveryNoteItem(string deliveryID)
         {
             return dataBaseMethod.getDeliveryNoteItem(deliveryID);
+        }
+        
+        
+
+        public int getMaxUpdateCount(string orderID)
+        {
+            return dataBaseMethod.getMaxUpdateCount(orderID);
         }
 
         public DataTable getDepartmentNameDataSource()
@@ -1090,44 +1104,6 @@ namespace ProgramMethod
             }
         }
 
-        //Origninal rounded button
-
-        //public class RoundedButton : Button
-        //{
-        //    public int rdus = 30;
-        //    System.Drawing.Drawing2D.GraphicsPath GetRoundPath(RectangleF Rect, int radius)
-        //    {
-        //        float r2 = radius / 2f;
-        //        System.Drawing.Drawing2D.GraphicsPath GraphPath = new System.Drawing.Drawing2D.GraphicsPath();
-        //        GraphPath.AddArc(Rect.X, Rect.Y, radius, radius, 180, 90);
-        //        GraphPath.AddLine(Rect.X + r2, Rect.Y, Rect.Width - r2, Rect.Y);
-        //        GraphPath.AddArc(Rect.X + Rect.Width - radius, Rect.Y, radius, radius, 270, 90);
-        //        GraphPath.AddLine(Rect.Width, Rect.Y + r2, Rect.Width, Rect.Height - r2);
-        //        GraphPath.AddArc(Rect.X + Rect.Width - radius,
-        //                Rect.Y + Rect.Height - radius, radius, radius, 0, 90);
-        //        GraphPath.AddLine(Rect.Width - r2, Rect.Height, Rect.X + r2, Rect.Height);
-        //        GraphPath.AddArc(Rect.X, Rect.Y + Rect.Height - radius, radius, radius, 90, 90);
-        //        GraphPath.AddLine(Rect.X, Rect.Height - r2, Rect.X, Rect.Y + r2);
-        //        GraphPath.CloseFigure();
-        //        return GraphPath;
-        //    }
-        //    protected override void OnPaint(PaintEventArgs e)
-        //    {
-        //        base.OnPaint(e);
-        //        RectangleF Rect = new RectangleF(0, 0, this.Width, this.Height);
-        //        using (System.Drawing.Drawing2D.GraphicsPath GraphPath = GetRoundPath(Rect, rdus))
-        //        {
-        //            this.Region = new Region(GraphPath);
-        //            using (Pen pen = new Pen(Color.CadetBlue, 1.75f))
-        //            {
-        //                pen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
-        //                e.Graphics.DrawPath(pen, GraphPath);
-        //            }
-        //        }
-        //    }
-        //}
-
-
         [DesignerCategory("Code")]
         public class RoundedButton : Control
         {
@@ -1354,10 +1330,15 @@ namespace ProgramMethod
 
         public bool createOrderAssembly(DataGridView ActualDesptchData, DataGridView orderItemData, string orderID)
         {
-
+            int temp = -1;
             for (int i = 0; i < ActualDesptchData.Rows.Count; i++)
             {
+                
                 ReduceStock(ActualDesptchData.Rows[i].Cells[0].Value.ToString(), ActualDesptchData.Rows[i].Cells[2].Value.ToString());
+                if(i == 0)
+                {
+                   temp  = dataBaseMethod.getOrderItemUpdateCount(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString()) + 1;
+                }   
                 if (int.Parse(dataBaseMethod.getPrdocutQuantityInStock(ActualDesptchData.Rows[i].Cells[0].Value.ToString())) > int.Parse(dataBaseMethod.getProdcutDangerQty((ActualDesptchData.Rows[i].Cells[0].Value.ToString()))))
                 {
                     dataBaseMethod.updateProductStatus(ActualDesptchData.Rows[i].Cells[0].Value.ToString(), "Available");
@@ -1403,7 +1384,8 @@ namespace ProgramMethod
                     }
                 }
                 dataBaseMethod.updateOrderItemDemand(ActualDesptchData.Rows[i].Cells[0].Value.ToString(), int.Parse(ActualDesptchData.Rows[i].Cells[2].Value.ToString()));
-                dataBaseMethod.updateOrderItem(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString(), ActualDesptchData.Rows[i].Cells[2].Value.ToString(), ActualDesptchData.Rows[i].Cells[3].Value.ToString(), dataBaseMethod.getOrderItemActualDespatchQuantity(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString()));
+                dataBaseMethod.updateOrderItem(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString(), ActualDesptchData.Rows[i].Cells[2].Value.ToString(), ActualDesptchData.Rows[i].Cells[3].Value.ToString(), temp);
+                dataBaseMethod.createOrderItemAudit(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString());
                 LogCreateOrderAccembly(LoginUserID, LoginUserName, orderID);
 
             }
@@ -1415,8 +1397,8 @@ namespace ProgramMethod
             //        invoiceID = "INV" + (int.Parse(dataBaseMethod.getInvoiceID()) + 1).ToString("000000");
             //    }
             //}
-            Debug.WriteLine(ActualDesptchData.RowCount);
-            Debug.WriteLine(orderItemData.RowCount);
+            //Debug.WriteLine(ActualDesptchData.RowCount);
+            //Debug.WriteLine(orderItemData.RowCount);
             if (ActualDesptchData.RowCount == 0)
             {
 
@@ -1448,7 +1430,6 @@ namespace ProgramMethod
                         }
                         if (count == ActualDesptchData.RowCount - 1)
                         {
-                            MessageBox.Show(i.ToString());
                             Debug.WriteLine("TEST POIN2");
                             string oustID = "OUT" + (int.Parse(dataBaseMethod.getOutStandingID()) + 1).ToString("000000");
                             while (!dataBaseMethod.createOutstandingOrder(oustID, orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString(), dataBaseMethod.getOrderOfDealerID(orderID), ActualDesptchData.Rows[i].Cells[3].Value.ToString()))
@@ -2129,6 +2110,17 @@ namespace ProgramMethod
             {
                 dataBaseMethod.LogPrintSalesOrderReportCSV(logID, userID, userName);
             }
+
+        }
+
+        public string[] orderLabelinfo()
+        {
+            string[] temp = new string[4];
+            temp[0] = dataBaseMethod.getAllOrderLabel();
+            temp[1] = dataBaseMethod.getAllCompletedOrderLabel();
+            temp[2] = dataBaseMethod.getAllCancelOrderLabel();
+            temp[3] = dataBaseMethod.getActiveOrder();
+            return temp;
 
         }
     }

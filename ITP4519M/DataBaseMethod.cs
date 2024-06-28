@@ -25,6 +25,7 @@ using Org.BouncyCastle.Asn1.X509;
 using System.Drawing;
 using System.Diagnostics.Tracing;
 using System.Globalization;
+using MySqlX.XDevAPI.Common;
 
 
 namespace ITP4519M
@@ -98,7 +99,7 @@ namespace ITP4519M
             }
         }
 
-        public bool getUserName(string userName)
+        public bool getUserNameAndCheckStaus(string userName)
         {
             string sql = "SELECT COUNT(UserName) FROM staff WHERE UserName=@userName AND AccountStatus='Active'";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
@@ -1592,7 +1593,7 @@ namespace ITP4519M
 
         public DataTable getOrderItemDetails(string orderID)
         {
-            string sql = "SELECT orderitem.ProductID, product.ProductName, orderitem.OrderedQuantity, product.UnitPrice FROM orderitem, product WHERE orderitem.ProductID=product.ProductID AND orderItem.OrderID=@orderID";
+            string sql = "SELECT orderitem.ProductID, product.ProductName, orderitem.OrderedQuantity, product.UnitPrice ,orderitem.Discount FROM orderitem, product WHERE orderitem.ProductID=product.ProductID AND orderItem.OrderID=@orderID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@orderID", orderID);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
@@ -1602,16 +1603,30 @@ namespace ITP4519M
         }
 
 
-        public DataTable getOrderItemDetailForDelivery(string orderID)
-        {
-            // string sql = "SELECT orderitem.ProductID, product.ProductName, orderitem.OrderedQuantity, product.UnitPrice, orderitem.FollowUpQuantity FROM orderitem, product WHERE orderitem.ProductID=product.ProductID AND orderItem.OrderID=@orderID";
-            string sql = "SELECT * FROM orderitem, product WHERE orderitem.ProductID=product.ProductID AND orderItem.OrderID=@orderID AND ActualDespatchQuantity IS NOT NULL";
+        public DataTable getOrderItemDetailForDelivery(string orderID, int updateCount)
+        {   
+             //string sql = "SELECT orderitem.ProductID, product.ProductName, orderitem.OrderedQuantity, product.UnitPrice, orderitem.FollowUpQuantity FROM orderitem, product WHERE orderitem.ProductID=product.ProductID AND orderItem.OrderID=@orderID";
+            // string sql = "SELECT * FROM orderitem_audit oia JOIN product p ON oia.ProductID = p.ProductID WHERE oia.OrderID = @orderID AND oia.UpdateCount = (SELECT MAX(UpdateCount) FROM orderitem_audit WHERE OrderID = @orderID)";
+            string sql = "SELECT orderitem_audit.* FROM orderitem_audit, product WHERE orderitem_audit.ProductID=product.ProductID AND orderitem_audit.OrderID=@orderID AND UpdateCount = @updateCount";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@orderID", orderID);
+            cmd.Parameters.AddWithValue("@updateCount", updateCount);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
             return dataTable;
+        }
+
+      
+        public int getMaxUpdateCount(string orderID)
+        {
+            string sql = "SELECT MAX(UpdateCount) FROM orderitem_audit WHERE OrderID=@orderID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@orderID", orderID);
+            object result = cmd.ExecuteScalar();
+            int rowCount = Convert.ToInt32(result);
+            ServerConnect().Close();
+            return rowCount;
         }
 
         public DataTable getOrderItemProductDeatails(string orderID, string productID)
@@ -2051,7 +2066,7 @@ namespace ITP4519M
 
         public DataTable GetOrderCurrentRecords(int page, int pageSize)
         {
-            string sql = "SELECT OrderID, DealerID, OrderStatus, OrderDate FROM `order` ORDER BY OrderID LIMIT @PgSize";
+            string sql = "SELECT OrderID, DealerID, OrderStatus, OrderDate FROM `order` WHERE OrderStatus != 'Cancelled' AND OrderStatus != 'Outstanding' ORDER BY OrderID LIMIT @PgSize";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
@@ -2063,7 +2078,7 @@ namespace ITP4519M
 
         public DataTable GetOrderCurrentRecords2(int page, int pageSize)
         {
-            string sql = "SELECT OrderID, DealerID, OrderStatus, OrderDate FROM (SELECT * FROM `order` ORDER BY OrderID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY OrderID";
+            string sql = "SELECT OrderID, DealerID, OrderStatus, OrderDate FROM (SELECT * FROM `order` WHERE OrderStatus != 'Cancelled' AND OrderStatus != 'Outstanding' ORDER BY OrderID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY OrderID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);
@@ -2210,7 +2225,7 @@ namespace ITP4519M
 
         public DataTable getOrderItemDetailforInvoice(string orderID)
         {
-            string sql = "SELECT orderitem.ProductID, orderitem.ProductName, OrderedQuantity,Price, ActualDespatchQuantity, Discount FROM orderitem WHERE orderitem.OrderID=@orderID ";
+            string sql = "SELECT orderitem_audit.* FROM orderitem_audit, product WHERE orderitem_audit.ProductID=product.ProductID AND orderitem_audit.OrderID=@orderID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@orderID", orderID);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
@@ -2369,19 +2384,43 @@ namespace ITP4519M
             return false;
         }
 
-        public bool updateOrderItem(string orderID, string productID, string Qty,string quantityFollow, string PreQtyDelivered)
+        public bool updateOrderItem(string orderID, string productID, string Qty,string quantityFollow, int updateCount)
         {
-            string sql = "UPDATE orderitem SET ActualDespatchQuantity=@Qty, QuantityFollow = @quantityFollow, PreQtyDelivered = @PreQtyDelivered WHERE OrderID=@orderID AND ProductID=@productID";
+            //string sql = "UPDATE orderitem SET ActualDespatchQuantity = IFNULL(ActualDespatchQuantity, 0) + @qty, QuantityFollow = @quantityFollow , UpdateCount =@updateCount WHERE OrderID = @orderID AND ProductID = @productID";
+            string sql = "UPDATE orderitem SET ActualDespatchQuantity = @qty, QuantityFollow = @quantityFollow , UpdateCount =@updateCount WHERE OrderID = @orderID AND ProductID = @productID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@orderID", orderID);
             cmd.Parameters.AddWithValue("@productID", productID);
             cmd.Parameters.AddWithValue("@Qty", Qty);
             cmd.Parameters.AddWithValue("@quantityFollow", quantityFollow);
-            cmd.Parameters.AddWithValue("@PreQtyDelivered", PreQtyDelivered);
+            cmd.Parameters.AddWithValue("@updateCount", updateCount);
             if (cmd.ExecuteNonQuery() > 0)
                 return true;
             return false;
         }
+
+        public int getOrderItemUpdateCount(string orderID, string productID)
+        {
+            string sql = "SELECT UpdateCount FROM orderitem WHERE OrderID = @orderID AND ProductID = @productID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@orderID", orderID);
+            cmd.Parameters.AddWithValue("@productID", productID);
+            int count = Convert.ToInt32(cmd.ExecuteScalar());
+            return count ;
+
+        }
+
+        public bool createOrderItemAudit(string orderID, string productID)
+        {
+            string sql = "INSERT INTO orderitem_audit (OrderID, ProductID, OrderedQuantity, ActualDespatchQuantity, ProductName, Discount, Price, UpdateCount, QuantityFollow) SELECT OrderID, ProductID, OrderedQuantity, ActualDespatchQuantity, ProductName, Discount, Price, UpdateCount , QuantityFollow FROM orderitem WHERE OrderID = @orderID AND ProductID = @productID;";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@orderID", orderID);
+            cmd.Parameters.AddWithValue("@productID", productID);
+            if (cmd.ExecuteNonQuery() > 0)
+                return true;
+            return false;
+        }
+
 
         public bool setDefualtInStock(string productID)
         {
@@ -2432,15 +2471,26 @@ namespace ITP4519M
 
         public DataTable orderDateStatusFilter(string fromDate, string toDate, string status)
         {
-            string sql = "SELECT OrderID, DealerID, OrderStatus, OrderDate FROM `order` WHERE (OrderDate BETWEEN @fromDate AND @toDate) AND OrderStatus=@status";
-            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-            cmd.Parameters.AddWithValue("@fromDate", fromDate);
-            cmd.Parameters.AddWithValue("@toDate", toDate);
-            cmd.Parameters.AddWithValue("@status", status);
-            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
-            DataTable dataTable = new DataTable();
-            adat.Fill(dataTable);
-            return dataTable;
+            try
+            {
+                 string sql = "SELECT OrderID, DealerID, OrderStatus, OrderDate FROM `order` WHERE (OrderDate BETWEEN @fromDate AND @toDate) AND OrderStatus=@status";
+               // string sql = "SELECT * FROM `order` WHERE (OrderDate BETWEEN @fromDate AND @toDate) AND OrderStatus=@status";
+                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+                cmd.Parameters.AddWithValue("@fromDate", fromDate);
+                cmd.Parameters.AddWithValue("@toDate", toDate);
+                cmd.Parameters.AddWithValue("@status", status);
+                MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+                DataTable dataTable = new DataTable();
+                adat.Fill(dataTable);
+                return dataTable;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return null;
         }
 
         public DataTable getOrderMinAndMaxDate()
@@ -2880,6 +2930,7 @@ namespace ITP4519M
             cmd.Parameters.AddWithValue("@userName", userName);
             cmd.Parameters.AddWithValue("@Desc", Desc);
             cmd.Parameters.AddWithValue("@Date", Date);
+            ServerConnect().Close();
             cmd.ExecuteNonQuery();
         }
 
@@ -2896,6 +2947,7 @@ namespace ITP4519M
             cmd.Parameters.AddWithValue("@userName", userName);
             cmd.Parameters.AddWithValue("@Desc", Desc);
             cmd.Parameters.AddWithValue("@Date", Date);
+            ServerConnect().Close();
             cmd.ExecuteNonQuery();
         }
 
@@ -3119,6 +3171,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
@@ -3130,6 +3183,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
@@ -3140,6 +3194,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
         public DataTable getAllSalesReport()
@@ -3149,6 +3204,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
@@ -3160,8 +3216,54 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
+
+        public string getAllOrderLabel()
+        {
+            string sql = "SELECT COUNT(*) FROM `order` WHERE OrderStatus != 'Cancelled'";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            object result = cmd.ExecuteScalar();
+            ServerConnect().Close();
+            return result.ToString();
+        }
+
+        public string getActiveOrder()
+        {
+            string sql = "SELECT COUNT(*) FROM `order` WHERE OrderStatus != 'Cancelled' AND OrderStatus != 'Completed'";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            object result = cmd.ExecuteScalar();
+            ServerConnect().Close();
+            return result.ToString();
+        }
+
+        public string getAllCancelOrderLabel()
+        {
+            string sql = "SELECT COUNT(OrderID) FROM `order` WHERE OrderStatus = 'Cancelled'";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            object result = cmd.ExecuteScalar();
+            ServerConnect().Close();
+            return result.ToString();
+        }
+
+        public string getAllCompletedOrderLabel()
+        {
+            try
+            {
+                string sql = "SELECT COUNT(OrderID) FROM `order` WHERE OrderStatus = 'Completed'";
+                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+                object result = cmd.ExecuteScalar();
+                ServerConnect().Close();
+                return result.ToString();
+
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
 
     }
 

@@ -352,12 +352,13 @@ namespace ITP4519M
             orderStatusCombox.DataSource = programMethod.getOrerStatus();
             orderStatusCombox.DisplayMember = "Name";
 
-            CalculateTotalPages("Order");
+            //CalculateTotalPages("Order");
             ShowPanel(orderpnl);
-            orderdata.DataSource = programMethod.GetCurrentRecords("Order", OrderPageIndex, OrderPgSize);
-            FirstpageBtnClick(orderdata, "Order", OrderPgSize, OrderPageIndex, orderIndexlbl, OrderRowCount);
+            // orderdata.DataSource = programMethod.GetCurrentRecords("Order", OrderPageIndex, OrderPgSize);
+            orderdata.DataSource = programMethod.orderDateFilter("2024-06-03", "2024-06-18");
+            // FirstpageBtnClick(orderdata, "Order", OrderPgSize, OrderPageIndex, orderIndexlbl, OrderRowCount);
             orderdata.Rows[0].Selected = false;
-            SetRowHeights(orderdata, OrderPgSize);
+           // SetRowHeights(orderdata, OrderPgSize);
             string[] MinDate = programMethod.getOrderMinAndMaxDate();
             orderdateTimePicker1.MinDate = DateTime.Parse(MinDate[0]);
             orderdateTimePicker1.MaxDate = DateTime.Parse(MinDate[1]);
@@ -365,7 +366,16 @@ namespace ITP4519M
             orderdateTimePicker2.MinDate = DateTime.Parse(MinDate[0]);
             orderdateTimePicker2.MaxDate = DateTime.Parse(MinDate[1]);
             orderdateTimePicker2.Value = DateTime.Parse(MinDate[1]);
+            orderLabelinfo();
+        }
 
+        private void orderLabelinfo()
+        {
+            string[] array = programMethod.orderLabelinfo();
+            orderAllbox.Text = array[0];
+            orderCompletedlbl.Text = array[1];
+            orderCancelbox.Text = array[2];
+            orderActivebox.Text = array[3];
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
@@ -609,7 +619,7 @@ namespace ITP4519M
             }
             else
             {
-                SalesOrder salesOrder = new SalesOrder(OperationMode.Edit);
+                OrderDetails salesOrder = new OrderDetails(OperationMode.Edit);
                 salesOrder.orderEdit(orderID, dealerID);
                 salesOrder.ShowDialog();
             }
@@ -1791,8 +1801,10 @@ namespace ITP4519M
                 orderdata.DataSource = programMethod.orderDateFilter(formDate, toDate);
             else
             {
-                string status = orderStatusCombox.Text.ToString();
+                 string status = orderStatusCombox.Text.ToString();
                 orderdata.DataSource = programMethod.orderDateStatusFilter(formDate, toDate, status);
+                orderdata.Refresh();
+                
             }
         }
 
@@ -1818,7 +1830,7 @@ namespace ITP4519M
 
         private void OrderLoad()
         {
-            orderdata.DataSource = programMethod.overallOrderinfo();
+           // orderdata.DataSource = programMethod.overallOrderinfo();
             foreach (DataGridViewRow row in orderdata.Rows)
             {
                 row.Height = (orderdata.ClientRectangle.Height - orderdata.ColumnHeadersHeight) / orderdata.Rows.Count;

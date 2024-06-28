@@ -54,6 +54,7 @@ namespace ITP4519M
                     productOfOrderdata.Columns.Add("ProductName", "Product Name");
                     productOfOrderdata.Columns.Add("Quantity", "Quantity");
                     productOfOrderdata.Columns.Add("UnitPrice", "Unit Price");
+                    productOfOrderdata.Columns.Add("Discount", "Discount (%)");
                     saveOrderbtn.Visible = false;
                     ClearForm();
                     SetReadOnly(false);
@@ -306,7 +307,7 @@ namespace ITP4519M
             // programMethod.orderDeleteItem(orderID);
             for (int i = 0; i < productOfOrderdata.Rows.Count; i++)
             {
-                // programMethod.createOrderItem(orderID, productOfOrderdata.Rows[i].Cells[0].Value.ToString(), productOfOrderdata.Rows[i].Cells[2].Value.ToString());
+              //  programMethod.createOrderItem(orderID, productOfOrderdata.Rows[i].Cells[0].Value.ToString(), productOfOrderdata.Rows[i].Cells[2].Value.ToString());
             }
             MessageBox.Show("Order Edit Save");
         }

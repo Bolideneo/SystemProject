@@ -34,6 +34,7 @@ namespace ITP4519M
         private bool isWrongFormat;
         private bool isWrongFormat2;
         private bool isWrongFormat3;
+        private bool modifyProduct;
         private OperationMode _mode;
         private bool DealerInfo;
 
@@ -119,23 +120,25 @@ namespace ITP4519M
             switch (_mode)
             {
                 case OperationMode.View:
-                    createOrderbtn.Visible = false;
                     SetReadOnly(true);
                     break;
                 case OperationMode.New:
-
                     orderDateBox.MinDate = DateTime.Today;
                     orderDateBox.MaxDate = DateTime.Today;
-                    productOfOrderdata.Columns.Add("ProductID", "Product ID");
-                    productOfOrderdata.Columns.Add("ProductName", "Product Name");
-                    productOfOrderdata.Columns.Add("Quantity", "Quantity");
-                    productOfOrderdata.Columns.Add("UnitPrice", "Unit Price");
-                    productOfOrderdata.Columns.Add("Discount", "Discount (%)");
-                    createOrderbtn.Visible = true;
                     ClearForm();
                     SetReadOnly(false);
                     break;
                 case OperationMode.Edit:
+                    if (programMethod.getOrderStatus(orderID) == "OrderProcessing")
+                    {
+                        modifyProduct = true;
+                    }
+                    else
+                    {
+                        productSearchbox.Visible = false;
+                        modifyProduct = false;
+                    }
+                    break;
                     // SetReadOnly(true);
                     break;
             }
@@ -256,102 +259,86 @@ namespace ITP4519M
             }
         }
 
-        private void createOrderbtn_Click(object sender, EventArgs e)
+        public void orderView(string orderID, string dealerID)
+        {
+            this.productSearchbox.Visible = false;
+            this.orderID = orderID;
+            this.dealerID = dealerID;
+
+
+
+            try
+            {
+                DataTable orderDetails = programMethod.getOrderDetails(orderID);
+                DataTable dealerDetails = programMethod.getOrderDealerName(orderID, dealerID);
+                DataTable orderItemDeatails = programMethod.getOrderItemDetails(orderID);
+
+
+
+
+                if (orderDetails != null)
+                {
+                    //this.orderIDBox.Text = orderID;
+                    orderLabel.Text = "Order #" + orderID;
+                    orderStatusLabel.Text = "Placed on " + orderDetails.Rows[0]["OrderDate"].ToString();
+                    this.dealerIDBox.Text = dealerID;
+                    //this.orderDateBox.Text = orderDetails.Rows[0]["OrderDate"].ToString();
+                    //this.orderStatusBox.Text = orderDetails.Rows[0]["OrderStatus"].ToString();
+                    // this.orderStatuslbl.Text = orderDetails.Rows[0]["OrderStatus"].ToString();
+                    this.dealerNameBox.Text = dealerDetails.Rows[0]["DealerName"].ToString();
+                    this.phoneNumBox.Text = dealerDetails.Rows[0]["DealerPhoneNum"].ToString();
+                    this.dealerCompanyBox.Text = dealerDetails.Rows[0]["DealerCompanyName"].ToString();
+                    productOfOrderdata.DataSource = orderItemDeatails;
+
+                }
+                else
+                {
+                    MessageBox.Show("User details not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        public void orderEdit(string orderID, string dealerID)
         {
 
+            this.orderID = orderID;
 
-            if (dealerinfoBox.Text == "")
+
+
+            try
             {
-                isWrongFormat = true;
-                Refresh();
-                usernameAlertBox.Visible = true;
-                usernameAlertlbl.Visible = true;
+                DataTable orderDetails = programMethod.getOrderDetails(orderID);
+                DataTable dealerDetails = programMethod.getOrderDealerName(orderID, dealerID);
+                DataTable orderItemDeatails = programMethod.getOrderItemDetails(orderID);
+
+
+                if (orderDetails != null)
+                {
+                    this.dealerIDBox.Text = dealerID;
+                    this.orderLabel.Text = "Order #" + orderID;
+                    this.orderStatusLabel.Text = "Placed on " + orderDetails.Rows[0]["OrderDate"].ToString();
+                    this.ordertotallbl.Text = orderDetails.Rows[0]["TotalPrice"].ToString();
+                    this.orderStatusLabel.Text = orderDetails.Rows[0]["OrderStatus"].ToString();
+                    this.dealerNameBox.Text = dealerDetails.Rows[0]["DealerName"].ToString();
+                    this.phoneNumBox.Text = dealerDetails.Rows[0]["DealerPhoneNum"].ToString();
+                    this.dealerCompanyBox.Text = dealerDetails.Rows[0]["DealerCompanyName"].ToString();
+                    productOfOrderdata.DataSource = orderItemDeatails;
+
+                }
+                else
+                {
+                    MessageBox.Show("User details not found.");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                isWrongFormat = false;
-                usernameAlertBox.Visible = false;
-                usernameAlertlbl.Visible = false;
-                Refresh();
+                MessageBox.Show(ex.Message);
             }
-
-            //else if (dealerIDBox.Text == "")
-            //{
-            //    MessageBox.Show("Please input Dealer ID");
-            //    //return;
-            //}
-            if (orderContactNamebox.Text == "")
-            {
-                isWrongFormat2 = true;
-                label1.Visible = true;
-                pictureBox1.Visible = true;
-                Refresh();
-
-            }
-            else
-            {
-
-                isWrongFormat2 = false;
-                label1.Visible = false;
-                pictureBox1.Visible = false;
-                Refresh();
-            }
-
-            if (OrderContactPhonebox.Text == "")
-            {
-                isWrongFormat3 = true;
-                label2.Visible = true;
-                pictureBox2.Visible = true;
-                Refresh();
-
-            }
-            else
-            {
-                isWrongFormat3 = false;
-                label2.Visible = false;
-                pictureBox2.Visible = false;
-                Refresh();
-
-            }
-
-            //else if (productSearchbox.Text == "")
-            //{
-            //    MessageBox.Show("Please Input Product ID ");
-            //}
-
-            if (productOfOrderdata.RowCount == 0)
-            {
-                MessageBox.Show("Please Select atleast one product");
-                return;
-
-            }
-
-
-            List<bool> checkList = new List<bool>();
-
-            for (int i = 0; i < productOfOrderdata.Rows.Count; i++)
-            {
-                int quantity = Convert.ToInt32(productOfOrderdata.Rows[i].Cells[2].Value);
-
-                bool isGreaterThanZero = (quantity > 0);
-                checkList.Add(isGreaterThanZero);
-            }
-
-            if (checkList.Contains(false))
-            {
-                MessageBox.Show("Product quantity should not be 0");
-            }
-
-            string orderID;
-            orderID = programMethod.createSalesOrder(dealerIDBox.Text.Trim(), dealerNameBox.Text.Trim(), orderContactNamebox.Text.Trim(), OrderContactPhonebox.Text.Trim(), phoneNumBox.Text.Trim(), goodsAddressBox.Text.Trim(), orderDateBox.Value.ToString(), ordertotallbl.Text.ToString(), productOfOrderdata);
-            if (orderID != null)
-            {
-                programMethod.LogCreateSalesOrder(this.userID, this.userName, orderID);
-            }
-
-            ClearForm();
-            MessageBox.Show("Order Create Successfully " + "Order ID: " + orderID);
-
 
         }
 
@@ -523,6 +510,11 @@ namespace ITP4519M
                 return;
             }
             ControlPaint.DrawBorder(e.Graphics, this.panel7.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
+
+        }
+
+        private void saveOrderbtn_Click(object sender, EventArgs e)
+        {
 
         }
     }

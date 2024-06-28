@@ -32,15 +32,15 @@ namespace ITP4519M
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrderDetails));
             CloseButton = new Button();
-            label3 = new Label();
             productOfOrderdata = new DataGridView();
             productIDColumn = new DataGridViewTextBoxColumn();
             productNameColumn = new DataGridViewTextBoxColumn();
             quantityColumn = new DataGridViewTextBoxColumn();
             unitPriceColumn = new DataGridViewTextBoxColumn();
-            createOrderbtn = new Button();
             productSearchbox = new ProgramMethod.ProgramMethod.RoundedTextBox();
             panel1 = new Panel();
+            saveOrderbtn = new Button();
+            orderStatusLabel = new Label();
             ordertotallbl = new Label();
             label11 = new Label();
             label2 = new Label();
@@ -88,6 +88,12 @@ namespace ITP4519M
             panel6 = new Panel();
             goodsAddressBox = new Label();
             panel4 = new Panel();
+            orderLabel = new Label();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)productOfOrderdata).BeginInit();
             panel1.SuspendLayout();
             panel7.SuspendLayout();
@@ -115,17 +121,6 @@ namespace ITP4519M
             CloseButton.UseVisualStyleBackColor = true;
             CloseButton.Click += CloseButton_Click;
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = SystemColors.WindowText;
-            label3.Location = new Point(30, 16);
-            label3.Name = "label3";
-            label3.Size = new Size(148, 30);
-            label3.TabIndex = 16;
-            label3.Text = "Create Order";
-            // 
             // productOfOrderdata
             // 
             productOfOrderdata.AllowUserToAddRows = false;
@@ -140,45 +135,6 @@ namespace ITP4519M
             productOfOrderdata.Size = new Size(653, 253);
             productOfOrderdata.TabIndex = 61;
             productOfOrderdata.CellDoubleClick += productOfOrderdata_CellDoubleClick;
-            // 
-            // productIDColumn
-            // 
-            productIDColumn.HeaderText = "ProductID";
-            productIDColumn.MinimumWidth = 6;
-            productIDColumn.Name = "productIDColumn";
-            productIDColumn.Width = 125;
-            // 
-            // productNameColumn
-            // 
-            productNameColumn.HeaderText = "ProductName";
-            productNameColumn.MinimumWidth = 6;
-            productNameColumn.Name = "productNameColumn";
-            productNameColumn.Width = 125;
-            // 
-            // quantityColumn
-            // 
-            quantityColumn.HeaderText = "Quantity";
-            quantityColumn.MinimumWidth = 6;
-            quantityColumn.Name = "quantityColumn";
-            quantityColumn.Width = 125;
-            // 
-            // unitPriceColumn
-            // 
-            unitPriceColumn.HeaderText = "UnitPrice";
-            unitPriceColumn.MinimumWidth = 6;
-            unitPriceColumn.Name = "unitPriceColumn";
-            unitPriceColumn.Width = 125;
-            // 
-            // createOrderbtn
-            // 
-            createOrderbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            createOrderbtn.Location = new Point(509, 631);
-            createOrderbtn.Name = "createOrderbtn";
-            createOrderbtn.Size = new Size(150, 40);
-            createOrderbtn.TabIndex = 68;
-            createOrderbtn.Text = "Create";
-            createOrderbtn.UseVisualStyleBackColor = true;
-            createOrderbtn.Click += createOrderbtn_Click;
             // 
             // productSearchbox
             // 
@@ -198,6 +154,8 @@ namespace ITP4519M
             // 
             panel1.BackColor = SystemColors.Menu;
             panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(saveOrderbtn);
+            panel1.Controls.Add(orderStatusLabel);
             panel1.Controls.Add(ordertotallbl);
             panel1.Controls.Add(label11);
             panel1.Controls.Add(label2);
@@ -211,7 +169,6 @@ namespace ITP4519M
             panel1.Controls.Add(comboBox2);
             panel1.Controls.Add(comboBox1);
             panel1.Controls.Add(InvoiceLine1);
-            panel1.Controls.Add(createOrderbtn);
             panel1.Controls.Add(label12);
             panel1.Controls.Add(orderDateBox);
             panel1.Controls.Add(ordertotallbl1);
@@ -220,12 +177,34 @@ namespace ITP4519M
             panel1.Controls.Add(label7);
             panel1.Controls.Add(productSearchbox);
             panel1.Controls.Add(productOfOrderdata);
-            panel1.Location = new Point(30, 66);
+            panel1.Location = new Point(36, 66);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
             panel1.Size = new Size(681, 671);
             panel1.TabIndex = 72;
             panel1.Paint += panel1_Paint;
+            // 
+            // saveOrderbtn
+            // 
+            saveOrderbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            saveOrderbtn.Location = new Point(523, 624);
+            saveOrderbtn.Name = "saveOrderbtn";
+            saveOrderbtn.Size = new Size(150, 40);
+            saveOrderbtn.TabIndex = 101;
+            saveOrderbtn.Text = "Save";
+            saveOrderbtn.UseVisualStyleBackColor = true;
+            saveOrderbtn.Click += saveOrderbtn_Click;
+            // 
+            // orderStatusLabel
+            // 
+            orderStatusLabel.AutoSize = true;
+            orderStatusLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            orderStatusLabel.ForeColor = Color.Black;
+            orderStatusLabel.Location = new Point(21, 5);
+            orderStatusLabel.Name = "orderStatusLabel";
+            orderStatusLabel.Size = new Size(102, 21);
+            orderStatusLabel.TabIndex = 92;
+            orderStatusLabel.Text = "Order Status";
             // 
             // ordertotallbl
             // 
@@ -492,7 +471,7 @@ namespace ITP4519M
             label9.AutoSize = true;
             label9.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label9.ForeColor = SystemColors.WindowText;
-            label9.Location = new Point(5, 12);
+            label9.Location = new Point(3, 51);
             label9.Name = "label9";
             label9.Size = new Size(122, 24);
             label9.TabIndex = 74;
@@ -778,19 +757,55 @@ namespace ITP4519M
             panel4.Size = new Size(255, 5);
             panel4.TabIndex = 82;
             // 
-            // CreateOrder1
+            // orderLabel
+            // 
+            orderLabel.AutoSize = true;
+            orderLabel.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            orderLabel.ForeColor = SystemColors.WindowText;
+            orderLabel.Location = new Point(59, 34);
+            orderLabel.Name = "orderLabel";
+            orderLabel.Size = new Size(74, 30);
+            orderLabel.TabIndex = 91;
+            orderLabel.Text = "Order";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.HeaderText = "Product ID";
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            dataGridViewTextBoxColumn2.HeaderText = "Product Name";
+            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            dataGridViewTextBoxColumn3.HeaderText = "Quantity";
+            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            dataGridViewTextBoxColumn4.HeaderText = "Unit Price";
+            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            dataGridViewTextBoxColumn5.HeaderText = "Discount (%)";
+            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // OrderDetails
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
             ClientSize = new Size(1032, 751);
             Controls.Add(panel3);
+            Controls.Add(orderLabel);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Controls.Add(label3);
             Controls.Add(CloseButton);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "CreateOrder1";
+            Name = "OrderDetails";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "OrderForm1";
             Load += SalesOrder_Load;
@@ -819,10 +834,8 @@ namespace ITP4519M
         #endregion
 
         private System.Windows.Forms.Button CloseButton;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView productOfOrderdata;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button createOrderbtn;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
@@ -884,5 +897,8 @@ namespace ITP4519M
         private Label label11;
         private TextBox textBox2;
         private Label ordertotallbl;
+        private Label orderStatusLabel;
+        private Label orderLabel;
+        private Button saveOrderbtn;
     }
 }

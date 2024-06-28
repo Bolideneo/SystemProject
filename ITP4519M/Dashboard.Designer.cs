@@ -142,14 +142,14 @@ namespace ITP4519M
             orderSearchbox = new ProgramMethod.ProgramMethod.RoundedTextBox();
             panel9 = new Panel();
             panel26 = new Panel();
-            textBox3 = new TextBox();
+            orderAllbox = new TextBox();
             panel27 = new Panel();
-            textBox1 = new TextBox();
+            orderActivebox = new TextBox();
             panel30 = new Panel();
-            textBox4 = new TextBox();
+            orderCancelbox = new TextBox();
             panel29 = new Panel();
             panel28 = new Panel();
-            textBox2 = new TextBox();
+            orderCompletedlbl = new TextBox();
             orderoverallBtn = new Label();
             label11 = new Label();
             label8 = new Label();
@@ -1052,7 +1052,6 @@ namespace ITP4519M
             orderFirstPagebtn.Size = new Size(74, 44);
             orderFirstPagebtn.TabIndex = 31;
             orderFirstPagebtn.Text = "First";
-            orderFirstPagebtn.Click += orderFirstPagebtn_Click;
             // 
             // orderIndexlbl
             // 
@@ -1087,7 +1086,6 @@ namespace ITP4519M
             orderPrevPagebtn.Size = new Size(72, 44);
             orderPrevPagebtn.TabIndex = 33;
             orderPrevPagebtn.Text = "Prev";
-            orderPrevPagebtn.Click += orderPrevPagebtn_Click;
             // 
             // orderLastPagebtn
             // 
@@ -1111,7 +1109,6 @@ namespace ITP4519M
             orderLastPagebtn.Size = new Size(75, 44);
             orderLastPagebtn.TabIndex = 34;
             orderLastPagebtn.Text = "Last";
-            orderLastPagebtn.Click += orderLastPagebtn_Click;
             // 
             // orderNextPagebtn
             // 
@@ -1135,7 +1132,6 @@ namespace ITP4519M
             orderNextPagebtn.Size = new Size(71, 44);
             orderNextPagebtn.TabIndex = 32;
             orderNextPagebtn.Text = "Next";
-            orderNextPagebtn.Click += orderNextPagebtn_Click;
             // 
             // panel10
             // 
@@ -1241,7 +1237,7 @@ namespace ITP4519M
             CancelOrderbtn.TabIndex = 45;
             CancelOrderbtn.Text = "Cancel Order";
             CancelOrderbtn.UseVisualStyleBackColor = false;
-            CancelOrderbtn.Click += CancelOrderbtn_Click;
+            CancelOrderbtn.Click += orderCancelbtn_Click;
             // 
             // orderSearchbox
             // 
@@ -1253,7 +1249,6 @@ namespace ITP4519M
             orderSearchbox.PlaceholderText = "Search Order";
             orderSearchbox.Size = new Size(582, 41);
             orderSearchbox.TabIndex = 44;
-            orderSearchbox.TextChanged += orderSearchbox_TextChanged;
             // 
             // panel9
             // 
@@ -1275,73 +1270,73 @@ namespace ITP4519M
             // 
             panel26.AutoSize = true;
             panel26.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            panel26.Controls.Add(textBox3);
-            panel26.Location = new Point(98, 23);
+            panel26.Controls.Add(orderAllbox);
+            panel26.Location = new Point(109, 23);
             panel26.Name = "panel26";
             panel26.Size = new Size(41, 30);
             panel26.TabIndex = 52;
             panel26.Paint += panel26_Paint;
             // 
-            // textBox3
+            // orderAllbox
             // 
-            textBox3.BackColor = SystemColors.Menu;
-            textBox3.BorderStyle = BorderStyle.None;
-            textBox3.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox3.Location = new Point(8, 4);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(30, 23);
-            textBox3.TabIndex = 48;
-            textBox3.Text = "880";
+            orderAllbox.BackColor = SystemColors.Menu;
+            orderAllbox.BorderStyle = BorderStyle.None;
+            orderAllbox.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            orderAllbox.Location = new Point(8, 4);
+            orderAllbox.Name = "orderAllbox";
+            orderAllbox.Size = new Size(30, 23);
+            orderAllbox.TabIndex = 48;
+            orderAllbox.Text = "880";
             // 
             // panel27
             // 
             panel27.AutoSize = true;
             panel27.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            panel27.Controls.Add(textBox1);
-            panel27.Location = new Point(323, 21);
+            panel27.Controls.Add(orderActivebox);
+            panel27.Location = new Point(339, 24);
             panel27.Name = "panel27";
             panel27.Size = new Size(41, 30);
             panel27.TabIndex = 52;
             panel27.Paint += panel27_Paint;
             // 
-            // textBox1
+            // orderActivebox
             // 
-            textBox1.BackColor = SystemColors.Menu;
-            textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(8, 4);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(30, 23);
-            textBox1.TabIndex = 48;
-            textBox1.Text = "880";
+            orderActivebox.BackColor = SystemColors.Menu;
+            orderActivebox.BorderStyle = BorderStyle.None;
+            orderActivebox.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            orderActivebox.Location = new Point(8, 4);
+            orderActivebox.Name = "orderActivebox";
+            orderActivebox.Size = new Size(30, 23);
+            orderActivebox.TabIndex = 48;
+            orderActivebox.Text = "880";
             // 
             // panel30
             // 
             panel30.AutoSize = true;
             panel30.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            panel30.Controls.Add(textBox4);
-            panel30.Location = new Point(822, 19);
+            panel30.Controls.Add(orderCancelbox);
+            panel30.Location = new Point(888, 19);
             panel30.Name = "panel30";
             panel30.Size = new Size(41, 30);
             panel30.TabIndex = 51;
             panel30.Paint += panel30_Paint;
             // 
-            // textBox4
+            // orderCancelbox
             // 
-            textBox4.BackColor = SystemColors.Menu;
-            textBox4.BorderStyle = BorderStyle.None;
-            textBox4.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox4.Location = new Point(8, 4);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(30, 23);
-            textBox4.TabIndex = 48;
-            textBox4.Text = "880";
+            orderCancelbox.BackColor = SystemColors.Menu;
+            orderCancelbox.BorderStyle = BorderStyle.None;
+            orderCancelbox.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            orderCancelbox.Location = new Point(8, 4);
+            orderCancelbox.Name = "orderCancelbox";
+            orderCancelbox.Size = new Size(30, 23);
+            orderCancelbox.TabIndex = 48;
+            orderCancelbox.Text = "880";
             // 
             // panel29
             // 
             panel29.AutoSize = true;
             panel29.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            panel29.Location = new Point(832, 21);
+            panel29.Location = new Point(888, 19);
             panel29.Name = "panel29";
             panel29.Size = new Size(0, 0);
             panel29.TabIndex = 50;
@@ -1351,30 +1346,30 @@ namespace ITP4519M
             // 
             panel28.AutoSize = true;
             panel28.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            panel28.Controls.Add(textBox2);
-            panel28.Location = new Point(578, 21);
+            panel28.Controls.Add(orderCompletedlbl);
+            panel28.Location = new Point(613, 22);
             panel28.Name = "panel28";
             panel28.Size = new Size(41, 30);
             panel28.TabIndex = 50;
             panel28.Paint += panel28_Paint;
             // 
-            // textBox2
+            // orderCompletedlbl
             // 
-            textBox2.BackColor = SystemColors.Menu;
-            textBox2.BorderStyle = BorderStyle.None;
-            textBox2.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.Location = new Point(8, 4);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(30, 23);
-            textBox2.TabIndex = 48;
-            textBox2.Text = "880";
+            orderCompletedlbl.BackColor = SystemColors.Menu;
+            orderCompletedlbl.BorderStyle = BorderStyle.None;
+            orderCompletedlbl.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            orderCompletedlbl.Location = new Point(8, 4);
+            orderCompletedlbl.Name = "orderCompletedlbl";
+            orderCompletedlbl.Size = new Size(30, 23);
+            orderCompletedlbl.TabIndex = 48;
+            orderCompletedlbl.Text = "880";
             // 
             // orderoverallBtn
             // 
             orderoverallBtn.AutoSize = true;
             orderoverallBtn.BackColor = SystemColors.Menu;
             orderoverallBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            orderoverallBtn.Location = new Point(3, 24);
+            orderoverallBtn.Location = new Point(2, 23);
             orderoverallBtn.Name = "orderoverallBtn";
             orderoverallBtn.Size = new Size(107, 28);
             orderoverallBtn.TabIndex = 32;
@@ -1385,7 +1380,7 @@ namespace ITP4519M
             label11.AutoSize = true;
             label11.BackColor = SystemColors.Menu;
             label11.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label11.Location = new Point(664, 20);
+            label11.Location = new Point(720, 18);
             label11.Name = "label11";
             label11.Size = new Size(172, 28);
             label11.TabIndex = 37;
@@ -1409,9 +1404,9 @@ namespace ITP4519M
             label10.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.Location = new Point(432, 21);
             label10.Name = "label10";
-            label10.Size = new Size(157, 28);
+            label10.Size = new Size(183, 28);
             label10.TabIndex = 35;
-            label10.Text = "Pending Orders";
+            label10.Text = "Completed Orders";
             label10.Click += label10_Click;
             // 
             // viewOrderbtn
@@ -2535,7 +2530,7 @@ namespace ITP4519M
             // reportShowStockbtn
             // 
             reportShowStockbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            reportShowStockbtn.Location = new Point(398, 14);
+            reportShowStockbtn.Location = new Point(398, 13);
             reportShowStockbtn.Name = "reportShowStockbtn";
             reportShowStockbtn.Size = new Size(161, 56);
             reportShowStockbtn.TabIndex = 81;
@@ -2632,7 +2627,7 @@ namespace ITP4519M
             // 
             MonthlyTotalOrder.AutoSize = true;
             MonthlyTotalOrder.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            MonthlyTotalOrder.Location = new Point(2, 10);
+            MonthlyTotalOrder.Location = new Point(2, 11);
             MonthlyTotalOrder.Name = "MonthlyTotalOrder";
             MonthlyTotalOrder.Size = new Size(245, 29);
             MonthlyTotalOrder.TabIndex = 12;
@@ -3531,6 +3526,8 @@ namespace ITP4519M
             // 
             // panel38
             // 
+            panel38.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            panel38.BackColor = Color.White;
             panel38.BorderStyle = BorderStyle.FixedSingle;
             panel38.Controls.Add(label37);
             panel38.Controls.Add(label39);
@@ -5664,7 +5661,7 @@ namespace ITP4519M
             // button3
             // 
             button3.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button3.Location = new Point(410, 14);
+            button3.Location = new Point(410, 13);
             button3.Name = "button3";
             button3.Size = new Size(161, 56);
             button3.TabIndex = 81;
@@ -5674,7 +5671,7 @@ namespace ITP4519M
             // button5
             // 
             button5.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button5.Location = new Point(203, 10);
+            button5.Location = new Point(203, 11);
             button5.Name = "button5";
             button5.Size = new Size(161, 56);
             button5.TabIndex = 80;
@@ -5727,7 +5724,7 @@ namespace ITP4519M
             // 
             label46.AutoSize = true;
             label46.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label46.Location = new Point(2, 10);
+            label46.Location = new Point(2, 11);
             label46.Name = "label46";
             label46.Size = new Size(245, 29);
             label46.TabIndex = 12;
@@ -5986,6 +5983,10 @@ namespace ITP4519M
             ClientSize = new Size(1497, 1047);
             Controls.Add(listpnl);
             Controls.Add(closebtn);
+            Controls.Add(orderpnl);
+            Controls.Add(GRNpnl);
+            Controls.Add(outstandingViewpnl);
+            Controls.Add(deliveryCompletepnl);
             Controls.Add(StockReportpnl);
             Controls.Add(settingpnl);
             Controls.Add(dashboardpnl);
@@ -5998,10 +5999,6 @@ namespace ITP4519M
             Controls.Add(deliverypnl);
             Controls.Add(userspnl);
             Controls.Add(outstandingOrderpnl);
-            Controls.Add(orderpnl);
-            Controls.Add(GRNpnl);
-            Controls.Add(outstandingViewpnl);
-            Controls.Add(deliveryCompletepnl);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
@@ -6493,15 +6490,15 @@ namespace ITP4519M
         private Button button8;
         private Panel panel29;
         private Panel panel28;
-        private TextBox textBox2;
+        private TextBox orderCompletedlbl;
         private Panel InvoiceLine1;
         private DataGridViewCheckBoxColumn invoicecheckbox;
         private Panel panel26;
-        private TextBox textBox3;
+        private TextBox orderAllbox;
         private Panel panel27;
-        private TextBox textBox1;
+        private TextBox orderActivebox;
         private Panel panel30;
-        private TextBox textBox4;
+        private TextBox orderCancelbox;
         private Panel panel32;
         private DateTimePicker dateTimePicker3;
         private Label label21;

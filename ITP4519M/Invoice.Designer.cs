@@ -59,7 +59,7 @@
             InvoiceLabel14 = new Label();
             InvoiceLabel12 = new Label();
             panel11 = new ProgramMethod.ProgramMethod.PanelBorderColor();
-            InvoiceValue11 = new Label();
+            InvoicesubTotallbl = new Label();
             panel12 = new ProgramMethod.ProgramMethod.PanelBorderColor();
             InvoiceValue13 = new Label();
             panel13 = new ProgramMethod.ProgramMethod.PanelBorderColor();
@@ -440,22 +440,22 @@
             panel11.BorderColor = Color.DarkOrange;
             panel11.BorderStyle = BorderStyle.FixedSingle;
             panel11.BorderWidth = 3;
-            panel11.Controls.Add(InvoiceValue11);
+            panel11.Controls.Add(InvoicesubTotallbl);
             panel11.Cursor = Cursors.No;
             panel11.Location = new Point(50, 603);
             panel11.Name = "panel11";
             panel11.Size = new Size(169, 48);
             panel11.TabIndex = 63;
             // 
-            // InvoiceValue11
+            // InvoicesubTotallbl
             // 
-            InvoiceValue11.AutoSize = true;
-            InvoiceValue11.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
-            InvoiceValue11.Location = new Point(13, 16);
-            InvoiceValue11.Name = "InvoiceValue11";
-            InvoiceValue11.Size = new Size(104, 17);
-            InvoiceValue11.TabIndex = 84;
-            InvoiceValue11.Text = "InvoiceValue11";
+            InvoicesubTotallbl.AutoSize = true;
+            InvoicesubTotallbl.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
+            InvoicesubTotallbl.Location = new Point(13, 16);
+            InvoicesubTotallbl.Name = "InvoicesubTotallbl";
+            InvoicesubTotallbl.Size = new Size(104, 17);
+            InvoicesubTotallbl.TabIndex = 84;
+            InvoicesubTotallbl.Text = "InvoiceValue11";
             // 
             // panel12
             // 
@@ -848,7 +848,7 @@
         private Label InvoiceDeliveryDatelbl;
         private Label InvoiceTotalPricelbl;
         private Label InvoiceValue14;
-        private Label InvoiceValue11;
+        private Label InvoicesubTotallbl;
         private Label InvoiceValue13;
         private Label InvoiceValue12;
         private Label InvoiceDealerIDlbl;
