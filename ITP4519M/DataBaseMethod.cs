@@ -3163,6 +3163,109 @@ namespace ITP4519M
             return dataTable;
         }
 
+        public string CreatePurchaseOrder(PurchaseOrder purchaseOrder)
+        {
+            string purchaseOrderId = GenerateNewPurchaseOrderID();
+
+            using (MySqlConnection conn = ServerConnect())
+            {
+                using (MySqlCommand cmd = new MySqlCommand("INSERT INTO purchaseorder (PurchaseOrderID, SupplierID, Date, Status) VALUES (@PurchaseOrderID, @SupplierID, @Date, @Status)", conn))
+                {
+                    cmd.Parameters.AddWithValue("@PurchaseOrderID", purchaseOrderId);
+                    cmd.Parameters.AddWithValue("@SupplierID", purchaseOrder.SupplierID);
+                    cmd.Parameters.AddWithValue("@Date", purchaseOrder.Date);
+                    cmd.Parameters.AddWithValue("@Status", purchaseOrder.Status);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            MessageBox.Show(purchaseOrderId);
+            return purchaseOrderId;
+        }
+
+
+        private string GenerateNewPurchaseOrderID()
+        {
+            string newID = "PUR000001";
+
+            using (MySqlConnection conn = ServerConnect())
+            {
+            
+                using (MySqlCommand cmd = new MySqlCommand("SELECT PurchaseOrderID FROM purchaseorder WHERE PurchaseOrderID LIKE 'PUR%' ORDER BY PurchaseOrderID DESC LIMIT 1", conn))
+                {
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        string maxID = result.ToString();
+                        int maxNumber = int.Parse(maxID.Substring(3));
+                        newID = "PUR" + (maxNumber + 1).ToString("D6");
+                    }
+                }
+            }
+
+            return newID;
+        }
+        public void CreatePurchaseOrderItem(PurchaseOrderItem purchaseOrderItem)
+        {
+            string purchaseOrderItemId = GenerateNewPurchaseOrderItemID();
+
+            using (MySqlConnection conn = ServerConnect())
+            {
+               
+                using (MySqlCommand cmd = new MySqlCommand("INSERT INTO purchaseorderitem (PurchaseOrderItemID, PurchaseOrderID, ProductID, Quantity, UnitPrice, TotalPrice) VALUES (@PurchaseOrderItemID, @PurchaseOrderID, @ProductID, @Quantity, @UnitPrice, @TotalPrice)", conn))
+                {
+                    cmd.Parameters.AddWithValue("@PurchaseOrderItemID", purchaseOrderItemId);
+                    cmd.Parameters.AddWithValue("@PurchaseOrderID", purchaseOrderItem.PurchaseOrderID);
+                    cmd.Parameters.AddWithValue("@ProductID", purchaseOrderItem.ProductID);
+                    cmd.Parameters.AddWithValue("@Quantity", purchaseOrderItem.Quantity);
+                    cmd.Parameters.AddWithValue("@UnitPrice", purchaseOrderItem.UnitPrice);
+                    cmd.Parameters.AddWithValue("@TotalPrice", purchaseOrderItem.TotalPrice);
+                    MessageBox.Show(purchaseOrderItemId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        private string GenerateNewPurchaseOrderItemID()
+        {
+            string newID = "PURI000001";
+
+            using (MySqlConnection conn = ServerConnect())
+            {
+             
+                using (MySqlCommand cmd = new MySqlCommand("SELECT PurchaseOrderItemID FROM purchaseorderitem WHERE PurchaseOrderItemID LIKE 'PURI%' ORDER BY PurchaseOrderItemID DESC LIMIT 1", conn))
+                {
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        string maxID = result.ToString();
+                        int maxNumber = int.Parse(maxID.Substring(4)); 
+                        newID = "PURI" + (maxNumber + 1).ToString("D6");
+                    }
+                }
+            }
+
+            return newID;
+        }
+
+        public class PurchaseOrder
+        {
+            public string PurchaseOrderID { get; set; }
+            public string SupplierID { get; set; }
+            public string Date { get; set; }
+            public string Status { get; set; }
+        }
+
+        public class PurchaseOrderItem
+        {
+            public string PurchaseOrderItemID { get; set; }
+            public string PurchaseOrderID { get; set; }
+            public string ProductID { get; set; }
+            public string Quantity { get; set; }
+            public string UnitPrice { get; set; }
+            public string TotalPrice { get; set; }
+        }
+
     }
 
 }

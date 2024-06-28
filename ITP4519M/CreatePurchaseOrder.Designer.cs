@@ -49,6 +49,8 @@
             createOrderbtn = new Button();
             CostPrice = new Label();
             costPriceBox = new TextBox();
+            purchaseOrderItemsListView = new ListView();
+            addProductbtn = new Button();
             SuspendLayout();
             // 
             // button1
@@ -119,7 +121,7 @@
             // supplierProductBox
             // 
             supplierProductBox.FormattingEnabled = true;
-            supplierProductBox.Location = new Point(207, 191);
+            supplierProductBox.Location = new Point(32, 275);
             supplierProductBox.Name = "supplierProductBox";
             supplierProductBox.Size = new Size(174, 28);
             supplierProductBox.TabIndex = 95;
@@ -129,7 +131,7 @@
             // 
             supplierProductlbl.AutoSize = true;
             supplierProductlbl.Font = new Font("Microsoft Sans Serif", 10.2F);
-            supplierProductlbl.Location = new Point(207, 168);
+            supplierProductlbl.Location = new Point(32, 252);
             supplierProductlbl.Name = "supplierProductlbl";
             supplierProductlbl.Size = new Size(133, 20);
             supplierProductlbl.TabIndex = 96;
@@ -137,7 +139,7 @@
             // 
             // quanBox
             // 
-            quanBox.Location = new Point(558, 191);
+            quanBox.Location = new Point(32, 346);
             quanBox.Name = "quanBox";
             quanBox.Size = new Size(125, 27);
             quanBox.TabIndex = 97;
@@ -147,7 +149,7 @@
             // 
             quantityBox.AutoSize = true;
             quantityBox.Font = new Font("Microsoft Sans Serif", 10.2F);
-            quantityBox.Location = new Point(558, 168);
+            quantityBox.Location = new Point(32, 323);
             quantityBox.Name = "quantityBox";
             quantityBox.Size = new Size(71, 20);
             quantityBox.TabIndex = 98;
@@ -156,7 +158,7 @@
             // totalAmountlbl
             // 
             totalAmountlbl.AutoSize = true;
-            totalAmountlbl.Location = new Point(467, 237);
+            totalAmountlbl.Location = new Point(342, 323);
             totalAmountlbl.Name = "totalAmountlbl";
             totalAmountlbl.Size = new Size(102, 20);
             totalAmountlbl.TabIndex = 99;
@@ -165,7 +167,7 @@
             // amountDatalbl
             // 
             amountDatalbl.AutoSize = true;
-            amountDatalbl.Location = new Point(571, 237);
+            amountDatalbl.Location = new Point(342, 353);
             amountDatalbl.Name = "amountDatalbl";
             amountDatalbl.Size = new Size(94, 20);
             amountDatalbl.TabIndex = 100;
@@ -174,7 +176,7 @@
             // supplierPhoneBox
             // 
             supplierPhoneBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            supplierPhoneBox.Location = new Point(467, 333);
+            supplierPhoneBox.Location = new Point(467, 514);
             supplierPhoneBox.Margin = new Padding(5, 4, 5, 4);
             supplierPhoneBox.Name = "supplierPhoneBox";
             supplierPhoneBox.ReadOnly = true;
@@ -184,7 +186,7 @@
             // supplierMailBox
             // 
             supplierMailBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            supplierMailBox.Location = new Point(224, 333);
+            supplierMailBox.Location = new Point(224, 514);
             supplierMailBox.Margin = new Padding(5, 4, 5, 4);
             supplierMailBox.Name = "supplierMailBox";
             supplierMailBox.ReadOnly = true;
@@ -195,7 +197,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(467, 310);
+            label1.Location = new Point(467, 491);
             label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
             label1.Size = new Size(120, 20);
@@ -206,7 +208,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(224, 310);
+            label2.Location = new Point(224, 491);
             label2.Margin = new Padding(5, 0, 5, 0);
             label2.Name = "label2";
             label2.Size = new Size(107, 20);
@@ -217,7 +219,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Microsoft Sans Serif", 10.2F);
-            label5.Location = new Point(32, 310);
+            label5.Location = new Point(32, 491);
             label5.Name = "label5";
             label5.Size = new Size(125, 20);
             label5.TabIndex = 110;
@@ -225,7 +227,7 @@
             // 
             // supplierContactPersonBox
             // 
-            supplierContactPersonBox.Location = new Point(32, 333);
+            supplierContactPersonBox.Location = new Point(32, 514);
             supplierContactPersonBox.Name = "supplierContactPersonBox";
             supplierContactPersonBox.ReadOnly = true;
             supplierContactPersonBox.Size = new Size(166, 27);
@@ -234,7 +236,7 @@
             // createOrderbtn
             // 
             createOrderbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            createOrderbtn.Location = new Point(285, 425);
+            createOrderbtn.Location = new Point(285, 606);
             createOrderbtn.Margin = new Padding(3, 4, 3, 4);
             createOrderbtn.Name = "createOrderbtn";
             createOrderbtn.Size = new Size(125, 47);
@@ -247,7 +249,7 @@
             // 
             CostPrice.AutoSize = true;
             CostPrice.Font = new Font("Microsoft Sans Serif", 10.2F);
-            CostPrice.Location = new Point(414, 168);
+            CostPrice.Location = new Point(199, 323);
             CostPrice.Name = "CostPrice";
             CostPrice.Size = new Size(88, 20);
             CostPrice.TabIndex = 114;
@@ -255,17 +257,40 @@
             // 
             // costPriceBox
             // 
-            costPriceBox.Location = new Point(414, 191);
+            costPriceBox.Location = new Point(199, 346);
             costPriceBox.Name = "costPriceBox";
             costPriceBox.ReadOnly = true;
             costPriceBox.Size = new Size(125, 27);
             costPriceBox.TabIndex = 113;
             // 
+            // purchaseOrderItemsListView
+            // 
+            purchaseOrderItemsListView.FullRowSelect = true;
+            purchaseOrderItemsListView.GridLines = true;
+            purchaseOrderItemsListView.Location = new Point(238, 191);
+            purchaseOrderItemsListView.Name = "purchaseOrderItemsListView";
+            purchaseOrderItemsListView.Size = new Size(447, 121);
+            purchaseOrderItemsListView.TabIndex = 115;
+            purchaseOrderItemsListView.UseCompatibleStateImageBehavior = false;
+            purchaseOrderItemsListView.View = View.Details;
+            // 
+            // addProductbtn
+            // 
+            addProductbtn.Location = new Point(542, 344);
+            addProductbtn.Name = "addProductbtn";
+            addProductbtn.Size = new Size(143, 29);
+            addProductbtn.TabIndex = 116;
+            addProductbtn.Text = "Add Product";
+            addProductbtn.UseVisualStyleBackColor = true;
+            addProductbtn.Click += addProductbtn_Click;
+            // 
             // CreatePurchaseOrder
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(711, 523);
+            ClientSize = new Size(711, 713);
+            Controls.Add(addProductbtn);
+            Controls.Add(purchaseOrderItemsListView);
             Controls.Add(CostPrice);
             Controls.Add(costPriceBox);
             Controls.Add(createOrderbtn);
@@ -329,5 +354,7 @@
         private Button createOrderbtn;
         private Label CostPrice;
         private TextBox costPriceBox;
+        private ListView purchaseOrderItemsListView;
+        private Button addProductbtn;
     }
 }

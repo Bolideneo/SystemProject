@@ -35,6 +35,11 @@ namespace ITP4519M
             InitializeComponent();
             LoadSuppliers();
             _mode = mode;
+            purchaseOrderItemsListView.Columns.Add("ProductID", 0); // Hidden column
+            purchaseOrderItemsListView.Columns.Add("Product Name", 150);
+            purchaseOrderItemsListView.Columns.Add("Quantity", 70);
+            purchaseOrderItemsListView.Columns.Add("Cost Price", 100);
+            purchaseOrderItemsListView.Columns.Add("Total Price", 100);
         }
 
         private void LoadSuppliers()
@@ -108,7 +113,7 @@ namespace ITP4519M
             supplierProductBox.DataSource = products;
             supplierProductBox.DisplayMember = "ProductName";
             supplierProductBox.ValueMember = "ProductID";
-       
+
         }
         private void supplierProductBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -122,7 +127,32 @@ namespace ITP4519M
 
         private void createOrderbtn_Click(object sender, EventArgs e)
         {
+            PurchaseOrder newOrder = new PurchaseOrder
+            {
+                SupplierID = supplierBox.SelectedValue.ToString(),
+                Date = DateTime.Now.ToString("yyyy-MM-dd"),
+                Status = "Pending"
+            };
 
+            // Save the PurchaseOrder and get its generated ID
+            string purchaseOrderId = programMethod.SavePurchaseOrder(newOrder);
+
+            // Save each item in the ListView as a PurchaseOrderItem
+            foreach (ListViewItem item in purchaseOrderItemsListView.Items)
+            {
+                var purchaseOrderItem = new PurchaseOrderItem
+                {
+                    PurchaseOrderID = purchaseOrderId,
+                    ProductID = item.SubItems[0].Text,
+                    Quantity = item.SubItems[2].Text,
+                    UnitPrice = item.SubItems[3].Text,
+                    TotalPrice = item.SubItems[4].Text
+                };
+
+                programMethod.SavePurchaseOrderItem(purchaseOrderItem);
+            }
+
+            MessageBox.Show("Purchase Order Saved Successfully");
         }
 
         private void quanBox_TextChanged(object sender, EventArgs e)
@@ -131,20 +161,69 @@ namespace ITP4519M
         }
         private void UpdateTotalAmount()
         {
-            if (decimal.TryParse(costPriceBox.Text, out decimal costPrice) && int.TryParse(quanBox.Text, out int quantity))
+            decimal totalAmount = 0;
+
+            foreach (ListViewItem item in purchaseOrderItemsListView.Items)
             {
-                decimal totalAmount = costPrice * quantity;
-                amountDatalbl.Text = totalAmount.ToString();
+                if (decimal.TryParse(item.SubItems[4].Text, out decimal rowTotal))
+                {
+                    totalAmount += rowTotal;
+                }
             }
-            else
-            {
-                amountDatalbl.Text = "Invalid input";
-            }
+
+            amountDatalbl.Text = totalAmount.ToString("F2");
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void addProductbtn_Click(object sender, EventArgs e)
+        {
+            if (supplierProductBox.SelectedItem != null && int.TryParse(quanBox.Text, out int quantity))
+            {
+                ProductDetails selectedProduct = (ProductDetails)supplierProductBox.SelectedItem;
+
+                // Convert CostPrice from string to decimal
+                if (decimal.TryParse(selectedProduct.CostPrice, out decimal unitPrice))
+                {
+                    decimal totalPrice = unitPrice * quantity;
+
+                    // Check if the product already exists in the ListView
+                    bool productExists = false;
+                    foreach (ListViewItem item in purchaseOrderItemsListView.Items)
+                    {
+                        if (item.SubItems[0].Text == selectedProduct.ProductID)
+                        {
+                            // Update existing product
+                            item.SubItems[2].Text = quantity.ToString();
+                            item.SubItems[3].Text = unitPrice.ToString("F2");
+                            item.SubItems[4].Text = totalPrice.ToString("F2");
+                            productExists = true;
+                            break;
+                        }
+                    }
+
+                    if (!productExists)
+                    {
+                        // Add new product
+                        ListViewItem item = new ListViewItem(selectedProduct.ProductID);
+                        item.SubItems.Add(selectedProduct.ProductName);
+                        item.SubItems.Add(quantity.ToString());
+                        item.SubItems.Add(unitPrice.ToString("F2"));
+                        item.SubItems.Add(totalPrice.ToString("F2"));
+
+                        purchaseOrderItemsListView.Items.Add(item);
+                    }
+
+                    UpdateTotalAmount();
+                }
+                else
+                {
+                    MessageBox.Show("Invalid unit price for the selected product.");
+                }
+            }
         }
     }
 }
