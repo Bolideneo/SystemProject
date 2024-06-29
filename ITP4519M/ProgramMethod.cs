@@ -2132,12 +2132,12 @@ namespace ProgramMethod
 
         }
 
-        public string SavePurchaseOrder(PurchaseOrder purchaseOrder)
+        public string CreatePurchaseOrder(PurchaseOrder purchaseOrder)
         {
             return dataBaseMethod.CreatePurchaseOrder(purchaseOrder);
         }
 
-        public void SavePurchaseOrderItem(PurchaseOrderItem purchaseOrderItem)
+        public void CreatePurchaseOrderItem(PurchaseOrderItem purchaseOrderItem)
         {
             dataBaseMethod.CreatePurchaseOrderItem(purchaseOrderItem);
         }

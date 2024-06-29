@@ -3169,17 +3169,19 @@ namespace ITP4519M
 
             using (MySqlConnection conn = ServerConnect())
             {
-                using (MySqlCommand cmd = new MySqlCommand("INSERT INTO purchaseorder (PurchaseOrderID, SupplierID, Date, Status) VALUES (@PurchaseOrderID, @SupplierID, @Date, @Status)", conn))
+                using (MySqlCommand cmd = new MySqlCommand("INSERT INTO purchaseorder (PurchaseOrderID, SupplierID, ProductID, OrderQuantity, Date, Status) VALUES (@PurchaseOrderID, @SupplierID, @ProductID, @OrderQuantity, @Date, @Status)", conn))
                 {
                     cmd.Parameters.AddWithValue("@PurchaseOrderID", purchaseOrderId);
                     cmd.Parameters.AddWithValue("@SupplierID", purchaseOrder.SupplierID);
                     cmd.Parameters.AddWithValue("@Date", purchaseOrder.Date);
                     cmd.Parameters.AddWithValue("@Status", purchaseOrder.Status);
+                    cmd.Parameters.AddWithValue("@ProductID", purchaseOrder.ProductID);
+                    cmd.Parameters.AddWithValue("@OrderQuantity", purchaseOrder.OrderQuantity);
 
                     cmd.ExecuteNonQuery();
                 }
             }
-            MessageBox.Show(purchaseOrderId);
+
             return purchaseOrderId;
         }
 
@@ -3220,7 +3222,6 @@ namespace ITP4519M
                     cmd.Parameters.AddWithValue("@Quantity", purchaseOrderItem.Quantity);
                     cmd.Parameters.AddWithValue("@UnitPrice", purchaseOrderItem.UnitPrice);
                     cmd.Parameters.AddWithValue("@TotalPrice", purchaseOrderItem.TotalPrice);
-                    MessageBox.Show(purchaseOrderItemId);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -3254,6 +3255,10 @@ namespace ITP4519M
             public string SupplierID { get; set; }
             public string Date { get; set; }
             public string Status { get; set; }
+            public string ProductID { get; set; }
+            public string OrderQuantity { get; set; }
+      
+
         }
 
         public class PurchaseOrderItem
