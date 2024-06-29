@@ -1716,7 +1716,7 @@ namespace ITP4519M
             cmd.ExecuteNonQuery();
         }
 
-        public void ReduceStock(string productID, int qty)
+        public void ReduceStock(string productID, string qty)
         {
             string sql = "UPDATE product SET QuantityInStock=@qty WHERE ProductID=@productID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
@@ -1957,7 +1957,7 @@ namespace ITP4519M
 
         public int getOutstandingRowCount()
         {
-            string sql = "SELECT COUNT(DISTINCT OutstandingOrderID) FROM outstandingorder";
+            string sql = "SELECT COUNT(DISTINCT OutstandingOrderID)  FROM outstandingorder WHERE Status != 'Completed'";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             object result = cmd.ExecuteScalar();
             int rowCount = Convert.ToInt32(result);
@@ -2166,7 +2166,7 @@ namespace ITP4519M
 
         public DataTable GetOutstandingCurrentRecords(int page, int pageSize)
         {
-            string sql = "SELECT * FROM outstandingorder ORDER BY OutstandingOrderID LIMIT @PgSize";
+            string sql = "SELECT * FROM outstandingorder WHERE Status != 'Completed' ORDER BY OutstandingOrderID LIMIT @PgSize";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
@@ -2178,7 +2178,7 @@ namespace ITP4519M
 
         public DataTable GetOutstandingCurrentRecords2(int page, int pageSize)
         {
-            string sql = "SELECT * FROM (SELECT * FROM outstandingorder ORDER BY OutstandingOrderID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY OutstandingOrderID";
+            string sql = "SELECT * FROM (SELECT * FROM outstandingorder WHERE Status != 'Completed' ORDER BY OutstandingOrderID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY OutstandingOrderID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);
@@ -2289,7 +2289,7 @@ namespace ITP4519M
 
         public bool createOutstandingOrder(string outID, string orderID, string productID, string dealerID, string followUpQuantity)
         {
-            string sql = "INSERT INTO outstandingorder VALUES(@outID,@orderID,@productID,@dealerId,@followUpQuantity,@date)";
+            string sql = "INSERT INTO outstandingorder VALUES(@outID,@orderID,@productID,@dealerId,@followUpQuantity,@date, 'Active')";
             DateTime date = DateTime.Now;
             date.ToString("yyyy-MM-dd HH:mm:ss");
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
@@ -2361,6 +2361,7 @@ namespace ITP4519M
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@productID", productID);
             int count = Convert.ToInt32(cmd.ExecuteScalar());
+            ServerConnect().Close();
             return count;
         }
 
@@ -2370,6 +2371,7 @@ namespace ITP4519M
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@POID", POID);
             object orderQty = cmd.ExecuteScalar();
+            ServerConnect().Close();
             return orderQty.ToString();
         }
 
@@ -2441,6 +2443,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
@@ -2452,6 +2455,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
@@ -2465,6 +2469,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
 
         }
@@ -2482,6 +2487,7 @@ namespace ITP4519M
                 MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
                 DataTable dataTable = new DataTable();
                 adat.Fill(dataTable);
+                ServerConnect().Close();
                 return dataTable;
 
             }
@@ -2500,6 +2506,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
@@ -2522,13 +2529,23 @@ namespace ITP4519M
 
         public DataTable getOutstandingOrder(string outid)
         {
-            string sql = "SELECT dealer.*, outstandingorder.*, product.ProductName, Product.UnitPrice FROM outstandingorder, dealer, product WHERE OutstandingOrderID=@outid AND outstandingorder.DealerID=dealer.DealerID AND product.ProductID=outstandingorder.ProductID";
+            //string sql = "SELECT dealer.DealerID, dealer.DealerName, dealer.DealerCompanyName, order.DealerContactName, order.DealerContactPhoneNum, order.DeliveryAddress, outstandingorder.*, orderitem.ProductName, Product.UnitPrice FROM outstandingorder, dealer, orderitem `order` WHERE OutstandingOrderID=@outid AND outstandingorder.DealerID=dealer.DealerID AND product.ProductID=outstandingorder.ProductID AND outstandingorder.OrderID = `order`.OrderID";
+            string sql = "SELECT dealer.DealerID, dealer.DealerName, dealer.DealerCompanyName, `order`.DealerContactName, `order`.DealerContactPhoneNum, `order`.DeliveryAddress,  `order`.DealerEmailAddress,`order`.OrderDate, `order`.ExpectCompleteDate, outstandingorder.*, orderitem.ProductName, product.UnitPrice FROM outstandingorder, dealer, orderitem ,`order` , product WHERE OutstandingOrderID=@outid AND outstandingorder.DealerID=dealer.DealerID AND product.ProductID=outstandingorder.ProductID AND outstandingorder.OrderID = `order`.OrderID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@outid", outid);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
             return dataTable;
+        }
+
+        public void completeOutstandingOrder(string outID)
+        {
+            string sql = "UPDATE outstandingorder SET Status='Completed' WHERE OutstandingOrderID=@outID ";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@outID", outID);
+            cmd.ExecuteNonQuery();
+            ServerConnect().Close();
         }
 
         public DataTable GetProducts(List<string> productIDs)
@@ -2654,7 +2671,7 @@ namespace ITP4519M
         {
             DateTime Date = DateTime.Now;
             Date.ToString("yyyy-MM-dd HH:mm:ss");
-            string Desc = "#" + userID + " " + userName + " Create OrderAccembly For#" + orderID;
+            string Desc = "#" + userID + " " + userName + " Assgin Order Accembly For Order#" + orderID;
             string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 1, 'OrderAccembly', @TypeID,  @Desc,  @Date)";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@logID", logID);
@@ -2663,8 +2680,56 @@ namespace ITP4519M
             cmd.Parameters.AddWithValue("@TypeID", orderID);
             cmd.Parameters.AddWithValue("@Desc", Desc);
             cmd.Parameters.AddWithValue("@Date", Date);
-            ServerConnect().Close();
             cmd.ExecuteNonQuery();
+            ServerConnect().Close();
+        }
+
+        public void LogAssginProdutIntoAccembly(string logID, string userID, string userName, string orderID)
+        {
+            DateTime Date = DateTime.Now;
+            string Desc = "#" + userID + "Assgin #" + orderID +  " by following format ProductID #" + " #Product Name " + " #Quantity ";
+            //string Desc = "#" + userID + " Put #" + productID + " to #" + orderID;
+            Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 1, 'OrderAccembly', @TypeID,  @Desc,  @Date)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@userName", userName);
+            cmd.Parameters.AddWithValue("@TypeID", orderID);
+            cmd.Parameters.AddWithValue("@Desc", Desc);
+            cmd.Parameters.AddWithValue("@Date", Date);
+            cmd.ExecuteNonQuery();
+            ServerConnect().Close();
+        }
+
+        public void LogUpdateAssginProdutIntoAccembly(string logID, string productID, string productName, string qty)
+        {
+
+            string sql = "UPDATE log AS l JOIN (SELECT LogID, Description FROM log WHERE LogID = @logID) AS sub ON l.LogID = sub.LogID SET l.Description = CONCAT(sub.Description, ' [#', @productID, ' #', @productName, ' #', @qty, '] ') WHERE l.LogID = @logID;";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@productID", productID);
+            cmd.Parameters.AddWithValue("@productName", productName);
+            cmd.Parameters.AddWithValue("@qty", qty);
+            cmd.ExecuteNonQuery();
+            ServerConnect().Close();
+        }
+
+        public bool LogOutputItem(string logID, string userID, string itemID, string qty)
+        {
+            string Descp = "#" + userID + " Put " + qty + "qty #" + itemID + " to Instock ";
+            DateTime theDate = DateTime.Now;
+            theDate.ToString("yyyy-MM-dd HH:mm:ss");
+            string sql = "INSERT INTO logging VALUES(@logID, @Descp, @userID, 2, @theDate)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@Descp", Descp);
+            cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@theDate", theDate);
+            if (cmd.ExecuteNonQuery() > 0)
+                return true;
+            else
+                return false;
         }
 
 
@@ -3264,6 +3329,109 @@ namespace ITP4519M
             }
         }
 
+
+        public string CreatePurchaseOrder(PurchaseOrder purchaseOrder)
+        {
+            string purchaseOrderId = GenerateNewPurchaseOrderID();
+
+            using (MySqlConnection conn = ServerConnect())
+            {
+                using (MySqlCommand cmd = new MySqlCommand("INSERT INTO purchaseorder (PurchaseOrderID, SupplierID, Date, Status) VALUES (@PurchaseOrderID, @SupplierID, @Date, @Status)", conn))
+                {
+                    cmd.Parameters.AddWithValue("@PurchaseOrderID", purchaseOrderId);
+                    cmd.Parameters.AddWithValue("@SupplierID", purchaseOrder.SupplierID);
+                    cmd.Parameters.AddWithValue("@Date", purchaseOrder.Date);
+                    cmd.Parameters.AddWithValue("@Status", purchaseOrder.Status);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            MessageBox.Show(purchaseOrderId);
+            return purchaseOrderId;
+        }
+
+
+        private string GenerateNewPurchaseOrderID()
+        {
+            string newID = "PUR000001";
+
+            using (MySqlConnection conn = ServerConnect())
+            {
+            
+                using (MySqlCommand cmd = new MySqlCommand("SELECT PurchaseOrderID FROM purchaseorder WHERE PurchaseOrderID LIKE 'PUR%' ORDER BY PurchaseOrderID DESC LIMIT 1", conn))
+                {
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        string maxID = result.ToString();
+                        int maxNumber = int.Parse(maxID.Substring(3));
+                        newID = "PUR" + (maxNumber + 1).ToString("D6");
+                    }
+                }
+            }
+
+            return newID;
+        }
+        public void CreatePurchaseOrderItem(PurchaseOrderItem purchaseOrderItem)
+        {
+            string purchaseOrderItemId = GenerateNewPurchaseOrderItemID();
+
+            using (MySqlConnection conn = ServerConnect())
+            {
+               
+                using (MySqlCommand cmd = new MySqlCommand("INSERT INTO purchaseorderitem (PurchaseOrderItemID, PurchaseOrderID, ProductID, Quantity, UnitPrice, TotalPrice) VALUES (@PurchaseOrderItemID, @PurchaseOrderID, @ProductID, @Quantity, @UnitPrice, @TotalPrice)", conn))
+                {
+                    cmd.Parameters.AddWithValue("@PurchaseOrderItemID", purchaseOrderItemId);
+                    cmd.Parameters.AddWithValue("@PurchaseOrderID", purchaseOrderItem.PurchaseOrderID);
+                    cmd.Parameters.AddWithValue("@ProductID", purchaseOrderItem.ProductID);
+                    cmd.Parameters.AddWithValue("@Quantity", purchaseOrderItem.Quantity);
+                    cmd.Parameters.AddWithValue("@UnitPrice", purchaseOrderItem.UnitPrice);
+                    cmd.Parameters.AddWithValue("@TotalPrice", purchaseOrderItem.TotalPrice);
+                    MessageBox.Show(purchaseOrderItemId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        private string GenerateNewPurchaseOrderItemID()
+        {
+            string newID = "PURI000001";
+
+            using (MySqlConnection conn = ServerConnect())
+            {
+             
+                using (MySqlCommand cmd = new MySqlCommand("SELECT PurchaseOrderItemID FROM purchaseorderitem WHERE PurchaseOrderItemID LIKE 'PURI%' ORDER BY PurchaseOrderItemID DESC LIMIT 1", conn))
+                {
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        string maxID = result.ToString();
+                        int maxNumber = int.Parse(maxID.Substring(4)); 
+                        newID = "PURI" + (maxNumber + 1).ToString("D6");
+                    }
+                }
+            }
+
+            return newID;
+        }
+
+        public class PurchaseOrder
+        {
+            public string PurchaseOrderID { get; set; }
+            public string SupplierID { get; set; }
+            public string Date { get; set; }
+            public string Status { get; set; }
+        }
+
+        public class PurchaseOrderItem
+        {
+            public string PurchaseOrderItemID { get; set; }
+            public string PurchaseOrderID { get; set; }
+            public string ProductID { get; set; }
+            public string Quantity { get; set; }
+            public string UnitPrice { get; set; }
+            public string TotalPrice { get; set; }
+        }
 
     }
 

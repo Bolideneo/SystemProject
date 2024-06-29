@@ -358,7 +358,7 @@ namespace ITP4519M
             orderdata.DataSource = programMethod.orderDateFilter("2024-06-03", "2024-06-18");
             // FirstpageBtnClick(orderdata, "Order", OrderPgSize, OrderPageIndex, orderIndexlbl, OrderRowCount);
             orderdata.Rows[0].Selected = false;
-           // SetRowHeights(orderdata, OrderPgSize);
+            // SetRowHeights(orderdata, OrderPgSize);
             string[] MinDate = programMethod.getOrderMinAndMaxDate();
             orderdateTimePicker1.MinDate = DateTime.Parse(MinDate[0]);
             orderdateTimePicker1.MaxDate = DateTime.Parse(MinDate[1]);
@@ -751,7 +751,7 @@ namespace ITP4519M
                 dealerindex = e.RowIndex;
                 DataGridViewRow selectRow = this.dealersData.Rows[dealerindex];
                 contactID = selectRow.Cells[1].Value.ToString();
-  
+
 
                 foreach (DataGridViewRow row in dealersData.Rows)
                 {
@@ -1801,10 +1801,11 @@ namespace ITP4519M
                 orderdata.DataSource = programMethod.orderDateFilter(formDate, toDate);
             else
             {
-                 string status = orderStatusCombox.Text.ToString();
-                orderdata.DataSource = programMethod.orderDateStatusFilter(formDate, toDate, status);
+                string status = orderStatusCombox.Text.ToString();
+                //orderdata.DataSource = programMethod.orderDateStatusFilter(formDate, toDate, status);
+                orderdata.DataSource = programMethod.overallLoginfo();
                 orderdata.Refresh();
-                
+
             }
         }
 
@@ -1830,7 +1831,7 @@ namespace ITP4519M
 
         private void OrderLoad()
         {
-           // orderdata.DataSource = programMethod.overallOrderinfo();
+            // orderdata.DataSource = programMethod.overallOrderinfo();
             foreach (DataGridViewRow row in orderdata.Rows)
             {
                 row.Height = (orderdata.ClientRectangle.Height - orderdata.ColumnHeadersHeight) / orderdata.Rows.Count;
@@ -1898,9 +1899,15 @@ namespace ITP4519M
                 //deliveryDeliveryIDlbl.Text = "Delivery ID : # " + DeliverydeliveryID.ToString();
                 DataTable dt = programMethod.getOutstandingOrder(outstandingOrderID);
                 outstandingIDlbl.Text = "Outstanding ID : #" + outstandingOrderID;
-                outstandingOrderIDlbl.Text = "Order ID :  # " + dt.Rows[0]["OrderID"].ToString();
-                outstandingDealerIDlbl.Text = "Dealer ID : " + dt.Rows[0]["DealerID"].ToString();
-                outstandingDealerNamelbl.Text = "Delaer Name : " + dt.Rows[0]["DealerName"].ToString();
+                outstandingOrderIDlbl1.Text = dt.Rows[0]["OrderID"].ToString();
+                viewoutstandingOrderDatelbl.Text = dt.Rows[0]["OrderDate"].ToString();
+                viewoutstandingOrderExecptDatelbl.Text = dt.Rows[0]["ExpectCompleteDate"].ToString();
+                outstandingViewDealerIDlbl.Text = dt.Rows[0]["DealerID"].ToString();
+                outstandingViewDealerNamelbl.Text = dt.Rows[0]["DealerName"].ToString();
+                outstandingViewContactNamelbl.Text = dt.Rows[0]["DealerContactName"].ToString();
+                outstandingViewPhoneNumlbl.Text = dt.Rows[0]["DealerContactPhoneNum"].ToString();
+                outstandingViewEmaillbl.Text = dt.Rows[0]["DealerEmailAddress"].ToString();
+                oustandingViewDeliverylbl.Text = dt.Rows[0]["DeliveryAddress"].ToString();
                 outstandingViewData.Rows.Add(dt.Rows[0]["ProductID"].ToString(), dt.Rows[0]["ProductName"].ToString(), dt.Rows[0]["FollowUpQuantity"].ToString(), dt.Rows[0]["UnitPrice"].ToString());
             }
         }
@@ -2229,7 +2236,7 @@ namespace ITP4519M
         {
 
         }
-   
+
         private void button17_Click(object sender, EventArgs e)
         {
             CreatePurchaseOrder CreatePurchaseForm = new CreatePurchaseOrder(OperationMode.New);
@@ -2243,6 +2250,10 @@ namespace ITP4519M
             PObtn.PerformClick();
         }
 
+        private void viewOutstandingCompletebtn_Click(object sender, EventArgs e)
+        {
+           programMethod.completeOutstandingOrder(outstandingOrderID);
+        }
     }
 }
     

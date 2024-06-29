@@ -219,6 +219,18 @@ namespace ITP4519M
             FollowUp = new DataGridViewTextBoxColumn();
             UnitPrice = new DataGridViewTextBoxColumn();
             panel42 = new Panel();
+            viewoutstandingOrderExecptDatelbl = new Label();
+            label58 = new Label();
+            viewoutstandingOrderDatelbl = new Label();
+            label56 = new Label();
+            outstandingOrderIDlbl1 = new Label();
+            outstandingOrderIDlbl = new Label();
+            oustandingViewDeliverylbl = new Label();
+            outstandingViewEmaillbl = new Label();
+            outstandingViewPhoneNumlbl = new Label();
+            outstandingViewContactNamelbl = new Label();
+            outstandingViewDealerNamelbl = new Label();
+            outstandingViewDealerIDlbl = new Label();
             outstandingDealerIDlbl = new Label();
             outstandingDealerNamelbl = new Label();
             outstandingDeliveryAddresslbl = new Label();
@@ -226,10 +238,9 @@ namespace ITP4519M
             outstandingEmaillbl = new Label();
             outstandingPhonelbl = new Label();
             button23 = new Button();
-            button21 = new Button();
+            viewOutstandingCompletebtn = new Button();
             outstandingCancelbtn = new Button();
             panel44 = new Panel();
-            outstandingOrderIDlbl = new Label();
             outstandingIDlbl = new Label();
             label36 = new Label();
             outstandingBackbtn = new Button();
@@ -2284,7 +2295,7 @@ namespace ITP4519M
             panel43.Controls.Add(outstandingViewData);
             panel43.Controls.Add(panel42);
             panel43.Controls.Add(button23);
-            panel43.Controls.Add(button21);
+            panel43.Controls.Add(viewOutstandingCompletebtn);
             panel43.Controls.Add(outstandingCancelbtn);
             panel43.Location = new Point(0, 164);
             panel43.Name = "panel43";
@@ -2296,6 +2307,7 @@ namespace ITP4519M
             outstandingViewData.AllowUserToAddRows = false;
             outstandingViewData.AllowUserToDeleteRows = false;
             outstandingViewData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            outstandingViewData.BackgroundColor = SystemColors.ButtonHighlight;
             outstandingViewData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             outstandingViewData.Columns.AddRange(new DataGridViewColumn[] { ProductID, ProductName, FollowUp, UnitPrice });
             outstandingViewData.Location = new Point(72, 305);
@@ -2338,6 +2350,18 @@ namespace ITP4519M
             // panel42
             // 
             panel42.BackColor = Color.White;
+            panel42.Controls.Add(viewoutstandingOrderExecptDatelbl);
+            panel42.Controls.Add(label58);
+            panel42.Controls.Add(viewoutstandingOrderDatelbl);
+            panel42.Controls.Add(label56);
+            panel42.Controls.Add(outstandingOrderIDlbl1);
+            panel42.Controls.Add(outstandingOrderIDlbl);
+            panel42.Controls.Add(oustandingViewDeliverylbl);
+            panel42.Controls.Add(outstandingViewEmaillbl);
+            panel42.Controls.Add(outstandingViewPhoneNumlbl);
+            panel42.Controls.Add(outstandingViewContactNamelbl);
+            panel42.Controls.Add(outstandingViewDealerNamelbl);
+            panel42.Controls.Add(outstandingViewDealerIDlbl);
             panel42.Controls.Add(outstandingDealerIDlbl);
             panel42.Controls.Add(outstandingDealerNamelbl);
             panel42.Controls.Add(outstandingDeliveryAddresslbl);
@@ -2349,6 +2373,126 @@ namespace ITP4519M
             panel42.Name = "panel42";
             panel42.Size = new Size(954, 284);
             panel42.TabIndex = 33;
+            // 
+            // viewoutstandingOrderExecptDatelbl
+            // 
+            viewoutstandingOrderExecptDatelbl.AutoSize = true;
+            viewoutstandingOrderExecptDatelbl.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            viewoutstandingOrderExecptDatelbl.Location = new Point(670, 121);
+            viewoutstandingOrderExecptDatelbl.Name = "viewoutstandingOrderExecptDatelbl";
+            viewoutstandingOrderExecptDatelbl.Size = new Size(106, 28);
+            viewoutstandingOrderExecptDatelbl.TabIndex = 42;
+            viewoutstandingOrderExecptDatelbl.Text = "OrderDate";
+            // 
+            // label58
+            // 
+            label58.AutoSize = true;
+            label58.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label58.Location = new Point(442, 124);
+            label58.Name = "label58";
+            label58.Size = new Size(188, 28);
+            label58.TabIndex = 41;
+            label58.Text = "Order Execpt Date :";
+            // 
+            // viewoutstandingOrderDatelbl
+            // 
+            viewoutstandingOrderDatelbl.AutoSize = true;
+            viewoutstandingOrderDatelbl.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            viewoutstandingOrderDatelbl.Location = new Point(675, 71);
+            viewoutstandingOrderDatelbl.Name = "viewoutstandingOrderDatelbl";
+            viewoutstandingOrderDatelbl.Size = new Size(106, 28);
+            viewoutstandingOrderDatelbl.TabIndex = 40;
+            viewoutstandingOrderDatelbl.Text = "OrderDate";
+            // 
+            // label56
+            // 
+            label56.AutoSize = true;
+            label56.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label56.Location = new Point(507, 72);
+            label56.Name = "label56";
+            label56.Size = new Size(123, 28);
+            label56.TabIndex = 39;
+            label56.Text = "Order Date :";
+            // 
+            // outstandingOrderIDlbl1
+            // 
+            outstandingOrderIDlbl1.AutoSize = true;
+            outstandingOrderIDlbl1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            outstandingOrderIDlbl1.Location = new Point(677, 28);
+            outstandingOrderIDlbl1.Name = "outstandingOrderIDlbl1";
+            outstandingOrderIDlbl1.Size = new Size(84, 28);
+            outstandingOrderIDlbl1.TabIndex = 38;
+            outstandingOrderIDlbl1.Text = "OrderID";
+            // 
+            // outstandingOrderIDlbl
+            // 
+            outstandingOrderIDlbl.AutoSize = true;
+            outstandingOrderIDlbl.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            outstandingOrderIDlbl.Location = new Point(533, 28);
+            outstandingOrderIDlbl.Name = "outstandingOrderIDlbl";
+            outstandingOrderIDlbl.Size = new Size(101, 28);
+            outstandingOrderIDlbl.TabIndex = 32;
+            outstandingOrderIDlbl.Text = "Order ID :";
+            // 
+            // oustandingViewDeliverylbl
+            // 
+            oustandingViewDeliverylbl.AutoSize = true;
+            oustandingViewDeliverylbl.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            oustandingViewDeliverylbl.Location = new Point(476, 216);
+            oustandingViewDeliverylbl.Name = "oustandingViewDeliverylbl";
+            oustandingViewDeliverylbl.Size = new Size(159, 28);
+            oustandingViewDeliverylbl.TabIndex = 37;
+            oustandingViewDeliverylbl.Text = "DeliveryAddress";
+            // 
+            // outstandingViewEmaillbl
+            // 
+            outstandingViewEmaillbl.AutoSize = true;
+            outstandingViewEmaillbl.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            outstandingViewEmaillbl.Location = new Point(233, 216);
+            outstandingViewEmaillbl.Name = "outstandingViewEmaillbl";
+            outstandingViewEmaillbl.Size = new Size(133, 28);
+            outstandingViewEmaillbl.TabIndex = 36;
+            outstandingViewEmaillbl.Text = "EmailAddress";
+            // 
+            // outstandingViewPhoneNumlbl
+            // 
+            outstandingViewPhoneNumlbl.AutoSize = true;
+            outstandingViewPhoneNumlbl.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            outstandingViewPhoneNumlbl.Location = new Point(236, 172);
+            outstandingViewPhoneNumlbl.Name = "outstandingViewPhoneNumlbl";
+            outstandingViewPhoneNumlbl.Size = new Size(116, 28);
+            outstandingViewPhoneNumlbl.TabIndex = 35;
+            outstandingViewPhoneNumlbl.Text = "PhoneNum";
+            // 
+            // outstandingViewContactNamelbl
+            // 
+            outstandingViewContactNamelbl.AutoSize = true;
+            outstandingViewContactNamelbl.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            outstandingViewContactNamelbl.Location = new Point(234, 127);
+            outstandingViewContactNamelbl.Name = "outstandingViewContactNamelbl";
+            outstandingViewContactNamelbl.Size = new Size(135, 28);
+            outstandingViewContactNamelbl.TabIndex = 34;
+            outstandingViewContactNamelbl.Text = "ContactName";
+            // 
+            // outstandingViewDealerNamelbl
+            // 
+            outstandingViewDealerNamelbl.AutoSize = true;
+            outstandingViewDealerNamelbl.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            outstandingViewDealerNamelbl.Location = new Point(237, 82);
+            outstandingViewDealerNamelbl.Name = "outstandingViewDealerNamelbl";
+            outstandingViewDealerNamelbl.Size = new Size(124, 28);
+            outstandingViewDealerNamelbl.TabIndex = 33;
+            outstandingViewDealerNamelbl.Text = "DealerName";
+            // 
+            // outstandingViewDealerIDlbl
+            // 
+            outstandingViewDealerIDlbl.AutoSize = true;
+            outstandingViewDealerIDlbl.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            outstandingViewDealerIDlbl.Location = new Point(233, 32);
+            outstandingViewDealerIDlbl.Name = "outstandingViewDealerIDlbl";
+            outstandingViewDealerIDlbl.Size = new Size(90, 28);
+            outstandingViewDealerIDlbl.TabIndex = 32;
+            outstandingViewDealerIDlbl.Text = "DealerID";
             // 
             // outstandingDealerIDlbl
             // 
@@ -2364,7 +2508,7 @@ namespace ITP4519M
             // 
             outstandingDealerNamelbl.AutoSize = true;
             outstandingDealerNamelbl.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            outstandingDealerNamelbl.Location = new Point(78, 75);
+            outstandingDealerNamelbl.Location = new Point(74, 81);
             outstandingDealerNamelbl.Name = "outstandingDealerNamelbl";
             outstandingDealerNamelbl.Size = new Size(147, 28);
             outstandingDealerNamelbl.TabIndex = 27;
@@ -2374,7 +2518,7 @@ namespace ITP4519M
             // 
             outstandingDeliveryAddresslbl.AutoSize = true;
             outstandingDeliveryAddresslbl.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            outstandingDeliveryAddresslbl.Location = new Point(509, 32);
+            outstandingDeliveryAddresslbl.Location = new Point(448, 175);
             outstandingDeliveryAddresslbl.Name = "outstandingDeliveryAddresslbl";
             outstandingDeliveryAddresslbl.Size = new Size(182, 28);
             outstandingDeliveryAddresslbl.TabIndex = 31;
@@ -2420,15 +2564,16 @@ namespace ITP4519M
             button23.Text = "Next";
             button23.UseVisualStyleBackColor = true;
             // 
-            // button21
+            // viewOutstandingCompletebtn
             // 
-            button21.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button21.Location = new Point(461, 709);
-            button21.Name = "button21";
-            button21.Size = new Size(158, 51);
-            button21.TabIndex = 20;
-            button21.Text = "Complete";
-            button21.UseVisualStyleBackColor = true;
+            viewOutstandingCompletebtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            viewOutstandingCompletebtn.Location = new Point(461, 709);
+            viewOutstandingCompletebtn.Name = "viewOutstandingCompletebtn";
+            viewOutstandingCompletebtn.Size = new Size(158, 51);
+            viewOutstandingCompletebtn.TabIndex = 20;
+            viewOutstandingCompletebtn.Text = "Complete";
+            viewOutstandingCompletebtn.UseVisualStyleBackColor = true;
+            viewOutstandingCompletebtn.Click += viewOutstandingCompletebtn_Click;
             // 
             // outstandingCancelbtn
             // 
@@ -2443,7 +2588,6 @@ namespace ITP4519M
             // panel44
             // 
             panel44.BackColor = Color.White;
-            panel44.Controls.Add(outstandingOrderIDlbl);
             panel44.Controls.Add(outstandingIDlbl);
             panel44.Controls.Add(label36);
             panel44.Controls.Add(outstandingBackbtn);
@@ -2451,16 +2595,6 @@ namespace ITP4519M
             panel44.Name = "panel44";
             panel44.Size = new Size(1219, 133);
             panel44.TabIndex = 33;
-            // 
-            // outstandingOrderIDlbl
-            // 
-            outstandingOrderIDlbl.AutoSize = true;
-            outstandingOrderIDlbl.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            outstandingOrderIDlbl.Location = new Point(431, 92);
-            outstandingOrderIDlbl.Name = "outstandingOrderIDlbl";
-            outstandingOrderIDlbl.Size = new Size(125, 28);
-            outstandingOrderIDlbl.TabIndex = 32;
-            outstandingOrderIDlbl.Text = "Order ID :  #";
             // 
             // outstandingIDlbl
             // 
@@ -2476,7 +2610,7 @@ namespace ITP4519M
             // 
             label36.AutoSize = true;
             label36.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label36.Location = new Point(22, 11);
+            label36.Location = new Point(17, 5);
             label36.Name = "label36";
             label36.Size = new Size(139, 31);
             label36.TabIndex = 21;
@@ -2485,7 +2619,7 @@ namespace ITP4519M
             // outstandingBackbtn
             // 
             outstandingBackbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            outstandingBackbtn.Location = new Point(822, 23);
+            outstandingBackbtn.Location = new Point(868, 14);
             outstandingBackbtn.Name = "outstandingBackbtn";
             outstandingBackbtn.Size = new Size(158, 51);
             outstandingBackbtn.TabIndex = 23;
@@ -5983,8 +6117,6 @@ namespace ITP4519M
             ClientSize = new Size(1497, 1047);
             Controls.Add(listpnl);
             Controls.Add(closebtn);
-            Controls.Add(orderpnl);
-            Controls.Add(GRNpnl);
             Controls.Add(outstandingViewpnl);
             Controls.Add(deliveryCompletepnl);
             Controls.Add(StockReportpnl);
@@ -5999,6 +6131,8 @@ namespace ITP4519M
             Controls.Add(deliverypnl);
             Controls.Add(userspnl);
             Controls.Add(outstandingOrderpnl);
+            Controls.Add(orderpnl);
+            Controls.Add(GRNpnl);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
@@ -6445,7 +6579,7 @@ namespace ITP4519M
         private Button outstandingBackbtn;
         private Label outstandingIDlbl;
         private Label label36;
-        private Button button21;
+        private Button viewOutstandingCompletebtn;
         private Button outstandingCancelbtn;
         private Button button23;
         private Label outstandingEmaillbl;
@@ -6568,5 +6702,16 @@ namespace ITP4519M
         private Button button22;
         private Label label55;
         private System.Windows.Forms.DataVisualization.Charting.Chart reportStockPie;
+        private Label outstandingViewEmaillbl;
+        private Label outstandingViewPhoneNumlbl;
+        private Label outstandingViewContactNamelbl;
+        private Label outstandingViewDealerNamelbl;
+        private Label outstandingViewDealerIDlbl;
+        private Label oustandingViewDeliverylbl;
+        private Label outstandingOrderIDlbl1;
+        private Label viewoutstandingOrderDatelbl;
+        private Label label56;
+        private Label viewoutstandingOrderExecptDatelbl;
+        private Label label58;
     }
 }

@@ -17,7 +17,6 @@ using static ITP4519M.DataBaseMethod;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.VisualBasic.ApplicationServices;
 using Mysqlx.Crud;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Linq.Expressions;
 using System.Diagnostics;
 using System.IO;
@@ -717,9 +716,9 @@ namespace ProgramMethod
             {
                 dataBaseMethod.updateProductStatus(ProductID, "Available");
             }
-            else if (temp <= outOfStockLevelInt)
+            else if (temp == 0) //== outOfStockLevelIn
             {
-                dataBaseMethod.updateProductStatus(ProductID, "Out of Stock");
+                dataBaseMethod.updateProductStatus(ProductID, "Out-of-Stock");
             }
             else if (temp > outOfStockLevelInt && temp <= dangerLevelInt)
             {
@@ -727,14 +726,14 @@ namespace ProgramMethod
             }
             else
             {
-                dataBaseMethod.updateProductStatus(ProductID, "ReOrder");
+                dataBaseMethod.updateProductStatus(ProductID, "Re-Order");
             }
 
         }
         public void ReduceStock(string ProductID, string qty)
         {
             int temp = int.Parse(dataBaseMethod.getProductQuantity(ProductID)) - int.Parse(qty);
-            dataBaseMethod.increaseStock(ProductID, temp.ToString());
+            dataBaseMethod.ReduceStock(ProductID, temp.ToString());
 
 
             DataTable ReOrderqty = dataBaseMethod.getProductQuantityLevel(ProductID);
@@ -1331,31 +1330,33 @@ namespace ProgramMethod
         public bool createOrderAssembly(DataGridView ActualDesptchData, DataGridView orderItemData, string orderID)
         {
             int temp = -1;
+            string logID = LogAssginProdutIntoAccembly(LoginUserID, LoginUserName, orderID);
+            MessageBox.Show(logID);
             for (int i = 0; i < ActualDesptchData.Rows.Count; i++)
             {
-                
+                LogUpdateAssginProdutIntoAccembly(logID, ActualDesptchData.Rows[i].Cells[0].Value.ToString(), ActualDesptchData.Rows[i].Cells[1].Value.ToString(), ActualDesptchData.Rows[i].Cells[2].Value.ToString());
                 ReduceStock(ActualDesptchData.Rows[i].Cells[0].Value.ToString(), ActualDesptchData.Rows[i].Cells[2].Value.ToString());
                 if(i == 0)
                 {
                    temp  = dataBaseMethod.getOrderItemUpdateCount(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString()) + 1;
                 }   
-                if (int.Parse(dataBaseMethod.getPrdocutQuantityInStock(ActualDesptchData.Rows[i].Cells[0].Value.ToString())) > int.Parse(dataBaseMethod.getProdcutDangerQty((ActualDesptchData.Rows[i].Cells[0].Value.ToString()))))
-                {
-                    dataBaseMethod.updateProductStatus(ActualDesptchData.Rows[i].Cells[0].Value.ToString(), "Available");
-                }
-                if (int.Parse(dataBaseMethod.getPrdocutQuantityInStock(ActualDesptchData.Rows[i].Cells[0].Value.ToString())) <= (int.Parse(dataBaseMethod.getProdcutDangerQty((ActualDesptchData.Rows[i].Cells[0].Value.ToString())))))
-                {
-                    dataBaseMethod.updateProductStatus(ActualDesptchData.Rows[i].Cells[0].Value.ToString(), "Re-order");
-                }
+                //if (int.Parse(dataBaseMethod.getPrdocutQuantityInStock(ActualDesptchData.Rows[i].Cells[0].Value.ToString())) > int.Parse(dataBaseMethod.getProdcutDangerQty((ActualDesptchData.Rows[i].Cells[0].Value.ToString()))))
+                //{
+                //    dataBaseMethod.updateProductStatus(ActualDesptchData.Rows[i].Cells[0].Value.ToString(), "Available");
+                //}
+                //if (int.Parse(dataBaseMethod.getPrdocutQuantityInStock(ActualDesptchData.Rows[i].Cells[0].Value.ToString())) <= (int.Parse(dataBaseMethod.getProdcutDangerQty((ActualDesptchData.Rows[i].Cells[0].Value.ToString())))))
+                //{
+                //    dataBaseMethod.updateProductStatus(ActualDesptchData.Rows[i].Cells[0].Value.ToString(), "Re-order");
+                //}
 
-                if (int.Parse(dataBaseMethod.getPrdocutQuantityInStock(ActualDesptchData.Rows[i].Cells[0].Value.ToString())) <= (int.Parse(dataBaseMethod.getProdcutDangerQty((ActualDesptchData.Rows[i].Cells[0].Value.ToString())))))
-                {
-                    dataBaseMethod.updateProductStatus(ActualDesptchData.Rows[i].Cells[0].Value.ToString(), "Danger");
-                }
-                if (int.Parse(dataBaseMethod.getPrdocutQuantityInStock(ActualDesptchData.Rows[i].Cells[0].Value.ToString())) == 0)
-                {
-                    dataBaseMethod.updateProductStatus(ActualDesptchData.Rows[i].Cells[0].Value.ToString(), "Out-Of-Stock");
-                }
+                //if (int.Parse(dataBaseMethod.getPrdocutQuantityInStock(ActualDesptchData.Rows[i].Cells[0].Value.ToString())) <= (int.Parse(dataBaseMethod.getProdcutDangerQty((ActualDesptchData.Rows[i].Cells[0].Value.ToString())))))
+                //{
+                //    dataBaseMethod.updateProductStatus(ActualDesptchData.Rows[i].Cells[0].Value.ToString(), "Danger");
+                //}
+                //if (int.Parse(dataBaseMethod.getPrdocutQuantityInStock(ActualDesptchData.Rows[i].Cells[0].Value.ToString())) == 0)
+                //{
+                //    dataBaseMethod.updateProductStatus(ActualDesptchData.Rows[i].Cells[0].Value.ToString(), "Out-Of-Stock");
+                //}
 
 
                 if (int.Parse(ActualDesptchData.Rows[i].Cells[2].Value.ToString()) < int.Parse(ActualDesptchData.Rows[i].Cells[3].Value.ToString()))
@@ -1386,7 +1387,6 @@ namespace ProgramMethod
                 dataBaseMethod.updateOrderItemDemand(ActualDesptchData.Rows[i].Cells[0].Value.ToString(), int.Parse(ActualDesptchData.Rows[i].Cells[2].Value.ToString()));
                 dataBaseMethod.updateOrderItem(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString(), ActualDesptchData.Rows[i].Cells[2].Value.ToString(), ActualDesptchData.Rows[i].Cells[3].Value.ToString(), temp);
                 dataBaseMethod.createOrderItemAudit(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString());
-                LogCreateOrderAccembly(LoginUserID, LoginUserName, orderID);
 
             }
             //if (ActualDesptchData.RowCount != 0)
@@ -1404,7 +1404,6 @@ namespace ProgramMethod
 
                 for (int j = 0; j < orderItemData.RowCount; j++)
                 {
-                    Debug.WriteLine("TEST");
                     string oustID = "OUT" + (int.Parse(dataBaseMethod.getOutStandingID()) + 1).ToString("000000");
                     while (!dataBaseMethod.createOutstandingOrder(oustID, orderID, orderItemData.Rows[j].Cells[0].Value.ToString(), dataBaseMethod.getOrderOfDealerID(orderID), orderItemData.Rows[j].Cells[3].Value.ToString()) )
                     {
@@ -1415,22 +1414,18 @@ namespace ProgramMethod
             }
             else if (ActualDesptchData.RowCount < orderItemData.RowCount)
             {
-                Debug.WriteLine("TEST ELSE");
                 //Bug
                 for (int i = 0; i < ActualDesptchData.RowCount; i++)
                 {
-                    Debug.WriteLine("TEST POIN0");
                     int count = 0;
                     for (int j = 0; j < ActualDesptchData.RowCount; j++)
                     {
-                        Debug.WriteLine("TEST POIN1");
                         if (orderItemData.Rows[i].Cells[1].Value.ToString() != ActualDesptchData.Rows[j].Cells[0].Value.ToString())
                         {
                             count++;
                         }
                         if (count == ActualDesptchData.RowCount - 1)
                         {
-                            Debug.WriteLine("TEST POIN2");
                             string oustID = "OUT" + (int.Parse(dataBaseMethod.getOutStandingID()) + 1).ToString("000000");
                             while (!dataBaseMethod.createOutstandingOrder(oustID, orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString(), dataBaseMethod.getOrderOfDealerID(orderID), ActualDesptchData.Rows[i].Cells[3].Value.ToString()))
                             {
@@ -1601,7 +1596,11 @@ namespace ProgramMethod
             return dataBaseMethod.getOutstandingOrder(outID);
         }
 
-    
+        public void completeOutstandingOrder(string outID)
+        {
+            dataBaseMethod.completeOutstandingOrder(outID);
+        }
+
 
         public class PanelBorderColor : Panel
         {
@@ -1870,7 +1869,24 @@ namespace ProgramMethod
 
         
 
-         public void LogCreateOrderAccembly(string userID, string userName, string orderID)
+        public string LogAssginProdutIntoAccembly(string userID, string userName, string orderID)
+        {
+            string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
+            if (logID != null)
+            {
+                dataBaseMethod.LogAssginProdutIntoAccembly(logID, userID, userName, orderID);
+            }
+            return logID;
+        }
+        public void LogUpdateAssginProdutIntoAccembly(string logID, string productID, string productName, string qty)
+        {
+
+            dataBaseMethod.LogUpdateAssginProdutIntoAccembly(logID, productID, productName, qty);
+
+        }
+
+
+        public void LogCreateOrderAccembly(string userID, string userName, string orderID)
         {
             string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
             if (logID != null)
@@ -1878,8 +1894,6 @@ namespace ProgramMethod
                 dataBaseMethod.LogCreateOrderAccembly(logID, userID, userName, orderID);
             }
         }
-
-       
 
         public void LogCreateDealerContact(string userID, string userName, string dealerID)
         {
@@ -2121,6 +2135,16 @@ namespace ProgramMethod
             temp[2] = dataBaseMethod.getAllCancelOrderLabel();
             temp[3] = dataBaseMethod.getActiveOrder();
             return temp;
+        }
+
+        public string SavePurchaseOrder(PurchaseOrder purchaseOrder)
+        {
+            return dataBaseMethod.CreatePurchaseOrder(purchaseOrder);
+        }
+
+        public void SavePurchaseOrderItem(PurchaseOrderItem purchaseOrderItem)
+        {
+            dataBaseMethod.CreatePurchaseOrderItem(purchaseOrderItem);
 
         }
     }
