@@ -471,7 +471,6 @@ namespace ITP4519M
             dateTimePicker2 = new DateTimePicker();
             invoiceData = new CustomDataGridView();
             invoicecheckbox = new DataGridViewCheckBoxColumn();
-            button12 = new Button();
             invoicelbl = new Label();
             outstandingViewpnl = new Panel();
             panel45 = new Panel();
@@ -5441,7 +5440,6 @@ namespace ITP4519M
             invoicepnl.Controls.Add(panel14);
             invoicepnl.Controls.Add(panel15);
             invoicepnl.Controls.Add(invoiceData);
-            invoicepnl.Controls.Add(button12);
             invoicepnl.Controls.Add(invoicelbl);
             invoicepnl.Location = new Point(201, 3);
             invoicepnl.Name = "invoicepnl";
@@ -5710,16 +5708,6 @@ namespace ITP4519M
             invoicecheckbox.HeaderText = "Select";
             invoicecheckbox.MinimumWidth = 35;
             invoicecheckbox.Name = "invoicecheckbox";
-            // 
-            // button12
-            // 
-            button12.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button12.Location = new Point(978, 25);
-            button12.Name = "button12";
-            button12.Size = new Size(161, 56);
-            button12.TabIndex = 36;
-            button12.Text = "Add";
-            button12.UseVisualStyleBackColor = true;
             // 
             // invoicelbl
             // 
@@ -6117,6 +6105,13 @@ namespace ITP4519M
             ClientSize = new Size(1497, 1047);
             Controls.Add(listpnl);
             Controls.Add(closebtn);
+            Controls.Add(invoicepnl);
+            Controls.Add(POpnl);
+            Controls.Add(deliverypnl);
+            Controls.Add(userspnl);
+            Controls.Add(outstandingOrderpnl);
+            Controls.Add(orderpnl);
+            Controls.Add(GRNpnl);
             Controls.Add(outstandingViewpnl);
             Controls.Add(deliveryCompletepnl);
             Controls.Add(StockReportpnl);
@@ -6126,13 +6121,6 @@ namespace ITP4519M
             Controls.Add(logpnl);
             Controls.Add(inventorypnl);
             Controls.Add(contactpnl);
-            Controls.Add(invoicepnl);
-            Controls.Add(POpnl);
-            Controls.Add(deliverypnl);
-            Controls.Add(userspnl);
-            Controls.Add(outstandingOrderpnl);
-            Controls.Add(orderpnl);
-            Controls.Add(GRNpnl);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
@@ -6517,7 +6505,6 @@ namespace ITP4519M
         private Button button11;
         private DateTimePicker dateTimePicker2;
         private CustomDataGridView invoiceData;
-        private Button button12;
         private Panel panel16;
         private ProgramMethod.ProgramMethod.RoundedButton poFirstPageBtn;
         private Label label24;

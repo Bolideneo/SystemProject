@@ -34,6 +34,7 @@ namespace ITP4519M
                     SetReadOnly(true);
                     break;
                 case OperationMode.New:
+                    grnDateTimePicker.MinDate = DateTime.Now;
                     ClearForm();
                     SetReadOnly(false);
                     break;

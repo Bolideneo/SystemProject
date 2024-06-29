@@ -12,6 +12,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Drawing.Text;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,14 +30,19 @@ namespace ITP4519M
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
         string SupplierID;
         private OperationMode _mode;
+        private string ProductID;
+        private string OrderQuantity;
+
+
+
         public event EventHandler OperationCompleted;
         public CreatePurchaseOrder(OperationMode mode)
         {
             InitializeComponent();
             LoadSuppliers();
             _mode = mode;
-            purchaseOrderItemsListView.Columns.Add("ProductID", 0); // Hidden column
-            purchaseOrderItemsListView.Columns.Add("Product Name", 150);
+            purchaseOrderItemsListView.Columns.Add("ProductID", 0); 
+            purchaseOrderItemsListView.Columns.Add("Product Name", 200);
             purchaseOrderItemsListView.Columns.Add("Quantity", 70);
             purchaseOrderItemsListView.Columns.Add("Cost Price", 100);
             purchaseOrderItemsListView.Columns.Add("Total Price", 100);
@@ -66,9 +72,6 @@ namespace ITP4519M
 
                     SetReadOnly(false);
                     break;
-
-
-
             }
         }
 
@@ -102,6 +105,8 @@ namespace ITP4519M
                 SupplierDetails selectedSupplier = (SupplierDetails)supplierBox.SelectedItem;
                 LoadProductsBySupplier(selectedSupplier.SupplierID);
                 UpdateSupplierDetails(selectedSupplier);
+                purchaseOrderItemsListView.Items.Clear();
+
             }
         }
 
@@ -127,15 +132,26 @@ namespace ITP4519M
 
         private void createOrderbtn_Click(object sender, EventArgs e)
         {
+            var productList = new List<(string ProductID, string Quantity)>();
+
+            // Collect ProductID and Quantity from ListView
+            foreach (ListViewItem item in purchaseOrderItemsListView.Items)
+            {
+                ProductID = item.SubItems[0].Text;
+                OrderQuantity = item.SubItems[2].Text;
+            }
+
             PurchaseOrder newOrder = new PurchaseOrder
             {
                 SupplierID = supplierBox.SelectedValue.ToString(),
-                Date = DateTime.Now.ToString("yyyy-MM-dd"),
-                Status = "Pending"
+                Date = DateTime.Now.ToString("M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture).ToUpper(),
+                Status = "In Procurement",
+                ProductID = this.ProductID,
+                OrderQuantity = this.OrderQuantity 
             };
 
             // Save the PurchaseOrder and get its generated ID
-            string purchaseOrderId = programMethod.SavePurchaseOrder(newOrder);
+            string purchaseOrderId = programMethod.CreatePurchaseOrder(newOrder);
 
             // Save each item in the ListView as a PurchaseOrderItem
             foreach (ListViewItem item in purchaseOrderItemsListView.Items)
@@ -149,7 +165,7 @@ namespace ITP4519M
                     TotalPrice = item.SubItems[4].Text
                 };
 
-                programMethod.SavePurchaseOrderItem(purchaseOrderItem);
+                programMethod.CreatePurchaseOrderItem(purchaseOrderItem);
             }
 
             MessageBox.Show("Purchase Order Saved Successfully");
