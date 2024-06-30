@@ -651,6 +651,11 @@ namespace ProgramMethod
             return dataBaseMethod.searchGRNDate(startDate, endDate);
         }
 
+        public DataTable searchPODate(string startDate, string endDate)
+        {
+            return dataBaseMethod.searchPODate(startDate, endDate);
+        }
+
         public DataTable searchDeliveryDate(string startDate, string endDate)
         {
             return dataBaseMethod.searchDeliveryDate(startDate, endDate);
@@ -1593,6 +1598,12 @@ namespace ProgramMethod
         public DataTable orderDateFilter(string fromData, string toDate)
         {
             return dataBaseMethod.orderDateFilter(fromData, toDate);
+
+        }
+       
+        public DataTable orderAccemblyDateFilter(string fromData, string toDate)
+        {
+            return dataBaseMethod.orderAccemblyDateFilter(fromData, toDate);
 
         }
 

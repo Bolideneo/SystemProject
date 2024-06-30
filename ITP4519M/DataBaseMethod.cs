@@ -1749,6 +1749,24 @@ namespace ITP4519M
             return dataTable;
         }
 
+        public DataTable searchPODate(string startDate, string endDate)
+        {
+            string sql = "SELECT po.PurchaseOrderID, p.ProductName, po.OrderQuantity, po.UnitPrice, po.TotalPrice, s.SupplierCompanyName, po.Status, po.Date " +
+                         "FROM purchaseorder po " +
+                         "JOIN product p ON po.ProductID = p.ProductID " +
+                         "JOIN supplier s ON po.SupplierID = s.SupplierID " +
+                         "ORDER BY po.PurchaseOrderID " +
+                         "WHERE po.Date BETWEEN @startdate AND @enddate";
+           // string sql = "SELECT * FROM grn WHERE ReceiveDate BETWEEN @startdate AND @enddate";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            cmd.Parameters.AddWithValue("@startdate", startDate);
+            cmd.Parameters.AddWithValue("@enddate", endDate);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
         public DataTable searchDeliveryDate(string startDate, string endDate)
         {
             string sql = "SELECT * FROM delivery WHERE DeliveryDate BETWEEN @startdate AND @enddate";
@@ -2600,6 +2618,21 @@ namespace ITP4519M
         public DataTable orderDateFilter(string fromDate, string toDate)
         {
             string sql = "SELECT OrderID, DealerID, OrderStatus, OrderDate FROM `order` WHERE OrderDate BETWEEN @fromDate AND @toDate";
+            //string sql = "SELECT * FROM `order` WHERE OrderDate BETWEEN @fromDate AND @toDate";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@fromDate", fromDate);
+            cmd.Parameters.AddWithValue("@toDate", toDate);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+
+        }
+
+        public DataTable orderAccemblyDateFilter(string fromDate, string toDate)
+        {
+            string sql = "SELECT orderitem.ProductID, product.ProductName, BinLocation, QuantityInStock, OrderedQuantity FROM product, orderitem WHERE orderitem.OrderID = @orderID AND orderitem.ProductID = product.ProductID AND OrderDate BETWEEN @fromDate AND @toDate";
             //string sql = "SELECT * FROM `order` WHERE OrderDate BETWEEN @fromDate AND @toDate";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@fromDate", fromDate);
