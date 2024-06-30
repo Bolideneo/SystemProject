@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualBasic.ApplicationServices;
+using Microsoft.VisualBasic.Devices;
 using Mysqlx.Crud;
 using Mysqlx.Session;
 using MySqlX.XDevAPI.Common;
@@ -16,6 +17,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
+using System.Web;
 using System.Windows.Forms;
 using static ProgramMethod.ProgramMethod;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -36,6 +38,7 @@ namespace ITP4519M
         private bool isWrongFormat3;
         private OperationMode _mode;
         private bool DealerInfo;
+        private string value;
 
 
 
@@ -50,50 +53,6 @@ namespace ITP4519M
         {
             this.userID = userID;
             this.userName = userName;
-        }
-
-        void assistant_Idled(object sender, EventArgs e)
-        {
-            this.Invoke(
-            new MethodInvoker(() =>
-            {
-                try
-                {  //Enable This
-                   // coll.Clear();
-
-                    DataTable result = programMethod.searchDealerDetail(comboBox1.Text.Trim());
-
-                    if (result.Rows.Count > 0)
-                    {
-
-                        foreach (DataRow row in result.Rows)
-                        {
-                            coll.Add(row["DealerName"].ToString());
-
-                        }
-                    }
-                    dealerinfoBox.AutoCompleteCustomSource = coll;
-                    dealerIDBox.Text = result.Rows[0]["DealerID"].ToString();
-                    dealerNameBox.Text = result.Rows[0]["DealerName"].ToString();
-                    phoneNumBox.Text = result.Rows[0]["DealerPhoneNum"].ToString();
-                    dealerCompanyBox.Text = result.Rows[0]["DealerCompanyName"].ToString();
-                    invoiceAddressBox.Text = result.Rows[0]["DealerCompanyAddress"].ToString();
-                    goodsAddressBox.Text = result.Rows[0]["DealerCompanyAddress"].ToString();
-                    orderEmailAddressbox.Text = result.Rows[0]["DealerEmailAddress"].ToString();
-
-                    //}
-                    //else
-                    //{
-                    //    MessageBox.Show("Name not found");
-                    //}
-
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }));
         }
 
         private void dealerinfoBox_TextChanged(object sender, EventArgs e)
@@ -111,11 +70,9 @@ namespace ITP4519M
 
         private void SalesOrder_Load(object sender, EventArgs e)
         {
-            assistant = new TypeAssistant();
-            assistant.Idled += assistant_Idled;
-            comboBox2.AutoCompleteMode = AutoCompleteMode.Suggest;
-            comboBox2.AutoCompleteSource = AutoCompleteSource.ListItems;
 
+
+            orderDateBox.BorderColor = Color.Red;
             switch (_mode)
             {
                 case OperationMode.View:
@@ -123,7 +80,7 @@ namespace ITP4519M
                     SetReadOnly(true);
                     break;
                 case OperationMode.New:
-
+                    //programMethod.productSearchAutoComplete(orderAccemblyAssignbox);
                     orderDateBox.MinDate = DateTime.Today;
                     orderDateBox.MaxDate = DateTime.Today;
                     productOfOrderdata.Columns.Add("ProductID", "Product ID");
@@ -142,12 +99,7 @@ namespace ITP4519M
         }
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            System.Drawing.Rectangle rect = new Rectangle(dealerinfoBox.Location.X,
-            dealerinfoBox.Location.Y, dealerinfoBox.ClientSize.Width, dealerinfoBox.ClientSize.Height);
-
-            rect.Inflate(1, 1); // border thickness
-            System.Windows.Forms.ControlPaint.DrawBorder(e.Graphics, rect,
-            Color.DeepSkyBlue, ButtonBorderStyle.Solid);
+       
         }
         private void ClearForm()
         {
@@ -260,18 +212,22 @@ namespace ITP4519M
         {
 
 
-            if (dealerinfoBox.Text == "")
+            if (dealerInfobox.Text == "")
             {
                 isWrongFormat = true;
-                Refresh();
                 usernameAlertBox.Visible = true;
                 usernameAlertlbl.Visible = true;
+                dealerInfobox.BorderColor = Color.Red;
+                Refresh();
             }
-            else           {
+            else
+            {
                 isWrongFormat = false;
                 usernameAlertBox.Visible = false;
                 usernameAlertlbl.Visible = false;
+                dealerInfobox.BorderColor = Color.Black;
                 Refresh();
+                
             }
 
             //else if (dealerIDBox.Text == "")
@@ -287,7 +243,7 @@ namespace ITP4519M
                 Refresh();
 
             }
-            else 
+            else
             {
 
                 isWrongFormat2 = false;
@@ -296,7 +252,7 @@ namespace ITP4519M
                 Refresh();
             }
 
-            if(OrderContactPhonebox.Text == "")
+            if (OrderContactPhonebox.Text == "")
             {
                 isWrongFormat3 = true;
                 label2.Visible = true;
@@ -312,7 +268,7 @@ namespace ITP4519M
                 Refresh();
 
             }
-            
+
             //else if (productSearchbox.Text == "")
             //{
             //    MessageBox.Show("Please Input Product ID ");
@@ -390,8 +346,8 @@ namespace ITP4519M
                 {
                     this.productOfOrderdata.EndEdit();
                     if (this.productOfOrderdata.CurrentRow.IsNewRow && this.productOfOrderdata.Rows.Count > 1)
-                         this.productOfOrderdata.CurrentCell = this.productOfOrderdata.Rows[this.productOfOrderdata.Rows.Count - 1].Cells[2];
-                        ordertotallbl.Text = "" + programMethod.calProductTotalAmount(productOfOrderdata);
+                        this.productOfOrderdata.CurrentCell = this.productOfOrderdata.Rows[this.productOfOrderdata.Rows.Count - 1].Cells[2];
+                    ordertotallbl.Text = "" + programMethod.calProductTotalAmount(productOfOrderdata);
                     return true;
                 }
             }
@@ -424,85 +380,38 @@ namespace ITP4519M
 
         }
 
-        private void comboBox1_TextChanged(object sender, EventArgs e)
-        {
-            assistant.TextChanged();
-
-        }
-
         private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void comboBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
 
         }
 
         private void comboBox2_KeyDown(object sender, KeyEventArgs e)
         {
+            string text = dealerInfobox.Text.Trim();
             if (e.KeyCode == Keys.Enter)
             {
+                programMethod.DealerSearchAutoComplete(dealerInfobox, dealerInfobox.Text.Trim());
 
-                DataTable result = programMethod.searchDealerDetail(comboBox2.Text.Trim());
-                //  comboBox2.Items.Insert(0, new ListItem("Select here...", string.Empty));
-
-                //MessageBox.Show("Enter pressed", "KeyPress Event");
-
-                if (result.Rows.Count > 0)
+                if (dealerInfobox.Items.Count > 0)
                 {
-                    comboBox2.DroppedDown = true;
-                    //    foreach (DataRow row in result.Rows)
-                    //    {
-                    //        coll.Add(row["DealerName"].ToString());
-
-                    //    }
+                    dealerInfobox.DroppedDown = true;
+                    dealerInfobox.IntegralHeight = true;
+                    dealerInfobox.SelectedIndex = -1;
+                    dealerInfobox.SelectionStart = dealerInfobox.Text.Trim().Length;
+                    dealerInfobox.SelectionLength = 0;
                 }
-                else
-                {
-                    comboBox2.DroppedDown = false;
-                    return;
-                }
-                DataRow row2 = result.NewRow();
-                row2.ItemArray = new object[] { 0, "--Close Suggestion--" };
-                result.Rows.InsertAt(row2, 0);
-                comboBox2.DisplayMember = "DealerName";
-                comboBox2.DataSource = result;
-
-
-
-
-                //dealerinfoBox.AutoCompleteCustomSource = coll;
-
-                dealerIDBox.Text = result.Rows[0]["DealerID"].ToString();
-                dealerNameBox.Text = result.Rows[0]["DealerName"].ToString();
-                phoneNumBox.Text = result.Rows[0]["DealerPhoneNum"].ToString();
-                dealerCompanyBox.Text = result.Rows[0]["DealerCompanyName"].ToString();
-                goodsAddressBox.Text = result.Rows[0]["DealerRegionNum"].ToString();
-                comboBox2.PreviewKeyDown += new PreviewKeyDownEventHandler(comboBox2_PreviewKeyDown);
-
-
-
+                Cursor.Current = Cursors.Default;
             }
+            dealerInfobox.Text = text;
         }
 
         private void comboBox2_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            comboBox2.PreviewKeyDown -= comboBox2_PreviewKeyDown;
-            if (comboBox2.DroppedDown) comboBox2.Focus();
+            dealerInfobox.PreviewKeyDown -= comboBox2_PreviewKeyDown;
+            if (dealerInfobox.DroppedDown) dealerInfobox.Focus();
 
         }
 
-        private void usernamepnl_Paint(object sender, PaintEventArgs e)
-        {
-            if (isWrongFormat)
-            {
-                ControlPaint.DrawBorder(e.Graphics, this.usernamepnl.ClientRectangle, Color.Red, ButtonBorderStyle.Solid);
-                return;
-            }
-            ControlPaint.DrawBorder(e.Graphics, this.usernamepnl.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
-        }
 
         private void panel5_Paint_1(object sender, PaintEventArgs e)
         {
@@ -523,6 +432,21 @@ namespace ITP4519M
             }
             ControlPaint.DrawBorder(e.Graphics, this.panel7.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
 
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (dealerInfobox.SelectedItem != null)
+            {
+                string selectedItem = dealerInfobox.SelectedItem.ToString();
+                Cursor.Current = Cursors.Default;
+                DataTable result = programMethod.searchDealerDetail(selectedItem);
+                dealerIDBox.Text = result.Rows[0]["DealerID"].ToString();
+                dealerNameBox.Text = result.Rows[0]["DealerName"].ToString();
+                phoneNumBox.Text = result.Rows[0]["DealerPhoneNum"].ToString();
+                dealerCompanyBox.Text = result.Rows[0]["DealerCompanyName"].ToString();
+                goodsAddressBox.Text = result.Rows[0]["DealerRegionNum"].ToString();
+            }
         }
     }
 

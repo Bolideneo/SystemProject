@@ -2696,7 +2696,7 @@ namespace ITP4519M
             // 
             label15.AutoSize = true;
             label15.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label15.Location = new Point(11, 724);
+            label15.Location = new Point(17, 717);
             label15.Name = "label15";
             label15.Size = new Size(246, 29);
             label15.TabIndex = 78;
@@ -2708,7 +2708,7 @@ namespace ITP4519M
             orderchart2.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             orderchart2.Legends.Add(legend1);
-            orderchart2.Location = new Point(648, 392);
+            orderchart2.Location = new Point(614, 376);
             orderchart2.Margin = new Padding(3, 4, 3, 4);
             orderchart2.Name = "orderchart2";
             orderchart2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
@@ -2726,7 +2726,7 @@ namespace ITP4519M
             series2.Name = "Expenses";
             orderchart2.Series.Add(series1);
             orderchart2.Series.Add(series2);
-            orderchart2.Size = new Size(521, 328);
+            orderchart2.Size = new Size(555, 344);
             orderchart2.TabIndex = 77;
             orderchart2.Text = "chart2";
             title1.Alignment = ContentAlignment.TopLeft;
@@ -2803,7 +2803,7 @@ namespace ITP4519M
             orderchart1.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
             orderchart1.Legends.Add(legend2);
-            orderchart1.Location = new Point(55, 392);
+            orderchart1.Location = new Point(55, 376);
             orderchart1.Margin = new Padding(3, 4, 3, 4);
             orderchart1.Name = "orderchart1";
             series3.ChartArea = "ChartArea1";
@@ -2811,7 +2811,7 @@ namespace ITP4519M
             series3.Legend = "Legend1";
             series3.Name = "Order";
             orderchart1.Series.Add(series3);
-            orderchart1.Size = new Size(519, 328);
+            orderchart1.Size = new Size(529, 344);
             orderchart1.TabIndex = 76;
             orderchart1.Text = "chart1";
             title2.Alignment = ContentAlignment.TopLeft;
@@ -2835,7 +2835,7 @@ namespace ITP4519M
             // 
             TodayTotalOrderValue.AutoSize = true;
             TodayTotalOrderValue.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 136);
-            TodayTotalOrderValue.Location = new Point(37, 84);
+            TodayTotalOrderValue.Location = new Point(18, 83);
             TodayTotalOrderValue.Name = "TodayTotalOrderValue";
             TodayTotalOrderValue.Size = new Size(191, 22);
             TodayTotalOrderValue.TabIndex = 16;
@@ -6105,11 +6105,6 @@ namespace ITP4519M
             ClientSize = new Size(1497, 1047);
             Controls.Add(listpnl);
             Controls.Add(closebtn);
-            Controls.Add(invoicepnl);
-            Controls.Add(POpnl);
-            Controls.Add(deliverypnl);
-            Controls.Add(userspnl);
-            Controls.Add(outstandingOrderpnl);
             Controls.Add(orderpnl);
             Controls.Add(GRNpnl);
             Controls.Add(outstandingViewpnl);
@@ -6121,6 +6116,11 @@ namespace ITP4519M
             Controls.Add(logpnl);
             Controls.Add(inventorypnl);
             Controls.Add(contactpnl);
+            Controls.Add(invoicepnl);
+            Controls.Add(POpnl);
+            Controls.Add(deliverypnl);
+            Controls.Add(userspnl);
+            Controls.Add(outstandingOrderpnl);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);

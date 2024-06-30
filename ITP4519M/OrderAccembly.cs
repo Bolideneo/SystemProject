@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic.ApplicationServices;
 using Mysqlx.Crud;
+using Mysqlx.Session;
 using MySqlX.XDevAPI.Common;
 using ProgramMethod;
 using System;
@@ -24,6 +25,7 @@ namespace ITP4519M
         private string dealerID;
         private DataTable dt;
         private DataTable dt1;
+        private bool isReadOnly;
         private string QuantityFollow;
         private int orderitemIndex = -1;
         private int SelectColumnIndex = 0;
@@ -79,16 +81,31 @@ namespace ITP4519M
             switch (_mode)
             {
                 case OperationMode.View:
-                    saveOrderbtn.Visible = false;
-                    SetReadOnly(true);
+                    isReadOnly = true;
+                    SetReadOnly(isReadOnly);
+                    disableFunction(isReadOnly);
+                    orderAccemblyOrderItemdata.Columns["check"].Visible = false;
+                    orderIDBox.Text = orderID;
+                    dealerIDBox.Text = dealerID;
+                    dt1 = programMethod.getOrderDealerName(orderID, dealerID);
+                    dealerNameBox.Text = dt1.Rows[0]["DealerName"].ToString();
+                    phoneNumBox.Text = dt1.Rows[0]["DealerPhoneNum"].ToString();
+                    dealerCompanyBox.Text = dt1.Rows[0]["DealerCompanyName"].ToString();
+                    orderAccemblyOrderItemdata.DataSource = programMethod.getOrderItemDetailsForOrderAccembly(orderID);
+                    orderItemdata.DataSource = programMethod.getOrderItemDetailsForAcutalDespatch(orderID);
                     break;
                 case OperationMode.New:
-                    orderIDBox.ReadOnly = true;
-                    dealerIDBox.ReadOnly = true;
-                    dealerNameBox.ReadOnly = true;
-                    phoneNumBox.ReadOnly = true;
-                    dealerCompanyBox.ReadOnly = true;
-                    dealerAddressBox.ReadOnly = true;
+                    isReadOnly = false;
+                    SetReadOnly(true);
+                    disableFunction(false);
+                    programMethod.productSearchAutoComplete(orderAccemblyAssignbox, orderID);
+                    checkboxSelectedbtn.Visible = true;
+                    orderAccemblyAssignbox.Visible = true;
+                    orderAccemblyAssignbtn.Visible = true;
+                    orderAccemblyOrderItemdata.ReadOnly = false;
+                    orderItemdata.ReadOnly = false;
+                    orderAccemblyOrderItemdata.Columns["check"].Visible = true;
+                    saveOrderbtn.Visible = true;
                     dt = programMethod.getOrderDetails(orderID);
                     dt1 = programMethod.getOrderDealerName(orderID, dealerID);
                     orderIDBox.Text = orderID;
@@ -102,18 +119,14 @@ namespace ITP4519M
                     orderItemdata.Columns.Add("ProductName", "Product Name");
                     orderItemdata.Columns.Add("Quantity", "Quantity");
                     orderItemdata.Columns.Add("FollowQuantity", "FollowQuantity");
-                    createOrderAccembly();
-                    saveOrderbtn.Visible = true;
                     orderAccemblyOrderItemdata.Rows[0].Selected = false;
                     // ClearForm();
-                    //SetReadOnly(false);
                     break;
                 case OperationMode.Edit:
                     // SetReadOnly(true);
                     break;
 
 
-            
             }
         }
 
@@ -131,69 +144,20 @@ namespace ITP4519M
         private void SetReadOnly(bool readOnly)
         {
 
+            orderIDBox.ReadOnly = readOnly;
             dealerIDBox.ReadOnly = readOnly;
             dealerNameBox.ReadOnly = readOnly;
-            dealerCompanyBox.ReadOnly = readOnly;
             phoneNumBox.ReadOnly = readOnly;
+            dealerCompanyBox.ReadOnly = readOnly;
+            dealerAddressBox.ReadOnly = readOnly;
+            orderAccemblyOrderItemdata.ReadOnly = readOnly;
             orderItemdata.ReadOnly = readOnly;
-            disableFunction(readOnly);
-
-
-
-            dealerIDBox.Enabled = !readOnly;
-            dealerNameBox.Enabled = !readOnly;
-            dealerCompanyBox.Enabled = !readOnly;
-            phoneNumBox.Enabled = !readOnly;
-
-
+            saveOrderbtn.Visible = !readOnly;
+            checkboxSelectedbtn.Visible = !readOnly;
+            orderAccemblyAssignbox.Visible = !readOnly;
+            orderAccemblyAssignbtn.Visible = !readOnly;
         }
 
-        private void orderIDBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-        public void orderView(string orderID)
-        {
-
-            //try
-            //{
-            //    DataTable orderDetails = programMethod.getOrderDetails(orderID);
-            //    DataTable dealerDetails = programMethod.getOrderDealerName(orderID, dealerID);
-            //    DataTable orderItemDeatails = programMethod.getOrderItemDetails(orderID);
-
-
-
-
-            //    if (orderDetails != null)
-            //    {
-            //        this.orderIDBox.Text = orderID;
-            //        this.dealerIDBox.Text = dealerID;
-            //        this.dealerNameBox.Text = dealerDetails.Rows[0]["DealerName"].ToString();
-            //        this.phoneNumBox.Text = dealerDetails.Rows[0]["DealerPhoneNum"].ToString();
-            //        this.dealerCompanyBox.Text = dealerDetails.Rows[0]["DealerCompanyName"].ToString();
-            //        orderItemdata.DataSource = orderItemDeatails;
-
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("User details not found.");
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-
-        }
-
-        public void createOrderAccembly()
-        {
-
-
-
-        }
 
         private void dealerIDBox_KeyDown(object sender, KeyEventArgs e)
         {
@@ -219,28 +183,18 @@ namespace ITP4519M
         }
 
 
-        private void productSearchbox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void productSearchbox_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            //Question
-
-            //totalpricelbl.Text = "" +  programMethod.calProductTotalAmount(productOfOrderdata);
-
-        }
-
-
-
         private void disableFunction(bool readOnly)
         {
             if (readOnly)
             {
+                orderItemdata.RowsAdded -= orderItemdata_RowsAdded;
                 orderItemdata.CellContentDoubleClick -= productOfOrderdata_CellDoubleClick;
+                orderAccemblyOrderItemdata.CellContentDoubleClick -= orderAccemblyOrderItemdata_CellDoubleClick;
             }
-            else { orderItemdata.CellContentDoubleClick += productOfOrderdata_CellDoubleClick; }
+            else { orderItemdata.CellContentDoubleClick += productOfOrderdata_CellDoubleClick;
+                orderItemdata.RowsAdded += orderItemdata_RowsAdded;
+                orderAccemblyOrderItemdata.CellContentDoubleClick += orderAccemblyOrderItemdata_CellDoubleClick;
+            }
         }
 
 
@@ -263,6 +217,14 @@ namespace ITP4519M
 
         private void productOfOrderdata_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex == -1)
+            {
+                return;
+            }
+            if (isReadOnly)
+            {
+                return;
+            }
             DataGridViewRow orderData = this.orderItemdata.CurrentRow;
             if (orderData != null && orderData.Index >= 0 && orderData.Index < orderItemdata.Rows.Count)
             {
@@ -330,7 +292,7 @@ namespace ITP4519M
             try
             {
                 QuantityFollow = programMethod.calOrderItemQuantityFollow(orderItemdata, orderID);
-                this.orderItemdata["FollowQuantity", e.RowIndex].Value = QuantityFollow;
+                orderItemdata["FollowQuantity", e.RowIndex].Value = QuantityFollow;
                 QuantityFollow = "";
 
             }
@@ -352,7 +314,12 @@ namespace ITP4519M
 
         private void orderAccemblyOrderItemdata_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            if (e.RowIndex == -1) {
+                return;
+            }else if (isReadOnly)
+            {
+                return;
+            }
             orderitemIndex++;
             DataTable result = programMethod.getOrderEachItemDetail(orderAccemblyOrderItemdata.Rows[e.RowIndex].Cells[1].Value.ToString(), orderID);
             orderAccemblyOrderItemdata.DataSource = programMethod.getOrderItemDetail(orderID);

@@ -288,6 +288,8 @@ namespace ITP4519M
             // 
             // orderAccemblyAssignbox
             // 
+            orderAccemblyAssignbox.AutoCompleteMode = AutoCompleteMode.Suggest;
+            orderAccemblyAssignbox.AutoCompleteSource = AutoCompleteSource.CustomSource;
             orderAccemblyAssignbox.Location = new Point(95, 407);
             orderAccemblyAssignbox.Margin = new Padding(3, 4, 3, 4);
             orderAccemblyAssignbox.Name = "orderAccemblyAssignbox";

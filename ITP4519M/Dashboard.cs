@@ -2014,7 +2014,9 @@ namespace ITP4519M
             lastClickedButton = (Button)sender;
             lastClickedButton.ForeColor = Color.Gray;
 
-
+            TodayTotalOrderValue.Text = "";
+            MonthlyTotalSalesValue.Text = "";
+            MonthlyTotalOrderValue.Text = "";
             orderReportdata.DataSource = programMethod.getTopSellingProductReport();
             DataTable dt = programMethod.getReportCount();
             for (int i = 0; i < 5; i++)
