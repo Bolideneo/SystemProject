@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using static ProgramMethod.ProgramMethod;
 
 namespace ITP4519M
 {
@@ -40,7 +41,7 @@ namespace ITP4519M
             phoneNumlbl = new Label();
             phoneNumBox = new TextBox();
             departlbl = new Label();
-            departBox = new ComboBox();
+            departBox = new BorderComboBox();
             button1 = new Button();
             panel1 = new Panel();
             accountreadlbl = new Label();
@@ -215,6 +216,7 @@ namespace ITP4519M
             // 
             // departBox
             // 
+            departBox.BorderColor = Color.Black;
             departBox.DisplayMember = "DepartmentName";
             departBox.DropDownStyle = ComboBoxStyle.DropDownList;
             departBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -658,7 +660,6 @@ namespace ITP4519M
             // 
             titilepnl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             titilepnl.BackColor = SystemColors.Window;
-            titilepnl.Controls.Add(titleAlertBox);
             titilepnl.Controls.Add(titleBox);
             titilepnl.Location = new Point(293, 476);
             titilepnl.Name = "titilepnl";
@@ -669,10 +670,10 @@ namespace ITP4519M
             // titleAlertBox
             // 
             titleAlertBox.Image = Properties.Resources.red_alert;
-            titleAlertBox.Location = new Point(232, 2);
+            titleAlertBox.Location = new Point(726, 480);
             titleAlertBox.Margin = new Padding(3, 2, 3, 2);
             titleAlertBox.Name = "titleAlertBox";
-            titleAlertBox.Size = new Size(24, 24);
+            titleAlertBox.Size = new Size(26, 23);
             titleAlertBox.SizeMode = PictureBoxSizeMode.StretchImage;
             titleAlertBox.TabIndex = 76;
             titleAlertBox.TabStop = false;
@@ -710,6 +711,7 @@ namespace ITP4519M
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
             ClientSize = new Size(807, 640);
+            Controls.Add(titleAlertBox);
             Controls.Add(departAlertlbl);
             Controls.Add(titleAlertlbl);
             Controls.Add(titilepnl);
@@ -789,7 +791,6 @@ namespace ITP4519M
         private System.Windows.Forms.Label phoneNumlbl;
         private System.Windows.Forms.TextBox phoneNumBox;
         private System.Windows.Forms.Label departlbl;
-        private System.Windows.Forms.ComboBox departBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label7;
@@ -829,5 +830,6 @@ namespace ITP4519M
         private PictureBox titleAlertBox;
         private Label titleAlertlbl;
         private Label departAlertlbl;
+        private BorderComboBox departBox;
     }
 }

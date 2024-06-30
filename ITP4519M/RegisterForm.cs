@@ -291,10 +291,18 @@ namespace ITP4519M
 
             if (string.IsNullOrEmpty(department))
             {
+                departBox.BorderColor = Color.Red;
                 departAlertlbl.Visible = true;
                 isWrongFormat_department = true;
                 departBox.Focus();
                 Refresh();
+            }
+            else
+            {
+                departBox.BorderColor = Color.Black;
+                departAlertlbl.Visible = false;
+                isWrongFormat_department = false;
+                departBox.Focus();
             }
 
 

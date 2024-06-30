@@ -101,14 +101,11 @@ namespace ITP4519M
 
         public bool getUserNameAndCheckStaus(string userName)
         {
-            string sql = "SELECT COUNT(UserName) FROM staff WHERE UserName=@userName AND AccountStatus='Active'";
+            string sql = "SELECT COUNT(UserName) FROM staff WHERE UserName=@userName AND AccountStatus='active'";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@userName", userName);
             return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
-
         }
-
-   
 
 
         //Checking user general role
@@ -168,7 +165,7 @@ namespace ITP4519M
             cmd.Parameters.AddWithValue("@userName", username);
             ServerConnect().Close();
             object result = cmd.ExecuteScalar();
-            if(result.ToString() == "Inactive")
+            if (result.ToString() == "Inactive")
             {
                 result = false;
             }
@@ -185,6 +182,18 @@ namespace ITP4519M
             ServerConnect().Close();
             return userID.ToString();
         }
+
+        
+
+        //public void udpateLastLoginTime(string userID)
+        //{
+        //    string sql = "Update INTO staff SET WHERE UserName =@userName";
+        //    MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+        //    cmd.Parameters.AddWithValue("@userName", userName);
+        //    object userID = cmd.ExecuteScalar();
+        //    ServerConnect().Close();
+        //    return userID.ToString();
+        //}
 
         public string getUserDisplayName(string username)
         {
@@ -1172,13 +1181,13 @@ namespace ITP4519M
         public bool createSupplier(string SupplierID, string SupplierCompanyName, string SupplierMailBox, string SupplierPhoneNumBox, string SupplierAddressBox, string SupplierContactNameBox, DataTable GetProducts)
         {
 
-            
+
             try
             {
                 using (var connection = ServerConnect())
                 {
 
-            
+
                     try
                     {
                         if (SupplierExistsInDatabase(connection, "SupplierCompanyName", SupplierCompanyName))
@@ -1211,7 +1220,7 @@ namespace ITP4519M
                         cmd.ExecuteNonQuery();
                         if (GetProducts != null && GetProducts.Rows.Count > 0)
                         {
-                  
+
                             foreach (DataRow row in GetProducts.Rows)
                             {
                                 string productID = row["ProductID"].ToString();
@@ -1228,7 +1237,7 @@ namespace ITP4519M
                     }
                     catch (MySql.Data.MySqlClient.MySqlException ex)
                     {
-     
+
                         Console.WriteLine("An exception occurred: " + ex.Message);
                     }
                 }
@@ -1363,7 +1372,7 @@ namespace ITP4519M
             //string sql = "SELECT DealerID, DealerName, DealerCompanyName, DealerPhoneNum, DealerRegionNum FROM dealer WHERE DealerID LIKE @keyword1 OR DealerID LIKE @keyword2 OR DealerName LIKE @keyword1 OR DealerName LIKE @keyword2 OR DealerCompanyName LIKE @keyword1 OR DealerCompanyName LIKE @keyword2";
             // string sql = "SELECT DealerID, DealerName, DealerCompanyName, DealerPhoneNum, DealerRegionNum FROM dealer WHERE DealerID LIKE @keyword1 OR DealerID LIKE @keyword2 OR TRIM(DealerName) LIKE @keyword1 OR TRIM(DealerName) LIKE @keyword2 OR DealerCompanyName LIKE @keyword1 OR TRIM(DealerCompanyName) LIKE @keyword2 LIMIT 5";
             // string sql = "SELECT DealerID, DealerName, DealerCompanyName, DealerPhoneNum, DealerRegionNum FROM dealer WHERE DealerID LIKE @keyword1 OR DealerID LIKE @keyword2 OR TRIM(DealerName) LIKE @keyword1 OR TRIM(DealerName) LIKE @keyword2 LIMIT 10";
-            string sql = "SELECT * FROM dealer WHERE DealerID LIKE @keyword1 OR DealerID LIKE @keyword2 OR TRIM(DealerName) LIKE @keyword1 OR TRIM(DealerName) LIKE @keyword2 LIMIT 10";
+            string sql = "SELECT * FROM dealer WHERE DealerID LIKE @keyword1 OR DealerID LIKE @keyword2 OR TRIM(DealerName) LIKE @keyword1 OR TRIM(DealerName) LIKE @keyword2 OR DealerCompanyName LIKE @keyword1 OR DealerCompanyName LIKE @keyword2 ";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@keyword1", "%" + keyword + "%");
             string keyword2 = keyword.Length > 0 ? $"%{char.ToUpper(keyword[0])}{keyword.Substring(1)}%" : keyword;
@@ -1414,6 +1423,17 @@ namespace ITP4519M
             return dataTable;
         }
 
+        public DataTable grnAllPOID()
+        {
+            string sql = "SELECT DISTINCT(PurchaseOrderID) FROM purchaseorder WHERE Status = 'In Procurement'";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+
 
         public string getDealerID()
         {
@@ -1437,6 +1457,7 @@ namespace ITP4519M
             string sql = "SELECT MAX(OrderID) FROM `order` ";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             Object orderID = cmd.ExecuteScalar();
+            ServerConnect().Close();
             return orderID.ToString();
         }
 
@@ -1456,6 +1477,7 @@ namespace ITP4519M
             cmd.Parameters.AddWithValue("@DealerContactName", DealerContactName);
             cmd.Parameters.AddWithValue("@DealerContactPhoneNum", DealerContactPhoneNum);
             cmd.Parameters.AddWithValue("@TotalPrice", TotalPrice);
+            ServerConnect().Close();
             if (cmd.ExecuteNonQuery() > 0)
                 return true;
             return false;
@@ -1481,6 +1503,7 @@ namespace ITP4519M
             cmd.Parameters.AddWithValue("@price", finalPrice);
             cmd.Parameters.AddWithValue("@discount", discount);
             cmd.Parameters.AddWithValue("@followQuantity", discount);
+            ServerConnect().Close();
             if (cmd.ExecuteNonQuery() > 0)
                 return true;
             return false;
@@ -1492,6 +1515,7 @@ namespace ITP4519M
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@productID", productID);
             cmd.Parameters.AddWithValue("@Qty", Qty);
+            ServerConnect().Close();
             if (cmd.ExecuteNonQuery() > 0)
                 return true;
             return false;
@@ -1506,20 +1530,58 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
 
         }
 
         public DataTable getOrderItemDetailsForOrderAccembly(string orderID)
         {
-            string sql = "SELECT orderitem.ProductID, product.ProductName, BinLocation, QuantityInStock, OrderedQuantity FROM product, orderitem WHERE orderitem.OrderID=@orderID AND orderitem.ProductID=product.ProductID";
+            string sql = "SELECT orderitem.ProductID, orderitem.ProductName, BinLocation, QuantityInStock, OrderedQuantity FROM product, orderitem WHERE orderitem.OrderID=@orderID AND orderitem.ProductID=product.ProductID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@orderID", orderID);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
 
+        }
+
+        public DataTable getOrderItemDetailsForAcutalDespatch(string orderID)
+        {
+            string sql = "SELECT ProductID, ProductName, TotalDespatchQuantity FROM orderitem WHERE orderitem.OrderID=@orderID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@orderID", orderID);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+
+        }
+
+        public DataTable getProductIDAndpProductName(string orderID)
+        {
+            string sql = "SELECT ProductID,ProductName FROM orderitem WHERE OrderID = @orderID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@orderID", orderID);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+
+        public DataTable getProductIDAndpProductName()
+        {
+            string sql = "SELECT ProductID,ProductName FROM product";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
         }
 
         public bool checkOrderItemFollowQuantity(string orderID)
@@ -1564,6 +1626,7 @@ namespace ITP4519M
             cmd.Parameters.AddWithValue("@orderID", orderID);
             cmd.Parameters.AddWithValue("@productID", productID);
             Object result = cmd.ExecuteScalar();
+            ServerConnect().Close();
             return result.ToString();
         }
 
@@ -1599,13 +1662,14 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
 
         public DataTable getOrderItemDetailForDelivery(string orderID, int updateCount)
-        {   
-             //string sql = "SELECT orderitem.ProductID, product.ProductName, orderitem.OrderedQuantity, product.UnitPrice, orderitem.FollowUpQuantity FROM orderitem, product WHERE orderitem.ProductID=product.ProductID AND orderItem.OrderID=@orderID";
+        {
+            //string sql = "SELECT orderitem.ProductID, product.ProductName, orderitem.OrderedQuantity, product.UnitPrice, orderitem.FollowUpQuantity FROM orderitem, product WHERE orderitem.ProductID=product.ProductID AND orderItem.OrderID=@orderID";
             // string sql = "SELECT * FROM orderitem_audit oia JOIN product p ON oia.ProductID = p.ProductID WHERE oia.OrderID = @orderID AND oia.UpdateCount = (SELECT MAX(UpdateCount) FROM orderitem_audit WHERE OrderID = @orderID)";
             string sql = "SELECT orderitem_audit.* FROM orderitem_audit, product WHERE orderitem_audit.ProductID=product.ProductID AND orderitem_audit.OrderID=@orderID AND UpdateCount = @updateCount";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
@@ -1614,10 +1678,11 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
-      
+
         public int getMaxUpdateCount(string orderID)
         {
             string sql = "SELECT MAX(UpdateCount) FROM orderitem_audit WHERE OrderID=@orderID";
@@ -1647,6 +1712,7 @@ namespace ITP4519M
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@productID", productID);
             cmd.Parameters.AddWithValue("@status", status);
+            ServerConnect().Close();
             cmd.ExecuteNonQuery();
         }
 
@@ -1670,6 +1736,7 @@ namespace ITP4519M
             cmd.Parameters.AddWithValue("@enddate", endDate);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
@@ -1700,6 +1767,7 @@ namespace ITP4519M
             cmd.Parameters.AddWithValue("@enddate", endDate);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
@@ -1710,6 +1778,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
 
         }
@@ -1721,6 +1790,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
 
         }
@@ -1732,6 +1802,7 @@ namespace ITP4519M
             cmd.Parameters.AddWithValue("@productID", productID);
             cmd.Parameters.AddWithValue("@qty", qty);
             cmd.ExecuteNonQuery();
+            ServerConnect().Close();
         }
 
         public void ReduceStock(string productID, string qty)
@@ -1741,6 +1812,7 @@ namespace ITP4519M
             cmd.Parameters.AddWithValue("@productID", productID);
             cmd.Parameters.AddWithValue("@qty", qty);
             cmd.ExecuteNonQuery();
+            ServerConnect().Close();
         }
 
         public string getProductQuantity(string productID)
@@ -1749,6 +1821,7 @@ namespace ITP4519M
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect()); ;
             cmd.Parameters.AddWithValue("@productID", productID);
             object qty = cmd.ExecuteScalar();
+            ServerConnect().Close();
             return qty.ToString();
         }
 
@@ -1760,6 +1833,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
@@ -1791,6 +1865,7 @@ namespace ITP4519M
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@character", character);
             Object grn = cmd.ExecuteScalar();
+            ServerConnect().Close();
             return grn.ToString();
         }
 
@@ -1800,6 +1875,7 @@ namespace ITP4519M
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@OrderID", orderID);
             cmd.ExecuteNonQuery();
+            ServerConnect().Close();
         }
 
         public DataTable getInvoiceDetails(string orderID)
@@ -1810,6 +1886,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
 
         }
@@ -1819,10 +1896,11 @@ namespace ITP4519M
             string sql = "SELECT MAX(RIGHT(DeliveryID,5)) FROM delivery";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             Object DeliveryID = cmd.ExecuteScalar();
+            ServerConnect().Close();
             return DeliveryID.ToString();
         }
 
-        public bool createDelivery(string deliveryID, string orderID, string deliveryDate,string status)
+        public bool createDelivery(string deliveryID, string orderID, string deliveryDate, string status)
         {
             DateTime dt = new DateTime();
             dt = Convert.ToDateTime(deliveryDate);
@@ -1840,7 +1918,7 @@ namespace ITP4519M
             return false;
         }
 
-        public void createDeliveryNoteItem(string deliveryID, string productID,string PreQtyDelivered, string DeliveryQuantity,string quantityToFollow)
+        public void createDeliveryNoteItem(string deliveryID, string productID, string PreQtyDelivered, string DeliveryQuantity, string quantityToFollow)
         {
             string sql = "INSERT INTO deliverynoteitem VALUES(@deliveryID,@productID,@PreQtyDelivered, @deliveryQuantity, @quantityToFollow)";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
@@ -1850,8 +1928,9 @@ namespace ITP4519M
             cmd.Parameters.AddWithValue("@deliveryQuantity", DeliveryQuantity);
             cmd.Parameters.AddWithValue("@quantityToFollow", quantityToFollow);
             cmd.ExecuteNonQuery();
+            ServerConnect().Close();
         }
-        
+
 
 
         public void updateOrderStatus(String status, String orderID)
@@ -1861,6 +1940,7 @@ namespace ITP4519M
             cmd.Parameters.AddWithValue("@status", status);
             cmd.Parameters.AddWithValue("@orderID", orderID);
             cmd.ExecuteNonQuery();
+            ServerConnect().Close();
         }
 
         public void updateDeliveryStatus(String status, String deliveryID, string deliveredDate)
@@ -1871,6 +1951,7 @@ namespace ITP4519M
             cmd.Parameters.AddWithValue("@deliveryID", deliveryID);
             cmd.Parameters.AddWithValue("@deliveredDate", deliveredDate);
             cmd.ExecuteNonQuery();
+            ServerConnect().Close();
         }
 
         public DataTable getDeliveryDetails(string deliveryID)
@@ -1881,20 +1962,22 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
-       
-         public DataTable getDeliveryNoteItem(string deliveryID)
-         {
+
+        public DataTable getDeliveryNoteItem(string deliveryID)
+        {
             string sql = "SELECT * FROM deliverynoteitem WHERE DeliveryID=@deliveryID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@deliveryID", deliveryID);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
-         }
+        }
 
         public DataTable getDepartmentNameDataSource()
 
@@ -1904,6 +1987,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
@@ -1913,6 +1997,7 @@ namespace ITP4519M
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             object result = cmd.ExecuteScalar();
             int rowCount = Convert.ToInt32(result);
+            ServerConnect().Close();
             return rowCount;
         }
 
@@ -1931,6 +2016,7 @@ namespace ITP4519M
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             object result = cmd.ExecuteScalar();
             int rowCount = Convert.ToInt32(result);
+            ServerConnect().Close();
             return rowCount;
         }
 
@@ -1940,6 +2026,7 @@ namespace ITP4519M
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             object result = cmd.ExecuteScalar();
             int rowCount = Convert.ToInt32(result);
+            ServerConnect().Close();
             return rowCount;
         }
 
@@ -1970,6 +2057,7 @@ namespace ITP4519M
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             object result = cmd.ExecuteScalar();
             int rowCount = Convert.ToInt32(result);
+            ServerConnect().Close();
             return rowCount;
         }
 
@@ -1979,6 +2067,7 @@ namespace ITP4519M
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             object result = cmd.ExecuteScalar();
             int rowCount = Convert.ToInt32(result);
+            ServerConnect().Close();
             return rowCount;
         }
 
@@ -1988,6 +2077,7 @@ namespace ITP4519M
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             object result = cmd.ExecuteScalar();
             int rowCount = Convert.ToInt32(result);
+            ServerConnect().Close();
             return rowCount;
         }
 
@@ -1998,6 +2088,7 @@ namespace ITP4519M
             string status = "Active";
             cmd.Parameters.AddWithValue("@status", status);
             object result = cmd.ExecuteScalar();
+            ServerConnect().Close();
             return result.ToString();
         }
 
@@ -2010,6 +2101,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
@@ -2348,7 +2440,7 @@ namespace ITP4519M
             return false;
         }
 
-        public bool createInvoice(string invoiceID, string orderID, string dealerID,string deliveryID)
+        public bool createInvoice(string invoiceID, string orderID, string dealerID, string deliveryID)
         {
             DateTime Date = DateTime.Now;
             Date.ToString("yyyy-MM-dd HH:mm:ss");
@@ -2419,7 +2511,19 @@ namespace ITP4519M
             return orderQty.ToString();
         }
 
-        public bool updatePurchaseOrder(string POID, string status)
+        public DataTable getPurchaseOrderProductIDAndQty(string POID)
+        {
+            string sql = "SELECT SupplierID, ProductID, OrderQuantity FROM purchaseorder WHERE PurchaseOrderID=@POID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@POID", POID);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        } 
+
+            public bool updatePurchaseOrder(string POID, string status)
         {
             string sql = "UPDATE purchaseorder SET Status=@status WHERE PurchaseOrderID=@POID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
@@ -2430,14 +2534,14 @@ namespace ITP4519M
             return false;
         }
 
-        public bool updateOrderItem(string orderID, string productID, string Qty,string quantityFollow, int updateCount)
+        public bool updateOrderItem(string orderID, string productID, string Qty, string quantityFollow, int updateCount)
         {
             //string sql = "UPDATE orderitem SET ActualDespatchQuantity = IFNULL(ActualDespatchQuantity, 0) + @qty, QuantityFollow = @quantityFollow , UpdateCount =@updateCount WHERE OrderID = @orderID AND ProductID = @productID";
-            string sql = "UPDATE orderitem SET ActualDespatchQuantity = @qty, QuantityFollow = @quantityFollow , UpdateCount =@updateCount WHERE OrderID = @orderID AND ProductID = @productID";
+            string sql = "UPDATE orderitem SET ActualDespatchQuantity = @qty, QuantityFollow = @quantityFollow , UpdateCount =@updateCount , TotalDespatchQuantity = IFNULL(ActualDespatchQuantity, 0) + @qty WHERE OrderID = @orderID AND ProductID = @productID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@orderID", orderID);
             cmd.Parameters.AddWithValue("@productID", productID);
-            cmd.Parameters.AddWithValue("@Qty", Qty);
+            cmd.Parameters.AddWithValue("@qty", Qty);
             cmd.Parameters.AddWithValue("@quantityFollow", quantityFollow);
             cmd.Parameters.AddWithValue("@updateCount", updateCount);
             if (cmd.ExecuteNonQuery() > 0)
@@ -2452,7 +2556,7 @@ namespace ITP4519M
             cmd.Parameters.AddWithValue("@orderID", orderID);
             cmd.Parameters.AddWithValue("@productID", productID);
             int count = Convert.ToInt32(cmd.ExecuteScalar());
-            return count ;
+            return count;
 
         }
 
@@ -2537,8 +2641,8 @@ namespace ITP4519M
         {
             try
             {
-                 string sql = "SELECT OrderID, DealerID, OrderStatus, OrderDate FROM `order` WHERE (OrderDate BETWEEN @fromDate AND @toDate) AND OrderStatus=@status";
-               // string sql = "SELECT * FROM `order` WHERE (OrderDate BETWEEN @fromDate AND @toDate) AND OrderStatus=@status";
+                string sql = "SELECT OrderID, DealerID, OrderStatus, OrderDate FROM `order` WHERE (OrderDate BETWEEN @fromDate AND @toDate) AND OrderStatus=@status";
+                // string sql = "SELECT * FROM `order` WHERE (OrderDate BETWEEN @fromDate AND @toDate) AND OrderStatus=@status";
                 MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
                 cmd.Parameters.AddWithValue("@fromDate", fromDate);
                 cmd.Parameters.AddWithValue("@toDate", toDate);
@@ -2617,7 +2721,7 @@ namespace ITP4519M
             //    adat.Fill(dataTable);
             //    return dataTable;
             string sql = $"SELECT * FROM product WHERE ProductID IN ({string.Join(",", productIDs.Select(id => $"'{id}'"))})";
-       
+
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
 
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
@@ -2641,7 +2745,7 @@ namespace ITP4519M
         public void LogCreateSalesOrder(string logID, string userID, string userName, string orderID)
         {
             DateTime Date = DateTime.Now;
-            string Desc = "#" + userID +  " " + userName + " Create Order #" + orderID;
+            string Desc = "#" + userID + " " + userName + " Create Order #" + orderID;
             Date.ToString("yyyy-MM-dd HH:mm:ss");
             string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 1, 'Order' , @TypeID,  @Desc,  @Date)";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
@@ -2676,7 +2780,7 @@ namespace ITP4519M
         {
             DateTime Date = DateTime.Now;
             Date.ToString("yyyy-MM-dd HH:mm:ss");
-            string Desc = "#" + userID + " " + userName +" Update Product#" + productID;
+            string Desc = "#" + userID + " " + userName + " Update Product#" + productID;
             string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 2, 'Product', @TypeID,  @Desc,  @Date)";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@logID", logID);
@@ -2746,7 +2850,7 @@ namespace ITP4519M
         public void LogAssginProdutIntoAccembly(string logID, string userID, string userName, string orderID)
         {
             DateTime Date = DateTime.Now;
-            string Desc = "#" + userID + "Assgin #" + orderID +  " by following format ProductID #" + " #Product Name " + " #Quantity ";
+            string Desc = "#" + userID + "Assgin #" + orderID + " by following format ProductID #" + " #Product Name " + " #Quantity ";
             //string Desc = "#" + userID + " Put #" + productID + " to #" + orderID;
             Date.ToString("yyyy-MM-dd HH:mm:ss");
             string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 1, 'OrderAccembly', @TypeID,  @Desc,  @Date)";
@@ -2779,7 +2883,7 @@ namespace ITP4519M
             string Descp = "#" + userID + " Put " + qty + "qty #" + itemID + " to Instock ";
             DateTime theDate = DateTime.Now;
             theDate.ToString("yyyy-MM-dd HH:mm:ss");
-            string sql = "INSERT INTO logging VALUES(@logID, @Descp, @userID, 2, @theDate)";
+            string sql = "INSERT INTO log VALUES(@logID, @Descp, @userID, 2, @theDate)";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@logID", logID);
             cmd.Parameters.AddWithValue("@Descp", Descp);
@@ -2894,16 +2998,16 @@ namespace ITP4519M
             ServerConnect().Close();
             cmd.ExecuteNonQuery();
         }
-        
 
-        
+
+
 
         public void LogCreateGRN(string logID, string userID, string userName, string grnID, string PurID, string productID, string qty)
         {
 
             DateTime Date = DateTime.Now;
             Date.ToString("yyyy-MM-dd HH:mm:ss");
-            string Desc = "#" + userID + " " + userName + " Create GRN (#" + PurID + ") product#" + productID + " Received " + qty + "qty";
+            string Desc = "#" + userID + " " + userName + " Create GRN (#" + PurID + ") ProductID #" + productID + " Received " + qty + "quantity";
             string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 1, 'GRN', @TypeID,  @Desc,  @Date)";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@logID", logID);
@@ -2918,7 +3022,7 @@ namespace ITP4519M
 
 
 
-        public void LogCreateInvoice(string logID,  string invoiceID, string orderID)
+        public void LogCreateInvoice(string logID, string invoiceID, string orderID)
         {
 
             DateTime Date = DateTime.Now;
@@ -2934,7 +3038,7 @@ namespace ITP4519M
             cmd.ExecuteNonQuery();
         }
 
-        public void LogCreatetUserAccount(string logID, string userID, string userName,string newUserID, string title)
+        public void LogCreatetUserAccount(string logID, string userID, string userName, string newUserID, string title)
         {
             DateTime Date = DateTime.Now;
             Date.ToString("yyyy-MM-dd HH:mm:ss");
@@ -2973,7 +3077,7 @@ namespace ITP4519M
         {
             DateTime Date = DateTime.Now;
             Date.ToString("yyyy-MM-dd HH:mm:ss");
-            string Desc = "#" + userID + " " + userName + " Enable User#" + affectUserID;
+            string Desc = "#" + userID + " " + userName + " Enable User account #" + affectUserID;
             string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 7, 'Account', @TypeID,  @Desc,  @Date)";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@logID", logID);
@@ -2991,7 +3095,7 @@ namespace ITP4519M
         {
             DateTime Date = DateTime.Now;
             Date.ToString("yyyy-MM-dd HH:mm:ss");
-            string Desc = "#" + userID + " " + userName + " Disable user#" + affectUserID;
+            string Desc = "#" + userID + " " + userName + " Disable User account #" + affectUserID;
             string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 8, 'Account', @TypeID,  @Desc,  @Date)";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@logID", logID);
@@ -3028,7 +3132,7 @@ namespace ITP4519M
         {
             DateTime Date = DateTime.Now;
             Date.ToString("yyyy-MM-dd HH:mm:ss");
-            string Desc = "#" + userID +  " " + userName +  " Cancel Order#" + orderID;
+            string Desc = "#" + userID + " " + userName + " Cancel Order#" + orderID;
             string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 3, 'Order', @TypeID,  @Desc,  @Date)";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@logID", logID);
@@ -3088,8 +3192,8 @@ namespace ITP4519M
         {
             DateTime Date = DateTime.Now;
             Date.ToString("yyyy-MM-dd HH:mm:ss");
-            string Desc = "#" + userID + " " + userName + " Login Failed at " + Date.ToString("yyyy-MM-dd HH:mm:ss") ;
-            string sql = "INSERT INTO log (LogID, UserID, UserName, Action, Type, Description, LogDate) VALUES(@logID, @userID, @userName, 4, 'Account', @Desc,  @Date)";
+            string Desc = "#" + userID + " " + userName + " Login Failed at " + Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string sql = "INSERT INTO log (LogID, UserID, UserName, Action, Type, Description, LogDate) VALUES(@logID, @userID, @userName, 9, 'Account', @Desc,  @Date)";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@logID", logID);
             cmd.Parameters.AddWithValue("@userID", userID);
@@ -3100,6 +3204,17 @@ namespace ITP4519M
             cmd.ExecuteNonQuery();
         }
 
+
+        public int calLoginFailedCount(string userID) 
+        {
+            string sql = "SELECT COUNT(log.UserID) FROM log,staff WHERE Action = '9'  AND log.UserID = @userID AND LogDate >= NOW() - INTERVAL 20 MINUTE AND LogDate >= staff.LastLoginTime";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@userID", userID);
+            object result = cmd.ExecuteScalar();
+            int rowCount = Convert.ToInt32(result);
+            ServerConnect().Close();
+            return rowCount;
+        } 
 
         public void LogUserLogOut(string logID, string userID, string userName)
         {
