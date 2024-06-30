@@ -9,6 +9,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProgramMethod;
+using static ITP4519M.DataBaseMethod;
+using MySqlX.XDevAPI.Common;
+using Mysqlx.Session;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace ITP4519M
@@ -24,9 +28,9 @@ namespace ITP4519M
             _mode = mode;
         }
 
-        private void SalesOrder_Load(object sender, EventArgs e)
+        private void GRN_Load(object sender, EventArgs e)
         {
-
+            
 
             switch (_mode)
             {
@@ -35,6 +39,13 @@ namespace ITP4519M
                     break;
                 case OperationMode.New:
                     grnDateTimePicker.MinDate = DateTime.Now;
+                    //DataTable dt = programMethod.grnAllPOID();
+                    //for (int i = 0; i < dt.Rows.Count; i++)
+                    //{
+                    //    comboBox1.Items.Add(dt.Rows[i]["PurchaseOrderID"].ToString());
+                    //}
+                    comboBox1.DataSource = programMethod.grnAllPOID();
+                    comboBox1.ValueMember = "PurchaseOrderID";
                     ClearForm();
                     SetReadOnly(false);
                     break;
@@ -47,7 +58,7 @@ namespace ITP4519M
         private void ClearForm()
         {
 
-            grnPOIDbox.Text = string.Empty;
+            grnPOIDbox1.Text = string.Empty;
             grnProductIDbox.Text = string.Empty;
             grnwarehousebox.Text = string.Empty;
             grnreceivedqtybox.Text = string.Empty;
@@ -58,14 +69,14 @@ namespace ITP4519M
 
         private void SetReadOnly(bool readOnly)
         {
-            grnPOIDbox.ReadOnly = readOnly;
+            grnPOIDbox1.ReadOnly = readOnly;
             grnProductIDbox.ReadOnly = readOnly;
             grnwarehousebox.ReadOnly = readOnly;
             grnreceivedqtybox.ReadOnly = readOnly;
             grnDateTimePicker.Enabled = readOnly;
 
 
-            grnPOIDbox.ReadOnly = !readOnly;
+            grnPOIDbox1.ReadOnly = !readOnly;
             grnProductIDbox.ReadOnly = !readOnly;
             grnwarehousebox.ReadOnly = !readOnly;
             grnreceivedqtybox.ReadOnly = !readOnly;
@@ -101,7 +112,7 @@ namespace ITP4519M
 
         private void grnCreatebtn_Click(object sender, EventArgs e)
         {
-            if (grnPOIDbox.Text == "" || grnwarehousebox.Text == "" || grnProductIDbox.Text == "" || grnreceivedqtybox.Text == "")
+            if (grnPOIDbox1.Text == "" || grnwarehousebox.Text == "" || grnProductIDbox.Text == "" || grnreceivedqtybox.Text == "")
             {
                 grnerrorlbl.Visible = true;
             }
@@ -109,7 +120,7 @@ namespace ITP4519M
             {
                 try
                 {
-                    if (programMethod.createGRN(grnPOIDbox.Text.Trim(), grnProductIDbox.Text.Trim(), grnwarehousebox.Text.Trim(), grnreceivedqtybox.Text.Trim(), grnDateTimePicker.Value.Date.ToString()))
+                    if (programMethod.createGRN(grnPOIDbox1.Text.Trim(), grnProductIDbox.Text.Trim(), grnwarehousebox.Text.Trim(), grnreceivedqtybox.Text.Trim(), grnDateTimePicker.Value.Date.ToString()))
                     {
                         programMethod.increaseStock(grnProductIDbox.Text.Trim(), grnreceivedqtybox.Text.Trim());
                         MessageBox.Show("Good Received Note Created Successfully");
@@ -120,12 +131,67 @@ namespace ITP4519M
                         MessageBox.Show("Please try again!");
                     }
                 }
-                catch(Exception ex) 
+                catch (Exception ex)
                 {
-                
-                   MessageBox.Show(ex.Message);
+
+                    MessageBox.Show(ex.Message);
                 }
             }
         }
+
+        private void grnPOIDbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            DataTable dt = programMethod.getPurchaseOrderProductIDAndQty(grnPOIDbox1.Text.Trim());
+            for(int i = 0; i < dt.Rows.Count; i++) {
+                grnProductData.Rows.Add(dt.Rows[i]["SupplierID"].ToString(), dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["OrderQuantity"].ToString(), 0, 0);
+            }
+           
+        }
+
+        /*
+        private void grnCreatebtn_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(grnPOIDbox.Text) || string.IsNullOrWhiteSpace(grnwarehousebox.Text))
+            {
+                grnerrorlbl.Visible = true;
+            }
+            else
+            {
+                try
+                {
+                    string purchaseOrderId = grnPOIDbox.Text.Trim();
+                    string productid="";
+                    string quantity="";
+                    List<PurchaseOrderItem> items = programMethod.GetPurchaseOrderItems(purchaseOrderId);
+                    foreach (var item in items)
+                    {
+                        bool grnCreated = programMethod.createGRN(
+                            purchaseOrderId,
+                            productid= item.ProductID.ToString(),
+                            grnwarehousebox.Text.Trim(),
+                           quantity=  item.Quantity.ToString(), 
+                            grnDateTimePicker.Value.Date.ToString());
+
+                        if (grnCreated)
+                        {
+                            programMethod.increaseStock(item.ProductID, item.Quantity);
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Failed to create GRN for ProductID: {item.ProductID}");
+                        }
+                    }
+                    MessageBox.Show(productid);
+                    MessageBox.Show(quantity);
+                    MessageBox.Show("Good Received Note Created Successfully");
+                    ClearForm();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+        */
     }
 }

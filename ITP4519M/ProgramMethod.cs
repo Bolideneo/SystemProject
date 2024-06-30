@@ -197,6 +197,11 @@ namespace ProgramMethod
             return dataBaseMethod.searchProductInfo(productname);
         }
 
+        public DataTable searchPOInformation(string POID)
+        {
+            return dataBaseMethod.searchPOInformation(POID);
+        }
+
         public DataTable searchDealerInformation(string contactname)
         {
             return dataBaseMethod.searchDealerInfoByName(contactname);
@@ -499,21 +504,21 @@ namespace ProgramMethod
             }
         }
 
-        public ProductDetails getProductDetails(string productid)
-        {
-            using (var connection = dataBaseMethod.ServerConnect())
+            public ProductDetails getProductDetails(string productid)
             {
-                if (connection.State == System.Data.ConnectionState.Open)
+                using (var connection = dataBaseMethod.ServerConnect())
                 {
+                    if (connection.State == System.Data.ConnectionState.Open)
+                    {
 
-                    return dataBaseMethod.GetProductDetails(connection, productid);
-                }
-                else
-                {
-                    throw new Exception("Database connection failed.");
+                        return dataBaseMethod.GetProductDetails(connection, productid);
+                    }
+                    else
+                    {
+                        throw new Exception("Database connection failed.");
+                    }
                 }
             }
-        }
 
         public string getProductWeight(string orderID)
         {
@@ -692,6 +697,11 @@ namespace ProgramMethod
             return true;
 
 
+        }
+
+        public DataTable getPurchaseOrderProductIDAndQty(string POID)
+        {
+            return dataBaseMethod.getPurchaseOrderProductIDAndQty(POID);
         }
 
         public void increaseStock(string ProductID, string qty)
@@ -891,6 +901,11 @@ namespace ProgramMethod
         public int getDealersRowCount()
         {
             return dataBaseMethod.getDealersRowCount();
+        }
+
+        public int getPORowCount()
+        {
+            return dataBaseMethod.getPORowCount();
         }
 
         public int getSuppliersRowCount()
@@ -1336,6 +1351,24 @@ namespace ProgramMethod
                 comboBox.Items.Add(dealerName);
                 comboBox.Items.Add(dealerCompanyName);
             }
+        }
+
+        //public void grnAutoComplete(ComboBox comboBox)
+        //{
+        //    comboBox.AutoCompleteCustomSource.Clear();
+        //    comboBox.Items.Clear();
+        //    DataTable result = dataBaseMethod.getAllPOID();
+        //    for (int i = 0; i < result.Rows.Count; i++)
+        //    {
+        //        string POID = result.Rows[i]["PurchaseOrderID"].ToString();
+        //        comboBox.AutoCompleteCustomSource.Add(POID);
+        //        comboBox.Items.Add(POID);
+        //    }
+        //}
+        
+        public DataTable grnAllPOID()
+        {
+            return dataBaseMethod.grnAllPOID();
         }
 
         public DataTable getOrderItemDetailsForAcutalDespatch(string orderID)
@@ -2197,8 +2230,6 @@ namespace ProgramMethod
 
         }
 
-
-
         public class BorderComboBox : ComboBox
         {
             private const int WM_PAINT = 0xF;
@@ -2321,7 +2352,20 @@ namespace ProgramMethod
 
 
 
-
+        public PurchaseOrder GetPurchaseOrderDetails(string purchaseOrderId)
+        {
+            using (var connection = dataBaseMethod.ServerConnect())
+            {
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    return dataBaseMethod.GetPurchaseOrderDetails(connection, purchaseOrderId);
+                }
+                else
+                {
+                    throw new Exception("Database connection failed.");
+                }
+            }
+        }
     }
   
 }

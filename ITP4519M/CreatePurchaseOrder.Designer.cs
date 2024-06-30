@@ -49,6 +49,7 @@
             costPriceBox = new TextBox();
             purchaseOrderItemsListView = new ListView();
             addProductbtn = new Button();
+            quantityAlertlbl = new Label();
             SuspendLayout();
             // 
             // button1
@@ -56,7 +57,7 @@
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Verdana", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(594, 12);
+            button1.Location = new Point(609, 12);
             button1.Margin = new Padding(2, 3, 2, 3);
             button1.Name = "button1";
             button1.Size = new Size(40, 49);
@@ -136,7 +137,7 @@
             // 
             totalAmountlbl.AutoSize = true;
             totalAmountlbl.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            totalAmountlbl.Location = new Point(32, 320);
+            totalAmountlbl.Location = new Point(32, 329);
             totalAmountlbl.Name = "totalAmountlbl";
             totalAmountlbl.Size = new Size(123, 25);
             totalAmountlbl.TabIndex = 99;
@@ -146,7 +147,7 @@
             // 
             amountDatalbl.AutoSize = true;
             amountDatalbl.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            amountDatalbl.Location = new Point(163, 320);
+            amountDatalbl.Location = new Point(163, 329);
             amountDatalbl.Name = "amountDatalbl";
             amountDatalbl.Size = new Size(114, 25);
             amountDatalbl.TabIndex = 100;
@@ -155,7 +156,7 @@
             // supplierPhoneBox
             // 
             supplierPhoneBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            supplierPhoneBox.Location = new Point(472, 423);
+            supplierPhoneBox.Location = new Point(472, 432);
             supplierPhoneBox.Margin = new Padding(5, 4, 5, 4);
             supplierPhoneBox.Name = "supplierPhoneBox";
             supplierPhoneBox.ReadOnly = true;
@@ -165,7 +166,7 @@
             // supplierMailBox
             // 
             supplierMailBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            supplierMailBox.Location = new Point(225, 423);
+            supplierMailBox.Location = new Point(225, 432);
             supplierMailBox.Margin = new Padding(5, 4, 5, 4);
             supplierMailBox.Name = "supplierMailBox";
             supplierMailBox.ReadOnly = true;
@@ -176,7 +177,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(472, 400);
+            label1.Location = new Point(472, 409);
             label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
             label1.Size = new Size(120, 20);
@@ -187,7 +188,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(225, 400);
+            label2.Location = new Point(225, 409);
             label2.Margin = new Padding(5, 0, 5, 0);
             label2.Name = "label2";
             label2.Size = new Size(107, 20);
@@ -198,7 +199,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Microsoft Sans Serif", 10.2F);
-            label5.Location = new Point(33, 400);
+            label5.Location = new Point(33, 409);
             label5.Name = "label5";
             label5.Size = new Size(125, 20);
             label5.TabIndex = 110;
@@ -206,7 +207,7 @@
             // 
             // supplierContactPersonBox
             // 
-            supplierContactPersonBox.Location = new Point(33, 423);
+            supplierContactPersonBox.Location = new Point(33, 432);
             supplierContactPersonBox.Name = "supplierContactPersonBox";
             supplierContactPersonBox.ReadOnly = true;
             supplierContactPersonBox.Size = new Size(166, 27);
@@ -215,7 +216,7 @@
             // createOrderbtn
             // 
             createOrderbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            createOrderbtn.Location = new Point(271, 498);
+            createOrderbtn.Location = new Point(262, 509);
             createOrderbtn.Margin = new Padding(3, 4, 3, 4);
             createOrderbtn.Name = "createOrderbtn";
             createOrderbtn.Size = new Size(125, 47);
@@ -246,7 +247,7 @@
             // 
             purchaseOrderItemsListView.FullRowSelect = true;
             purchaseOrderItemsListView.GridLines = true;
-            purchaseOrderItemsListView.Location = new Point(32, 182);
+            purchaseOrderItemsListView.Location = new Point(32, 191);
             purchaseOrderItemsListView.Name = "purchaseOrderItemsListView";
             purchaseOrderItemsListView.Size = new Size(602, 121);
             purchaseOrderItemsListView.TabIndex = 115;
@@ -255,7 +256,7 @@
             // 
             // addProductbtn
             // 
-            addProductbtn.Location = new Point(472, 310);
+            addProductbtn.Location = new Point(472, 319);
             addProductbtn.Name = "addProductbtn";
             addProductbtn.Size = new Size(162, 35);
             addProductbtn.TabIndex = 116;
@@ -263,11 +264,23 @@
             addProductbtn.UseVisualStyleBackColor = true;
             addProductbtn.Click += addProductbtn_Click;
             // 
+            // quantityAlertlbl
+            // 
+            quantityAlertlbl.AutoSize = true;
+            quantityAlertlbl.Font = new Font("Microsoft Sans Serif", 10.2F);
+            quantityAlertlbl.ForeColor = Color.Red;
+            quantityAlertlbl.Location = new Point(391, 166);
+            quantityAlertlbl.Name = "quantityAlertlbl";
+            quantityAlertlbl.Size = new Size(144, 20);
+            quantityAlertlbl.TabIndex = 117;
+            quantityAlertlbl.Text = "Quantity is empty!";
+            // 
             // CreatePurchaseOrder
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(667, 625);
+            ClientSize = new Size(660, 625);
+            Controls.Add(quantityAlertlbl);
             Controls.Add(addProductbtn);
             Controls.Add(purchaseOrderItemsListView);
             Controls.Add(CostPrice);
@@ -331,5 +344,6 @@
         private TextBox costPriceBox;
         private ListView purchaseOrderItemsListView;
         private Button addProductbtn;
+        private Label quantityAlertlbl;
     }
 }

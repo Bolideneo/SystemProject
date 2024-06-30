@@ -29,6 +29,7 @@ namespace ITP4519M
     {
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
         string SupplierID;
+        private string poID;
         private OperationMode _mode;
         private string ProductID;
         private string OrderQuantity;
@@ -55,6 +56,7 @@ namespace ITP4519M
             supplierBox.DataSource = suppliers;
             supplierBox.DisplayMember = "SupplierCompanyName";
             supplierBox.ValueMember = "SupplierID";
+            quantityAlertlbl.Visible = false;
         }
         private void CreatePurchaseOrder_Load(object sender, EventArgs e)
         {
@@ -66,7 +68,7 @@ namespace ITP4519M
                     break;
                 case OperationMode.New:
 
-                    SetReadOnly(false);
+                    SetReadOnly(true);
                     break;
                 case OperationMode.Edit:
 
@@ -78,16 +80,17 @@ namespace ITP4519M
         private void SetReadOnly(bool readOnly)
         {
 
-            quanBox.ReadOnly = readOnly;
+        
             supplierContactPersonBox.ReadOnly = readOnly;
             supplierMailBox.ReadOnly = readOnly;
             supplierPhoneBox.ReadOnly = readOnly;
+            costPriceBox.ReadOnly = readOnly;
 
-
-            quanBox.Enabled = !readOnly;
+          
             supplierContactPersonBox.Enabled = !readOnly;
             supplierMailBox.Enabled = !readOnly;
             supplierPhoneBox.Enabled = !readOnly;
+            costPriceBox.Enabled = !readOnly;
 
         }
 
@@ -109,6 +112,57 @@ namespace ITP4519M
 
             }
         }
+
+       /* public void purchaseOrderView(string poID)
+        {
+            this.poID = poID;
+
+            try
+            {
+                // 获取采购订单详细信息
+                var orderDetails = programMethod.GetPurchaseOrderDetails(poID);
+                if (orderDetails != null)
+                {
+                    // 填充订单基本信息
+                    supplierBox.Text = orderDetails.SupplierCompanyName;
+                    SupplierID = orderDetails.SupplierID;
+                    supplierProductBox.Text = orderDetails.ProductName;
+                    quanBox.Text = orderDetails.OrderQuantity;
+                    costPriceBox.Text = orderDetails.TotalPrice;
+
+                    // 清空现有的 ListView 项
+                    purchaseOrderItemsListView.Items.Clear();
+
+                    // 获取采购订单项
+                    var purchaseOrderItems = programMethod.GetPurchaseOrderItems(poID);
+
+                    // 添加新的 ListView 项
+                    foreach (var item in purchaseOrderItems)
+                    {
+                        // 获取产品详细信息
+                        var productDetails = programMethod.getProductDetails(item.ProductID);
+
+                        ListViewItem listViewItem = new ListViewItem(new string[]
+                        {
+                    item.ProductID,
+                    productDetails.ProductName,
+                    item.OrderQuantity.ToString(),
+                    item.UnitPrice.ToString("F2"),
+                    item.TotalPrice.ToString("F2")
+                        });
+                        purchaseOrderItemsListView.Items.Add(listViewItem);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Order details not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+        }*/
 
 
 
@@ -132,43 +186,37 @@ namespace ITP4519M
 
         private void createOrderbtn_Click(object sender, EventArgs e)
         {
-            var productList = new List<(string ProductID, string Quantity)>();
-
-            // Collect ProductID and Quantity from ListView
-            foreach (ListViewItem item in purchaseOrderItemsListView.Items)
+            try
             {
-                ProductID = item.SubItems[0].Text;
-                OrderQuantity = item.SubItems[2].Text;
-            }
-
-            PurchaseOrder newOrder = new PurchaseOrder
-            {
-                SupplierID = supplierBox.SelectedValue.ToString(),
-                Date = DateTime.Now.ToString("M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture).ToUpper(),
-                Status = "In Procurement",
-                ProductID = this.ProductID,
-                OrderQuantity = this.OrderQuantity 
-            };
-
-            // Save the PurchaseOrder and get its generated ID
-            string purchaseOrderId = programMethod.CreatePurchaseOrder(newOrder);
-
-            // Save each item in the ListView as a PurchaseOrderItem
-            foreach (ListViewItem item in purchaseOrderItemsListView.Items)
-            {
-                var purchaseOrderItem = new PurchaseOrderItem
+                // Collect ProductID, OrderQuantity, UnitPrice, and TotalPrice from ListView
+                List<PurchaseOrder> orders = new List<PurchaseOrder>();
+                foreach (ListViewItem item in purchaseOrderItemsListView.Items)
                 {
-                    PurchaseOrderID = purchaseOrderId,
-                    ProductID = item.SubItems[0].Text,
-                    Quantity = item.SubItems[2].Text,
-                    UnitPrice = item.SubItems[3].Text,
-                    TotalPrice = item.SubItems[4].Text
-                };
+                    var newOrder = new PurchaseOrder
+                    {
+                        SupplierID = supplierBox.SelectedValue.ToString(),
+                        Date = DateTime.Now.ToString("M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture).ToUpper(),
+                        Status = "In Procurement",
+                        ProductID = item.SubItems[0].Text,
+                        OrderQuantity = item.SubItems[2].Text,
+                        UnitPrice = item.SubItems[3].Text,
+                        TotalPrice = item.SubItems[4].Text
+                    };
+                    orders.Add(newOrder);
+                }
 
-                programMethod.CreatePurchaseOrderItem(purchaseOrderItem);
+                // Save each PurchaseOrder
+                foreach (var order in orders)
+                {
+                    programMethod.CreatePurchaseOrder(order);
+                }
+
+                MessageBox.Show("Purchase Orders Saved Successfully");
             }
-
-            MessageBox.Show("Purchase Order Saved Successfully");
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
         }
 
         private void quanBox_TextChanged(object sender, EventArgs e)
@@ -197,6 +245,15 @@ namespace ITP4519M
 
         private void addProductbtn_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(quanBox.Text))
+            {
+                quantityAlertlbl.Visible = true;
+                quanBox.Focus();
+                return;
+            }
+
+            quantityAlertlbl.Visible = false; 
+
             if (supplierProductBox.SelectedItem != null && int.TryParse(quanBox.Text, out int quantity))
             {
                 ProductDetails selectedProduct = (ProductDetails)supplierProductBox.SelectedItem;
