@@ -418,13 +418,15 @@ namespace ITP4519M
             poLastPagebtn = new ProgramMethod.ProgramMethod.RoundedButton();
             poNextPageBtn = new ProgramMethod.ProgramMethod.RoundedButton();
             panel17 = new Panel();
+            groupBox1 = new GroupBox();
+            dateFilterbtn = new Button();
+            label25 = new Label();
+            podateTimePicker1 = new DateTimePicker();
+            podateTimePicker2 = new DateTimePicker();
+            label26 = new Label();
             button13 = new Button();
             poSearchbox = new ProgramMethod.ProgramMethod.RoundedTextBox();
-            podateTimePicker1 = new DateTimePicker();
-            label25 = new Label();
             poSearchbtn = new Button();
-            label26 = new Label();
-            podateTimePicker2 = new DateTimePicker();
             button17 = new Button();
             POlbl = new Label();
             dataGridViewCheckBoxColumn6 = new DataGridViewCheckBoxColumn();
@@ -574,6 +576,7 @@ namespace ITP4519M
             ((System.ComponentModel.ISupportInitialize)poData).BeginInit();
             panel16.SuspendLayout();
             panel17.SuspendLayout();
+            groupBox1.SuspendLayout();
             outstandingOrderpnl.SuspendLayout();
             panel20.SuspendLayout();
             panel21.SuspendLayout();
@@ -1219,6 +1222,7 @@ namespace ITP4519M
             orderdateTimePicker2.Name = "orderdateTimePicker2";
             orderdateTimePicker2.Size = new Size(250, 27);
             orderdateTimePicker2.TabIndex = 41;
+            orderdateTimePicker2.ValueChanged += orderdateTimePicker2_ValueChanged;
             // 
             // label14
             // 
@@ -4340,6 +4344,7 @@ namespace ITP4519M
             grnDatePicker1.Name = "grnDatePicker1";
             grnDatePicker1.Size = new Size(266, 27);
             grnDatePicker1.TabIndex = 8;
+            grnDatePicker1.ValueChanged += grnDatePicker1_ValueChanged;
             // 
             // grnlbl1
             // 
@@ -4930,7 +4935,7 @@ namespace ITP4519M
             // 
             poIndexlbl.AutoSize = true;
             poIndexlbl.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            poIndexlbl.Location = new Point(237, 21);
+            poIndexlbl.Location = new Point(226, 22);
             poIndexlbl.Name = "poIndexlbl";
             poIndexlbl.Size = new Size(100, 25);
             poIndexlbl.TabIndex = 3;
@@ -5011,17 +5016,73 @@ namespace ITP4519M
             // 
             // panel17
             // 
+            panel17.Controls.Add(groupBox1);
             panel17.Controls.Add(button13);
             panel17.Controls.Add(poSearchbox);
-            panel17.Controls.Add(podateTimePicker1);
-            panel17.Controls.Add(label25);
             panel17.Controls.Add(poSearchbtn);
-            panel17.Controls.Add(label26);
-            panel17.Controls.Add(podateTimePicker2);
             panel17.Location = new Point(37, 88);
             panel17.Name = "panel17";
             panel17.Size = new Size(1173, 196);
             panel17.TabIndex = 37;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(dateFilterbtn);
+            groupBox1.Controls.Add(label25);
+            groupBox1.Controls.Add(podateTimePicker1);
+            groupBox1.Controls.Add(podateTimePicker2);
+            groupBox1.Controls.Add(label26);
+            groupBox1.Location = new Point(22, 9);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(772, 116);
+            groupBox1.TabIndex = 34;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Filter by Date";
+            // 
+            // dateFilterbtn
+            // 
+            dateFilterbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dateFilterbtn.Location = new Point(592, 58);
+            dateFilterbtn.Name = "dateFilterbtn";
+            dateFilterbtn.Size = new Size(170, 47);
+            dateFilterbtn.TabIndex = 33;
+            dateFilterbtn.Text = "Filter by Date";
+            dateFilterbtn.UseVisualStyleBackColor = true;
+            dateFilterbtn.Click += dateFilterbtn_Click;
+            // 
+            // label25
+            // 
+            label25.AutoSize = true;
+            label25.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label25.Location = new Point(32, 29);
+            label25.Name = "label25";
+            label25.Size = new Size(69, 32);
+            label25.TabIndex = 10;
+            label25.Text = "From";
+            // 
+            // podateTimePicker1
+            // 
+            podateTimePicker1.Location = new Point(32, 77);
+            podateTimePicker1.Name = "podateTimePicker1";
+            podateTimePicker1.Size = new Size(242, 27);
+            podateTimePicker1.TabIndex = 8;
+            // 
+            // podateTimePicker2
+            // 
+            podateTimePicker2.Location = new Point(326, 77);
+            podateTimePicker2.Name = "podateTimePicker2";
+            podateTimePicker2.Size = new Size(251, 27);
+            podateTimePicker2.TabIndex = 9;
+            // 
+            // label26
+            // 
+            label26.AutoSize = true;
+            label26.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label26.Location = new Point(322, 29);
+            label26.Name = "label26";
+            label26.Size = new Size(39, 32);
+            label26.TabIndex = 11;
+            label26.Text = "To";
             // 
             // button13
             // 
@@ -5036,7 +5097,7 @@ namespace ITP4519M
             // poSearchbox
             // 
             poSearchbox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            poSearchbox.Location = new Point(657, 139);
+            poSearchbox.Location = new Point(539, 143);
             poSearchbox.Margin = new Padding(3, 5, 3, 5);
             poSearchbox.Multiline = true;
             poSearchbox.Name = "poSearchbox";
@@ -5044,27 +5105,10 @@ namespace ITP4519M
             poSearchbox.Size = new Size(509, 41);
             poSearchbox.TabIndex = 31;
             // 
-            // podateTimePicker1
-            // 
-            podateTimePicker1.Location = new Point(24, 64);
-            podateTimePicker1.Name = "podateTimePicker1";
-            podateTimePicker1.Size = new Size(242, 27);
-            podateTimePicker1.TabIndex = 8;
-            // 
-            // label25
-            // 
-            label25.AutoSize = true;
-            label25.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label25.Location = new Point(24, 16);
-            label25.Name = "label25";
-            label25.Size = new Size(69, 32);
-            label25.TabIndex = 10;
-            label25.Text = "From";
-            // 
             // poSearchbtn
             // 
             poSearchbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            poSearchbtn.Location = new Point(523, 135);
+            poSearchbtn.Location = new Point(1063, 139);
             poSearchbtn.Name = "poSearchbtn";
             poSearchbtn.Size = new Size(101, 47);
             poSearchbtn.TabIndex = 25;
@@ -5072,27 +5116,11 @@ namespace ITP4519M
             poSearchbtn.UseVisualStyleBackColor = true;
             poSearchbtn.Click += poSearchbtn_Click;
             // 
-            // label26
-            // 
-            label26.AutoSize = true;
-            label26.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label26.Location = new Point(314, 16);
-            label26.Name = "label26";
-            label26.Size = new Size(39, 32);
-            label26.TabIndex = 11;
-            label26.Text = "To";
-            // 
-            // podateTimePicker2
-            // 
-            podateTimePicker2.Location = new Point(318, 64);
-            podateTimePicker2.Name = "podateTimePicker2";
-            podateTimePicker2.Size = new Size(251, 27);
-            podateTimePicker2.TabIndex = 9;
-            // 
             // button17
             // 
             button17.BackColor = Color.LimeGreen;
             button17.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button17.ForeColor = SystemColors.Window;
             button17.Location = new Point(1055, 31);
             button17.Name = "button17";
             button17.Size = new Size(155, 51);
@@ -6094,6 +6122,12 @@ namespace ITP4519M
             ClientSize = new Size(1497, 1047);
             Controls.Add(listpnl);
             Controls.Add(closebtn);
+            Controls.Add(OrderAccemblypnl);
+            Controls.Add(logpnl);
+            Controls.Add(inventorypnl);
+            Controls.Add(contactpnl);
+            Controls.Add(invoicepnl);
+            Controls.Add(POpnl);
             Controls.Add(deliverypnl);
             Controls.Add(userspnl);
             Controls.Add(outstandingOrderpnl);
@@ -6104,12 +6138,6 @@ namespace ITP4519M
             Controls.Add(StockReportpnl);
             Controls.Add(settingpnl);
             Controls.Add(dashboardpnl);
-            Controls.Add(OrderAccemblypnl);
-            Controls.Add(logpnl);
-            Controls.Add(inventorypnl);
-            Controls.Add(contactpnl);
-            Controls.Add(invoicepnl);
-            Controls.Add(POpnl);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
@@ -6244,6 +6272,8 @@ namespace ITP4519M
             panel16.PerformLayout();
             panel17.ResumeLayout(false);
             panel17.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             outstandingOrderpnl.ResumeLayout(false);
             outstandingOrderpnl.PerformLayout();
             panel20.ResumeLayout(false);
@@ -6688,5 +6718,7 @@ namespace ITP4519M
         private Label label56;
         private Label viewoutstandingOrderExecptDatelbl;
         private Label label58;
+        private GroupBox groupBox1;
+        private Button dateFilterbtn;
     }
 }

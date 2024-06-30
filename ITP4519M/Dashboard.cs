@@ -1622,7 +1622,20 @@ namespace ITP4519M
 
         private void orderAccemblySearchbtn_Click(object sender, EventArgs e)
         {
+            string formDate = orderAccemblydateTimePicker.Value.Date.ToString("yyyy-MM-dd");
+            string toDate = orderAccemblydateTimePicker2.Value.Date.ToString("yyyy-MM-dd");
 
+
+            if (orderStatusCombox.SelectedIndex == -1)
+                orderdata.DataSource = programMethod.orderAccemblyDateFilter(formDate, toDate);
+            else
+            {
+                string status = orderStatusCombox.Text.ToString();
+                //orderdata.DataSource = programMethod.orderDateStatusFilter(formDate, toDate, status);
+                orderdata.DataSource = programMethod.overallLoginfo();
+                orderdata.Refresh();
+
+            }
         }
 
         private void accemblyCreatebtn_Click(object sender, EventArgs e)
@@ -2335,6 +2348,23 @@ namespace ITP4519M
         private void poSearchbtn_Click(object sender, EventArgs e)
         {
             poData.DataSource = programMethod.searchPOInformation(poSearchbox.Text.Trim());
+        }
+
+        private void grnDatePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateFilterbtn_Click(object sender, EventArgs e)
+        {
+            string formDate = grnDatePicker1.Value.Date.ToString("M/d/yyyy");
+            string toDate = grnDatePicker2.Value.Date.ToString("M/d/yyyy");
+            grndata.DataSource = programMethod.searchPODate(formDate, toDate);
+        }
+
+        private void orderdateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

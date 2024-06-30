@@ -45,6 +45,12 @@
             suppliedProductData = new DataGridView();
             stockcheckColumn = new DataGridViewCheckBoxColumn();
             label3 = new Label();
+            companyNameAlert = new Label();
+            mailAlert = new Label();
+            contactPersonAlert = new Label();
+            phoneAlertlbl = new Label();
+            addressAlert = new Label();
+            productSelectAlert = new Label();
             ((System.ComponentModel.ISupportInitialize)suppliedProductData).BeginInit();
             SuspendLayout();
             // 
@@ -52,7 +58,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(13, 331);
+            label1.Location = new Point(13, 294);
             label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
             label1.Size = new Size(80, 24);
@@ -90,7 +96,7 @@
             // 
             phoneNumlbl.AutoSize = true;
             phoneNumlbl.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            phoneNumlbl.Location = new Point(296, 181);
+            phoneNumlbl.Location = new Point(296, 199);
             phoneNumlbl.Margin = new Padding(5, 0, 5, 0);
             phoneNumlbl.Name = "phoneNumlbl";
             phoneNumlbl.Size = new Size(140, 24);
@@ -100,7 +106,7 @@
             // SupplierPhoneNumBox
             // 
             SupplierPhoneNumBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            SupplierPhoneNumBox.Location = new Point(296, 212);
+            SupplierPhoneNumBox.Location = new Point(296, 227);
             SupplierPhoneNumBox.Margin = new Padding(5, 4, 5, 4);
             SupplierPhoneNumBox.Name = "SupplierPhoneNumBox";
             SupplierPhoneNumBox.Size = new Size(250, 27);
@@ -110,7 +116,7 @@
             // 
             maillbl.AutoSize = true;
             maillbl.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            maillbl.Location = new Point(13, 256);
+            maillbl.Location = new Point(11, 199);
             maillbl.Margin = new Padding(5, 0, 5, 0);
             maillbl.Name = "maillbl";
             maillbl.Size = new Size(57, 24);
@@ -120,10 +126,10 @@
             // SupplierMailBox
             // 
             SupplierMailBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            SupplierMailBox.Location = new Point(13, 287);
+            SupplierMailBox.Location = new Point(14, 227);
             SupplierMailBox.Margin = new Padding(5, 4, 5, 4);
             SupplierMailBox.Name = "SupplierMailBox";
-            SupplierMailBox.Size = new Size(316, 27);
+            SupplierMailBox.Size = new Size(272, 27);
             SupplierMailBox.TabIndex = 78;
             // 
             // supplierInfolabel
@@ -175,7 +181,7 @@
             // supplierAddressBox
             // 
             supplierAddressBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            supplierAddressBox.Location = new Point(13, 365);
+            supplierAddressBox.Location = new Point(13, 328);
             supplierAddressBox.Margin = new Padding(5, 4, 5, 4);
             supplierAddressBox.Name = "supplierAddressBox";
             supplierAddressBox.Size = new Size(531, 27);
@@ -185,7 +191,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(11, 181);
+            label2.Location = new Point(296, 104);
             label2.Margin = new Padding(5, 0, 5, 0);
             label2.Name = "label2";
             label2.Size = new Size(138, 24);
@@ -195,7 +201,7 @@
             // supplierContactBox
             // 
             supplierContactBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            supplierContactBox.Location = new Point(13, 212);
+            supplierContactBox.Location = new Point(298, 135);
             supplierContactBox.Margin = new Padding(5, 4, 5, 4);
             supplierContactBox.Name = "supplierContactBox";
             supplierContactBox.Size = new Size(252, 27);
@@ -206,11 +212,11 @@
             suppliedProductData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             suppliedProductData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             suppliedProductData.Columns.AddRange(new DataGridViewColumn[] { stockcheckColumn });
-            suppliedProductData.Location = new Point(13, 447);
+            suppliedProductData.Location = new Point(13, 457);
             suppliedProductData.Name = "suppliedProductData";
             suppliedProductData.RowHeadersWidth = 51;
             suppliedProductData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            suppliedProductData.Size = new Size(531, 195);
+            suppliedProductData.Size = new Size(531, 185);
             suppliedProductData.TabIndex = 92;
             suppliedProductData.CellContentClick += suppliedProductData_CellContentClick;
             // 
@@ -225,18 +231,85 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(13, 411);
+            label3.Location = new Point(13, 418);
             label3.Margin = new Padding(5, 0, 5, 0);
             label3.Name = "label3";
             label3.Size = new Size(161, 24);
             label3.TabIndex = 93;
             label3.Text = "Products supplied";
             // 
+            // companyNameAlert
+            // 
+            companyNameAlert.AutoSize = true;
+            companyNameAlert.ForeColor = Color.Red;
+            companyNameAlert.Location = new Point(14, 166);
+            companyNameAlert.Name = "companyNameAlert";
+            companyNameAlert.Size = new Size(259, 20);
+            companyNameAlert.TabIndex = 94;
+            companyNameAlert.Text = "Please input Supplier Company Name";
+            // 
+            // mailAlert
+            // 
+            mailAlert.AutoSize = true;
+            mailAlert.ForeColor = Color.SteelBlue;
+            mailAlert.Location = new Point(14, 258);
+            mailAlert.Name = "mailAlert";
+            mailAlert.Size = new Size(169, 20);
+            mailAlert.TabIndex = 95;
+            mailAlert.Text = "example@example.com";
+            // 
+            // contactPersonAlert
+            // 
+            contactPersonAlert.AutoSize = true;
+            contactPersonAlert.ForeColor = Color.Red;
+            contactPersonAlert.Location = new Point(296, 166);
+            contactPersonAlert.Name = "contactPersonAlert";
+            contactPersonAlert.Size = new Size(235, 20);
+            contactPersonAlert.TabIndex = 96;
+            contactPersonAlert.Text = "Please input Contact Person Name";
+            // 
+            // phoneAlertlbl
+            // 
+            phoneAlertlbl.AutoSize = true;
+            phoneAlertlbl.Font = new Font("Segoe UI", 9F);
+            phoneAlertlbl.ForeColor = Color.SteelBlue;
+            phoneAlertlbl.Location = new Point(296, 258);
+            phoneAlertlbl.Name = "phoneAlertlbl";
+            phoneAlertlbl.Size = new Size(116, 20);
+            phoneAlertlbl.TabIndex = 97;
+            phoneAlertlbl.Text = "6 to 13 numbers";
+            // 
+            // addressAlert
+            // 
+            addressAlert.AutoSize = true;
+            addressAlert.ForeColor = Color.Red;
+            addressAlert.Location = new Point(14, 359);
+            addressAlert.Name = "addressAlert";
+            addressAlert.Size = new Size(146, 20);
+            addressAlert.TabIndex = 98;
+            addressAlert.Text = "Please input Address";
+            // 
+            // productSelectAlert
+            // 
+            productSelectAlert.AutoSize = true;
+            productSelectAlert.ForeColor = Color.Red;
+            productSelectAlert.Location = new Point(207, 421);
+            productSelectAlert.Name = "productSelectAlert";
+            productSelectAlert.Size = new Size(205, 20);
+            productSelectAlert.TabIndex = 99;
+            productSelectAlert.Text = "Select at least one product！ ";
+            // 
             // SupplierContactForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(567, 729);
+            Controls.Add(productSelectAlert);
+            Controls.Add(addressAlert);
+            Controls.Add(phoneAlertlbl);
+            Controls.Add(contactPersonAlert);
+            Controls.Add(mailAlert);
+            Controls.Add(companyNameAlert);
             Controls.Add(label3);
             Controls.Add(suppliedProductData);
             Controls.Add(label2);
@@ -284,5 +357,11 @@
         private DataGridView suppliedProductData;
         private Label label3;
         private DataGridViewCheckBoxColumn stockcheckColumn;
+        private Label companyNameAlert;
+        private Label mailAlert;
+        private Label contactPersonAlert;
+        private Label phoneAlertlbl;
+        private Label addressAlert;
+        private Label productSelectAlert;
     }
 }

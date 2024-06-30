@@ -42,6 +42,10 @@ namespace ITP4519M
             suppliedProductData.Columns["QuantityInStock"].Visible = false;
             suppliedProductData.Columns["DemandStock"].Visible = false;
             suppliedProductData.Columns["Status"].Visible = false;
+            contactPersonAlert.Visible = false;
+            addressAlert.Visible = false;
+            companyNameAlert.Visible = false;
+            productSelectAlert.Visible = false;
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -199,57 +203,80 @@ namespace ITP4519M
             List<string> selectedProductIDs = GetSelectedProductIDs();
             if (selectedProductIDs.Count == 0)
             {
-             
-                MessageBox.Show("No products selected.");
+
+                productSelectAlert.Visible = true;
                 return;
             }
+            else
+            {
+                productSelectAlert.Visible = false;
+                Refresh();
+            }
+
             DataTable products = programMethod.GetProducts(selectedProductIDs);
             if (products == null || products.Rows.Count == 0)
             {
-        
-                MessageBox.Show("No products selected.");
+                productSelectAlert.Visible = true;
                 return;
+            }
+            else {
+                productSelectAlert.Visible = false;
+                Refresh();
             }
             if (string.IsNullOrEmpty(supplierCompanyName))
             {
-                MessageBox.Show("Please enter a supplier name.");
+                companyNameAlert.Visible = true;
                 suppliernameBox.Focus();
                 return;
             }
-            if (string.IsNullOrEmpty(supplierMail))
+            else
             {
-                MessageBox.Show("Please enter a supplier mail address.");
+                companyNameAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(supplierMail) || !IsValidEmail(supplierMail))
+            {
+                mailAlert.ForeColor = Color.Red;
                 SupplierMailBox.Focus();
                 return;
             }
-            if (string.IsNullOrEmpty(supplierPhoneNum))
+            else
             {
-                MessageBox.Show("Please enter a supplier phone number.");
+                mailAlert.ForeColor = Color.Black;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(supplierPhoneNum) || !IsValidPhoneNumber(supplierPhoneNum))
+            {
+                phoneAlertlbl.ForeColor = Color.Red;
                 SupplierPhoneNumBox.Focus();
                 return;
             }
+            else
+            {
+                phoneAlertlbl.ForeColor = Color.Black;
+                Refresh();
+            }  
             if (string.IsNullOrEmpty(supplierAddress))
             {
-                MessageBox.Show("Please enter a supplier address.");
+                addressAlert.Visible = true;
                 supplierAddressBox.Focus();
                 return;
             }
-            if (!IsValidEmail(supplierMail))
+            else
             {
-                MessageBox.Show("Please enter a valid email address.");
-                return;
-            }
-
-            if (!IsValidPhoneNumber(supplierPhoneNum))
-            {
-                MessageBox.Show("Please enter a valid phone number.");
-                return;
+                addressAlert.Visible = false;
+                Refresh();
             }
 
             if (string.IsNullOrEmpty(supplierContactName))
             {
-                MessageBox.Show("Please enter a valid contact person name.");
+                contactPersonAlert.Visible = true;
                 return;
+            }
+            else
+            {
+                contactPersonAlert.Visible = false;
+                Refresh();
             }
             if (programMethod.createSupplier(supplierCompanyName, supplierMail, supplierPhoneNum, supplierAddress, supplierContactName, products))
             {
@@ -260,10 +287,7 @@ namespace ITP4519M
                 supplierAddressBox.Text = "";
                 OperationCompleted?.Invoke(this, new EventArgs());
                 IsOperationSuccessful = true;
-            }
-            else
-            {
-
+                
             }
 
 
