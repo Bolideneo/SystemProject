@@ -30,7 +30,7 @@ namespace ITP4519M
 
         private void GRN_Load(object sender, EventArgs e)
         {
-            
+            grnDateTimePicker.Value = DateTime.Now;
 
             switch (_mode)
             {
@@ -39,13 +39,10 @@ namespace ITP4519M
                     break;
                 case OperationMode.New:
                     grnDateTimePicker.MinDate = DateTime.Now;
-                    //DataTable dt = programMethod.grnAllPOID();
-                    //for (int i = 0; i < dt.Rows.Count; i++)
-                    //{
-                    //    comboBox1.Items.Add(dt.Rows[i]["PurchaseOrderID"].ToString());
-                    //}
-                    comboBox1.DataSource = programMethod.grnAllPOID();
-                    comboBox1.ValueMember = "PurchaseOrderID";
+                    grnPOIDbox.SelectedIndex = -1;
+                    grnPOIDbox.Text = "Select an item";
+                    grnPOIDbox.DataSource = programMethod.grnAllPOID();
+                    grnPOIDbox.ValueMember = "PurchaseOrderID";
                     ClearForm();
                     SetReadOnly(false);
                     break;
@@ -58,28 +55,19 @@ namespace ITP4519M
         private void ClearForm()
         {
 
-            grnPOIDbox1.Text = string.Empty;
-            grnProductIDbox.Text = string.Empty;
-            grnwarehousebox.Text = string.Empty;
-            grnreceivedqtybox.Text = string.Empty;
-            grnDateTimePicker.Value = DateTime.Now;
+            grnPOIDbox.Text = string.Empty;
+            grnProductData.Rows.Clear();
 
         }
 
 
         private void SetReadOnly(bool readOnly)
         {
-            grnPOIDbox1.ReadOnly = readOnly;
-            grnProductIDbox.ReadOnly = readOnly;
-            grnwarehousebox.ReadOnly = readOnly;
-            grnreceivedqtybox.ReadOnly = readOnly;
+            //grnPOIDbox.ReadOnly = readOnly;
             grnDateTimePicker.Enabled = readOnly;
 
 
-            grnPOIDbox1.ReadOnly = !readOnly;
-            grnProductIDbox.ReadOnly = !readOnly;
-            grnwarehousebox.ReadOnly = !readOnly;
-            grnreceivedqtybox.ReadOnly = !readOnly;
+          //  grnPOIDbox.ReadOnly = !readOnly;
             grnDateTimePicker.Enabled = !readOnly;
 
 
@@ -112,24 +100,28 @@ namespace ITP4519M
 
         private void grnCreatebtn_Click(object sender, EventArgs e)
         {
-            if (grnPOIDbox1.Text == "" || grnwarehousebox.Text == "" || grnProductIDbox.Text == "" || grnreceivedqtybox.Text == "")
+            if (grnPOIDbox.Text == "")
             {
                 grnerrorlbl.Visible = true;
             }
             else
             {
+
                 try
                 {
-                    if (programMethod.createGRN(grnPOIDbox1.Text.Trim(), grnProductIDbox.Text.Trim(), grnwarehousebox.Text.Trim(), grnreceivedqtybox.Text.Trim(), grnDateTimePicker.Value.Date.ToString()))
-                    {
-                        programMethod.increaseStock(grnProductIDbox.Text.Trim(), grnreceivedqtybox.Text.Trim());
+                    string poID = grnPOIDbox.Text;
+                    programMethod.createGRN(poID, grnProductData, grnDateTimePicker.Value.ToString("yyyy-MM-dd HH:mm:ss"));
+
+                        for (int i = 0; i < grnProductData.Rows.Count; i++)
+                       {
+
+                       
+                        programMethod.increaseStock(grnProductData.Rows[i].Cells[1].Value.ToString(), grnProductData.Rows[i].Cells[4].Value.ToString());
+                        
+                       }
                         MessageBox.Show("Good Received Note Created Successfully");
                         ClearForm();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Please try again!");
-                    }
+                        //MessageBox.Show("Please try again!");
                 }
                 catch (Exception ex)
                 {
@@ -139,13 +131,25 @@ namespace ITP4519M
             }
         }
 
-        private void grnPOIDbox_KeyDown(object sender, KeyEventArgs e)
+
+        private void grnPOIDbox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataTable dt = programMethod.getPurchaseOrderProductIDAndQty(grnPOIDbox1.Text.Trim());
-            for(int i = 0; i < dt.Rows.Count; i++) {
-                grnProductData.Rows.Add(dt.Rows[i]["SupplierID"].ToString(), dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["OrderQuantity"].ToString(), 0, 0);
+            grnProductData.Rows.Clear();
+            grnProductData.Refresh();
+            //if(grnPOIDbox.SelectedIndex == 0)
+            //{
+            //    grnPOIDbox.SelectedIndex = -1;
+            //}
+            if (grnPOIDbox.SelectedIndex > 0 )
+            {
+                string selectedItem = grnPOIDbox.SelectedItem.ToString();
+                Cursor.Current = Cursors.Default;
+                DataTable dt = programMethod.getPurchaseOrderProductIDAndQty(grnPOIDbox.Text.Trim());
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    grnProductData.Rows.Add(dt.Rows[i]["SupplierID"].ToString(), dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["OrderQuantity"].ToString(), "", 0);
+                }
             }
-           
         }
 
         /*

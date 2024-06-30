@@ -132,8 +132,8 @@ namespace ITP4519M
             string sql = "select DepartmentID from staff where UserName=@userName";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@userName", username);
-            ServerConnect().Close();
             object title = cmd.ExecuteScalar();
+            ServerConnect().Close();
             return title.ToString();
         }
 
@@ -1434,6 +1434,15 @@ namespace ITP4519M
             return dataTable;
         }
 
+        public string getGRNReceiveQty(string POID, string ProductID)
+        {
+                string sql = "SELECT IFNULL((SELECT ReceiveQty FROM grn WHERE PurchaseOrderID = @POID AND ProductID = @ProductID), 0) AS ReceiveQty";
+                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+                cmd.Parameters.AddWithValue("@POID", POID);
+                cmd.Parameters.AddWithValue("@ProductID", ProductID);
+                Object result = cmd.ExecuteScalar();
+                return result.ToString(); 
+        }
 
         public string getDealerID()
         {
@@ -1823,10 +1832,7 @@ namespace ITP4519M
 
         public bool createGRN(string grnID, string POID, string productID, string warehouse, string recQty, string recDate)
         {
-
-            DateTime theDate = DateTime.Now;
-            theDate.ToString("yyyy-MM-dd HH:mm:ss");
-            string sql = "INSERT INTO grn (grnID, ProductID, PurcahseOrderID, ReceiveQty, ReceiveDate, WareHouse) VALUES(@grnID, @productID, @poID , @recqty, @recdate, @warehouse)";
+            string sql = "INSERT INTO grn (grnID, ProductID, PurchaseOrderID, ReceiveQty, ReceiveDate, WareHouse) VALUES(@grnID, @productID, @poID , @recqty, @recdate, @warehouse)";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@grnID", grnID);
             cmd.Parameters.AddWithValue("@productID", productID);
@@ -2483,11 +2489,13 @@ namespace ITP4519M
             return count;
         }
 
-        public String getPurchaseOrderQty(string POID)
+        public String getPurchaseOrderQty(string POID, string supplierID, string productID)
         {
-            string sql = "SELECT OrderQuantity FROM purchaseorder WHERE PurchaseOrderID=@POID";
+            string sql = "SELECT OrderQuantity FROM purchaseorder WHERE PurchaseOrderID=@POID AND SupplierID = @supplierID AND ProductID=@productID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@POID", POID);
+            cmd.Parameters.AddWithValue("@supplierID", supplierID);
+            cmd.Parameters.AddWithValue("@productID", productID);
             object orderQty = cmd.ExecuteScalar();
             ServerConnect().Close();
             return orderQty.ToString();
@@ -2495,7 +2503,7 @@ namespace ITP4519M
 
         public DataTable getPurchaseOrderProductIDAndQty(string POID)
         {
-            string sql = "SELECT SupplierID, ProductID, OrderQuantity FROM purchaseorder WHERE PurchaseOrderID=@POID";
+            string sql = "SELECT SupplierID, ProductID, OrderQuantity FROM purchaseorder WHERE PurchaseOrderID=@POID AND  Status != 'Recevied' ";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@POID", POID);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);

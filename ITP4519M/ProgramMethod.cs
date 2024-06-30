@@ -661,33 +661,39 @@ namespace ProgramMethod
             return dataBaseMethod.overallGRNinfo();
         }
 
-        public bool createGRN(string POID, string productID, string warehouse, string receiveqty, string receivedate)
+        public bool createGRN(string POID, DataGridView dvg,  string receivedate)
         {
             string grnID = "G" + (int.Parse(dataBaseMethod.getGRNID('G').Substring(1)) + 1).ToString("000000");
             try
             {
-                if(dataBaseMethod.createGRN(grnID, POID, productID, warehouse, receiveqty, receivedate))
-                {
-                    LogCreateGRN(LoginUserID, LoginUserName, grnID, POID, productID, receiveqty);
-                }
 
-                if (int.Parse(dataBaseMethod.getPurchaseOrderQty(POID)) == int.Parse(receiveqty))
+                for (int i = 0; i < dvg.Rows.Count; i++)
                 {
-
-                    if (dataBaseMethod.updatePurchaseOrder(POID, "Recevied"))
+                    dataBaseMethod.createGRN(grnID, POID, dvg.Rows[i].Cells[1].Value.ToString(), dvg.Rows[i].Cells[3].Value.ToString(), dvg.Rows[i].Cells[4].Value.ToString(), receivedate);
+                    LogCreateGRN(LoginUserID, LoginUserName, grnID, POID, dvg.Rows[i].Cells[1].Value.ToString(), dvg.Rows[i].Cells[4].Value.ToString());
+                   
+                    if (int.Parse(dataBaseMethod.getPurchaseOrderQty(POID, dvg.Rows[i].Cells[0].Value.ToString(), dvg.Rows[i].Cells[1].Value.ToString())) == (int.Parse(dvg.Rows[i].Cells[4].Value.ToString()) + int.Parse(dataBaseMethod.getGRNReceiveQty(POID, dvg.Rows[i].Cells[1].Value.ToString()))))
                     {
-                     //   dataBaseMethod.updateProductStatus(productID, "Available");
-                        return true;
+                        MessageBox.Show(int.Parse(dvg.Rows[i].Cells[4].Value.ToString()) + int.Parse(dataBaseMethod.getGRNReceiveQty(POID, dvg.Rows[i].Cells[1].Value.ToString())).ToString());
+                        if (dataBaseMethod.updatePurchaseOrder(POID, "Recevied"))
+                        {
+                            MessageBox.Show("1");
+                            //   dataBaseMethod.updateProductStatus(productID, "Available");
+                           // return true;
+                        }
+                    }
+                    else
+                    {
+                        if (dataBaseMethod.updatePurchaseOrder(POID, "Outstanding"))
+                        {
+                            // dataBaseMethod.updateProductStatus(productID, "Available");
+                            //return true;
+                        }
                     }
                 }
-                else
-                {
-                    if (dataBaseMethod.updatePurchaseOrder(POID, "Outstanding"))
-                    {
-                       // dataBaseMethod.updateProductStatus(productID, "Available");
-                        return true;
-                    }
-                }
+
+
+               
             }
             catch (Exception e)
             {

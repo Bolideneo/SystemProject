@@ -31,15 +31,8 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
-            label4 = new Label();
-            label6 = new Label();
-            label7 = new Label();
             label12 = new Label();
             grnCreatebtn = new Button();
-            grnPOIDbox1 = new TextBox();
-            grnProductIDbox = new TextBox();
-            grnwarehousebox = new TextBox();
-            grnreceivedqtybox = new TextBox();
             deliveryClearbtn = new Button();
             grnDateTimePicker = new DateTimePicker();
             CloseButton = new Button();
@@ -50,7 +43,7 @@
             OrderQuantity = new DataGridViewTextBoxColumn();
             WareHouse = new DataGridViewTextBoxColumn();
             ReceivedQty = new DataGridViewTextBoxColumn();
-            comboBox1 = new ComboBox();
+            grnPOIDbox = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)grnProductData).BeginInit();
             SuspendLayout();
             // 
@@ -80,47 +73,17 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(79, 141);
+            label3.Location = new Point(95, 170);
             label3.Name = "label3";
             label3.Size = new Size(89, 25);
             label3.TabIndex = 2;
             label3.Text = "* PO ID :";
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(37, 469);
-            label4.Name = "label4";
-            label4.Size = new Size(153, 25);
-            label4.TabIndex = 3;
-            label4.Text = "* Received Qty :";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.Location = new Point(59, 199);
-            label6.Name = "label6";
-            label6.Size = new Size(122, 25);
-            label6.TabIndex = 5;
-            label6.Text = "* Product ID:";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.Location = new Point(49, 420);
-            label7.Name = "label7";
-            label7.Size = new Size(141, 25);
-            label7.TabIndex = 6;
-            label7.Text = "* WareHouse :";
-            // 
             // label12
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label12.Location = new Point(49, 531);
+            label12.Location = new Point(84, 515);
             label12.Name = "label12";
             label12.Size = new Size(139, 25);
             label12.TabIndex = 11;
@@ -140,43 +103,6 @@
             grnCreatebtn.UseVisualStyleBackColor = false;
             grnCreatebtn.Click += grnCreatebtn_Click;
             // 
-            // grnPOIDbox1
-            // 
-            grnPOIDbox1.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            grnPOIDbox1.Location = new Point(445, 141);
-            grnPOIDbox1.Margin = new Padding(6, 5, 6, 5);
-            grnPOIDbox1.Name = "grnPOIDbox1";
-            grnPOIDbox1.Size = new Size(180, 27);
-            grnPOIDbox1.TabIndex = 18;
-            grnPOIDbox1.KeyDown += grnPOIDbox_KeyDown;
-            // 
-            // grnProductIDbox
-            // 
-            grnProductIDbox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            grnProductIDbox.Location = new Point(193, 202);
-            grnProductIDbox.Margin = new Padding(6, 5, 6, 5);
-            grnProductIDbox.Name = "grnProductIDbox";
-            grnProductIDbox.Size = new Size(194, 27);
-            grnProductIDbox.TabIndex = 19;
-            // 
-            // grnwarehousebox
-            // 
-            grnwarehousebox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            grnwarehousebox.Location = new Point(198, 421);
-            grnwarehousebox.Margin = new Padding(6, 5, 6, 5);
-            grnwarehousebox.Name = "grnwarehousebox";
-            grnwarehousebox.Size = new Size(189, 27);
-            grnwarehousebox.TabIndex = 20;
-            // 
-            // grnreceivedqtybox
-            // 
-            grnreceivedqtybox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            grnreceivedqtybox.Location = new Point(198, 471);
-            grnreceivedqtybox.Margin = new Padding(6, 5, 6, 5);
-            grnreceivedqtybox.Name = "grnreceivedqtybox";
-            grnreceivedqtybox.Size = new Size(189, 27);
-            grnreceivedqtybox.TabIndex = 21;
-            // 
             // deliveryClearbtn
             // 
             deliveryClearbtn.BackColor = Color.Red;
@@ -193,7 +119,7 @@
             // 
             // grnDateTimePicker
             // 
-            grnDateTimePicker.Location = new Point(197, 529);
+            grnDateTimePicker.Location = new Point(232, 513);
             grnDateTimePicker.Margin = new Padding(3, 4, 3, 4);
             grnDateTimePicker.Name = "grnDateTimePicker";
             grnDateTimePicker.Size = new Size(242, 27);
@@ -232,16 +158,19 @@
             // 
             grnProductData.AllowUserToAddRows = false;
             grnProductData.AllowUserToDeleteRows = false;
+            grnProductData.RowHeadersVisible = false;
+            grnProductData.AllowUserToAddRows = false;
+            grnProductData.AllowUserToDeleteRows = false;
             grnProductData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             grnProductData.BackgroundColor = SystemColors.ButtonFace;
             grnProductData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             grnProductData.Columns.AddRange(new DataGridViewColumn[] { SupplierID, ProductID, OrderQuantity, WareHouse, ReceivedQty });
-            grnProductData.Location = new Point(5, 239);
+            grnProductData.Location = new Point(12, 228);
             grnProductData.Margin = new Padding(3, 5, 3, 5);
             grnProductData.Name = "grnProductData";
             grnProductData.RowHeadersWidth = 51;
             grnProductData.RowTemplate.Height = 24;
-            grnProductData.Size = new Size(620, 174);
+            grnProductData.Size = new Size(620, 230);
             grnProductData.TabIndex = 62;
             // 
             // SupplierID
@@ -274,15 +203,16 @@
             ReceivedQty.MinimumWidth = 6;
             ReceivedQty.Name = "ReceivedQty";
             // 
-            // comboBox1
+            // grnPOIDbox
             // 
-            comboBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            comboBox1.AutoCompleteSource = AutoCompleteSource.ListItems;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(182, 137);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(226, 28);
-            comboBox1.TabIndex = 104;
+            grnPOIDbox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            grnPOIDbox.AutoCompleteSource = AutoCompleteSource.ListItems;
+            grnPOIDbox.FormattingEnabled = true;
+            grnPOIDbox.Location = new Point(209, 167);
+            grnPOIDbox.Name = "grnPOIDbox";
+            grnPOIDbox.Size = new Size(226, 28);
+            grnPOIDbox.TabIndex = 104;
+            grnPOIDbox.SelectedIndexChanged += grnPOIDbox_SelectedIndexChanged;
             // 
             // GRN
             // 
@@ -290,21 +220,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(637, 770);
-            Controls.Add(comboBox1);
+            Controls.Add(grnPOIDbox);
             Controls.Add(grnProductData);
             Controls.Add(grnerrorlbl);
             Controls.Add(CloseButton);
             Controls.Add(grnDateTimePicker);
             Controls.Add(deliveryClearbtn);
-            Controls.Add(grnreceivedqtybox);
-            Controls.Add(grnwarehousebox);
-            Controls.Add(grnProductIDbox);
-            Controls.Add(grnPOIDbox1);
             Controls.Add(grnCreatebtn);
             Controls.Add(label12);
-            Controls.Add(label7);
-            Controls.Add(label6);
-            Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -324,15 +247,8 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private Label label4;
-        private Label label6;
-        private Label label7;
         private Label label12;
         private Button grnCreatebtn;
-        private TextBox grnPOIDbox1;
-        private TextBox grnProductIDbox;
-        private TextBox grnwarehousebox;
-        private TextBox grnreceivedqtybox;
         private Button deliveryClearbtn;
         private DateTimePicker grnDateTimePicker;
         private Button CloseButton;
@@ -343,6 +259,6 @@
         private DataGridViewTextBoxColumn OrderQuantity;
         private DataGridViewTextBoxColumn WareHouse;
         private DataGridViewTextBoxColumn ReceivedQty;
-        private ComboBox comboBox1;
+        private ComboBox grnPOIDbox;
     }
 }
