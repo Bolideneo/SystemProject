@@ -193,6 +193,11 @@ namespace ProgramMethod
             return dataBaseMethod.searchProductInfo(productname);
         }
 
+        public DataTable searchPOInformation(string POID)
+        {
+            return dataBaseMethod.searchPOInformation(POID);
+        }
+
         public DataTable searchDealerInformation(string contactname)
         {
             return dataBaseMethod.searchDealerInfoByName(contactname);
@@ -495,21 +500,21 @@ namespace ProgramMethod
             }
         }
 
-        public ProductDetails getProductDetails(string productid)
-        {
-            using (var connection = dataBaseMethod.ServerConnect())
+            public ProductDetails getProductDetails(string productid)
             {
-                if (connection.State == System.Data.ConnectionState.Open)
+                using (var connection = dataBaseMethod.ServerConnect())
                 {
+                    if (connection.State == System.Data.ConnectionState.Open)
+                    {
 
-                    return dataBaseMethod.GetProductDetails(connection, productid);
-                }
-                else
-                {
-                    throw new Exception("Database connection failed.");
+                        return dataBaseMethod.GetProductDetails(connection, productid);
+                    }
+                    else
+                    {
+                        throw new Exception("Database connection failed.");
+                    }
                 }
             }
-        }
 
         public string getProductWeight(string orderID)
         {
@@ -887,6 +892,11 @@ namespace ProgramMethod
         public int getDealersRowCount()
         {
             return dataBaseMethod.getDealersRowCount();
+        }
+
+        public int getPORowCount()
+        {
+            return dataBaseMethod.getPORowCount();
         }
 
         public int getSuppliersRowCount()
@@ -2147,6 +2157,24 @@ namespace ProgramMethod
         {
             dataBaseMethod.CreatePurchaseOrderItem(purchaseOrderItem);
 
+        }
+
+
+
+
+        public PurchaseOrder GetPurchaseOrderDetails(string purchaseOrderId)
+        {
+            using (var connection = dataBaseMethod.ServerConnect())
+            {
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    return dataBaseMethod.GetPurchaseOrderDetails(connection, purchaseOrderId);
+                }
+                else
+                {
+                    throw new Exception("Database connection failed.");
+                }
+            }
         }
     }
   

@@ -45,6 +45,9 @@ namespace ITP4519M
                     //    SetReadOnly(false);
                     //    break;
             }
+
+            orderIDAlertlbl.Visible = false;
+            outstandingIDAlertlbl.Visible = false;
         }
 
 
@@ -160,24 +163,46 @@ namespace ITP4519M
 
         private void deliveryCreatebtn_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(deliveryOrderidbox.Text))
+            {
+                orderIDAlertlbl.Visible = true;
+
+                deliveryOrderidbox.Focus();
+                return;
+            }
+            else
+            {
+                orderIDAlertlbl.Visible = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(deliveryOutstandingbox.Text))
+            {
+                outstandingIDAlertlbl.Visible = true;
+                
+                deliveryOutstandingbox.Focus();
+                return;
+            }
+            else
+            {
+                outstandingIDAlertlbl.Visible = false;
+            }
+
             try
             {
-               if(programMethod.createDelivery(deliveryOrderidbox.Text.Trim(), DeliverydateTimePicker1.Value.Date.ToString()))
+                if (programMethod.createDelivery(deliveryOrderidbox.Text.Trim(), DeliverydateTimePicker1.Value.Date.ToString()))
                 {
-                    
                     MessageBox.Show("Create Successfully");
                 }
                 else
                 {
                     MessageBox.Show("Order ID is wrong!");
-                }               
-              
+                }
             }
             catch
             {
                 MessageBox.Show("Delivery Error");
             }
-        }   
+        }
 
         private void deliveryDeliveryidbox_TextChanged(object sender, EventArgs e)
         {

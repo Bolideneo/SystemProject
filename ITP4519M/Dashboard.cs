@@ -25,6 +25,7 @@ using System.Diagnostics;
 using MySqlX.XDevAPI.Common;
 using System.Security.Policy;
 using System.Net.NetworkInformation;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
 namespace ITP4519M
@@ -110,6 +111,7 @@ namespace ITP4519M
         private string invoiceID;
         private string invoiceOrderID;
         private string invoiceDealerID;
+        private string poID;
         private bool isDealerDVG;
         private int PageSize = 5;
         private int index = -1;
@@ -121,6 +123,7 @@ namespace ITP4519M
         private int dealerindex = -1;
         private int supplierindex = -1;
         private int stockindex = -1;
+        private int POIndex = -1;
         private int orderAceemblyindex = -1;
         private int outstandingIndex = -1;
         private int outstandingTotalIndex = -1;
@@ -130,6 +133,7 @@ namespace ITP4519M
         private int AccountRowCount;
         private int SupplierRowCount;
         private int DealerRowCount;
+        private int PORowCount;
         private int DeliveryRowCount;
         private int OrderRowCount;
         private int GRNRowCount;
@@ -1496,6 +1500,7 @@ namespace ITP4519M
 
                 case "PO":
                     rowCount = programMethod.GetPOCount();
+                    PORowCount = rowCount;
                     POTotalPage = rowCount / POPgSize;
                     if (rowCount % POPgSize > 0)
                         POTotalPage += 1;
@@ -1649,6 +1654,8 @@ namespace ITP4519M
             poData.DataSource = programMethod.GetPOCurrentRecords(POPageIndex, POPgSize);
             poData.Rows[0].Selected = false;
             SetRowHeights(poData, POPgSize);
+            poIndexlbl.Text = "01" + "-" + POPgSize.ToString() + " of " + programMethod.getPORowCount();
+
 
         }
 
@@ -1972,22 +1979,52 @@ namespace ITP4519M
 
         private void poLastPagebtn_Click(object sender, EventArgs e)
         {
-
+            this.POPageIndex = POTotalPage;
+            this.poData.DataSource = programMethod.GetPOCurrentRecords(this.POPageIndex, POPgSize);
+            SetRowHeights(poData, POPgSize);
+            poIndexlbl.Text = (POPgSize * POPageIndex - (POPgSize - 1)) + "-" + PORowCount + " of " + PORowCount;
         }
 
         private void poFirstPageBtn_Click(object sender, EventArgs e)
         {
-
+            this.POPageIndex = 1;
+            poData.DataSource = programMethod.GetPOCurrentRecords(POPageIndex, POPgSize);
+            SetRowHeights(poData, POPgSize);
+            SetRowHeights(poData, POPgSize);
+            poIndexlbl.Text = "1" + " - " + POPgSize + " of " + PORowCount;
         }
 
         private void poPrevPageBtn_Click(object sender, EventArgs e)
         {
-
+            if (this.POPageIndex > 1)
+            {
+                this.POPageIndex--;
+                this.poData.DataSource = programMethod.GetPOCurrentRecords(this.POPageIndex, POPgSize);
+            }
+            SetRowHeights(poData, POPgSize);
+            poIndexlbl.Text = (POPgSize * POPageIndex - (POPgSize - 1)) + " - " + (POPgSize * CurrentPageIndex) + " of " + PORowCount;
         }
 
         private void poNextPageBtn_Click(object sender, EventArgs e)
         {
+            {
+                if (this.POPageIndex < this.POTotalPage)
+                {
+                    this.POPageIndex++;
+                    this.poData.DataSource = programMethod.GetPOCurrentRecords(this.POPageIndex, POPgSize);
 
+                }
+                SetRowHeights(poData, POPgSize);
+
+                if (POPageIndex != POTotalPage)
+                {
+                    poIndexlbl.Text = (POPgSize * POPageIndex - (POPgSize - 1)) + " - " + (POPgSize * POPageIndex) + " of " + PORowCount;
+                }
+                else
+                {
+                    poIndexlbl.Text = (POPgSize * POPageIndex - (POPgSize - 1)) + " - " + PORowCount + " of " + PORowCount;
+                }
+            }
         }
 
         private void homebtn_Click(object sender, EventArgs e)
@@ -2252,7 +2289,52 @@ namespace ITP4519M
 
         private void viewOutstandingCompletebtn_Click(object sender, EventArgs e)
         {
-           programMethod.completeOutstandingOrder(outstandingOrderID);
+            programMethod.completeOutstandingOrder(outstandingOrderID);
+        }
+
+        /*   private void POViewbtn_Click(object sender, EventArgs e)
+           {
+               if (POIndex == -1)
+               {
+                   MessageBox.Show("Please Select One Invoice");
+               }
+               else
+               {
+                   CreatePurchaseOrder PurchaseOrderForm = new CreatePurchaseOrder(OperationMode.View);
+                   PurchaseOrderForm.purchaseOrderView(poID);
+                   PurchaseOrderForm.ShowDialog();
+
+               }
+           }*/
+
+        private void poData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+            {
+
+                this.poData.Rows[e.RowIndex].Cells["pocheckColumn"].Value = true;
+                POIndex = e.RowIndex;
+                DataGridViewRow selectRow = this.poData.Rows[POIndex];
+                poID = selectRow.Cells[1].Value.ToString();
+                //  dealerID = selectRow.Cells[2].Value.ToString();
+
+                foreach (DataGridViewRow row in stockData.Rows)
+                {
+                    if (row.Index == e.RowIndex)
+                    {
+                        row.Cells["pocheckColumn"].Value = !Convert.ToBoolean(row.Cells["pocheckColumn"].EditedFormattedValue);
+                    }
+                    else
+                    {
+                        row.Cells["pocheckColumn"].Value = false;
+                    }
+                }
+            }
+        }
+
+        private void poSearchbtn_Click(object sender, EventArgs e)
+        {
+            poData.DataSource = programMethod.searchPOInformation(poSearchbox.Text.Trim());
         }
     }
 }

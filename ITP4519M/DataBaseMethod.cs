@@ -1898,6 +1898,15 @@ namespace ITP4519M
             return rowCount;
         }
 
+        public int getPORowCount()
+        {
+            string sql = "SELECT COUNT(DISTINCT CONCAT(PurchaseOrderID, '-', ProductID)) AS UniqueCombinationCount FROM purchaseorder";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            object result = cmd.ExecuteScalar();
+            int rowCount = Convert.ToInt32(result);
+            return rowCount;
+        }
+
         public int getDealersRowCount()
         {
             string sql = "SELECT COUNT(DISTINCT DealerID) FROM dealer";
@@ -2038,30 +2047,47 @@ namespace ITP4519M
             ServerConnect().Close();
             return dataTable;
         }
-
+        //Tim
         public DataTable GetPOCurrentRecords(int page, int pageSize)
         {
-            string sql = "SELECT PurchaseOrderID,OrderQuantity,Status,Date FROM purchaseorder ORDER BY PurchaseOrderID LIMIT @PgSize";
-            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-            cmd.Parameters.AddWithValue("@PgSize", pageSize);
-            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
-            DataTable dataTable = new DataTable();
-            adat.Fill(dataTable);
-            ServerConnect().Close();
-            return dataTable;
+            string sql = "SELECT po.PurchaseOrderID, p.ProductName, po.OrderQuantity, po.UnitPrice, po.TotalPrice, s.SupplierCompanyName, po.Status, po.Date " +
+                         "FROM purchaseorder po " +
+                         "JOIN product p ON po.ProductID = p.ProductID " +
+                         "JOIN supplier s ON po.SupplierID = s.SupplierID " +
+                         "ORDER BY po.PurchaseOrderID " +
+                         "LIMIT @PgSize OFFSET @Offset";
+
+            using (MySqlConnection conn = ServerConnect())
+            {
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@PgSize", pageSize);
+                cmd.Parameters.AddWithValue("@Offset", (page - 1) * pageSize);
+
+                MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+                DataTable dataTable = new DataTable();
+                adat.Fill(dataTable);
+
+                return dataTable;
+            }
         }
 
         public DataTable GetPOCurrentRecords2(int page, int pageSize)
         {
-            string sql = "SELECT * FROM (SELECT * FROM purchaseorder ORDER BY PurchaseOrderID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY PurchaseOrderID";
-            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-            cmd.Parameters.AddWithValue("@PgSize", pageSize);
-            cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);
-            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
-            DataTable dataTable = new DataTable();
-            adat.Fill(dataTable);
-            ServerConnect().Close();
-            return dataTable;
+    
+            string sql = "SELECT* FROM(SELECT po.PurchaseOrderID, p.ProductName, po.OrderQuantity, po.UnitPrice, po.TotalPrice, s.SupplierCompanyName, po.Status, po.Date FROM purchaseorder po LEFT JOIN product p ON p.ProductID=po.ProductID LEFT JOIN supplier s ON po.SupplierID=s.SupplierID ORDER BY po.PurchaseOrderID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY PurchaseOrderID";
+
+            using (MySqlConnection conn = ServerConnect())
+            {
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@PgSize", pageSize);
+                cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);
+
+                MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+                DataTable dataTable = new DataTable();
+                adat.Fill(dataTable);
+
+                return dataTable;
+            }
         }
 
         public DataTable GetOrderCurrentRecords(int page, int pageSize)
@@ -3332,22 +3358,30 @@ namespace ITP4519M
 
         public string CreatePurchaseOrder(PurchaseOrder purchaseOrder)
         {
-            string purchaseOrderId = GenerateNewPurchaseOrderID();
+            string purchaseOrderId = GetExistingPurchaseOrderID(purchaseOrder.SupplierID, purchaseOrder.Date);
+
+            if (string.IsNullOrEmpty(purchaseOrderId))
+            {
+                purchaseOrderId = GenerateNewPurchaseOrderID();
+            }
 
             using (MySqlConnection conn = ServerConnect())
             {
-                using (MySqlCommand cmd = new MySqlCommand("INSERT INTO purchaseorder (PurchaseOrderID, SupplierID, ProductID, OrderQuantity, Date, Status) VALUES (@PurchaseOrderID, @SupplierID, @ProductID, @OrderQuantity, @Date, @Status)", conn))
-                {
-                    cmd.Parameters.AddWithValue("@PurchaseOrderID", purchaseOrderId);
-                    cmd.Parameters.AddWithValue("@SupplierID", purchaseOrder.SupplierID);
-                    cmd.Parameters.AddWithValue("@Date", purchaseOrder.Date);
-                    cmd.Parameters.AddWithValue("@Status", purchaseOrder.Status);
-                    cmd.Parameters.AddWithValue("@ProductID", purchaseOrder.ProductID);
-                    cmd.Parameters.AddWithValue("@OrderQuantity", purchaseOrder.OrderQuantity);
+                string query = "INSERT INTO purchaseorder (PurchaseOrderID, SupplierID, Date, Status, ProductID, OrderQuantity, UnitPrice, TotalPrice) VALUES (@PurchaseOrderID, @SupplierID, @Date, @Status, @ProductID, @OrderQuantity, @UnitPrice, @TotalPrice)";
 
-                    cmd.ExecuteNonQuery();
-                }
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@PurchaseOrderID", purchaseOrderId);
+                cmd.Parameters.AddWithValue("@SupplierID", purchaseOrder.SupplierID);
+                cmd.Parameters.AddWithValue("@Date", purchaseOrder.Date);
+                cmd.Parameters.AddWithValue("@Status", purchaseOrder.Status);
+                cmd.Parameters.AddWithValue("@ProductID", purchaseOrder.ProductID);
+                cmd.Parameters.AddWithValue("@OrderQuantity", purchaseOrder.OrderQuantity);
+                cmd.Parameters.AddWithValue("@UnitPrice", purchaseOrder.UnitPrice);
+                cmd.Parameters.AddWithValue("@TotalPrice", purchaseOrder.TotalPrice);
+
+                cmd.ExecuteNonQuery();
             }
+        
 
             return purchaseOrderId;
         }
@@ -3374,6 +3408,26 @@ namespace ITP4519M
 
             return newID;
         }
+        private string GetExistingPurchaseOrderID(string supplierID, string date)
+        {
+            using (MySqlConnection conn = ServerConnect())
+            {
+                string query = "SELECT PurchaseOrderID FROM purchaseorder WHERE SupplierID = @SupplierID AND Date = @Date LIMIT 1";
+
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@SupplierID", supplierID);
+                cmd.Parameters.AddWithValue("@Date", date);
+
+                object result = cmd.ExecuteScalar();
+                if (result != null && result != DBNull.Value)
+                {
+                    return result.ToString();
+                }
+            }
+
+            return null;
+        }
+
         public void CreatePurchaseOrderItem(PurchaseOrderItem purchaseOrderItem)
         {
             string purchaseOrderItemId = GenerateNewPurchaseOrderItemID();
@@ -3420,12 +3474,14 @@ namespace ITP4519M
         {
             public string PurchaseOrderID { get; set; }
             public string SupplierID { get; set; }
-            public string Date { get; set; }
-            public string Status { get; set; }
             public string ProductID { get; set; }
             public string OrderQuantity { get; set; }
-      
-
+            public string UnitPrice { get; set; }
+            public string TotalPrice { get; set; }
+            public string Status { get; set; }
+            public string Date { get; set; }
+            public string ProductName { get; set; }
+            public string SupplierCompanyName { get; set; }
         }
 
         public class PurchaseOrderItem
@@ -3438,6 +3494,81 @@ namespace ITP4519M
             public string TotalPrice { get; set; }
         }
 
+        public List<PurchaseOrder> GetPurchaseOrderItems(string poID)
+        {
+            List<PurchaseOrder> items = new List<PurchaseOrder>();
+
+            using (MySqlConnection conn = ServerConnect())
+            {
+                string query = "SELECT * FROM purchaseorder WHERE PurchaseOrderID = @PurchaseOrderID";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@PurchaseOrderID", poID);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        PurchaseOrder item = new PurchaseOrder
+                        {
+                            ProductID = reader["ProductID"].ToString(),
+                            OrderQuantity = reader["OrderQuantity"].ToString(),
+                            UnitPrice = reader["UnitPrice"].ToString(),
+                            TotalPrice = reader["TotalPrice"].ToString()
+                        };
+                        items.Add(item);
+                    }
+                }
+            }
+
+            return items;
+        }
+
+
+        public PurchaseOrder GetPurchaseOrderDetails(MySqlConnection connection, string purchaseOrderId)
+        {
+            string query = "SELECT po.PurchaseOrderID, po.SupplierID, po.Date, po.Status, po.ProductID, po.OrderQuantity, po.UnitPrice, po.TotalPrice, p.ProductName, s.SupplierCompanyName FROM purchaseorder po JOIN product p ON po.ProductID = p.ProductID JOIN supplier s ON po.SupplierID = s.SupplierID WHERE po.PurchaseOrderID = @PurchaseOrderID";
+
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@PurchaseOrderID", purchaseOrderId);
+
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    return new PurchaseOrder
+                    {
+                        PurchaseOrderID = reader["PurchaseOrderID"].ToString(),
+                        SupplierID = reader["SupplierID"].ToString(),
+                        Date = reader.GetDateTime(reader.GetOrdinal("Date")).ToString("yyyy-MM-dd"),
+                        Status = reader["Status"].ToString(),
+                        ProductID = reader["ProductID"].ToString(),
+                        OrderQuantity = reader["OrderQuantity"].ToString(),
+                        UnitPrice = reader["UnitPrice"].ToString(),
+                        TotalPrice = reader["TotalPrice"].ToString(),
+                        ProductName = reader["ProductName"].ToString(),
+                        SupplierCompanyName = reader["SupplierCompanyName"].ToString()
+                    };
+                }
+                else
+                {
+                    throw new Exception("Purchase order not found.");
+                }
+            }
+
+
+        }
+        public DataTable searchPOInformation(string poID)
+        {
+            //  string sql = "SELECT * FROM staff, department WHERE department.departmentID = staff.DepartmentID AND UserName LIKE @username";
+            string sql = "SELECT po.PurchaseOrderID, p.ProductName, po.OrderQuantity, po.UnitPrice, po.TotalPrice, s.SupplierCompanyName, po.Date, po.Status FROM purchaseorder po JOIN product p ON po.ProductID = p.ProductID JOIN supplier s ON po.SupplierID = s.SupplierID WHERE po.PurchaseOrderID LIKE @PurchaseOrderID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@PurchaseOrderID", "%" + poID + "%");
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
     }
 
 }

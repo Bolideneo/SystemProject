@@ -168,6 +168,7 @@ namespace ITP4519M
             suppliercheckColumn = new DataGridViewCheckBoxColumn();
             usercheckColumn = new DataGridViewCheckBoxColumn();
             stockcheckColumn = new DataGridViewCheckBoxColumn();
+            pocheckColumn = new DataGridViewCheckBoxColumn();
             orderAccemblyColumn = new DataGridViewCheckBoxColumn();
             stocklbl = new Label();
             stockSummarypnl = new Panel();
@@ -410,25 +411,23 @@ namespace ITP4519M
             deliveryNextbtn = new Button();
             POpnl = new Panel();
             poData = new CustomDataGridView();
-            dataGridViewCheckBoxColumn6 = new DataGridViewCheckBoxColumn();
             panel16 = new Panel();
             poFirstPageBtn = new ProgramMethod.ProgramMethod.RoundedButton();
-            label24 = new Label();
+            poIndexlbl = new Label();
             poPrevPageBtn = new ProgramMethod.ProgramMethod.RoundedButton();
             poLastPagebtn = new ProgramMethod.ProgramMethod.RoundedButton();
             poNextPageBtn = new ProgramMethod.ProgramMethod.RoundedButton();
             panel17 = new Panel();
             button13 = new Button();
             poSearchbox = new ProgramMethod.ProgramMethod.RoundedTextBox();
-            button14 = new Button();
             podateTimePicker1 = new DateTimePicker();
             label25 = new Label();
             poSearchbtn = new Button();
             label26 = new Label();
-            poClearbtn = new Button();
             podateTimePicker2 = new DateTimePicker();
             button17 = new Button();
             POlbl = new Label();
+            dataGridViewCheckBoxColumn6 = new DataGridViewCheckBoxColumn();
             dataGridViewCheckBoxColumn2 = new DataGridViewCheckBoxColumn();
             outstandingOrderpnl = new Panel();
             panel20 = new Panel();
@@ -1599,6 +1598,13 @@ namespace ITP4519M
             stockcheckColumn.HeaderText = "Select";
             stockcheckColumn.MinimumWidth = 40;
             stockcheckColumn.Name = "stockcheckColumn";
+            // 
+            // pocheckColumn
+            // 
+            pocheckColumn.FillWeight = 50F;
+            pocheckColumn.HeaderText = "Select";
+            pocheckColumn.MinimumWidth = 40;
+            pocheckColumn.Name = "pocheckColumn";
             // 
             // orderAccemblyColumn
             // 
@@ -4855,6 +4861,7 @@ namespace ITP4519M
             dataGridViewCellStyle24.BackColor = Color.Gainsboro;
             poData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle24;
             poData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            poData.BackgroundColor = SystemColors.ControlLight;
             dataGridViewCellStyle25.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle25.BackColor = SystemColors.Control;
             dataGridViewCellStyle25.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -4864,7 +4871,7 @@ namespace ITP4519M
             dataGridViewCellStyle25.WrapMode = DataGridViewTriState.True;
             poData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle25;
             poData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            poData.Columns.AddRange(new DataGridViewColumn[] { dataGridViewCheckBoxColumn6 });
+            poData.Columns.AddRange(new DataGridViewColumn[] { pocheckColumn });
             dataGridViewCellStyle26.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle26.BackColor = SystemColors.Window;
             dataGridViewCellStyle26.Font = new Font("Segoe UI", 9F);
@@ -4880,18 +4887,12 @@ namespace ITP4519M
             poData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             poData.Size = new Size(1181, 604);
             poData.TabIndex = 39;
-            // 
-            // dataGridViewCheckBoxColumn6
-            // 
-            dataGridViewCheckBoxColumn6.FillWeight = 35F;
-            dataGridViewCheckBoxColumn6.HeaderText = "Select";
-            dataGridViewCheckBoxColumn6.MinimumWidth = 35;
-            dataGridViewCheckBoxColumn6.Name = "dataGridViewCheckBoxColumn6";
+            poData.CellContentClick += poData_CellContentClick;
             // 
             // panel16
             // 
             panel16.Controls.Add(poFirstPageBtn);
-            panel16.Controls.Add(label24);
+            panel16.Controls.Add(poIndexlbl);
             panel16.Controls.Add(poPrevPageBtn);
             panel16.Controls.Add(poLastPagebtn);
             panel16.Controls.Add(poNextPageBtn);
@@ -4917,7 +4918,7 @@ namespace ITP4519M
             poFirstPageBtn.ButtonRoundRadius = 15;
             poFirstPageBtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             poFirstPageBtn.ForeColor = Color.Black;
-            poFirstPageBtn.Location = new Point(70, 9);
+            poFirstPageBtn.Location = new Point(48, 9);
             poFirstPageBtn.Margin = new Padding(3, 4, 3, 4);
             poFirstPageBtn.Name = "poFirstPageBtn";
             poFirstPageBtn.Size = new Size(79, 44);
@@ -4925,15 +4926,15 @@ namespace ITP4519M
             poFirstPageBtn.Text = "First";
             poFirstPageBtn.Click += poFirstPageBtn_Click;
             // 
-            // label24
+            // poIndexlbl
             // 
-            label24.AutoSize = true;
-            label24.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label24.Location = new Point(251, 21);
-            label24.Name = "label24";
-            label24.Size = new Size(100, 25);
-            label24.TabIndex = 3;
-            label24.Text = "LabelData";
+            poIndexlbl.AutoSize = true;
+            poIndexlbl.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            poIndexlbl.Location = new Point(237, 21);
+            poIndexlbl.Name = "poIndexlbl";
+            poIndexlbl.Size = new Size(100, 25);
+            poIndexlbl.TabIndex = 3;
+            poIndexlbl.Text = "LabelData";
             // 
             // poPrevPageBtn
             // 
@@ -4952,7 +4953,7 @@ namespace ITP4519M
             poPrevPageBtn.ButtonRoundRadius = 15;
             poPrevPageBtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             poPrevPageBtn.ForeColor = Color.Black;
-            poPrevPageBtn.Location = new Point(167, 9);
+            poPrevPageBtn.Location = new Point(145, 9);
             poPrevPageBtn.Margin = new Padding(3, 4, 3, 4);
             poPrevPageBtn.Name = "poPrevPageBtn";
             poPrevPageBtn.Size = new Size(72, 44);
@@ -5012,12 +5013,10 @@ namespace ITP4519M
             // 
             panel17.Controls.Add(button13);
             panel17.Controls.Add(poSearchbox);
-            panel17.Controls.Add(button14);
             panel17.Controls.Add(podateTimePicker1);
             panel17.Controls.Add(label25);
             panel17.Controls.Add(poSearchbtn);
             panel17.Controls.Add(label26);
-            panel17.Controls.Add(poClearbtn);
             panel17.Controls.Add(podateTimePicker2);
             panel17.Location = new Point(37, 88);
             panel17.Name = "panel17";
@@ -5027,7 +5026,7 @@ namespace ITP4519M
             // button13
             // 
             button13.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button13.Location = new Point(432, 136);
+            button13.Location = new Point(28, 131);
             button13.Name = "button13";
             button13.Size = new Size(107, 49);
             button13.TabIndex = 32;
@@ -5044,16 +5043,6 @@ namespace ITP4519M
             poSearchbox.PlaceholderText = "Search";
             poSearchbox.Size = new Size(509, 41);
             poSearchbox.TabIndex = 31;
-            // 
-            // button14
-            // 
-            button14.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button14.Location = new Point(279, 136);
-            button14.Name = "button14";
-            button14.Size = new Size(117, 45);
-            button14.TabIndex = 17;
-            button14.Text = "View";
-            button14.UseVisualStyleBackColor = true;
             // 
             // podateTimePicker1
             // 
@@ -5075,12 +5064,13 @@ namespace ITP4519M
             // poSearchbtn
             // 
             poSearchbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            poSearchbtn.Location = new Point(18, 132);
+            poSearchbtn.Location = new Point(523, 135);
             poSearchbtn.Name = "poSearchbtn";
             poSearchbtn.Size = new Size(101, 47);
             poSearchbtn.TabIndex = 25;
             poSearchbtn.Text = "Search";
             poSearchbtn.UseVisualStyleBackColor = true;
+            poSearchbtn.Click += poSearchbtn_Click;
             // 
             // label26
             // 
@@ -5092,16 +5082,6 @@ namespace ITP4519M
             label26.TabIndex = 11;
             label26.Text = "To";
             // 
-            // poClearbtn
-            // 
-            poClearbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            poClearbtn.Location = new Point(141, 133);
-            poClearbtn.Name = "poClearbtn";
-            poClearbtn.Size = new Size(101, 47);
-            poClearbtn.TabIndex = 15;
-            poClearbtn.Text = "Clear";
-            poClearbtn.UseVisualStyleBackColor = true;
-            // 
             // podateTimePicker2
             // 
             podateTimePicker2.Location = new Point(318, 64);
@@ -5111,13 +5091,14 @@ namespace ITP4519M
             // 
             // button17
             // 
+            button17.BackColor = Color.LimeGreen;
             button17.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button17.Location = new Point(978, 25);
+            button17.Location = new Point(1055, 31);
             button17.Name = "button17";
-            button17.Size = new Size(161, 56);
+            button17.Size = new Size(155, 51);
             button17.TabIndex = 36;
-            button17.Text = "Add";
-            button17.UseVisualStyleBackColor = true;
+            button17.Text = "Add Order";
+            button17.UseVisualStyleBackColor = false;
             button17.Click += button17_Click;
             // 
             // POlbl
@@ -5126,9 +5107,17 @@ namespace ITP4519M
             POlbl.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             POlbl.Location = new Point(11, 11);
             POlbl.Name = "POlbl";
-            POlbl.Size = new Size(45, 31);
+            POlbl.Size = new Size(177, 31);
             POlbl.TabIndex = 0;
-            POlbl.Text = "PO";
+            POlbl.Text = "Purchase Order";
+            // 
+            // dataGridViewCheckBoxColumn6
+            // 
+            dataGridViewCheckBoxColumn6.FillWeight = 35F;
+            dataGridViewCheckBoxColumn6.HeaderText = "Select";
+            dataGridViewCheckBoxColumn6.MinimumWidth = 35;
+            dataGridViewCheckBoxColumn6.Name = "dataGridViewCheckBoxColumn6";
+            dataGridViewCheckBoxColumn6.Width = 125;
             // 
             // dataGridViewCheckBoxColumn2
             // 
@@ -6105,8 +6094,6 @@ namespace ITP4519M
             ClientSize = new Size(1497, 1047);
             Controls.Add(listpnl);
             Controls.Add(closebtn);
-            Controls.Add(invoicepnl);
-            Controls.Add(POpnl);
             Controls.Add(deliverypnl);
             Controls.Add(userspnl);
             Controls.Add(outstandingOrderpnl);
@@ -6121,6 +6108,8 @@ namespace ITP4519M
             Controls.Add(logpnl);
             Controls.Add(inventorypnl);
             Controls.Add(contactpnl);
+            Controls.Add(invoicepnl);
+            Controls.Add(POpnl);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
@@ -6393,6 +6382,7 @@ namespace ITP4519M
         private DataGridViewCheckBoxColumn suppliercheckColumn;
         private DataGridViewCheckBoxColumn usercheckColumn;
         private DataGridViewCheckBoxColumn stockcheckColumn;
+        private DataGridViewCheckBoxColumn pocheckColumn;
         private DataGridViewCheckBoxColumn orderAccemblyColumn;
         private Button searchSupplierbtn;
         private CustomDataGridView userData;
@@ -6507,19 +6497,17 @@ namespace ITP4519M
         private CustomDataGridView invoiceData;
         private Panel panel16;
         private ProgramMethod.ProgramMethod.RoundedButton poFirstPageBtn;
-        private Label label24;
+        private Label poIndexlbl;
         private ProgramMethod.ProgramMethod.RoundedButton poPrevPageBtn;
         private ProgramMethod.ProgramMethod.RoundedButton poLastPagebtn;
         private ProgramMethod.ProgramMethod.RoundedButton poNextPageBtn;
         private Panel panel17;
         private Button button13;
         private ProgramMethod.ProgramMethod.RoundedTextBox poSearchbox;
-        private Button button14;
         private DateTimePicker podateTimePicker1;
         private Label label25;
         private Button poSearchbtn;
         private Label label26;
-        private Button poClearbtn;
         private DateTimePicker podateTimePicker2;
         private DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn2;
         private Button button17;

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProgramMethod;
+using static ITP4519M.DataBaseMethod;
 
 
 namespace ITP4519M
@@ -99,9 +100,39 @@ namespace ITP4519M
             ClearForm();
         }
 
+           private void grnCreatebtn_Click(object sender, EventArgs e)
+             {
+                if (grnPOIDbox.Text == "" || grnwarehousebox.Text == "" || grnProductIDbox.Text == "" || grnreceivedqtybox.Text == "")
+               {
+                 grnerrorlbl.Visible = true;
+               }
+                 else
+                 {
+                     try
+                     {
+                         if (programMethod.createGRN(grnPOIDbox.Text.Trim(), grnProductIDbox.Text.Trim(), grnwarehousebox.Text.Trim(), grnreceivedqtybox.Text.Trim(), grnDateTimePicker.Value.Date.ToString()))
+                         {
+                             programMethod.increaseStock(grnProductIDbox.Text.Trim(), grnreceivedqtybox.Text.Trim());
+                             MessageBox.Show("Good Received Note Created Successfully");
+                             ClearForm();
+                         }
+                         else
+                         {
+                             MessageBox.Show("Please try again!");
+                         }
+                     }
+                     catch(Exception ex) 
+                     {
+
+                        MessageBox.Show(ex.Message);
+                     }
+                 }
+             }
+
+        /*
         private void grnCreatebtn_Click(object sender, EventArgs e)
         {
-            if (grnPOIDbox.Text == "" || grnwarehousebox.Text == "" || grnProductIDbox.Text == "" || grnreceivedqtybox.Text == "")
+            if (string.IsNullOrWhiteSpace(grnPOIDbox.Text) || string.IsNullOrWhiteSpace(grnwarehousebox.Text))
             {
                 grnerrorlbl.Visible = true;
             }
@@ -109,23 +140,39 @@ namespace ITP4519M
             {
                 try
                 {
-                    if (programMethod.createGRN(grnPOIDbox.Text.Trim(), grnProductIDbox.Text.Trim(), grnwarehousebox.Text.Trim(), grnreceivedqtybox.Text.Trim(), grnDateTimePicker.Value.Date.ToString()))
+                    string purchaseOrderId = grnPOIDbox.Text.Trim();
+                    string productid="";
+                    string quantity="";
+                    List<PurchaseOrderItem> items = programMethod.GetPurchaseOrderItems(purchaseOrderId);
+                    foreach (var item in items)
                     {
-                        programMethod.increaseStock(grnProductIDbox.Text.Trim(), grnreceivedqtybox.Text.Trim());
-                        MessageBox.Show("Good Received Note Created Successfully");
-                        ClearForm();
+                        bool grnCreated = programMethod.createGRN(
+                            purchaseOrderId,
+                            productid= item.ProductID.ToString(),
+                            grnwarehousebox.Text.Trim(),
+                           quantity=  item.Quantity.ToString(), 
+                            grnDateTimePicker.Value.Date.ToString());
+
+                        if (grnCreated)
+                        {
+                            programMethod.increaseStock(item.ProductID, item.Quantity);
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Failed to create GRN for ProductID: {item.ProductID}");
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show("Please try again!");
-                    }
+                    MessageBox.Show(productid);
+                    MessageBox.Show(quantity);
+                    MessageBox.Show("Good Received Note Created Successfully");
+                    ClearForm();
                 }
-                catch(Exception ex) 
+                catch (Exception ex)
                 {
-                
-                   MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message);
                 }
             }
         }
+        */
     }
 }
