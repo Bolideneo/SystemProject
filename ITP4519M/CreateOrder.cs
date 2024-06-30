@@ -72,7 +72,7 @@ namespace ITP4519M
         {
 
 
-            orderDateBox.BorderColor = Color.Red;
+        
             switch (_mode)
             {
                 case OperationMode.View:
@@ -229,12 +229,6 @@ namespace ITP4519M
                 Refresh();
                 
             }
-
-            //else if (dealerIDBox.Text == "")
-            //{
-            //    MessageBox.Show("Please input Dealer ID");
-            //    //return;
-            //}
             if (orderContactNamebox.Text == "")
             {
                 isWrongFormat2 = true;
@@ -269,18 +263,28 @@ namespace ITP4519M
 
             }
 
-            //else if (productSearchbox.Text == "")
-            //{
-            //    MessageBox.Show("Please Input Product ID ");
-            //}
+            if (orderDateBox.Text == "")
+            {
+                orderDateBox.BorderColor = Color.Red;
+                label11.Visible = true;
+            }
+            else
+            {
+                label11.Visible= false;
+                orderDateBox.BorderColor = Color.Black;
+            }
+            
 
             if (productOfOrderdata.RowCount == 0)
             {
-                MessageBox.Show("Please Select atleast one product");
+                label17.Visible = true;
                 return;
 
             }
-
+            else
+            {
+                label17.Visible = false;
+            }
 
             List<bool> checkList = new List<bool>();
 

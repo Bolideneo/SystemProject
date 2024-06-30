@@ -42,6 +42,7 @@ namespace ITP4519M
             createOrderbtn = new Button();
             productSearchbox = new RoundedTextBox();
             panel1 = new Panel();
+            label17 = new Label();
             dealerInfobox = new BorderComboBox();
             usernameAlertBox = new PictureBox();
             orderAccemblyAssignbox = new TextBox();
@@ -185,7 +186,7 @@ namespace ITP4519M
             productSearchbox.AutoCompleteMode = AutoCompleteMode.Suggest;
             productSearchbox.AutoCompleteSource = AutoCompleteSource.CustomSource;
             productSearchbox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            productSearchbox.Location = new Point(25, 406);
+            productSearchbox.Location = new Point(24, 414);
             productSearchbox.Margin = new Padding(3, 5, 3, 5);
             productSearchbox.MaximumSize = new Size(300, 60);
             productSearchbox.Multiline = true;
@@ -199,6 +200,7 @@ namespace ITP4519M
             // 
             panel1.BackColor = SystemColors.Menu;
             panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(label17);
             panel1.Controls.Add(dealerInfobox);
             panel1.Controls.Add(usernameAlertBox);
             panel1.Controls.Add(orderAccemblyAssignbox);
@@ -226,6 +228,19 @@ namespace ITP4519M
             panel1.Size = new Size(778, 893);
             panel1.TabIndex = 72;
             panel1.Paint += panel1_Paint;
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.BackColor = SystemColors.Menu;
+            label17.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label17.ForeColor = Color.Red;
+            label17.Location = new Point(25, 386);
+            label17.Name = "label17";
+            label17.Size = new Size(262, 23);
+            label17.TabIndex = 104;
+            label17.Text = "Please Select atleast one product";
+            label17.Visible = false;
             // 
             // dealerInfobox
             // 
@@ -257,7 +272,7 @@ namespace ITP4519M
             // 
             orderAccemblyAssignbox.AutoCompleteMode = AutoCompleteMode.Suggest;
             orderAccemblyAssignbox.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            orderAccemblyAssignbox.Location = new Point(36, 351);
+            orderAccemblyAssignbox.Location = new Point(24, 345);
             orderAccemblyAssignbox.Margin = new Padding(3, 4, 3, 4);
             orderAccemblyAssignbox.Name = "orderAccemblyAssignbox";
             orderAccemblyAssignbox.Size = new Size(325, 27);
@@ -444,6 +459,7 @@ namespace ITP4519M
             // 
             // orderDateBox
             // 
+            orderDateBox.BorderColor = Color.Black;
             orderDateBox.Location = new Point(315, 293);
             orderDateBox.MinDate = new DateTime(2024, 6, 26, 0, 0, 0, 0);
             orderDateBox.Name = "orderDateBox";
@@ -488,7 +504,7 @@ namespace ITP4519M
             label7.AutoSize = true;
             label7.BackColor = SystemColors.Menu;
             label7.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.ForeColor = Color.Red;
+            label7.ForeColor = Color.DarkOrange;
             label7.Location = new Point(404, 406);
             label7.Name = "label7";
             label7.Size = new Size(358, 46);
@@ -857,7 +873,8 @@ namespace ITP4519M
         private Label label11;
         private TextBox textBox2;
         private Label ordertotallbl;
-        private TextBox orderAccemblyAssignbox;
         private BorderComboBox dealerInfobox;
+        private Label label17;
+        private TextBox orderAccemblyAssignbox;
     }
 }
