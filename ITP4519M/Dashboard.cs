@@ -2338,6 +2338,11 @@ namespace ITP4519M
         {
             poData.DataSource = programMethod.searchPOInformation(poSearchbox.Text.Trim());
         }
+
+        private void deliverySearchIDbox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
     
