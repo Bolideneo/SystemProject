@@ -677,19 +677,17 @@ namespace ProgramMethod
                     dataBaseMethod.createGRN(grnID, POID, dvg.Rows[i].Cells[1].Value.ToString(), dvg.Rows[i].Cells[3].Value.ToString(), dvg.Rows[i].Cells[4].Value.ToString(), receivedate);
                     LogCreateGRN(LoginUserID, LoginUserName, grnID, POID, dvg.Rows[i].Cells[1].Value.ToString(), dvg.Rows[i].Cells[4].Value.ToString());
                    
-                    if (int.Parse(dataBaseMethod.getPurchaseOrderQty(POID, dvg.Rows[i].Cells[0].Value.ToString(), dvg.Rows[i].Cells[1].Value.ToString())) == (int.Parse(dvg.Rows[i].Cells[4].Value.ToString()) + int.Parse(dataBaseMethod.getGRNReceiveQty(POID, dvg.Rows[i].Cells[1].Value.ToString()))))
+                    if (int.Parse(dataBaseMethod.getPurchaseOrderQty(POID, dvg.Rows[i].Cells[0].Value.ToString(), dvg.Rows[i].Cells[1].Value.ToString())) ==  int.Parse(dataBaseMethod.getGRNReceiveQty(POID, dvg.Rows[i].Cells[1].Value.ToString())))
                     {
-                        MessageBox.Show(int.Parse(dvg.Rows[i].Cells[4].Value.ToString()) + int.Parse(dataBaseMethod.getGRNReceiveQty(POID, dvg.Rows[i].Cells[1].Value.ToString())).ToString());
-                        if (dataBaseMethod.updatePurchaseOrder(POID, "Recevied"))
+                        if (dataBaseMethod.updatePurchaseOrder(POID, dvg.Rows[i].Cells[1].Value.ToString(), "Recevied"))
                         {
-                            MessageBox.Show("1");
                             //   dataBaseMethod.updateProductStatus(productID, "Available");
                            // return true;
                         }
                     }
                     else
                     {
-                        if (dataBaseMethod.updatePurchaseOrder(POID, "Outstanding"))
+                        if (dataBaseMethod.updatePurchaseOrder(POID, dvg.Rows[i].Cells[1].Value.ToString(), "Outstanding"))
                         {
                             // dataBaseMethod.updateProductStatus(productID, "Available");
                             //return true;

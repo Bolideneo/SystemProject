@@ -1425,7 +1425,7 @@ namespace ITP4519M
 
         public DataTable grnAllPOID()
         {
-            string sql = "SELECT DISTINCT(PurchaseOrderID) FROM purchaseorder WHERE Status = 'In Procurement'";
+            string sql = "SELECT DISTINCT(PurchaseOrderID) FROM purchaseorder WHERE Status != 'Recevied'";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
@@ -1850,7 +1850,8 @@ namespace ITP4519M
 
         public bool createGRN(string grnID, string POID, string productID, string warehouse, string recQty, string recDate)
         {
-            string sql = "INSERT INTO grn (grnID, ProductID, PurchaseOrderID, ReceiveQty, ReceiveDate, WareHouse) VALUES(@grnID, @productID, @poID , @recqty, @recdate, @warehouse)";
+            string sql = "INSERT INTO grn (grnID, ProductID, PurchaseOrderID, ReceiveQty, ReceiveDate, WareHouse) VALUES (@grnID, @productID, @poID, @recqty, @recdate, @warehouse) ON DUPLICATE KEY UPDATE ReceiveQty = ReceiveQty + VALUES(ReceiveQty)";
+            // string sql = "INSERT INTO grn (grnID, ProductID, PurchaseOrderID, ReceiveQty, ReceiveDate, WareHouse) VALUES(@grnID, @productID, @poID , @recqty, @recdate, @warehouse)";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@grnID", grnID);
             cmd.Parameters.AddWithValue("@productID", productID);
@@ -2531,11 +2532,12 @@ namespace ITP4519M
             return dataTable;
         } 
 
-            public bool updatePurchaseOrder(string POID, string status)
+            public bool updatePurchaseOrder(string POID, string productID, string status)
         {
-            string sql = "UPDATE purchaseorder SET Status=@status WHERE PurchaseOrderID=@POID";
+            string sql = "UPDATE purchaseorder SET Status=@status WHERE PurchaseOrderID=@POID AND ProductID = @productID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@POID", POID);
+            cmd.Parameters.AddWithValue("@productID", productID);
             cmd.Parameters.AddWithValue("@status", status);
             if (cmd.ExecuteNonQuery() > 0)
                 return true;
