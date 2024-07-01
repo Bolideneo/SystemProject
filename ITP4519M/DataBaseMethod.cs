@@ -1372,7 +1372,7 @@ namespace ITP4519M
             //string sql = "SELECT DealerID, DealerName, DealerCompanyName, DealerPhoneNum, DealerRegionNum FROM dealer WHERE DealerID LIKE @keyword1 OR DealerID LIKE @keyword2 OR DealerName LIKE @keyword1 OR DealerName LIKE @keyword2 OR DealerCompanyName LIKE @keyword1 OR DealerCompanyName LIKE @keyword2";
             // string sql = "SELECT DealerID, DealerName, DealerCompanyName, DealerPhoneNum, DealerRegionNum FROM dealer WHERE DealerID LIKE @keyword1 OR DealerID LIKE @keyword2 OR TRIM(DealerName) LIKE @keyword1 OR TRIM(DealerName) LIKE @keyword2 OR DealerCompanyName LIKE @keyword1 OR TRIM(DealerCompanyName) LIKE @keyword2 LIMIT 5";
             // string sql = "SELECT DealerID, DealerName, DealerCompanyName, DealerPhoneNum, DealerRegionNum FROM dealer WHERE DealerID LIKE @keyword1 OR DealerID LIKE @keyword2 OR TRIM(DealerName) LIKE @keyword1 OR TRIM(DealerName) LIKE @keyword2 LIMIT 10";
-            string sql = "SELECT * FROM dealer WHERE DealerID LIKE @keyword1 OR DealerID LIKE @keyword2 OR TRIM(DealerName) LIKE @keyword1 OR TRIM(DealerName) LIKE @keyword2 OR DealerCompanyName LIKE @keyword1 OR DealerCompanyName LIKE @keyword2 ";
+            string sql = "SELECT * FROM dealer WHERE DealerID LIKE @keyword1 OR DealerID LIKE @keyword2 OR DealerName LIKE @keyword1 OR DealerName LIKE @keyword2 OR DealerCompanyName LIKE @keyword1 OR DealerCompanyName LIKE @keyword2 ";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@keyword1", "%" + keyword + "%");
             string keyword2 = keyword.Length > 0 ? $"%{char.ToUpper(keyword[0])}{keyword.Substring(1)}%" : keyword;

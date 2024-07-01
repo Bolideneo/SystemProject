@@ -1359,22 +1359,9 @@ namespace ProgramMethod
                 comboBox.Items.Add(dealerID);
                 comboBox.Items.Add(dealerName);
                 comboBox.Items.Add(dealerCompanyName);
+                comboBox.Items.Add("-------------------");
             }
         }
-
-        //public void grnAutoComplete(ComboBox comboBox)
-        //{
-        //    comboBox.AutoCompleteCustomSource.Clear();
-        //    comboBox.Items.Clear();
-        //    DataTable result = dataBaseMethod.getAllPOID();
-        //    for (int i = 0; i < result.Rows.Count; i++)
-        //    {
-        //        string POID = result.Rows[i]["PurchaseOrderID"].ToString();
-        //        comboBox.AutoCompleteCustomSource.Add(POID);
-        //        comboBox.Items.Add(POID);
-        //    }
-        //}
-        
         public DataTable grnAllPOID()
         {
             return dataBaseMethod.grnAllPOID();

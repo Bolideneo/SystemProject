@@ -19,6 +19,7 @@ using System.Threading.Tasks;
 using System.Timers;
 using System.Web;
 using System.Windows.Forms;
+using ZstdSharp.Unsafe;
 using static ProgramMethod.ProgramMethod;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -72,7 +73,7 @@ namespace ITP4519M
         {
 
 
-        
+
             switch (_mode)
             {
                 case OperationMode.View:
@@ -99,7 +100,7 @@ namespace ITP4519M
         }
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-       
+
         }
         private void ClearForm()
         {
@@ -227,7 +228,7 @@ namespace ITP4519M
                 usernameAlertlbl.Visible = false;
                 dealerInfobox.BorderColor = Color.Black;
                 Refresh();
-                
+
             }
             if (orderContactNamebox.Text == "")
             {
@@ -270,10 +271,10 @@ namespace ITP4519M
             }
             else
             {
-                label11.Visible= false;
+                label11.Visible = false;
                 orderDateBox.BorderColor = Color.Black;
             }
-            
+
 
             if (productOfOrderdata.RowCount == 0)
             {
@@ -390,14 +391,18 @@ namespace ITP4519M
         }
 
         private void comboBox2_KeyDown(object sender, KeyEventArgs e)
-        {
+        {  //&& dealerInfobox.Text.Trim().Length != 0
+            //dealerInfobox.Focus();
+            //dealerInfobox.SelectedIndex = -1;
             string text = dealerInfobox.Text.Trim();
+            //dealerInfobox.DroppedDown = false;
             if (e.KeyCode == Keys.Enter)
             {
                 programMethod.DealerSearchAutoComplete(dealerInfobox, dealerInfobox.Text.Trim());
-
+                MessageBox.Show(text);
                 if (dealerInfobox.Items.Count > 0)
                 {
+
                     dealerInfobox.DroppedDown = true;
                     dealerInfobox.IntegralHeight = true;
                     dealerInfobox.SelectedIndex = -1;
@@ -406,14 +411,9 @@ namespace ITP4519M
                 }
                 Cursor.Current = Cursors.Default;
             }
+            //  dealerInfobox.SelectedIndex = -1;
             dealerInfobox.Text = text;
-        }
-
-        private void comboBox2_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            dealerInfobox.PreviewKeyDown -= comboBox2_PreviewKeyDown;
-            if (dealerInfobox.DroppedDown) dealerInfobox.Focus();
-
+            dealerInfobox.SelectionStart = dealerInfobox.Text.Length;
         }
 
 
@@ -440,6 +440,10 @@ namespace ITP4519M
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (dealerInfobox.SelectedItem == "-------------------")
+            {
+                return;
+            }
             if (dealerInfobox.SelectedItem != null)
             {
                 string selectedItem = dealerInfobox.SelectedItem.ToString();
@@ -451,6 +455,12 @@ namespace ITP4519M
                 dealerCompanyBox.Text = result.Rows[0]["DealerCompanyName"].ToString();
                 goodsAddressBox.Text = result.Rows[0]["DealerRegionNum"].ToString();
             }
+        }
+
+        private void dealerInfobox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            this.dealerInfobox.DroppedDown = false;
+
         }
     }
 

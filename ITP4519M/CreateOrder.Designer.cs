@@ -42,9 +42,9 @@ namespace ITP4519M
             createOrderbtn = new Button();
             productSearchbox = new RoundedTextBox();
             panel1 = new Panel();
+            usernameAlertBox = new PictureBox();
             label17 = new Label();
             dealerInfobox = new BorderComboBox();
-            usernameAlertBox = new PictureBox();
             orderAccemblyAssignbox = new TextBox();
             ordertotallbl = new Label();
             label11 = new Label();
@@ -172,7 +172,7 @@ namespace ITP4519M
             // createOrderbtn
             // 
             createOrderbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            createOrderbtn.Location = new Point(584, 831);
+            createOrderbtn.Location = new Point(599, 832);
             createOrderbtn.Margin = new Padding(3, 4, 3, 4);
             createOrderbtn.Name = "createOrderbtn";
             createOrderbtn.Size = new Size(171, 53);
@@ -186,7 +186,7 @@ namespace ITP4519M
             productSearchbox.AutoCompleteMode = AutoCompleteMode.Suggest;
             productSearchbox.AutoCompleteSource = AutoCompleteSource.CustomSource;
             productSearchbox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            productSearchbox.Location = new Point(24, 414);
+            productSearchbox.Location = new Point(25, 414);
             productSearchbox.Margin = new Padding(3, 5, 3, 5);
             productSearchbox.MaximumSize = new Size(300, 60);
             productSearchbox.Multiline = true;
@@ -200,9 +200,9 @@ namespace ITP4519M
             // 
             panel1.BackColor = SystemColors.Menu;
             panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(usernameAlertBox);
             panel1.Controls.Add(label17);
             panel1.Controls.Add(dealerInfobox);
-            panel1.Controls.Add(usernameAlertBox);
             panel1.Controls.Add(orderAccemblyAssignbox);
             panel1.Controls.Add(ordertotallbl);
             panel1.Controls.Add(label11);
@@ -228,6 +228,18 @@ namespace ITP4519M
             panel1.Size = new Size(778, 893);
             panel1.TabIndex = 72;
             panel1.Paint += panel1_Paint;
+            // 
+            // usernameAlertBox
+            // 
+            usernameAlertBox.Image = Properties.Resources.red_alert;
+            usernameAlertBox.Location = new Point(528, 92);
+            usernameAlertBox.Margin = new Padding(3, 2, 3, 2);
+            usernameAlertBox.Name = "usernameAlertBox";
+            usernameAlertBox.Size = new Size(26, 23);
+            usernameAlertBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            usernameAlertBox.TabIndex = 105;
+            usernameAlertBox.TabStop = false;
+            usernameAlertBox.Visible = false;
             // 
             // label17
             // 
@@ -255,24 +267,13 @@ namespace ITP4519M
             dealerInfobox.TabIndex = 102;
             dealerInfobox.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             dealerInfobox.KeyDown += comboBox2_KeyDown;
-            // 
-            // usernameAlertBox
-            // 
-            usernameAlertBox.Image = Properties.Resources.red_alert;
-            usernameAlertBox.InitialImage = null;
-            usernameAlertBox.Location = new Point(584, 92);
-            usernameAlertBox.Name = "usernameAlertBox";
-            usernameAlertBox.Size = new Size(21, 24);
-            usernameAlertBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            usernameAlertBox.TabIndex = 76;
-            usernameAlertBox.TabStop = false;
-            usernameAlertBox.Visible = false;
+            dealerInfobox.KeyPress += dealerInfobox_KeyPress;
             // 
             // orderAccemblyAssignbox
             // 
             orderAccemblyAssignbox.AutoCompleteMode = AutoCompleteMode.Suggest;
             orderAccemblyAssignbox.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            orderAccemblyAssignbox.Location = new Point(24, 345);
+            orderAccemblyAssignbox.Location = new Point(37, 488);
             orderAccemblyAssignbox.Margin = new Padding(3, 4, 3, 4);
             orderAccemblyAssignbox.Name = "orderAccemblyAssignbox";
             orderAccemblyAssignbox.Size = new Size(325, 27);
@@ -668,7 +669,7 @@ namespace ITP4519M
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label14.Location = new Point(8, 475);
+            label14.Location = new Point(18, 471);
             label14.Margin = new Padding(5, 0, 5, 0);
             label14.Name = "label14";
             label14.Size = new Size(167, 25);
@@ -711,7 +712,7 @@ namespace ITP4519M
             // textBox2
             // 
             textBox2.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.Location = new Point(18, 608);
+            textBox2.Location = new Point(18, 546);
             textBox2.Margin = new Padding(5, 0, 5, 0);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(257, 27);
@@ -721,7 +722,7 @@ namespace ITP4519M
             // textBox1
             // 
             textBox1.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(18, 403);
+            textBox1.Location = new Point(24, 348);
             textBox1.Margin = new Padding(5, 0, 5, 0);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(257, 27);
@@ -732,7 +733,7 @@ namespace ITP4519M
             // 
             invoiceAddressBox.AutoSize = true;
             invoiceAddressBox.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            invoiceAddressBox.Location = new Point(9, 516);
+            invoiceAddressBox.Location = new Point(18, 515);
             invoiceAddressBox.Margin = new Padding(5, 0, 5, 0);
             invoiceAddressBox.Name = "invoiceAddressBox";
             invoiceAddressBox.Size = new Size(173, 24);
@@ -754,7 +755,7 @@ namespace ITP4519M
             // 
             goodsAddressBox.AutoSize = true;
             goodsAddressBox.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            goodsAddressBox.Location = new Point(5, 309);
+            goodsAddressBox.Location = new Point(24, 310);
             goodsAddressBox.Margin = new Padding(5, 0, 5, 0);
             goodsAddressBox.Name = "goodsAddressBox";
             goodsAddressBox.Size = new Size(166, 24);
@@ -860,7 +861,6 @@ namespace ITP4519M
         private ProgramMethod.ProgramMethod.RoundedTextBox productSearchbox;
         private Label label16;
         private TextBox textBox1;
-        private PictureBox usernameAlertBox;
         private Panel panel5;
         private TextBox orderContactNamebox;
         private PictureBox pictureBox1;
@@ -876,5 +876,6 @@ namespace ITP4519M
         private BorderComboBox dealerInfobox;
         private Label label17;
         private TextBox orderAccemblyAssignbox;
+        private PictureBox usernameAlertBox;
     }
 }

@@ -599,7 +599,7 @@ namespace ITP4519M
             }
             else
             {
-                SalesOrder salesOrder = new SalesOrder(OperationMode.View);
+                OrderDetails salesOrder = new OrderDetails(OperationMode.View);
                 salesOrder.orderView(orderID, dealerID);
                 salesOrder.ShowDialog();
 
@@ -1223,7 +1223,7 @@ namespace ITP4519M
         private void dealerContactFormOperationCompleted(object sender, EventArgs e)
         {
             dealersData.DataSource = programMethod.GetDealerCurrentRecords(CurrentPageIndex, PgSize);
-            dealersbtn.PerformClick();
+            //dealersbtn.PerformClick();
         }
 
         private void contactsdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -1248,12 +1248,12 @@ namespace ITP4519M
                 if (currentDataSourceType == "Dealer")
                 {
                     programMethod.dealerDel(contactID);
-                    dealersbtn.PerformClick();
+                    //dealersbtn.PerformClick();
                 }
                 else if (currentDataSourceType == "Supplier")
                 {
                     programMethod.supplierDel(contactID, productID);
-                    supplersbtn.PerformClick();
+                    //supplersbtn.PerformClick();
                 }
 
             }
@@ -1272,7 +1272,7 @@ namespace ITP4519M
         private void supplierContactFormOperationCompleted(object sender, EventArgs e)
         {
             suppliersData.DataSource = programMethod.GetSupplierCurrentRecords(CurrentPageIndex, PgSize);
-            supplersbtn.PerformClick();
+            //supplersbtn.PerformClick();
         }
 
         private void editSupplierbtn_Click(object sender, EventArgs e)
