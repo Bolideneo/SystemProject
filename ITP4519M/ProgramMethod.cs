@@ -2368,6 +2368,39 @@ namespace ProgramMethod
                 }
             }
         }
+
+        public string[] getDashboardToadyLabel()
+        {
+            string[] array = new string[3];
+            string result = dataBaseMethod.getTodayGRNReceiveQty();
+            DataTable result1 = dataBaseMethod.getDashboardToadyLabel();
+        
+            array[0] = result1.Rows[0][0].ToString();
+            array[1] = result1.Rows[0][1].ToString();
+            array[2] = result;
+            return array;
+        }
+
+        public DataTable getCategoryAOrderQuantity()
+        {
+            return dataBaseMethod.getCategoryA7DaysOrderQuantity();
+        }
+
+        public DataTable getCategoryBOrderQuantity()
+        {
+            return dataBaseMethod.getCategoryB7DaysOrderQuantity();
+        }
+
+        public DataTable getCategoryCOrderQuantity()
+        {
+            return dataBaseMethod.getCategoryC7DaysOrderQuantity();
+        }
+
+        public DataTable getCategoryDOrderQuantity()
+        {
+            return dataBaseMethod.getCategoryD7DaysOrderQuantity();
+        }
+
     }
   
 }

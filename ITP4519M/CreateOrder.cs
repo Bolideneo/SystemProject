@@ -393,7 +393,6 @@ namespace ITP4519M
         private void comboBox2_KeyDown(object sender, KeyEventArgs e)
         {  //&& dealerInfobox.Text.Trim().Length != 0
             //dealerInfobox.Focus();
-            //dealerInfobox.SelectedIndex = -1;
             string text = dealerInfobox.Text.Trim();
             //dealerInfobox.DroppedDown = false;
             if (e.KeyCode == Keys.Enter)

@@ -42,15 +42,21 @@
             dealerNameBox = new TextBox();
             label1 = new Label();
             dealerAddressBox = new TextBox();
-            regionNumlbl = new Label();
+            regionlbl = new Label();
             regionNumBox = new TextBox();
+            dealerNamebtn = new Label();
+            companyNameAlert = new Label();
+            mailAlert = new Label();
+            phoneAlertlbl = new Label();
+            regionAlert = new Label();
+            addressAlert = new Label();
             SuspendLayout();
             // 
             // editDealerbtn
             // 
             editDealerbtn.AccessibleRole = AccessibleRole.None;
             editDealerbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            editDealerbtn.Location = new Point(99, 560);
+            editDealerbtn.Location = new Point(189, 482);
             editDealerbtn.Margin = new Padding(5, 4, 5, 4);
             editDealerbtn.Name = "editDealerbtn";
             editDealerbtn.Size = new Size(183, 48);
@@ -64,7 +70,7 @@
             dealerInfolbl.AutoSize = true;
             dealerInfolbl.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dealerInfolbl.ForeColor = Color.Black;
-            dealerInfolbl.Location = new Point(67, 39);
+            dealerInfolbl.Location = new Point(153, 29);
             dealerInfolbl.Margin = new Padding(2, 0, 2, 0);
             dealerInfolbl.Name = "dealerInfolbl";
             dealerInfolbl.Size = new Size(265, 32);
@@ -77,7 +83,7 @@
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Verdana", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(360, 2);
+            button1.Location = new Point(512, 12);
             button1.Margin = new Padding(2, 3, 2, 3);
             button1.Name = "button1";
             button1.Size = new Size(40, 49);
@@ -90,7 +96,7 @@
             // 
             phoneNumlbl.AutoSize = true;
             phoneNumlbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            phoneNumlbl.Location = new Point(15, 337);
+            phoneNumlbl.Location = new Point(302, 183);
             phoneNumlbl.Margin = new Padding(5, 0, 5, 0);
             phoneNumlbl.Name = "phoneNumlbl";
             phoneNumlbl.Size = new Size(120, 20);
@@ -100,7 +106,7 @@
             // DealerPhoneNumBox
             // 
             DealerPhoneNumBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            DealerPhoneNumBox.Location = new Point(15, 366);
+            DealerPhoneNumBox.Location = new Point(302, 212);
             DealerPhoneNumBox.Margin = new Padding(5, 4, 5, 4);
             DealerPhoneNumBox.Name = "DealerPhoneNumBox";
             DealerPhoneNumBox.Size = new Size(250, 27);
@@ -110,7 +116,7 @@
             // 
             maillbl.AutoSize = true;
             maillbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            maillbl.Location = new Point(15, 257);
+            maillbl.Location = new Point(16, 183);
             maillbl.Margin = new Padding(5, 0, 5, 0);
             maillbl.Name = "maillbl";
             maillbl.Size = new Size(107, 20);
@@ -120,7 +126,7 @@
             // dealerMailBox
             // 
             dealerMailBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dealerMailBox.Location = new Point(15, 286);
+            dealerMailBox.Location = new Point(16, 212);
             dealerMailBox.Margin = new Padding(5, 4, 5, 4);
             dealerMailBox.Name = "dealerMailBox";
             dealerMailBox.Size = new Size(250, 27);
@@ -130,7 +136,7 @@
             // 
             dealerCompanyNamelbl.AutoSize = true;
             dealerCompanyNamelbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dealerCompanyNamelbl.Location = new Point(15, 176);
+            dealerCompanyNamelbl.Location = new Point(302, 92);
             dealerCompanyNamelbl.Margin = new Padding(5, 0, 5, 0);
             dealerCompanyNamelbl.Name = "dealerCompanyNamelbl";
             dealerCompanyNamelbl.Size = new Size(183, 20);
@@ -140,7 +146,7 @@
             // dealerCompanyNameBox
             // 
             dealerCompanyNameBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dealerCompanyNameBox.Location = new Point(17, 207);
+            dealerCompanyNameBox.Location = new Point(302, 123);
             dealerCompanyNameBox.Margin = new Padding(5, 4, 5, 4);
             dealerCompanyNameBox.Name = "dealerCompanyNameBox";
             dealerCompanyNameBox.Size = new Size(248, 27);
@@ -150,7 +156,7 @@
             // 
             createDealerBtn.AccessibleRole = AccessibleRole.None;
             createDealerBtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            createDealerBtn.Location = new Point(99, 560);
+            createDealerBtn.Location = new Point(189, 482);
             createDealerBtn.Margin = new Padding(5, 4, 5, 4);
             createDealerBtn.Name = "createDealerBtn";
             createDealerBtn.Size = new Size(183, 48);
@@ -183,7 +189,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(15, 480);
+            label1.Location = new Point(16, 362);
             label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
             label1.Size = new Size(71, 20);
@@ -193,38 +199,105 @@
             // dealerAddressBox
             // 
             dealerAddressBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dealerAddressBox.Location = new Point(15, 509);
+            dealerAddressBox.Location = new Point(16, 391);
             dealerAddressBox.Margin = new Padding(5, 4, 5, 4);
             dealerAddressBox.Name = "dealerAddressBox";
             dealerAddressBox.Size = new Size(372, 27);
             dealerAddressBox.TabIndex = 70;
             // 
-            // regionNumlbl
+            // regionlbl
             // 
-            regionNumlbl.AutoSize = true;
-            regionNumlbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            regionNumlbl.Location = new Point(14, 411);
-            regionNumlbl.Margin = new Padding(5, 0, 5, 0);
-            regionNumlbl.Name = "regionNumlbl";
-            regionNumlbl.Size = new Size(125, 20);
-            regionNumlbl.TabIndex = 73;
-            regionNumlbl.Text = "Region Number";
+            regionlbl.AutoSize = true;
+            regionlbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            regionlbl.Location = new Point(16, 272);
+            regionlbl.Margin = new Padding(5, 0, 5, 0);
+            regionlbl.Name = "regionlbl";
+            regionlbl.Size = new Size(61, 20);
+            regionlbl.TabIndex = 73;
+            regionlbl.Text = "Region";
             // 
             // regionNumBox
             // 
             regionNumBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            regionNumBox.Location = new Point(14, 440);
+            regionNumBox.Location = new Point(16, 301);
             regionNumBox.Margin = new Padding(5, 4, 5, 4);
             regionNumBox.Name = "regionNumBox";
             regionNumBox.Size = new Size(250, 27);
             regionNumBox.TabIndex = 72;
             // 
+            // dealerNamebtn
+            // 
+            dealerNamebtn.AutoSize = true;
+            dealerNamebtn.ForeColor = Color.Red;
+            dealerNamebtn.Location = new Point(16, 154);
+            dealerNamebtn.Name = "dealerNamebtn";
+            dealerNamebtn.Size = new Size(181, 20);
+            dealerNamebtn.TabIndex = 74;
+            dealerNamebtn.Text = "Please input Dealer Name";
+            // 
+            // companyNameAlert
+            // 
+            companyNameAlert.AutoSize = true;
+            companyNameAlert.ForeColor = Color.Red;
+            companyNameAlert.Location = new Point(302, 154);
+            companyNameAlert.Name = "companyNameAlert";
+            companyNameAlert.Size = new Size(248, 20);
+            companyNameAlert.TabIndex = 75;
+            companyNameAlert.Text = "Please input Dealer Company Name";
+            // 
+            // mailAlert
+            // 
+            mailAlert.AutoSize = true;
+            mailAlert.ForeColor = Color.SteelBlue;
+            mailAlert.Location = new Point(18, 243);
+            mailAlert.Name = "mailAlert";
+            mailAlert.Size = new Size(169, 20);
+            mailAlert.TabIndex = 76;
+            mailAlert.Text = "example@example.com";
+            // 
+            // phoneAlertlbl
+            // 
+            phoneAlertlbl.AutoSize = true;
+            phoneAlertlbl.Font = new Font("Segoe UI", 9F);
+            phoneAlertlbl.ForeColor = Color.SteelBlue;
+            phoneAlertlbl.Location = new Point(302, 243);
+            phoneAlertlbl.Name = "phoneAlertlbl";
+            phoneAlertlbl.Size = new Size(116, 20);
+            phoneAlertlbl.TabIndex = 83;
+            phoneAlertlbl.Text = "6 to 13 numbers";
+            // 
+            // regionAlert
+            // 
+            regionAlert.AutoSize = true;
+            regionAlert.ForeColor = Color.Red;
+            regionAlert.Location = new Point(18, 332);
+            regionAlert.Name = "regionAlert";
+            regionAlert.Size = new Size(140, 20);
+            regionAlert.TabIndex = 84;
+            regionAlert.Text = "Please input Region";
+            // 
+            // addressAlert
+            // 
+            addressAlert.AutoSize = true;
+            addressAlert.ForeColor = Color.Red;
+            addressAlert.Location = new Point(18, 422);
+            addressAlert.Name = "addressAlert";
+            addressAlert.Size = new Size(146, 20);
+            addressAlert.TabIndex = 85;
+            addressAlert.Text = "Please input Address";
+            // 
             // DealerContactForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(401, 646);
-            Controls.Add(regionNumlbl);
+            ClientSize = new Size(566, 579);
+            Controls.Add(addressAlert);
+            Controls.Add(regionAlert);
+            Controls.Add(phoneAlertlbl);
+            Controls.Add(mailAlert);
+            Controls.Add(companyNameAlert);
+            Controls.Add(dealerNamebtn);
+            Controls.Add(regionlbl);
             Controls.Add(regionNumBox);
             Controls.Add(label1);
             Controls.Add(dealerAddressBox);
@@ -267,7 +340,13 @@
         private TextBox dealerNameBox;
         private Label label1;
         private TextBox dealerAddressBox;
-        private Label regionNumlbl;
+        private Label regionlbl;
         private TextBox regionNumBox;
+        private Label dealerNamebtn;
+        private Label companyNameAlert;
+        private Label mailAlert;
+        private Label phoneAlertlbl;
+        private Label regionAlert;
+        private Label addressAlert;
     }
 }

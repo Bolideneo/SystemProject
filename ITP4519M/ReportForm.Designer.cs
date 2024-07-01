@@ -303,14 +303,14 @@
             InvoiceLine1.Size = new Size(940, 5);
             InvoiceLine1.TabIndex = 72;
             // 
-            // chart1
+            // dashordervalueChart
             // 
             chartArea3.Name = "ChartArea1";
             chart1.ChartAreas.Add(chartArea3);
             legend3.Name = "Legend1";
             chart1.Legends.Add(legend3);
             chart1.Location = new Point(43, 236);
-            chart1.Name = "chart1";
+            chart1.Name = "dashordervalueChart";
             series5.ChartArea = "ChartArea1";
             series5.Legend = "Legend1";
             series5.Name = "Order";
@@ -321,7 +321,7 @@
             chart1.Series.Add(series6);
             chart1.Size = new Size(422, 318);
             chart1.TabIndex = 73;
-            chart1.Text = "chart1";
+            chart1.Text = "dashordervalueChart";
             title3.Alignment = ContentAlignment.TopLeft;
             title3.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             title3.Name = "Sales Overview";

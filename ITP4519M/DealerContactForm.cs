@@ -53,45 +53,60 @@ namespace ITP4519M
             string dealerRegionNum = regionNumBox.Text.Trim();
             if (string.IsNullOrEmpty(dealername))
             {
-                MessageBox.Show("Please enter a dealer name.");
+                dealerNamebtn.Visible = true;
                 dealerNameBox.Focus();
                 return;
             }
+            else
+            {
+                dealerNamebtn.Visible = false;
+                Refresh();
+            }
             if (string.IsNullOrEmpty(dealerCompany))
             {
-                MessageBox.Show("Please enter a dealer company.");
+                companyNameAlert.Visible = true;
                 dealerCompanyNameBox.Focus();
                 return;
             }
-            if (string.IsNullOrEmpty(dealerMail))
+            else
             {
-                MessageBox.Show("Please enter a dealer mail address.");
+                companyNameAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(dealerMail) || !IsValidEmail(dealerMail))
+            {
+                mailAlert.Visible = true;
                 dealerMailBox.Focus();
                 return;
             }
-            if (string.IsNullOrEmpty(dealerPhoneNum))
+            else
             {
-                MessageBox.Show("Please enter a dealer phone number.");
+                mailAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(dealerPhoneNum) || !IsValidPhoneNumber(dealerPhoneNum))
+            {
+                phoneAlertlbl.Visible = true;
                 DealerPhoneNumBox.Focus();
                 return;
             }
+            else
+            {
+                phoneAlertlbl.Visible = false;
+                Refresh();
+            }
             if (string.IsNullOrEmpty(dealerAddress))
             {
-                MessageBox.Show("Please enter a dealer address.");
+                addressAlert.Visible = true;
                 dealerAddressBox.Focus();
                 return;
             }
-                        if (!IsValidEmail(dealerMail))
+            else
             {
-                MessageBox.Show("Please enter a valid email address.");
-                return;
+                addressAlert.Visible = false;
+                Refresh();
             }
 
-            if (!IsValidPhoneNumber(dealerPhoneNum))
-            {
-                MessageBox.Show("Please enter a valid phone number.");
-                return;
-            }
             if (programMethod.createDealer(dealername, dealerCompany, dealerMail, dealerPhoneNum, dealerRegionNum, dealerAddress))
             {
                 MessageBox.Show("Dealer contract Successfully Added");
@@ -119,44 +134,58 @@ namespace ITP4519M
             string dealerRegionNum = regionNumBox.Text.Trim();
             if (string.IsNullOrEmpty(dealername))
             {
-                MessageBox.Show("Please enter a dealer name.");
+                dealerNamebtn.Visible = true;
                 dealerNameBox.Focus();
                 return;
             }
+            else
+            {
+                dealerNamebtn.Visible = false;
+                Refresh();
+            }
             if (string.IsNullOrEmpty(dealerCompany))
             {
-                MessageBox.Show("Please enter a dealer company.");
+                companyNameAlert.Visible = true;
                 dealerCompanyNameBox.Focus();
                 return;
             }
-            if (string.IsNullOrEmpty(dealerMail))
+            else
             {
-                MessageBox.Show("Please enter a dealer mail address.");
+                companyNameAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(dealerMail) || !IsValidEmail(dealerMail))
+            {
+                mailAlert.Visible = true;
                 dealerMailBox.Focus();
                 return;
             }
-            if (string.IsNullOrEmpty(dealerPhoneNum))
+            else
             {
-                MessageBox.Show("Please enter a dealer phone number.");
+                mailAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(dealerPhoneNum) || !IsValidPhoneNumber(dealerPhoneNum))
+            {
+                phoneAlertlbl.Visible = true;
                 DealerPhoneNumBox.Focus();
                 return;
             }
+            else
+            {
+                phoneAlertlbl.Visible = false;
+                Refresh();
+            }
             if (string.IsNullOrEmpty(dealerAddress))
             {
-                MessageBox.Show("Please enter a dealer address.");
+                addressAlert.Visible = true;
                 dealerAddressBox.Focus();
                 return;
             }
-            if (!IsValidEmail(dealerMail))
+            else
             {
-                MessageBox.Show("Please enter a valid email address.");
-                return;
-            }
-
-            if (!IsValidPhoneNumber(dealerPhoneNum))
-            {
-                MessageBox.Show("Please enter a valid phone number.");
-                return;
+                addressAlert.Visible = false;
+                Refresh();
             }
 
             if (programMethod.updateDealerInfo(dealerid, dealername, dealerCompany, dealerMail, dealerPhoneNum, dealerRegionNum, dealerAddress))

@@ -25,7 +25,7 @@ using System.Diagnostics;
 using MySqlX.XDevAPI.Common;
 using System.Security.Policy;
 using System.Net.NetworkInformation;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Windows.Forms.DataVisualization.Charting;
 
 
 namespace ITP4519M
@@ -175,6 +175,99 @@ namespace ITP4519M
             programMethod = new ProgramMethod.ProgramMethod();
             programMethod.CurrentUserIDAndName(LoginUserID, LoginUserName);
             closebtn.BringToFront();
+            OrderAccemblybtn.Size = new System.Drawing.Size(166, 56);
+            contactsbtn.Size = new System.Drawing.Size(166, 56);
+            outstandingOrderbtn.Size = new System.Drawing.Size(166, 56);
+            PObtn.Size = new System.Drawing.Size(166, 56);
+            string[] array = programMethod.getDashboardToadyLabel();
+            dashOrderlbl.Text = array[0];
+            dashOutlbl.Text = array[1];
+            dashInlbl.Text = array[2];
+            DataTable CategoryAOrderQuantity = programMethod.getCategoryAOrderQuantity();
+            DataTable CategoryBOrderQuantity = programMethod.getCategoryBOrderQuantity();
+            DataTable CategoryCOrderQuantity = programMethod.getCategoryCOrderQuantity();
+            DataTable CategoryDOrderQuantity = programMethod.getCategoryDOrderQuantity();
+            //DataTable TempA = CategoryAOrderQuantity.Clone();
+            //TempA.Columns[1].DataType = typeof(String);
+            //foreach (DataRow row in TempA.Rows)
+            //{
+            //    TempA.ImportRow(row);
+            //}
+            //DataTable TempB = CategoryBOrderQuantity.Clone();
+            //TempB.Columns[1].DataType = typeof(String);
+            //foreach (DataRow row in TempB.Rows)
+            //{
+            //    TempB.ImportRow(row);
+            //}
+            //DataTable TempC = CategoryCOrderQuantity.Clone();
+            //TempC.Columns[1].DataType = typeof(String);
+            //foreach (DataRow row in TempC.Rows)
+            //{
+            //    TempC.ImportRow(row);
+            //}
+            //DataTable TempD = CategoryDOrderQuantity.Clone();
+            //TempD.Columns[1].DataType = typeof(String);
+            //foreach (DataRow row in TempD.Rows)
+            //{
+            //    TempD.ImportRow(row);
+            //}
+            //DataTable dataTable = new DataTable();
+            //dataTable.Merge(TempA);
+            //dataTable.Merge(TempB);
+            //dataTable.Merge(TempC);
+            //dataTable.Merge(TempD);
+            DataTable CloneAndChangeColumnType(DataTable originalTable)
+            {
+                DataTable clonedTable = originalTable.Clone();
+                clonedTable.Columns[1].DataType = typeof(String);
+                foreach (DataRow row in originalTable.Rows)
+                {
+                    clonedTable.ImportRow(row);
+                }
+                return clonedTable;
+            }
+
+            // Clone and change column type for each category table
+            DataTable TempA = CloneAndChangeColumnType(CategoryAOrderQuantity);
+            DataTable TempB = CloneAndChangeColumnType(CategoryBOrderQuantity);
+            DataTable TempC = CloneAndChangeColumnType(CategoryCOrderQuantity);
+            DataTable TempD = CloneAndChangeColumnType(CategoryDOrderQuantity);
+
+            // Merge all tables into a single DataTable
+            DataTable dataTable = new DataTable();
+            dataTable.Merge(TempA);
+            dataTable.Merge(TempB);
+            dataTable.Merge(TempC);
+            dataTable.Merge(TempD);
+
+            dashordervalueChart.Series.Add("A-Sheet Metal");
+            dashordervalueChart.Series["A-Sheet Metal"].ChartType = SeriesChartType.Line;
+            dashordervalueChart.Series["A-Sheet Metal"].Color = Color.Black;
+            dashordervalueChart.Series["A-Sheet Metal"].XValueType = ChartValueType.DateTime;
+            dashordervalueChart.Series["A-Sheet Metal"].XValueMember = "orderDateA";
+            dashordervalueChart.Series["A-Sheet Metal"].YValueMembers = "SUMA";
+
+
+            dashordervalueChart.Series.Add("B-Major Asssemblies");
+            dashordervalueChart.Series["B-Major Asssemblies"].ChartType = SeriesChartType.Line;
+            dashordervalueChart.Series["B-Major Asssemblies"].Color = Color.Blue;
+            dashordervalueChart.Series["B-Major Asssemblies"].XValueMember = "orderDateB";
+            dashordervalueChart.Series["B-Major Asssemblies"].YValueMembers = "SUMB";
+
+
+            dashordervalueChart.Series.Add("C-Light Components");
+            dashordervalueChart.Series["C-Light Components"].ChartType = SeriesChartType.Line;
+            dashordervalueChart.Series["C-Light Components"].Color = Color.Brown;
+            dashordervalueChart.Series["C-Light Components"].XValueMember = "orderDateC";
+            dashordervalueChart.Series["C-Light Components"].YValueMembers = "SUMC";
+            dashordervalueChart.Series.Add("D-Accessories");
+            dashordervalueChart.Series["D-Accessories"].ChartType = SeriesChartType.Line;
+            dashordervalueChart.Series["D-Accessories"].Color = Color.Red;
+            dashordervalueChart.Series["D-Accessories"].XValueMember = "orderDateD";
+            dashordervalueChart.Series["D-Accessories"].YValueMembers = "SUMD";
+            dashordervalueChart.DataSource = dataTable;
+
+            dashordervalueChart.DataBind();
 
             if (Owner != null)
                 Location = new Point(Owner.Location.X + Owner.Width / 2 - Width / 2,
@@ -1223,7 +1316,7 @@ namespace ITP4519M
         private void dealerContactFormOperationCompleted(object sender, EventArgs e)
         {
             dealersData.DataSource = programMethod.GetDealerCurrentRecords(CurrentPageIndex, PgSize);
-            //dealersbtn.PerformClick();
+            dealersbtn_Click(dealersbtn, EventArgs.Empty);
         }
 
         private void contactsdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -1248,12 +1341,12 @@ namespace ITP4519M
                 if (currentDataSourceType == "Dealer")
                 {
                     programMethod.dealerDel(contactID);
-                    //dealersbtn.PerformClick();
+                    dealersbtn_Click(dealersbtn, EventArgs.Empty);
                 }
                 else if (currentDataSourceType == "Supplier")
                 {
                     programMethod.supplierDel(contactID, productID);
-                    //supplersbtn.PerformClick();
+                    supplersbtn_Click(supplersbtn, EventArgs.Empty);
                 }
 
             }
@@ -1272,7 +1365,7 @@ namespace ITP4519M
         private void supplierContactFormOperationCompleted(object sender, EventArgs e)
         {
             suppliersData.DataSource = programMethod.GetSupplierCurrentRecords(CurrentPageIndex, PgSize);
-            //supplersbtn.PerformClick();
+            supplersbtn_Click(supplersbtn, EventArgs.Empty);
         }
 
         private void editSupplierbtn_Click(object sender, EventArgs e)

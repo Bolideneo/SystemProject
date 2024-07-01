@@ -72,7 +72,7 @@ namespace ITP4519M
             var supplierDetails = programMethod.getSupplierDetails(supplierID);
             string supplierid = supplierDetails.SupplierID;
             string supplierCompanyName = suppliernameBox.Text.Trim();
-            string supplierContactPerson = supplierContactBox.Text.Trim();
+            string supplierContactName = supplierContactBox.Text.Trim();
             string supplierMail = SupplierMailBox.Text.Trim();
             string supplierPhoneNum = SupplierPhoneNumBox.Text.Trim();
             string supplierAddress = supplierAddressBox.Text.Trim();
@@ -80,52 +80,82 @@ namespace ITP4519M
             if (selectedProductIDs.Count == 0)
             {
 
-                MessageBox.Show("No products selected.");
+                productSelectAlert.Visible = true;
                 return;
             }
+            else
+            {
+                productSelectAlert.Visible = false;
+                Refresh();
+            }
+
             DataTable products = programMethod.GetProducts(selectedProductIDs);
             if (products == null || products.Rows.Count == 0)
             {
-
-                MessageBox.Show("No products selected.");
+                productSelectAlert.Visible = true;
                 return;
+            }
+            else
+            {
+                productSelectAlert.Visible = false;
+                Refresh();
             }
             if (string.IsNullOrEmpty(supplierCompanyName))
             {
-                MessageBox.Show("Please enter a supplier name.");
+                companyNameAlert.Visible = true;
                 suppliernameBox.Focus();
                 return;
             }
-            if (string.IsNullOrEmpty(supplierMail))
+            else
             {
-                MessageBox.Show("Please enter a supplier mail address.");
+                companyNameAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(supplierMail) || !IsValidEmail(supplierMail))
+            {
+                mailAlert.ForeColor = Color.Red;
                 SupplierMailBox.Focus();
                 return;
             }
-            if (string.IsNullOrEmpty(supplierPhoneNum))
+            else
             {
-                MessageBox.Show("Please enter a supplier phone number.");
+                mailAlert.ForeColor = Color.Black;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(supplierPhoneNum) || !IsValidPhoneNumber(supplierPhoneNum))
+            {
+                phoneAlertlbl.ForeColor = Color.Red;
                 SupplierPhoneNumBox.Focus();
                 return;
             }
+            else
+            {
+                phoneAlertlbl.ForeColor = Color.Black;
+                Refresh();
+            }
             if (string.IsNullOrEmpty(supplierAddress))
             {
-                MessageBox.Show("Please enter a supplier address.");
+                addressAlert.Visible = true;
                 supplierAddressBox.Focus();
                 return;
             }
-            if (!IsValidEmail(supplierMail))
+            else
             {
-                MessageBox.Show("Please enter a valid email address.");
-                return;
+                addressAlert.Visible = false;
+                Refresh();
             }
 
-            if (!IsValidPhoneNumber(supplierPhoneNum))
+            if (string.IsNullOrEmpty(supplierContactName))
             {
-                MessageBox.Show("Please enter a valid phone number.");
+                contactPersonAlert.Visible = true;
                 return;
             }
-            if (programMethod.updateSupplierInfo(supplierid, supplierCompanyName, supplierContactPerson, supplierMail, supplierPhoneNum, supplierAddress, products))
+            else
+            {
+                contactPersonAlert.Visible = false;
+                Refresh();
+            }
+            if (programMethod.updateSupplierInfo(supplierid, supplierCompanyName, supplierContactName, supplierMail, supplierPhoneNum, supplierAddress, products))
             {
 
                 MessageBox.Show("Saved");

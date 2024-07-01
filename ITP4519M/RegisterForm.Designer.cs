@@ -660,6 +660,7 @@ namespace ITP4519M
             // 
             titilepnl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             titilepnl.BackColor = SystemColors.Window;
+            titilepnl.Controls.Add(titleAlertBox);
             titilepnl.Controls.Add(titleBox);
             titilepnl.Location = new Point(293, 476);
             titilepnl.Name = "titilepnl";
@@ -670,7 +671,7 @@ namespace ITP4519M
             // titleAlertBox
             // 
             titleAlertBox.Image = Properties.Resources.red_alert;
-            titleAlertBox.Location = new Point(726, 480);
+            titleAlertBox.Location = new Point(230, 3);
             titleAlertBox.Margin = new Padding(3, 2, 3, 2);
             titleAlertBox.Name = "titleAlertBox";
             titleAlertBox.Size = new Size(26, 23);
@@ -711,7 +712,6 @@ namespace ITP4519M
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
             ClientSize = new Size(807, 640);
-            Controls.Add(titleAlertBox);
             Controls.Add(departAlertlbl);
             Controls.Add(titleAlertlbl);
             Controls.Add(titilepnl);

@@ -3727,6 +3727,71 @@ namespace ITP4519M
             ServerConnect().Close();
             return dataTable;
         }
+
+        public string getTodayGRNReceiveQty()
+        {
+            DateTime Date = DateTime.Now;
+            Date.ToString("yyyy-MM-dd");
+            string sql = "SELECT IFNULL(SUM(ReceiveQty),0) FROM grn WHERE ReceiveDate= @date ";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@date", Date);
+            object result = cmd.ExecuteScalar();
+            ServerConnect().Close();
+            return result.ToString();
+        }
+
+        public DataTable getDashboardToadyLabel()
+        {
+            DateTime Date = DateTime.Now;
+            Date.ToString("yyyy-MM-dd");
+            string sql = "SELECT IFNULL(COUNT(DISTINCT `order`.OrderID),0) AS OrderCount, IFNULL(SUM(orderitem.OrderedQuantity),0) AS TotalOrderedQuantity FROM `order`, orderitem WHERE `order`.OrderID  = orderitem.OrderID AND DATE(`order`.OrderDate) =  @date";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@date", Date);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+
+        public DataTable getCategoryA7DaysOrderQuantity()
+        {
+            string sql = "SELECT `order`.OrderID, `order`.OrderDate AS orderDateA, SUM(orderitem.OrderedQuantity) AS SUMA FROM `order` JOIN orderitem ON `order`.OrderID = orderitem.OrderID WHERE `order`.OrderDate > (NOW() - INTERVAL 7 DAY) AND LEFT(orderitem.ProductID, 1) = 'A' GROUP BY `order`.OrderID, `order`.OrderDate;";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
+        public DataTable getCategoryB7DaysOrderQuantity()
+        {
+            string sql = "SELECT `order`.OrderID, `order`.OrderDate AS orderDateB, SUM(orderitem.OrderedQuantity) AS SUMB FROM `order` JOIN orderitem ON `order`.OrderID = orderitem.OrderID WHERE `order`.OrderDate > (NOW() - INTERVAL 7 DAY) AND LEFT(orderitem.ProductID, 1) = 'B' GROUP BY `order`.OrderID, `order`.OrderDate;";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
+        public DataTable getCategoryC7DaysOrderQuantity()
+        {
+            string sql = "SELECT `order`.OrderID, `order`.OrderDate AS orderDateC, SUM(orderitem.OrderedQuantity) AS SUMC FROM `order` JOIN orderitem ON `order`.OrderID = orderitem.OrderID WHERE `order`.OrderDate > (NOW() - INTERVAL 7 DAY) AND LEFT(orderitem.ProductID, 1) = 'C' GROUP BY `order`.OrderID, `order`.OrderDate;";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+        public DataTable getCategoryD7DaysOrderQuantity()
+        {
+            string sql = "SELECT `order`.OrderID, `order`.OrderDate AS orderDateD, SUM(orderitem.OrderedQuantity) AS SUMD FROM `order` JOIN orderitem ON `order`.OrderID = orderitem.OrderID WHERE `order`.OrderDate > (NOW() - INTERVAL 7 DAY) AND LEFT(orderitem.ProductID, 1) = 'D' GROUP BY `order`.OrderID, `order`.OrderDate;";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
     }
 
 }

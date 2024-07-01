@@ -35,6 +35,18 @@ namespace ITP4519M
         private void productForm_Load(object sender, EventArgs e)
         {
             programMethod = new ProgramMethod.ProgramMethod();
+            dangerQuanAlert.Visible = false;
+            reorderAlert.Visible = false;
+            descriptionAlert.Visible = false;
+            demandAlert.Visible = false;
+            inStockAlert.Visible = false;
+            outStockAlert.Visible = false;
+            weightAlert.Visible = false;
+            costPriceAlert.Visible = false;
+            unitPriceAlert.Visible = false;
+            serialNumAlert.Visible = false;
+            warehouseAlert.Visible = false;
+            productNameAlert.Visible = false;
             switch (_mode)
             {
                 case OperationMode.View:
@@ -171,24 +183,155 @@ namespace ITP4519M
             string productDanger = productDangerbox.Text.Trim();
             string productStatus = productStatusbox.GetItemText(this.productStatusbox.SelectedItem);
 
+            if (string.IsNullOrEmpty(productName)) {
+                productNameAlert.Visible = true;
+                return;
+            }
+            else
+            {
+                productNameAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(productWarehouse))
+            {
+                warehouseAlert.Visible = true;
+                return;
+            }
+            else
+            {
+                warehouseAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(productSerial))
+            {
+                serialNumAlert.Visible = true;
+                return;
+            }
+            else
+            {
+                serialNumAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(productUnitPrice))
+            {
+                unitPriceAlert.Visible = true;
+                return;
+            }
+            else
+            {
+                unitPriceAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(productCost))
+            {
+                costPriceAlert.Visible = true;
+                return;
+            }
+            else
+            {
+                costPriceAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(productWeight))
+            {
+                weightAlert.Visible = true;
+                return;
+            }
+            else
+            {
+                weightAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(productOutOfStock))
+            {
+                outStockAlert.Visible = true;
+                return;
+            }
+            else
+            {
+                outStockAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(productInStock))
+            {
+                inStockAlert.Visible = true;
+                return;
+            }
+            else
+            {
+                inStockAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(productDemand))
+            {
+                demandAlert.Visible = true;
+                return;
+            }
+            else
+            {
+                demandAlert.Visible = false;
+                Refresh();
+            } 
+            if (string.IsNullOrEmpty(productDescription))
+            {
+                descriptionAlert.Visible = true;
+                return;
+            }
+            else
+            {
+                descriptionAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(productReOrder))
+            {
+                reorderAlert.Visible = true;
+                return;
+            }
+            else
+            {
+                reorderAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(productDanger))
+            {
+                dangerQuanAlert.Visible = true;
+                return;
+            }
+            else
+            {
+                dangerQuanAlert.Visible = false;
+                Refresh();
+            }
             if (!decimal.TryParse(productUnitPrice, out decimal unitPrice) || !decimal.TryParse(productCost, out decimal costPrice))
             {
-                MessageBox.Show("Unit price and cost price must be valid decimal numbers.");
+                priceNote.Visible = true;
                 return;
+            }
+            else
+            {
+                priceNote.Visible = false;
+                Refresh();
             }
 
             if (unitPrice <= costPrice)
             {
-                MessageBox.Show("Unit price must be greater than cost price.");
+                priceNote2.Visible = true;
                 return;
             }
-
+            else {
+                priceNote2.Visible = false;
+                Refresh();
+            }
             if (productSerial.Length != 6 || !System.Text.RegularExpressions.Regex.IsMatch(productSerial, @"^[a-zA-Z0-9]{6}$"))
             {
-                MessageBox.Show("Serial number must be exactly 6 characters long and can only contain letters and numbers.");
+                serialNumNote.Visible= true;
                 return;
             }
-
+            else
+            {
+                serialNumNote.Visible = false;
+                Refresh();
+            }
             if (programMethod.createProductinfo(productName, productCategory, productWarehouse, productSerial, productUnitPrice, productCost, productWeight, productOutOfStock, productInStock, productReOrder, productDanger, productDemand, productDescription, productStatus))
             {
                 
@@ -262,31 +405,156 @@ namespace ITP4519M
             string productDanger = productDangerbox.Text.Trim();
             string productStatus = productStatusbox.GetItemText(productStatusbox.SelectedItem);
 
+            if (string.IsNullOrEmpty(productName))
+            {
+                productNameAlert.Visible = true;
+                return;
+            }
+            else
+            {
+                productNameAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(productWarehouse))
+            {
+                warehouseAlert.Visible = true;
+                return;
+            }
+            else
+            {
+                warehouseAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(productSerial))
+            {
+                serialNumAlert.Visible = true;
+                return;
+            }
+            else
+            {
+                serialNumAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(productUnitPrice))
+            {
+                unitPriceAlert.Visible = true;
+                return;
+            }
+            else
+            {
+                unitPriceAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(productCost))
+            {
+                costPriceAlert.Visible = true;
+                return;
+            }
+            else
+            {
+                costPriceAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(productWeight))
+            {
+                weightAlert.Visible = true;
+                return;
+            }
+            else
+            {
+                weightAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(productOutOfStock))
+            {
+                outStockAlert.Visible = true;
+                return;
+            }
+            else
+            {
+                outStockAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(productInStock))
+            {
+                inStockAlert.Visible = true;
+                return;
+            }
+            else
+            {
+                inStockAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(productDemand))
+            {
+                demandAlert.Visible = true;
+                return;
+            }
+            else
+            {
+                demandAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(productDescription))
+            {
+                descriptionAlert.Visible = true;
+                return;
+            }
+            else
+            {
+                descriptionAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(productReOrder))
+            {
+                reorderAlert.Visible = true;
+                return;
+            }
+            else
+            {
+                reorderAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(productDanger))
+            {
+                dangerQuanAlert.Visible = true;
+                return;
+            }
+            else
+            {
+                dangerQuanAlert.Visible = false;
+                Refresh();
+            }
             if (!decimal.TryParse(productUnitPrice, out decimal unitPrice) || !decimal.TryParse(productCost, out decimal costPrice))
             {
-                MessageBox.Show("Unit price and cost price must be valid decimal numbers.");
+                priceNote.Visible = true;
                 return;
+            }
+            else
+            {
+                priceNote.Visible = false;
+                Refresh();
             }
 
             if (unitPrice <= costPrice)
             {
-                MessageBox.Show("Unit price must be greater than cost price.");
+                priceNote2.Visible = true;
                 return;
-            }
-
-            if (productSerial.Length != 6 || !System.Text.RegularExpressions.Regex.IsMatch(productSerial, @"^[a-zA-Z0-9]{6}$"))
-            {
-                MessageBox.Show("Serial number must be exactly 6 characters long and can only contain letters and numbers.");
-                return;
-            }
-
-            if (programMethod.updateProductinfo(productID, productName, productCategory, productWarehouse, productSerial, productUnitPrice, productCost, productWeight, productOutOfStock, productInStock, productReOrder, productDanger, productDemand, productDescription, productStatus))
-            {
-                MessageBox.Show("Product updated successfully.");
             }
             else
             {
-                MessageBox.Show("Failed to update product.");
+                priceNote2.Visible = false;
+                Refresh();
+            }
+            if (productSerial.Length != 6 || !System.Text.RegularExpressions.Regex.IsMatch(productSerial, @"^[a-zA-Z0-9]{6}$"))
+            {
+                serialNumNote.Visible = true;
+                return;
+            }
+            else
+            {
+                serialNumNote.Visible = false;
+                Refresh();
             }
         }
     }
