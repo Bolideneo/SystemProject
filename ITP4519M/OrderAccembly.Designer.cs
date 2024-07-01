@@ -89,7 +89,7 @@ namespace ITP4519M
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label11.Location = new Point(222, 185);
+            label11.Location = new Point(227, 185);
             label11.Margin = new Padding(6, 0, 6, 0);
             label11.Name = "label11";
             label11.Size = new Size(118, 20);
@@ -109,7 +109,7 @@ namespace ITP4519M
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(210, 233);
+            label5.Location = new Point(215, 233);
             label5.Margin = new Padding(6, 0, 6, 0);
             label5.Name = "label5";
             label5.Size = new Size(130, 20);
@@ -161,7 +161,7 @@ namespace ITP4519M
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label8.Location = new Point(197, 288);
+            label8.Location = new Point(201, 288);
             label8.Margin = new Padding(6, 0, 6, 0);
             label8.Name = "label8";
             label8.Size = new Size(144, 20);
@@ -270,12 +270,13 @@ namespace ITP4519M
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(210, 347);
+            label4.Location = new Point(209, 348);
             label4.Margin = new Padding(6, 0, 6, 0);
             label4.Name = "label4";
-            label4.Size = new Size(131, 20);
+            label4.Size = new Size(136, 20);
             label4.TabIndex = 73;
-            label4.Text = "Dealer Address:";
+            label4.Text = "Dealer Address :";
+            label4.Click += label4_Click;
             // 
             // dealerAddressBox
             // 
@@ -324,7 +325,7 @@ namespace ITP4519M
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
-            ClientSize = new Size(953, 1165);
+            ClientSize = new Size(953, 1102);
             Controls.Add(checkboxSelectedbtn);
             Controls.Add(orderAccemblyAssignbtn);
             Controls.Add(orderAccemblyAssignbox);

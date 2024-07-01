@@ -85,6 +85,11 @@ namespace ITP4519M
         private int InvoiceTotalPage = 0;
         //Paging
 
+        //Invoice datagrid paging
+        private int GRNPgSize = 15;
+        private int GRNPageIndex = 1;
+        private int GRNTotalPage = 0;
+        //Paging
 
 
         //Order datagrid paging
@@ -1174,7 +1179,10 @@ namespace ITP4519M
             ShowPanel(GRNpnl);
             grndata.DataSource = programMethod.overallGRNinfo();
             grndata.Rows[0].Selected = false;
-
+            grndata.DataSource = programMethod.GetGRNCurrentRecords(GRNPageIndex, GRNPgSize);
+            grnPage.Text = "01" + "-" + GRNPgSize.ToString() + " of " + programMethod.getGRNRowCount();
+            SetRowHeights(grndata, GRNPgSize);
+            oustandingPagelbl.Text = "01" + "-" + GRNPgSize + " of " + GRNRowCount;
         }
 
         private void deliverybtn_Click(object sender, EventArgs e)
@@ -1515,10 +1523,7 @@ namespace ITP4519M
 
         }
 
-        private void accountSearchBox_TextChanged(object sender, EventArgs e)
-        {
 
-        }
 
         private void CalculateTotalPages(string function)
         {
@@ -1564,8 +1569,11 @@ namespace ITP4519M
 
 
                 case "GRN":
-                    //rowCount = programMethod.getAccountRowCount();
-                    //TotalPage = rowCount / PgSize;
+                    rowCount = programMethod.getGRNRowCount();
+                    GRNRowCount = rowCount;
+                    GRNTotalPage = rowCount / GRNPgSize;
+                    if (rowCount % GRNPgSize > 0)
+                        GRNTotalPage += 1;
                     break;
 
                 case "OrderAccembly":
@@ -2460,6 +2468,54 @@ namespace ITP4519M
         private void orderdateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void grnPrevPage_Click(object sender, EventArgs e)
+        {
+            if (this.GRNPageIndex > 1)
+            {
+                this.GRNPageIndex--;
+                this.grndata.DataSource = programMethod.GetGRNCurrentRecords(this.GRNPageIndex, GRNPgSize);
+            }
+            SetRowHeights(grndata, GRNPgSize);
+            accountIndexlbl.Text = (GRNPgSize * GRNPageIndex - (GRNPgSize - 1)) + " - " + (GRNPgSize * GRNPageIndex) + " of " + GRNRowCount;
+        }
+
+        private void grnFirstPage_Click(object sender, EventArgs e)
+        {
+            this.GRNPageIndex = 1;
+            this.grndata.DataSource = programMethod.GetGRNCurrentRecords(this.GRNPageIndex, GRNPgSize);
+            SetRowHeights(grndata, GRNPgSize);
+
+            grnPage.Text = "1" + " - " + GRNPgSize + " of " + GRNRowCount;
+        }
+
+        private void grnNextPage_Click(object sender, EventArgs e)
+        {
+            if (this.GRNPageIndex < this.GRNTotalPage)
+            {
+                this.GRNPageIndex++;
+                this.grndata.DataSource = programMethod.GetGRNCurrentRecords(this.GRNPageIndex, GRNPgSize);
+
+            }
+            SetRowHeights(grndata, GRNPgSize);
+
+            if (GRNPageIndex != GRNTotalPage)
+            {
+                grnPage.Text = (GRNPgSize * GRNPageIndex - (GRNPgSize - 1)) + " - " + (GRNPgSize * GRNPageIndex) + " of " + GRNRowCount;
+            }
+            else
+            {
+                grnPage.Text = (GRNPgSize * GRNPageIndex - (GRNPgSize - 1)) + " - " + GRNRowCount + " of " + GRNRowCount;
+            }
+        }
+
+        private void grnLastPage_Click(object sender, EventArgs e)
+        {
+            this.GRNPageIndex = GRNTotalPage;
+            this.grndata.DataSource = programMethod.GetGRNCurrentRecords(this.GRNPageIndex, GRNPgSize);
+            SetRowHeights(grndata, GRNPgSize);
+            grnPage.Text = (GRNPgSize * GRNPageIndex - (GRNPgSize - 1)) + "-" + GRNRowCount + " of " + GRNRowCount;
         }
     }
 }

@@ -907,6 +907,10 @@ namespace ProgramMethod
             return dataBaseMethod.getAccountRowCount();
         }
 
+        public int getGRNRowCount()
+        {
+            return dataBaseMethod.getGRNRowCount();
+        }
         public int getDealersRowCount()
         {
             return dataBaseMethod.getDealersRowCount();
@@ -957,6 +961,19 @@ namespace ProgramMethod
             else
             { 
                return dataBaseMethod.GetAccountCurrentRecords2(page, pageSize);
+            }
+        }
+
+        public DataTable GetGRNCurrentRecords(int page, int pageSize)
+        {
+
+            if (page == 1)
+            {
+                return dataBaseMethod.GetGRNCurrentRecords(page, pageSize);
+            }
+            else
+            {
+                return dataBaseMethod.GetGRNCurrentRecords2(page, pageSize);
             }
         }
 

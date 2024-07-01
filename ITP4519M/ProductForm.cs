@@ -185,7 +185,7 @@ namespace ITP4519M
 
             if (string.IsNullOrEmpty(productName)) {
                 productNameAlert.Visible = true;
-                return;
+                Refresh();
             }
             else
             {
@@ -195,7 +195,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productWarehouse))
             {
                 warehouseAlert.Visible = true;
-                return;
+                Refresh();
             }
             else
             {
@@ -205,7 +205,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productSerial))
             {
                 serialNumAlert.Visible = true;
-                return;
+                Refresh();
             }
             else
             {
@@ -215,7 +215,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productUnitPrice))
             {
                 unitPriceAlert.Visible = true;
-                return;
+                Refresh();
             }
             else
             {
@@ -225,7 +225,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productCost))
             {
                 costPriceAlert.Visible = true;
-                return;
+                Refresh();
             }
             else
             {
@@ -235,7 +235,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productWeight))
             {
                 weightAlert.Visible = true;
-                return;
+                Refresh();
             }
             else
             {
@@ -245,7 +245,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productOutOfStock))
             {
                 outStockAlert.Visible = true;
-                return;
+                Refresh();
             }
             else
             {
@@ -255,7 +255,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productInStock))
             {
                 inStockAlert.Visible = true;
-                return;
+                Refresh();
             }
             else
             {
@@ -265,7 +265,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productDemand))
             {
                 demandAlert.Visible = true;
-                return;
+                Refresh();
             }
             else
             {
@@ -275,7 +275,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productDescription))
             {
                 descriptionAlert.Visible = true;
-                return;
+                Refresh();
             }
             else
             {
@@ -285,7 +285,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productReOrder))
             {
                 reorderAlert.Visible = true;
-                return;
+                Refresh();
             }
             else
             {
@@ -295,7 +295,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productDanger))
             {
                 dangerQuanAlert.Visible = true;
-                return;
+                Refresh();
             }
             else
             {
@@ -408,7 +408,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productName))
             {
                 productNameAlert.Visible = true;
-                return;
+                Refresh();
             }
             else
             {
@@ -418,7 +418,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productWarehouse))
             {
                 warehouseAlert.Visible = true;
-                return;
+                Refresh();
             }
             else
             {
@@ -428,7 +428,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productSerial))
             {
                 serialNumAlert.Visible = true;
-                return;
+                Refresh();
             }
             else
             {
@@ -438,7 +438,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productUnitPrice))
             {
                 unitPriceAlert.Visible = true;
-                return;
+                Refresh();
             }
             else
             {
@@ -448,7 +448,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productCost))
             {
                 costPriceAlert.Visible = true;
-                return;
+                Refresh();
             }
             else
             {
@@ -458,7 +458,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productWeight))
             {
                 weightAlert.Visible = true;
-                return;
+                Refresh();
             }
             else
             {
@@ -468,7 +468,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productOutOfStock))
             {
                 outStockAlert.Visible = true;
-                return;
+                Refresh();
             }
             else
             {
@@ -478,7 +478,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productInStock))
             {
                 inStockAlert.Visible = true;
-                return;
+                Refresh();
             }
             else
             {
@@ -488,7 +488,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productDemand))
             {
                 demandAlert.Visible = true;
-                return;
+                Refresh();
             }
             else
             {
@@ -498,7 +498,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productDescription))
             {
                 descriptionAlert.Visible = true;
-                return;
+                Refresh();
             }
             else
             {
@@ -508,7 +508,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productReOrder))
             {
                 reorderAlert.Visible = true;
-                return;
+                Refresh();
             }
             else
             {
@@ -518,7 +518,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productDanger))
             {
                 dangerQuanAlert.Visible = true;
-                return;
+                Refresh();
             }
             else
             {

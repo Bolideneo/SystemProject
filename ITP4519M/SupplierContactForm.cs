@@ -148,6 +148,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(supplierContactName))
             {
                 contactPersonAlert.Visible = true;
+                contactPersonAlert.Focus();
                 return;
             }
             else
@@ -301,6 +302,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(supplierContactName))
             {
                 contactPersonAlert.Visible = true;
+                contactPersonAlert.Focus();
                 return;
             }
             else
