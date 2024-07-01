@@ -45,6 +45,7 @@ namespace ProgramMethod
         private string LoginUserID;
         private string LoginUserName;
 
+
         public ProgramMethod()
         {
             dataBaseMethod = new DataBaseMethod();
@@ -2417,6 +2418,9 @@ namespace ProgramMethod
         {
             return dataBaseMethod.getCategoryD7DaysOrderQuantity();
         }
+
+
+
 
     }
   

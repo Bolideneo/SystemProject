@@ -555,7 +555,7 @@ namespace ITP4519M
         //search product information
         public DataTable searchProductInfo(string keyword)
         {
-            string sql = "SELECT ProductID, ProductName, ProductCategory, BinLocation, UnitPrice, CostPrice, QuantityInStock, DemandStock, Status FROM product WHERE ProductName LIKE @keyword1 OR ProductName LIKE @keyword2 OR ProductID LIKE @keyword2 OR ProductName LIKE @keyword2";
+            string sql = "SELECT ProductID, ProductName, SerialNumber, BinLocation, DemandStock, Status ,UnitPrice, QuantityInStock FROM product WHERE ProductName LIKE @keyword1 OR ProductName LIKE @keyword2 OR ProductID LIKE @keyword2 OR ProductName LIKE @keyword2";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@keyword1", "%" + keyword + "%");
             string keyword2 = keyword.Length > 0 ? $"%{char.ToUpper(keyword[0])}{keyword.Substring(1)}%" : keyword;
@@ -3767,7 +3767,8 @@ namespace ITP4519M
 
         public DataTable getCategoryA7DaysOrderQuantity()
         {
-            string sql = "SELECT `order`.OrderID, `order`.OrderDate AS orderDateA, SUM(orderitem.OrderedQuantity) AS SUMA FROM `order` JOIN orderitem ON `order`.OrderID = orderitem.OrderID WHERE `order`.OrderDate > (NOW() - INTERVAL 7 DAY) AND LEFT(orderitem.ProductID, 1) = 'A' GROUP BY `order`.OrderID, `order`.OrderDate;";
+            //string sql = "SELECT `order`.OrderID, `order`.OrderDate AS orderDateA, SUM(orderitem.OrderedQuantity) AS SUMA FROM `order` JOIN orderitem ON `order`.OrderID = orderitem.OrderID WHERE `order`.OrderDate > (NOW() - INTERVAL 7 DAY) AND LEFT(orderitem.ProductID, 1) = 'A' GROUP BY `order`.OrderID, `order`.OrderDate";
+            string sql = "SELECT COUNT(*) AS OrderQuantityA, DATE(o.OrderDate) AS orderDateA, SUM(oi.OrderedQuantity) AS SUMA FROM `order` o JOIN orderitem oi ON o.OrderID = oi.OrderID WHERE o.OrderDate > (NOW() - INTERVAL 7 DAY) AND LEFT(oi.ProductID, 1) = 'A' GROUP BY DATE(o.OrderDate) ORDER BY DATE(o.OrderDate)";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
@@ -3777,7 +3778,7 @@ namespace ITP4519M
 
         public DataTable getCategoryB7DaysOrderQuantity()
         {
-            string sql = "SELECT `order`.OrderID, `order`.OrderDate AS orderDateB, SUM(orderitem.OrderedQuantity) AS SUMB FROM `order` JOIN orderitem ON `order`.OrderID = orderitem.OrderID WHERE `order`.OrderDate > (NOW() - INTERVAL 7 DAY) AND LEFT(orderitem.ProductID, 1) = 'B' GROUP BY `order`.OrderID, `order`.OrderDate;";
+            string sql = "SELECT COUNT(*) AS OrderQuantityB, DATE(o.OrderDate) AS orderDateB, SUM(oi.OrderedQuantity) AS SUMB FROM `order` o JOIN orderitem oi ON o.OrderID = oi.OrderID WHERE o.OrderDate > (NOW() - INTERVAL 7 DAY) AND LEFT(oi.ProductID, 1) = 'B' GROUP BY DATE(o.OrderDate) ORDER BY DATE(o.OrderDate)";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
@@ -3787,7 +3788,7 @@ namespace ITP4519M
 
         public DataTable getCategoryC7DaysOrderQuantity()
         {
-            string sql = "SELECT `order`.OrderID, `order`.OrderDate AS orderDateC, SUM(orderitem.OrderedQuantity) AS SUMC FROM `order` JOIN orderitem ON `order`.OrderID = orderitem.OrderID WHERE `order`.OrderDate > (NOW() - INTERVAL 7 DAY) AND LEFT(orderitem.ProductID, 1) = 'C' GROUP BY `order`.OrderID, `order`.OrderDate;";
+            string sql = "SELECT COUNT(*) AS OrderQuantityC, DATE(o.OrderDate) AS orderDateC, SUM(oi.OrderedQuantity) AS SUMC FROM `order` o JOIN orderitem oi ON o.OrderID = oi.OrderID WHERE o.OrderDate > (NOW() - INTERVAL 7 DAY) AND LEFT(oi.ProductID, 1) = 'C' GROUP BY DATE(o.OrderDate) ORDER BY DATE(o.OrderDate)";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
@@ -3796,7 +3797,7 @@ namespace ITP4519M
         }
         public DataTable getCategoryD7DaysOrderQuantity()
         {
-            string sql = "SELECT `order`.OrderID, `order`.OrderDate AS orderDateD, SUM(orderitem.OrderedQuantity) AS SUMD FROM `order` JOIN orderitem ON `order`.OrderID = orderitem.OrderID WHERE `order`.OrderDate > (NOW() - INTERVAL 7 DAY) AND LEFT(orderitem.ProductID, 1) = 'D' GROUP BY `order`.OrderID, `order`.OrderDate;";
+            string sql = "SELECT COUNT(*) AS OrderQuantityD, DATE(o.OrderDate) AS orderDateD, SUM(oi.OrderedQuantity) AS SUMD FROM `order` o JOIN orderitem oi ON o.OrderID = oi.OrderID WHERE o.OrderDate > (NOW() - INTERVAL 7 DAY) AND LEFT(oi.ProductID, 1) = 'D' GROUP BY DATE(o.OrderDate) ORDER BY DATE(o.OrderDate)";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();

@@ -97,7 +97,6 @@ namespace ITP4519M
         private int OrderPageIndex = 1;
         private int OrderTotalPage = 0;
         //Paging
-        TypeAssistant assistant;
         private Button currentButton;
         private string userID;
         private string LoginUserID;
@@ -147,8 +146,9 @@ namespace ITP4519M
         private int StockRowCount;
         private Button lastClickedButton = null;
         private Button[] buttons = new Button[2];
-        private bool isFormDragging = false;
-        private Point formStartPoint;
+        private bool dragging = false;
+        private Point dragCursorPoint;
+        private Point dragFormPoint;
         private int[] buttonLocationIndex = [229, 300, 371, 440, 509, 580, 651, 720, 789];
 
 
@@ -192,88 +192,103 @@ namespace ITP4519M
             DataTable CategoryBOrderQuantity = programMethod.getCategoryBOrderQuantity();
             DataTable CategoryCOrderQuantity = programMethod.getCategoryCOrderQuantity();
             DataTable CategoryDOrderQuantity = programMethod.getCategoryDOrderQuantity();
-            //DataTable TempA = CategoryAOrderQuantity.Clone();
-            //TempA.Columns[1].DataType = typeof(String);
-            //foreach (DataRow row in TempA.Rows)
-            //{
-            //    TempA.ImportRow(row);
-            //}
-            //DataTable TempB = CategoryBOrderQuantity.Clone();
-            //TempB.Columns[1].DataType = typeof(String);
-            //foreach (DataRow row in TempB.Rows)
-            //{
-            //    TempB.ImportRow(row);
-            //}
-            //DataTable TempC = CategoryCOrderQuantity.Clone();
-            //TempC.Columns[1].DataType = typeof(String);
-            //foreach (DataRow row in TempC.Rows)
-            //{
-            //    TempC.ImportRow(row);
-            //}
-            //DataTable TempD = CategoryDOrderQuantity.Clone();
-            //TempD.Columns[1].DataType = typeof(String);
-            //foreach (DataRow row in TempD.Rows)
-            //{
-            //    TempD.ImportRow(row);
-            //}
-            //DataTable dataTable = new DataTable();
-            //dataTable.Merge(TempA);
-            //dataTable.Merge(TempB);
-            //dataTable.Merge(TempC);
-            //dataTable.Merge(TempD);
-            DataTable CloneAndChangeColumnType(DataTable originalTable)
+            DataTable dataTable = new DataTable();
+
+            // Assuming you have DataTables for each category
+            DataTable unifiedTable = new DataTable();
+            unifiedTable.Columns.Add("orderDate", typeof(DateTime));
+            unifiedTable.Columns.Add("Category", typeof(string));
+            unifiedTable.Columns.Add("OrderQuantity", typeof(int));
+            unifiedTable.Columns.Add("SUM", typeof(int));
+
+            void AddCategoryData(DataTable sourceTable, string category, string dateColumn, string quantityColumn, string sumColumn)
             {
-                DataTable clonedTable = originalTable.Clone();
-                clonedTable.Columns[1].DataType = typeof(String);
-                foreach (DataRow row in originalTable.Rows)
+                foreach (DataRow row in sourceTable.Rows)
                 {
-                    clonedTable.ImportRow(row);
+                    DataRow newRow = unifiedTable.NewRow();
+                    newRow["orderDate"] = row[dateColumn];
+                    newRow["Category"] = category;
+                    newRow["OrderQuantity"] = row[quantityColumn];
+                    newRow["SUM"] = row[sumColumn];
+                    unifiedTable.Rows.Add(newRow);
                 }
-                return clonedTable;
             }
 
-            // Clone and change column type for each category table
-            DataTable TempA = CloneAndChangeColumnType(CategoryAOrderQuantity);
-            DataTable TempB = CloneAndChangeColumnType(CategoryBOrderQuantity);
-            DataTable TempC = CloneAndChangeColumnType(CategoryCOrderQuantity);
-            DataTable TempD = CloneAndChangeColumnType(CategoryDOrderQuantity);
+            // Add data from each category table
+            AddCategoryData(CategoryAOrderQuantity, "A-Sheet Metal", "orderDateA", "OrderQuantityA", "SUMA");
+            AddCategoryData(CategoryBOrderQuantity, "B-Major Assemblies", "orderDateB", "OrderQuantityB", "SUMB");
+            AddCategoryData(CategoryCOrderQuantity, "C-Light Components", "orderDateC", "OrderQuantityC", "SUMC");
+            AddCategoryData(CategoryDOrderQuantity, "D-Accessories", "orderDateD", "OrderQuantityD", "SUMD");
 
-            // Merge all tables into a single DataTable
-            DataTable dataTable = new DataTable();
-            dataTable.Merge(TempA);
-            dataTable.Merge(TempB);
-            dataTable.Merge(TempC);
-            dataTable.Merge(TempD);
+            // Set chart data source
+            dashordervalueChart.DataSource = null; // Clear any existing data source
 
-            dashordervalueChart.Series.Add("A-Sheet Metal");
-            dashordervalueChart.Series["A-Sheet Metal"].ChartType = SeriesChartType.Line;
-            dashordervalueChart.Series["A-Sheet Metal"].Color = Color.Black;
-            dashordervalueChart.Series["A-Sheet Metal"].XValueType = ChartValueType.DateTime;
-            dashordervalueChart.Series["A-Sheet Metal"].XValueMember = "orderDateA";
-            dashordervalueChart.Series["A-Sheet Metal"].YValueMembers = "SUMA";
+            // Add series to the chart manually
+            void AddSeriesToChart(Chart chart, string seriesName, SeriesChartType chartType, Color color, AxisType yAxisType)
+            {
+                Series series = new Series(seriesName)
+                {
+                    ChartType = chartType,
+                    Color = color,
+                    XValueType = ChartValueType.DateTime,
+                    MarkerStyle = MarkerStyle.Circle,
+                    MarkerSize = 8,
+                    YAxisType = yAxisType
+                };
+                chart.Series.Add(series);
+            }
+
+            // Add series to the chart
+            AddSeriesToChart(dashordervalueChart, "A-Sheet Metal Quantity", SeriesChartType.Line, Color.Black, AxisType.Primary);
+            AddSeriesToChart(dashordervalueChart, "B-Major Assemblies Quantity", SeriesChartType.Line, Color.Blue, AxisType.Primary);
+            AddSeriesToChart(dashordervalueChart, "C-Light Components Quantity", SeriesChartType.Line, Color.Brown, AxisType.Primary);
+            AddSeriesToChart(dashordervalueChart, "D-Accessories Quantity", SeriesChartType.Line, Color.Red, AxisType.Primary);
+
+            AddSeriesToChart(dashordervalueChart, "A-Sheet Metal Sum", SeriesChartType.Line, Color.DarkGray, AxisType.Secondary);
+            AddSeriesToChart(dashordervalueChart, "B-Major Assemblies Sum", SeriesChartType.Line, Color.LightBlue, AxisType.Secondary);
+            AddSeriesToChart(dashordervalueChart, "C-Light Components Sum", SeriesChartType.Line, Color.SandyBrown, AxisType.Secondary);
+            AddSeriesToChart(dashordervalueChart, "D-Accessories Sum", SeriesChartType.Line, Color.Pink, AxisType.Secondary);
+
+            // Manually add data points to each series
+            foreach (DataRow row in unifiedTable.Rows)
+            {
+                DateTime date = (DateTime)row["orderDate"];
+                int orderQuantity = (int)row["OrderQuantity"];
+                int sum = (int)row["SUM"];
+                string category = row["Category"].ToString();
+
+                // Add data points to the correct series
+                dashordervalueChart.Series[category + " Quantity"].Points.AddXY(date, orderQuantity);
+                dashordervalueChart.Series[category + " Sum"].Points.AddXY(date, sum);
+            }
+
+            // Customize chart area
+            ChartArea chartArea = dashordervalueChart.ChartAreas[0];
+            chartArea.AxisX.IntervalType = DateTimeIntervalType.Days;
+            chartArea.AxisX.Interval = 1;
+            chartArea.AxisX.Title = "Date";
+
+            // Customize primary Y-axis (OrderQuantity)
+            chartArea.AxisY.Interval = 50;
+            chartArea.AxisY.Minimum = 0;
+            chartArea.AxisY.Maximum = 300;
+            chartArea.AxisY.Title = "Order Quantity";
+
+            // Customize secondary Y-axis (SUM)
+            chartArea.AxisY2.Enabled = AxisEnabled.True;
+            chartArea.AxisY2.Interval = 100;
+            chartArea.AxisY2.Minimum = 0;
+            chartArea.AxisY2.Maximum = 1000;
+            chartArea.AxisY2.MajorGrid.Enabled = false; // Disable gridlines for clarity
+
+            chartArea.AxisY.ScaleBreakStyle.Enabled = true;
+            chartArea.AxisY.ScaleBreakStyle.BreakLineStyle = BreakLineStyle.Wave;
+            chartArea.AxisY.ScaleBreakStyle.CollapsibleSpaceThreshold = 50;
+            chartArea.AxisY.ScaleBreakStyle.Spacing = 2; // Spacing between the scale breaks
 
 
-            dashordervalueChart.Series.Add("B-Major Asssemblies");
-            dashordervalueChart.Series["B-Major Asssemblies"].ChartType = SeriesChartType.Line;
-            dashordervalueChart.Series["B-Major Asssemblies"].Color = Color.Blue;
-            dashordervalueChart.Series["B-Major Asssemblies"].XValueMember = "orderDateB";
-            dashordervalueChart.Series["B-Major Asssemblies"].YValueMembers = "SUMB";
 
-
-            dashordervalueChart.Series.Add("C-Light Components");
-            dashordervalueChart.Series["C-Light Components"].ChartType = SeriesChartType.Line;
-            dashordervalueChart.Series["C-Light Components"].Color = Color.Brown;
-            dashordervalueChart.Series["C-Light Components"].XValueMember = "orderDateC";
-            dashordervalueChart.Series["C-Light Components"].YValueMembers = "SUMC";
-            dashordervalueChart.Series.Add("D-Accessories");
-            dashordervalueChart.Series["D-Accessories"].ChartType = SeriesChartType.Line;
-            dashordervalueChart.Series["D-Accessories"].Color = Color.Red;
-            dashordervalueChart.Series["D-Accessories"].XValueMember = "orderDateD";
-            dashordervalueChart.Series["D-Accessories"].YValueMembers = "SUMD";
-            dashordervalueChart.DataSource = dataTable;
-
-            dashordervalueChart.DataBind();
-
+            // Apply axis breaks to emphasize the 0-100 range on the
             if (Owner != null)
                 Location = new Point(Owner.Location.X + Owner.Width / 2 - Width / 2,
                     Owner.Location.Y + Owner.Height / 2 - Height / 2);
@@ -420,27 +435,6 @@ namespace ITP4519M
 
         }
 
-        public class TypeAssistant
-        {
-            public event EventHandler Idled = delegate { };
-            public int WaitingMilliSeconds { get; set; }
-            System.Threading.Timer waitingTimer;
-
-            public TypeAssistant(int waitingMilliSeconds = 600)
-            {
-                WaitingMilliSeconds = waitingMilliSeconds;
-                waitingTimer = new System.Threading.Timer(p =>
-                {
-                    Idled(this, EventArgs.Empty);
-                });
-            }
-
-            public void TextChanged()
-            {
-                waitingTimer.Change(WaitingMilliSeconds, System.Threading.Timeout.Infinite);
-            }
-        }
-
         private void orderbtn_Click(object sender, EventArgs e)
         {
 
@@ -487,8 +481,6 @@ namespace ITP4519M
 
         private void inventorybtn_Click(object sender, EventArgs e)
         {
-            assistant = new TypeAssistant();
-            assistant.Idled += assistant_Idled;
 
             if (lastClickedButton != null)
             {
@@ -504,32 +496,44 @@ namespace ITP4519M
             stockData.Rows[0].Selected = false;
             SetRowHeights(stockData, StockPgSize);
             StockpageNumlbl.Text = "1" + " - " + StockPgSize + " of " + StockRowCount;
+            StockLevelBoldAndColor();
 
+        }
+
+        private void StockLevelBoldAndColor()
+        {
 
             if (stockData.Rows.Count > 0)
             {
-                for (int i = 0; i < stockData.Rows.Count; i++)
-                {
-                    if (stockData.Rows[i].Cells["Status"].Value.ToString() == "Out-Of-Stock")
-                    {
-                        stockData.Rows[i].Cells["Status"].Style.ForeColor = Color.Red;
-                        stockData.Rows[i].Cells["Status"].Style.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-                    }
-                    else if (stockData.Rows[i].Cells["Status"].Value.ToString() == "Danger")
-                    {
-                        stockData.Rows[i].Cells["Status"].Style.ForeColor = Color.DarkOrange;
-                        stockData.Rows[i].Cells["Status"].Style.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-                    }
-                    else if (stockData.Rows[i].Cells["Status"].Value.ToString() == "Re-Order")
-                    {
-                        stockData.Rows[i].Cells["Status"].Style.ForeColor = Color.Green;
-                        stockData.Rows[i].Cells["Status"].Style.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-                    }
+                Font boldFont = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
 
+                foreach (DataGridViewRow row in stockData.Rows)
+                {
+                    DataGridViewCell statusCell = row.Cells["Status"];
+                    string status = statusCell.Value?.ToString();
+
+                    if (status != null)
+                    {
+                        switch (status)
+                        {
+                            case "Out-Of-Stock":
+                                statusCell.Style.ForeColor = Color.Red;
+                                statusCell.Style.Font = boldFont;
+                                break;
+                            case "Danger":
+                                statusCell.Style.ForeColor = Color.DarkOrange;
+                                statusCell.Style.Font = boldFont;
+                                break;
+                            case "Re-Order":
+                                statusCell.Style.ForeColor = Color.Green;
+                                statusCell.Style.Font = boldFont;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
                 }
             }
-
-
         }
 
         private void usersbtn_Click(object sender, EventArgs e)
@@ -895,15 +899,6 @@ namespace ITP4519M
             }
         }
 
-
-
-
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void stocklbl1_Click(object sender, EventArgs e)
         {
 
@@ -930,11 +925,11 @@ namespace ITP4519M
         //Overall of Stock Data Label
         private void productOverallLabel()
         {
-            int temp = stockData.Rows.Count;
-            stockProductDatalbl1.Text = temp.ToString();
-            string[] numberofProduct = programMethod.getStockLabelinfo(stockData);
-            stockProductDatalbl2.Text = numberofProduct[0];
-            stockProductDatalbl3.Text = numberofProduct[1];
+            
+            stockProductDatalbl1.Text = StockRowCount.ToString();
+            string[] numberofProduct = programMethod.getStockLabelinfo(stockData);;
+            stockProductDatalbl2.Text = String.Format("{0:n0}", numberofProduct[0]);
+            stockProductDatalbl3.Text = String.Format("{0:n0}", numberofProduct[1]);
         }
 
         private void contactOverallLabel()
@@ -1066,7 +1061,11 @@ namespace ITP4519M
 
         private void stockData_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (stockData.Columns[e.ColumnIndex].Name != "stockcheckColumn")
+            {
+                stockData.Columns[e.ColumnIndex].ReadOnly = true;
 
+            }
         }
 
         private void Button_LostFocus(object sender, EventArgs e)
@@ -1085,26 +1084,23 @@ namespace ITP4519M
 
         private void Dashboard_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                isFormDragging = true;
-                formStartPoint = e.Location;
-            }
+            dragging = true;
+            dragCursorPoint = Control.MousePosition;
+            dragFormPoint = this.Location;
         }
 
         private void Dashboard_MouseUp(object sender, MouseEventArgs e)
         {
-            isFormDragging = false;
+            dragging = false;
 
         }
 
         private void Dashboard_MouseMove(object sender, MouseEventArgs e)
         {
-            if (isFormDragging)
+            if (dragging)
             {
-                int deltaX = e.X - formStartPoint.X;
-                int deltaY = e.Y - formStartPoint.Y;
-                this.Location = new Point(this.Location.X + deltaX, this.Location.Y + deltaY);
+                Point diff = Point.Subtract(Control.MousePosition, new Size(dragCursorPoint));
+                this.Location = Point.Add(dragFormPoint, new Size(diff));
             }
         }
 
@@ -1269,19 +1265,10 @@ namespace ITP4519M
             stockData.DataSource = programMethod.searchProductInformation(stockSearchBox.Text.Trim());
         }
 
-        void assistant_Idled(object sender, EventArgs e)
-        {
-            this.Invoke(
-            new System.Windows.Forms.MethodInvoker(() =>
-            {
-                stockData.DataSource = programMethod.searchProductInformation(stockSearchBox.Text.Trim());
-            }));
-        }
-
-
         private void stockSearchBox_TextChanged(object sender, EventArgs e)
         {
-            assistant.TextChanged();
+            stockData.DataSource = programMethod.searchProductInformation(stockSearchBox.Text.Trim());
+            SetRowHeights(stockData, StockPgSize);
         }
 
         private void orderdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -1801,6 +1788,7 @@ namespace ITP4519M
             this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockPageIndex, StockPgSize);
             SetRowHeights(stockData, StockPgSize);
             StockpageNumlbl.Text = (StockPgSize * StockPageIndex - (StockPgSize - 1)) + "-" + StockRowCount + " of " + StockRowCount;
+            StockLevelBoldAndColor();
         }
 
         private void sotckNextPagebtn_Click(object sender, EventArgs e)
@@ -1820,6 +1808,7 @@ namespace ITP4519M
                     StockpageNumlbl.Text = (StockPgSize * StockPageIndex - (StockPgSize - 1)) + "-" + StockRowCount + " of " + StockRowCount;
                 }
             }
+            StockLevelBoldAndColor();
         }
 
         private void sotckPrevPagebtn_Click(object sender, EventArgs e)
@@ -1830,7 +1819,9 @@ namespace ITP4519M
                 this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockPageIndex, StockPgSize);
                 SetRowHeights(stockData, StockPgSize);
                 StockpageNumlbl.Text = (StockPgSize * StockPageIndex - (StockPgSize - 1)) + "-" + (StockPgSize * StockPageIndex) + " of " + StockRowCount;
+               
             }
+            StockLevelBoldAndColor();
         }
 
         private void stockFirstPagebtn_Click(object sender, EventArgs e)
@@ -1839,6 +1830,7 @@ namespace ITP4519M
             this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockPageIndex, StockPgSize);
             SetRowHeights(stockData, StockPgSize);
             StockpageNumlbl.Text = "1" + "-" + StockPgSize + " of " + StockRowCount;
+            StockLevelBoldAndColor();
         }
 
         private void label10_Click(object sender, EventArgs e)
