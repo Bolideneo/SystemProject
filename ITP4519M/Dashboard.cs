@@ -175,6 +175,10 @@ namespace ITP4519M
             programMethod = new ProgramMethod.ProgramMethod();
             programMethod.CurrentUserIDAndName(LoginUserID, LoginUserName);
             closebtn.BringToFront();
+            OrderAccemblybtn.Size = new System.Drawing.Size(166, 56);
+            contactsbtn.Size = new System.Drawing.Size(166, 56);
+            outstandingOrderbtn.Size = new System.Drawing.Size(166, 56);
+            PObtn.Size = new System.Drawing.Size(166, 56);
 
             if (Owner != null)
                 Location = new Point(Owner.Location.X + Owner.Width / 2 - Width / 2,
@@ -1223,7 +1227,7 @@ namespace ITP4519M
         private void dealerContactFormOperationCompleted(object sender, EventArgs e)
         {
             dealersData.DataSource = programMethod.GetDealerCurrentRecords(CurrentPageIndex, PgSize);
-            dealersbtn.PerformClick();
+            dealersbtn_Click(dealersbtn, EventArgs.Empty);
         }
 
         private void contactsdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -1248,12 +1252,12 @@ namespace ITP4519M
                 if (currentDataSourceType == "Dealer")
                 {
                     programMethod.dealerDel(contactID);
-                    dealersbtn.PerformClick();
+                    dealersbtn_Click(dealersbtn, EventArgs.Empty);
                 }
                 else if (currentDataSourceType == "Supplier")
                 {
                     programMethod.supplierDel(contactID, productID);
-                    supplersbtn.PerformClick();
+                    supplersbtn_Click(supplersbtn, EventArgs.Empty);
                 }
 
             }
@@ -1272,7 +1276,7 @@ namespace ITP4519M
         private void supplierContactFormOperationCompleted(object sender, EventArgs e)
         {
             suppliersData.DataSource = programMethod.GetSupplierCurrentRecords(CurrentPageIndex, PgSize);
-            supplersbtn.PerformClick();
+            supplersbtn_Click(supplersbtn, EventArgs.Empty);
         }
 
         private void editSupplierbtn_Click(object sender, EventArgs e)
