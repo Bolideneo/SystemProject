@@ -191,7 +191,9 @@ namespace ITP4519M
                 orderItemdata.CellContentDoubleClick -= productOfOrderdata_CellDoubleClick;
                 orderAccemblyOrderItemdata.CellContentDoubleClick -= orderAccemblyOrderItemdata_CellDoubleClick;
             }
-            else { orderItemdata.CellContentDoubleClick += productOfOrderdata_CellDoubleClick;
+            else
+            {
+                orderItemdata.CellContentDoubleClick += productOfOrderdata_CellDoubleClick;
                 orderItemdata.RowsAdded += orderItemdata_RowsAdded;
                 orderAccemblyOrderItemdata.CellContentDoubleClick += orderAccemblyOrderItemdata_CellDoubleClick;
             }
@@ -314,9 +316,11 @@ namespace ITP4519M
 
         private void orderAccemblyOrderItemdata_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex == -1) {
+            if (e.RowIndex == -1)
+            {
                 return;
-            }else if (isReadOnly)
+            }
+            else if (isReadOnly)
             {
                 return;
             }
@@ -369,5 +373,9 @@ namespace ITP4519M
 
         }
 
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

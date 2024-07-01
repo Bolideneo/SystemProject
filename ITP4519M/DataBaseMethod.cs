@@ -26,6 +26,7 @@ using System.Drawing;
 using System.Diagnostics.Tracing;
 using System.Globalization;
 using MySqlX.XDevAPI.Common;
+using static ITP4519M.DataBaseMethod;
 
 
 namespace ITP4519M
@@ -2005,6 +2006,16 @@ namespace ITP4519M
             object result = cmd.ExecuteScalar();
             int rowCount = Convert.ToInt32(result);
             ServerConnect().Close();
+            return rowCount;
+        }
+
+        public int getGRNRowCount()
+        {
+            string sql = "SELECT COUNT(DISTINCT CONCAT(grnID, '-', ProductID, '-', PurchaseOrderID)) AS UniqueCombinationCount FROM grn";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            object result = cmd.ExecuteScalar();
+            int rowCount = Convert.ToInt32(result);
+
             return rowCount;
         }
 

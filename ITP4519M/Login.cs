@@ -86,7 +86,12 @@ namespace ITP4519M
 
         private void label1_Click(object sender, EventArgs e)
         {
+            string contactInfo = "If you forgot your password, please contact the IT department:\n\n" +
+                     "Email: it_support@example.com\n" +
+                     "Phone: (123) 456-7890\n" +
+                     "Office Hours: 9 AM - 5 PM";
 
+            MessageBox.Show(contactInfo, "Forgot Password", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void loginbtn_Paint(object sender, PaintEventArgs e)

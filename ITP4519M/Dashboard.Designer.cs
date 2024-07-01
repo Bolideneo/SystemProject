@@ -45,57 +45,57 @@ namespace ITP4519M
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
-            DataGridViewCellStyle dataGridViewCellStyle36 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle37 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle38 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle39 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle40 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle41 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle42 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle43 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle44 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle45 = new DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title5 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            DataGridViewCellStyle dataGridViewCellStyle46 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle47 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle48 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle49 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle50 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle51 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle52 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle53 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle54 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle55 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle56 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle57 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle58 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle59 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle60 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle61 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle62 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle63 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle64 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle65 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle66 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle67 = new DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title6 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            DataGridViewCellStyle dataGridViewCellStyle68 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle69 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle70 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle71 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle72 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle73 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle74 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle75 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle76 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle77 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle78 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle79 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle80 = new DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title7 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title8 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            DataGridViewCellStyle dataGridViewCellStyle81 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle82 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle83 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle84 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle85 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle86 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle87 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle88 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle89 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle90 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle91 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle92 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle93 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle94 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle95 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle96 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle97 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle98 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle99 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle100 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle101 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle102 = new DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend11 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend12 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title9 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            DataGridViewCellStyle dataGridViewCellStyle103 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle104 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle105 = new DataGridViewCellStyle();
             listpnl = new Panel();
             label24 = new Label();
             reportbtn = new Button();
@@ -103,13 +103,17 @@ namespace ITP4519M
             homebtn = new Button();
             home_logo = new ImageList(components);
             invoicebtn = new Button();
+            invoice = new ImageList(components);
             outstandingOrderbtn = new Button();
+            Order_logo = new ImageList(components);
             PObtn = new Button();
             deliverybtn = new Button();
+            delivery = new ImageList(components);
             GRNbtn = new Button();
+            grn = new ImageList(components);
             OrderAccemblybtn = new Button();
-            Order_logo = new ImageList(components);
             Logbtn = new Button();
+            log_new = new ImageList(components);
             contactsbtn = new Button();
             contact_logo = new ImageList(components);
             logoutbtn = new Button();
@@ -296,8 +300,6 @@ namespace ITP4519M
             panel6 = new Panel();
             accountUserCountlbl2 = new Label();
             label12 = new Label();
-            accountPageSizeComboBox = new ComboBox();
-            accountPaginglbl = new Label();
             enableAccountbtn = new ProgramMethod.ProgramMethod.RoundedButton();
             disableAccountbtn = new ProgramMethod.ProgramMethod.RoundedButton();
             newAccountbtn = new ProgramMethod.ProgramMethod.RoundedButton();
@@ -365,11 +367,11 @@ namespace ITP4519M
             accemblyCreatebtn = new ProgramMethod.ProgramMethod.RoundedButton();
             GRNpnl = new Panel();
             panel12 = new Panel();
-            roundedButton5 = new ProgramMethod.ProgramMethod.RoundedButton();
-            label16 = new Label();
-            roundedButton6 = new ProgramMethod.ProgramMethod.RoundedButton();
-            roundedButton7 = new ProgramMethod.ProgramMethod.RoundedButton();
-            roundedButton8 = new ProgramMethod.ProgramMethod.RoundedButton();
+            grnFirstPage = new ProgramMethod.ProgramMethod.RoundedButton();
+            grnPage = new Label();
+            grnPrevPage = new ProgramMethod.ProgramMethod.RoundedButton();
+            grnLastPage = new ProgramMethod.ProgramMethod.RoundedButton();
+            grnNextPage = new ProgramMethod.ProgramMethod.RoundedButton();
             panel1 = new Panel();
             grnDatePicker1 = new DateTimePicker();
             grnlbl1 = new Label();
@@ -506,10 +508,6 @@ namespace ITP4519M
             reportStockdata = new CustomDataGridView();
             button22 = new Button();
             label55 = new Label();
-            log_new = new ImageList(components);
-            invoice = new ImageList(components);
-            delivery = new ImageList(components);
-            grn = new ImageList(components);
             listpnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)avatarbox).BeginInit();
             orderpnl.SuspendLayout();
@@ -712,6 +710,13 @@ namespace ITP4519M
             invoicebtn.UseVisualStyleBackColor = true;
             invoicebtn.Click += invoicebtn_Click;
             // 
+            // invoice
+            // 
+            invoice.ColorDepth = ColorDepth.Depth32Bit;
+            invoice.ImageStream = (ImageListStreamer)resources.GetObject("invoice.ImageStream");
+            invoice.TransparentColor = Color.Transparent;
+            invoice.Images.SetKeyName(0, "invoice.png");
+            // 
             // outstandingOrderbtn
             // 
             outstandingOrderbtn.AutoSize = true;
@@ -731,6 +736,13 @@ namespace ITP4519M
             outstandingOrderbtn.TextAlign = ContentAlignment.MiddleLeft;
             outstandingOrderbtn.UseVisualStyleBackColor = true;
             outstandingOrderbtn.Click += outstandingOrderbtn_Click;
+            // 
+            // Order_logo
+            // 
+            Order_logo.ColorDepth = ColorDepth.Depth24Bit;
+            Order_logo.ImageStream = (ImageListStreamer)resources.GetObject("Order_logo.ImageStream");
+            Order_logo.TransparentColor = Color.Transparent;
+            Order_logo.Images.SetKeyName(0, "order_logo.png");
             // 
             // PObtn
             // 
@@ -770,6 +782,13 @@ namespace ITP4519M
             deliverybtn.UseVisualStyleBackColor = true;
             deliverybtn.Click += deliverybtn_Click;
             // 
+            // delivery
+            // 
+            delivery.ColorDepth = ColorDepth.Depth32Bit;
+            delivery.ImageStream = (ImageListStreamer)resources.GetObject("delivery.ImageStream");
+            delivery.TransparentColor = Color.Transparent;
+            delivery.Images.SetKeyName(0, "delivery.png");
+            // 
             // GRNbtn
             // 
             GRNbtn.AutoSize = true;
@@ -788,6 +807,13 @@ namespace ITP4519M
             GRNbtn.Text = "GRN    ";
             GRNbtn.UseVisualStyleBackColor = true;
             GRNbtn.Click += GRNbtn_Click;
+            // 
+            // grn
+            // 
+            grn.ColorDepth = ColorDepth.Depth32Bit;
+            grn.ImageStream = (ImageListStreamer)resources.GetObject("grn.ImageStream");
+            grn.TransparentColor = Color.Transparent;
+            grn.Images.SetKeyName(0, "grn.png");
             // 
             // OrderAccemblybtn
             // 
@@ -809,13 +835,6 @@ namespace ITP4519M
             OrderAccemblybtn.UseVisualStyleBackColor = true;
             OrderAccemblybtn.Click += OrderAccemblybtn_Click;
             // 
-            // Order_logo
-            // 
-            Order_logo.ColorDepth = ColorDepth.Depth24Bit;
-            Order_logo.ImageStream = (ImageListStreamer)resources.GetObject("Order_logo.ImageStream");
-            Order_logo.TransparentColor = Color.Transparent;
-            Order_logo.Images.SetKeyName(0, "order_logo.png");
-            // 
             // Logbtn
             // 
             Logbtn.AutoSize = true;
@@ -834,6 +853,13 @@ namespace ITP4519M
             Logbtn.Text = "Log      ";
             Logbtn.UseVisualStyleBackColor = true;
             Logbtn.Click += Logbtn_Click;
+            // 
+            // log_new
+            // 
+            log_new.ColorDepth = ColorDepth.Depth32Bit;
+            log_new.ImageStream = (ImageListStreamer)resources.GetObject("log_new.ImageStream");
+            log_new.TransparentColor = Color.Transparent;
+            log_new.Images.SetKeyName(0, "log.png");
             // 
             // contactsbtn
             // 
@@ -1558,27 +1584,27 @@ namespace ITP4519M
             // 
             orderdata.AllowUserToAddRows = false;
             orderdata.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle36.BackColor = Color.Gainsboro;
-            orderdata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle36;
+            dataGridViewCellStyle71.BackColor = Color.Gainsboro;
+            orderdata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle71;
             orderdata.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle37.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle37.BackColor = SystemColors.Control;
-            dataGridViewCellStyle37.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle37.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle37.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle37.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle37.WrapMode = DataGridViewTriState.True;
-            orderdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle37;
+            dataGridViewCellStyle72.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle72.BackColor = SystemColors.Control;
+            dataGridViewCellStyle72.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle72.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle72.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle72.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle72.WrapMode = DataGridViewTriState.True;
+            orderdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle72;
             orderdata.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             orderdata.Columns.AddRange(new DataGridViewColumn[] { ordercheckColumn });
-            dataGridViewCellStyle38.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle38.BackColor = SystemColors.Window;
-            dataGridViewCellStyle38.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle38.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle38.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle38.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle38.WrapMode = DataGridViewTriState.False;
-            orderdata.DefaultCellStyle = dataGridViewCellStyle38;
+            dataGridViewCellStyle73.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle73.BackColor = SystemColors.Window;
+            dataGridViewCellStyle73.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle73.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle73.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle73.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle73.WrapMode = DataGridViewTriState.False;
+            orderdata.DefaultCellStyle = dataGridViewCellStyle73;
             orderdata.Location = new Point(34, 352);
             orderdata.Margin = new Padding(3, 4, 3, 4);
             orderdata.MultiSelect = false;
@@ -1830,27 +1856,27 @@ namespace ITP4519M
             // 
             stockData.AllowUserToAddRows = false;
             stockData.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle39.BackColor = Color.Gainsboro;
-            stockData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle39;
+            dataGridViewCellStyle74.BackColor = Color.Gainsboro;
+            stockData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle74;
             stockData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle40.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle40.BackColor = SystemColors.Control;
-            dataGridViewCellStyle40.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle40.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle40.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle40.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle40.WrapMode = DataGridViewTriState.True;
-            stockData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle40;
+            dataGridViewCellStyle75.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle75.BackColor = SystemColors.Control;
+            dataGridViewCellStyle75.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle75.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle75.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle75.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle75.WrapMode = DataGridViewTriState.True;
+            stockData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle75;
             stockData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             stockData.Columns.AddRange(new DataGridViewColumn[] { stockcheckColumn });
-            dataGridViewCellStyle41.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle41.BackColor = SystemColors.Window;
-            dataGridViewCellStyle41.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle41.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle41.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle41.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle41.WrapMode = DataGridViewTriState.False;
-            stockData.DefaultCellStyle = dataGridViewCellStyle41;
+            dataGridViewCellStyle76.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle76.BackColor = SystemColors.Window;
+            dataGridViewCellStyle76.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle76.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle76.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle76.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle76.WrapMode = DataGridViewTriState.False;
+            stockData.DefaultCellStyle = dataGridViewCellStyle76;
             stockData.Location = new Point(21, 368);
             stockData.Margin = new Padding(3, 5, 3, 5);
             stockData.Name = "stockData";
@@ -1930,7 +1956,7 @@ namespace ITP4519M
             contactpnl.Location = new Point(201, 3);
             contactpnl.Margin = new Padding(3, 5, 3, 5);
             contactpnl.Name = "contactpnl";
-            contactpnl.Size = new Size(1250, 1000);
+            contactpnl.Size = new Size(1250, 1050);
             contactpnl.TabIndex = 1;
             contactpnl.Visible = false;
             contactpnl.Paint += contactpnl_Paint;
@@ -2203,11 +2229,12 @@ namespace ITP4519M
             // 
             // searchContactbtn
             // 
+            searchContactbtn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             searchContactbtn.Location = new Point(808, 285);
             searchContactbtn.Margin = new Padding(3, 4, 3, 4);
             searchContactbtn.Name = "searchContactbtn";
             searchContactbtn.PlaceholderText = "Search Name";
-            searchContactbtn.Size = new Size(225, 27);
+            searchContactbtn.Size = new Size(225, 34);
             searchContactbtn.TabIndex = 32;
             // 
             // newDealerbtn
@@ -2322,24 +2349,24 @@ namespace ITP4519M
             suppliersData.AllowUserToAddRows = false;
             suppliersData.AllowUserToDeleteRows = false;
             suppliersData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle42.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle42.BackColor = SystemColors.Control;
-            dataGridViewCellStyle42.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle42.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle42.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle42.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle42.WrapMode = DataGridViewTriState.True;
-            suppliersData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle42;
+            dataGridViewCellStyle77.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle77.BackColor = SystemColors.Control;
+            dataGridViewCellStyle77.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle77.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle77.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle77.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle77.WrapMode = DataGridViewTriState.True;
+            suppliersData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle77;
             suppliersData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             suppliersData.Columns.AddRange(new DataGridViewColumn[] { suppliercheckColumn });
-            dataGridViewCellStyle43.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle43.BackColor = SystemColors.Window;
-            dataGridViewCellStyle43.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle43.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle43.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle43.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle43.WrapMode = DataGridViewTriState.False;
-            suppliersData.DefaultCellStyle = dataGridViewCellStyle43;
+            dataGridViewCellStyle78.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle78.BackColor = SystemColors.Window;
+            dataGridViewCellStyle78.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle78.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle78.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle78.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle78.WrapMode = DataGridViewTriState.False;
+            suppliersData.DefaultCellStyle = dataGridViewCellStyle78;
             suppliersData.Location = new Point(43, 331);
             suppliersData.Margin = new Padding(3, 5, 3, 5);
             suppliersData.Name = "suppliersData";
@@ -2356,24 +2383,24 @@ namespace ITP4519M
             dealersData.AllowUserToAddRows = false;
             dealersData.AllowUserToDeleteRows = false;
             dealersData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle44.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle44.BackColor = SystemColors.Control;
-            dataGridViewCellStyle44.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle44.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle44.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle44.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle44.WrapMode = DataGridViewTriState.True;
-            dealersData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle44;
+            dataGridViewCellStyle79.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle79.BackColor = SystemColors.Control;
+            dataGridViewCellStyle79.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle79.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle79.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle79.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle79.WrapMode = DataGridViewTriState.True;
+            dealersData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle79;
             dealersData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dealersData.Columns.AddRange(new DataGridViewColumn[] { dealercheckColumn });
-            dataGridViewCellStyle45.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle45.BackColor = SystemColors.Window;
-            dataGridViewCellStyle45.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle45.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle45.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle45.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle45.WrapMode = DataGridViewTriState.False;
-            dealersData.DefaultCellStyle = dataGridViewCellStyle45;
+            dataGridViewCellStyle80.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle80.BackColor = SystemColors.Window;
+            dataGridViewCellStyle80.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle80.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle80.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle80.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle80.WrapMode = DataGridViewTriState.False;
+            dealersData.DefaultCellStyle = dataGridViewCellStyle80;
             dealersData.Location = new Point(43, 331);
             dealersData.Margin = new Padding(3, 5, 3, 5);
             dealersData.Name = "dealersData";
@@ -2823,36 +2850,36 @@ namespace ITP4519M
             // 
             // orderchart2
             // 
-            chartArea5.Name = "ChartArea1";
-            orderchart2.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            orderchart2.Legends.Add(legend5);
+            chartArea9.Name = "ChartArea1";
+            orderchart2.ChartAreas.Add(chartArea9);
+            legend9.Name = "Legend1";
+            orderchart2.Legends.Add(legend9);
             orderchart2.Location = new Point(614, 376);
             orderchart2.Margin = new Padding(3, 4, 3, 4);
             orderchart2.Name = "orderchart2";
             orderchart2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series6.LabelBackColor = Color.White;
-            series6.Legend = "Legend1";
-            series6.MarkerBorderColor = Color.White;
-            series6.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
-            series6.Name = "Total Income";
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series7.Legend = "Legend1";
-            series7.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
-            series7.Name = "Expenses";
-            orderchart2.Series.Add(series6);
-            orderchart2.Series.Add(series7);
+            series11.ChartArea = "ChartArea1";
+            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series11.LabelBackColor = Color.White;
+            series11.Legend = "Legend1";
+            series11.MarkerBorderColor = Color.White;
+            series11.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
+            series11.Name = "Total Income";
+            series12.ChartArea = "ChartArea1";
+            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series12.Legend = "Legend1";
+            series12.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
+            series12.Name = "Expenses";
+            orderchart2.Series.Add(series11);
+            orderchart2.Series.Add(series12);
             orderchart2.Size = new Size(555, 344);
             orderchart2.TabIndex = 77;
             orderchart2.Text = "chart2";
-            title4.Alignment = ContentAlignment.TopLeft;
-            title4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            title4.Name = "Sales Overview";
-            title4.Text = "Sales Overview";
-            orderchart2.Titles.Add(title4);
+            title7.Alignment = ContentAlignment.TopLeft;
+            title7.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            title7.Name = "Sales Overview";
+            title7.Text = "Sales Overview";
+            orderchart2.Titles.Add(title7);
             // 
             // panel33
             // 
@@ -2918,26 +2945,26 @@ namespace ITP4519M
             // 
             // orderchart1
             // 
-            chartArea6.Name = "ChartArea1";
-            orderchart1.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            orderchart1.Legends.Add(legend6);
+            chartArea10.Name = "ChartArea1";
+            orderchart1.ChartAreas.Add(chartArea10);
+            legend10.Name = "Legend1";
+            orderchart1.Legends.Add(legend10);
             orderchart1.Location = new Point(55, 376);
             orderchart1.Margin = new Padding(3, 4, 3, 4);
             orderchart1.Name = "orderchart1";
-            series8.ChartArea = "ChartArea1";
-            series8.IsXValueIndexed = true;
-            series8.Legend = "Legend1";
-            series8.Name = "Order";
-            orderchart1.Series.Add(series8);
+            series13.ChartArea = "ChartArea1";
+            series13.IsXValueIndexed = true;
+            series13.Legend = "Legend1";
+            series13.Name = "Order";
+            orderchart1.Series.Add(series13);
             orderchart1.Size = new Size(529, 344);
             orderchart1.TabIndex = 76;
             orderchart1.Text = "chart1";
-            title5.Alignment = ContentAlignment.TopLeft;
-            title5.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            title5.Name = "Sales Overview";
-            title5.Text = "Order Statistics";
-            orderchart1.Titles.Add(title5);
+            title8.Alignment = ContentAlignment.TopLeft;
+            title8.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            title8.Name = "Sales Overview";
+            title8.Text = "Order Statistics";
+            orderchart1.Titles.Add(title8);
             // 
             // panel35
             // 
@@ -3083,26 +3110,26 @@ namespace ITP4519M
             // 
             orderReportdata.AllowUserToAddRows = false;
             orderReportdata.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle46.BackColor = Color.Gainsboro;
-            orderReportdata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle46;
+            dataGridViewCellStyle81.BackColor = Color.Gainsboro;
+            orderReportdata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle81;
             orderReportdata.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle47.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle47.BackColor = SystemColors.Control;
-            dataGridViewCellStyle47.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle47.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle47.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle47.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle47.WrapMode = DataGridViewTriState.True;
-            orderReportdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle47;
+            dataGridViewCellStyle82.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle82.BackColor = SystemColors.Control;
+            dataGridViewCellStyle82.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle82.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle82.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle82.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle82.WrapMode = DataGridViewTriState.True;
+            orderReportdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle82;
             orderReportdata.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle48.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle48.BackColor = SystemColors.Window;
-            dataGridViewCellStyle48.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle48.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle48.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle48.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle48.WrapMode = DataGridViewTriState.False;
-            orderReportdata.DefaultCellStyle = dataGridViewCellStyle48;
+            dataGridViewCellStyle83.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle83.BackColor = SystemColors.Window;
+            dataGridViewCellStyle83.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle83.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle83.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle83.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle83.WrapMode = DataGridViewTriState.False;
+            orderReportdata.DefaultCellStyle = dataGridViewCellStyle83;
             orderReportdata.Location = new Point(31, 764);
             orderReportdata.Name = "orderReportdata";
             orderReportdata.RowHeadersVisible = false;
@@ -3138,8 +3165,6 @@ namespace ITP4519M
             userspnl.Controls.Add(panel7);
             userspnl.Controls.Add(accountPaginationpnl);
             userspnl.Controls.Add(panel3);
-            userspnl.Controls.Add(accountPageSizeComboBox);
-            userspnl.Controls.Add(accountPaginglbl);
             userspnl.Controls.Add(enableAccountbtn);
             userspnl.Controls.Add(disableAccountbtn);
             userspnl.Controls.Add(accountSearchBtn);
@@ -3395,26 +3420,6 @@ namespace ITP4519M
             label12.TabIndex = 2;
             label12.Text = "Active Users";
             // 
-            // accountPageSizeComboBox
-            // 
-            accountPageSizeComboBox.FormattingEnabled = true;
-            accountPageSizeComboBox.Items.AddRange(new object[] { "10", "15", "25" });
-            accountPageSizeComboBox.Location = new Point(1153, 396);
-            accountPageSizeComboBox.Margin = new Padding(3, 4, 3, 4);
-            accountPageSizeComboBox.Name = "accountPageSizeComboBox";
-            accountPageSizeComboBox.Size = new Size(46, 28);
-            accountPageSizeComboBox.TabIndex = 36;
-            // 
-            // accountPaginglbl
-            // 
-            accountPaginglbl.AutoSize = true;
-            accountPaginglbl.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            accountPaginglbl.Location = new Point(1011, 393);
-            accountPaginglbl.Name = "accountPaginglbl";
-            accountPaginglbl.Size = new Size(144, 28);
-            accountPaginglbl.TabIndex = 35;
-            accountPaginglbl.Text = "Rows per page:";
-            // 
             // enableAccountbtn
             // 
             enableAccountbtn.BackColor = Color.LimeGreen;
@@ -3539,41 +3544,41 @@ namespace ITP4519M
             // 
             userData.AllowUserToAddRows = false;
             userData.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle49.BackColor = Color.Gainsboro;
-            dataGridViewCellStyle49.Font = new Font("Microsoft YaHei", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle49.ForeColor = Color.Black;
-            dataGridViewCellStyle49.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle49.SelectionForeColor = Color.Black;
-            userData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle49;
+            dataGridViewCellStyle84.BackColor = Color.Gainsboro;
+            dataGridViewCellStyle84.Font = new Font("Microsoft YaHei", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle84.ForeColor = Color.Black;
+            dataGridViewCellStyle84.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle84.SelectionForeColor = Color.Black;
+            userData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle84;
             userData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle50.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle50.BackColor = SystemColors.ControlDarkDark;
-            dataGridViewCellStyle50.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle50.ForeColor = SystemColors.ButtonShadow;
-            dataGridViewCellStyle50.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle50.SelectionForeColor = SystemColors.HighlightText;
-            userData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle50;
+            dataGridViewCellStyle85.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle85.BackColor = SystemColors.ControlDarkDark;
+            dataGridViewCellStyle85.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle85.ForeColor = SystemColors.ButtonShadow;
+            dataGridViewCellStyle85.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle85.SelectionForeColor = SystemColors.HighlightText;
+            userData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle85;
             userData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             userData.Columns.AddRange(new DataGridViewColumn[] { usercheckColumn });
-            dataGridViewCellStyle51.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle51.BackColor = SystemColors.Window;
-            dataGridViewCellStyle51.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle51.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle51.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle51.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle51.WrapMode = DataGridViewTriState.False;
-            userData.DefaultCellStyle = dataGridViewCellStyle51;
+            dataGridViewCellStyle86.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle86.BackColor = SystemColors.Window;
+            dataGridViewCellStyle86.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle86.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle86.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle86.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle86.WrapMode = DataGridViewTriState.False;
+            userData.DefaultCellStyle = dataGridViewCellStyle86;
             userData.GridColor = SystemColors.WindowText;
             userData.Location = new Point(27, 443);
             userData.Margin = new Padding(3, 5, 3, 5);
             userData.Name = "userData";
-            dataGridViewCellStyle52.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle52.BackColor = SystemColors.Control;
-            dataGridViewCellStyle52.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle52.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle52.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle52.SelectionForeColor = SystemColors.HighlightText;
-            userData.RowHeadersDefaultCellStyle = dataGridViewCellStyle52;
+            dataGridViewCellStyle87.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle87.BackColor = SystemColors.Control;
+            dataGridViewCellStyle87.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle87.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle87.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle87.SelectionForeColor = SystemColors.HighlightText;
+            userData.RowHeadersDefaultCellStyle = dataGridViewCellStyle87;
             userData.RowHeadersVisible = false;
             userData.RowHeadersWidth = 51;
             userData.RowTemplate.Height = 24;
@@ -3795,7 +3800,6 @@ namespace ITP4519M
             // 
             // dashboardpnl
             // 
-            dashboardpnl.BackgroundImage = Properties.Resources.dashboard_background;
             dashboardpnl.BackgroundImageLayout = ImageLayout.Stretch;
             dashboardpnl.Controls.Add(panel37);
             dashboardpnl.Controls.Add(panel38);
@@ -4222,7 +4226,7 @@ namespace ITP4519M
             OrderAccemblypnl.Location = new Point(201, 3);
             OrderAccemblypnl.Margin = new Padding(3, 4, 3, 4);
             OrderAccemblypnl.Name = "OrderAccemblypnl";
-            OrderAccemblypnl.Size = new Size(1250, 1051);
+            OrderAccemblypnl.Size = new Size(1250, 1050);
             OrderAccemblypnl.TabIndex = 7;
             OrderAccemblypnl.Visible = false;
             // 
@@ -4358,24 +4362,24 @@ namespace ITP4519M
             orderAccemblyData.AllowUserToAddRows = false;
             orderAccemblyData.AllowUserToDeleteRows = false;
             orderAccemblyData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle53.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle53.BackColor = SystemColors.Control;
-            dataGridViewCellStyle53.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle53.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle53.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle53.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle53.WrapMode = DataGridViewTriState.True;
-            orderAccemblyData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle53;
+            dataGridViewCellStyle88.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle88.BackColor = SystemColors.Control;
+            dataGridViewCellStyle88.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle88.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle88.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle88.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle88.WrapMode = DataGridViewTriState.True;
+            orderAccemblyData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle88;
             orderAccemblyData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             orderAccemblyData.Columns.AddRange(new DataGridViewColumn[] { orderAccemblyColumn });
-            dataGridViewCellStyle54.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle54.BackColor = SystemColors.Window;
-            dataGridViewCellStyle54.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle54.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle54.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle54.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle54.WrapMode = DataGridViewTriState.False;
-            orderAccemblyData.DefaultCellStyle = dataGridViewCellStyle54;
+            dataGridViewCellStyle89.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle89.BackColor = SystemColors.Window;
+            dataGridViewCellStyle89.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle89.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle89.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle89.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle89.WrapMode = DataGridViewTriState.False;
+            orderAccemblyData.DefaultCellStyle = dataGridViewCellStyle89;
             orderAccemblyData.Location = new Point(30, 312);
             orderAccemblyData.Name = "orderAccemblyData";
             orderAccemblyData.RowHeadersWidth = 51;
@@ -4433,119 +4437,123 @@ namespace ITP4519M
             // 
             // panel12
             // 
-            panel12.Controls.Add(roundedButton5);
-            panel12.Controls.Add(label16);
-            panel12.Controls.Add(roundedButton6);
-            panel12.Controls.Add(roundedButton7);
-            panel12.Controls.Add(roundedButton8);
+            panel12.Controls.Add(grnFirstPage);
+            panel12.Controls.Add(grnPage);
+            panel12.Controls.Add(grnPrevPage);
+            panel12.Controls.Add(grnLastPage);
+            panel12.Controls.Add(grnNextPage);
             panel12.Location = new Point(662, 915);
             panel12.Margin = new Padding(3, 4, 3, 4);
             panel12.Name = "panel12";
             panel12.Size = new Size(566, 67);
             panel12.TabIndex = 34;
             // 
-            // roundedButton5
+            // grnFirstPage
             // 
-            roundedButton5.BackColor = SystemColors.Menu;
-            roundedButton5.BackColor2 = Color.White;
-            roundedButton5.BorderColor = Color.Tomato;
-            roundedButton5.BorderSize = 2;
-            roundedButton5.ButtonBorderColor = Color.Gray;
-            roundedButton5.ButtonHighlightColor = Color.Empty;
-            roundedButton5.ButtonHighlightColor2 = Color.Empty;
-            roundedButton5.ButtonHighlightForeColor = Color.Black;
-            roundedButton5.ButtonPressedColor = Color.White;
-            roundedButton5.ButtonPressedColor2 = Color.Empty;
-            roundedButton5.ButtonPressedForeColor = Color.Gray;
-            roundedButton5.ButtonRoundRadius = 15;
-            roundedButton5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            roundedButton5.ForeColor = Color.Black;
-            roundedButton5.Location = new Point(70, 9);
-            roundedButton5.Margin = new Padding(3, 4, 3, 4);
-            roundedButton5.Name = "roundedButton5";
-            roundedButton5.Size = new Size(79, 44);
-            roundedButton5.TabIndex = 31;
-            roundedButton5.Text = "First";
+            grnFirstPage.BackColor = SystemColors.Menu;
+            grnFirstPage.BackColor2 = Color.White;
+            grnFirstPage.BorderColor = Color.Tomato;
+            grnFirstPage.BorderSize = 2;
+            grnFirstPage.ButtonBorderColor = Color.Gray;
+            grnFirstPage.ButtonHighlightColor = Color.Empty;
+            grnFirstPage.ButtonHighlightColor2 = Color.Empty;
+            grnFirstPage.ButtonHighlightForeColor = Color.Black;
+            grnFirstPage.ButtonPressedColor = Color.White;
+            grnFirstPage.ButtonPressedColor2 = Color.Empty;
+            grnFirstPage.ButtonPressedForeColor = Color.Gray;
+            grnFirstPage.ButtonRoundRadius = 15;
+            grnFirstPage.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            grnFirstPage.ForeColor = Color.Black;
+            grnFirstPage.Location = new Point(54, 8);
+            grnFirstPage.Margin = new Padding(3, 4, 3, 4);
+            grnFirstPage.Name = "grnFirstPage";
+            grnFirstPage.Size = new Size(79, 44);
+            grnFirstPage.TabIndex = 31;
+            grnFirstPage.Text = "First";
+            grnFirstPage.Click += grnFirstPage_Click;
             // 
-            // label16
+            // grnPage
             // 
-            label16.AutoSize = true;
-            label16.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label16.Location = new Point(251, 21);
-            label16.Name = "label16";
-            label16.Size = new Size(100, 25);
-            label16.TabIndex = 3;
-            label16.Text = "LabelData";
+            grnPage.AutoSize = true;
+            grnPage.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            grnPage.Location = new Point(234, 21);
+            grnPage.Name = "grnPage";
+            grnPage.Size = new Size(100, 25);
+            grnPage.TabIndex = 3;
+            grnPage.Text = "LabelData";
             // 
-            // roundedButton6
+            // grnPrevPage
             // 
-            roundedButton6.AccessibleRole = AccessibleRole.None;
-            roundedButton6.BackColor = SystemColors.Menu;
-            roundedButton6.BackColor2 = Color.White;
-            roundedButton6.BorderColor = Color.Tomato;
-            roundedButton6.BorderSize = 2;
-            roundedButton6.ButtonBorderColor = Color.Gray;
-            roundedButton6.ButtonHighlightColor = Color.Empty;
-            roundedButton6.ButtonHighlightColor2 = Color.Empty;
-            roundedButton6.ButtonHighlightForeColor = Color.Black;
-            roundedButton6.ButtonPressedColor = Color.White;
-            roundedButton6.ButtonPressedColor2 = Color.Empty;
-            roundedButton6.ButtonPressedForeColor = Color.Gray;
-            roundedButton6.ButtonRoundRadius = 15;
-            roundedButton6.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            roundedButton6.ForeColor = Color.Black;
-            roundedButton6.Location = new Point(167, 9);
-            roundedButton6.Margin = new Padding(3, 4, 3, 4);
-            roundedButton6.Name = "roundedButton6";
-            roundedButton6.Size = new Size(72, 44);
-            roundedButton6.TabIndex = 33;
-            roundedButton6.Text = "Prev";
+            grnPrevPage.AccessibleRole = AccessibleRole.None;
+            grnPrevPage.BackColor = SystemColors.Menu;
+            grnPrevPage.BackColor2 = Color.White;
+            grnPrevPage.BorderColor = Color.Tomato;
+            grnPrevPage.BorderSize = 2;
+            grnPrevPage.ButtonBorderColor = Color.Gray;
+            grnPrevPage.ButtonHighlightColor = Color.Empty;
+            grnPrevPage.ButtonHighlightColor2 = Color.Empty;
+            grnPrevPage.ButtonHighlightForeColor = Color.Black;
+            grnPrevPage.ButtonPressedColor = Color.White;
+            grnPrevPage.ButtonPressedColor2 = Color.Empty;
+            grnPrevPage.ButtonPressedForeColor = Color.Gray;
+            grnPrevPage.ButtonRoundRadius = 15;
+            grnPrevPage.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            grnPrevPage.ForeColor = Color.Black;
+            grnPrevPage.Location = new Point(151, 8);
+            grnPrevPage.Margin = new Padding(3, 4, 3, 4);
+            grnPrevPage.Name = "grnPrevPage";
+            grnPrevPage.Size = new Size(72, 44);
+            grnPrevPage.TabIndex = 33;
+            grnPrevPage.Text = "Prev";
+            grnPrevPage.Click += grnPrevPage_Click;
             // 
-            // roundedButton7
+            // grnLastPage
             // 
-            roundedButton7.BackColor = SystemColors.Menu;
-            roundedButton7.BackColor2 = Color.White;
-            roundedButton7.BorderColor = Color.White;
-            roundedButton7.BorderSize = 2;
-            roundedButton7.ButtonBorderColor = Color.Gray;
-            roundedButton7.ButtonHighlightColor = Color.Empty;
-            roundedButton7.ButtonHighlightColor2 = Color.Empty;
-            roundedButton7.ButtonHighlightForeColor = Color.Black;
-            roundedButton7.ButtonPressedColor = Color.White;
-            roundedButton7.ButtonPressedColor2 = Color.Empty;
-            roundedButton7.ButtonPressedForeColor = Color.Gray;
-            roundedButton7.ButtonRoundRadius = 15;
-            roundedButton7.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            roundedButton7.ForeColor = Color.Black;
-            roundedButton7.Location = new Point(454, 9);
-            roundedButton7.Margin = new Padding(3, 4, 3, 4);
-            roundedButton7.Name = "roundedButton7";
-            roundedButton7.Size = new Size(75, 44);
-            roundedButton7.TabIndex = 34;
-            roundedButton7.Text = "Last";
+            grnLastPage.BackColor = SystemColors.Menu;
+            grnLastPage.BackColor2 = Color.White;
+            grnLastPage.BorderColor = Color.White;
+            grnLastPage.BorderSize = 2;
+            grnLastPage.ButtonBorderColor = Color.Gray;
+            grnLastPage.ButtonHighlightColor = Color.Empty;
+            grnLastPage.ButtonHighlightColor2 = Color.Empty;
+            grnLastPage.ButtonHighlightForeColor = Color.Black;
+            grnLastPage.ButtonPressedColor = Color.White;
+            grnLastPage.ButtonPressedColor2 = Color.Empty;
+            grnLastPage.ButtonPressedForeColor = Color.Gray;
+            grnLastPage.ButtonRoundRadius = 15;
+            grnLastPage.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            grnLastPage.ForeColor = Color.Black;
+            grnLastPage.Location = new Point(454, 9);
+            grnLastPage.Margin = new Padding(3, 4, 3, 4);
+            grnLastPage.Name = "grnLastPage";
+            grnLastPage.Size = new Size(75, 44);
+            grnLastPage.TabIndex = 34;
+            grnLastPage.Text = "Last";
+            grnLastPage.Click += grnLastPage_Click;
             // 
-            // roundedButton8
+            // grnNextPage
             // 
-            roundedButton8.BackColor = SystemColors.HighlightText;
-            roundedButton8.BackColor2 = Color.White;
-            roundedButton8.BorderColor = Color.Tomato;
-            roundedButton8.BorderSize = 2;
-            roundedButton8.ButtonBorderColor = Color.Gray;
-            roundedButton8.ButtonHighlightColor = Color.Empty;
-            roundedButton8.ButtonHighlightColor2 = Color.Empty;
-            roundedButton8.ButtonHighlightForeColor = Color.Black;
-            roundedButton8.ButtonPressedColor = Color.White;
-            roundedButton8.ButtonPressedColor2 = Color.Empty;
-            roundedButton8.ButtonPressedForeColor = Color.Gray;
-            roundedButton8.ButtonRoundRadius = 15;
-            roundedButton8.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            roundedButton8.ForeColor = Color.Black;
-            roundedButton8.Location = new Point(354, 9);
-            roundedButton8.Margin = new Padding(3, 4, 3, 4);
-            roundedButton8.Name = "roundedButton8";
-            roundedButton8.Size = new Size(88, 44);
-            roundedButton8.TabIndex = 32;
-            roundedButton8.Text = "Next";
+            grnNextPage.BackColor = SystemColors.HighlightText;
+            grnNextPage.BackColor2 = Color.White;
+            grnNextPage.BorderColor = Color.Tomato;
+            grnNextPage.BorderSize = 2;
+            grnNextPage.ButtonBorderColor = Color.Gray;
+            grnNextPage.ButtonHighlightColor = Color.Empty;
+            grnNextPage.ButtonHighlightColor2 = Color.Empty;
+            grnNextPage.ButtonHighlightForeColor = Color.Black;
+            grnNextPage.ButtonPressedColor = Color.White;
+            grnNextPage.ButtonPressedColor2 = Color.Empty;
+            grnNextPage.ButtonPressedForeColor = Color.Gray;
+            grnNextPage.ButtonRoundRadius = 15;
+            grnNextPage.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            grnNextPage.ForeColor = Color.Black;
+            grnNextPage.Location = new Point(354, 9);
+            grnNextPage.Margin = new Padding(3, 4, 3, 4);
+            grnNextPage.Name = "grnNextPage";
+            grnNextPage.Size = new Size(88, 44);
+            grnNextPage.TabIndex = 32;
+            grnNextPage.Text = "Next";
+            grnNextPage.Click += grnNextPage_Click;
             // 
             // panel1
             // 
@@ -4672,24 +4680,24 @@ namespace ITP4519M
             grndata.AllowUserToAddRows = false;
             grndata.AllowUserToDeleteRows = false;
             grndata.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle55.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle55.BackColor = SystemColors.Control;
-            dataGridViewCellStyle55.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle55.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle55.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle55.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle55.WrapMode = DataGridViewTriState.True;
-            grndata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle55;
+            dataGridViewCellStyle90.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle90.BackColor = SystemColors.Control;
+            dataGridViewCellStyle90.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle90.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle90.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle90.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle90.WrapMode = DataGridViewTriState.True;
+            grndata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle90;
             grndata.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             grndata.Columns.AddRange(new DataGridViewColumn[] { grncheckColumn });
-            dataGridViewCellStyle56.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle56.BackColor = SystemColors.Window;
-            dataGridViewCellStyle56.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle56.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle56.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle56.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle56.WrapMode = DataGridViewTriState.False;
-            grndata.DefaultCellStyle = dataGridViewCellStyle56;
+            dataGridViewCellStyle91.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle91.BackColor = SystemColors.Window;
+            dataGridViewCellStyle91.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle91.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle91.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle91.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle91.WrapMode = DataGridViewTriState.False;
+            grndata.DefaultCellStyle = dataGridViewCellStyle91;
             grndata.Location = new Point(35, 319);
             grndata.Margin = new Padding(3, 4, 3, 4);
             grndata.MultiSelect = false;
@@ -4997,24 +5005,24 @@ namespace ITP4519M
             deliveryData.AllowUserToAddRows = false;
             deliveryData.AllowUserToDeleteRows = false;
             deliveryData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle57.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle57.BackColor = SystemColors.Control;
-            dataGridViewCellStyle57.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle57.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle57.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle57.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle57.WrapMode = DataGridViewTriState.True;
-            deliveryData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle57;
+            dataGridViewCellStyle92.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle92.BackColor = SystemColors.Control;
+            dataGridViewCellStyle92.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle92.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle92.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle92.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle92.WrapMode = DataGridViewTriState.True;
+            deliveryData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle92;
             deliveryData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             deliveryData.Columns.AddRange(new DataGridViewColumn[] { deliverycheckColumn });
-            dataGridViewCellStyle58.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle58.BackColor = SystemColors.Window;
-            dataGridViewCellStyle58.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle58.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle58.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle58.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle58.WrapMode = DataGridViewTriState.False;
-            deliveryData.DefaultCellStyle = dataGridViewCellStyle58;
+            dataGridViewCellStyle93.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle93.BackColor = SystemColors.Window;
+            dataGridViewCellStyle93.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle93.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle93.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle93.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle93.WrapMode = DataGridViewTriState.False;
+            deliveryData.DefaultCellStyle = dataGridViewCellStyle93;
             deliveryData.Location = new Point(38, 299);
             deliveryData.Name = "deliveryData";
             deliveryData.RowHeadersVisible = false;
@@ -5171,28 +5179,28 @@ namespace ITP4519M
             poData.AllowUserToAddRows = false;
             poData.AllowUserToDeleteRows = false;
             poData.AllowUserToResizeRows = false;
-            dataGridViewCellStyle59.BackColor = Color.Gainsboro;
-            poData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle59;
+            dataGridViewCellStyle94.BackColor = Color.Gainsboro;
+            poData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle94;
             poData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             poData.BackgroundColor = SystemColors.ControlLight;
-            dataGridViewCellStyle60.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle60.BackColor = SystemColors.Control;
-            dataGridViewCellStyle60.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle60.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle60.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle60.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle60.WrapMode = DataGridViewTriState.True;
-            poData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle60;
+            dataGridViewCellStyle95.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle95.BackColor = SystemColors.Control;
+            dataGridViewCellStyle95.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle95.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle95.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle95.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle95.WrapMode = DataGridViewTriState.True;
+            poData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle95;
             poData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             poData.Columns.AddRange(new DataGridViewColumn[] { pocheckColumn });
-            dataGridViewCellStyle61.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle61.BackColor = SystemColors.Window;
-            dataGridViewCellStyle61.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle61.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle61.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle61.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle61.WrapMode = DataGridViewTriState.False;
-            poData.DefaultCellStyle = dataGridViewCellStyle61;
+            dataGridViewCellStyle96.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle96.BackColor = SystemColors.Window;
+            dataGridViewCellStyle96.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle96.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle96.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle96.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle96.WrapMode = DataGridViewTriState.False;
+            poData.DefaultCellStyle = dataGridViewCellStyle96;
             poData.Location = new Point(35, 297);
             poData.Name = "poData";
             poData.RowHeadersVisible = false;
@@ -5780,27 +5788,27 @@ namespace ITP4519M
             outstandingdata.AllowUserToAddRows = false;
             outstandingdata.AllowUserToDeleteRows = false;
             outstandingdata.AllowUserToResizeRows = false;
-            dataGridViewCellStyle62.BackColor = Color.Gainsboro;
-            outstandingdata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle62;
+            dataGridViewCellStyle97.BackColor = Color.Gainsboro;
+            outstandingdata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle97;
             outstandingdata.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle63.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle63.BackColor = SystemColors.Control;
-            dataGridViewCellStyle63.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle63.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle63.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle63.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle63.WrapMode = DataGridViewTriState.True;
-            outstandingdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle63;
+            dataGridViewCellStyle98.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle98.BackColor = SystemColors.Control;
+            dataGridViewCellStyle98.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle98.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle98.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle98.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle98.WrapMode = DataGridViewTriState.True;
+            outstandingdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle98;
             outstandingdata.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             outstandingdata.Columns.AddRange(new DataGridViewColumn[] { outstandingcheckColumn });
-            dataGridViewCellStyle64.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle64.BackColor = SystemColors.Window;
-            dataGridViewCellStyle64.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle64.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle64.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle64.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle64.WrapMode = DataGridViewTriState.False;
-            outstandingdata.DefaultCellStyle = dataGridViewCellStyle64;
+            dataGridViewCellStyle99.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle99.BackColor = SystemColors.Window;
+            dataGridViewCellStyle99.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle99.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle99.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle99.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle99.WrapMode = DataGridViewTriState.False;
+            outstandingdata.DefaultCellStyle = dataGridViewCellStyle99;
             outstandingdata.Location = new Point(31, 292);
             outstandingdata.Name = "outstandingdata";
             outstandingdata.RowHeadersVisible = false;
@@ -6135,27 +6143,27 @@ namespace ITP4519M
             // 
             invoiceData.AllowUserToAddRows = false;
             invoiceData.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle65.BackColor = Color.Gainsboro;
-            invoiceData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle65;
+            dataGridViewCellStyle100.BackColor = Color.Gainsboro;
+            invoiceData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle100;
             invoiceData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle66.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle66.BackColor = SystemColors.Control;
-            dataGridViewCellStyle66.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle66.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle66.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle66.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle66.WrapMode = DataGridViewTriState.True;
-            invoiceData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle66;
+            dataGridViewCellStyle101.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle101.BackColor = SystemColors.Control;
+            dataGridViewCellStyle101.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle101.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle101.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle101.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle101.WrapMode = DataGridViewTriState.True;
+            invoiceData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle101;
             invoiceData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             invoiceData.Columns.AddRange(new DataGridViewColumn[] { invoicecheckbox });
-            dataGridViewCellStyle67.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle67.BackColor = SystemColors.Window;
-            dataGridViewCellStyle67.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle67.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle67.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle67.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle67.WrapMode = DataGridViewTriState.False;
-            invoiceData.DefaultCellStyle = dataGridViewCellStyle67;
+            dataGridViewCellStyle102.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle102.BackColor = SystemColors.Window;
+            dataGridViewCellStyle102.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle102.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle102.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle102.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle102.WrapMode = DataGridViewTriState.False;
+            invoiceData.DefaultCellStyle = dataGridViewCellStyle102;
             invoiceData.Location = new Point(31, 292);
             invoiceData.Name = "invoiceData";
             invoiceData.RowHeadersVisible = false;
@@ -6226,19 +6234,19 @@ namespace ITP4519M
             // 
             // reportStockPie
             // 
-            chartArea7.Name = "ChartArea1";
-            reportStockPie.ChartAreas.Add(chartArea7);
-            legend7.Name = "Legend1";
-            reportStockPie.Legends.Add(legend7);
+            chartArea11.Name = "ChartArea1";
+            reportStockPie.ChartAreas.Add(chartArea11);
+            legend11.Name = "Legend1";
+            reportStockPie.Legends.Add(legend11);
             reportStockPie.Location = new Point(669, 392);
             reportStockPie.Name = "reportStockPie";
-            series9.ChartArea = "ChartArea1";
-            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series9.Font = new Font("Microsoft YaHei", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            series9.IsXValueIndexed = true;
-            series9.Legend = "Legend1";
-            series9.Name = "Stock";
-            reportStockPie.Series.Add(series9);
+            series14.ChartArea = "ChartArea1";
+            series14.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series14.Font = new Font("Microsoft YaHei", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            series14.IsXValueIndexed = true;
+            series14.Legend = "Legend1";
+            series14.Name = "Stock";
+            reportStockPie.Series.Add(series14);
             reportStockPie.Size = new Size(497, 332);
             reportStockPie.TabIndex = 82;
             reportStockPie.Text = "chart1";
@@ -6348,26 +6356,26 @@ namespace ITP4519M
             // 
             // chart2
             // 
-            chartArea8.Name = "ChartArea1";
-            chart2.ChartAreas.Add(chartArea8);
-            legend8.Name = "Legend1";
-            chart2.Legends.Add(legend8);
+            chartArea12.Name = "ChartArea1";
+            chart2.ChartAreas.Add(chartArea12);
+            legend12.Name = "Legend1";
+            chart2.Legends.Add(legend12);
             chart2.Location = new Point(55, 392);
             chart2.Margin = new Padding(3, 4, 3, 4);
             chart2.Name = "chart2";
-            series10.ChartArea = "ChartArea1";
-            series10.IsXValueIndexed = true;
-            series10.Legend = "Legend1";
-            series10.Name = "Order";
-            chart2.Series.Add(series10);
+            series15.ChartArea = "ChartArea1";
+            series15.IsXValueIndexed = true;
+            series15.Legend = "Legend1";
+            series15.Name = "Order";
+            chart2.Series.Add(series15);
             chart2.Size = new Size(519, 328);
             chart2.TabIndex = 76;
             chart2.Text = "chart1";
-            title6.Alignment = ContentAlignment.TopLeft;
-            title6.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            title6.Name = "Sales Overview";
-            title6.Text = "Order Statistics";
-            chart2.Titles.Add(title6);
+            title9.Alignment = ContentAlignment.TopLeft;
+            title9.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            title9.Name = "Sales Overview";
+            title9.Text = "Order Statistics";
+            chart2.Titles.Add(title9);
             // 
             // panel49
             // 
@@ -6512,26 +6520,26 @@ namespace ITP4519M
             // 
             reportStockdata.AllowUserToAddRows = false;
             reportStockdata.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle68.BackColor = Color.Gainsboro;
-            reportStockdata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle68;
+            dataGridViewCellStyle103.BackColor = Color.Gainsboro;
+            reportStockdata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle103;
             reportStockdata.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle69.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle69.BackColor = SystemColors.Control;
-            dataGridViewCellStyle69.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle69.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle69.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle69.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle69.WrapMode = DataGridViewTriState.True;
-            reportStockdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle69;
+            dataGridViewCellStyle104.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle104.BackColor = SystemColors.Control;
+            dataGridViewCellStyle104.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle104.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle104.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle104.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle104.WrapMode = DataGridViewTriState.True;
+            reportStockdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle104;
             reportStockdata.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle70.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle70.BackColor = SystemColors.Window;
-            dataGridViewCellStyle70.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle70.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle70.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle70.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle70.WrapMode = DataGridViewTriState.False;
-            reportStockdata.DefaultCellStyle = dataGridViewCellStyle70;
+            dataGridViewCellStyle105.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle105.BackColor = SystemColors.Window;
+            dataGridViewCellStyle105.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle105.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle105.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle105.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle105.WrapMode = DataGridViewTriState.False;
+            reportStockdata.DefaultCellStyle = dataGridViewCellStyle105;
             reportStockdata.Location = new Point(31, 764);
             reportStockdata.Name = "reportStockdata";
             reportStockdata.RowHeadersVisible = false;
@@ -6560,51 +6568,19 @@ namespace ITP4519M
             label55.TabIndex = 6;
             label55.Text = "Stock Report";
             // 
-            // log_new
-            // 
-            log_new.ColorDepth = ColorDepth.Depth32Bit;
-            log_new.ImageStream = (ImageListStreamer)resources.GetObject("log_new.ImageStream");
-            log_new.TransparentColor = Color.Transparent;
-            log_new.Images.SetKeyName(0, "log.png");
-            // 
-            // invoice
-            // 
-            invoice.ColorDepth = ColorDepth.Depth32Bit;
-            invoice.ImageStream = (ImageListStreamer)resources.GetObject("invoice.ImageStream");
-            invoice.TransparentColor = Color.Transparent;
-            invoice.Images.SetKeyName(0, "invoice.png");
-            // 
-            // delivery
-            // 
-            delivery.ColorDepth = ColorDepth.Depth32Bit;
-            delivery.ImageStream = (ImageListStreamer)resources.GetObject("delivery.ImageStream");
-            delivery.TransparentColor = Color.Transparent;
-            delivery.Images.SetKeyName(0, "delivery.png");
-            // 
-            // grn
-            // 
-            grn.ColorDepth = ColorDepth.Depth32Bit;
-            grn.ImageStream = (ImageListStreamer)resources.GetObject("grn.ImageStream");
-            grn.TransparentColor = Color.Transparent;
-            grn.Images.SetKeyName(0, "grn.png");
-            // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
             ClientSize = new Size(1497, 1047);
-            Controls.Add(userspnl);
-            Controls.Add(invoicepnl);
-            Controls.Add(outstandingOrderpnl);
-            Controls.Add(POpnl);
+            Controls.Add(listpnl);
+            Controls.Add(closebtn);
             Controls.Add(GRNpnl);
             Controls.Add(contactpnl);
             Controls.Add(OrderAccemblypnl);
             Controls.Add(inventorypnl);
             Controls.Add(orderpnl);
-            Controls.Add(listpnl);
-            Controls.Add(closebtn);
             Controls.Add(deliverypnl);
             Controls.Add(outstandingViewpnl);
             Controls.Add(deliveryCompletepnl);
@@ -6612,6 +6588,10 @@ namespace ITP4519M
             Controls.Add(settingpnl);
             Controls.Add(dashboardpnl);
             Controls.Add(logpnl);
+            Controls.Add(userspnl);
+            Controls.Add(invoicepnl);
+            Controls.Add(outstandingOrderpnl);
+            Controls.Add(POpnl);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
@@ -6893,8 +6873,6 @@ namespace ITP4519M
         private ProgramMethod.ProgramMethod.RoundedButton accountbtnPrevPage;
         private ProgramMethod.ProgramMethod.RoundedButton accountbtnNxtPage;
         private ProgramMethod.ProgramMethod.RoundedButton accountbtnFirstPage;
-        private ComboBox accountPageSizeComboBox;
-        private Label accountPaginglbl;
         private ProgramMethod.ProgramMethod.RoundedButton deliveryViewDNbtn;
         private DataGridView orderAccemblyData;
         private ProgramMethod.ProgramMethod.RoundedButton accemblyCreatebtn;
@@ -6956,11 +6934,11 @@ namespace ITP4519M
         private ProgramMethod.ProgramMethod.RoundedButton orderLastPagebtn;
         private ProgramMethod.ProgramMethod.RoundedButton orderNextPagebtn;
         private Panel panel12;
-        private ProgramMethod.ProgramMethod.RoundedButton roundedButton5;
-        private Label label16;
-        private ProgramMethod.ProgramMethod.RoundedButton roundedButton6;
-        private ProgramMethod.ProgramMethod.RoundedButton roundedButton7;
-        private ProgramMethod.ProgramMethod.RoundedButton roundedButton8;
+        private ProgramMethod.ProgramMethod.RoundedButton grnFirstPage;
+        private Label grnPage;
+        private ProgramMethod.ProgramMethod.RoundedButton grnPrevPage;
+        private ProgramMethod.ProgramMethod.RoundedButton grnLastPage;
+        private ProgramMethod.ProgramMethod.RoundedButton grnNextPage;
         private Panel panel13;
         private ProgramMethod.ProgramMethod.RoundedButton roundedButton9;
         private Label label17;

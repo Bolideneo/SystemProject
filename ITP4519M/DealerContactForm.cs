@@ -31,6 +31,11 @@ namespace ITP4519M
 
         private void DealerContactForm_Load(object sender, EventArgs e)
         {
+            dealerNamebtn.Visible = false;
+            companyNameAlert.Visible = false;
+            mailAlert.Visible = false;
+            phoneAlertlbl.Visible = false;
+            addressAlert.Visible = false;
             switch (_mode)
             {
                 case OperationMode.Edit:
@@ -40,6 +45,7 @@ namespace ITP4519M
                     editDealerbtn.Visible = false;
                     break;
             }
+
         }
 
         private void createDealerBtn_Click(object sender, EventArgs e)

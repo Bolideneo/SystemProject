@@ -168,11 +168,12 @@ namespace ITP4519M
                 orderIDAlertlbl.Visible = true;
 
                 deliveryOrderidbox.Focus();
-                return;
+                Refresh();
             }
             else
             {
                 orderIDAlertlbl.Visible = false;
+                Refresh();
             }
 
             if (string.IsNullOrWhiteSpace(deliveryOutstandingbox.Text))
@@ -180,11 +181,12 @@ namespace ITP4519M
                 outstandingIDAlertlbl.Visible = true;
                 
                 deliveryOutstandingbox.Focus();
-                return;
+                Refresh();
             }
             else
             {
                 outstandingIDAlertlbl.Visible = false;
+                Refresh();
             }
 
             try
