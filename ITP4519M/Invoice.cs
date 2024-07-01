@@ -29,6 +29,7 @@ namespace ITP4519M
         private void Invoice_Load(object sender, EventArgs e)
         {
             programMethod = new ProgramMethod.ProgramMethod();
+            //InvoiceLabel1.Text =
             DataTable result = programMethod.getInvoiceDetails(orderID);
             DataTable OrderItem = programMethod.getOrderItemDetailforInvoice(orderID);
             DataTable orderDetails = programMethod.getOrderDetails(orderID);

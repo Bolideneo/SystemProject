@@ -1610,10 +1610,17 @@ namespace ProgramMethod
 
         }
 
+        public DataTable getOutstandingDateFilter(string fromData, string toDate)
+        {
+            return dataBaseMethod.getOutstandingDateFilter(fromData, toDate);
+
+        }
+
         public DataTable orderDateStatusFilter(string fromDate, string toDate, string status)
         {
             return dataBaseMethod.orderDateStatusFilter(fromDate, toDate, status);
         }
+
 
         public string[] getOrderMinAndMaxDate()
         {
@@ -1623,6 +1630,44 @@ namespace ProgramMethod
             temp[1] = Date.Rows[0][1].ToString();
             return temp;
         }
+
+        public string[] getOrderMinAndMaxDateForOrderAccembly()
+        {
+            string[] temp = new string[2];
+            DataTable Date = dataBaseMethod.getOrderMinAndMaxDateForAccembly();
+            temp[0] = Date.Rows[0][0].ToString();
+            temp[1] = Date.Rows[0][1].ToString();
+            return temp;
+        }
+
+        public string[] getOrderMinAndMaxDateForGRN()
+        {
+            string[] temp = new string[2];
+            DataTable Date = dataBaseMethod.getOrderMinAndMaxDateForGRN();
+            temp[0] = Date.Rows[0][0].ToString();
+            temp[1] = Date.Rows[0][1].ToString();
+            return temp;
+        }
+
+        
+         public string[] getDNMinAndMaxDate()
+        {
+            string[] temp = new string[2];
+            DataTable Date = dataBaseMethod.getDNMinAndMaxDate();
+            temp[0] = Date.Rows[0][0].ToString();
+            temp[1] = Date.Rows[0][1].ToString();
+            return temp;
+        }
+
+        public string[] getOutstandingMinAndMaxDate()
+        {
+            string[] temp = new string[2];
+            DataTable Date = dataBaseMethod.getOutstandingMinAndMaxDate();
+            temp[0] = Date.Rows[0][0].ToString();
+            temp[1] = Date.Rows[0][1].ToString();
+            return temp;
+        }
+
 
         public bool cancelOrder(string orderID)
         {

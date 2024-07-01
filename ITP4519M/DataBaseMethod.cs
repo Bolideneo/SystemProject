@@ -933,7 +933,7 @@ namespace ITP4519M
 
         public DataTable overallOrderinfo()
         {
-            string sql = "SELECT OrderID, DealerID, OrderStatus, OrderDate FROM `order`";
+            string sql = "SELECT OrderID, DealerID, OrderStatus, OrderDate FROM `order` WHERE OrderStatus = 'OrderProcessing' OR OrderStatus = 'Outstanding' ";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
@@ -1770,7 +1770,7 @@ namespace ITP4519M
 
         public DataTable searchDeliveryDate(string startDate, string endDate)
         {
-            string sql = "SELECT * FROM delivery WHERE DeliveryDate BETWEEN @startdate AND @enddate";
+            string sql = "SELECT DeliveryID,OrderID, DeliveryDate , DeliveryStatus , DeliveryStatus FROM delivery WHERE DeliveryDate BETWEEN @startdate AND @enddate";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             cmd.Parameters.AddWithValue("@startdate", startDate);
@@ -1795,7 +1795,7 @@ namespace ITP4519M
 
         public DataTable overallDeliveryinfo()
         {
-            string sql = "SELECT DeliveryID,OrderID, DeliveryDate FROM delivery ";
+            string sql = "SELECT DeliveryID,OrderID, DeliveryDate , DeliveryStatus , DeliveryStatus FROM delivery ";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
@@ -2618,7 +2618,7 @@ namespace ITP4519M
 
         public DataTable searchOrder(string keyword)
         {
-            string sql = "SELECT OrderID, DealerID, OrderStatus, OrderDate FROM `order` WHERE OrderID LIKE @keyword OR DealerID LIKE @keyword ";
+            string sql = "SELECT OrderID, DealerID, OrderStatus, OrderDate FROM `order` WHERE OrderID LIKE @keyword OR DealerID LIKE @keyword OR DealerContactName LIKE @keyword";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@keyword", "%" + keyword + "%");
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
@@ -2630,6 +2630,7 @@ namespace ITP4519M
 
         public DataTable orderDateFilter(string fromDate, string toDate)
         {
+
             string sql = "SELECT OrderID, DealerID, OrderStatus, OrderDate FROM `order` WHERE OrderDate BETWEEN @fromDate AND @toDate";
             //string sql = "SELECT * FROM `order` WHERE OrderDate BETWEEN @fromDate AND @toDate";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
@@ -2642,6 +2643,7 @@ namespace ITP4519M
             return dataTable;
 
         }
+        
 
         public DataTable orderAccemblyDateFilter(string fromDate, string toDate)
         {
@@ -2657,6 +2659,21 @@ namespace ITP4519M
             return dataTable;
 
         }
+
+        public DataTable getOutstandingDateFilter(string fromDate, string toDate)
+        {
+            string sql = "SELECT * FROM outstandingorder WHERE OutstandingDate BETWEEN @fromDate AND @toDate";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@fromDate", fromDate);
+            cmd.Parameters.AddWithValue("@toDate", toDate);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+
+        }
+
 
         public DataTable orderDateStatusFilter(string fromDate, string toDate, string status)
         {
@@ -2686,6 +2703,51 @@ namespace ITP4519M
         public DataTable getOrderMinAndMaxDate()
         {
             string sql = "SELECT MIN(OrderDate), MAX(OrderDate) FROM `order`";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+
+        public DataTable getOrderMinAndMaxDateForAccembly()
+        {
+            string sql = "SELECT MIN(OrderDate), MAX(OrderDate) FROM `order` WHERE OrderStatus = 'Outstanding' OR OrderStatus = 'OrderProcessing'";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+
+        public DataTable getOrderMinAndMaxDateForGRN()
+        {
+            string sql = "SELECT MIN(ReceiveDate), MAX(ReceiveDate) FROM grn";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+
+        
+        public DataTable getDNMinAndMaxDate()
+        {
+            string sql = "SELECT MIN(DeliveryDate), MAX(DeliveryDate) FROM delivery";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+
+        public DataTable getOutstandingMinAndMaxDate()
+        {
+            string sql = "SELECT MIN(OutstandingDate), MAX(OutstandingDate) FROM outstandingorder";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();

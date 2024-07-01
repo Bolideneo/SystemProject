@@ -26,6 +26,7 @@ using MySqlX.XDevAPI.Common;
 using System.Security.Policy;
 using System.Net.NetworkInformation;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Globalization;
 
 
 namespace ITP4519M
@@ -448,13 +449,13 @@ namespace ITP4519M
             orderStatusCombox.DataSource = programMethod.getOrerStatus();
             orderStatusCombox.DisplayMember = "Name";
 
-            //CalculateTotalPages("Order");
+            CalculateTotalPages("Order");
             ShowPanel(orderpnl);
-            // orderdata.DataSource = programMethod.GetCurrentRecords("Order", OrderPageIndex, OrderPgSize);
-            orderdata.DataSource = programMethod.orderDateFilter("2024-06-03", "2024-06-18");
+            orderdata.DataSource = programMethod.GetCurrentRecords("Order", OrderPageIndex, OrderPgSize);
+            //  orderdata.DataSource = programMethod.orderDateFilter("2024-06-03", "2024-06-18");
             // FirstpageBtnClick(orderdata, "Order", OrderPgSize, OrderPageIndex, orderIndexlbl, OrderRowCount);
             orderdata.Rows[0].Selected = false;
-            // SetRowHeights(orderdata, OrderPgSize);
+            SetRowHeights(orderdata, OrderPgSize);
             string[] MinDate = programMethod.getOrderMinAndMaxDate();
             orderdateTimePicker1.MinDate = DateTime.Parse(MinDate[0]);
             orderdateTimePicker1.MaxDate = DateTime.Parse(MinDate[1]);
@@ -605,6 +606,17 @@ namespace ITP4519M
             SetRowHeights(outstandingdata, outstandingPgSize);
             oustandingPagelbl.Text = (outstandingPgSize * outstandingPageIndex - (outstandingPgSize - 1)) + " - " + (outstandingPgSize * outstandingPageIndex) + " of " + OutstandingRowCount;
 
+
+
+            string[] MinDate = programMethod.getOutstandingMinAndMaxDate();
+            outstandingdateTimePicker1.MinDate = DateTime.Parse(MinDate[0]);
+            outstandingdateTimePicker1.MaxDate = DateTime.Parse(MinDate[1]);
+            outstandingdateTimePicker1.Value = DateTime.Parse(MinDate[0]);
+            outstandingdateTimePicker2.MinDate = DateTime.Parse(MinDate[0]);
+            outstandingdateTimePicker2.MaxDate = DateTime.Parse(MinDate[1]);
+            outstandingdateTimePicker2.Value = DateTime.Parse(MinDate[1]);
+
+
         }
 
         private void contactsbtn_Click(object sender, EventArgs e)
@@ -619,6 +631,7 @@ namespace ITP4519M
             lastClickedButton.ForeColor = Color.Gray;
 
             CalculateTotalPages("Dealer");
+            CalculateTotalPages("Supplier");
             ShowPanel(contactpnl);
             dealersData.DataSource = programMethod.GetDealerCurrentRecords(DealerPageIndex, DealerPgSize);
             dealersData.Rows[0].Selected = false;
@@ -628,8 +641,11 @@ namespace ITP4519M
             editDealerbtn.Visible = true;
             searchSupplierbtn.Visible = false;
             searchDealerbtn.Visible = true;
-            contactOverallLabel();
+            // contactOverallLabel();
+            dealerDatalbl.Text = DealerRowCount.ToString();
+            supplierDatalbl.Text = SupplierRowCount.ToString();
             SetRowHeights(dealersData, DealerPgSize);
+
 
             contactIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + programMethod.getDealersRowCount();
             dealersData.Visible = true;
@@ -642,7 +658,7 @@ namespace ITP4519M
         private void dealersbtn_Click(object sender, EventArgs e)
         {
             isDealerDVG = true;
-            CalculateTotalPages("Dealer");
+            //CalculateTotalPages("Dealer");
             dealersData.DataSource = programMethod.GetDealerCurrentRecords(DealerPageIndex, DealerPgSize);
             newSupplierbtn.Visible = false;
             editSupplierbtn.Visible = false;
@@ -651,7 +667,9 @@ namespace ITP4519M
             searchSupplierbtn.Visible = false;
             searchDealerbtn.Visible = true;
             currentDataSourceType = "Dealer";
-            contactOverallLabel();
+            // contactOverallLabel();
+            dealerDatalbl.Text = DealerRowCount.ToString();
+            supplierDatalbl.Text = SupplierRowCount.ToString();
             SetRowHeights(dealersData, DealerPgSize);
             contactIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + DealerRowCount;
             dealersData.Visible = true;
@@ -663,7 +681,7 @@ namespace ITP4519M
         private void supplersbtn_Click(object sender, EventArgs e)
         {
             isDealerDVG = false;
-            CalculateTotalPages("Supplier");
+            // CalculateTotalPages("Supplier");
             suppliersData.DataSource = programMethod.GetSupplierCurrentRecords(SupplierPageIndex, SupplierPgSize);
             newDealerbtn.Visible = false;
             editDealerbtn.Visible = false;
@@ -672,7 +690,9 @@ namespace ITP4519M
             searchSupplierbtn.Visible = true;
             searchDealerbtn.Visible = false;
             currentDataSourceType = "Supplier";
-            contactOverallLabel();
+            // contactOverallLabel();
+            dealerDatalbl.Text = DealerRowCount.ToString();
+            supplierDatalbl.Text = SupplierRowCount.ToString();
             SetRowHeights(suppliersData, SupplierPgSize);
             contactIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + SupplierRowCount;
             dealersData.Visible = false;
@@ -925,9 +945,9 @@ namespace ITP4519M
         //Overall of Stock Data Label
         private void productOverallLabel()
         {
-            
+
             stockProductDatalbl1.Text = StockRowCount.ToString();
-            string[] numberofProduct = programMethod.getStockLabelinfo(stockData);;
+            string[] numberofProduct = programMethod.getStockLabelinfo(stockData); ;
             stockProductDatalbl2.Text = String.Format("{0:n0}", numberofProduct[0]);
             stockProductDatalbl3.Text = String.Format("{0:n0}", numberofProduct[1]);
         }
@@ -1179,6 +1199,14 @@ namespace ITP4519M
             grnPage.Text = "01" + "-" + GRNPgSize.ToString() + " of " + programMethod.getGRNRowCount();
             SetRowHeights(grndata, GRNPgSize);
             oustandingPagelbl.Text = "01" + "-" + GRNPgSize + " of " + GRNRowCount;
+
+            string[] MinDate = programMethod.getOrderMinAndMaxDateForGRN();
+            grnDatePicker1.MinDate = DateTime.Parse(MinDate[0]);
+            grnDatePicker1.MaxDate = DateTime.Parse(MinDate[1]);
+            grnDatePicker1.Value = DateTime.Parse(MinDate[0]);
+            grnDatePicker2.MinDate = DateTime.Parse(MinDate[0]);
+            grnDatePicker2.MaxDate = DateTime.Parse(MinDate[1]);
+            grnDatePicker2.Value = DateTime.Parse(MinDate[1]);
         }
 
         private void deliverybtn_Click(object sender, EventArgs e)
@@ -1194,6 +1222,15 @@ namespace ITP4519M
             ShowPanel(deliverypnl);
             deliveryData.DataSource = programMethod.overallDeliveryinfo();
             deliveryData.Rows[0].Selected = false;
+
+
+            string[] MinDate = programMethod.getDNMinAndMaxDate();
+            deliverydateTimePicker1.MinDate = DateTime.Parse(MinDate[0]);
+            deliverydateTimePicker1.MaxDate = DateTime.Parse(MinDate[1]);
+            deliverydateTimePicker1.Value = DateTime.Parse(MinDate[0]);
+            deliverydateTimePicker2.MinDate = DateTime.Parse(MinDate[0]);
+            deliverydateTimePicker2.MaxDate = DateTime.Parse(MinDate[1]);
+            deliverydateTimePicker2.Value = DateTime.Parse(MinDate[1]);
         }
 
         private void delProductbtn_Click(object sender, EventArgs e)
@@ -1281,6 +1318,7 @@ namespace ITP4519M
             string formDate = deliverydateTimePicker1.Value.Date.ToString("yyyy-MM-dd");
             string toDate = deliverydateTimePicker2.Value.Date.ToString("yyyy-MM-dd");
             deliveryData.DataSource = programMethod.searchDeliveryDate(formDate, toDate);
+            //SetRowHeights(deliveryData, DeliveryStockPgSize);
         }
 
         private void newDealerbtn_Click(object sender, EventArgs e)
@@ -1789,6 +1827,7 @@ namespace ITP4519M
             SetRowHeights(stockData, StockPgSize);
             StockpageNumlbl.Text = (StockPgSize * StockPageIndex - (StockPgSize - 1)) + "-" + StockRowCount + " of " + StockRowCount;
             StockLevelBoldAndColor();
+            stockData.Rows[0].Selected = false;
         }
 
         private void sotckNextPagebtn_Click(object sender, EventArgs e)
@@ -1809,6 +1848,7 @@ namespace ITP4519M
                 }
             }
             StockLevelBoldAndColor();
+            stockData.Rows[0].Selected = false;
         }
 
         private void sotckPrevPagebtn_Click(object sender, EventArgs e)
@@ -1819,7 +1859,7 @@ namespace ITP4519M
                 this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockPageIndex, StockPgSize);
                 SetRowHeights(stockData, StockPgSize);
                 StockpageNumlbl.Text = (StockPgSize * StockPageIndex - (StockPgSize - 1)) + "-" + (StockPgSize * StockPageIndex) + " of " + StockRowCount;
-               
+
             }
             StockLevelBoldAndColor();
         }
@@ -1831,6 +1871,7 @@ namespace ITP4519M
             SetRowHeights(stockData, StockPgSize);
             StockpageNumlbl.Text = "1" + "-" + StockPgSize + " of " + StockRowCount;
             StockLevelBoldAndColor();
+            stockData.Rows[0].Selected = false;
         }
 
         private void label10_Click(object sender, EventArgs e)
@@ -1907,19 +1948,16 @@ namespace ITP4519M
         private void orderSearchbtn_Click(object sender, EventArgs e)
         {
             string formDate = orderdateTimePicker1.Value.Date.ToString("yyyy-MM-dd");
-            string toDate = orderdateTimePicker1.Value.Date.ToString("yyyy-MM-dd");
-
+            string toDate = orderdateTimePicker2.Value.Date.ToString("yyyy-MM-dd");
 
             if (orderStatusCombox.SelectedIndex == -1)
                 orderdata.DataSource = programMethod.orderDateFilter(formDate, toDate);
             else
             {
                 string status = orderStatusCombox.Text.ToString();
-                //orderdata.DataSource = programMethod.orderDateStatusFilter(formDate, toDate, status);
-                orderdata.DataSource = programMethod.overallLoginfo();
-                orderdata.Refresh();
-
+                orderdata.DataSource = programMethod.orderDateStatusFilter(formDate, toDate, status);
             }
+            SetRowHeights(orderdata, OrderPgSize);
         }
 
         private void orderClearbtn_Click(object sender, EventArgs e)
@@ -2079,8 +2117,16 @@ namespace ITP4519M
             lastClickedButton.ForeColor = Color.Gray;
 
             orderAccemblyData.DataSource = programMethod.overallOrderinfo();
-
+            orderAccemblyData.Rows[0].Selected = false;
             ShowPanel(OrderAccemblypnl);
+
+            string[] MinDate = programMethod.getOrderMinAndMaxDateForOrderAccembly();
+            orderAccemblydateTimePicker.MinDate = DateTime.Parse(MinDate[0]);
+            orderAccemblydateTimePicker.MaxDate = DateTime.Parse(MinDate[1]);
+            orderAccemblydateTimePicker.Value = DateTime.Parse(MinDate[0]);
+            orderAccemblydateTimePicker2.MinDate = DateTime.Parse(MinDate[0]);
+            orderAccemblydateTimePicker2.MaxDate = DateTime.Parse(MinDate[1]);
+            orderAccemblydateTimePicker2.Value = DateTime.Parse(MinDate[1]);
         }
 
         private void poLastPagebtn_Click(object sender, EventArgs e)
@@ -2447,7 +2493,7 @@ namespace ITP4519M
 
         private void grnDatePicker1_ValueChanged(object sender, EventArgs e)
         {
-
+            grnDatePicker2.MinDate = grnDatePicker1.Value;
         }
 
         private void dateFilterbtn_Click(object sender, EventArgs e)
@@ -2508,6 +2554,46 @@ namespace ITP4519M
             this.grndata.DataSource = programMethod.GetGRNCurrentRecords(this.GRNPageIndex, GRNPgSize);
             SetRowHeights(grndata, GRNPgSize);
             grnPage.Text = (GRNPgSize * GRNPageIndex - (GRNPgSize - 1)) + "-" + GRNRowCount + " of " + GRNRowCount;
+        }
+
+        private void orderAccemblySearchbox_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void orderAccemblydateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            orderAccemblydateTimePicker2.MinDate = orderAccemblydateTimePicker.Value;
+        }
+
+        private void orderSearchbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (orderSearchbox.Text.Trim() == "")
+                    //orderdata.DataSource = programMethod.GetorderCurrentRecords(outstandingPageIndex, outstandingPgSize);
+                    orderdata.Refresh();
+                else
+                    orderdata.DataSource = programMethod.searchOrder(orderSearchbox.Text.Trim());
+            }
+        }
+
+        private void deliverydateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            deliverydateTimePicker2.MinDate = deliverydateTimePicker1.Value;
+        }
+
+        private void outstandingdateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            outstandingdateTimePicker2.MinDate = outstandingdateTimePicker1.Value;
+        }
+
+        private void outstandingSearchbtn_Click(object sender, EventArgs e)
+        {
+            string formDate = outstandingdateTimePicker1.Value.Date.ToString("yyyy-MM-dd");
+            string toDate = outstandingdateTimePicker2.Value.Date.ToString("yyyy-MM-dd");
+            outstandingdata.DataSource = programMethod.getOutstandingDateFilter(formDate, toDate);
+            SetRowHeights(outstandingdata, outstandingPgSize);
         }
     }
 }

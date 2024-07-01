@@ -83,11 +83,11 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label12.Location = new Point(84, 515);
+            label12.Location = new Point(47, 515);
             label12.Name = "label12";
-            label12.Size = new Size(139, 25);
+            label12.Size = new Size(152, 25);
             label12.TabIndex = 11;
-            label12.Text = "Receive Date :";
+            label12.Text = "* Receive Date :";
             // 
             // grnCreatebtn
             // 
@@ -119,7 +119,7 @@
             // 
             // grnDateTimePicker
             // 
-            grnDateTimePicker.Location = new Point(232, 513);
+            grnDateTimePicker.Location = new Point(209, 515);
             grnDateTimePicker.Margin = new Padding(3, 4, 3, 4);
             grnDateTimePicker.Name = "grnDateTimePicker";
             grnDateTimePicker.Size = new Size(242, 27);
@@ -158,9 +158,6 @@
             // 
             grnProductData.AllowUserToAddRows = false;
             grnProductData.AllowUserToDeleteRows = false;
-            grnProductData.RowHeadersVisible = false;
-            grnProductData.AllowUserToAddRows = false;
-            grnProductData.AllowUserToDeleteRows = false;
             grnProductData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             grnProductData.BackgroundColor = SystemColors.ButtonFace;
             grnProductData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -168,6 +165,7 @@
             grnProductData.Location = new Point(12, 228);
             grnProductData.Margin = new Padding(3, 5, 3, 5);
             grnProductData.Name = "grnProductData";
+            grnProductData.RowHeadersVisible = false;
             grnProductData.RowHeadersWidth = 51;
             grnProductData.RowTemplate.Height = 24;
             grnProductData.Size = new Size(620, 230);
