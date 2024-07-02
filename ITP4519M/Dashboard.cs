@@ -179,6 +179,7 @@ namespace ITP4519M
         {
             DoubleBuffered = true;
             programMethod = new ProgramMethod.ProgramMethod();
+            closebtn.BringToFront();
             programMethod.CurrentUserIDAndName(LoginUserID, LoginUserName);
             closebtn.BringToFront();
             OrderAccemblybtn.Size = new System.Drawing.Size(166, 56);
