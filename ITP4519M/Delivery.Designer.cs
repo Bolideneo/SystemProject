@@ -34,15 +34,15 @@
             label4 = new Label();
             label6 = new Label();
             deliveryCreatebtn = new Button();
-            deliveryOrderidbox = new TextBox();
-            deliveryOutstandingbox = new TextBox();
             deliveryClearbtn = new Button();
             panel1 = new Panel();
+            deliveryOutstandingbox = new ComboBox();
+            deliveryOrderidbox = new ComboBox();
+            outstandingIDAlertlbl = new Label();
+            orderIDAlertlbl = new Label();
             DeliverydateTimePicker1 = new DateTimePicker();
             deliveryerrorlbl = new Label();
             CloseButton = new Button();
-            orderIDAlertlbl = new Label();
-            outstandingIDAlertlbl = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -74,9 +74,9 @@
             label3.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.Location = new Point(98, 75);
             label3.Name = "label3";
-            label3.Size = new Size(97, 25);
+            label3.Size = new Size(110, 25);
             label3.TabIndex = 2;
-            label3.Text = "Order ID :";
+            label3.Text = "* Order ID :";
             // 
             // label4
             // 
@@ -84,9 +84,9 @@
             label4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.Location = new Point(41, 138);
             label4.Name = "label4";
-            label4.Size = new Size(157, 25);
+            label4.Size = new Size(170, 25);
             label4.TabIndex = 3;
-            label4.Text = "OutStanding ID :";
+            label4.Text = "* OutStanding ID :";
             // 
             // label6
             // 
@@ -94,9 +94,9 @@
             label6.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.Location = new Point(61, 207);
             label6.Name = "label6";
-            label6.Size = new Size(139, 25);
+            label6.Size = new Size(152, 25);
             label6.TabIndex = 5;
-            label6.Text = "Delivery Date :";
+            label6.Text = "* Delivery Date :";
             // 
             // deliveryCreatebtn
             // 
@@ -111,24 +111,6 @@
             deliveryCreatebtn.Text = "Create";
             deliveryCreatebtn.UseVisualStyleBackColor = false;
             deliveryCreatebtn.Click += deliveryCreatebtn_Click;
-            // 
-            // deliveryOrderidbox
-            // 
-            deliveryOrderidbox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryOrderidbox.Location = new Point(246, 71);
-            deliveryOrderidbox.Margin = new Padding(6, 5, 6, 5);
-            deliveryOrderidbox.Name = "deliveryOrderidbox";
-            deliveryOrderidbox.Size = new Size(170, 27);
-            deliveryOrderidbox.TabIndex = 18;
-            // 
-            // deliveryOutstandingbox
-            // 
-            deliveryOutstandingbox.Location = new Point(245, 134);
-            deliveryOutstandingbox.Margin = new Padding(3, 4, 3, 4);
-            deliveryOutstandingbox.Name = "deliveryOutstandingbox";
-            deliveryOutstandingbox.Size = new Size(167, 27);
-            deliveryOutstandingbox.TabIndex = 34;
-            deliveryOutstandingbox.TextChanged += deliveryOutstandingbox_TextChanged;
             // 
             // deliveryClearbtn
             // 
@@ -145,28 +127,71 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(deliveryOutstandingbox);
+            panel1.Controls.Add(deliveryOrderidbox);
             panel1.Controls.Add(outstandingIDAlertlbl);
             panel1.Controls.Add(orderIDAlertlbl);
             panel1.Controls.Add(DeliverydateTimePicker1);
             panel1.Controls.Add(deliveryerrorlbl);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(deliveryClearbtn);
-            panel1.Controls.Add(deliveryOrderidbox);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(deliveryCreatebtn);
-            panel1.Controls.Add(deliveryOutstandingbox);
             panel1.Controls.Add(label4);
             panel1.Location = new Point(5, 116);
             panel1.Name = "panel1";
             panel1.Size = new Size(613, 439);
             panel1.TabIndex = 36;
             // 
+            // deliveryOutstandingbox
+            // 
+            deliveryOutstandingbox.FormattingEnabled = true;
+            deliveryOutstandingbox.Location = new Point(245, 139);
+            deliveryOutstandingbox.Name = "deliveryOutstandingbox";
+            deliveryOutstandingbox.Size = new Size(190, 28);
+            deliveryOutstandingbox.TabIndex = 41;
+            // 
+            // deliveryOrderidbox
+            // 
+            deliveryOrderidbox.FormattingEnabled = true;
+            deliveryOrderidbox.Location = new Point(245, 71);
+            deliveryOrderidbox.Name = "deliveryOrderidbox";
+            deliveryOrderidbox.Size = new Size(190, 28);
+            deliveryOrderidbox.TabIndex = 40;
+            deliveryOrderidbox.SelectedIndexChanged += deliveryOrderidbox_SelectedIndexChanged;
+            // 
+            // outstandingIDAlertlbl
+            // 
+            outstandingIDAlertlbl.AutoSize = true;
+            outstandingIDAlertlbl.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            outstandingIDAlertlbl.ForeColor = Color.Red;
+            outstandingIDAlertlbl.Location = new Point(246, 165);
+            outstandingIDAlertlbl.Name = "outstandingIDAlertlbl";
+            outstandingIDAlertlbl.RightToLeft = RightToLeft.No;
+            outstandingIDAlertlbl.Size = new Size(313, 23);
+            outstandingIDAlertlbl.TabIndex = 39;
+            outstandingIDAlertlbl.Text = "Please input the correct Outstanding ID";
+            outstandingIDAlertlbl.Visible = false;
+            // 
+            // orderIDAlertlbl
+            // 
+            orderIDAlertlbl.AutoSize = true;
+            orderIDAlertlbl.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            orderIDAlertlbl.ForeColor = Color.Red;
+            orderIDAlertlbl.Location = new Point(245, 102);
+            orderIDAlertlbl.Name = "orderIDAlertlbl";
+            orderIDAlertlbl.RightToLeft = RightToLeft.No;
+            orderIDAlertlbl.Size = new Size(262, 23);
+            orderIDAlertlbl.TabIndex = 38;
+            orderIDAlertlbl.Text = "Please input the correct Order ID";
+            orderIDAlertlbl.Visible = false;
+            // 
             // DeliverydateTimePicker1
             // 
             DeliverydateTimePicker1.Location = new Point(245, 204);
             DeliverydateTimePicker1.Margin = new Padding(3, 4, 3, 4);
             DeliverydateTimePicker1.Name = "DeliverydateTimePicker1";
-            DeliverydateTimePicker1.Size = new Size(245, 27);
+            DeliverydateTimePicker1.Size = new Size(274, 27);
             DeliverydateTimePicker1.TabIndex = 37;
             // 
             // deliveryerrorlbl
@@ -196,32 +221,6 @@
             CloseButton.Text = "X";
             CloseButton.UseVisualStyleBackColor = true;
             CloseButton.Click += CloseButton_Click;
-            // 
-            // orderIDAlertlbl
-            // 
-            orderIDAlertlbl.AutoSize = true;
-            orderIDAlertlbl.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            orderIDAlertlbl.ForeColor = Color.Red;
-            orderIDAlertlbl.Location = new Point(245, 102);
-            orderIDAlertlbl.Name = "orderIDAlertlbl";
-            orderIDAlertlbl.RightToLeft = RightToLeft.No;
-            orderIDAlertlbl.Size = new Size(262, 23);
-            orderIDAlertlbl.TabIndex = 38;
-            orderIDAlertlbl.Text = "Please input the correct Order ID";
-            orderIDAlertlbl.Visible = false;
-            // 
-            // outstandingIDAlertlbl
-            // 
-            outstandingIDAlertlbl.AutoSize = true;
-            outstandingIDAlertlbl.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            outstandingIDAlertlbl.ForeColor = Color.Red;
-            outstandingIDAlertlbl.Location = new Point(246, 165);
-            outstandingIDAlertlbl.Name = "outstandingIDAlertlbl";
-            outstandingIDAlertlbl.RightToLeft = RightToLeft.No;
-            outstandingIDAlertlbl.Size = new Size(313, 23);
-            outstandingIDAlertlbl.TabIndex = 39;
-            outstandingIDAlertlbl.Text = "Please input the correct Outstanding ID";
-            outstandingIDAlertlbl.Visible = false;
             // 
             // Delivery
             // 
@@ -253,8 +252,6 @@
         private Label label4;
         private Label label6;
         private Button deliveryCreatebtn;
-        private TextBox deliveryOrderidbox;
-        private TextBox deliveryOutstandingbox;
         private Button deliveryClearbtn;
 
         private TextBox deliveryDeliveryaddressbox;
@@ -265,5 +262,7 @@
         private DateTimePicker DeliverydateTimePicker1;
         private Label outstandingIDAlertlbl;
         private Label orderIDAlertlbl;
+        private ComboBox deliveryOrderidbox;
+        private ComboBox deliveryOutstandingbox;
     }
 }

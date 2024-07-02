@@ -494,6 +494,10 @@ namespace ITP4519M
             CalculateTotalPages("Stock");
             ShowPanel(inventorypnl);
             stockData.DataSource = programMethod.GetStockCurrentRecords(StockPageIndex, StockPgSize);
+            string[] LabelResult = programMethod.getStockLevelLabel();
+            stockOutofStockbox.Text = LabelResult[0];
+            stockDangerbox.Text = LabelResult[1];
+            stockReOrderbox.Text = LabelResult[2];
             productOverallLabel();
             stockData.Rows[0].Selected = false;
             SetRowHeights(stockData, StockPgSize);
@@ -967,7 +971,7 @@ namespace ITP4519M
         {
 
             stockProductDatalbl1.Text = StockRowCount.ToString();
-            string[] numberofProduct = programMethod.getStockLabelinfo(stockData); ;
+            string[] numberofProduct = programMethod.getStockLabelinfo(stockData);
             stockProductDatalbl2.Text = String.Format("{0:n0}", numberofProduct[0]);
             stockProductDatalbl3.Text = String.Format("{0:n0}", numberofProduct[1]);
         }
@@ -1779,7 +1783,7 @@ namespace ITP4519M
                 //string status = orderStatusCombox.Text.ToString();
                 orderAccemblyData.DataSource = programMethod.orderAccemblyDateFilter(formDate, toDate);
                 // orderAccemblyData.DataSource = programMethod.overallLoginfo();
-                SetRowHeights(orderAccemblyData,15);
+                SetRowHeights(orderAccemblyData, 15);
 
             }
         }
@@ -2069,6 +2073,8 @@ namespace ITP4519M
 
                 ShowPanel(deliveryCompletepnl);
                 deliveryDeliveryIDlbl.Text = "Delivery ID : # " + DeliverydeliveryID.ToString();
+                deliveryShippingdatelbl.Text = "Placed on " + programMethod.getDeliveryDate(deliveryID);
+                DeliverydeliveredDate.MinDate = DateTime.Now.Date;
 
             }
         }
@@ -2098,7 +2104,7 @@ namespace ITP4519M
                 outstandingViewEmaillbl.Text = dt.Rows[0]["DealerEmailAddress"].ToString();
                 oustandingViewDeliverylbl.Text = dt.Rows[0]["DeliveryAddress"].ToString();
                 outstandingViewData.Rows.Add(dt.Rows[0]["ProductID"].ToString(), dt.Rows[0]["ProductName"].ToString(), dt.Rows[0]["FollowUpQuantity"].ToString(), dt.Rows[0]["UnitPrice"].ToString());
- 
+
             }
         }
         private void outstandingdata_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -2685,7 +2691,6 @@ namespace ITP4519M
             {
                 string status = auditlogStatusbox.Text.ToString();
                 string type = auditTypeStatusbox.Text.ToString();
-                MessageBox.Show(status);
                 auditLogdata.DataSource = programMethod.auditLogDateStatusFilter(formDate, toDate, type, status);
             }
 
@@ -2708,6 +2713,11 @@ namespace ITP4519M
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel56_Paint_1(object sender, PaintEventArgs e)
         {
 
         }

@@ -234,7 +234,7 @@ namespace ITP4519M
             // saveOrderbtn
             // 
             saveOrderbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            saveOrderbtn.Location = new Point(731, 1101);
+            saveOrderbtn.Location = new Point(745, 1123);
             saveOrderbtn.Margin = new Padding(3, 4, 3, 4);
             saveOrderbtn.Name = "saveOrderbtn";
             saveOrderbtn.Size = new Size(171, 53);

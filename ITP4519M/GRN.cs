@@ -136,10 +136,6 @@ namespace ITP4519M
         {
             grnProductData.Rows.Clear();
             grnProductData.Refresh();
-            //if(grnPOIDbox.SelectedIndex == 0)
-            //{
-            //    grnPOIDbox.SelectedIndex = -1;
-            //}
             if (grnPOIDbox.SelectedIndex > 0 )
             {
                 string selectedItem = grnPOIDbox.SelectedItem.ToString();

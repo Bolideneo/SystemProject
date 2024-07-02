@@ -196,7 +196,7 @@ namespace ITP4519M
                     {
                         SupplierID = supplierBox.SelectedValue.ToString(),
                         Date = DateTime.Now.ToString("M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture).ToUpper(),
-                        Status = "In Procurement",
+                        Status = "Pending",
                         ProductID = item.SubItems[0].Text,
                         OrderQuantity = item.SubItems[2].Text,
                         UnitPrice = item.SubItems[3].Text,

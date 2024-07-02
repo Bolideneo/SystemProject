@@ -229,7 +229,7 @@ namespace ITP4519M
             // 
             ordertotallbl.AutoSize = true;
             ordertotallbl.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            ordertotallbl.Location = new Point(123, 824);
+            ordertotallbl.Location = new Point(130, 824);
             ordertotallbl.Name = "ordertotallbl";
             ordertotallbl.Size = new Size(23, 28);
             ordertotallbl.TabIndex = 100;

@@ -304,6 +304,7 @@
             Controls.Add(button1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "CreatePurchaseOrder";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "CreatePurchaseOrder";
             Load += CreatePurchaseOrder_Load;
             ResumeLayout(false);
