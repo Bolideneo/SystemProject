@@ -796,8 +796,27 @@ namespace ITP4519M
             lastClickedButton = (Button)sender;
             lastClickedButton.ForeColor = Color.Gray;
 
+            auditlogStatusbox.DataSource = programMethod.getAuditStatus();
+            auditlogStatusbox.DisplayMember = "ActionDetail";
+
             ShowPanel(logpnl);
             auditLogdata.DataSource = programMethod.overallLoginfo();
+
+
+            string[] MinDate = programMethod.getMinAndMaxDateForAuditLog();
+            logdateTimePicker1.MinDate = DateTime.Parse(MinDate[0]);
+            logdateTimePicker1.MaxDate = DateTime.Parse(MinDate[1]);
+            logdateTimePicker1.Value = DateTime.Parse(MinDate[0]);
+            logdateTimePicker2.MinDate = DateTime.Parse(MinDate[0]);
+            logdateTimePicker2.MaxDate = DateTime.Parse(MinDate[1]);
+            logdateTimePicker2.Value = DateTime.Parse(MinDate[1]);
+
+            auditLogdata.Columns[0].Width = 90;
+            auditLogdata.Columns[1].Width = 70;
+            auditLogdata.Columns[2].Width = 110;
+            auditLogdata.Columns[3].Width = 80;
+            auditLogdata.Columns[4].Width = 580;
+
         }
 
         private void namelbl_Click(object sender, EventArgs e)
@@ -1753,13 +1772,13 @@ namespace ITP4519M
 
 
             if (orderStatusCombox.SelectedIndex == -1)
-                orderdata.DataSource = programMethod.orderAccemblyDateFilter(formDate, toDate);
+                orderAccemblyData.DataSource = programMethod.orderAccemblyDateFilter(formDate, toDate);
             else
             {
-                string status = orderStatusCombox.Text.ToString();
-                //orderdata.DataSource = programMethod.orderDateStatusFilter(formDate, toDate, status);
-                orderdata.DataSource = programMethod.overallLoginfo();
-                orderdata.Refresh();
+                //string status = orderStatusCombox.Text.ToString();
+                orderAccemblyData.DataSource = programMethod.orderAccemblyDateFilter(formDate, toDate);
+                // orderAccemblyData.DataSource = programMethod.overallLoginfo();
+                SetRowHeights(orderAccemblyData,15);
 
             }
         }
@@ -1796,6 +1815,14 @@ namespace ITP4519M
             poIndexlbl.Text = "01" + "-" + POPgSize.ToString() + " of " + programMethod.getPORowCount();
 
 
+            string[] MinDate = programMethod.getMinAndMaxDateForPO();
+            podateTimePicker1.MinDate = DateTime.Parse(MinDate[0]);
+            podateTimePicker1.MaxDate = DateTime.Parse(MinDate[1]);
+            podateTimePicker1.Value = DateTime.Parse(MinDate[0]);
+            podateTimePicker2.MinDate = DateTime.Parse(MinDate[0]);
+            podateTimePicker2.MaxDate = DateTime.Parse(MinDate[1]);
+            podateTimePicker2.Value = DateTime.Parse(MinDate[1]);
+
         }
 
         private void invoicebtn_Click(object sender, EventArgs e)
@@ -1817,6 +1844,14 @@ namespace ITP4519M
             invoiceData.Rows[0].Selected = false;
             SetRowHeights(invoiceData, InvoicePgSize);
 
+
+            string[] MinDate = programMethod.getMinAndMaxDateForInvoice();
+            InvoicedateTimePicker1.MinDate = DateTime.Parse(MinDate[0]);
+            InvoicedateTimePicker1.MaxDate = DateTime.Parse(MinDate[1]);
+            InvoicedateTimePicker1.Value = DateTime.Parse(MinDate[0]);
+            invoicedateTimePicker2.MinDate = DateTime.Parse(MinDate[0]);
+            invoicedateTimePicker2.MaxDate = DateTime.Parse(MinDate[1]);
+            invoicedateTimePicker2.Value = DateTime.Parse(MinDate[1]);
 
         }
 
@@ -2047,10 +2082,12 @@ namespace ITP4519M
             {
 
                 ShowPanel(outstandingViewpnl);
+                outstandingViewData.Rows.Clear();
+                outstandingViewData.Refresh();
                 //deliveryDeliveryIDlbl.Text = "Delivery ID : # " + DeliverydeliveryID.ToString();
                 DataTable dt = programMethod.getOutstandingOrder(outstandingOrderID);
                 outstandingIDlbl.Text = "Outstanding ID : #" + outstandingOrderID;
-                outstandingOrderIDlbl1.Text = dt.Rows[0]["OrderID"].ToString();
+                outstandingOrderIDlbl.Text = dt.Rows[0]["OrderID"].ToString();
                 viewoutstandingOrderDatelbl.Text = dt.Rows[0]["OrderDate"].ToString();
                 viewoutstandingOrderExecptDatelbl.Text = dt.Rows[0]["ExpectCompleteDate"].ToString();
                 outstandingViewDealerIDlbl.Text = dt.Rows[0]["DealerID"].ToString();
@@ -2060,6 +2097,7 @@ namespace ITP4519M
                 outstandingViewEmaillbl.Text = dt.Rows[0]["DealerEmailAddress"].ToString();
                 oustandingViewDeliverylbl.Text = dt.Rows[0]["DeliveryAddress"].ToString();
                 outstandingViewData.Rows.Add(dt.Rows[0]["ProductID"].ToString(), dt.Rows[0]["ProductName"].ToString(), dt.Rows[0]["FollowUpQuantity"].ToString(), dt.Rows[0]["UnitPrice"].ToString());
+ 
             }
         }
         private void outstandingdata_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -2498,9 +2536,10 @@ namespace ITP4519M
 
         private void dateFilterbtn_Click(object sender, EventArgs e)
         {
-            string formDate = grnDatePicker1.Value.Date.ToString("M/d/yyyy");
-            string toDate = grnDatePicker2.Value.Date.ToString("M/d/yyyy");
-            grndata.DataSource = programMethod.searchPODate(formDate, toDate);
+            string formDate = podateTimePicker1.Value.Date.ToString("M/d/yyyy");
+            string toDate = podateTimePicker2.Value.Date.ToString("M/d/yyyy");
+            poData.DataSource = programMethod.searchPODate(formDate, toDate);
+            SetRowHeights(poData, POPgSize);
         }
 
         private void orderdateTimePicker2_ValueChanged(object sender, EventArgs e)
@@ -2594,6 +2633,82 @@ namespace ITP4519M
             string toDate = outstandingdateTimePicker2.Value.Date.ToString("yyyy-MM-dd");
             outstandingdata.DataSource = programMethod.getOutstandingDateFilter(formDate, toDate);
             SetRowHeights(outstandingdata, outstandingPgSize);
+        }
+
+        private void panel56_Paint(object sender, PaintEventArgs e)
+        {
+            ControlPaint.DrawBorder(e.Graphics, this.panel26.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
+        }
+
+        private void podateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            podateTimePicker2.MinDate = podateTimePicker1.Value;
+        }
+
+        private void InvoicedateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            invoicedateTimePicker2.MinDate = InvoicedateTimePicker1.Value;
+        }
+
+        private void invoiceSearchBtn_Click(object sender, EventArgs e)
+        {
+            string formDate = InvoicedateTimePicker1.Value.Date.ToString("yyyy-MM-dd");
+            string toDate = invoicedateTimePicker2.Value.Date.ToString("yyyy-MM-dd");
+            invoiceData.DataSource = programMethod.getInvoiceDateFilter(formDate, toDate);
+            SetRowHeights(invoiceData, InvoicePgSize);
+        }
+
+        private void panel19_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void logdateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            logdateTimePicker2.MinDate = logdateTimePicker1.Value;
+        }
+
+        private void SeachLogButton_Click(object sender, EventArgs e)
+        {
+            string formDate = logdateTimePicker1.Value.Date.ToString("yyyy-MM-dd");
+            string toDate = logdateTimePicker2.Value.Date.ToString("yyyy-MM-dd");
+
+
+
+            //SetRowHeights(auditLogdata, InvoicePgSize);
+
+
+            if (auditlogStatusbox.SelectedIndex == -1)
+                auditLogdata.DataSource = programMethod.getAuditLogDateFilter(formDate, toDate);
+            else
+            {
+                string status = auditlogStatusbox.Text.ToString();
+                string type = auditTypeStatusbox.Text.ToString();
+                MessageBox.Show(status);
+                auditLogdata.DataSource = programMethod.auditLogDateStatusFilter(formDate, toDate, type, status);
+            }
+
+            auditLogdata.Columns[0].Width = 100;
+            auditLogdata.Columns[1].Width = 70;
+            auditLogdata.Columns[2].Width = 110;
+            auditLogdata.Columns[3].Width = 80;
+            auditLogdata.Columns[4].Width = 580;
+            // auditLogdata.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+        }
+
+        private void auditlogStatusFilter_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label42_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -55,6 +55,7 @@ namespace ITP4519M
             orderAccemblyAssignbox = new TextBox();
             orderAccemblyAssignbtn = new Button();
             checkboxSelectedbtn = new Button();
+            checkBox = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)orderItemdata).BeginInit();
             ((System.ComponentModel.ISupportInitialize)orderAccemblyOrderItemdata).BeginInit();
             SuspendLayout();
@@ -258,6 +259,7 @@ namespace ITP4519M
             orderAccemblyOrderItemdata.RowTemplate.Height = 24;
             orderAccemblyOrderItemdata.Size = new Size(776, 279);
             orderAccemblyOrderItemdata.TabIndex = 72;
+            orderAccemblyOrderItemdata.CellContentClick += orderAccemblyOrderItemdata_CellContentClick;
             orderAccemblyOrderItemdata.CellDoubleClick += orderAccemblyOrderItemdata_CellDoubleClick;
             // 
             // check
@@ -320,12 +322,23 @@ namespace ITP4519M
             checkboxSelectedbtn.UseVisualStyleBackColor = false;
             checkboxSelectedbtn.Click += checkboxSelectedbtn_Click;
             // 
+            // checkBox
+            // 
+            checkBox.AutoSize = true;
+            checkBox.Location = new Point(137, 470);
+            checkBox.Name = "checkBox";
+            checkBox.Size = new Size(18, 17);
+            checkBox.TabIndex = 78;
+            checkBox.UseVisualStyleBackColor = true;
+            checkBox.Click += checkBox_Click;
+            // 
             // OrderAccembly
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
-            ClientSize = new Size(953, 1102);
+            ClientSize = new Size(981, 1203);
+            Controls.Add(checkBox);
             Controls.Add(checkboxSelectedbtn);
             Controls.Add(orderAccemblyAssignbtn);
             Controls.Add(orderAccemblyAssignbox);
@@ -395,5 +408,6 @@ namespace ITP4519M
         private Button orderAccemblyAssignbtn;
         private Button checkboxSelectedbtn;
         private DataGridViewCheckBoxColumn check;
+        private CheckBox checkBox;
     }
 }

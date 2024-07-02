@@ -30,6 +30,7 @@ namespace ITP4519M
         private int orderitemIndex = -1;
         private int SelectColumnIndex = 0;
         private OperationMode _mode;
+        private CheckBox HeaderCheckBox;
 
 
 
@@ -45,6 +46,7 @@ namespace ITP4519M
         {
             this.Close();
         }
+
 
         private void OrderAccembly_Load(object sender, EventArgs e)
         {
@@ -210,7 +212,7 @@ namespace ITP4519M
         {
             if (programMethod.createOrderAssembly(orderItemdata, orderAccemblyOrderItemdata, orderID))
             {
-                MessageBox.Show("Save");
+                MessageBox.Show("Order Pick Up Successfully");
                 this.Close();
             }
 
@@ -242,7 +244,7 @@ namespace ITP4519M
             {
                 for (int i = 0; i < orderItemdata.Rows.Count; i++)
                 {
-                    if (orderItemdata.Rows[i].Cells[0].Value.ToString() == orderAccemblyAssignbox.Text.Trim() && (int.Parse(orderItemdata.Rows[i].Cells[3].Value.ToString())) < 1)
+                    if (orderItemdata.Rows[i].Cells[1].Value.ToString() == orderAccemblyAssignbox.Text.Trim() && (int.Parse(orderItemdata.Rows[i].Cells[4].Value.ToString())) < 1)
                     {
                         MessageBox.Show(orderAccemblyAssignbox.Text.Trim() + " is Out-Of-Stock");
                         return;
@@ -263,10 +265,10 @@ namespace ITP4519M
 
                             if (i == j)
                                 continue;
-                            if (orderItemdata.Rows[i].Cells[0].Value.ToString() == orderItemdata.Rows[j].Cells[0].Value.ToString())
+                            if (orderItemdata.Rows[i].Cells[1].Value.ToString() == orderItemdata.Rows[j].Cells[1].Value.ToString())
                             {
-                                DataGridViewRow dgvDelRow = orderItemdata.Rows[j];
-                                orderItemdata.Rows.Remove(dgvDelRow);
+                                DataGridViewRow dvgDelRow = orderItemdata.Rows[j];
+                                orderItemdata.Rows.Remove(dvgDelRow);
                                 count++;
                             }
 
@@ -294,10 +296,33 @@ namespace ITP4519M
             try
             {
                 QuantityFollow = programMethod.calOrderItemQuantityFollow(orderItemdata, orderID);
-                orderItemdata["FollowQuantity", e.RowIndex].Value = QuantityFollow;
+                if (QuantityFollow == "0")
+                {
+                    if (orderitemIndex > -1)
+                    {
+
+                        DataGridViewRow dvgDelRow = orderItemdata.Rows[orderitemIndex];
+                        orderItemdata.Rows.Remove(dvgDelRow);
+
+                    }
+
+                    QuantityFollow = "";
+                    if (orderitemIndex == -1)
+                    {
+                        orderitemIndex = -1;
+
+                    }
+                    else
+                        orderitemIndex--;
+
+                    return;
+                }
+                orderItemdata["FollowQuantity", orderitemIndex].Value = QuantityFollow;
                 QuantityFollow = "";
+                //MessageBox.Show(orderitemIndex.ToString());
 
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
@@ -334,19 +359,34 @@ namespace ITP4519M
         private void checkboxSelectedbtn_Click(object sender, EventArgs e)
         {
 
+
             for (int i = 0; i < orderAccemblyOrderItemdata.Rows.Count; i++)
             {
-                // Refresh cause uncheck box
-                if (orderAccemblyOrderItemdata.Rows[i].Cells[0].Value != null && Convert.ToBoolean(orderAccemblyOrderItemdata.Rows[i].Cells[0].Value) == true)
+                try
                 {
+                    // Refresh cause uncheck box
+                    if (orderAccemblyOrderItemdata.Rows[i].Cells[0].Value != null && Convert.ToBoolean(orderAccemblyOrderItemdata.Rows[i].Cells[0].Value) == true)
+                    {
+                        orderitemIndex++;
+                        DataTable result = programMethod.getOrderEachItemDetail(orderAccemblyOrderItemdata.Rows[i].Cells[1].Value.ToString(), orderID);
+                        orderItemdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, QuantityFollow);
+                    }
 
-                    orderitemIndex++;
-                    DataTable result = programMethod.getOrderEachItemDetail(orderAccemblyOrderItemdata.Rows[i].Cells[1].Value.ToString(), orderID);
-                    orderItemdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, QuantityFollow);
                 }
+                catch (Exception ex)
+                {
+                    return;
+
+                }
+
+
             }
 
-            orderAccemblyOrderItemdata.DataSource = programMethod.getOrderItemDetail(orderID);
+            // orderAccemblyOrderItemdata.DataSource = programMethod.getOrderItemDetail(orderID);
+            foreach (DataGridViewRow row in orderAccemblyOrderItemdata.Rows)
+            {
+                orderAccemblyOrderItemdata.Rows[row.Index].Cells[0].Value = false;
+            }
             orderAccemblyOrderItemdata.Rows[0].Selected = false;
 
             if (orderItemdata.Rows.Count > 1)
@@ -371,11 +411,27 @@ namespace ITP4519M
                 }
             }
 
+            checkBox.Checked = false;
+
         }
 
         private void label4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void orderAccemblyOrderItemdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void checkBox_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in orderAccemblyOrderItemdata.Rows)
+            {
+                DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)row.Cells[0];
+                chk.Value = !(chk.Value == null ? false : (bool)chk.Value); 
+            }
         }
     }
 }

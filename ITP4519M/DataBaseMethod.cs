@@ -1752,13 +1752,13 @@ namespace ITP4519M
 
         public DataTable searchPODate(string startDate, string endDate)
         {
-            string sql = "SELECT po.PurchaseOrderID, p.ProductName, po.OrderQuantity, po.UnitPrice, po.TotalPrice, s.SupplierCompanyName, po.Status, po.Date " +
-                         "FROM purchaseorder po " +
-                         "JOIN product p ON po.ProductID = p.ProductID " +
-                         "JOIN supplier s ON po.SupplierID = s.SupplierID " +
-                         "ORDER BY po.PurchaseOrderID " +
-                         "WHERE po.Date BETWEEN @startdate AND @enddate";
-           // string sql = "SELECT * FROM grn WHERE ReceiveDate BETWEEN @startdate AND @enddate";
+            //string sql = "SELECT po.PurchaseOrderID, p.ProductName, po.OrderQuantity, po.UnitPrice, po.TotalPrice, s.SupplierCompanyName, po.Status, po.Date " +
+                         //"FROM purchaseorder po " +
+                         //"JOIN product p ON po.ProductID = p.ProductID " +
+                         //"JOIN supplier s ON po.SupplierID = s.SupplierID " +
+                         //"ORDER BY po.PurchaseOrderID " +
+                         //"WHERE po.Date BETWEEN @startdate AND @enddate";
+            string sql = "SELECT * FROM purchaseorder WHERE Date BETWEEN @startdate AND @enddate";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             cmd.Parameters.AddWithValue("@startdate", startDate);
@@ -2647,8 +2647,8 @@ namespace ITP4519M
 
         public DataTable orderAccemblyDateFilter(string fromDate, string toDate)
         {
-            string sql = "SELECT orderitem.ProductID, product.ProductName, BinLocation, QuantityInStock, OrderedQuantity FROM product, orderitem WHERE orderitem.OrderID = @orderID AND orderitem.ProductID = product.ProductID AND OrderDate BETWEEN @fromDate AND @toDate";
-            //string sql = "SELECT * FROM `order` WHERE OrderDate BETWEEN @fromDate AND @toDate";
+            string sql = "SELECT OrderID, DealerID, OrderStatus,OrderDate FROM `order` WHERE OrderDate BETWEEN @fromDate AND @toDate AND (OrderStatus = 'Outstanding' OR OrderStatus = 'OrderProcessing')";
+            //string sql = "SELECT * FROM `order` WHERE OrderDate BETWEEN @fromDate AND @toDate"; 
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@fromDate", fromDate);
             cmd.Parameters.AddWithValue("@toDate", toDate);
@@ -2659,7 +2659,7 @@ namespace ITP4519M
             return dataTable;
 
         }
-
+        
         public DataTable getOutstandingDateFilter(string fromDate, string toDate)
         {
             string sql = "SELECT * FROM outstandingorder WHERE OutstandingDate BETWEEN @fromDate AND @toDate";
@@ -2671,10 +2671,33 @@ namespace ITP4519M
             adat.Fill(dataTable);
             ServerConnect().Close();
             return dataTable;
-
         }
-
-
+        
+        public DataTable getInvoiceDateFilter(string fromDate, string toDate)
+        {
+            string sql = "SELECT * FROM invoice WHERE IssueDate BETWEEN @fromDate AND @toDate";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@fromDate", fromDate);
+            cmd.Parameters.AddWithValue("@toDate", toDate);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+        public DataTable getAuditLogDateFilter(string fromDate, string toDate)
+        {
+            string sql = "SELECT * FROM log WHERE LogDate BETWEEN @fromDate AND @toDate";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@fromDate", fromDate);
+            cmd.Parameters.AddWithValue("@toDate", toDate);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+        
         public DataTable orderDateStatusFilter(string fromDate, string toDate, string status)
         {
             try
@@ -2695,9 +2718,35 @@ namespace ITP4519M
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                return null;
             }
 
-            return null;
+           
+        }
+
+
+        public DataTable auditLogDateStatusFilter(string fromDate, string toDate, string type, string status)
+        {
+            try
+            {
+                string sql = "SELECT LogID, UserID, UserName AS 'Display Name',TypeID AS 'Target ID ' , Description, LogDate FROM log  WHERE (LogDate BETWEEN @fromDate AND @toDate) AND Type = @type AND Action= (SELECT ActionID FROM log_action WHERE ActionDetail = @status)";
+                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+                cmd.Parameters.AddWithValue("@fromDate", fromDate);
+                cmd.Parameters.AddWithValue("@toDate", toDate);
+                cmd.Parameters.AddWithValue("@type", type);
+                cmd.Parameters.AddWithValue("@status", status);
+                MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+                DataTable dataTable = new DataTable();
+                adat.Fill(dataTable);
+                ServerConnect().Close();
+                return dataTable;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }          
         }
 
         public DataTable getOrderMinAndMaxDate()
@@ -2744,10 +2793,43 @@ namespace ITP4519M
             ServerConnect().Close();
             return dataTable;
         }
-
+       
         public DataTable getOutstandingMinAndMaxDate()
         {
             string sql = "SELECT MIN(OutstandingDate), MAX(OutstandingDate) FROM outstandingorder";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+        
+        public DataTable getMinAndMaxDateForPO()
+        {
+            string sql = "SELECT MIN(Date), MAX(Date) FROM purchaseorder";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+        
+        public DataTable getMinAndMaxDateForInvoice()
+        {
+            string sql = "SELECT MIN(IssueDate), MAX(IssueDate) FROM invoice";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+
+        public DataTable getMinAndMaxDateForAuditLog()
+        {
+            string sql = "SELECT MIN(LogDate), MAX(LogDate) FROM log";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
@@ -2859,6 +2941,41 @@ namespace ITP4519M
             cmd.ExecuteNonQuery();
         }
 
+        public void LogCreateOutstandingOrder(string logID, string userID, string userName, string orderID, string outID)
+        {
+            DateTime Date = DateTime.Now;
+            Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string Desc = "#" + userID + " " + userName + " Create Outstanding Order#" + outID + " at Order Accembly" +  " For Order #" + orderID;
+            string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 1, 'OutstandingOrder', @TypeID,  @Desc,  @Date, @SecondTypeID)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@userName", userName);
+            cmd.Parameters.AddWithValue("@TypeID", outID);
+            cmd.Parameters.AddWithValue("@SecondTypeID", orderID);
+            cmd.Parameters.AddWithValue("@Desc", Desc);
+            cmd.Parameters.AddWithValue("@Date", Date);
+            ServerConnect().Close();
+            cmd.ExecuteNonQuery();
+        }
+        public void LogCreatePurchaseOrder(string logID, string userID, string userName, string orderID, string purID)
+        {
+            DateTime Date = DateTime.Now;
+            Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string Desc = "#" + userID + " " + userName + " Create Purchase Order#" + purID + " at Order Accembly" + " For Order #" + orderID;
+            string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 1, 'PurchaseOrder', @TypeID,  @Desc,  @Date, @SecondTypeID)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@userName", userName);
+            cmd.Parameters.AddWithValue("@TypeID", purID);
+            cmd.Parameters.AddWithValue("@SecondTypeID", orderID);
+            cmd.Parameters.AddWithValue("@Desc", Desc);
+            cmd.Parameters.AddWithValue("@Date", Date);
+            ServerConnect().Close();
+            cmd.ExecuteNonQuery();
+        }
+
         public void LogUpdateProduct(string logID, string userID, string userName, string productID)
         {
             DateTime Date = DateTime.Now;
@@ -2933,7 +3050,7 @@ namespace ITP4519M
         public void LogAssginProdutIntoAccembly(string logID, string userID, string userName, string orderID)
         {
             DateTime Date = DateTime.Now;
-            string Desc = "#" + userID + "Assgin #" + orderID + " by following format ProductID #" + " #Product Name " + " #Quantity ";
+            string Desc = "#" + userID + "Assgin #" + orderID + " by following format #ProductID #" + " #Product Name " + " #Quantity ";
             //string Desc = "#" + userID + " Put #" + productID + " to #" + orderID;
             Date.ToString("yyyy-MM-dd HH:mm:ss");
             string sql = "INSERT INTO log VALUES(@logID, @userID, @userName, 1, 'OrderAccembly', @TypeID,  @Desc,  @Date)";
@@ -2960,24 +3077,6 @@ namespace ITP4519M
             cmd.ExecuteNonQuery();
             ServerConnect().Close();
         }
-
-        public bool LogOutputItem(string logID, string userID, string itemID, string qty)
-        {
-            string Descp = "#" + userID + " Put " + qty + "qty #" + itemID + " to Instock ";
-            DateTime theDate = DateTime.Now;
-            theDate.ToString("yyyy-MM-dd HH:mm:ss");
-            string sql = "INSERT INTO log VALUES(@logID, @Descp, @userID, 2, @theDate)";
-            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-            cmd.Parameters.AddWithValue("@logID", logID);
-            cmd.Parameters.AddWithValue("@Descp", Descp);
-            cmd.Parameters.AddWithValue("@userID", userID);
-            cmd.Parameters.AddWithValue("@theDate", theDate);
-            if (cmd.ExecuteNonQuery() > 0)
-                return true;
-            else
-                return false;
-        }
-
 
         public void LogCreateDealerContact(string logID, string userID, string userName, string dealerID)
         {
@@ -3317,7 +3416,7 @@ namespace ITP4519M
 
         public DataTable overallLogInfo()
         {
-            string sql = "SELECT * FROM log";
+            string sql = "SELECT LogID, UserID, UserName AS DisplayName, TypeID AS 'Target ID', Description, LogDate FROM log";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
@@ -3485,10 +3584,21 @@ namespace ITP4519M
             return userID;
         }
 
-
+        
         public DataTable getOrderStatus()
         {
             string sql = "SELECT DISTINCT Name FROM orderstatus";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+
+        public DataTable getAuditStatus()
+        {
+            string sql = "SELECT DISTINCT ActionDetail FROM log_action";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
@@ -3609,8 +3719,8 @@ namespace ITP4519M
                 cmd.Parameters.AddWithValue("@OrderQuantity", purchaseOrder.OrderQuantity);
                 cmd.Parameters.AddWithValue("@UnitPrice", purchaseOrder.UnitPrice);
                 cmd.Parameters.AddWithValue("@TotalPrice", purchaseOrder.TotalPrice);
-
                 cmd.ExecuteNonQuery();
+                ServerConnect().Close();
             }
         
 
@@ -3835,6 +3945,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
@@ -3845,6 +3956,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
 
@@ -3855,6 +3967,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
         public DataTable getCategoryD7DaysOrderQuantity()
@@ -3864,6 +3977,7 @@ namespace ITP4519M
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
+            ServerConnect().Close();
             return dataTable;
         }
     }
