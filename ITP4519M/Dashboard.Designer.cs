@@ -117,7 +117,6 @@ namespace ITP4519M
             System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
             DataGridViewCellStyle dataGridViewCellStyle53 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle54 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle55 = new DataGridViewCellStyle();
             listpnl = new Panel();
             label24 = new Label();
             reportbtn = new Button();
@@ -368,8 +367,8 @@ namespace ITP4519M
             panel52 = new Panel();
             panel41 = new Panel();
             label57 = new Label();
-            label1 = new Label();
             label59 = new Label();
+            label1 = new Label();
             logpnl = new Panel();
             panel18 = new Panel();
             roundedButton21 = new ProgramMethod.ProgramMethod.RoundedButton();
@@ -730,7 +729,8 @@ namespace ITP4519M
             reportbtn.Name = "reportbtn";
             reportbtn.Size = new Size(166, 51);
             reportbtn.TabIndex = 16;
-            reportbtn.Text = "Report";
+            reportbtn.Text = "         Reports";
+            reportbtn.TextAlign = ContentAlignment.MiddleLeft;
             reportbtn.UseVisualStyleBackColor = true;
             reportbtn.Click += reportbtn_Click;
             // 
@@ -781,7 +781,8 @@ namespace ITP4519M
             invoicebtn.Name = "invoicebtn";
             invoicebtn.Size = new Size(166, 56);
             invoicebtn.TabIndex = 14;
-            invoicebtn.Text = "Invoice";
+            invoicebtn.Text = "         Invoice";
+            invoicebtn.TextAlign = ContentAlignment.MiddleLeft;
             invoicebtn.UseVisualStyleBackColor = true;
             invoicebtn.Click += invoicebtn_Click;
             // 
@@ -834,7 +835,8 @@ namespace ITP4519M
             PObtn.Name = "PObtn";
             PObtn.Size = new Size(166, 75);
             PObtn.TabIndex = 12;
-            PObtn.Text = "   Purchase\r\nOrder ";
+            PObtn.Text = "         Purchase\r\n         Order ";
+            PObtn.TextAlign = ContentAlignment.MiddleLeft;
             PObtn.UseVisualStyleBackColor = true;
             PObtn.Click += PObtn_Click;
             // 
@@ -853,7 +855,8 @@ namespace ITP4519M
             deliverybtn.Name = "deliverybtn";
             deliverybtn.Size = new Size(166, 56);
             deliverybtn.TabIndex = 11;
-            deliverybtn.Text = "  Delivery";
+            deliverybtn.Text = "         Delivery";
+            deliverybtn.TextAlign = ContentAlignment.MiddleLeft;
             deliverybtn.UseVisualStyleBackColor = true;
             deliverybtn.Click += deliverybtn_Click;
             // 
@@ -879,7 +882,8 @@ namespace ITP4519M
             GRNbtn.Name = "GRNbtn";
             GRNbtn.Size = new Size(166, 56);
             GRNbtn.TabIndex = 10;
-            GRNbtn.Text = "GRN    ";
+            GRNbtn.Text = "         GRN    ";
+            GRNbtn.TextAlign = ContentAlignment.MiddleLeft;
             GRNbtn.UseVisualStyleBackColor = true;
             GRNbtn.Click += GRNbtn_Click;
             // 
@@ -925,7 +929,8 @@ namespace ITP4519M
             Logbtn.Name = "Logbtn";
             Logbtn.Size = new Size(166, 51);
             Logbtn.TabIndex = 8;
-            Logbtn.Text = "    Audit      ";
+            Logbtn.Text = "         Audit      ";
+            Logbtn.TextAlign = ContentAlignment.MiddleLeft;
             Logbtn.UseVisualStyleBackColor = true;
             Logbtn.Click += Logbtn_Click;
             // 
@@ -978,7 +983,8 @@ namespace ITP4519M
             logoutbtn.Name = "logoutbtn";
             logoutbtn.Size = new Size(166, 51);
             logoutbtn.TabIndex = 6;
-            logoutbtn.Text = "Sign Out";
+            logoutbtn.Text = "         Sign Out";
+            logoutbtn.TextAlign = ContentAlignment.MiddleLeft;
             logoutbtn.UseVisualStyleBackColor = true;
             logoutbtn.Click += logoutbtn_Click;
             // 
@@ -1005,7 +1011,8 @@ namespace ITP4519M
             usersbtn.Name = "usersbtn";
             usersbtn.Size = new Size(166, 51);
             usersbtn.TabIndex = 5;
-            usersbtn.Text = "   Account";
+            usersbtn.Text = "         Account";
+            usersbtn.TextAlign = ContentAlignment.MiddleLeft;
             usersbtn.UseVisualStyleBackColor = true;
             usersbtn.Click += usersbtn_Click;
             usersbtn.MouseEnter += userbtn_MouseEnter;
@@ -1032,7 +1039,8 @@ namespace ITP4519M
             stockbtn.Name = "stockbtn";
             stockbtn.Size = new Size(166, 56);
             stockbtn.TabIndex = 4;
-            stockbtn.Text = "Stock  ";
+            stockbtn.Text = "         Stock  ";
+            stockbtn.TextAlign = ContentAlignment.MiddleLeft;
             stockbtn.UseVisualStyleBackColor = true;
             stockbtn.Click += inventorybtn_Click;
             // 
@@ -1056,10 +1064,10 @@ namespace ITP4519M
             orderbtn.Location = new Point(25, 205);
             orderbtn.Margin = new Padding(3, 4, 3, 4);
             orderbtn.Name = "orderbtn";
-            orderbtn.Size = new Size(166, 57);
+            orderbtn.Size = new Size(177, 57);
             orderbtn.TabIndex = 3;
-            orderbtn.Text = "Salse Order  ";
-            orderbtn.TextAlign = ContentAlignment.MiddleRight;
+            orderbtn.Text = "         Salse Order  ";
+            orderbtn.TextAlign = ContentAlignment.MiddleLeft;
             orderbtn.UseVisualStyleBackColor = true;
             orderbtn.Click += orderbtn_Click;
             // 
@@ -1642,7 +1650,13 @@ namespace ITP4519M
             // 
             orderdata.AllowUserToAddRows = false;
             orderdata.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = Color.Gainsboro;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
             orderdata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             orderdata.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -4323,6 +4337,16 @@ namespace ITP4519M
             label57.TabIndex = 54;
             label57.Text = "Copyright © 2024 Legend Motor (LC) Limited ®";
             // 
+            // label59
+            // 
+            label59.AutoSize = true;
+            label59.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label59.Location = new Point(22, 17);
+            label59.Name = "label59";
+            label59.Size = new Size(140, 29);
+            label59.TabIndex = 16;
+            label59.Text = "Dashboard";
+            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -4333,16 +4357,6 @@ namespace ITP4519M
             label1.Size = new Size(636, 49);
             label1.TabIndex = 2;
             label1.Text = "Welcome to the LM Company System";
-            // 
-            // label59
-            // 
-            label59.AutoSize = true;
-            label59.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label59.Location = new Point(22, 17);
-            label59.Name = "label59";
-            label59.Size = new Size(140, 29);
-            label59.TabIndex = 16;
-            label59.Text = "Dashboard";
             // 
             // logpnl
             // 
@@ -7335,14 +7349,7 @@ namespace ITP4519M
             dataGridViewCellStyle54.WrapMode = DataGridViewTriState.True;
             reportStockdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle54;
             reportStockdata.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle55.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle55.BackColor = SystemColors.Window;
-            dataGridViewCellStyle55.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle55.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle55.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle55.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle55.WrapMode = DataGridViewTriState.False;
-            reportStockdata.DefaultCellStyle = dataGridViewCellStyle55;
+            reportStockdata.DefaultCellStyle = dataGridViewCellStyle1;
             reportStockdata.Location = new Point(31, 764);
             reportStockdata.Name = "reportStockdata";
             reportStockdata.RowHeadersVisible = false;
