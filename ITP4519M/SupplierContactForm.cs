@@ -77,6 +77,62 @@ namespace ITP4519M
             string supplierPhoneNum = SupplierPhoneNumBox.Text.Trim();
             string supplierAddress = supplierAddressBox.Text.Trim();
             List<string> selectedProductIDs = GetSelectedProductIDs();
+            if (string.IsNullOrEmpty(supplierCompanyName))
+            {
+                companyNameAlert.Visible = true;
+                suppliernameBox.Focus();
+                return;
+            }
+            else
+            {
+                companyNameAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(supplierContactName))
+            {
+                contactPersonAlert.Visible = true;
+                contactPersonAlert.Focus();
+                return;
+            }
+            else
+            {
+                contactPersonAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(supplierMail) || !IsValidEmail(supplierMail))
+            {
+                mailAlert.ForeColor = Color.Red;
+                SupplierMailBox.Focus();
+                return;
+            }
+            else
+            {
+                mailAlert.ForeColor = Color.SteelBlue;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(supplierPhoneNum) || !IsValidPhoneNumber(supplierPhoneNum))
+            {
+                phoneAlertlbl.ForeColor = Color.Red;
+                SupplierPhoneNumBox.Focus();
+                return;
+            }
+            else
+            {
+                phoneAlertlbl.ForeColor = Color.SteelBlue;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(supplierAddress))
+            {
+                addressAlert.Visible = true;
+                supplierAddressBox.Focus();
+                return;
+            }
+            else
+            {
+                addressAlert.Visible = false;
+                Refresh();
+            }
+
             if (selectedProductIDs.Count == 0)
             {
 
@@ -98,62 +154,6 @@ namespace ITP4519M
             else
             {
                 productSelectAlert.Visible = false;
-                Refresh();
-            }
-            if (string.IsNullOrEmpty(supplierCompanyName))
-            {
-                companyNameAlert.Visible = true;
-                suppliernameBox.Focus();
-                return;
-            }
-            else
-            {
-                companyNameAlert.Visible = false;
-                Refresh();
-            }
-            if (string.IsNullOrEmpty(supplierMail) || !IsValidEmail(supplierMail))
-            {
-                mailAlert.ForeColor = Color.Red;
-                SupplierMailBox.Focus();
-                return;
-            }
-            else
-            {
-                mailAlert.ForeColor = Color.Black;
-                Refresh();
-            }
-            if (string.IsNullOrEmpty(supplierPhoneNum) || !IsValidPhoneNumber(supplierPhoneNum))
-            {
-                phoneAlertlbl.ForeColor = Color.Red;
-                SupplierPhoneNumBox.Focus();
-                return;
-            }
-            else
-            {
-                phoneAlertlbl.ForeColor = Color.Black;
-                Refresh();
-            }
-            if (string.IsNullOrEmpty(supplierAddress))
-            {
-                addressAlert.Visible = true;
-                supplierAddressBox.Focus();
-                return;
-            }
-            else
-            {
-                addressAlert.Visible = false;
-                Refresh();
-            }
-
-            if (string.IsNullOrEmpty(supplierContactName))
-            {
-                contactPersonAlert.Visible = true;
-                contactPersonAlert.Focus();
-                return;
-            }
-            else
-            {
-                contactPersonAlert.Visible = false;
                 Refresh();
             }
             if (programMethod.updateSupplierInfo(supplierid, supplierCompanyName, supplierContactName, supplierMail, supplierPhoneNum, supplierAddress, products))
@@ -232,6 +232,63 @@ namespace ITP4519M
             string supplierAddress = supplierAddressBox.Text.Trim();
             string supplierContactName = supplierContactBox.Text.Trim();
             List<string> selectedProductIDs = GetSelectedProductIDs();
+
+            if (string.IsNullOrEmpty(supplierCompanyName))
+            {
+                companyNameAlert.Visible = true;
+                suppliernameBox.Focus();
+                return;
+            }
+            else
+            {
+                companyNameAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(supplierContactName))
+            {
+                contactPersonAlert.Visible = true;
+                contactPersonAlert.Focus();
+                return;
+            }
+            else
+            {
+                contactPersonAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(supplierMail) || !IsValidEmail(supplierMail))
+            {
+                mailAlert.ForeColor = Color.Red;
+                SupplierMailBox.Focus();
+                return;
+            }
+            else
+            {
+                mailAlert.ForeColor = Color.SteelBlue;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(supplierPhoneNum) || !IsValidPhoneNumber(supplierPhoneNum))
+            {
+                phoneAlertlbl.ForeColor = Color.Red;
+                SupplierPhoneNumBox.Focus();
+                return;
+            }
+            else
+            {
+                phoneAlertlbl.ForeColor = Color.SteelBlue;
+                Refresh();
+            }  
+            if (string.IsNullOrEmpty(supplierAddress))
+            {
+                addressAlert.Visible = true;
+                supplierAddressBox.Focus();
+                return;
+            }
+            else
+            {
+                addressAlert.Visible = false;
+                Refresh();
+            }
+
             if (selectedProductIDs.Count == 0)
             {
 
@@ -250,64 +307,9 @@ namespace ITP4519M
                 productSelectAlert.Visible = true;
                 return;
             }
-            else {
+            else
+            {
                 productSelectAlert.Visible = false;
-                Refresh();
-            }
-            if (string.IsNullOrEmpty(supplierCompanyName))
-            {
-                companyNameAlert.Visible = true;
-                suppliernameBox.Focus();
-                return;
-            }
-            else
-            {
-                companyNameAlert.Visible = false;
-                Refresh();
-            }
-            if (string.IsNullOrEmpty(supplierMail) || !IsValidEmail(supplierMail))
-            {
-                mailAlert.ForeColor = Color.Red;
-                SupplierMailBox.Focus();
-                return;
-            }
-            else
-            {
-                mailAlert.ForeColor = Color.Black;
-                Refresh();
-            }
-            if (string.IsNullOrEmpty(supplierPhoneNum) || !IsValidPhoneNumber(supplierPhoneNum))
-            {
-                phoneAlertlbl.ForeColor = Color.Red;
-                SupplierPhoneNumBox.Focus();
-                return;
-            }
-            else
-            {
-                phoneAlertlbl.ForeColor = Color.Black;
-                Refresh();
-            }  
-            if (string.IsNullOrEmpty(supplierAddress))
-            {
-                addressAlert.Visible = true;
-                supplierAddressBox.Focus();
-                return;
-            }
-            else
-            {
-                addressAlert.Visible = false;
-                Refresh();
-            }
-
-            if (string.IsNullOrEmpty(supplierContactName))
-            {
-                contactPersonAlert.Visible = true;
-                contactPersonAlert.Focus();
-                return;
-            }
-            else
-            {
-                contactPersonAlert.Visible = false;
                 Refresh();
             }
             if (programMethod.createSupplier(supplierCompanyName, supplierMail, supplierPhoneNum, supplierAddress, supplierContactName, products))

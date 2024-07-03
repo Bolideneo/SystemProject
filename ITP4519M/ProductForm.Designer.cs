@@ -76,6 +76,7 @@
             serialNumNote = new Label();
             priceNote2 = new Label();
             priceNote = new Label();
+            PativeNote = new Label();
             SuspendLayout();
             // 
             // prudctCategorylbl
@@ -138,7 +139,7 @@
             // 
             productStatusbox.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 136);
             productStatusbox.FormattingEnabled = true;
-            productStatusbox.Items.AddRange(new object[] { "Available", "Re-Order", "Danger", "Out Of Stock" });
+            productStatusbox.Items.AddRange(new object[] { "Available", "Re-Order", "Danger", "Out-Of-Stock" });
             productStatusbox.Location = new Point(185, 495);
             productStatusbox.Margin = new Padding(5, 3, 5, 3);
             productStatusbox.Name = "productStatusbox";
@@ -547,11 +548,11 @@
             serialNumNote.AutoSize = true;
             serialNumNote.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             serialNumNote.ForeColor = Color.Red;
-            serialNumNote.Location = new Point(17, 631);
+            serialNumNote.Location = new Point(16, 631);
             serialNumNote.Name = "serialNumNote";
-            serialNumNote.Size = new Size(774, 25);
+            serialNumNote.Size = new Size(790, 25);
             serialNumNote.TabIndex = 62;
-            serialNumNote.Text = "Note: Serial number must be exactly 6 characters long and can only contain letters and numbers!";
+            serialNumNote.Text = "Note: Serial number must be less than 7 characters long and can only contain letters and numbers!";
             // 
             // priceNote2
             // 
@@ -575,12 +576,24 @@
             priceNote.TabIndex = 64;
             priceNote.Text = "Note: Unit price and cost price must be valid decimal numbers!";
             // 
+            // PativeNote
+            // 
+            PativeNote.AutoSize = true;
+            PativeNote.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            PativeNote.ForeColor = Color.Red;
+            PativeNote.Location = new Point(464, 507);
+            PativeNote.Name = "PativeNote";
+            PativeNote.Size = new Size(281, 25);
+            PativeNote.TabIndex = 65;
+            PativeNote.Text = "Note: Please input Pative Number!";
+            // 
             // ProductForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(816, 742);
+            Controls.Add(PativeNote);
             Controls.Add(priceNote);
             Controls.Add(priceNote2);
             Controls.Add(serialNumNote);
@@ -627,8 +640,8 @@
             Controls.Add(productNamebox);
             Controls.Add(label3);
             Controls.Add(prudctCategorylbl);
-            Controls.Add(stockAddProuctbtn);
             Controls.Add(stockEditProuctbtn);
+            Controls.Add(stockAddProuctbtn);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(5, 4, 5, 4);
             Name = "ProductForm";
@@ -693,6 +706,7 @@
         private Label serialNumNote;
         private Label priceNote2;
         private Label priceNote;
+        private Label PativeNote;
     }
 }
 

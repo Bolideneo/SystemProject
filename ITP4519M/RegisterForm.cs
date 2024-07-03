@@ -171,7 +171,7 @@ namespace ITP4519M
                 usernameAlertBox.Visible = true;
                 isWrongFormat_username = true;
                 registerPasswordAgainBox.Focus();
-                Refresh();
+                return;
                 //registerUsernameBox.Focus();
                 //return;
             }
@@ -191,7 +191,7 @@ namespace ITP4519M
                 displaynameAlertBox.Visible = true;
                 registerDisplaynameBox.Focus();
                 // registerUsernameBox.Focus();
-                Refresh();
+                return;
                 //return;
             }
             else
@@ -208,7 +208,7 @@ namespace ITP4519M
                 passwordAlertBox.Visible = true;
                 isWrongFormat_password = true;
                 registerPasswordBox.Focus();
-                Refresh();
+                return;
             }
             else
             {
@@ -223,7 +223,7 @@ namespace ITP4519M
                 passwordAgainAlertBox.Visible = true;
                 isWrongFormat_passwordAgain = true;
                 registerPasswordAgainBox.Focus();
-                Refresh();
+                return;
             }
             else
             {
@@ -243,7 +243,34 @@ namespace ITP4519M
                     Refresh();
                 }
             }
-
+            if (string.IsNullOrEmpty(email) || !IsValidEmail(email))
+            {
+                emailAlertlbl.ForeColor = Color.Red;
+                mailAlertBox.Visible = true;
+                isWrongFormat_mail = true;
+                mailBox.Focus();
+                return;
+            }
+            else
+            {
+                emailAlertlbl.Visible = false;
+                isWrongFormat_mail = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(phoneNum) || !IsValidPhoneNumber(phoneNum))
+            {
+                phoneAlertlbl.ForeColor = Color.Red;
+                phoneAlertBox.Visible = true;
+                isWrongFormat_phone = true;
+                phoneNumBox.Focus();
+                return;
+            }
+            else
+            {
+                phoneAlertlbl.Visible = false;
+                isWrongFormat_phone = false;
+                Refresh();
+            }
             if (string.IsNullOrEmpty(title))
             {
                 titleAlertlbl.Visible = true;
@@ -259,47 +286,17 @@ namespace ITP4519M
                 Refresh();
             }
 
-            if (string.IsNullOrEmpty(email) || !IsValidEmail(email))
-            {
-                emailAlertlbl.ForeColor = Color.Red;
-                mailAlertBox.Visible = true;
-                isWrongFormat_mail = true;
-                mailBox.Focus();
-                Refresh();
-            }
-            else
-            {
-                emailAlertlbl.Visible = false;
-                isWrongFormat_mail = false;
-                Refresh();
-            }
-
-            if (string.IsNullOrEmpty(phoneNum) || !IsValidPhoneNumber(phoneNum))
-            {
-                phoneAlertlbl.ForeColor = Color.Red;
-                phoneAlertBox.Visible = true;
-                isWrongFormat_phone = true;
-                phoneNumBox.Focus();
-                Refresh();
-            }
-            else
-            {
-                phoneAlertlbl.Visible = false;
-                isWrongFormat_phone = false;
-                Refresh();
-            }
-
             if (string.IsNullOrEmpty(department))
             {
                 departBox.BorderColor = Color.Red;
                 departAlertlbl.Visible = true;
                 isWrongFormat_department = true;
                 departBox.Focus();
-                Refresh();
+                return;
             }
             else
             {
-                departBox.BorderColor = Color.Black;
+                departBox.BorderColor = Color.SteelBlue;
                 departAlertlbl.Visible = false;
                 isWrongFormat_department = false;
                 departBox.Focus();
@@ -426,88 +423,143 @@ namespace ITP4519M
             string email = mailBox.Text.Trim();
             string department = departBox.GetItemText(this.departBox.SelectedItem);
 
+
             if (string.IsNullOrEmpty(username))
             {
-                MessageBox.Show("Please enter a username.");
-                registerUsernameBox.Focus();
+                //MessageBox.Show("Please enter a username.");
+                usernameAlertlbl.Visible = true;
+                usernameAlertBox.Visible = true;
+                isWrongFormat_username = true;
+                registerPasswordAgainBox.Focus();
                 return;
+                //registerUsernameBox.Focus();
+                //return;
+            }
+            else
+            {
+                usernameAlertlbl.Visible = false;
+                usernameAlertBox.Visible = false;
+                isWrongFormat_username = false;
+                Refresh();
             }
 
             if (string.IsNullOrEmpty(displayName))
             {
-                MessageBox.Show("Please enter a display name.");
+                //MessageBox.Show("Please enter a display name.");
+                displaynameAlertlbl.Visible = true;
+                isWrongFormat_displayname = true;
+                displaynameAlertBox.Visible = true;
+                registerDisplaynameBox.Focus();
+                // registerUsernameBox.Focus();
+                return;
+                //return;
+            }
+            else
+            {
+                displaynameAlertlbl.Visible = false;
+                displaynameAlertBox.Visible = false;
+                isWrongFormat_displayname = false;
+                Refresh();
+            }
+
+            if (string.IsNullOrEmpty(password) || !IsPasswordValid(password))
+            {
+                passwordNotelbl.ForeColor = Color.Red;
+                passwordAlertBox.Visible = true;
+                isWrongFormat_password = true;
                 registerPasswordBox.Focus();
                 return;
             }
-
-            if (string.IsNullOrEmpty(password))
+            else
             {
-                MessageBox.Show("Please enter a password.");
-                registerPasswordBox.Focus();
-                return;
+                passwordAlertBox.Visible = false;
+                isWrongFormat_password = false;
+                Refresh();
             }
 
-            if (string.IsNullOrEmpty(confirmPassword))
+            if (string.IsNullOrEmpty(confirmPassword) || !IsPasswordValid(confirmPassword))
             {
-                MessageBox.Show("Please confirm your password.");
+                passwordNotelbl.ForeColor = Color.Red;
+                passwordAgainAlertBox.Visible = true;
+                isWrongFormat_passwordAgain = true;
                 registerPasswordAgainBox.Focus();
                 return;
             }
-
-            if (string.IsNullOrEmpty(title))
+            else
             {
-                MessageBox.Show("Please enter a title.");
-                titleBox.Focus();
-                return;
+                if (password != confirmPassword)
+                {
+                    passwordNotelbl.Text = "Passwords do not match!";
+                    passwordAgainAlertBox.Visible = true;
+                    passwordNotelbl.ForeColor = Color.Red;
+                    isWrongFormat_passwordAgain = true;
+                    registerPasswordAgainBox.Focus();
+                    Refresh();
+                }
+                else
+                {
+                    passwordAgainAlertBox.Visible = false;
+                    isWrongFormat_passwordAgain = false;
+                    Refresh();
+                }
             }
-
-            if (string.IsNullOrEmpty(email))
+            if (string.IsNullOrEmpty(email) || !IsValidEmail(email))
             {
-                MessageBox.Show("Please enter an email address.");
+                emailAlertlbl.ForeColor = Color.Red;
+                mailAlertBox.Visible = true;
+                isWrongFormat_mail = true;
                 mailBox.Focus();
                 return;
             }
-
-            if (string.IsNullOrEmpty(phoneNum))
+            else
             {
-                MessageBox.Show("Please enter a phone number.");
+                emailAlertlbl.Visible = false;
+                isWrongFormat_mail = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(phoneNum) || !IsValidPhoneNumber(phoneNum))
+            {
+                phoneAlertlbl.ForeColor = Color.Red;
+                phoneAlertBox.Visible = true;
+                isWrongFormat_phone = true;
                 phoneNumBox.Focus();
                 return;
+            }
+            else
+            {
+                phoneAlertlbl.Visible = false;
+                isWrongFormat_phone = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(title))
+            {
+                titleAlertlbl.Visible = true;
+                titleAlertBox.Visible = true;
+                isWrongFormat_title = true;
+                titleBox.Focus();
+                Refresh();
+            }
+            else
+            {
+                titleAlertlbl.Visible = false;
+                isWrongFormat_title = false;
+                Refresh();
             }
 
             if (string.IsNullOrEmpty(department))
             {
-                MessageBox.Show("Please select a department.");
+                departBox.BorderColor = Color.Red;
+                departAlertlbl.Visible = true;
+                isWrongFormat_department = true;
                 departBox.Focus();
                 return;
             }
-
-            if (!IsPasswordValid(password))
+            else
             {
-                MessageBox.Show("Password must be at least 8 characters long with uppercase, lowercase, digit, and special character.");
-                registerPasswordBox.Text = "";
-                registerPasswordAgainBox.Text = "";
-                return;
-            }
-
-            if (password != confirmPassword)
-            {
-                MessageBox.Show("Passwords do not match!");
-                registerPasswordBox.Text = "";
-                registerPasswordAgainBox.Text = "";
-                return;
-            }
-
-            if (!IsValidEmail(email))
-            {
-                MessageBox.Show("Please enter a valid email address.");
-                return;
-            }
-
-            if (!IsValidPhoneNumber(phoneNum))
-            {
-                MessageBox.Show("Please enter a valid phone number.");
-                return;
+                departBox.BorderColor = Color.SteelBlue;
+                departAlertlbl.Visible = false;
+                isWrongFormat_department = false;
+                departBox.Focus();
             }
 
             if (programMethod.updateUserInfor(userid, username, password, confirmPassword, displayName, department, title, phoneNum, email))
@@ -515,7 +567,6 @@ namespace ITP4519M
 
                 MessageBox.Show("Saved");
                 OperationCompleted?.Invoke(this, new EventArgs());
-
 
             }
             else

@@ -25,6 +25,7 @@ namespace ITP4519M
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
         private bool isFormDragging = false;
         private Point formStartPoint;
+        public event EventHandler OperationCompleted;
 
 
         public ProductForm(OperationMode mode)
@@ -47,10 +48,15 @@ namespace ITP4519M
             serialNumAlert.Visible = false;
             warehouseAlert.Visible = false;
             productNameAlert.Visible = false;
+            serialNumNote.Visible = false;
+            priceNote.Visible= false;
+            priceNote2.Visible= false;
+            PativeNote.Visible = false;
             switch (_mode)
             {
                 case OperationMode.View:
                     stockAddProuctbtn.Visible = false;
+                    stockEditProuctbtn.Visible=false;
                     SetReadOnly(true);
 
                     break;
@@ -183,9 +189,10 @@ namespace ITP4519M
             string productDanger = productDangerbox.Text.Trim();
             string productStatus = productStatusbox.GetItemText(this.productStatusbox.SelectedItem);
 
-            if (string.IsNullOrEmpty(productName)) {
+            if (string.IsNullOrEmpty(productName))
+            {
                 productNameAlert.Visible = true;
-                Refresh();
+                return;
             }
             else
             {
@@ -195,7 +202,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productWarehouse))
             {
                 warehouseAlert.Visible = true;
-                Refresh();
+                return;
             }
             else
             {
@@ -205,7 +212,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productSerial))
             {
                 serialNumAlert.Visible = true;
-                Refresh();
+                return;
             }
             else
             {
@@ -215,7 +222,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productUnitPrice))
             {
                 unitPriceAlert.Visible = true;
-                Refresh();
+                return;
             }
             else
             {
@@ -225,23 +232,15 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productCost))
             {
                 costPriceAlert.Visible = true;
-                Refresh();
+                return;
             }
             else
             {
                 costPriceAlert.Visible = false;
                 Refresh();
             }
-            if (string.IsNullOrEmpty(productWeight))
-            {
-                weightAlert.Visible = true;
-                Refresh();
-            }
-            else
-            {
-                weightAlert.Visible = false;
-                Refresh();
-            }
+
+
             if (string.IsNullOrEmpty(productOutOfStock))
             {
                 outStockAlert.Visible = true;
@@ -262,26 +261,8 @@ namespace ITP4519M
                 inStockAlert.Visible = false;
                 Refresh();
             }
-            if (string.IsNullOrEmpty(productDemand))
-            {
-                demandAlert.Visible = true;
-                Refresh();
-            }
-            else
-            {
-                demandAlert.Visible = false;
-                Refresh();
-            } 
-            if (string.IsNullOrEmpty(productDescription))
-            {
-                descriptionAlert.Visible = true;
-                Refresh();
-            }
-            else
-            {
-                descriptionAlert.Visible = false;
-                Refresh();
-            }
+
+
             if (string.IsNullOrEmpty(productReOrder))
             {
                 reorderAlert.Visible = true;
@@ -295,11 +276,51 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productDanger))
             {
                 dangerQuanAlert.Visible = true;
-                Refresh();
+                return;
             }
             else
             {
                 dangerQuanAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(productDemand))
+            {
+                demandAlert.Visible = true;
+                Refresh();
+            }
+            else
+            {
+                demandAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(productWeight))
+            {
+                weightAlert.Visible = true;
+                Refresh();
+            }
+            else
+            {
+                weightAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(productDescription))
+            {
+                descriptionAlert.Visible = true;
+                Refresh();
+            }
+            else
+            {
+                descriptionAlert.Visible = false;
+                Refresh();
+            }
+            if (int.Parse(productWeight) < 0 || int.Parse(productOutOfStock) < 0 || int.Parse(productInStock) < 0 || int.Parse(productDemand) < 0 || int.Parse(productReOrder) < 0 || int.Parse(productDanger) < 0)
+            {
+                PativeNote.Visible = true;
+                return;
+            }
+            else
+            {
+                PativeNote.Visible = false;
                 Refresh();
             }
             if (!decimal.TryParse(productUnitPrice, out decimal unitPrice) || !decimal.TryParse(productCost, out decimal costPrice))
@@ -318,13 +339,14 @@ namespace ITP4519M
                 priceNote2.Visible = true;
                 return;
             }
-            else {
+            else
+            {
                 priceNote2.Visible = false;
                 Refresh();
             }
-            if (productSerial.Length != 6 || !System.Text.RegularExpressions.Regex.IsMatch(productSerial, @"^[a-zA-Z0-9]{6}$"))
+            if (productSerial.Length > 7 || !System.Text.RegularExpressions.Regex.IsMatch(productSerial, @"^[a-zA-Z0-9]{7}$"))
             {
-                serialNumNote.Visible= true;
+                serialNumNote.Visible = true;
                 return;
             }
             else
@@ -408,17 +430,18 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productName))
             {
                 productNameAlert.Visible = true;
-                Refresh();
+                return;
             }
             else
             {
                 productNameAlert.Visible = false;
                 Refresh();
             }
+
             if (string.IsNullOrEmpty(productWarehouse))
             {
                 warehouseAlert.Visible = true;
-                Refresh();
+                return;
             }
             else
             {
@@ -428,7 +451,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productSerial))
             {
                 serialNumAlert.Visible = true;
-                Refresh();
+                return;
             }
             else
             {
@@ -438,7 +461,7 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productUnitPrice))
             {
                 unitPriceAlert.Visible = true;
-                Refresh();
+                return;
             }
             else
             {
@@ -448,27 +471,19 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productCost))
             {
                 costPriceAlert.Visible = true;
-                Refresh();
+                return;
             }
             else
             {
                 costPriceAlert.Visible = false;
                 Refresh();
             }
-            if (string.IsNullOrEmpty(productWeight))
-            {
-                weightAlert.Visible = true;
-                Refresh();
-            }
-            else
-            {
-                weightAlert.Visible = false;
-                Refresh();
-            }
+
+
             if (string.IsNullOrEmpty(productOutOfStock))
             {
                 outStockAlert.Visible = true;
-                Refresh();
+                return;
             }
             else
             {
@@ -478,37 +493,19 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productInStock))
             {
                 inStockAlert.Visible = true;
-                Refresh();
+                return;
             }
             else
             {
                 inStockAlert.Visible = false;
                 Refresh();
             }
-            if (string.IsNullOrEmpty(productDemand))
-            {
-                demandAlert.Visible = true;
-                Refresh();
-            }
-            else
-            {
-                demandAlert.Visible = false;
-                Refresh();
-            }
-            if (string.IsNullOrEmpty(productDescription))
-            {
-                descriptionAlert.Visible = true;
-                Refresh();
-            }
-            else
-            {
-                descriptionAlert.Visible = false;
-                Refresh();
-            }
+
+
             if (string.IsNullOrEmpty(productReOrder))
             {
                 reorderAlert.Visible = true;
-                Refresh();
+                return;
             }
             else
             {
@@ -518,11 +515,51 @@ namespace ITP4519M
             if (string.IsNullOrEmpty(productDanger))
             {
                 dangerQuanAlert.Visible = true;
-                Refresh();
+                return;
             }
             else
             {
                 dangerQuanAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(productDemand))
+            {
+                demandAlert.Visible = true;
+                return;
+            }
+            else
+            {
+                demandAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(productWeight))
+            {
+                weightAlert.Visible = true;
+                return;
+            }
+            else
+            {
+                weightAlert.Visible = false;
+                Refresh();
+            }
+            if (string.IsNullOrEmpty(productDescription))
+            {
+                descriptionAlert.Visible = true;
+                return;
+            }
+            else
+            {
+                descriptionAlert.Visible = false;
+                Refresh();
+            }
+            if (int.Parse(productWeight) < 0 || int.Parse(productOutOfStock) < 0 || int.Parse(productInStock) < 0 || int.Parse(productDemand) < 0 || int.Parse(productReOrder) < 0 || int.Parse(productDanger) < 0)
+            {
+                PativeNote.Visible = true;
+                return;
+            }
+            else
+            {
+                PativeNote.Visible = false;
                 Refresh();
             }
             if (!decimal.TryParse(productUnitPrice, out decimal unitPrice) || !decimal.TryParse(productCost, out decimal costPrice))
@@ -546,7 +583,7 @@ namespace ITP4519M
                 priceNote2.Visible = false;
                 Refresh();
             }
-            if (productSerial.Length != 6 || !System.Text.RegularExpressions.Regex.IsMatch(productSerial, @"^[a-zA-Z0-9]{6}$"))
+            if (productSerial.Length > 7 || !System.Text.RegularExpressions.Regex.IsMatch(productSerial, @"^[a-zA-Z0-9]{7}$"))
             {
                 serialNumNote.Visible = true;
                 return;
@@ -555,6 +592,16 @@ namespace ITP4519M
             {
                 serialNumNote.Visible = false;
                 Refresh();
+            }
+            if (programMethod.updateProductinfo(productID, productName, productCategory, productWarehouse, productSerial, productUnitPrice, productCost, productWeight, productOutOfStock, productInStock, productReOrder, productDanger, productDemand, productDescription, productStatus))
+            {
+                MessageBox.Show("Product updated successfully.");
+                OperationCompleted?.Invoke(this, new EventArgs());
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Failed to update product.");
             }
         }
     }

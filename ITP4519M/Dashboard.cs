@@ -181,7 +181,6 @@ namespace ITP4519M
             programMethod = new ProgramMethod.ProgramMethod();
             closebtn.BringToFront();
             programMethod.CurrentUserIDAndName(LoginUserID, LoginUserName);
-            closebtn.BringToFront();
             OrderAccemblybtn.Size = new System.Drawing.Size(166, 56);
             contactsbtn.Size = new System.Drawing.Size(166, 56);
             outstandingOrderbtn.Size = new System.Drawing.Size(166, 56);
@@ -1096,6 +1095,7 @@ namespace ITP4519M
             ProductForm productForm = new ProductForm(OperationMode.New);
             productForm.StartPosition = FormStartPosition.CenterScreen;
             productForm.ShowDialog();
+            stockbtn.PerformClick();
         }
 
         private void userbtn_MouseEnter(object sender, EventArgs e)
@@ -1202,8 +1202,10 @@ namespace ITP4519M
                 ProductForm ProductForm = new ProductForm(OperationMode.Edit);
                 ProductForm.productEdit(productID);
                 ProductForm.ShowDialog();
-
+                
             }
+            stockbtn.PerformClick();
+            
         }
 
         private void GRNbtn_Click(object sender, EventArgs e)
