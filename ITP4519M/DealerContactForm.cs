@@ -33,9 +33,9 @@ namespace ITP4519M
         {
             dealerNamebtn.Visible = false;
             companyNameAlert.Visible = false;
-            mailAlert.Visible = false;
-            phoneAlertlbl.Visible = false;
+
             addressAlert.Visible = false;
+            regionAlert.Visible = false;
             switch (_mode)
             {
                 case OperationMode.Edit:
@@ -81,25 +81,38 @@ namespace ITP4519M
             }
             if (string.IsNullOrEmpty(dealerMail) || !IsValidEmail(dealerMail))
             {
-                mailAlert.Visible = true;
+                mailAlert.ForeColor = Color.Red;
                 dealerMailBox.Focus();
                 return;
             }
             else
             {
-                mailAlert.Visible = false;
+                mailAlert.ForeColor = Color.SteelBlue;
                 Refresh();
             }
             if (string.IsNullOrEmpty(dealerPhoneNum) || !IsValidPhoneNumber(dealerPhoneNum))
             {
-                phoneAlertlbl.Visible = true;
+                phoneAlertlbl.ForeColor = Color.Red;
                 DealerPhoneNumBox.Focus();
                 return;
             }
             else
             {
-                phoneAlertlbl.Visible = false;
+                phoneAlertlbl.ForeColor = Color.SteelBlue;
                 Refresh();
+            }
+            if (string.IsNullOrEmpty(dealerRegionNum))
+            {
+                regionAlert.Visible = true;
+                regionNumBox.Focus();
+                return;
+
+            }
+            else
+            {
+                regionAlert.Visible = false;
+                Refresh();
+
             }
             if (string.IsNullOrEmpty(dealerAddress))
             {
@@ -122,6 +135,7 @@ namespace ITP4519M
                 DealerPhoneNumBox.Text = "";
                 dealerAddressBox.Text = "";
                 OperationCompleted?.Invoke(this, new EventArgs());
+                this.Close();
             }
             else {
 
@@ -162,25 +176,38 @@ namespace ITP4519M
             }
             if (string.IsNullOrEmpty(dealerMail) || !IsValidEmail(dealerMail))
             {
-                mailAlert.Visible = true;
+                mailAlert.ForeColor = Color.Red;
                 dealerMailBox.Focus();
                 return;
             }
             else
             {
-                mailAlert.Visible = false;
+                mailAlert.ForeColor = Color.SteelBlue;
                 Refresh();
             }
             if (string.IsNullOrEmpty(dealerPhoneNum) || !IsValidPhoneNumber(dealerPhoneNum))
             {
-                phoneAlertlbl.Visible = true;
+                phoneAlertlbl.ForeColor = Color.Red;
                 DealerPhoneNumBox.Focus();
                 return;
             }
             else
             {
-                phoneAlertlbl.Visible = false;
+                phoneAlertlbl.ForeColor = Color.SteelBlue;
                 Refresh();
+            }
+            if (string.IsNullOrEmpty(dealerRegionNum))
+            {
+                regionAlert.Visible = true;
+                regionNumBox.Focus();
+                return;
+
+            }
+            else
+            {
+                regionAlert.Visible = false;
+                Refresh();
+
             }
             if (string.IsNullOrEmpty(dealerAddress))
             {
@@ -199,6 +226,7 @@ namespace ITP4519M
 
                 MessageBox.Show("Saved");
                 OperationCompleted?.Invoke(this, new EventArgs());
+                this.Close();
             }
             else
             {
