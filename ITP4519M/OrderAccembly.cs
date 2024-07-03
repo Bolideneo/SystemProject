@@ -30,6 +30,9 @@ namespace ITP4519M
         private int orderitemIndex = -1;
         private int SelectColumnIndex = 0;
         private OperationMode _mode;
+        private bool dragging = false;
+        private Point dragCursorPoint;
+        private Point dragFormPoint;
         private CheckBox HeaderCheckBox;
 
 
@@ -210,10 +213,14 @@ namespace ITP4519M
 
         private void saveOrderbtn_Click(object sender, EventArgs e)
         {
-            if (programMethod.createOrderAssembly(orderItemdata, orderAccemblyOrderItemdata, orderID))
+            if (programMethod.createOrderAssembly(orderItemdata, orderAccemblyOrderItemdata, orderID) && accemblyerrorlbl.Visible != true )
             {
                 MessageBox.Show("Order Pick Up Successfully");
                 this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Try again !");
             }
 
 
@@ -300,10 +307,12 @@ namespace ITP4519M
                 {
                     if (orderitemIndex > -1)
                     {
-
+                        // MessageBox.Show(orderitemIndex.ToString());
                         DataGridViewRow dvgDelRow = orderItemdata.Rows[orderitemIndex];
-                        orderItemdata.Rows.Remove(dvgDelRow);
+                        //orderItemdata.Rows.Remove(dvgDelRow);;
+                        orderItemdata.Rows.RemoveAt(orderitemIndex);
 
+                        //MessageBox.Show(orderitemIndex.ToString());
                     }
 
                     QuantityFollow = "";
@@ -315,12 +324,20 @@ namespace ITP4519M
                     else
                         orderitemIndex--;
 
-                    return;
                 }
-                orderItemdata["FollowQuantity", orderitemIndex].Value = QuantityFollow;
-                QuantityFollow = "";
                 //MessageBox.Show(orderitemIndex.ToString());
-
+                if (orderitemIndex > -1)
+                {
+                    orderItemdata["FollowQuantity", orderitemIndex].Value = QuantityFollow;
+                    QuantityFollow = "";
+                }
+                //orderItemdata["FollowQuantity", orderitemIndex].Value = QuantityFollow;
+                //QuantityFollow = "";
+                //MessageBox.Show(orderitemIndex.ToString());
+                //QuantityFollow = programMethod.calOrderItemQuantityFollow(orderItemdata, orderID);
+                //orderItemdata["FollowQuantity", orderitemIndex].Value = QuantityFollow;
+                //QuantityFollow = "";
+                //MessageBox.Show(orderitemIndex.ToString());
             }
 
             catch (Exception ex)
@@ -330,11 +347,34 @@ namespace ITP4519M
 
         }
 
+
+
         private void orderItemdata_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            if(int.Parse(orderItemdata.Rows[e.RowIndex].Cells[2].Value.ToString()) < 0)
+            {
+                Font boldFont = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+                
+                orderItemdata.Rows[e.RowIndex].Cells[2].Style.ForeColor = Color.Red;
+                accemblyerrorlbl.Visible = true;
+                return;
 
+            }
+            else
+            {
+                accemblyerrorlbl.Visible = false;
+            }
             //int.Parse(orderItemdata["FollowQuantity", e.RowIndex].Value.ToString());
             int quantityFollow = int.Parse(programMethod.getOrderItemFollowQuantity(orderID, orderItemdata.Rows[e.RowIndex].Cells[0].Value.ToString()));
+            if(int.Parse(orderItemdata.Rows[e.RowIndex].Cells[2].Value.ToString()) > quantityFollow)
+            {
+                accemblyerrorlbl.Visible = true;
+                return;
+            }
+            else
+            {
+                accemblyerrorlbl.Visible = false;
+            }
             int result = quantityFollow - int.Parse(orderItemdata.Rows[e.RowIndex].Cells[2].Value.ToString());
             orderItemdata.Rows[e.RowIndex].Cells[3].Value = result.ToString();
         }
@@ -403,6 +443,7 @@ namespace ITP4519M
                         {
                             DataGridViewRow dgvDelRow = orderItemdata.Rows[j];
                             orderItemdata.Rows.Remove(dgvDelRow);
+                            orderitemIndex--;
                             count++;
                         }
 
@@ -430,7 +471,35 @@ namespace ITP4519M
             foreach (DataGridViewRow row in orderAccemblyOrderItemdata.Rows)
             {
                 DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)row.Cells[0];
-                chk.Value = !(chk.Value == null ? false : (bool)chk.Value); 
+                chk.Value = !(chk.Value == null ? false : (bool)chk.Value);
+            }
+        }
+
+        private void orderItemdata_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            orderItemdata.RowsAdded += orderItemdata_RowsAdded;
+        }
+
+
+        private void Dashboard_MouseDown(object sender, MouseEventArgs e)
+        {
+            dragging = true;
+            dragCursorPoint = Control.MousePosition;
+            dragFormPoint = this.Location;
+        }
+
+        private void Dashboard_MouseUp(object sender, MouseEventArgs e)
+        {
+            dragging = false;
+
+        }
+
+        private void Dashboard_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (dragging)
+            {
+                Point diff = Point.Subtract(Control.MousePosition, new Size(dragCursorPoint));
+                this.Location = Point.Add(dragFormPoint, new Size(diff));
             }
         }
     }

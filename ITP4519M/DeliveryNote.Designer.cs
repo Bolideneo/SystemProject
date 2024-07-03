@@ -35,9 +35,6 @@ namespace ITP4519M
             DelFormTotalOfWeight = new Label();
             DelFormDeliveryDate = new Label();
             DelFormDeliveryAddress = new Label();
-            DelFormQtyDelivered = new Label();
-            DelFormPerQty = new Label();
-            DelFormQtyFollow = new Label();
             deliveryformData = new DataGridView();
             ProductID = new DataGridViewTextBoxColumn();
             ProductName = new DataGridViewTextBoxColumn();
@@ -61,9 +58,6 @@ namespace ITP4519M
             deliveryDatebox = new Label();
             deliveryOrderidbox = new Label();
             deliveryWeightBox = new Label();
-            deliveryQuqntiyFollow = new Label();
-            deliveryQuantityDeliverdbox = new Label();
-            deliveryPreQtyBox = new Label();
             ((System.ComponentModel.ISupportInitialize)deliveryformData).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             SuspendLayout();
@@ -73,7 +67,7 @@ namespace ITP4519M
             DelFormOrderID.AutoSize = true;
             DelFormOrderID.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             DelFormOrderID.ForeColor = Color.DarkOrange;
-            DelFormOrderID.Location = new Point(443, 128);
+            DelFormOrderID.Location = new Point(433, 171);
             DelFormOrderID.Name = "DelFormOrderID";
             DelFormOrderID.Size = new Size(96, 18);
             DelFormOrderID.TabIndex = 9;
@@ -84,7 +78,7 @@ namespace ITP4519M
             DelFormDeliveryID.AutoSize = true;
             DelFormDeliveryID.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             DelFormDeliveryID.ForeColor = Color.DarkOrange;
-            DelFormDeliveryID.Location = new Point(443, 154);
+            DelFormDeliveryID.Location = new Point(430, 205);
             DelFormDeliveryID.Name = "DelFormDeliveryID";
             DelFormDeliveryID.Size = new Size(99, 18);
             DelFormDeliveryID.TabIndex = 9;
@@ -95,7 +89,7 @@ namespace ITP4519M
             DelFormTotalOfWeight.AutoSize = true;
             DelFormTotalOfWeight.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             DelFormTotalOfWeight.ForeColor = Color.DarkOrange;
-            DelFormTotalOfWeight.Location = new Point(409, 209);
+            DelFormTotalOfWeight.Location = new Point(396, 278);
             DelFormTotalOfWeight.Name = "DelFormTotalOfWeight";
             DelFormTotalOfWeight.Size = new Size(133, 18);
             DelFormTotalOfWeight.TabIndex = 17;
@@ -106,7 +100,7 @@ namespace ITP4519M
             DelFormDeliveryDate.AutoSize = true;
             DelFormDeliveryDate.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             DelFormDeliveryDate.ForeColor = Color.DarkOrange;
-            DelFormDeliveryDate.Location = new Point(424, 181);
+            DelFormDeliveryDate.Location = new Point(411, 238);
             DelFormDeliveryDate.Name = "DelFormDeliveryDate";
             DelFormDeliveryDate.Size = new Size(118, 18);
             DelFormDeliveryDate.TabIndex = 12;
@@ -122,40 +116,6 @@ namespace ITP4519M
             DelFormDeliveryAddress.Size = new Size(128, 24);
             DelFormDeliveryAddress.TabIndex = 18;
             DelFormDeliveryAddress.Text = "Delivery To :";
-            // 
-            // DelFormQtyDelivered
-            // 
-            DelFormQtyDelivered.AutoSize = true;
-            DelFormQtyDelivered.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            DelFormQtyDelivered.ForeColor = Color.DarkOrange;
-            DelFormQtyDelivered.Location = new Point(396, 265);
-            DelFormQtyDelivered.Name = "DelFormQtyDelivered";
-            DelFormQtyDelivered.Size = new Size(146, 18);
-            DelFormQtyDelivered.TabIndex = 17;
-            DelFormQtyDelivered.Text = "Quantity Deliverd :";
-            // 
-            // DelFormPerQty
-            // 
-            DelFormPerQty.AutoSize = true;
-            DelFormPerQty.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            DelFormPerQty.ForeColor = Color.DarkOrange;
-            DelFormPerQty.Location = new Point(401, 294);
-            DelFormPerQty.Name = "DelFormPerQty";
-            DelFormPerQty.Size = new Size(141, 36);
-            DelFormPerQty.TabIndex = 17;
-            DelFormPerQty.Text = "Pervious Quantity\r\nUnder Delivered :";
-            DelFormPerQty.Click += label5_Click;
-            // 
-            // DelFormQtyFollow
-            // 
-            DelFormQtyFollow.AutoSize = true;
-            DelFormQtyFollow.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            DelFormQtyFollow.ForeColor = Color.DarkOrange;
-            DelFormQtyFollow.Location = new Point(407, 236);
-            DelFormQtyFollow.Name = "DelFormQtyFollow";
-            DelFormQtyFollow.Size = new Size(135, 18);
-            DelFormQtyFollow.TabIndex = 17;
-            DelFormQtyFollow.Text = "Quantity Follow :";
             // 
             // deliveryformData
             // 
@@ -350,7 +310,7 @@ namespace ITP4519M
             // 
             deliveryIDbox.AutoSize = true;
             deliveryIDbox.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryIDbox.Location = new Point(548, 156);
+            deliveryIDbox.Location = new Point(540, 205);
             deliveryIDbox.Name = "deliveryIDbox";
             deliveryIDbox.Size = new Size(90, 16);
             deliveryIDbox.TabIndex = 84;
@@ -361,7 +321,7 @@ namespace ITP4519M
             // 
             deliveryDatebox.AutoSize = true;
             deliveryDatebox.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryDatebox.Location = new Point(548, 184);
+            deliveryDatebox.Location = new Point(540, 236);
             deliveryDatebox.Name = "deliveryDatebox";
             deliveryDatebox.Size = new Size(106, 16);
             deliveryDatebox.TabIndex = 85;
@@ -371,7 +331,7 @@ namespace ITP4519M
             // 
             deliveryOrderidbox.AutoSize = true;
             deliveryOrderidbox.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryOrderidbox.Location = new Point(548, 128);
+            deliveryOrderidbox.Location = new Point(538, 171);
             deliveryOrderidbox.Name = "deliveryOrderidbox";
             deliveryOrderidbox.Size = new Size(122, 16);
             deliveryOrderidbox.TabIndex = 86;
@@ -381,42 +341,11 @@ namespace ITP4519M
             // 
             deliveryWeightBox.AutoSize = true;
             deliveryWeightBox.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryWeightBox.Location = new Point(550, 209);
+            deliveryWeightBox.Location = new Point(538, 278);
             deliveryWeightBox.Name = "deliveryWeightBox";
             deliveryWeightBox.Size = new Size(120, 16);
             deliveryWeightBox.TabIndex = 87;
             deliveryWeightBox.Text = "deliveryWeightBox";
-            // 
-            // deliveryQuqntiyFollow
-            // 
-            deliveryQuqntiyFollow.AutoSize = true;
-            deliveryQuqntiyFollow.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryQuqntiyFollow.Location = new Point(548, 238);
-            deliveryQuqntiyFollow.Name = "deliveryQuqntiyFollow";
-            deliveryQuqntiyFollow.Size = new Size(139, 16);
-            deliveryQuqntiyFollow.TabIndex = 88;
-            deliveryQuqntiyFollow.Text = "deliveryQuqntiyFollow";
-            // 
-            // deliveryQuantityDeliverdbox
-            // 
-            deliveryQuantityDeliverdbox.AutoSize = true;
-            deliveryQuantityDeliverdbox.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryQuantityDeliverdbox.Location = new Point(544, 267);
-            deliveryQuantityDeliverdbox.Name = "deliveryQuantityDeliverdbox";
-            deliveryQuantityDeliverdbox.Size = new Size(176, 16);
-            deliveryQuantityDeliverdbox.TabIndex = 89;
-            deliveryQuantityDeliverdbox.Text = "deliveryQuantityDeliverdbox";
-            deliveryQuantityDeliverdbox.Click += deliveryQuantityDeliverdbox_Click;
-            // 
-            // deliveryPreQtyBox
-            // 
-            deliveryPreQtyBox.AutoSize = true;
-            deliveryPreQtyBox.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliveryPreQtyBox.Location = new Point(548, 314);
-            deliveryPreQtyBox.Name = "deliveryPreQtyBox";
-            deliveryPreQtyBox.Size = new Size(119, 16);
-            deliveryPreQtyBox.TabIndex = 90;
-            deliveryPreQtyBox.Text = "deliveryPreQtyBox";
             // 
             // DeliveryForm
             // 
@@ -424,9 +353,6 @@ namespace ITP4519M
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(732, 776);
-            Controls.Add(deliveryPreQtyBox);
-            Controls.Add(deliveryQuantityDeliverdbox);
-            Controls.Add(deliveryQuqntiyFollow);
             Controls.Add(deliveryWeightBox);
             Controls.Add(deliveryOrderidbox);
             Controls.Add(deliveryDatebox);
@@ -443,9 +369,6 @@ namespace ITP4519M
             Controls.Add(DelFormDeliveryID);
             Controls.Add(DelFormDeliveryDate);
             Controls.Add(DelFormTotalOfWeight);
-            Controls.Add(DelFormQtyFollow);
-            Controls.Add(DelFormQtyDelivered);
-            Controls.Add(DelFormPerQty);
             Controls.Add(DelFormDeliveryAddress);
             Controls.Add(deliveryExitbtn);
             Controls.Add(deliveryPrintbtn);
@@ -467,9 +390,6 @@ namespace ITP4519M
         private Label DelFormDeliveryID;
         private Label DelFormDeliveryDate;
         private Label DelFormTotalOfWeight;
-        private Label DelFormQtyFollow;
-        private Label DelFormQtyDelivered;
-        private Label DelFormPerQty;
         private Label DelFormDeliveryAddress;
         private DataGridView deliveryformData;
         private Label label13;
@@ -494,8 +414,5 @@ namespace ITP4519M
         private Label deliveryDatebox;
         private Label deliveryOrderidbox;
         private Label deliveryWeightBox;
-        private Label deliveryQuqntiyFollow;
-        private Label deliveryQuantityDeliverdbox;
-        private Label deliveryPreQtyBox;
     }
 }

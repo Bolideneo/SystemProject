@@ -98,6 +98,7 @@ namespace ITP4519M
         private int OrderPageIndex = 1;
         private int OrderTotalPage = 0;
         //Paging
+        private bool IsZoomIN = false;
         private Button currentButton;
         private string userID;
         private string LoginUserID;
@@ -646,6 +647,8 @@ namespace ITP4519M
             editDealerbtn.Visible = true;
             searchSupplierbtn.Visible = false;
             searchDealerbtn.Visible = true;
+            contactDealerclearbtn.Visible = true;
+            contactSupplierCleaerbtn.Visible = false;
             // contactOverallLabel();
             dealerDatalbl.Text = DealerRowCount.ToString();
             supplierDatalbl.Text = SupplierRowCount.ToString();
@@ -671,6 +674,8 @@ namespace ITP4519M
             editDealerbtn.Visible = true;
             searchSupplierbtn.Visible = false;
             searchDealerbtn.Visible = true;
+            contactDealerclearbtn.Visible = true;
+            contactSupplierCleaerbtn.Visible = false;
             currentDataSourceType = "Dealer";
             // contactOverallLabel();
             dealerDatalbl.Text = DealerRowCount.ToString();
@@ -694,6 +699,8 @@ namespace ITP4519M
             editSupplierbtn.Visible = true;
             searchSupplierbtn.Visible = true;
             searchDealerbtn.Visible = false;
+            contactDealerclearbtn.Visible = false;
+            contactSupplierCleaerbtn.Visible = true;
             currentDataSourceType = "Supplier";
             // contactOverallLabel();
             dealerDatalbl.Text = DealerRowCount.ToString();
@@ -726,7 +733,7 @@ namespace ITP4519M
             }
             else
             {
-                OrderDetails salesOrder = new OrderDetails(OperationMode.View);
+                OrderDetailsForViewAndEdit salesOrder = new OrderDetailsForViewAndEdit(OperationMode.View);
                 salesOrder.orderView(orderID, dealerID);
                 salesOrder.ShowDialog();
 
@@ -750,7 +757,7 @@ namespace ITP4519M
             }
             else
             {
-                OrderDetails salesOrder = new OrderDetails(OperationMode.Edit);
+                OrderDetailsForViewAndEdit salesOrder = new OrderDetailsForViewAndEdit(OperationMode.Edit);
                 salesOrder.orderEdit(orderID, dealerID);
                 salesOrder.ShowDialog();
             }
@@ -2278,8 +2285,42 @@ namespace ITP4519M
 
         private void button8_Click(object sender, EventArgs e)
         {
-            stockData.Location = new Point(13, 35);
-            stockData.Size = new Size(1050, 730);
+
+            if (!IsZoomIN)
+            {   //Zoom IN
+                stockData.Location = new Point(16, 53);
+                stockData.Size = new Size(1063, 718);
+                IsZoomIN = true;
+                stockSummarypnl.Visible = false;
+                panel54.Visible = false;
+                editProductbtn.Visible = false;
+                viewProductbtn.Visible = false;
+                delProductbtn.Visible = false;
+                stockSearchBox.Visible = false;
+                panel8.Visible = false;
+                panel55.Visible = false;
+                stockData.DataSource = programMethod.overviewStockinfo();
+                stockData.ScrollBars = ScrollBars.Both;
+
+            }
+            else
+            {
+                stockData.Location = new Point(29, 302);
+                stockData.Size = new Size(1045, 405);
+                IsZoomIN = false;
+
+                stockSummarypnl.Visible = true;
+                panel54.Visible = true;
+                editProductbtn.Visible = true;
+                viewProductbtn.Visible = true;
+                delProductbtn.Visible = true;
+                stockSearchBox.Visible = true;
+                panel8.Visible = true;
+                panel55.Visible = false;
+                stockbtn.PerformClick();
+
+            }
+
         }
 
         private void FirstpageBtnClick(DataGridView data, string type, int PgSize, int PageIndex, Label lbl, int rowCount)
@@ -2720,6 +2761,23 @@ namespace ITP4519M
         private void panel56_Paint_1(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void panel9_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void contactSupplierCleaerbtn_Click(object sender, EventArgs e)
+        {
+            suppliersData.DataSource = programMethod.GetSupplierCurrentRecords(SupplierPageIndex, SupplierPgSize);
+            SetRowHeights(suppliersData, SupplierPgSize);
+        }
+
+        private void contactDealerclearbtn_Click(object sender, EventArgs e)
+        {
+            dealersData.DataSource = programMethod.GetDealerCurrentRecords(DealerPageIndex, DealerPgSize);
+            SetRowHeights(dealersData, DealerPgSize);
         }
     }
 }

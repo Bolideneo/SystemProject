@@ -38,10 +38,10 @@ namespace ITP4519M
             deliveryOrderidbox.DataSource = programMethod.getOrderForDelivery();
             deliveryOrderidbox.ValueMember = "OrderID";
 
-            deliveryOutstandingbox.SelectedIndex = -1;
-            deliveryOutstandingbox.Text = "Select an item";
-            deliveryOutstandingbox.DataSource = programMethod.getOrderForOutstanding();
-            deliveryOutstandingbox.ValueMember = "OutstandingOrderID";
+            //deliveryOutstandingbox.SelectedIndex = -1;
+            //deliveryOutstandingbox.Text = "Select an item";
+            //deliveryOutstandingbox.DataSource = programMethod.getOrderForOutstanding();
+            //deliveryOutstandingbox.ValueMember = "OutstandingOrderID";
 
             switch (_mode)
             {
@@ -110,18 +110,6 @@ namespace ITP4519M
                 Refresh();
             }
 
-            if (string.IsNullOrWhiteSpace(deliveryOutstandingbox.Text))
-            {
-                outstandingIDAlertlbl.Visible = true;
-
-                deliveryOutstandingbox.Focus();
-                Refresh();
-            }
-            else
-            {
-                outstandingIDAlertlbl.Visible = false;
-                Refresh();
-            }
 
             try
             {

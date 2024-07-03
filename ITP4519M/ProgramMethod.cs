@@ -530,19 +530,43 @@ namespace ProgramMethod
                 }
             }
 
-        public string getProductWeight(string orderID)
+        //public string getProductWeight(string orderID)
+        //{
+
+        //    DataTable table = dataBaseMethod.getProductWeight(orderID);
+        //    int temp = 0;
+        //    for (int i = 0; i < table.Rows.Count; i++)
+
+        //    {
+        //        temp = temp + (int.Parse(table.Rows[i]["Weight"].ToString()) * int.Parse(table.Rows[i]["OrderedQuantity"].ToString()));
+
+        //    }
+
+        //    return temp.ToString();
+        //}
+
+        public string GetProductWeight(string orderID)
         {
-
             DataTable table = dataBaseMethod.getProductWeight(orderID);
-            int temp = 0;
-            for (int i = 0; i < table.Rows.Count; i++)
+            float totalWeight = 0f;
 
+            foreach (DataRow row in table.Rows)
             {
-                temp = temp + (int.Parse(table.Rows[i]["Weight"].ToString()) * int.Parse(table.Rows[i]["OrderedQuantity"].ToString()));
-
+                try
+                {
+                    float weight = float.Parse(row["Weight"].ToString());
+                    float orderedQuantity = float.Parse(row["OrderedQuantity"].ToString());
+                    totalWeight += weight * orderedQuantity;
+                }
+                catch (FormatException ex)
+                {
+                    // Handle potential parsing errors
+                    Console.WriteLine($"Error parsing weight or ordered quantity: {ex.Message}");
+                    // Alternatively, you could log the error or throw an exception
+                }
             }
 
-            return temp.ToString();
+            return totalWeight.ToString();
         }
 
         //Search DealerID
@@ -836,16 +860,19 @@ namespace ProgramMethod
             try
             {
                 string deliveryID = "DE" + (int.Parse(dataBaseMethod.getDeliveryID()) + 1).ToString("00000");
+
+                if (dataBaseMethod.createDelivery(deliveryID, orderID, deliveryDate, "Shipped"))
+                {
+                    LogCreateDeliveryNote(LoginUserID, LoginUserName, deliveryID);
+                }
                 int orderCount = dataBaseMethod.getMaxUpdateCount(orderID);
-                MessageBox.Show(orderCount.ToString());
                 DataTable dt = dataBaseMethod.getOrderItemDetailForDelivery(orderID, orderCount);
-                MessageBox.Show(dt.Rows.Count.ToString());
                 //Count number of order and assign the number + 1 to orderitem_audit(num)
                 if (!dataBaseMethod.checkDeliveryOrderIDExist(orderID))
                 {
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
-                        MessageBox.Show("yes");
+ 
                         dataBaseMethod.createDeliveryNoteItem(deliveryID, dt.Rows[i]["ProductID"].ToString(), "N/A", dt.Rows[i]["ActualDespatchQuantity"].ToString(), dt.Rows[i]["QuantityFollow"].ToString());
 
                     }
@@ -854,7 +881,6 @@ namespace ProgramMethod
                 {
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
-                        MessageBox.Show("No");
                         dataBaseMethod.createDeliveryNoteItem(deliveryID, dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["PreQtyDelivered"].ToString(), dt.Rows[i]["ActualDespatchQuantity"].ToString(), dt.Rows[i]["QuantityFollow"].ToString());
 
                     }
@@ -866,22 +892,23 @@ namespace ProgramMethod
                     LogCreateInvoice(LoginUserID,invoiceID,orderID);
                 }
 
-                if (dataBaseMethod.createDelivery(deliveryID, orderID, deliveryDate, "Shipped"))
-                {
-                    LogCreateDeliveryNote(LoginUserID, LoginUserName, deliveryID);
-                    return true;
+                //if (dataBaseMethod.createDelivery(deliveryID, orderID, deliveryDate, "Shipped"))
+                //{
+                //    LogCreateDeliveryNote(LoginUserID, LoginUserName, deliveryID);
+                //    return true;
 
-                }
-                else
-                {
-                    return false;
-                }
+                //}
+                //else
+                //{
+                //    return false;
+                //}
 
             }
             catch (Exception ex) {
                 MessageBox.Show(ex.Message);
+                return false;
             }
-            return false;
+            return true;
         }
 
         public void updateDeliveryStatus(string deliveryID, string deliveredDate)
@@ -1470,7 +1497,7 @@ namespace ProgramMethod
                    string oustID = "OUT" + (int.Parse(dataBaseMethod.getOutStandingID()) + 1).ToString("000000");
                     if(dataBaseMethod.createOutstandingOrder(oustID, orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString(), dataBaseMethod.getOrderOfDealerID(orderID), ActualDesptchData.Rows[i].Cells[3].Value.ToString()))
                     {
-
+                       // dataBaseMethod.DeleteOutstandingOrderForOrderAccembly(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString());
                         LogCreateOutstandingOrder(LoginUserID, LoginUserName, orderID, oustID);
                     }
 
@@ -1502,37 +1529,39 @@ namespace ProgramMethod
                     string oustID = "OUT" + (int.Parse(dataBaseMethod.getOutStandingID()) + 1).ToString("000000");
                     if (dataBaseMethod.createOutstandingOrder(oustID, orderID, orderItemData.Rows[j].Cells[0].Value.ToString(), dataBaseMethod.getOrderOfDealerID(orderID), orderItemData.Rows[j].Cells[3].Value.ToString()))
                     {
-                      LogCreateOutstandingOrder(LoginUserID, LoginUserName, orderID, oustID);
+                        //dataBaseMethod.DeleteOutstandingOrderForOrderAccembly(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString());
+                        LogCreateOutstandingOrder(LoginUserID, LoginUserName, orderID, oustID);
                     }
                 }
                 
             }
-            else if (ActualDesptchData.RowCount < orderItemData.RowCount)
-            {
-                //完成同唔完成
-                for (int i = 0; i < orderItemData.RowCount; i++)
-                {
-                    int count = 0;
-                    for (int j = 0; j < ActualDesptchData.RowCount; j++)
-                    {
-                        if (orderItemData.Rows[i].Cells[1].Value.ToString() != ActualDesptchData.Rows[j].Cells[0].Value.ToString())
-                        {
-                            count++;
-                        }
+            //else if (ActualDesptchData.RowCount < orderItemData.RowCount)
+            //{
+            //    //未完成單先會show出嚟，完成唔會
+            //    for (int i = 0; i < orderItemData.RowCount; i++)
+            //    {
+            //        int count = 0;
+            //        for (int j = 0; j < ActualDesptchData.RowCount; j++)
+            //        {
+            //            if (orderItemData.Rows[i].Cells[1].Value.ToString() != ActualDesptchData.Rows[j].Cells[0].Value.ToString())
+            //            {
+            //                count++;
+            //            }
 
-                        if (count == ActualDesptchData.RowCount - 1)
-                        {
-                            string oustID = "OUT" + (int.Parse(dataBaseMethod.getOutStandingID()) + 1).ToString("000000");
-                            if (dataBaseMethod.createOutstandingOrder(oustID, orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString(), dataBaseMethod.getOrderOfDealerID(orderID), ActualDesptchData.Rows[i].Cells[3].Value.ToString()))
-                            {
-                                LogCreateOutstandingOrder(LoginUserID, LoginUserName, orderID, oustID);
-                            }
-                            break;
-                        }
-                    }
+            //            if (count == ActualDesptchData.RowCount - 1)
+            //            {
+            //                string oustID = "OUT" + (int.Parse(dataBaseMethod.getOutStandingID()) + 1).ToString("000000");
+            //                if (dataBaseMethod.createOutstandingOrder(oustID, orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString(), dataBaseMethod.getOrderOfDealerID(orderID), ActualDesptchData.Rows[i].Cells[3].Value.ToString()))
+            //                {
+            //                    dataBaseMethod.DeleteOutstandingOrderForOrderAccembly(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString());
+            //                    LogCreateOutstandingOrder(LoginUserID, LoginUserName, orderID, oustID);
+            //                }
+            //                break;
+            //            }
+            //        }
 
-                }
-            }
+            //    }
+            //}
             int Count = 0;
             for (int i = 0; i < ActualDesptchData.RowCount; i++)
             {

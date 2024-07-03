@@ -3,7 +3,7 @@ using static ProgramMethod.ProgramMethod;
 
 namespace ITP4519M
 {
-    partial class CreateOrder
+    partial class OrderDetailsForViewAndEdit
     {
         /// <summary>
         /// Required designer variable.
@@ -31,9 +31,8 @@ namespace ITP4519M
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateOrder));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrderDetailsForViewAndEdit));
             CloseButton = new Button();
-            label3 = new Label();
             productOfOrderdata = new DataGridView();
             productIDColumn = new DataGridViewTextBoxColumn();
             productNameColumn = new DataGridViewTextBoxColumn();
@@ -62,7 +61,6 @@ namespace ITP4519M
             label12 = new Label();
             orderDateBox = new BorderDateTimePicker();
             ordertotallbl1 = new Label();
-            label9 = new Label();
             label10 = new Label();
             label7 = new Label();
             dealerIDBox = new TextBox();
@@ -86,6 +84,8 @@ namespace ITP4519M
             panel6 = new Panel();
             goodsAddressBox = new Label();
             panel4 = new Panel();
+            orderLabel = new Label();
+            orderStatusLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)productOfOrderdata).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)usernameAlertBox).BeginInit();
@@ -111,17 +111,6 @@ namespace ITP4519M
             CloseButton.Text = "X";
             CloseButton.UseVisualStyleBackColor = true;
             CloseButton.Click += CloseButton_Click;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = SystemColors.WindowText;
-            label3.Location = new Point(30, 16);
-            label3.Name = "label3";
-            label3.Size = new Size(148, 30);
-            label3.TabIndex = 16;
-            label3.Text = "Create Order";
             // 
             // productOfOrderdata
             // 
@@ -196,6 +185,7 @@ namespace ITP4519M
             // 
             panel1.BackColor = SystemColors.Menu;
             panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(orderStatusLabel);
             panel1.Controls.Add(usernameAlertBox);
             panel1.Controls.Add(label17);
             panel1.Controls.Add(dealerInfobox);
@@ -213,7 +203,6 @@ namespace ITP4519M
             panel1.Controls.Add(label12);
             panel1.Controls.Add(orderDateBox);
             panel1.Controls.Add(ordertotallbl1);
-            panel1.Controls.Add(label9);
             panel1.Controls.Add(label10);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(productSearchbox);
@@ -467,17 +456,6 @@ namespace ITP4519M
             ordertotallbl1.Size = new Size(89, 21);
             ordertotallbl1.TabIndex = 73;
             ordertotallbl1.Text = "Total: CNY¥";
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.ForeColor = SystemColors.WindowText;
-            label9.Location = new Point(5, 12);
-            label9.Name = "label9";
-            label9.Size = new Size(122, 24);
-            label9.TabIndex = 74;
-            label9.Text = "Order Detail";
             // 
             // label10
             // 
@@ -748,19 +726,42 @@ namespace ITP4519M
             panel4.Size = new Size(255, 5);
             panel4.TabIndex = 82;
             // 
-            // CreateOrder
+            // orderLabel
+            // 
+            orderLabel.AutoSize = true;
+            orderLabel.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            orderLabel.ForeColor = SystemColors.WindowText;
+            orderLabel.Location = new Point(30, 16);
+            orderLabel.Name = "orderLabel";
+            orderLabel.Size = new Size(74, 30);
+            orderLabel.TabIndex = 93;
+            orderLabel.Text = "Order";
+            orderLabel.Click += orderLabel_Click;
+            // 
+            // orderStatusLabel
+            // 
+            orderStatusLabel.AutoSize = true;
+            orderStatusLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            orderStatusLabel.ForeColor = Color.Black;
+            orderStatusLabel.Location = new Point(9, 12);
+            orderStatusLabel.Name = "orderStatusLabel";
+            orderStatusLabel.Size = new Size(102, 21);
+            orderStatusLabel.TabIndex = 94;
+            orderStatusLabel.Text = "Order Status";
+            // 
+            // OrderDetailsForViewAndEdit1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
             ClientSize = new Size(1039, 768);
+            Controls.Add(orderLabel);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Controls.Add(label3);
             Controls.Add(CloseButton);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "CreateOrder";
+            Name = "OrderDetailsForViewAndEdit1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "OrderForm1";
             Load += SalesOrder_Load;
@@ -787,9 +788,7 @@ namespace ITP4519M
         #endregion
 
         private System.Windows.Forms.Button CloseButton;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView productOfOrderdata;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button createOrderbtn;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
@@ -849,5 +848,7 @@ namespace ITP4519M
         private BorderComboBox dealerInfobox;
         private Label label17;
         private PictureBox usernameAlertBox;
+        private Label orderLabel;
+        private Label orderStatusLabel;
     }
 }

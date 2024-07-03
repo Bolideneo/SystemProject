@@ -923,7 +923,7 @@ namespace ITP4519M
 
         public DataTable overallStockinfo()
         {
-            string sql = "SELECT ProductID, ProductName, ProductCategory, BinLocation, UnitPrice, CostPrice, QuantityInStock, DemandStock, Status FROM product";
+            string sql = "SELECT ProductID,ProductName, SerialNumber, BinLocation, DemandStock, Status, QuantityInStock, UnitPrice FROM product";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
@@ -1448,6 +1448,8 @@ namespace ITP4519M
             string sql = "SELECT * FROM product WHERE ProductID=@keyword OR ProductName=@keyword";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@keyword", keyword);
+            //string keyword2 = keyword.Length > 0 ? $"%{char.ToUpper(keyword[0])}{keyword.Substring(1)}%" : keyword;
+            //cmd.Parameters.AddWithValue("@keyword2", keyword2);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
@@ -1671,7 +1673,7 @@ namespace ITP4519M
                 cmd.Parameters.AddWithValue("@orderID", orderID);
                 int count = Convert.ToInt32(cmd.ExecuteScalar());
                 ServerConnect().Close();
-                return count > 0;
+                return count > 1;
 
             }
             catch (Exception ex) {
@@ -1990,6 +1992,7 @@ namespace ITP4519M
             cmd.ExecuteNonQuery();
             ServerConnect().Close();
         }
+
 
 
 
@@ -2383,7 +2386,8 @@ namespace ITP4519M
 
         public DataTable GetOutstandingCurrentRecords(int page, int pageSize)
         {
-            string sql = "SELECT * FROM outstandingorder WHERE Status != 'Completed' ORDER BY OutstandingOrderID LIMIT @PgSize";
+            string sql = "SELECT OutstandingOrderID, OrderID, ProductID, DealerID, FollowUpQuantity FROM outstandingorder WHERE Status != 'Completed' ORDER BY OutstandingOrderID LIMIT @PgSize";
+            //string sql = "SELECT OutstandingOrderID,OrderID, outstandingorder.ProductID, DealerID,FollowUpQuantity,OutstandingDate FROM outstandingorder, product WHERE outstandingorder.Status != 'Completed'AND outstandingorder.ProductID=product.ProductID ORDER BY OutstandingOrderID LIMIT @PgSize";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
@@ -2395,7 +2399,9 @@ namespace ITP4519M
 
         public DataTable GetOutstandingCurrentRecords2(int page, int pageSize)
         {
-            string sql = "SELECT * FROM (SELECT * FROM outstandingorder WHERE Status != 'Completed' ORDER BY OutstandingOrderID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY OutstandingOrderID";
+            // string sql = "SELECT OutstandingOrderID,OrderID,outstandingorder.ProductID, DealerID,FollowUpQuantity,OutstandingDate FROM (SELECT * FROM outstandingorder WHERE outstandingorder.Status != 'Completed'  ORDER BY OutstandingOrderID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY OutstandingOrderID";
+             string sql = "SELECT OutstandingOrderID, OrderID, ProductID, DealerID, FollowUpQuantity FROM (SELECT * FROM outstandingorder ORDER BY OutstandingOrderID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY OutstandingOrderID";
+           // string sql = "SELECT * AS MaxOutstandingDate FROM (SELECT OrderID, OutstandingDate, OutstandingOrderID FROM outstandingorder ORDER BY OutstandingOrderID LIMIT @PreviousPageOffset, @PgSize) AS subquery GROUP BY OrderID ORDER BY OutstandingOrderID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);
@@ -2503,7 +2509,7 @@ namespace ITP4519M
             Object dealer = cmd.ExecuteScalar();
             return dealer.ToString();
         }
-
+        
         public bool createOutstandingOrder(string outID, string orderID, string productID, string dealerID, string followUpQuantity)
         {
             string sql = "INSERT INTO outstandingorder VALUES(@outID,@orderID,@productID,@dealerId,@followUpQuantity,@date, 'Active')";
@@ -2519,6 +2525,27 @@ namespace ITP4519M
             if (cmd.ExecuteNonQuery() > 0)
                 return true;
             return false;
+        }
+
+        public void DeleteOutstandingOrderForOrderAccembly(string orderID, string productID)
+        {
+            string sql = "DELETE FROM outstandingorder WHERE OrderID=@orderID AND ProductID=@productID";
+            DateTime date = DateTime.Now;
+            date.ToString("yyyy-MM-dd HH:mm:ss");
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@orderID", orderID);
+            cmd.Parameters.AddWithValue("@productID", productID);
+            cmd.ExecuteNonQuery();
+        }
+
+        public void DeleteOutstandingOrder(string outID)
+        {
+            string sql = "DELETE FROM outstandingorder WHERE OutstandingOrderID=@outID";
+            DateTime date = DateTime.Now;
+            date.ToString("yyyy-MM-dd HH:mm:ss");
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@outID", outID);
+            cmd.ExecuteNonQuery();
         }
 
         public bool createInvoice(string invoiceID, string orderID, string dealerID, string deliveryID)
@@ -2621,7 +2648,7 @@ namespace ITP4519M
         public bool updateOrderItem(string orderID, string productID, string Qty, string quantityFollow, int updateCount)
         {
             //string sql = "UPDATE orderitem SET ActualDespatchQuantity = IFNULL(ActualDespatchQuantity, 0) + @qty, QuantityFollow = @quantityFollow , UpdateCount =@updateCount WHERE OrderID = @orderID AND ProductID = @productID";
-            string sql = "UPDATE orderitem SET ActualDespatchQuantity = @qty, QuantityFollow = @quantityFollow , UpdateCount =@updateCount , TotalDespatchQuantity = IFNULL(ActualDespatchQuantity, 0) + @qty WHERE OrderID = @orderID AND ProductID = @productID";
+            string sql = "UPDATE orderitem SET TotalDespatchQuantity = IFNULL(ActualDespatchQuantity, 0) + @qty, ActualDespatchQuantity = @qty, QuantityFollow = @quantityFollow , UpdateCount =@updateCount WHERE OrderID = @orderID AND ProductID = @productID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@orderID", orderID);
             cmd.Parameters.AddWithValue("@productID", productID);
@@ -2646,7 +2673,7 @@ namespace ITP4519M
 
         public bool createOrderItemAudit(string orderID, string productID)
         {
-            string sql = "INSERT INTO orderitem_audit (OrderID, ProductID, OrderedQuantity, ActualDespatchQuantity, ProductName, Discount, Price, UpdateCount, QuantityFollow) SELECT OrderID, ProductID, OrderedQuantity, ActualDespatchQuantity, ProductName, Discount, Price, UpdateCount , QuantityFollow FROM orderitem WHERE OrderID = @orderID AND ProductID = @productID;";
+            string sql = "INSERT INTO orderitem_audit (OrderID, ProductID, OrderedQuantity, ActualDespatchQuantity, ProductName, Discount, Price, UpdateCount, QuantityFollow, PreQtyDelivered) SELECT OrderID, ProductID, OrderedQuantity, ActualDespatchQuantity, ProductName, Discount, Price, UpdateCount , QuantityFollow, TotalDespatchQuantity FROM orderitem WHERE OrderID = @orderID AND ProductID = @productID;";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@orderID", orderID);
             cmd.Parameters.AddWithValue("@productID", productID);

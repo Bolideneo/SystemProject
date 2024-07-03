@@ -25,7 +25,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ITP4519M
 {
-    public partial class CreateOrder : Form
+    public partial class OrderDetailsForViewAndEdit : Form
     {
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
         AutoCompleteStringCollection coll = new AutoCompleteStringCollection();
@@ -43,7 +43,7 @@ namespace ITP4519M
 
 
 
-        public CreateOrder(OperationMode mode)
+        public OrderDetailsForViewAndEdit(OperationMode mode)
         {
             InitializeComponent();
             _mode = mode;
@@ -77,8 +77,16 @@ namespace ITP4519M
             switch (_mode)
             {
                 case OperationMode.View:
+                    DataTable orderDetails = programMethod.getOrderDetails(orderID);
+                    this.ordertotallbl.Text = orderDetails.Rows[0]["TotalPrice"].ToString();
+                    orderContactNamebox.ReadOnly = true;
+                    dealerInfobox.Enabled = false;
+                    OrderContactPhonebox.ReadOnly = true;
+                    productSearchbox.Enabled = false;
+                    productSearchbox.ReadOnly = true;
                     createOrderbtn.Visible = false;
                     SetReadOnly(true);
+                    disableFunction(true);
                     break;
                 case OperationMode.New:
                     //programMethod.productSearchAutoComplete(orderAccemblyAssignbox);
@@ -302,7 +310,7 @@ namespace ITP4519M
                 MessageBox.Show("Product quantity should not be 0");
             }
             string address;
-            if(orderDifferentDeliverybox.Text == "")
+            if (orderDifferentDeliverybox.Text == "")
             {
                 address = goodsAddressBox.Text.Trim();
             }
@@ -310,7 +318,7 @@ namespace ITP4519M
             {
                 address = orderDifferentDeliverybox.Text.Trim();
             }
-                   
+
             string orderID;
             orderID = programMethod.createSalesOrder(dealerIDBox.Text.Trim(), dealerNameBox.Text.Trim(), orderContactNamebox.Text.Trim(), OrderContactPhonebox.Text.Trim(), phoneNumBox.Text.Trim(), address, orderDateBox.Value.ToString(), ordertotallbl.Text.ToString(), productOfOrderdata);
             if (orderID != null)
@@ -321,6 +329,89 @@ namespace ITP4519M
             ClearForm();
             MessageBox.Show("Order Create Successfully " + "Order ID: " + orderID);
 
+
+        }
+
+        public void orderView(string orderID, string dealerID)
+        {
+            this.productSearchbox.Visible = false;
+            this.orderID = orderID;
+            this.dealerID = dealerID;
+
+
+
+            try
+            {
+                DataTable orderDetails = programMethod.getOrderDetails(orderID);
+                DataTable dealerDetails = programMethod.getOrderDealerName(orderID, dealerID);
+                DataTable orderItemDeatails = programMethod.getOrderItemDetails(orderID);
+
+
+
+
+                if (orderDetails != null)
+                {
+                    //this.orderIDBox.Text = orderID;
+                    orderLabel.Text = "Order #" + orderID;
+                    orderStatusLabel.Text = "Placed on " + orderDetails.Rows[0]["OrderDate"].ToString();
+                    this.dealerIDBox.Text = dealerID;
+                    //this.orderDateBox.Text = orderDetails.Rows[0]["OrderDate"].ToString();
+                    //this.orderStatusBox.Text = orderDetails.Rows[0]["OrderStatus"].ToString();
+                    // this.orderStatuslbl.Text = orderDetails.Rows[0]["OrderStatus"].ToString();
+                    this.dealerNameBox.Text = dealerDetails.Rows[0]["DealerName"].ToString();
+                    this.phoneNumBox.Text = dealerDetails.Rows[0]["DealerPhoneNum"].ToString();
+                    this.dealerCompanyBox.Text = dealerDetails.Rows[0]["DealerCompanyName"].ToString();
+                    productOfOrderdata.DataSource = orderItemDeatails;
+
+                }
+                else
+                {
+                    MessageBox.Show("User details not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        public void orderEdit(string orderID, string dealerID)
+        {
+
+            this.orderID = orderID;
+
+
+
+            try
+            {
+                DataTable orderDetails = programMethod.getOrderDetails(orderID);
+                DataTable dealerDetails = programMethod.getOrderDealerName(orderID, dealerID);
+                DataTable orderItemDeatails = programMethod.getOrderItemDetails(orderID);
+
+
+                if (orderDetails != null)
+                {
+                    this.dealerIDBox.Text = dealerID;
+                    this.orderLabel.Text = "Order #" + orderID;
+                    this.orderStatusLabel.Text = "Placed on " + orderDetails.Rows[0]["OrderDate"].ToString();
+                    this.ordertotallbl.Text = orderDetails.Rows[0]["TotalPrice"].ToString();
+                    this.orderStatusLabel.Text = orderDetails.Rows[0]["OrderStatus"].ToString();
+                    this.dealerNameBox.Text = dealerDetails.Rows[0]["DealerName"].ToString();
+                    this.phoneNumBox.Text = dealerDetails.Rows[0]["DealerPhoneNum"].ToString();
+                    this.dealerCompanyBox.Text = dealerDetails.Rows[0]["DealerCompanyName"].ToString();
+                    productOfOrderdata.DataSource = orderItemDeatails;
+
+                }
+                else
+                {
+                    MessageBox.Show("User details not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
 
@@ -468,6 +559,11 @@ namespace ITP4519M
         private void dealerInfobox_KeyPress(object sender, KeyPressEventArgs e)
         {
             this.dealerInfobox.DroppedDown = false;
+
+        }
+
+        private void orderLabel_Click(object sender, EventArgs e)
+        {
 
         }
     }

@@ -74,7 +74,7 @@ namespace ITP4519M
             try
             {   //delivery, orderitem
                 DataTable deliveryDetails = programMethod.getDeliveryDetails(deliveryID);
-                //DataTable orderDetails = programMethod.getOrderDetails(orderID);
+                DataTable orderDetails = programMethod.getOrderDetails(orderID);
                 DataTable deliveryNoteItem = programMethod.getDeliveryNoteItem(deliveryID);
                 int orderCount = programMethod.getMaxUpdateCount(orderID);
                 DataTable orderItemDeatails = programMethod.getOrderItemDetailForDelivery(orderID, orderCount);
@@ -84,6 +84,13 @@ namespace ITP4519M
                     this.deliveryOrderidbox.Text = orderID;
                     this.deliveryIDbox.Text = deliveryID;
                     this.deliveryDatebox.Text = deliveryDetails.Rows[0]["DeliveryDate"].ToString();
+                    this.deliveryAddressbox.Text = orderDetails.Rows[0]["DeliveryAddress"].ToString();
+                    this.deliveryPhoneBox.Text = orderDetails.Rows[0]["DealerContactPhoneNum"].ToString();
+                    this.deliveryWeightBox.Text = programMethod.GetProductWeight(orderID);
+
+                   // this.deliveryPhoneBox.Text = orderDetails.Rows[0]["DealerContactPhoneNum"].ToString();
+
+
                     if (orderItemDeatails.Rows.Count > 0)
                     {
                         for (int i = 0; i < deliveryNoteItem.Rows.Count; i++)
