@@ -35,10 +35,11 @@ namespace ITP4519M
         {
             var products = programMethod.overviewStockinfo();
             suppliedProductData.DataSource = products;
-            suppliedProductData.Columns["ProductCategory"].Visible = false;
+            suppliedProductData.Columns["SerialNumber"].Visible = false;
+            //     suppliedProductData.Columns["ProductCategory"].Visible = false;
             suppliedProductData.Columns["BinLocation"].Visible = false;
             suppliedProductData.Columns["UnitPrice"].Visible = false;
-            suppliedProductData.Columns["CostPrice"].Visible = false;
+       //     suppliedProductData.Columns["CostPrice"].Visible = false;
             suppliedProductData.Columns["QuantityInStock"].Visible = false;
             suppliedProductData.Columns["DemandStock"].Visible = false;
             suppliedProductData.Columns["Status"].Visible = false;

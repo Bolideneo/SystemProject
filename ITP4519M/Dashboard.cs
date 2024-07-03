@@ -87,7 +87,7 @@ namespace ITP4519M
         //Paging
 
         //Invoice datagrid paging
-        private int GRNPgSize = 15;
+        private int GRNPgSize = 10;
         private int GRNPageIndex = 1;
         private int GRNTotalPage = 0;
         //Paging
@@ -138,6 +138,7 @@ namespace ITP4519M
         private int OutstandingRowCount;
         private int AccountRowCount;
         private int SupplierRowCount;
+
         private int DealerRowCount;
         private int PORowCount;
         private int DeliveryRowCount;
@@ -184,6 +185,8 @@ namespace ITP4519M
             programMethod.CurrentUserIDAndName(LoginUserID, LoginUserName);
             OrderAccemblybtn.Size = new System.Drawing.Size(166, 56);
             contactsbtn.Size = new System.Drawing.Size(166, 56);
+            namelbl.Size = new System.Drawing.Size(194, 33);
+            usertypelbl.Size = new System.Drawing.Size(191, 33);
             outstandingOrderbtn.Size = new System.Drawing.Size(166, 56);
             PObtn.Size = new System.Drawing.Size(166, 56);
             string[] array = programMethod.getDashboardToadyLabel();
@@ -453,6 +456,9 @@ namespace ITP4519M
             CalculateTotalPages("Order");
             ShowPanel(orderpnl);
             orderdata.DataSource = programMethod.GetCurrentRecords("Order", OrderPageIndex, OrderPgSize);
+
+            orderIndexlbl.Text = "01" + "-" + OrderPgSize.ToString() + " of " + OrderRowCount;
+            SetRowHeights(userData, PgSize);
             //  orderdata.DataSource = programMethod.orderDateFilter("2024-06-03", "2024-06-18");
             // FirstpageBtnClick(orderdata, "Order", OrderPgSize, OrderPageIndex, orderIndexlbl, OrderRowCount);
             orderdata.Rows[0].Selected = false;
@@ -700,6 +706,7 @@ namespace ITP4519M
             searchDealerbtn.Visible = false;
             contactDealerclearbtn.Visible = false;
             contactSupplierCleaerbtn.Visible = true;
+            suppliersData.Columns[2].Visible = false;
             currentDataSourceType = "Supplier";
             // contactOverallLabel();
             dealerDatalbl.Text = DealerRowCount.ToString();
@@ -1209,10 +1216,10 @@ namespace ITP4519M
                 ProductForm ProductForm = new ProductForm(OperationMode.Edit);
                 ProductForm.productEdit(productID);
                 ProductForm.ShowDialog();
-                
+
             }
             stockbtn.PerformClick();
-            
+
         }
 
         private void GRNbtn_Click(object sender, EventArgs e)
@@ -1224,14 +1231,15 @@ namespace ITP4519M
 
             lastClickedButton = (Button)sender;
             lastClickedButton.ForeColor = Color.Gray;
-
+            CalculateTotalPages("GRN");
             ShowPanel(GRNpnl);
             grndata.DataSource = programMethod.overallGRNinfo();
             grndata.Rows[0].Selected = false;
             grndata.DataSource = programMethod.GetGRNCurrentRecords(GRNPageIndex, GRNPgSize);
-            grnPage.Text = "01" + "-" + GRNPgSize.ToString() + " of " + programMethod.getGRNRowCount();
+            grnPage.Text = "01" + "-" + GRNPgSize.ToString() + " of " + GRNRowCount;
             SetRowHeights(grndata, GRNPgSize);
-            oustandingPagelbl.Text = "01" + "-" + GRNPgSize + " of " + GRNRowCount;
+        
+            //  grnPage.Text = "01" + "-" + GRNPgSize + " of " + GRNRowCount;
 
             string[] MinDate = programMethod.getOrderMinAndMaxDateForGRN();
             grnDatePicker1.MinDate = DateTime.Parse(MinDate[0]);
@@ -1240,6 +1248,7 @@ namespace ITP4519M
             grnDatePicker2.MinDate = DateTime.Parse(MinDate[0]);
             grnDatePicker2.MaxDate = DateTime.Parse(MinDate[1]);
             grnDatePicker2.Value = DateTime.Parse(MinDate[1]);
+
         }
 
         private void deliverybtn_Click(object sender, EventArgs e)
@@ -1608,6 +1617,7 @@ namespace ITP4519M
                 case "Order":
                     rowCount = programMethod.getOrderRowCount();
                     OrderRowCount = rowCount;
+                    OrderTotalPage  = rowCount / OrderPgSize;
                     if (rowCount % OrderPgSize > 0)
                         OrderTotalPage += 1;
                     break;
@@ -2621,6 +2631,7 @@ namespace ITP4519M
         {
             if (this.GRNPageIndex < this.GRNTotalPage)
             {
+                
                 this.GRNPageIndex++;
                 this.grndata.DataSource = programMethod.GetGRNCurrentRecords(this.GRNPageIndex, GRNPgSize);
 
@@ -2629,10 +2640,12 @@ namespace ITP4519M
 
             if (GRNPageIndex != GRNTotalPage)
             {
+                
                 grnPage.Text = (GRNPgSize * GRNPageIndex - (GRNPgSize - 1)) + " - " + (GRNPgSize * GRNPageIndex) + " of " + GRNRowCount;
             }
             else
             {
+                
                 grnPage.Text = (GRNPgSize * GRNPageIndex - (GRNPgSize - 1)) + " - " + GRNRowCount + " of " + GRNRowCount;
             }
         }
@@ -2642,7 +2655,7 @@ namespace ITP4519M
             this.GRNPageIndex = GRNTotalPage;
             this.grndata.DataSource = programMethod.GetGRNCurrentRecords(this.GRNPageIndex, GRNPgSize);
             SetRowHeights(grndata, GRNPgSize);
-            grnPage.Text = (GRNPgSize * GRNPageIndex - (GRNPgSize - 1)) + "-" + GRNRowCount + " of " + GRNRowCount;
+            grnPage.Text = (GRNPgSize * GRNPageIndex - (GRNPgSize - 1)) + " - " + GRNRowCount + " of " + GRNRowCount;
         }
 
         private void orderAccemblySearchbox_KeyDown(object sender, KeyEventArgs e)
@@ -2780,6 +2793,54 @@ namespace ITP4519M
         {
             dealersData.DataSource = programMethod.GetDealerCurrentRecords(DealerPageIndex, DealerPgSize);
             SetRowHeights(dealersData, DealerPgSize);
+        }
+
+        private void orderNextPagebtn_Click_1(object sender, EventArgs e)
+        {
+            if (this.OrderPageIndex < this.OrderTotalPage)
+            {
+                this.OrderPageIndex++;
+                this.orderdata.DataSource = programMethod.GetCurrentRecords("Order", this.OrderPageIndex, OrderPgSize);
+
+            }
+            SetRowHeights(orderdata, OrderPgSize);
+
+            if (OrderPageIndex != OrderTotalPage)
+            {
+                orderIndexlbl.Text = (OrderPgSize * OrderPageIndex - (OrderPgSize - 1)) + " - " + (OrderPgSize * OrderPageIndex) + " of " + OrderRowCount;
+            }
+            else
+            {
+                orderIndexlbl.Text = (OrderPgSize * OrderPageIndex - (OrderPgSize - 1)) + " - " + OrderRowCount + " of " + OrderRowCount;
+            }
+        }
+
+        private void orderLastPagebtn_Click_1(object sender, EventArgs e)
+        {
+            this.OrderPageIndex = OrderTotalPage;
+            this.orderdata.DataSource = programMethod.GetCurrentRecords("Order", this.OrderPageIndex, OrderPgSize);
+            SetRowHeights(orderdata, OrderPgSize);
+            orderIndexlbl.Text = (OrderPgSize * OrderPageIndex - (OrderPgSize - 1)) + "-" + OrderRowCount + " of " + OrderRowCount;
+        }
+
+        private void orderPrevPagebtn_Click_1(object sender, EventArgs e)
+        {
+            if (this.OrderPageIndex > 1)
+            {
+                this.OrderPageIndex--;
+                this.orderdata.DataSource = programMethod.GetCurrentRecords("Order", this.OrderPageIndex, OrderPgSize);
+            }
+            SetRowHeights(orderdata, OrderPgSize);
+            orderIndexlbl.Text = (OrderPgSize * OrderPageIndex - (OrderPgSize - 1)) + " - " + (OrderPgSize * OrderPageIndex) + " of " + OrderRowCount;
+        }
+
+        private void orderFirstPagebtn_Click_1(object sender, EventArgs e)
+        {
+            this.OrderPageIndex = 1;
+            this.orderdata.DataSource = programMethod.GetCurrentRecords("Order", this.OrderPageIndex, OrderPgSize);
+            SetRowHeights(orderdata, OrderPgSize);
+
+            orderIndexlbl.Text = "1" + " - " + OrderPgSize + " of " + OrderRowCount;
         }
     }
 }

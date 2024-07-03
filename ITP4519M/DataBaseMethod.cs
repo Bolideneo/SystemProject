@@ -541,7 +541,7 @@ namespace ITP4519M
 
         public DataTable GetSupplierCurrentRecords2(int page, int pageSize)
         {
-            string sql = "SELECT* FROM(SELECT s.SupplierID, s.SupplierCompanyName, s.SupplierContactPerson, s.SupplierPhoneNum, s.SupplierEmail, s.SupplierAddress, p.ProductName FROM supplier s LEFT JOIN supplierproducts sp ON s.SupplierID = sp.SupplierID LEFT JOIN product p ON sp.ProductID = p.ProductID ORDER BY s.SupplierID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY SupplierID";
+            string sql = "SELECT* FROM(SELECT s.SupplierID, p.ProductID, s.SupplierCompanyName, s.SupplierContactPerson, s.SupplierPhoneNum, s.SupplierEmail, s.SupplierAddress, p.ProductName FROM supplier s LEFT JOIN supplierproducts sp ON s.SupplierID = sp.SupplierID LEFT JOIN product p ON sp.ProductID = p.ProductID ORDER BY s.SupplierID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY SupplierID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);
@@ -2077,11 +2077,12 @@ namespace ITP4519M
 
         public int getGRNRowCount()
         {
-            string sql = "SELECT COUNT(DISTINCT CONCAT(grnID, '-', ProductID, '-', PurchaseOrderID)) AS UniqueCombinationCount FROM grn";
+            string sql = "SELECT COUNT(DISTINCT CONCAT(grnID, '-', ProductID, '-', PurchaseOrderID)) AS UniqueCombinationCount FROM `grn`";
+            //string sql = "SELECT COUNT(DISTINCT grnID) FROM `grn`";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             object result = cmd.ExecuteScalar();
             int rowCount = Convert.ToInt32(result);
-
+            MessageBox.Show(rowCount.ToString());
             return rowCount;
         }
 
@@ -2147,7 +2148,7 @@ namespace ITP4519M
 
         public int getOrderRowCount()
         {
-            string sql = "SELECT COUNT(DISTINCT OrderID) FROM `order`";
+            string sql = "SELECT COUNT(DISTINCT OrderID) FROM `order` WHERE OrderStatus != 'Cancelled' AND OrderStatus != 'Outstanding'";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             object result = cmd.ExecuteScalar();
             int rowCount = Convert.ToInt32(result);
@@ -2361,7 +2362,8 @@ namespace ITP4519M
 
         public DataTable GetGRNCurrentRecords(int page, int pageSize)
         {
-            string sql = "SELECT * FROM grn ORDER BY grnID LIMIT @PgSize";
+            //string sql = "SELECT * FROM grn ORDER BY grnID LIMIT @PgSize";
+            string sql = "SELECT* FROM grn ORDER BY grnID, ProductID, PurchaseOrderID LIMIT @PgSize";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
@@ -2373,7 +2375,8 @@ namespace ITP4519M
 
         public DataTable GetGRNCurrentRecords2(int page, int pageSize)
         {
-            string sql = "SELECT * FROM (SELECT * FROM grn ORDER BY grnID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY grnID";
+            //string sql = "SELECT * FROM (SELECT * FROM grn ORDER BY grnID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY grnID";
+            string sql = "SELECT * FROM (SELECT * FROM grn ORDER BY grnID, ProductID, PurchaseOrderID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY grnID, ProductID, PurchaseOrderID;";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);

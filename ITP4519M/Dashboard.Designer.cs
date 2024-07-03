@@ -695,8 +695,9 @@ namespace ITP4519M
             listpnl.Controls.Add(namelbl);
             listpnl.Controls.Add(avatarbox);
             listpnl.Location = new Point(0, 1);
+            listpnl.Margin = new Padding(3, 4, 3, 4);
             listpnl.Name = "listpnl";
-            listpnl.Size = new Size(175, 788);
+            listpnl.Size = new Size(200, 1051);
             listpnl.TabIndex = 14;
             listpnl.Paint += listpnl_Paint;
             listpnl.MouseDown += Dashboard_MouseDown;
@@ -707,9 +708,9 @@ namespace ITP4519M
             // 
             label24.AutoSize = true;
             label24.ForeColor = SystemColors.Window;
-            label24.Location = new Point(45, 762);
+            label24.Location = new Point(51, 1016);
             label24.Name = "label24";
-            label24.Size = new Size(72, 15);
+            label24.Size = new Size(91, 20);
             label24.TabIndex = 17;
             label24.Text = "Version 2.4.7";
             // 
@@ -723,9 +724,10 @@ namespace ITP4519M
             reportbtn.ImageAlign = ContentAlignment.MiddleLeft;
             reportbtn.ImageIndex = 0;
             reportbtn.ImageList = log_logo;
-            reportbtn.Location = new Point(22, 649);
+            reportbtn.Location = new Point(25, 865);
+            reportbtn.Margin = new Padding(3, 4, 3, 4);
             reportbtn.Name = "reportbtn";
-            reportbtn.Size = new Size(145, 38);
+            reportbtn.Size = new Size(166, 51);
             reportbtn.TabIndex = 16;
             reportbtn.Text = "         Reports";
             reportbtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -748,9 +750,10 @@ namespace ITP4519M
             homebtn.ForeColor = Color.White;
             homebtn.ImageIndex = 0;
             homebtn.ImageList = home_logo;
-            homebtn.Location = new Point(60, 10);
+            homebtn.Location = new Point(69, 13);
+            homebtn.Margin = new Padding(3, 4, 3, 4);
             homebtn.Name = "homebtn";
-            homebtn.Size = new Size(54, 34);
+            homebtn.Size = new Size(62, 45);
             homebtn.TabIndex = 15;
             homebtn.TextAlign = ContentAlignment.MiddleRight;
             homebtn.UseVisualStyleBackColor = true;
@@ -773,9 +776,10 @@ namespace ITP4519M
             invoicebtn.ImageAlign = ContentAlignment.MiddleLeft;
             invoicebtn.ImageIndex = 0;
             invoicebtn.ImageList = invoice;
-            invoicebtn.Location = new Point(22, 514);
+            invoicebtn.Location = new Point(25, 685);
+            invoicebtn.Margin = new Padding(3, 4, 3, 4);
             invoicebtn.Name = "invoicebtn";
-            invoicebtn.Size = new Size(145, 42);
+            invoicebtn.Size = new Size(166, 56);
             invoicebtn.TabIndex = 14;
             invoicebtn.Text = "         Invoice";
             invoicebtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -799,9 +803,10 @@ namespace ITP4519M
             outstandingOrderbtn.ImageAlign = ContentAlignment.MiddleLeft;
             outstandingOrderbtn.ImageIndex = 0;
             outstandingOrderbtn.ImageList = Order_logo;
-            outstandingOrderbtn.Location = new Point(22, 469);
+            outstandingOrderbtn.Location = new Point(25, 625);
+            outstandingOrderbtn.Margin = new Padding(3, 4, 3, 4);
             outstandingOrderbtn.Name = "outstandingOrderbtn";
-            outstandingOrderbtn.Size = new Size(165, 56);
+            outstandingOrderbtn.Size = new Size(189, 75);
             outstandingOrderbtn.TabIndex = 13;
             outstandingOrderbtn.Text = "         Outstanding\r\n         Order";
             outstandingOrderbtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -825,9 +830,10 @@ namespace ITP4519M
             PObtn.ImageAlign = ContentAlignment.MiddleLeft;
             PObtn.ImageIndex = 0;
             PObtn.ImageList = Order_logo;
-            PObtn.Location = new Point(22, 424);
+            PObtn.Location = new Point(25, 565);
+            PObtn.Margin = new Padding(3, 4, 3, 4);
             PObtn.Name = "PObtn";
-            PObtn.Size = new Size(145, 56);
+            PObtn.Size = new Size(166, 75);
             PObtn.TabIndex = 12;
             PObtn.Text = "         Purchase\r\n         Order ";
             PObtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -844,9 +850,10 @@ namespace ITP4519M
             deliverybtn.ImageAlign = ContentAlignment.MiddleLeft;
             deliverybtn.ImageIndex = 0;
             deliverybtn.ImageList = delivery;
-            deliverybtn.Location = new Point(22, 379);
+            deliverybtn.Location = new Point(25, 505);
+            deliverybtn.Margin = new Padding(3, 4, 3, 4);
             deliverybtn.Name = "deliverybtn";
-            deliverybtn.Size = new Size(145, 42);
+            deliverybtn.Size = new Size(166, 56);
             deliverybtn.TabIndex = 11;
             deliverybtn.Text = "         Delivery";
             deliverybtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -870,9 +877,10 @@ namespace ITP4519M
             GRNbtn.ImageAlign = ContentAlignment.MiddleLeft;
             GRNbtn.ImageIndex = 0;
             GRNbtn.ImageList = grn;
-            GRNbtn.Location = new Point(22, 334);
+            GRNbtn.Location = new Point(25, 445);
+            GRNbtn.Margin = new Padding(3, 4, 3, 4);
             GRNbtn.Name = "GRNbtn";
-            GRNbtn.Size = new Size(145, 42);
+            GRNbtn.Size = new Size(166, 56);
             GRNbtn.TabIndex = 10;
             GRNbtn.Text = "         GRN    ";
             GRNbtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -896,9 +904,10 @@ namespace ITP4519M
             OrderAccemblybtn.ImageAlign = ContentAlignment.MiddleLeft;
             OrderAccemblybtn.ImageIndex = 0;
             OrderAccemblybtn.ImageList = Order_logo;
-            OrderAccemblybtn.Location = new Point(22, 244);
+            OrderAccemblybtn.Location = new Point(25, 325);
+            OrderAccemblybtn.Margin = new Padding(3, 4, 3, 4);
             OrderAccemblybtn.Name = "OrderAccemblybtn";
-            OrderAccemblybtn.Size = new Size(148, 56);
+            OrderAccemblybtn.Size = new Size(169, 75);
             OrderAccemblybtn.TabIndex = 9;
             OrderAccemblybtn.Text = "         Order\r\n         Accembly ";
             OrderAccemblybtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -915,9 +924,10 @@ namespace ITP4519M
             Logbtn.ImageAlign = ContentAlignment.MiddleLeft;
             Logbtn.ImageIndex = 0;
             Logbtn.ImageList = log_new;
-            Logbtn.Location = new Point(22, 604);
+            Logbtn.Location = new Point(25, 805);
+            Logbtn.Margin = new Padding(3, 4, 3, 4);
             Logbtn.Name = "Logbtn";
-            Logbtn.Size = new Size(145, 38);
+            Logbtn.Size = new Size(166, 51);
             Logbtn.TabIndex = 8;
             Logbtn.Text = "         Audit      ";
             Logbtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -941,9 +951,10 @@ namespace ITP4519M
             contactsbtn.ImageAlign = ContentAlignment.MiddleLeft;
             contactsbtn.ImageIndex = 0;
             contactsbtn.ImageList = contact_logo;
-            contactsbtn.Location = new Point(22, 289);
+            contactsbtn.Location = new Point(25, 385);
+            contactsbtn.Margin = new Padding(3, 4, 3, 4);
             contactsbtn.Name = "contactsbtn";
-            contactsbtn.Size = new Size(161, 56);
+            contactsbtn.Size = new Size(184, 75);
             contactsbtn.TabIndex = 7;
             contactsbtn.Text = "         Contacts\r\n         Information";
             contactsbtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -967,9 +978,10 @@ namespace ITP4519M
             logoutbtn.ImageAlign = ContentAlignment.MiddleLeft;
             logoutbtn.ImageIndex = 0;
             logoutbtn.ImageList = setting_logo;
-            logoutbtn.Location = new Point(22, 694);
+            logoutbtn.Location = new Point(25, 925);
+            logoutbtn.Margin = new Padding(3, 4, 3, 4);
             logoutbtn.Name = "logoutbtn";
-            logoutbtn.Size = new Size(145, 38);
+            logoutbtn.Size = new Size(166, 51);
             logoutbtn.TabIndex = 6;
             logoutbtn.Text = "         Sign Out";
             logoutbtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -994,9 +1006,10 @@ namespace ITP4519M
             usersbtn.ImageAlign = ContentAlignment.MiddleLeft;
             usersbtn.ImageIndex = 0;
             usersbtn.ImageList = Accounts_logo;
-            usersbtn.Location = new Point(22, 559);
+            usersbtn.Location = new Point(25, 745);
+            usersbtn.Margin = new Padding(3, 4, 3, 4);
             usersbtn.Name = "usersbtn";
-            usersbtn.Size = new Size(145, 38);
+            usersbtn.Size = new Size(166, 51);
             usersbtn.TabIndex = 5;
             usersbtn.Text = "         Account";
             usersbtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -1021,9 +1034,10 @@ namespace ITP4519M
             stockbtn.ImageAlign = ContentAlignment.MiddleLeft;
             stockbtn.ImageIndex = 0;
             stockbtn.ImageList = stock_logo;
-            stockbtn.Location = new Point(22, 199);
+            stockbtn.Location = new Point(25, 265);
+            stockbtn.Margin = new Padding(3, 4, 3, 4);
             stockbtn.Name = "stockbtn";
-            stockbtn.Size = new Size(145, 42);
+            stockbtn.Size = new Size(166, 56);
             stockbtn.TabIndex = 4;
             stockbtn.Text = "         Stock  ";
             stockbtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -1047,9 +1061,10 @@ namespace ITP4519M
             orderbtn.ImageAlign = ContentAlignment.MiddleLeft;
             orderbtn.ImageIndex = 0;
             orderbtn.ImageList = Order_logo;
-            orderbtn.Location = new Point(22, 154);
+            orderbtn.Location = new Point(25, 205);
+            orderbtn.Margin = new Padding(3, 4, 3, 4);
             orderbtn.Name = "orderbtn";
-            orderbtn.Size = new Size(155, 43);
+            orderbtn.Size = new Size(167, 56);
             orderbtn.TabIndex = 3;
             orderbtn.Text = "         Salse Order  ";
             orderbtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -1060,9 +1075,9 @@ namespace ITP4519M
             // 
             usertypelbl.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             usertypelbl.ForeColor = Color.White;
-            usertypelbl.Location = new Point(3, 165);
+            usertypelbl.Location = new Point(3, 174);
             usertypelbl.Name = "usertypelbl";
-            usertypelbl.Size = new Size(196, 25);
+            usertypelbl.Size = new Size(191, 33);
             usertypelbl.TabIndex = 2;
             usertypelbl.Text = "Type";
             usertypelbl.TextAlign = ContentAlignment.MiddleCenter;
@@ -1071,9 +1086,9 @@ namespace ITP4519M
             // 
             namelbl.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             namelbl.ForeColor = Color.White;
-            namelbl.Location = new Point(3, 134);
+            namelbl.Location = new Point(3, 141);
             namelbl.Name = "namelbl";
-            namelbl.Size = new Size(196, 25);
+            namelbl.Size = new Size(194, 33);
             namelbl.TabIndex = 1;
             namelbl.Text = "UserName";
             namelbl.TextAlign = ContentAlignment.MiddleCenter;
@@ -1083,9 +1098,10 @@ namespace ITP4519M
             // 
             avatarbox.BackgroundImage = Properties.Resources.company_logo;
             avatarbox.BackgroundImageLayout = ImageLayout.Stretch;
-            avatarbox.Location = new Point(3, 50);
+            avatarbox.Location = new Point(3, 67);
+            avatarbox.Margin = new Padding(3, 4, 3, 4);
             avatarbox.Name = "avatarbox";
-            avatarbox.Size = new Size(172, 49);
+            avatarbox.Size = new Size(197, 65);
             avatarbox.TabIndex = 0;
             avatarbox.TabStop = false;
             // 
@@ -1096,9 +1112,10 @@ namespace ITP4519M
             closebtn.FlatAppearance.BorderSize = 0;
             closebtn.FlatStyle = FlatStyle.Flat;
             closebtn.Font = new Font("Verdana", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            closebtn.Location = new Point(1268, 2);
+            closebtn.Location = new Point(1449, 3);
+            closebtn.Margin = new Padding(3, 4, 3, 4);
             closebtn.Name = "closebtn";
-            closebtn.Size = new Size(44, 40);
+            closebtn.Size = new Size(50, 53);
             closebtn.TabIndex = 15;
             closebtn.Text = "X";
             closebtn.UseVisualStyleBackColor = false;
@@ -1117,9 +1134,10 @@ namespace ITP4519M
             orderpnl.Controls.Add(newOrderbtn);
             orderpnl.Controls.Add(ordlerlbl);
             orderpnl.Controls.Add(editOrdersbtn);
-            orderpnl.Location = new Point(176, 2);
+            orderpnl.Location = new Point(201, 3);
+            orderpnl.Margin = new Padding(3, 4, 3, 4);
             orderpnl.Name = "orderpnl";
-            orderpnl.Size = new Size(1094, 788);
+            orderpnl.Size = new Size(1250, 1051);
             orderpnl.TabIndex = 16;
             orderpnl.Visible = false;
             orderpnl.MouseDown += Dashboard_MouseDown;
@@ -1151,8 +1169,8 @@ namespace ITP4519M
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             orderdata.DefaultCellStyle = dataGridViewCellStyle3;
-            orderdata.Location = new Point(28, 276);
-            orderdata.Margin = new Padding(3, 5, 3, 5);
+            orderdata.Location = new Point(32, 368);
+            orderdata.Margin = new Padding(3, 7, 3, 7);
             orderdata.Name = "orderdata";
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = SystemColors.Control;
@@ -1167,7 +1185,7 @@ namespace ITP4519M
             orderdata.RowTemplate.Height = 24;
             orderdata.ScrollBars = ScrollBars.None;
             orderdata.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            orderdata.Size = new Size(1045, 405);
+            orderdata.Size = new Size(1194, 540);
             orderdata.TabIndex = 52;
             orderdata.CellClick += orderdata_CellClick;
             orderdata.CellContentClick += orderdata_CellContentClick;
@@ -1175,6 +1193,7 @@ namespace ITP4519M
             // ordercheckColumn
             // 
             ordercheckColumn.HeaderText = "Select";
+            ordercheckColumn.MinimumWidth = 6;
             ordercheckColumn.Name = "ordercheckColumn";
             // 
             // InvoiceLine1
@@ -1182,9 +1201,10 @@ namespace ITP4519M
             InvoiceLine1.BackColor = SystemColors.ControlDark;
             InvoiceLine1.BorderStyle = BorderStyle.Fixed3D;
             InvoiceLine1.ForeColor = SystemColors.ControlText;
-            InvoiceLine1.Location = new Point(40, 208);
+            InvoiceLine1.Location = new Point(46, 277);
+            InvoiceLine1.Margin = new Padding(3, 4, 3, 4);
             InvoiceLine1.Name = "InvoiceLine1";
-            InvoiceLine1.Size = new Size(765, 5);
+            InvoiceLine1.Size = new Size(874, 5);
             InvoiceLine1.TabIndex = 51;
             // 
             // panel11
@@ -1194,9 +1214,10 @@ namespace ITP4519M
             panel11.Controls.Add(orderPrevPagebtn);
             panel11.Controls.Add(orderLastPagebtn);
             panel11.Controls.Add(orderNextPagebtn);
-            panel11.Location = new Point(577, 700);
+            panel11.Location = new Point(659, 944);
+            panel11.Margin = new Padding(3, 4, 3, 4);
             panel11.Name = "panel11";
-            panel11.Size = new Size(495, 50);
+            panel11.Size = new Size(566, 67);
             panel11.TabIndex = 47;
             // 
             // orderFirstPagebtn
@@ -1215,21 +1236,23 @@ namespace ITP4519M
             orderFirstPagebtn.ButtonRoundRadius = 30;
             orderFirstPagebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             orderFirstPagebtn.ForeColor = Color.Black;
-            orderFirstPagebtn.Location = new Point(57, 7);
+            orderFirstPagebtn.Location = new Point(20, 6);
+            orderFirstPagebtn.Margin = new Padding(3, 4, 3, 4);
             orderFirstPagebtn.Name = "orderFirstPagebtn";
-            orderFirstPagebtn.Size = new Size(69, 40);
+            orderFirstPagebtn.Size = new Size(79, 53);
             orderFirstPagebtn.TabIndex = 31;
             orderFirstPagebtn.Text = "First";
+            orderFirstPagebtn.Click += orderFirstPagebtn_Click_1;
             // 
             // orderIndexlbl
             // 
-            orderIndexlbl.AutoSize = true;
             orderIndexlbl.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            orderIndexlbl.Location = new Point(220, 16);
+            orderIndexlbl.Location = new Point(208, 23);
             orderIndexlbl.Name = "orderIndexlbl";
-            orderIndexlbl.Size = new Size(79, 20);
+            orderIndexlbl.Size = new Size(143, 25);
             orderIndexlbl.TabIndex = 3;
             orderIndexlbl.Text = "LabelData";
+            orderIndexlbl.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // orderPrevPagebtn
             // 
@@ -1248,11 +1271,13 @@ namespace ITP4519M
             orderPrevPagebtn.ButtonRoundRadius = 30;
             orderPrevPagebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             orderPrevPagebtn.ForeColor = Color.Black;
-            orderPrevPagebtn.Location = new Point(139, 7);
+            orderPrevPagebtn.Location = new Point(114, 6);
+            orderPrevPagebtn.Margin = new Padding(3, 4, 3, 4);
             orderPrevPagebtn.Name = "orderPrevPagebtn";
-            orderPrevPagebtn.Size = new Size(70, 40);
+            orderPrevPagebtn.Size = new Size(80, 53);
             orderPrevPagebtn.TabIndex = 33;
             orderPrevPagebtn.Text = "Prev";
+            orderPrevPagebtn.Click += orderPrevPagebtn_Click_1;
             // 
             // orderLastPagebtn
             // 
@@ -1270,11 +1295,13 @@ namespace ITP4519M
             orderLastPagebtn.ButtonRoundRadius = 30;
             orderLastPagebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             orderLastPagebtn.ForeColor = Color.Black;
-            orderLastPagebtn.Location = new Point(395, 7);
+            orderLastPagebtn.Location = new Point(451, 6);
+            orderLastPagebtn.Margin = new Padding(3, 4, 3, 4);
             orderLastPagebtn.Name = "orderLastPagebtn";
-            orderLastPagebtn.Size = new Size(68, 36);
+            orderLastPagebtn.Size = new Size(80, 53);
             orderLastPagebtn.TabIndex = 34;
             orderLastPagebtn.Text = "Last";
+            orderLastPagebtn.Click += orderLastPagebtn_Click_1;
             // 
             // orderNextPagebtn
             // 
@@ -1292,11 +1319,13 @@ namespace ITP4519M
             orderNextPagebtn.ButtonRoundRadius = 30;
             orderNextPagebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             orderNextPagebtn.ForeColor = Color.Black;
-            orderNextPagebtn.Location = new Point(322, 7);
+            orderNextPagebtn.Location = new Point(368, 6);
+            orderNextPagebtn.Margin = new Padding(3, 4, 3, 4);
             orderNextPagebtn.Name = "orderNextPagebtn";
-            orderNextPagebtn.Size = new Size(65, 39);
+            orderNextPagebtn.Size = new Size(80, 53);
             orderNextPagebtn.TabIndex = 32;
             orderNextPagebtn.Text = "Next";
+            orderNextPagebtn.Click += orderNextPagebtn_Click_1;
             // 
             // panel10
             // 
@@ -1307,28 +1336,26 @@ namespace ITP4519M
             panel10.Controls.Add(orderSearchbtn);
             panel10.Controls.Add(orderdateTimePicker2);
             panel10.Controls.Add(label14);
-            panel10.Location = new Point(33, 57);
-            panel10.Margin = new Padding(3, 2, 3, 2);
+            panel10.Location = new Point(38, 76);
             panel10.Name = "panel10";
-            panel10.Size = new Size(860, 81);
+            panel10.Size = new Size(983, 108);
             panel10.TabIndex = 46;
             // 
             // orderStatusCombox
             // 
             orderStatusCombox.FormattingEnabled = true;
-            orderStatusCombox.Location = new Point(562, 46);
-            orderStatusCombox.Margin = new Padding(3, 2, 3, 2);
+            orderStatusCombox.Location = new Point(642, 61);
             orderStatusCombox.Name = "orderStatusCombox";
-            orderStatusCombox.Size = new Size(133, 23);
+            orderStatusCombox.Size = new Size(151, 28);
             orderStatusCombox.TabIndex = 48;
             // 
             // label18
             // 
             label18.AutoSize = true;
             label18.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label18.Location = new Point(563, 19);
+            label18.Location = new Point(643, 25);
             label18.Name = "label18";
-            label18.Size = new Size(55, 21);
+            label18.Size = new Size(67, 28);
             label18.TabIndex = 44;
             label18.Text = "Status";
             // 
@@ -1336,19 +1363,18 @@ namespace ITP4519M
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label13.Location = new Point(11, 19);
+            label13.Location = new Point(13, 25);
             label13.Name = "label13";
-            label13.Size = new Size(48, 21);
+            label13.Size = new Size(59, 28);
             label13.TabIndex = 42;
             label13.Text = "From";
             // 
             // orderdateTimePicker1
             // 
             orderdateTimePicker1.CalendarFont = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            orderdateTimePicker1.Location = new Point(15, 46);
-            orderdateTimePicker1.Margin = new Padding(3, 2, 3, 2);
+            orderdateTimePicker1.Location = new Point(17, 61);
             orderdateTimePicker1.Name = "orderdateTimePicker1";
-            orderdateTimePicker1.Size = new Size(219, 23);
+            orderdateTimePicker1.Size = new Size(250, 27);
             orderdateTimePicker1.TabIndex = 40;
             orderdateTimePicker1.ValueChanged += orderdateTimePicker1_ValueChanged;
             // 
@@ -1368,19 +1394,19 @@ namespace ITP4519M
             orderSearchbtn.ButtonRoundRadius = 30;
             orderSearchbtn.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             orderSearchbtn.ForeColor = Color.Black;
-            orderSearchbtn.Location = new Point(734, 32);
+            orderSearchbtn.Location = new Point(839, 43);
+            orderSearchbtn.Margin = new Padding(3, 4, 3, 4);
             orderSearchbtn.Name = "orderSearchbtn";
-            orderSearchbtn.Size = new Size(116, 37);
+            orderSearchbtn.Size = new Size(133, 49);
             orderSearchbtn.TabIndex = 39;
             orderSearchbtn.Text = "Search";
             orderSearchbtn.Click += orderSearchbtn_Click;
             // 
             // orderdateTimePicker2
             // 
-            orderdateTimePicker2.Location = new Point(286, 46);
-            orderdateTimePicker2.Margin = new Padding(3, 2, 3, 2);
+            orderdateTimePicker2.Location = new Point(327, 61);
             orderdateTimePicker2.Name = "orderdateTimePicker2";
-            orderdateTimePicker2.Size = new Size(219, 23);
+            orderdateTimePicker2.Size = new Size(250, 27);
             orderdateTimePicker2.TabIndex = 41;
             orderdateTimePicker2.ValueChanged += orderdateTimePicker2_ValueChanged;
             // 
@@ -1388,9 +1414,9 @@ namespace ITP4519M
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label14.Location = new Point(286, 19);
+            label14.Location = new Point(327, 25);
             label14.Name = "label14";
-            label14.Size = new Size(27, 21);
+            label14.Size = new Size(33, 28);
             label14.TabIndex = 43;
             label14.Text = "To";
             // 
@@ -1410,9 +1436,10 @@ namespace ITP4519M
             CancelOrderbtn.ButtonRoundRadius = 30;
             CancelOrderbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             CancelOrderbtn.ForeColor = Color.White;
-            CancelOrderbtn.Location = new Point(380, 218);
+            CancelOrderbtn.Location = new Point(434, 291);
+            CancelOrderbtn.Margin = new Padding(3, 4, 3, 4);
             CancelOrderbtn.Name = "CancelOrderbtn";
-            CancelOrderbtn.Size = new Size(151, 38);
+            CancelOrderbtn.Size = new Size(173, 51);
             CancelOrderbtn.TabIndex = 45;
             CancelOrderbtn.Text = "Cancel Order";
             CancelOrderbtn.Click += orderCancelbtn_Click;
@@ -1420,12 +1447,12 @@ namespace ITP4519M
             // orderSearchbox
             // 
             orderSearchbox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            orderSearchbox.Location = new Point(563, 223);
-            orderSearchbox.Margin = new Padding(3, 4, 3, 4);
+            orderSearchbox.Location = new Point(643, 297);
+            orderSearchbox.Margin = new Padding(3, 5, 3, 5);
             orderSearchbox.Multiline = true;
             orderSearchbox.Name = "orderSearchbox";
             orderSearchbox.PlaceholderText = "Search Order";
-            orderSearchbox.Size = new Size(517, 33);
+            orderSearchbox.Size = new Size(590, 43);
             orderSearchbox.TabIndex = 44;
             orderSearchbox.KeyDown += orderSearchbox_KeyDown;
             // 
@@ -1440,10 +1467,9 @@ namespace ITP4519M
             panel9.Controls.Add(label11);
             panel9.Controls.Add(label8);
             panel9.Controls.Add(label10);
-            panel9.Location = new Point(33, 148);
-            panel9.Margin = new Padding(3, 2, 3, 2);
+            panel9.Location = new Point(38, 197);
             panel9.Name = "panel9";
-            panel9.Size = new Size(1038, 52);
+            panel9.Size = new Size(1186, 69);
             panel9.TabIndex = 39;
             panel9.Paint += panel9_Paint;
             // 
@@ -1452,10 +1478,9 @@ namespace ITP4519M
             panel26.AutoSize = true;
             panel26.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel26.Controls.Add(orderAllbox);
-            panel26.Location = new Point(95, 17);
-            panel26.Margin = new Padding(3, 2, 3, 2);
+            panel26.Location = new Point(109, 23);
             panel26.Name = "panel26";
-            panel26.Size = new Size(34, 25);
+            panel26.Size = new Size(39, 31);
             panel26.TabIndex = 52;
             panel26.Paint += panel26_Paint;
             // 
@@ -1464,11 +1489,10 @@ namespace ITP4519M
             orderAllbox.BackColor = SystemColors.Menu;
             orderAllbox.BorderStyle = BorderStyle.None;
             orderAllbox.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            orderAllbox.Location = new Point(5, 4);
-            orderAllbox.Margin = new Padding(3, 2, 3, 2);
+            orderAllbox.Location = new Point(6, 5);
             orderAllbox.Name = "orderAllbox";
             orderAllbox.ReadOnly = true;
-            orderAllbox.Size = new Size(26, 19);
+            orderAllbox.Size = new Size(30, 23);
             orderAllbox.TabIndex = 48;
             orderAllbox.Text = "880";
             // 
@@ -1477,10 +1501,9 @@ namespace ITP4519M
             panel27.AutoSize = true;
             panel27.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel27.Controls.Add(orderActivebox);
-            panel27.Location = new Point(297, 18);
-            panel27.Margin = new Padding(3, 2, 3, 2);
+            panel27.Location = new Point(339, 24);
             panel27.Name = "panel27";
-            panel27.Size = new Size(36, 24);
+            panel27.Size = new Size(41, 30);
             panel27.TabIndex = 52;
             panel27.Paint += panel27_Paint;
             // 
@@ -1489,11 +1512,10 @@ namespace ITP4519M
             orderActivebox.BackColor = SystemColors.Menu;
             orderActivebox.BorderStyle = BorderStyle.None;
             orderActivebox.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            orderActivebox.Location = new Point(7, 3);
-            orderActivebox.Margin = new Padding(3, 2, 3, 2);
+            orderActivebox.Location = new Point(8, 4);
             orderActivebox.Name = "orderActivebox";
             orderActivebox.ReadOnly = true;
-            orderActivebox.Size = new Size(26, 19);
+            orderActivebox.Size = new Size(30, 23);
             orderActivebox.TabIndex = 48;
             orderActivebox.Text = "880";
             // 
@@ -1502,10 +1524,9 @@ namespace ITP4519M
             panel30.AutoSize = true;
             panel30.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel30.Controls.Add(orderCancelbox);
-            panel30.Location = new Point(777, 14);
-            panel30.Margin = new Padding(3, 2, 3, 2);
+            panel30.Location = new Point(888, 19);
             panel30.Name = "panel30";
-            panel30.Size = new Size(38, 24);
+            panel30.Size = new Size(43, 30);
             panel30.TabIndex = 51;
             panel30.Paint += panel30_Paint;
             // 
@@ -1514,11 +1535,10 @@ namespace ITP4519M
             orderCancelbox.BackColor = SystemColors.Menu;
             orderCancelbox.BorderStyle = BorderStyle.None;
             orderCancelbox.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            orderCancelbox.Location = new Point(9, 3);
-            orderCancelbox.Margin = new Padding(3, 2, 3, 2);
+            orderCancelbox.Location = new Point(10, 4);
             orderCancelbox.Name = "orderCancelbox";
             orderCancelbox.ReadOnly = true;
-            orderCancelbox.Size = new Size(26, 19);
+            orderCancelbox.Size = new Size(30, 23);
             orderCancelbox.TabIndex = 48;
             orderCancelbox.Text = "880";
             // 
@@ -1526,8 +1546,7 @@ namespace ITP4519M
             // 
             panel29.AutoSize = true;
             panel29.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            panel29.Location = new Point(777, 14);
-            panel29.Margin = new Padding(3, 2, 3, 2);
+            panel29.Location = new Point(888, 19);
             panel29.Name = "panel29";
             panel29.Size = new Size(0, 0);
             panel29.TabIndex = 50;
@@ -1538,10 +1557,9 @@ namespace ITP4519M
             panel28.AutoSize = true;
             panel28.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel28.Controls.Add(orderCompletedlbl);
-            panel28.Location = new Point(536, 16);
-            panel28.Margin = new Padding(3, 2, 3, 2);
+            panel28.Location = new Point(613, 21);
             panel28.Name = "panel28";
-            panel28.Size = new Size(36, 24);
+            panel28.Size = new Size(41, 30);
             panel28.TabIndex = 50;
             panel28.Paint += panel28_Paint;
             // 
@@ -1550,11 +1568,10 @@ namespace ITP4519M
             orderCompletedlbl.BackColor = SystemColors.Menu;
             orderCompletedlbl.BorderStyle = BorderStyle.None;
             orderCompletedlbl.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            orderCompletedlbl.Location = new Point(7, 3);
-            orderCompletedlbl.Margin = new Padding(3, 2, 3, 2);
+            orderCompletedlbl.Location = new Point(8, 4);
             orderCompletedlbl.Name = "orderCompletedlbl";
             orderCompletedlbl.ReadOnly = true;
-            orderCompletedlbl.Size = new Size(26, 19);
+            orderCompletedlbl.Size = new Size(30, 23);
             orderCompletedlbl.TabIndex = 48;
             orderCompletedlbl.Text = "880";
             // 
@@ -1563,9 +1580,9 @@ namespace ITP4519M
             orderoverallBtn.AutoSize = true;
             orderoverallBtn.BackColor = SystemColors.Menu;
             orderoverallBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            orderoverallBtn.Location = new Point(2, 17);
+            orderoverallBtn.Location = new Point(2, 23);
             orderoverallBtn.Name = "orderoverallBtn";
-            orderoverallBtn.Size = new Size(85, 21);
+            orderoverallBtn.Size = new Size(107, 28);
             orderoverallBtn.TabIndex = 32;
             orderoverallBtn.Text = "All Orders";
             // 
@@ -1574,9 +1591,9 @@ namespace ITP4519M
             label11.AutoSize = true;
             label11.BackColor = SystemColors.Menu;
             label11.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label11.Location = new Point(630, 14);
+            label11.Location = new Point(720, 19);
             label11.Name = "label11";
-            label11.Size = new Size(139, 21);
+            label11.Size = new Size(172, 28);
             label11.TabIndex = 37;
             label11.Text = "Cancelled Orders";
             // 
@@ -1585,9 +1602,9 @@ namespace ITP4519M
             label8.AutoSize = true;
             label8.BackColor = SystemColors.Menu;
             label8.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(173, 18);
+            label8.Location = new Point(198, 24);
             label8.Name = "label8";
-            label8.Size = new Size(112, 21);
+            label8.Size = new Size(141, 28);
             label8.TabIndex = 33;
             label8.Text = "Active Orders";
             // 
@@ -1596,9 +1613,9 @@ namespace ITP4519M
             label10.AutoSize = true;
             label10.BackColor = SystemColors.Menu;
             label10.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label10.Location = new Point(378, 16);
+            label10.Location = new Point(432, 21);
             label10.Name = "label10";
-            label10.Size = new Size(148, 21);
+            label10.Size = new Size(183, 28);
             label10.TabIndex = 35;
             label10.Text = "Completed Orders";
             label10.Click += label10_Click;
@@ -1619,9 +1636,10 @@ namespace ITP4519M
             viewOrderbtn.ButtonRoundRadius = 30;
             viewOrderbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             viewOrderbtn.ForeColor = Color.Black;
-            viewOrderbtn.Location = new Point(214, 218);
+            viewOrderbtn.Location = new Point(245, 291);
+            viewOrderbtn.Margin = new Padding(3, 4, 3, 4);
             viewOrderbtn.Name = "viewOrderbtn";
-            viewOrderbtn.Size = new Size(151, 38);
+            viewOrderbtn.Size = new Size(173, 51);
             viewOrderbtn.TabIndex = 25;
             viewOrderbtn.Text = "View Order";
             viewOrderbtn.Click += viewOrderbtn_Click;
@@ -1642,9 +1660,10 @@ namespace ITP4519M
             newOrderbtn.ButtonRoundRadius = 30;
             newOrderbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             newOrderbtn.ForeColor = Color.White;
-            newOrderbtn.Location = new Point(902, 15);
+            newOrderbtn.Location = new Point(1031, 20);
+            newOrderbtn.Margin = new Padding(3, 4, 3, 4);
             newOrderbtn.Name = "newOrderbtn";
-            newOrderbtn.Size = new Size(162, 42);
+            newOrderbtn.Size = new Size(185, 56);
             newOrderbtn.TabIndex = 24;
             newOrderbtn.Text = "+ New Orders";
             newOrderbtn.Click += newOrderbtn_Click;
@@ -1653,9 +1672,9 @@ namespace ITP4519M
             // 
             ordlerlbl.AutoSize = true;
             ordlerlbl.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ordlerlbl.Location = new Point(33, 8);
+            ordlerlbl.Location = new Point(38, 11);
             ordlerlbl.Name = "ordlerlbl";
-            ordlerlbl.Size = new Size(236, 25);
+            ordlerlbl.Size = new Size(283, 31);
             ordlerlbl.TabIndex = 23;
             ordlerlbl.Text = "Sales Order Management";
             // 
@@ -1675,9 +1694,10 @@ namespace ITP4519M
             editOrdersbtn.ButtonRoundRadius = 30;
             editOrdersbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             editOrdersbtn.ForeColor = Color.Black;
-            editOrdersbtn.Location = new Point(30, 218);
+            editOrdersbtn.Location = new Point(34, 291);
+            editOrdersbtn.Margin = new Padding(3, 4, 3, 4);
             editOrdersbtn.Name = "editOrdersbtn";
-            editOrdersbtn.Size = new Size(163, 38);
+            editOrdersbtn.Size = new Size(186, 51);
             editOrdersbtn.TabIndex = 20;
             editOrdersbtn.Text = "Edit Order";
             editOrdersbtn.Click += editOrdersbtn_Click;
@@ -1686,9 +1706,9 @@ namespace ITP4519M
             // 
             contactIndexlbl.AutoSize = true;
             contactIndexlbl.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            contactIndexlbl.Location = new Point(199, 20);
+            contactIndexlbl.Location = new Point(227, 27);
             contactIndexlbl.Name = "contactIndexlbl";
-            contactIndexlbl.Size = new Size(79, 20);
+            contactIndexlbl.Size = new Size(100, 25);
             contactIndexlbl.TabIndex = 3;
             contactIndexlbl.Text = "LabelData";
             // 
@@ -1752,9 +1772,9 @@ namespace ITP4519M
             // 
             stocklbl.AutoSize = true;
             stocklbl.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            stocklbl.Location = new Point(19, 8);
+            stocklbl.Location = new Point(22, 11);
             stocklbl.Name = "stocklbl";
-            stocklbl.Size = new Size(185, 25);
+            stocklbl.Size = new Size(221, 31);
             stocklbl.TabIndex = 2;
             stocklbl.Text = "Stock Management";
             stocklbl.Click += inventorylbl_Click;
@@ -1764,27 +1784,29 @@ namespace ITP4519M
             stockSummarypnl.Controls.Add(stockDatapanel3);
             stockSummarypnl.Controls.Add(stockDatapanel1);
             stockSummarypnl.Controls.Add(stockDatapanel2);
-            stockSummarypnl.Location = new Point(24, 51);
+            stockSummarypnl.Location = new Point(27, 68);
+            stockSummarypnl.Margin = new Padding(3, 4, 3, 4);
             stockSummarypnl.Name = "stockSummarypnl";
-            stockSummarypnl.Size = new Size(1053, 144);
+            stockSummarypnl.Size = new Size(1203, 192);
             stockSummarypnl.TabIndex = 26;
             // 
             // stockDatapanel3
             // 
             stockDatapanel3.Controls.Add(stocklbl3);
             stockDatapanel3.Controls.Add(stockProductDatalbl3);
-            stockDatapanel3.Location = new Point(746, 4);
+            stockDatapanel3.Location = new Point(853, 5);
+            stockDatapanel3.Margin = new Padding(3, 4, 3, 4);
             stockDatapanel3.Name = "stockDatapanel3";
-            stockDatapanel3.Size = new Size(266, 134);
+            stockDatapanel3.Size = new Size(304, 179);
             stockDatapanel3.TabIndex = 28;
             // 
             // stocklbl3
             // 
             stocklbl3.AutoSize = true;
             stocklbl3.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            stocklbl3.Location = new Point(23, 102);
+            stocklbl3.Location = new Point(26, 136);
             stocklbl3.Name = "stocklbl3";
-            stocklbl3.Size = new Size(191, 30);
+            stocklbl3.Size = new Size(245, 37);
             stocklbl3.TabIndex = 5;
             stocklbl3.Text = "Total DemandStock";
             // 
@@ -1792,9 +1814,9 @@ namespace ITP4519M
             // 
             stockProductDatalbl3.AutoSize = true;
             stockProductDatalbl3.Font = new Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            stockProductDatalbl3.Location = new Point(30, 36);
+            stockProductDatalbl3.Location = new Point(34, 48);
             stockProductDatalbl3.Name = "stockProductDatalbl3";
-            stockProductDatalbl3.Size = new Size(196, 50);
+            stockProductDatalbl3.Size = new Size(246, 62);
             stockProductDatalbl3.TabIndex = 4;
             stockProductDatalbl3.Text = "LabelData";
             // 
@@ -1802,18 +1824,19 @@ namespace ITP4519M
             // 
             stockDatapanel1.Controls.Add(stocklbl1);
             stockDatapanel1.Controls.Add(stockProductDatalbl1);
-            stockDatapanel1.Location = new Point(44, 5);
+            stockDatapanel1.Location = new Point(50, 7);
+            stockDatapanel1.Margin = new Padding(3, 4, 3, 4);
             stockDatapanel1.Name = "stockDatapanel1";
-            stockDatapanel1.Size = new Size(266, 134);
+            stockDatapanel1.Size = new Size(304, 179);
             stockDatapanel1.TabIndex = 0;
             // 
             // stocklbl1
             // 
             stocklbl1.AutoSize = true;
             stocklbl1.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            stocklbl1.Location = new Point(21, 102);
+            stocklbl1.Location = new Point(24, 136);
             stocklbl1.Name = "stocklbl1";
-            stocklbl1.Size = new Size(192, 30);
+            stocklbl1.Size = new Size(244, 37);
             stocklbl1.TabIndex = 1;
             stocklbl1.Text = "Number of Product";
             stocklbl1.Click += stocklbl1_Click;
@@ -1822,9 +1845,9 @@ namespace ITP4519M
             // 
             stockProductDatalbl1.AutoSize = true;
             stockProductDatalbl1.Font = new Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            stockProductDatalbl1.Location = new Point(24, 47);
+            stockProductDatalbl1.Location = new Point(27, 63);
             stockProductDatalbl1.Name = "stockProductDatalbl1";
-            stockProductDatalbl1.Size = new Size(196, 50);
+            stockProductDatalbl1.Size = new Size(246, 62);
             stockProductDatalbl1.TabIndex = 0;
             stockProductDatalbl1.Text = "LabelData";
             // 
@@ -1832,18 +1855,19 @@ namespace ITP4519M
             // 
             stockDatapanel2.Controls.Add(stockProductDatalbl2);
             stockDatapanel2.Controls.Add(stocklbl2);
-            stockDatapanel2.Location = new Point(388, 4);
+            stockDatapanel2.Location = new Point(443, 5);
+            stockDatapanel2.Margin = new Padding(3, 4, 3, 4);
             stockDatapanel2.Name = "stockDatapanel2";
-            stockDatapanel2.Size = new Size(266, 136);
+            stockDatapanel2.Size = new Size(304, 181);
             stockDatapanel2.TabIndex = 27;
             // 
             // stockProductDatalbl2
             // 
             stockProductDatalbl2.AutoSize = true;
             stockProductDatalbl2.Font = new Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            stockProductDatalbl2.Location = new Point(29, 43);
+            stockProductDatalbl2.Location = new Point(33, 57);
             stockProductDatalbl2.Name = "stockProductDatalbl2";
-            stockProductDatalbl2.Size = new Size(196, 50);
+            stockProductDatalbl2.Size = new Size(246, 62);
             stockProductDatalbl2.TabIndex = 2;
             stockProductDatalbl2.Text = "LabelData";
             // 
@@ -1851,9 +1875,9 @@ namespace ITP4519M
             // 
             stocklbl2.AutoSize = true;
             stocklbl2.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            stocklbl2.Location = new Point(48, 104);
+            stocklbl2.Location = new Point(55, 139);
             stocklbl2.Name = "stocklbl2";
-            stocklbl2.Size = new Size(143, 30);
+            stocklbl2.Size = new Size(183, 37);
             stocklbl2.TabIndex = 2;
             stocklbl2.Text = "Total Quantity";
             // 
@@ -1873,9 +1897,10 @@ namespace ITP4519M
             editProductbtn.ButtonRoundRadius = 30;
             editProductbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             editProductbtn.ForeColor = Color.Black;
-            editProductbtn.Location = new Point(31, 255);
+            editProductbtn.Location = new Point(35, 340);
+            editProductbtn.Margin = new Padding(3, 4, 3, 4);
             editProductbtn.Name = "editProductbtn";
-            editProductbtn.Size = new Size(162, 42);
+            editProductbtn.Size = new Size(185, 56);
             editProductbtn.TabIndex = 27;
             editProductbtn.Text = "Edit Product";
             editProductbtn.Click += editProductbtn_Click;
@@ -1896,9 +1921,10 @@ namespace ITP4519M
             newProductbtn.ButtonRoundRadius = 30;
             newProductbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             newProductbtn.ForeColor = Color.White;
-            newProductbtn.Location = new Point(902, 8);
+            newProductbtn.Location = new Point(1031, 11);
+            newProductbtn.Margin = new Padding(3, 4, 3, 4);
             newProductbtn.Name = "newProductbtn";
-            newProductbtn.Size = new Size(128, 42);
+            newProductbtn.Size = new Size(146, 56);
             newProductbtn.TabIndex = 28;
             newProductbtn.Text = "New Product";
             newProductbtn.Click += newProductbtn_Click;
@@ -1928,8 +1954,8 @@ namespace ITP4519M
             dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
             stockData.DefaultCellStyle = dataGridViewCellStyle7;
-            stockData.Location = new Point(20, 306);
-            stockData.Margin = new Padding(3, 5, 3, 5);
+            stockData.Location = new Point(23, 408);
+            stockData.Margin = new Padding(3, 7, 3, 7);
             stockData.Name = "stockData";
             dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = SystemColors.Control;
@@ -1944,7 +1970,7 @@ namespace ITP4519M
             stockData.RowTemplate.Height = 24;
             stockData.ScrollBars = ScrollBars.None;
             stockData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            stockData.Size = new Size(1045, 405);
+            stockData.Size = new Size(1194, 540);
             stockData.TabIndex = 3;
             stockData.CellClick += stockData_CellClick;
             stockData.CellContentClick += stockData_CellContentClick;
@@ -1965,9 +1991,10 @@ namespace ITP4519M
             viewProductbtn.ButtonRoundRadius = 30;
             viewProductbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             viewProductbtn.ForeColor = Color.Black;
-            viewProductbtn.Location = new Point(225, 255);
+            viewProductbtn.Location = new Point(257, 340);
+            viewProductbtn.Margin = new Padding(3, 4, 3, 4);
             viewProductbtn.Name = "viewProductbtn";
-            viewProductbtn.Size = new Size(162, 42);
+            viewProductbtn.Size = new Size(185, 56);
             viewProductbtn.TabIndex = 29;
             viewProductbtn.Text = "View Product";
             viewProductbtn.Click += viewProductbtn_Click;
@@ -1988,9 +2015,10 @@ namespace ITP4519M
             accountSearchBtn.ButtonRoundRadius = 30;
             accountSearchBtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             accountSearchBtn.ForeColor = Color.Black;
-            accountSearchBtn.Location = new Point(884, 79);
+            accountSearchBtn.Location = new Point(1010, 105);
+            accountSearchBtn.Margin = new Padding(3, 4, 3, 4);
             accountSearchBtn.Name = "accountSearchBtn";
-            accountSearchBtn.Size = new Size(160, 37);
+            accountSearchBtn.Size = new Size(183, 49);
             accountSearchBtn.TabIndex = 27;
             accountSearchBtn.Text = "Search";
             accountSearchBtn.Click += accountSearchBtn_Click;
@@ -2013,9 +2041,9 @@ namespace ITP4519M
             contactpnl.Controls.Add(editDealerbtn);
             contactpnl.Controls.Add(editSupplierbtn);
             contactpnl.Location = new Point(201, 3);
-            contactpnl.Margin = new Padding(3, 5, 3, 5);
+            contactpnl.Margin = new Padding(3, 7, 3, 7);
             contactpnl.Name = "contactpnl";
-            contactpnl.Size = new Size(1094, 788);
+            contactpnl.Size = new Size(1250, 1051);
             contactpnl.TabIndex = 1;
             contactpnl.Visible = false;
             contactpnl.Paint += contactpnl_Paint;
@@ -2039,9 +2067,10 @@ namespace ITP4519M
             contactSupplierCleaerbtn.ButtonRoundRadius = 30;
             contactSupplierCleaerbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             contactSupplierCleaerbtn.ForeColor = Color.Black;
-            contactSupplierCleaerbtn.Location = new Point(505, 204);
+            contactSupplierCleaerbtn.Location = new Point(577, 272);
+            contactSupplierCleaerbtn.Margin = new Padding(3, 4, 3, 4);
             contactSupplierCleaerbtn.Name = "contactSupplierCleaerbtn";
-            contactSupplierCleaerbtn.Size = new Size(95, 37);
+            contactSupplierCleaerbtn.Size = new Size(109, 49);
             contactSupplierCleaerbtn.TabIndex = 43;
             contactSupplierCleaerbtn.Text = "Clear";
             contactSupplierCleaerbtn.Click += contactSupplierCleaerbtn_Click;
@@ -2062,9 +2091,10 @@ namespace ITP4519M
             contactDealerclearbtn.ButtonRoundRadius = 30;
             contactDealerclearbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             contactDealerclearbtn.ForeColor = Color.Black;
-            contactDealerclearbtn.Location = new Point(505, 204);
+            contactDealerclearbtn.Location = new Point(577, 272);
+            contactDealerclearbtn.Margin = new Padding(3, 4, 3, 4);
             contactDealerclearbtn.Name = "contactDealerclearbtn";
-            contactDealerclearbtn.Size = new Size(95, 37);
+            contactDealerclearbtn.Size = new Size(109, 49);
             contactDealerclearbtn.TabIndex = 42;
             contactDealerclearbtn.Text = "Clear";
             contactDealerclearbtn.Click += contactDealerclearbtn_Click;
@@ -2076,9 +2106,10 @@ namespace ITP4519M
             panel23.Controls.Add(contactbtnPrevPage);
             panel23.Controls.Add(contactbtnLastPage);
             panel23.Controls.Add(contactbtnNxtPage);
-            panel23.Location = new Point(582, 696);
+            panel23.Location = new Point(665, 928);
+            panel23.Margin = new Padding(3, 4, 3, 4);
             panel23.Name = "panel23";
-            panel23.Size = new Size(495, 53);
+            panel23.Size = new Size(566, 71);
             panel23.TabIndex = 40;
             // 
             // contactbtnFirstPage
@@ -2097,10 +2128,10 @@ namespace ITP4519M
             contactbtnFirstPage.ButtonRoundRadius = 30;
             contactbtnFirstPage.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             contactbtnFirstPage.ForeColor = Color.Black;
-            contactbtnFirstPage.Location = new Point(18, 11);
-            contactbtnFirstPage.Margin = new Padding(3, 4, 3, 4);
+            contactbtnFirstPage.Location = new Point(21, 15);
+            contactbtnFirstPage.Margin = new Padding(3, 5, 3, 5);
             contactbtnFirstPage.Name = "contactbtnFirstPage";
-            contactbtnFirstPage.Size = new Size(69, 36);
+            contactbtnFirstPage.Size = new Size(79, 48);
             contactbtnFirstPage.TabIndex = 31;
             contactbtnFirstPage.Text = "First";
             contactbtnFirstPage.Click += contactbtnFirstPage_Click;
@@ -2122,10 +2153,10 @@ namespace ITP4519M
             contactbtnPrevPage.ButtonRoundRadius = 30;
             contactbtnPrevPage.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             contactbtnPrevPage.ForeColor = Color.Black;
-            contactbtnPrevPage.Location = new Point(108, 11);
-            contactbtnPrevPage.Margin = new Padding(3, 4, 3, 4);
+            contactbtnPrevPage.Location = new Point(123, 15);
+            contactbtnPrevPage.Margin = new Padding(3, 5, 3, 5);
             contactbtnPrevPage.Name = "contactbtnPrevPage";
-            contactbtnPrevPage.Size = new Size(72, 36);
+            contactbtnPrevPage.Size = new Size(82, 48);
             contactbtnPrevPage.TabIndex = 33;
             contactbtnPrevPage.Text = "Prev";
             contactbtnPrevPage.Click += contactbtnPrevPage_Click;
@@ -2146,10 +2177,10 @@ namespace ITP4519M
             contactbtnLastPage.ButtonRoundRadius = 30;
             contactbtnLastPage.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             contactbtnLastPage.ForeColor = Color.Black;
-            contactbtnLastPage.Location = new Point(408, 11);
-            contactbtnLastPage.Margin = new Padding(3, 4, 3, 4);
+            contactbtnLastPage.Location = new Point(466, 15);
+            contactbtnLastPage.Margin = new Padding(3, 5, 3, 5);
             contactbtnLastPage.Name = "contactbtnLastPage";
-            contactbtnLastPage.Size = new Size(76, 38);
+            contactbtnLastPage.Size = new Size(87, 51);
             contactbtnLastPage.TabIndex = 34;
             contactbtnLastPage.Text = "Last";
             contactbtnLastPage.Click += contactbtnLastPage_Click;
@@ -2170,10 +2201,10 @@ namespace ITP4519M
             contactbtnNxtPage.ButtonRoundRadius = 30;
             contactbtnNxtPage.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             contactbtnNxtPage.ForeColor = Color.Black;
-            contactbtnNxtPage.Location = new Point(317, 11);
-            contactbtnNxtPage.Margin = new Padding(3, 4, 3, 4);
+            contactbtnNxtPage.Location = new Point(362, 15);
+            contactbtnNxtPage.Margin = new Padding(3, 5, 3, 5);
             contactbtnNxtPage.Name = "contactbtnNxtPage";
-            contactbtnNxtPage.Size = new Size(70, 40);
+            contactbtnNxtPage.Size = new Size(80, 53);
             contactbtnNxtPage.TabIndex = 32;
             contactbtnNxtPage.Text = "Next";
             contactbtnNxtPage.Click += contactbtnNxtPage_Click;
@@ -2182,27 +2213,29 @@ namespace ITP4519M
             // 
             panel22.Controls.Add(panel24);
             panel22.Controls.Add(panel25);
-            panel22.Location = new Point(514, 51);
+            panel22.Location = new Point(587, 68);
+            panel22.Margin = new Padding(3, 4, 3, 4);
             panel22.Name = "panel22";
-            panel22.Size = new Size(575, 143);
+            panel22.Size = new Size(657, 191);
             panel22.TabIndex = 39;
             // 
             // panel24
             // 
             panel24.Controls.Add(label35);
             panel24.Controls.Add(dealerDatalbl);
-            panel24.Location = new Point(15, 11);
+            panel24.Location = new Point(17, 15);
+            panel24.Margin = new Padding(3, 4, 3, 4);
             panel24.Name = "panel24";
-            panel24.Size = new Size(266, 120);
+            panel24.Size = new Size(304, 160);
             panel24.TabIndex = 0;
             // 
             // label35
             // 
             label35.AutoSize = true;
             label35.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label35.Location = new Point(24, 80);
+            label35.Location = new Point(27, 107);
             label35.Name = "label35";
-            label35.Size = new Size(180, 30);
+            label35.Size = new Size(229, 37);
             label35.TabIndex = 1;
             label35.Text = "Number of Dealer";
             // 
@@ -2210,9 +2243,9 @@ namespace ITP4519M
             // 
             dealerDatalbl.AutoSize = true;
             dealerDatalbl.Font = new Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dealerDatalbl.Location = new Point(24, 14);
+            dealerDatalbl.Location = new Point(27, 19);
             dealerDatalbl.Name = "dealerDatalbl";
-            dealerDatalbl.Size = new Size(196, 50);
+            dealerDatalbl.Size = new Size(246, 62);
             dealerDatalbl.TabIndex = 0;
             dealerDatalbl.Text = "LabelData";
             dealerDatalbl.TextAlign = ContentAlignment.MiddleCenter;
@@ -2221,18 +2254,19 @@ namespace ITP4519M
             // 
             panel25.Controls.Add(supplierDatalbl);
             panel25.Controls.Add(label38);
-            panel25.Location = new Point(300, 11);
+            panel25.Location = new Point(343, 15);
+            panel25.Margin = new Padding(3, 4, 3, 4);
             panel25.Name = "panel25";
-            panel25.Size = new Size(266, 120);
+            panel25.Size = new Size(304, 160);
             panel25.TabIndex = 27;
             // 
             // supplierDatalbl
             // 
             supplierDatalbl.AutoSize = true;
             supplierDatalbl.Font = new Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            supplierDatalbl.Location = new Point(32, 14);
+            supplierDatalbl.Location = new Point(37, 19);
             supplierDatalbl.Name = "supplierDatalbl";
-            supplierDatalbl.Size = new Size(196, 50);
+            supplierDatalbl.Size = new Size(246, 62);
             supplierDatalbl.TabIndex = 2;
             supplierDatalbl.Text = "LabelData";
             supplierDatalbl.TextAlign = ContentAlignment.MiddleCenter;
@@ -2241,9 +2275,9 @@ namespace ITP4519M
             // 
             label38.AutoSize = true;
             label38.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label38.Location = new Point(26, 80);
+            label38.Location = new Point(30, 107);
             label38.Name = "label38";
-            label38.Size = new Size(195, 30);
+            label38.Size = new Size(250, 37);
             label38.TabIndex = 2;
             label38.Text = "Number of Supplier";
             // 
@@ -2252,11 +2286,9 @@ namespace ITP4519M
             contactGroupBox.Controls.Add(supplersbtn);
             contactGroupBox.Controls.Add(dealersbtn);
             contactGroupBox.Font = new Font("Microsoft JhengHei UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 136);
-            contactGroupBox.Location = new Point(38, 59);
-            contactGroupBox.Margin = new Padding(3, 2, 3, 2);
+            contactGroupBox.Location = new Point(43, 79);
             contactGroupBox.Name = "contactGroupBox";
-            contactGroupBox.Padding = new Padding(3, 2, 3, 2);
-            contactGroupBox.Size = new Size(403, 68);
+            contactGroupBox.Size = new Size(461, 91);
             contactGroupBox.TabIndex = 35;
             contactGroupBox.TabStop = false;
             contactGroupBox.Text = "Change to Contact information";
@@ -2277,9 +2309,10 @@ namespace ITP4519M
             supplersbtn.ButtonRoundRadius = 15;
             supplersbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             supplersbtn.ForeColor = Color.Black;
-            supplersbtn.Location = new Point(195, 18);
+            supplersbtn.Location = new Point(223, 24);
+            supplersbtn.Margin = new Padding(3, 4, 3, 4);
             supplersbtn.Name = "supplersbtn";
-            supplersbtn.Size = new Size(196, 39);
+            supplersbtn.Size = new Size(224, 52);
             supplersbtn.TabIndex = 18;
             supplersbtn.Text = "Suppliers information";
             supplersbtn.Click += supplersbtn_Click;
@@ -2300,9 +2333,10 @@ namespace ITP4519M
             dealersbtn.ButtonRoundRadius = 15;
             dealersbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dealersbtn.ForeColor = Color.Black;
-            dealersbtn.Location = new Point(7, 18);
+            dealersbtn.Location = new Point(8, 24);
+            dealersbtn.Margin = new Padding(3, 4, 3, 4);
             dealersbtn.Name = "dealersbtn";
-            dealersbtn.Size = new Size(180, 39);
+            dealersbtn.Size = new Size(206, 52);
             dealersbtn.TabIndex = 17;
             dealersbtn.Text = "Dealers information";
             dealersbtn.Click += dealersbtn_Click;
@@ -2323,10 +2357,10 @@ namespace ITP4519M
             delContactbtn.ButtonRoundRadius = 30;
             delContactbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             delContactbtn.ForeColor = Color.White;
-            delContactbtn.Location = new Point(344, 197);
-            delContactbtn.Margin = new Padding(4);
+            delContactbtn.Location = new Point(393, 263);
+            delContactbtn.Margin = new Padding(5);
             delContactbtn.Name = "delContactbtn";
-            delContactbtn.Size = new Size(139, 41);
+            delContactbtn.Size = new Size(159, 55);
             delContactbtn.TabIndex = 34;
             delContactbtn.Text = "Delete";
             delContactbtn.Click += delContactbtn_Click;
@@ -2334,10 +2368,11 @@ namespace ITP4519M
             // searchContactbtn
             // 
             searchContactbtn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            searchContactbtn.Location = new Point(704, 212);
+            searchContactbtn.Location = new Point(805, 283);
+            searchContactbtn.Margin = new Padding(3, 4, 3, 4);
             searchContactbtn.Name = "searchContactbtn";
             searchContactbtn.PlaceholderText = "Search Name";
-            searchContactbtn.Size = new Size(197, 29);
+            searchContactbtn.Size = new Size(225, 34);
             searchContactbtn.TabIndex = 32;
             // 
             // newDealerbtn
@@ -2356,10 +2391,10 @@ namespace ITP4519M
             newDealerbtn.ButtonRoundRadius = 30;
             newDealerbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             newDealerbtn.ForeColor = Color.Black;
-            newDealerbtn.Location = new Point(36, 193);
-            newDealerbtn.Margin = new Padding(4);
+            newDealerbtn.Location = new Point(41, 257);
+            newDealerbtn.Margin = new Padding(5);
             newDealerbtn.Name = "newDealerbtn";
-            newDealerbtn.Size = new Size(144, 46);
+            newDealerbtn.Size = new Size(165, 61);
             newDealerbtn.TabIndex = 31;
             newDealerbtn.Text = "New Dealer";
             newDealerbtn.Click += newDealerbtn_Click;
@@ -2380,9 +2415,10 @@ namespace ITP4519M
             searchSupplierbtn.ButtonRoundRadius = 30;
             searchSupplierbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             searchSupplierbtn.ForeColor = Color.Black;
-            searchSupplierbtn.Location = new Point(910, 208);
+            searchSupplierbtn.Location = new Point(1040, 277);
+            searchSupplierbtn.Margin = new Padding(3, 4, 3, 4);
             searchSupplierbtn.Name = "searchSupplierbtn";
-            searchSupplierbtn.Size = new Size(166, 37);
+            searchSupplierbtn.Size = new Size(190, 49);
             searchSupplierbtn.TabIndex = 38;
             searchSupplierbtn.Text = "Search";
             searchSupplierbtn.Click += searchSupplierbtn_Click;
@@ -2397,9 +2433,10 @@ namespace ITP4519M
             searchDealerbtn.ForeColor = Color.Black;
             searchDealerbtn.ImageAlign = ContentAlignment.MiddleLeft;
             searchDealerbtn.ImageIndex = 0;
-            searchDealerbtn.Location = new Point(921, 208);
+            searchDealerbtn.Location = new Point(1053, 277);
+            searchDealerbtn.Margin = new Padding(3, 4, 3, 4);
             searchDealerbtn.Name = "searchDealerbtn";
-            searchDealerbtn.Size = new Size(155, 32);
+            searchDealerbtn.Size = new Size(177, 43);
             searchDealerbtn.TabIndex = 33;
             searchDealerbtn.Text = "Search";
             searchDealerbtn.UseVisualStyleBackColor = false;
@@ -2422,10 +2459,10 @@ namespace ITP4519M
             newSupplierbtn.ButtonRoundRadius = 30;
             newSupplierbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             newSupplierbtn.ForeColor = Color.Black;
-            newSupplierbtn.Location = new Point(36, 193);
-            newSupplierbtn.Margin = new Padding(4);
+            newSupplierbtn.Location = new Point(41, 257);
+            newSupplierbtn.Margin = new Padding(5);
             newSupplierbtn.Name = "newSupplierbtn";
-            newSupplierbtn.Size = new Size(146, 43);
+            newSupplierbtn.Size = new Size(167, 57);
             newSupplierbtn.TabIndex = 37;
             newSupplierbtn.Text = "New Supplier";
             newSupplierbtn.Click += newSupplierbtn_Click;
@@ -2455,8 +2492,8 @@ namespace ITP4519M
             dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
             suppliersData.DefaultCellStyle = dataGridViewCellStyle11;
-            suppliersData.Location = new Point(9, 251);
-            suppliersData.Margin = new Padding(3, 5, 3, 5);
+            suppliersData.Location = new Point(10, 335);
+            suppliersData.Margin = new Padding(3, 7, 3, 7);
             suppliersData.Name = "suppliersData";
             dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle12.BackColor = SystemColors.Control;
@@ -2470,7 +2507,7 @@ namespace ITP4519M
             suppliersData.RowHeadersWidth = 51;
             suppliersData.RowTemplate.Height = 24;
             suppliersData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            suppliersData.Size = new Size(1051, 417);
+            suppliersData.Size = new Size(1201, 556);
             suppliersData.TabIndex = 41;
             suppliersData.CellContentClick += suppliersdata_CellClick;
             // 
@@ -2499,8 +2536,8 @@ namespace ITP4519M
             dataGridViewCellStyle15.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle15.WrapMode = DataGridViewTriState.False;
             dealersData.DefaultCellStyle = dataGridViewCellStyle15;
-            dealersData.Location = new Point(9, 249);
-            dealersData.Margin = new Padding(3, 5, 3, 5);
+            dealersData.Location = new Point(10, 332);
+            dealersData.Margin = new Padding(3, 7, 3, 7);
             dealersData.Name = "dealersData";
             dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle16.BackColor = SystemColors.Control;
@@ -2514,7 +2551,7 @@ namespace ITP4519M
             dealersData.RowHeadersWidth = 51;
             dealersData.RowTemplate.Height = 24;
             dealersData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dealersData.Size = new Size(1050, 417);
+            dealersData.Size = new Size(1200, 556);
             dealersData.TabIndex = 19;
             dealersData.CellClick += dealersdata_CellClick;
             dealersData.CellContentClick += contactsdata_CellContentClick;
@@ -2534,10 +2571,10 @@ namespace ITP4519M
             editDealerbtn.ButtonPressedForeColor = Color.White;
             editDealerbtn.ButtonRoundRadius = 30;
             editDealerbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            editDealerbtn.Location = new Point(188, 197);
-            editDealerbtn.Margin = new Padding(4);
+            editDealerbtn.Location = new Point(215, 263);
+            editDealerbtn.Margin = new Padding(5);
             editDealerbtn.Name = "editDealerbtn";
-            editDealerbtn.Size = new Size(146, 40);
+            editDealerbtn.Size = new Size(167, 53);
             editDealerbtn.TabIndex = 29;
             editDealerbtn.Text = "Edit Dealer";
             editDealerbtn.Click += editDealerbtn_Click;
@@ -2558,10 +2595,10 @@ namespace ITP4519M
             editSupplierbtn.ButtonRoundRadius = 30;
             editSupplierbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             editSupplierbtn.ForeColor = Color.Black;
-            editSupplierbtn.Location = new Point(186, 199);
-            editSupplierbtn.Margin = new Padding(6, 7, 6, 7);
+            editSupplierbtn.Location = new Point(213, 265);
+            editSupplierbtn.Margin = new Padding(7, 9, 7, 9);
             editSupplierbtn.Name = "editSupplierbtn";
-            editSupplierbtn.Size = new Size(149, 39);
+            editSupplierbtn.Size = new Size(170, 52);
             editSupplierbtn.TabIndex = 36;
             editSupplierbtn.Text = "Edit Supplier";
             editSupplierbtn.Click += editSupplierbtn_Click;
@@ -2581,10 +2618,9 @@ namespace ITP4519M
             panel43.Controls.Add(panel42);
             panel43.Controls.Add(button23);
             panel43.Controls.Add(outstandingCancelbtn);
-            panel43.Location = new Point(0, 123);
-            panel43.Margin = new Padding(3, 2, 3, 2);
+            panel43.Location = new Point(0, 164);
             panel43.Name = "panel43";
-            panel43.Size = new Size(1067, 602);
+            panel43.Size = new Size(1219, 803);
             panel43.TabIndex = 32;
             // 
             // outstandingViewData
@@ -2597,8 +2633,8 @@ namespace ITP4519M
             outstandingViewData.BackgroundColor = SystemColors.ButtonHighlight;
             outstandingViewData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             outstandingViewData.Columns.AddRange(new DataGridViewColumn[] { ProductID, ProductName, FollowUp, UnitPrice });
-            outstandingViewData.Location = new Point(63, 229);
-            outstandingViewData.Margin = new Padding(3, 4, 3, 4);
+            outstandingViewData.Location = new Point(72, 305);
+            outstandingViewData.Margin = new Padding(3, 5, 3, 5);
             outstandingViewData.Name = "outstandingViewData";
             outstandingViewData.ReadOnly = true;
             dataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -2611,7 +2647,7 @@ namespace ITP4519M
             outstandingViewData.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
             outstandingViewData.RowHeadersWidth = 51;
             outstandingViewData.RowTemplate.Height = 24;
-            outstandingViewData.Size = new Size(834, 284);
+            outstandingViewData.Size = new Size(953, 379);
             outstandingViewData.TabIndex = 62;
             // 
             // ProductID
@@ -2663,18 +2699,19 @@ namespace ITP4519M
             panel42.Controls.Add(outstandingContactNamelbl);
             panel42.Controls.Add(outstandingEmaillbl);
             panel42.Controls.Add(outstandingPhonelbl);
-            panel42.Location = new Point(63, 3);
+            panel42.Location = new Point(72, 4);
+            panel42.Margin = new Padding(3, 4, 3, 4);
             panel42.Name = "panel42";
-            panel42.Size = new Size(835, 213);
+            panel42.Size = new Size(954, 284);
             panel42.TabIndex = 33;
             // 
             // viewoutstandingOrderExecptDatelbl
             // 
             viewoutstandingOrderExecptDatelbl.AutoSize = true;
             viewoutstandingOrderExecptDatelbl.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            viewoutstandingOrderExecptDatelbl.Location = new Point(586, 91);
+            viewoutstandingOrderExecptDatelbl.Location = new Point(670, 121);
             viewoutstandingOrderExecptDatelbl.Name = "viewoutstandingOrderExecptDatelbl";
-            viewoutstandingOrderExecptDatelbl.Size = new Size(87, 21);
+            viewoutstandingOrderExecptDatelbl.Size = new Size(106, 28);
             viewoutstandingOrderExecptDatelbl.TabIndex = 42;
             viewoutstandingOrderExecptDatelbl.Text = "OrderDate";
             // 
@@ -2682,9 +2719,9 @@ namespace ITP4519M
             // 
             label58.AutoSize = true;
             label58.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label58.Location = new Point(387, 93);
+            label58.Location = new Point(442, 124);
             label58.Name = "label58";
-            label58.Size = new Size(152, 21);
+            label58.Size = new Size(188, 28);
             label58.TabIndex = 41;
             label58.Text = "Order Execpt Date :";
             // 
@@ -2692,9 +2729,9 @@ namespace ITP4519M
             // 
             viewoutstandingOrderDatelbl.AutoSize = true;
             viewoutstandingOrderDatelbl.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            viewoutstandingOrderDatelbl.Location = new Point(591, 53);
+            viewoutstandingOrderDatelbl.Location = new Point(675, 71);
             viewoutstandingOrderDatelbl.Name = "viewoutstandingOrderDatelbl";
-            viewoutstandingOrderDatelbl.Size = new Size(87, 21);
+            viewoutstandingOrderDatelbl.Size = new Size(106, 28);
             viewoutstandingOrderDatelbl.TabIndex = 40;
             viewoutstandingOrderDatelbl.Text = "OrderDate";
             // 
@@ -2702,9 +2739,9 @@ namespace ITP4519M
             // 
             label56.AutoSize = true;
             label56.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label56.Location = new Point(444, 54);
+            label56.Location = new Point(507, 72);
             label56.Name = "label56";
-            label56.Size = new Size(99, 21);
+            label56.Size = new Size(123, 28);
             label56.TabIndex = 39;
             label56.Text = "Order Date :";
             // 
@@ -2712,9 +2749,9 @@ namespace ITP4519M
             // 
             outstandingOrderIDlbl.AutoSize = true;
             outstandingOrderIDlbl.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            outstandingOrderIDlbl.Location = new Point(592, 21);
+            outstandingOrderIDlbl.Location = new Point(677, 28);
             outstandingOrderIDlbl.Name = "outstandingOrderIDlbl";
-            outstandingOrderIDlbl.Size = new Size(69, 21);
+            outstandingOrderIDlbl.Size = new Size(84, 28);
             outstandingOrderIDlbl.TabIndex = 38;
             outstandingOrderIDlbl.Text = "OrderID";
             // 
@@ -2722,9 +2759,9 @@ namespace ITP4519M
             // 
             outstandingOrderIDlbl2.AutoSize = true;
             outstandingOrderIDlbl2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            outstandingOrderIDlbl2.Location = new Point(466, 21);
+            outstandingOrderIDlbl2.Location = new Point(533, 28);
             outstandingOrderIDlbl2.Name = "outstandingOrderIDlbl2";
-            outstandingOrderIDlbl2.Size = new Size(81, 21);
+            outstandingOrderIDlbl2.Size = new Size(101, 28);
             outstandingOrderIDlbl2.TabIndex = 32;
             outstandingOrderIDlbl2.Text = "Order ID :";
             // 
@@ -2732,9 +2769,9 @@ namespace ITP4519M
             // 
             oustandingViewDeliverylbl.AutoSize = true;
             oustandingViewDeliverylbl.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            oustandingViewDeliverylbl.Location = new Point(416, 162);
+            oustandingViewDeliverylbl.Location = new Point(475, 216);
             oustandingViewDeliverylbl.Name = "oustandingViewDeliverylbl";
-            oustandingViewDeliverylbl.Size = new Size(130, 21);
+            oustandingViewDeliverylbl.Size = new Size(159, 28);
             oustandingViewDeliverylbl.TabIndex = 37;
             oustandingViewDeliverylbl.Text = "DeliveryAddress";
             // 
@@ -2742,9 +2779,9 @@ namespace ITP4519M
             // 
             outstandingViewEmaillbl.AutoSize = true;
             outstandingViewEmaillbl.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            outstandingViewEmaillbl.Location = new Point(204, 162);
+            outstandingViewEmaillbl.Location = new Point(233, 216);
             outstandingViewEmaillbl.Name = "outstandingViewEmaillbl";
-            outstandingViewEmaillbl.Size = new Size(108, 21);
+            outstandingViewEmaillbl.Size = new Size(133, 28);
             outstandingViewEmaillbl.TabIndex = 36;
             outstandingViewEmaillbl.Text = "EmailAddress";
             // 
@@ -2752,9 +2789,9 @@ namespace ITP4519M
             // 
             outstandingViewPhoneNumlbl.AutoSize = true;
             outstandingViewPhoneNumlbl.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            outstandingViewPhoneNumlbl.Location = new Point(206, 129);
+            outstandingViewPhoneNumlbl.Location = new Point(235, 172);
             outstandingViewPhoneNumlbl.Name = "outstandingViewPhoneNumlbl";
-            outstandingViewPhoneNumlbl.Size = new Size(91, 21);
+            outstandingViewPhoneNumlbl.Size = new Size(116, 28);
             outstandingViewPhoneNumlbl.TabIndex = 35;
             outstandingViewPhoneNumlbl.Text = "PhoneNum";
             // 
@@ -2762,9 +2799,9 @@ namespace ITP4519M
             // 
             outstandingViewContactNamelbl.AutoSize = true;
             outstandingViewContactNamelbl.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            outstandingViewContactNamelbl.Location = new Point(205, 95);
+            outstandingViewContactNamelbl.Location = new Point(234, 127);
             outstandingViewContactNamelbl.Name = "outstandingViewContactNamelbl";
-            outstandingViewContactNamelbl.Size = new Size(110, 21);
+            outstandingViewContactNamelbl.Size = new Size(135, 28);
             outstandingViewContactNamelbl.TabIndex = 34;
             outstandingViewContactNamelbl.Text = "ContactName";
             // 
@@ -2772,9 +2809,9 @@ namespace ITP4519M
             // 
             outstandingViewDealerNamelbl.AutoSize = true;
             outstandingViewDealerNamelbl.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            outstandingViewDealerNamelbl.Location = new Point(207, 62);
+            outstandingViewDealerNamelbl.Location = new Point(237, 83);
             outstandingViewDealerNamelbl.Name = "outstandingViewDealerNamelbl";
-            outstandingViewDealerNamelbl.Size = new Size(100, 21);
+            outstandingViewDealerNamelbl.Size = new Size(124, 28);
             outstandingViewDealerNamelbl.TabIndex = 33;
             outstandingViewDealerNamelbl.Text = "DealerName";
             // 
@@ -2782,9 +2819,9 @@ namespace ITP4519M
             // 
             outstandingViewDealerIDlbl.AutoSize = true;
             outstandingViewDealerIDlbl.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            outstandingViewDealerIDlbl.Location = new Point(212, 23);
+            outstandingViewDealerIDlbl.Location = new Point(242, 31);
             outstandingViewDealerIDlbl.Name = "outstandingViewDealerIDlbl";
-            outstandingViewDealerIDlbl.Size = new Size(73, 21);
+            outstandingViewDealerIDlbl.Size = new Size(90, 28);
             outstandingViewDealerIDlbl.TabIndex = 32;
             outstandingViewDealerIDlbl.Text = "DealerID";
             // 
@@ -2792,9 +2829,9 @@ namespace ITP4519M
             // 
             outstandingDealerIDlbl.AutoSize = true;
             outstandingDealerIDlbl.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            outstandingDealerIDlbl.Location = new Point(95, 24);
+            outstandingDealerIDlbl.Location = new Point(109, 32);
             outstandingDealerIDlbl.Name = "outstandingDealerIDlbl";
-            outstandingDealerIDlbl.Size = new Size(89, 21);
+            outstandingDealerIDlbl.Size = new Size(113, 28);
             outstandingDealerIDlbl.TabIndex = 24;
             outstandingDealerIDlbl.Text = "Dealer ID : ";
             // 
@@ -2802,9 +2839,9 @@ namespace ITP4519M
             // 
             outstandingDealerNamelbl.AutoSize = true;
             outstandingDealerNamelbl.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            outstandingDealerNamelbl.Location = new Point(65, 61);
+            outstandingDealerNamelbl.Location = new Point(74, 81);
             outstandingDealerNamelbl.Name = "outstandingDealerNamelbl";
-            outstandingDealerNamelbl.Size = new Size(116, 21);
+            outstandingDealerNamelbl.Size = new Size(147, 28);
             outstandingDealerNamelbl.TabIndex = 27;
             outstandingDealerNamelbl.Text = "Dealer Name : ";
             // 
@@ -2812,9 +2849,9 @@ namespace ITP4519M
             // 
             outstandingDeliveryAddresslbl.AutoSize = true;
             outstandingDeliveryAddresslbl.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            outstandingDeliveryAddresslbl.Location = new Point(392, 131);
+            outstandingDeliveryAddresslbl.Location = new Point(448, 175);
             outstandingDeliveryAddresslbl.Name = "outstandingDeliveryAddresslbl";
-            outstandingDeliveryAddresslbl.Size = new Size(146, 21);
+            outstandingDeliveryAddresslbl.Size = new Size(182, 28);
             outstandingDeliveryAddresslbl.TabIndex = 31;
             outstandingDeliveryAddresslbl.Text = "Delivery Address : ";
             // 
@@ -2822,9 +2859,9 @@ namespace ITP4519M
             // 
             outstandingContactNamelbl.AutoSize = true;
             outstandingContactNamelbl.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            outstandingContactNamelbl.Location = new Point(58, 96);
+            outstandingContactNamelbl.Location = new Point(66, 128);
             outstandingContactNamelbl.Name = "outstandingContactNamelbl";
-            outstandingContactNamelbl.Size = new Size(126, 21);
+            outstandingContactNamelbl.Size = new Size(158, 28);
             outstandingContactNamelbl.TabIndex = 28;
             outstandingContactNamelbl.Text = "Contact Name : ";
             // 
@@ -2832,9 +2869,9 @@ namespace ITP4519M
             // 
             outstandingEmaillbl.AutoSize = true;
             outstandingEmaillbl.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            outstandingEmaillbl.Location = new Point(60, 163);
+            outstandingEmaillbl.Location = new Point(69, 217);
             outstandingEmaillbl.Name = "outstandingEmaillbl";
-            outstandingEmaillbl.Size = new Size(124, 21);
+            outstandingEmaillbl.Size = new Size(156, 28);
             outstandingEmaillbl.TabIndex = 30;
             outstandingEmaillbl.Text = "Email Address : ";
             // 
@@ -2842,19 +2879,18 @@ namespace ITP4519M
             // 
             outstandingPhonelbl.AutoSize = true;
             outstandingPhonelbl.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            outstandingPhonelbl.Location = new Point(53, 130);
+            outstandingPhonelbl.Location = new Point(61, 173);
             outstandingPhonelbl.Name = "outstandingPhonelbl";
-            outstandingPhonelbl.Size = new Size(132, 21);
+            outstandingPhonelbl.Size = new Size(169, 28);
             outstandingPhonelbl.TabIndex = 29;
             outstandingPhonelbl.Text = "Phone Number : ";
             // 
             // button23
             // 
             button23.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button23.Location = new Point(696, 532);
-            button23.Margin = new Padding(3, 2, 3, 2);
+            button23.Location = new Point(795, 709);
             button23.Name = "button23";
-            button23.Size = new Size(138, 38);
+            button23.Size = new Size(158, 51);
             button23.TabIndex = 18;
             button23.Text = "Next";
             button23.UseVisualStyleBackColor = true;
@@ -2862,10 +2898,9 @@ namespace ITP4519M
             // outstandingCancelbtn
             // 
             outstandingCancelbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            outstandingCancelbtn.Location = new Point(105, 530);
-            outstandingCancelbtn.Margin = new Padding(3, 2, 3, 2);
+            outstandingCancelbtn.Location = new Point(120, 707);
             outstandingCancelbtn.Name = "outstandingCancelbtn";
-            outstandingCancelbtn.Size = new Size(138, 38);
+            outstandingCancelbtn.Size = new Size(158, 51);
             outstandingCancelbtn.TabIndex = 19;
             outstandingCancelbtn.Text = "Cancel";
             outstandingCancelbtn.UseVisualStyleBackColor = true;
@@ -2876,19 +2911,18 @@ namespace ITP4519M
             panel44.Controls.Add(label36);
             panel44.Controls.Add(outstandingIDlbl);
             panel44.Controls.Add(outstandingBackbtn);
-            panel44.Location = new Point(0, 4);
-            panel44.Margin = new Padding(3, 2, 3, 2);
+            panel44.Location = new Point(0, 5);
             panel44.Name = "panel44";
-            panel44.Size = new Size(1067, 100);
+            panel44.Size = new Size(1219, 133);
             panel44.TabIndex = 33;
             // 
             // label36
             // 
             label36.AutoSize = true;
             label36.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-            label36.Location = new Point(39, 1);
+            label36.Location = new Point(45, 1);
             label36.Name = "label36";
-            label36.Size = new Size(180, 25);
+            label36.Size = new Size(215, 31);
             label36.TabIndex = 24;
             label36.Text = "Outstanding Order";
             // 
@@ -2896,9 +2930,9 @@ namespace ITP4519M
             // 
             outstandingIDlbl.AutoSize = true;
             outstandingIDlbl.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            outstandingIDlbl.Location = new Point(333, 22);
+            outstandingIDlbl.Location = new Point(381, 29);
             outstandingIDlbl.Name = "outstandingIDlbl";
-            outstandingIDlbl.Size = new Size(194, 30);
+            outstandingIDlbl.Size = new Size(249, 37);
             outstandingIDlbl.TabIndex = 22;
             outstandingIDlbl.Text = "Outstanding ID : #";
             // 
@@ -2916,10 +2950,9 @@ namespace ITP4519M
             outstandingBackbtn.ButtonPressedForeColor = Color.White;
             outstandingBackbtn.ButtonRoundRadius = 30;
             outstandingBackbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            outstandingBackbtn.Location = new Point(760, 10);
-            outstandingBackbtn.Margin = new Padding(3, 2, 3, 2);
+            outstandingBackbtn.Location = new Point(869, 13);
             outstandingBackbtn.Name = "outstandingBackbtn";
-            outstandingBackbtn.Size = new Size(138, 38);
+            outstandingBackbtn.Size = new Size(158, 51);
             outstandingBackbtn.TabIndex = 23;
             outstandingBackbtn.Text = "Back";
             outstandingBackbtn.Click += outstandingBackbtn_Click;
@@ -2928,9 +2961,9 @@ namespace ITP4519M
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(14, 17);
+            label2.Location = new Point(16, 23);
             label2.Name = "label2";
-            label2.Size = new Size(55, 25);
+            label2.Size = new Size(69, 32);
             label2.TabIndex = 10;
             label2.Text = "From";
             // 
@@ -2951,9 +2984,10 @@ namespace ITP4519M
             settingpnl.Controls.Add(orderReportdata);
             settingpnl.Controls.Add(reportOrdercsvbtn);
             settingpnl.Controls.Add(reportlbl);
-            settingpnl.Location = new Point(176, 2);
+            settingpnl.Location = new Point(201, 3);
+            settingpnl.Margin = new Padding(3, 4, 3, 4);
             settingpnl.Name = "settingpnl";
-            settingpnl.Size = new Size(1094, 788);
+            settingpnl.Size = new Size(1250, 1051);
             settingpnl.TabIndex = 5;
             settingpnl.Visible = false;
             settingpnl.MouseDown += Dashboard_MouseDown;
@@ -2963,10 +2997,9 @@ namespace ITP4519M
             // reportShowStockbtn
             // 
             reportShowStockbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            reportShowStockbtn.Location = new Point(348, 10);
-            reportShowStockbtn.Margin = new Padding(3, 2, 3, 2);
+            reportShowStockbtn.Location = new Point(398, 13);
             reportShowStockbtn.Name = "reportShowStockbtn";
-            reportShowStockbtn.Size = new Size(141, 42);
+            reportShowStockbtn.Size = new Size(161, 56);
             reportShowStockbtn.TabIndex = 81;
             reportShowStockbtn.Text = "Stock";
             reportShowStockbtn.UseVisualStyleBackColor = true;
@@ -2975,10 +3008,9 @@ namespace ITP4519M
             // reportShowOrderbtn
             // 
             reportShowOrderbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            reportShowOrderbtn.Location = new Point(183, 11);
-            reportShowOrderbtn.Margin = new Padding(3, 2, 3, 2);
+            reportShowOrderbtn.Location = new Point(209, 15);
             reportShowOrderbtn.Name = "reportShowOrderbtn";
-            reportShowOrderbtn.Size = new Size(141, 42);
+            reportShowOrderbtn.Size = new Size(161, 56);
             reportShowOrderbtn.TabIndex = 80;
             reportShowOrderbtn.Text = "Order";
             reportShowOrderbtn.UseVisualStyleBackColor = true;
@@ -2988,18 +3020,19 @@ namespace ITP4519M
             panel31.BackColor = SystemColors.ControlDark;
             panel31.BorderStyle = BorderStyle.Fixed3D;
             panel31.ForeColor = SystemColors.ControlText;
-            panel31.Location = new Point(48, 557);
+            panel31.Location = new Point(55, 743);
+            panel31.Margin = new Padding(3, 4, 3, 4);
             panel31.Name = "panel31";
-            panel31.Size = new Size(940, 5);
+            panel31.Size = new Size(1074, 5);
             panel31.TabIndex = 79;
             // 
             // label15
             // 
             label15.AutoSize = true;
             label15.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label15.Location = new Point(15, 538);
+            label15.Location = new Point(17, 717);
             label15.Name = "label15";
-            label15.Size = new Size(195, 24);
+            label15.Size = new Size(246, 29);
             label15.TabIndex = 78;
             label15.Text = "Top Selling Product";
             // 
@@ -3009,8 +3042,8 @@ namespace ITP4519M
             orderchart2.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             orderchart2.Legends.Add(legend1);
-            orderchart2.Location = new Point(552, 287);
-            orderchart2.Margin = new Padding(3, 4, 3, 4);
+            orderchart2.Location = new Point(631, 383);
+            orderchart2.Margin = new Padding(3, 5, 3, 5);
             orderchart2.Name = "orderchart2";
             orderchart2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
             series1.ChartArea = "ChartArea1";
@@ -3027,7 +3060,7 @@ namespace ITP4519M
             series2.Name = "Expenses";
             orderchart2.Series.Add(series1);
             orderchart2.Series.Add(series2);
-            orderchart2.Size = new Size(486, 258);
+            orderchart2.Size = new Size(555, 344);
             orderchart2.TabIndex = 77;
             orderchart2.Text = "chart2";
             title1.Alignment = ContentAlignment.TopLeft;
@@ -3041,18 +3074,19 @@ namespace ITP4519M
             panel33.BorderStyle = BorderStyle.FixedSingle;
             panel33.Controls.Add(MonthlyTotalOrderValue);
             panel33.Controls.Add(MonthlyTotalOrder);
-            panel33.Location = new Point(793, 62);
+            panel33.Location = new Point(906, 83);
+            panel33.Margin = new Padding(3, 4, 3, 4);
             panel33.Name = "panel33";
-            panel33.Size = new Size(218, 89);
+            panel33.Size = new Size(249, 118);
             panel33.TabIndex = 48;
             // 
             // MonthlyTotalOrderValue
             // 
             MonthlyTotalOrderValue.AutoSize = true;
             MonthlyTotalOrderValue.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 136);
-            MonthlyTotalOrderValue.Location = new Point(27, 63);
+            MonthlyTotalOrderValue.Location = new Point(31, 84);
             MonthlyTotalOrderValue.Name = "MonthlyTotalOrderValue";
-            MonthlyTotalOrderValue.Size = new Size(160, 17);
+            MonthlyTotalOrderValue.Size = new Size(207, 22);
             MonthlyTotalOrderValue.TabIndex = 18;
             MonthlyTotalOrderValue.Text = "MonthlyTotalOrderValue";
             // 
@@ -3060,9 +3094,9 @@ namespace ITP4519M
             // 
             MonthlyTotalOrder.AutoSize = true;
             MonthlyTotalOrder.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            MonthlyTotalOrder.Location = new Point(2, 8);
+            MonthlyTotalOrder.Location = new Point(2, 11);
             MonthlyTotalOrder.Name = "MonthlyTotalOrder";
-            MonthlyTotalOrder.Size = new Size(195, 24);
+            MonthlyTotalOrder.Size = new Size(245, 29);
             MonthlyTotalOrder.TabIndex = 12;
             MonthlyTotalOrder.Text = "Monthly Total Order";
             // 
@@ -3071,18 +3105,19 @@ namespace ITP4519M
             panel34.BorderStyle = BorderStyle.FixedSingle;
             panel34.Controls.Add(MonthlyTotalSalesValue);
             panel34.Controls.Add(MonthlyTotalSales);
-            panel34.Location = new Point(532, 62);
+            panel34.Location = new Point(608, 83);
+            panel34.Margin = new Padding(3, 4, 3, 4);
             panel34.Name = "panel34";
-            panel34.Size = new Size(224, 89);
+            panel34.Size = new Size(256, 118);
             panel34.TabIndex = 46;
             // 
             // MonthlyTotalSalesValue
             // 
             MonthlyTotalSalesValue.AutoSize = true;
             MonthlyTotalSalesValue.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 136);
-            MonthlyTotalSalesValue.Location = new Point(34, 63);
+            MonthlyTotalSalesValue.Location = new Point(39, 84);
             MonthlyTotalSalesValue.Name = "MonthlyTotalSalesValue";
-            MonthlyTotalSalesValue.Size = new Size(154, 17);
+            MonthlyTotalSalesValue.Size = new Size(201, 22);
             MonthlyTotalSalesValue.TabIndex = 17;
             MonthlyTotalSalesValue.Text = "MonthlyTotalSalesValue";
             // 
@@ -3090,9 +3125,9 @@ namespace ITP4519M
             // 
             MonthlyTotalSales.AutoSize = true;
             MonthlyTotalSales.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            MonthlyTotalSales.Location = new Point(14, 11);
+            MonthlyTotalSales.Location = new Point(16, 15);
             MonthlyTotalSales.Name = "MonthlyTotalSales";
-            MonthlyTotalSales.Size = new Size(192, 24);
+            MonthlyTotalSales.Size = new Size(243, 29);
             MonthlyTotalSales.TabIndex = 12;
             MonthlyTotalSales.Text = "Monthly Total Sales";
             // 
@@ -3102,14 +3137,15 @@ namespace ITP4519M
             orderchart1.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
             orderchart1.Legends.Add(legend2);
-            orderchart1.Location = new Point(48, 282);
+            orderchart1.Location = new Point(55, 376);
+            orderchart1.Margin = new Padding(3, 4, 3, 4);
             orderchart1.Name = "orderchart1";
             series3.ChartArea = "ChartArea1";
             series3.IsXValueIndexed = true;
             series3.Legend = "Legend1";
             series3.Name = "Order";
             orderchart1.Series.Add(series3);
-            orderchart1.Size = new Size(463, 258);
+            orderchart1.Size = new Size(529, 344);
             orderchart1.TabIndex = 76;
             orderchart1.Text = "chart1";
             title2.Alignment = ContentAlignment.TopLeft;
@@ -3123,18 +3159,19 @@ namespace ITP4519M
             panel35.BorderStyle = BorderStyle.FixedSingle;
             panel35.Controls.Add(TodayTotalOrderValue);
             panel35.Controls.Add(TodayTotalOrder);
-            panel35.Location = new Point(299, 62);
+            panel35.Location = new Point(342, 83);
+            panel35.Margin = new Padding(3, 4, 3, 4);
             panel35.Name = "panel35";
-            panel35.Size = new Size(207, 89);
+            panel35.Size = new Size(236, 118);
             panel35.TabIndex = 47;
             // 
             // TodayTotalOrderValue
             // 
             TodayTotalOrderValue.AutoSize = true;
             TodayTotalOrderValue.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 136);
-            TodayTotalOrderValue.Location = new Point(16, 62);
+            TodayTotalOrderValue.Location = new Point(18, 83);
             TodayTotalOrderValue.Name = "TodayTotalOrderValue";
-            TodayTotalOrderValue.Size = new Size(145, 17);
+            TodayTotalOrderValue.Size = new Size(191, 22);
             TodayTotalOrderValue.TabIndex = 16;
             TodayTotalOrderValue.Text = "TodayTotalOrderValue";
             // 
@@ -3142,9 +3179,9 @@ namespace ITP4519M
             // 
             TodayTotalOrder.AutoSize = true;
             TodayTotalOrder.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            TodayTotalOrder.Location = new Point(3, 8);
+            TodayTotalOrder.Location = new Point(3, 11);
             TodayTotalOrder.Name = "TodayTotalOrder";
-            TodayTotalOrder.Size = new Size(180, 24);
+            TodayTotalOrder.Size = new Size(228, 29);
             TodayTotalOrder.TabIndex = 12;
             TodayTotalOrder.Text = "Today Total Order";
             // 
@@ -3153,18 +3190,19 @@ namespace ITP4519M
             panel36.BorderStyle = BorderStyle.FixedSingle;
             panel36.Controls.Add(reportInvoicelbl);
             panel36.Controls.Add(TodayTotalSales);
-            panel36.Location = new Point(64, 62);
+            panel36.Location = new Point(73, 83);
+            panel36.Margin = new Padding(3, 4, 3, 4);
             panel36.Name = "panel36";
-            panel36.Size = new Size(207, 89);
+            panel36.Size = new Size(236, 118);
             panel36.TabIndex = 45;
             // 
             // reportInvoicelbl
             // 
             reportInvoicelbl.AutoSize = true;
             reportInvoicelbl.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 136);
-            reportInvoicelbl.Location = new Point(31, 63);
+            reportInvoicelbl.Location = new Point(35, 84);
             reportInvoicelbl.Name = "reportInvoicelbl";
-            reportInvoicelbl.Size = new Size(139, 17);
+            reportInvoicelbl.Size = new Size(185, 22);
             reportInvoicelbl.TabIndex = 15;
             reportInvoicelbl.Text = "TodayTotalSalesValue";
             // 
@@ -3172,9 +3210,9 @@ namespace ITP4519M
             // 
             TodayTotalSales.AutoSize = true;
             TodayTotalSales.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            TodayTotalSales.Location = new Point(5, 10);
+            TodayTotalSales.Location = new Point(6, 13);
             TodayTotalSales.Name = "TodayTotalSales";
-            TodayTotalSales.Size = new Size(177, 24);
+            TodayTotalSales.Size = new Size(226, 29);
             TodayTotalSales.TabIndex = 12;
             TodayTotalSales.Text = "Today Total Sales";
             // 
@@ -3193,10 +3231,9 @@ namespace ITP4519M
             reportOrderpdfbtn.ButtonPressedForeColor = Color.White;
             reportOrderpdfbtn.ButtonRoundRadius = 30;
             reportOrderpdfbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            reportOrderpdfbtn.Location = new Point(923, 9);
-            reportOrderpdfbtn.Margin = new Padding(3, 2, 3, 2);
+            reportOrderpdfbtn.Location = new Point(1055, 12);
             reportOrderpdfbtn.Name = "reportOrderpdfbtn";
-            reportOrderpdfbtn.Size = new Size(141, 42);
+            reportOrderpdfbtn.Size = new Size(161, 56);
             reportOrderpdfbtn.TabIndex = 44;
             reportOrderpdfbtn.Text = "Download PDF";
             reportOrderpdfbtn.Click += reportOrderpdfbtn_Click;
@@ -3209,27 +3246,25 @@ namespace ITP4519M
             panel32.Controls.Add(label30);
             panel32.Controls.Add(orderReportClearbtn);
             panel32.Controls.Add(dateTimePicker4);
-            panel32.Location = new Point(43, 168);
-            panel32.Margin = new Padding(3, 2, 3, 2);
+            panel32.Location = new Point(49, 224);
             panel32.Name = "panel32";
-            panel32.Size = new Size(1011, 108);
+            panel32.Size = new Size(1155, 144);
             panel32.TabIndex = 42;
             // 
             // dateTimePicker3
             // 
-            dateTimePicker3.Location = new Point(21, 48);
-            dateTimePicker3.Margin = new Padding(3, 2, 3, 2);
+            dateTimePicker3.Location = new Point(24, 64);
             dateTimePicker3.Name = "dateTimePicker3";
-            dateTimePicker3.Size = new Size(212, 23);
+            dateTimePicker3.Size = new Size(242, 27);
             dateTimePicker3.TabIndex = 8;
             // 
             // label21
             // 
             label21.AutoSize = true;
             label21.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label21.Location = new Point(23, 4);
+            label21.Location = new Point(26, 5);
             label21.Name = "label21";
-            label21.Size = new Size(55, 25);
+            label21.Size = new Size(69, 32);
             label21.TabIndex = 10;
             label21.Text = "From";
             // 
@@ -3247,10 +3282,9 @@ namespace ITP4519M
             orderReportsearchbtn.ButtonPressedForeColor = Color.White;
             orderReportsearchbtn.ButtonRoundRadius = 30;
             orderReportsearchbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            orderReportsearchbtn.Location = new Point(525, 46);
-            orderReportsearchbtn.Margin = new Padding(3, 2, 3, 2);
+            orderReportsearchbtn.Location = new Point(600, 61);
             orderReportsearchbtn.Name = "orderReportsearchbtn";
-            orderReportsearchbtn.Size = new Size(95, 39);
+            orderReportsearchbtn.Size = new Size(109, 52);
             orderReportsearchbtn.TabIndex = 25;
             orderReportsearchbtn.Text = "Search";
             // 
@@ -3258,9 +3292,9 @@ namespace ITP4519M
             // 
             label30.AutoSize = true;
             label30.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label30.Location = new Point(282, 4);
+            label30.Location = new Point(322, 5);
             label30.Name = "label30";
-            label30.Size = new Size(31, 25);
+            label30.Size = new Size(39, 32);
             label30.TabIndex = 11;
             label30.Text = "To";
             // 
@@ -3278,19 +3312,17 @@ namespace ITP4519M
             orderReportClearbtn.ButtonPressedForeColor = Color.White;
             orderReportClearbtn.ButtonRoundRadius = 30;
             orderReportClearbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            orderReportClearbtn.Location = new Point(647, 46);
-            orderReportClearbtn.Margin = new Padding(3, 2, 3, 2);
+            orderReportClearbtn.Location = new Point(739, 61);
             orderReportClearbtn.Name = "orderReportClearbtn";
-            orderReportClearbtn.Size = new Size(89, 40);
+            orderReportClearbtn.Size = new Size(102, 53);
             orderReportClearbtn.TabIndex = 15;
             orderReportClearbtn.Text = "Clear";
             // 
             // dateTimePicker4
             // 
-            dateTimePicker4.Location = new Point(278, 48);
-            dateTimePicker4.Margin = new Padding(3, 2, 3, 2);
+            dateTimePicker4.Location = new Point(318, 64);
             dateTimePicker4.Name = "dateTimePicker4";
-            dateTimePicker4.Size = new Size(220, 23);
+            dateTimePicker4.Size = new Size(251, 27);
             dateTimePicker4.TabIndex = 9;
             // 
             // orderReportdata
@@ -3317,13 +3349,12 @@ namespace ITP4519M
             dataGridViewCellStyle21.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle21.WrapMode = DataGridViewTriState.False;
             orderReportdata.DefaultCellStyle = dataGridViewCellStyle21;
-            orderReportdata.Location = new Point(27, 573);
-            orderReportdata.Margin = new Padding(3, 2, 3, 2);
+            orderReportdata.Location = new Point(31, 764);
             orderReportdata.Name = "orderReportdata";
             orderReportdata.RowHeadersVisible = false;
             orderReportdata.RowHeadersWidth = 51;
             orderReportdata.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            orderReportdata.Size = new Size(1040, 195);
+            orderReportdata.Size = new Size(1189, 260);
             orderReportdata.TabIndex = 40;
             // 
             // reportOrdercsvbtn
@@ -3340,10 +3371,9 @@ namespace ITP4519M
             reportOrdercsvbtn.ButtonPressedForeColor = Color.White;
             reportOrdercsvbtn.ButtonRoundRadius = 30;
             reportOrdercsvbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            reportOrdercsvbtn.Location = new Point(751, 9);
-            reportOrdercsvbtn.Margin = new Padding(3, 2, 3, 2);
+            reportOrdercsvbtn.Location = new Point(858, 12);
             reportOrdercsvbtn.Name = "reportOrdercsvbtn";
-            reportOrdercsvbtn.Size = new Size(141, 42);
+            reportOrdercsvbtn.Size = new Size(161, 56);
             reportOrdercsvbtn.TabIndex = 41;
             reportOrdercsvbtn.Text = "Download CSV";
             reportOrdercsvbtn.Click += reportOrdercsvbtn_Click;
@@ -3352,9 +3382,9 @@ namespace ITP4519M
             // 
             reportlbl.AutoSize = true;
             reportlbl.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            reportlbl.Location = new Point(16, 18);
+            reportlbl.Location = new Point(18, 24);
             reportlbl.Name = "reportlbl";
-            reportlbl.Size = new Size(139, 25);
+            reportlbl.Size = new Size(164, 31);
             reportlbl.TabIndex = 6;
             reportlbl.Text = "Order Reports";
             // 
@@ -3366,9 +3396,10 @@ namespace ITP4519M
             userspnl.Controls.Add(newAccountbtn);
             userspnl.Controls.Add(userData);
             userspnl.Controls.Add(userslbl);
-            userspnl.Location = new Point(176, 2);
+            userspnl.Location = new Point(201, 3);
+            userspnl.Margin = new Padding(3, 4, 3, 4);
             userspnl.Name = "userspnl";
-            userspnl.Size = new Size(1094, 788);
+            userspnl.Size = new Size(1250, 1051);
             userspnl.TabIndex = 3;
             userspnl.Visible = false;
             userspnl.MouseDown += Dashboard_MouseDown;
@@ -3383,23 +3414,21 @@ namespace ITP4519M
             groupBox3.Controls.Add(viewAccountbtn);
             groupBox3.Controls.Add(disableAccountbtn);
             groupBox3.Controls.Add(enableAccountbtn);
-            groupBox3.Location = new Point(15, 218);
-            groupBox3.Margin = new Padding(3, 2, 3, 2);
+            groupBox3.Location = new Point(17, 291);
             groupBox3.Name = "groupBox3";
-            groupBox3.Padding = new Padding(3, 2, 3, 2);
-            groupBox3.Size = new Size(1060, 130);
+            groupBox3.Size = new Size(1211, 173);
             groupBox3.TabIndex = 42;
             groupBox3.TabStop = false;
             // 
             // accountSearchBox
             // 
             accountSearchBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            accountSearchBox.Location = new Point(16, 86);
-            accountSearchBox.Margin = new Padding(3, 4, 3, 4);
+            accountSearchBox.Location = new Point(18, 115);
+            accountSearchBox.Margin = new Padding(3, 5, 3, 5);
             accountSearchBox.Multiline = true;
             accountSearchBox.Name = "accountSearchBox";
             accountSearchBox.PlaceholderText = "   Search Username";
-            accountSearchBox.Size = new Size(749, 32);
+            accountSearchBox.Size = new Size(855, 41);
             accountSearchBox.TabIndex = 41;
             // 
             // editAccountbtn
@@ -3418,10 +3447,10 @@ namespace ITP4519M
             editAccountbtn.ButtonRoundRadius = 30;
             editAccountbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             editAccountbtn.ForeColor = Color.Black;
-            editAccountbtn.Location = new Point(19, 34);
-            editAccountbtn.Margin = new Padding(4);
+            editAccountbtn.Location = new Point(22, 45);
+            editAccountbtn.Margin = new Padding(5);
             editAccountbtn.Name = "editAccountbtn";
-            editAccountbtn.Size = new Size(128, 42);
+            editAccountbtn.Size = new Size(146, 56);
             editAccountbtn.TabIndex = 22;
             editAccountbtn.Text = "Edit Account";
             editAccountbtn.Click += editAccountbtn_Click;
@@ -3442,10 +3471,10 @@ namespace ITP4519M
             viewAccountbtn.ButtonRoundRadius = 30;
             viewAccountbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             viewAccountbtn.ForeColor = Color.Black;
-            viewAccountbtn.Location = new Point(171, 34);
-            viewAccountbtn.Margin = new Padding(4);
+            viewAccountbtn.Location = new Point(195, 45);
+            viewAccountbtn.Margin = new Padding(5);
             viewAccountbtn.Name = "viewAccountbtn";
-            viewAccountbtn.Size = new Size(121, 44);
+            viewAccountbtn.Size = new Size(138, 59);
             viewAccountbtn.TabIndex = 23;
             viewAccountbtn.Text = "View Account";
             viewAccountbtn.Click += viewAccountbtn_Click;
@@ -3466,10 +3495,10 @@ namespace ITP4519M
             disableAccountbtn.ButtonRoundRadius = 30;
             disableAccountbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             disableAccountbtn.ForeColor = Color.White;
-            disableAccountbtn.Location = new Point(420, 34);
-            disableAccountbtn.Margin = new Padding(4);
+            disableAccountbtn.Location = new Point(480, 45);
+            disableAccountbtn.Margin = new Padding(5);
             disableAccountbtn.Name = "disableAccountbtn";
-            disableAccountbtn.Size = new Size(95, 42);
+            disableAccountbtn.Size = new Size(109, 56);
             disableAccountbtn.TabIndex = 28;
             disableAccountbtn.Text = "Disable";
             disableAccountbtn.Click += disableAccountbtn_Click;
@@ -3490,10 +3519,10 @@ namespace ITP4519M
             enableAccountbtn.ButtonRoundRadius = 30;
             enableAccountbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             enableAccountbtn.ForeColor = Color.White;
-            enableAccountbtn.Location = new Point(326, 34);
-            enableAccountbtn.Margin = new Padding(4);
+            enableAccountbtn.Location = new Point(373, 45);
+            enableAccountbtn.Margin = new Padding(5);
             enableAccountbtn.Name = "enableAccountbtn";
-            enableAccountbtn.Size = new Size(86, 41);
+            enableAccountbtn.Size = new Size(98, 55);
             enableAccountbtn.TabIndex = 29;
             enableAccountbtn.Text = "Enable";
             enableAccountbtn.Click += enableAccountbtn_Click;
@@ -3505,9 +3534,10 @@ namespace ITP4519M
             panel7.Controls.Add(accountbtnPrevPage);
             panel7.Controls.Add(accountbtnLastPage);
             panel7.Controls.Add(accountbtnNxtPage);
-            panel7.Location = new Point(578, 705);
+            panel7.Location = new Point(661, 940);
+            panel7.Margin = new Padding(3, 4, 3, 4);
             panel7.Name = "panel7";
-            panel7.Size = new Size(495, 53);
+            panel7.Size = new Size(566, 71);
             panel7.TabIndex = 30;
             // 
             // accountbtnFirstPage
@@ -3526,10 +3556,10 @@ namespace ITP4519M
             accountbtnFirstPage.ButtonRoundRadius = 30;
             accountbtnFirstPage.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             accountbtnFirstPage.ForeColor = Color.Black;
-            accountbtnFirstPage.Location = new Point(18, 11);
-            accountbtnFirstPage.Margin = new Padding(3, 4, 3, 4);
+            accountbtnFirstPage.Location = new Point(21, 15);
+            accountbtnFirstPage.Margin = new Padding(3, 5, 3, 5);
             accountbtnFirstPage.Name = "accountbtnFirstPage";
-            accountbtnFirstPage.Size = new Size(75, 38);
+            accountbtnFirstPage.Size = new Size(86, 51);
             accountbtnFirstPage.TabIndex = 31;
             accountbtnFirstPage.Text = "First";
             accountbtnFirstPage.Click += accountbtnFirstPage_Click;
@@ -3538,9 +3568,9 @@ namespace ITP4519M
             // 
             accountIndexlbl.AutoSize = true;
             accountIndexlbl.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            accountIndexlbl.Location = new Point(199, 20);
+            accountIndexlbl.Location = new Point(227, 27);
             accountIndexlbl.Name = "accountIndexlbl";
-            accountIndexlbl.Size = new Size(79, 20);
+            accountIndexlbl.Size = new Size(100, 25);
             accountIndexlbl.TabIndex = 3;
             accountIndexlbl.Text = "LabelData";
             // 
@@ -3561,10 +3591,10 @@ namespace ITP4519M
             accountbtnPrevPage.ButtonRoundRadius = 30;
             accountbtnPrevPage.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             accountbtnPrevPage.ForeColor = Color.Black;
-            accountbtnPrevPage.Location = new Point(108, 11);
-            accountbtnPrevPage.Margin = new Padding(3, 4, 3, 4);
+            accountbtnPrevPage.Location = new Point(123, 15);
+            accountbtnPrevPage.Margin = new Padding(3, 5, 3, 5);
             accountbtnPrevPage.Name = "accountbtnPrevPage";
-            accountbtnPrevPage.Size = new Size(69, 38);
+            accountbtnPrevPage.Size = new Size(79, 51);
             accountbtnPrevPage.TabIndex = 33;
             accountbtnPrevPage.Text = "Prev";
             accountbtnPrevPage.Click += accountbtnPrevPage_Click;
@@ -3585,10 +3615,10 @@ namespace ITP4519M
             accountbtnLastPage.ButtonRoundRadius = 30;
             accountbtnLastPage.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             accountbtnLastPage.ForeColor = Color.Black;
-            accountbtnLastPage.Location = new Point(408, 11);
-            accountbtnLastPage.Margin = new Padding(3, 4, 3, 4);
+            accountbtnLastPage.Location = new Point(466, 15);
+            accountbtnLastPage.Margin = new Padding(3, 5, 3, 5);
             accountbtnLastPage.Name = "accountbtnLastPage";
-            accountbtnLastPage.Size = new Size(70, 40);
+            accountbtnLastPage.Size = new Size(80, 53);
             accountbtnLastPage.TabIndex = 34;
             accountbtnLastPage.Text = "Last";
             accountbtnLastPage.Click += accountbtnLastPage_Click;
@@ -3609,10 +3639,10 @@ namespace ITP4519M
             accountbtnNxtPage.ButtonRoundRadius = 30;
             accountbtnNxtPage.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             accountbtnNxtPage.ForeColor = Color.Black;
-            accountbtnNxtPage.Location = new Point(317, 11);
-            accountbtnNxtPage.Margin = new Padding(3, 4, 3, 4);
+            accountbtnNxtPage.Location = new Point(362, 15);
+            accountbtnNxtPage.Margin = new Padding(3, 5, 3, 5);
             accountbtnNxtPage.Name = "accountbtnNxtPage";
-            accountbtnNxtPage.Size = new Size(71, 38);
+            accountbtnNxtPage.Size = new Size(81, 51);
             accountbtnNxtPage.TabIndex = 32;
             accountbtnNxtPage.Text = "Next";
             accountbtnNxtPage.Click += accountbtnNxtPage_Click;
@@ -3622,27 +3652,29 @@ namespace ITP4519M
             panel3.Controls.Add(panel4);
             panel3.Controls.Add(panel5);
             panel3.Controls.Add(panel6);
-            panel3.Location = new Point(24, 57);
+            panel3.Location = new Point(27, 76);
+            panel3.Margin = new Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1050, 153);
+            panel3.Size = new Size(1200, 204);
             panel3.TabIndex = 40;
             // 
             // panel4
             // 
             panel4.Controls.Add(label7);
             panel4.Controls.Add(accountUserCountlbl3);
-            panel4.Location = new Point(746, 16);
+            panel4.Location = new Point(853, 21);
+            panel4.Margin = new Padding(3, 4, 3, 4);
             panel4.Name = "panel4";
-            panel4.Size = new Size(259, 130);
+            panel4.Size = new Size(296, 173);
             panel4.TabIndex = 28;
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.Location = new Point(40, 93);
+            label7.Location = new Point(46, 124);
             label7.Name = "label7";
-            label7.Size = new Size(111, 30);
+            label7.Size = new Size(142, 37);
             label7.TabIndex = 5;
             label7.Text = "New Users";
             // 
@@ -3650,9 +3682,9 @@ namespace ITP4519M
             // 
             accountUserCountlbl3.AutoSize = true;
             accountUserCountlbl3.Font = new Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            accountUserCountlbl3.Location = new Point(40, 31);
+            accountUserCountlbl3.Location = new Point(46, 41);
             accountUserCountlbl3.Name = "accountUserCountlbl3";
-            accountUserCountlbl3.Size = new Size(196, 50);
+            accountUserCountlbl3.Size = new Size(246, 62);
             accountUserCountlbl3.TabIndex = 4;
             accountUserCountlbl3.Text = "LabelData";
             // 
@@ -3660,18 +3692,19 @@ namespace ITP4519M
             // 
             panel5.Controls.Add(label9);
             panel5.Controls.Add(accountUserCountlbl);
-            panel5.Location = new Point(42, 16);
+            panel5.Location = new Point(48, 21);
+            panel5.Margin = new Padding(3, 4, 3, 4);
             panel5.Name = "panel5";
-            panel5.Size = new Size(253, 132);
+            panel5.Size = new Size(289, 176);
             panel5.TabIndex = 0;
             // 
             // label9
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label9.Location = new Point(31, 88);
+            label9.Location = new Point(35, 117);
             label9.Name = "label9";
-            label9.Size = new Size(113, 30);
+            label9.Size = new Size(145, 37);
             label9.TabIndex = 1;
             label9.Text = "Total Users";
             // 
@@ -3679,9 +3712,9 @@ namespace ITP4519M
             // 
             accountUserCountlbl.AutoSize = true;
             accountUserCountlbl.Font = new Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            accountUserCountlbl.Location = new Point(27, 28);
+            accountUserCountlbl.Location = new Point(31, 37);
             accountUserCountlbl.Name = "accountUserCountlbl";
-            accountUserCountlbl.Size = new Size(196, 50);
+            accountUserCountlbl.Size = new Size(246, 62);
             accountUserCountlbl.TabIndex = 0;
             accountUserCountlbl.Text = "LabelData";
             // 
@@ -3689,18 +3722,19 @@ namespace ITP4519M
             // 
             panel6.Controls.Add(accountUserCountlbl2);
             panel6.Controls.Add(label12);
-            panel6.Location = new Point(387, 16);
+            panel6.Location = new Point(442, 21);
+            panel6.Margin = new Padding(3, 4, 3, 4);
             panel6.Name = "panel6";
-            panel6.Size = new Size(258, 130);
+            panel6.Size = new Size(295, 173);
             panel6.TabIndex = 27;
             // 
             // accountUserCountlbl2
             // 
             accountUserCountlbl2.AutoSize = true;
             accountUserCountlbl2.Font = new Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            accountUserCountlbl2.Location = new Point(33, 30);
+            accountUserCountlbl2.Location = new Point(38, 40);
             accountUserCountlbl2.Name = "accountUserCountlbl2";
-            accountUserCountlbl2.Size = new Size(196, 50);
+            accountUserCountlbl2.Size = new Size(246, 62);
             accountUserCountlbl2.TabIndex = 2;
             accountUserCountlbl2.Text = "LabelData";
             // 
@@ -3708,9 +3742,9 @@ namespace ITP4519M
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label12.Location = new Point(42, 88);
+            label12.Location = new Point(48, 117);
             label12.Name = "label12";
-            label12.Size = new Size(126, 30);
+            label12.Size = new Size(160, 37);
             label12.TabIndex = 2;
             label12.Text = "Active Users";
             // 
@@ -3730,10 +3764,10 @@ namespace ITP4519M
             newAccountbtn.ButtonRoundRadius = 30;
             newAccountbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             newAccountbtn.ForeColor = Color.White;
-            newAccountbtn.Location = new Point(902, 8);
-            newAccountbtn.Margin = new Padding(4);
+            newAccountbtn.Location = new Point(1031, 11);
+            newAccountbtn.Margin = new Padding(5);
             newAccountbtn.Name = "newAccountbtn";
-            newAccountbtn.Size = new Size(140, 37);
+            newAccountbtn.Size = new Size(160, 49);
             newAccountbtn.TabIndex = 24;
             newAccountbtn.Text = "New Account";
             newAccountbtn.Click += newAccountbtn_Click;
@@ -3767,8 +3801,8 @@ namespace ITP4519M
             dataGridViewCellStyle24.WrapMode = DataGridViewTriState.False;
             userData.DefaultCellStyle = dataGridViewCellStyle24;
             userData.GridColor = SystemColors.WindowText;
-            userData.Location = new Point(13, 366);
-            userData.Margin = new Padding(3, 4, 3, 4);
+            userData.Location = new Point(15, 488);
+            userData.Margin = new Padding(3, 5, 3, 5);
             userData.Name = "userData";
             dataGridViewCellStyle25.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle25.BackColor = SystemColors.Control;
@@ -3781,7 +3815,7 @@ namespace ITP4519M
             userData.RowHeadersWidth = 51;
             userData.RowTemplate.Height = 24;
             userData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            userData.Size = new Size(1063, 326);
+            userData.Size = new Size(1215, 435);
             userData.TabIndex = 1;
             userData.CellClick += userData_CellClick;
             userData.CellContentClick += userData_CellContentClick;
@@ -3790,9 +3824,9 @@ namespace ITP4519M
             // 
             userslbl.AutoSize = true;
             userslbl.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            userslbl.Location = new Point(24, 7);
+            userslbl.Location = new Point(27, 9);
             userslbl.Name = "userslbl";
-            userslbl.Size = new Size(183, 25);
+            userslbl.Size = new Size(220, 31);
             userslbl.TabIndex = 0;
             userslbl.Text = "Users Management";
             // 
@@ -3810,9 +3844,10 @@ namespace ITP4519M
             inventorypnl.Controls.Add(newProductbtn);
             inventorypnl.Controls.Add(viewProductbtn);
             inventorypnl.Controls.Add(stockSummarypnl);
-            inventorypnl.Location = new Point(176, 2);
+            inventorypnl.Location = new Point(201, 3);
+            inventorypnl.Margin = new Padding(3, 4, 3, 4);
             inventorypnl.Name = "inventorypnl";
-            inventorypnl.Size = new Size(1091, 788);
+            inventorypnl.Size = new Size(1247, 1051);
             inventorypnl.TabIndex = 16;
             inventorypnl.Visible = false;
             inventorypnl.MouseDown += Dashboard_MouseDown;
@@ -3831,10 +3866,9 @@ namespace ITP4519M
             panel54.Controls.Add(label37);
             panel54.Controls.Add(label40);
             panel54.Controls.Add(label60);
-            panel54.Location = new Point(46, 200);
-            panel54.Margin = new Padding(3, 2, 3, 2);
+            panel54.Location = new Point(53, 267);
             panel54.Name = "panel54";
-            panel54.Size = new Size(1003, 42);
+            panel54.Size = new Size(1146, 56);
             panel54.TabIndex = 40;
             // 
             // stockOutofStockbox
@@ -3842,11 +3876,10 @@ namespace ITP4519M
             stockOutofStockbox.BackColor = SystemColors.Menu;
             stockOutofStockbox.BorderStyle = BorderStyle.None;
             stockOutofStockbox.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            stockOutofStockbox.Location = new Point(744, 10);
-            stockOutofStockbox.Margin = new Padding(3, 2, 3, 2);
+            stockOutofStockbox.Location = new Point(850, 13);
             stockOutofStockbox.Name = "stockOutofStockbox";
             stockOutofStockbox.ReadOnly = true;
-            stockOutofStockbox.Size = new Size(26, 19);
+            stockOutofStockbox.Size = new Size(30, 23);
             stockOutofStockbox.TabIndex = 48;
             stockOutofStockbox.Text = "880";
             // 
@@ -3855,11 +3888,10 @@ namespace ITP4519M
             stockDangerbox.BackColor = SystemColors.Menu;
             stockDangerbox.BorderStyle = BorderStyle.None;
             stockDangerbox.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            stockDangerbox.Location = new Point(490, 14);
-            stockDangerbox.Margin = new Padding(3, 2, 3, 2);
+            stockDangerbox.Location = new Point(560, 19);
             stockDangerbox.Name = "stockDangerbox";
             stockDangerbox.ReadOnly = true;
-            stockDangerbox.Size = new Size(26, 19);
+            stockDangerbox.Size = new Size(30, 23);
             stockDangerbox.TabIndex = 48;
             stockDangerbox.Text = "880";
             // 
@@ -3868,11 +3900,10 @@ namespace ITP4519M
             stockReOrderbox.BackColor = SystemColors.Menu;
             stockReOrderbox.BorderStyle = BorderStyle.None;
             stockReOrderbox.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            stockReOrderbox.Location = new Point(251, 14);
-            stockReOrderbox.Margin = new Padding(3, 2, 3, 2);
+            stockReOrderbox.Location = new Point(287, 19);
             stockReOrderbox.Name = "stockReOrderbox";
             stockReOrderbox.ReadOnly = true;
-            stockReOrderbox.Size = new Size(26, 19);
+            stockReOrderbox.Size = new Size(30, 23);
             stockReOrderbox.TabIndex = 48;
             stockReOrderbox.Text = "880";
             // 
@@ -3880,8 +3911,7 @@ namespace ITP4519M
             // 
             panel57.AutoSize = true;
             panel57.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            panel57.Location = new Point(256, 11);
-            panel57.Margin = new Padding(3, 2, 3, 2);
+            panel57.Location = new Point(293, 15);
             panel57.Name = "panel57";
             panel57.Size = new Size(0, 0);
             panel57.TabIndex = 52;
@@ -3891,8 +3921,7 @@ namespace ITP4519M
             // 
             panel58.AutoSize = true;
             panel58.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            panel58.Location = new Point(754, 10);
-            panel58.Margin = new Padding(3, 2, 3, 2);
+            panel58.Location = new Point(862, 13);
             panel58.Name = "panel58";
             panel58.Size = new Size(0, 0);
             panel58.TabIndex = 51;
@@ -3902,8 +3931,7 @@ namespace ITP4519M
             // 
             panel59.AutoSize = true;
             panel59.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            panel59.Location = new Point(808, 14);
-            panel59.Margin = new Padding(3, 2, 3, 2);
+            panel59.Location = new Point(923, 19);
             panel59.Name = "panel59";
             panel59.Size = new Size(0, 0);
             panel59.TabIndex = 50;
@@ -3912,8 +3940,7 @@ namespace ITP4519M
             // 
             panel63.AutoSize = true;
             panel63.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            panel63.Location = new Point(492, 11);
-            panel63.Margin = new Padding(3, 2, 3, 2);
+            panel63.Location = new Point(562, 15);
             panel63.Name = "panel63";
             panel63.Size = new Size(0, 0);
             panel63.TabIndex = 50;
@@ -3925,9 +3952,9 @@ namespace ITP4519M
             label37.BackColor = SystemColors.Menu;
             label37.Cursor = Cursors.Hand;
             label37.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label37.Location = new Point(638, 10);
+            label37.Location = new Point(729, 13);
             label37.Name = "label37";
-            label37.Size = new Size(108, 21);
+            label37.Size = new Size(136, 28);
             label37.TabIndex = 37;
             label37.Text = "Out-Of-Stock";
             // 
@@ -3937,9 +3964,9 @@ namespace ITP4519M
             label40.BackColor = SystemColors.Menu;
             label40.Cursor = Cursors.Hand;
             label40.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label40.Location = new Point(173, 12);
+            label40.Location = new Point(198, 16);
             label40.Name = "label40";
-            label40.Size = new Size(78, 21);
+            label40.Size = new Size(98, 28);
             label40.TabIndex = 33;
             label40.Text = "Re-Order";
             // 
@@ -3949,9 +3976,9 @@ namespace ITP4519M
             label60.BackColor = SystemColors.Menu;
             label60.Cursor = Cursors.Hand;
             label60.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label60.Location = new Point(424, 12);
+            label60.Location = new Point(485, 16);
             label60.Name = "label60";
-            label60.Size = new Size(66, 21);
+            label60.Size = new Size(81, 28);
             label60.TabIndex = 35;
             label60.Text = "Danger";
             // 
@@ -3960,9 +3987,10 @@ namespace ITP4519M
             panel55.BackColor = SystemColors.ControlDark;
             panel55.BorderStyle = BorderStyle.Fixed3D;
             panel55.ForeColor = SystemColors.ControlText;
-            panel55.Location = new Point(30, 247);
+            panel55.Location = new Point(34, 329);
+            panel55.Margin = new Padding(3, 4, 3, 4);
             panel55.Name = "panel55";
-            panel55.Size = new Size(765, 5);
+            panel55.Size = new Size(874, 5);
             panel55.TabIndex = 52;
             // 
             // ZoomProductbtn
@@ -3981,9 +4009,10 @@ namespace ITP4519M
             ZoomProductbtn.ButtonRoundRadius = 30;
             ZoomProductbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             ZoomProductbtn.ForeColor = Color.Black;
-            ZoomProductbtn.Location = new Point(744, 8);
+            ZoomProductbtn.Location = new Point(850, 11);
+            ZoomProductbtn.Margin = new Padding(3, 4, 3, 4);
             ZoomProductbtn.Name = "ZoomProductbtn";
-            ZoomProductbtn.Size = new Size(128, 42);
+            ZoomProductbtn.Size = new Size(146, 56);
             ZoomProductbtn.TabIndex = 34;
             ZoomProductbtn.Text = "Zoom In/Out";
             ZoomProductbtn.Click += button8_Click;
@@ -3995,9 +4024,10 @@ namespace ITP4519M
             panel8.Controls.Add(sotckPrevPagebtn);
             panel8.Controls.Add(sotckLastPagebtn);
             panel8.Controls.Add(sotckNextPagebtn);
-            panel8.Location = new Point(563, 718);
+            panel8.Location = new Point(643, 957);
+            panel8.Margin = new Padding(3, 4, 3, 4);
             panel8.Name = "panel8";
-            panel8.Size = new Size(495, 50);
+            panel8.Size = new Size(566, 67);
             panel8.TabIndex = 33;
             // 
             // stockFirstPagebtn
@@ -4016,9 +4046,10 @@ namespace ITP4519M
             stockFirstPagebtn.ButtonRoundRadius = 30;
             stockFirstPagebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             stockFirstPagebtn.ForeColor = Color.Black;
-            stockFirstPagebtn.Location = new Point(56, 7);
+            stockFirstPagebtn.Location = new Point(64, 9);
+            stockFirstPagebtn.Margin = new Padding(3, 4, 3, 4);
             stockFirstPagebtn.Name = "stockFirstPagebtn";
-            stockFirstPagebtn.Size = new Size(69, 36);
+            stockFirstPagebtn.Size = new Size(79, 48);
             stockFirstPagebtn.TabIndex = 31;
             stockFirstPagebtn.Text = "First";
             stockFirstPagebtn.Click += stockFirstPagebtn_Click;
@@ -4027,9 +4058,9 @@ namespace ITP4519M
             // 
             StockpageNumlbl.AutoSize = true;
             StockpageNumlbl.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            StockpageNumlbl.Location = new Point(200, 14);
+            StockpageNumlbl.Location = new Point(229, 19);
             StockpageNumlbl.Name = "StockpageNumlbl";
-            StockpageNumlbl.Size = new Size(79, 20);
+            StockpageNumlbl.Size = new Size(100, 25);
             StockpageNumlbl.TabIndex = 3;
             StockpageNumlbl.Text = "LabelData";
             StockpageNumlbl.Click += pageNumlbl_Click;
@@ -4051,9 +4082,10 @@ namespace ITP4519M
             sotckPrevPagebtn.ButtonRoundRadius = 30;
             sotckPrevPagebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             sotckPrevPagebtn.ForeColor = Color.Black;
-            sotckPrevPagebtn.Location = new Point(131, 6);
+            sotckPrevPagebtn.Location = new Point(150, 8);
+            sotckPrevPagebtn.Margin = new Padding(3, 4, 3, 4);
             sotckPrevPagebtn.Name = "sotckPrevPagebtn";
-            sotckPrevPagebtn.Size = new Size(68, 37);
+            sotckPrevPagebtn.Size = new Size(78, 49);
             sotckPrevPagebtn.TabIndex = 33;
             sotckPrevPagebtn.Text = "Prev";
             sotckPrevPagebtn.Click += sotckPrevPagebtn_Click;
@@ -4074,9 +4106,10 @@ namespace ITP4519M
             sotckLastPagebtn.ButtonRoundRadius = 30;
             sotckLastPagebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             sotckLastPagebtn.ForeColor = Color.Black;
-            sotckLastPagebtn.Location = new Point(398, 7);
+            sotckLastPagebtn.Location = new Point(455, 9);
+            sotckLastPagebtn.Margin = new Padding(3, 4, 3, 4);
             sotckLastPagebtn.Name = "sotckLastPagebtn";
-            sotckLastPagebtn.Size = new Size(70, 39);
+            sotckLastPagebtn.Size = new Size(80, 52);
             sotckLastPagebtn.TabIndex = 34;
             sotckLastPagebtn.Text = "Last";
             sotckLastPagebtn.Click += sotckLastPagebtn_Click;
@@ -4097,9 +4130,10 @@ namespace ITP4519M
             sotckNextPagebtn.ButtonRoundRadius = 30;
             sotckNextPagebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             sotckNextPagebtn.ForeColor = Color.Black;
-            sotckNextPagebtn.Location = new Point(324, 6);
+            sotckNextPagebtn.Location = new Point(370, 8);
+            sotckNextPagebtn.Margin = new Padding(3, 4, 3, 4);
             sotckNextPagebtn.Name = "sotckNextPagebtn";
-            sotckNextPagebtn.Size = new Size(70, 40);
+            sotckNextPagebtn.Size = new Size(80, 53);
             sotckNextPagebtn.TabIndex = 32;
             sotckNextPagebtn.Text = "Next";
             sotckNextPagebtn.Click += sotckNextPagebtn_Click;
@@ -4120,9 +4154,10 @@ namespace ITP4519M
             delProductbtn.ButtonRoundRadius = 30;
             delProductbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             delProductbtn.ForeColor = Color.White;
-            delProductbtn.Location = new Point(417, 255);
+            delProductbtn.Location = new Point(477, 340);
+            delProductbtn.Margin = new Padding(3, 4, 3, 4);
             delProductbtn.Name = "delProductbtn";
-            delProductbtn.Size = new Size(162, 42);
+            delProductbtn.Size = new Size(185, 56);
             delProductbtn.TabIndex = 31;
             delProductbtn.Text = "Delete Product";
             delProductbtn.Click += delProductbtn_Click;
@@ -4130,12 +4165,12 @@ namespace ITP4519M
             // stockSearchBox
             // 
             stockSearchBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            stockSearchBox.Location = new Point(619, 266);
-            stockSearchBox.Margin = new Padding(3, 4, 3, 4);
+            stockSearchBox.Location = new Point(707, 355);
+            stockSearchBox.Margin = new Padding(3, 5, 3, 5);
             stockSearchBox.Multiline = true;
             stockSearchBox.Name = "stockSearchBox";
             stockSearchBox.PlaceholderText = "   Search Product Name or ID";
-            stockSearchBox.Size = new Size(456, 32);
+            stockSearchBox.Size = new Size(521, 41);
             stockSearchBox.TabIndex = 30;
             stockSearchBox.TextChanged += stockSearchBox_TextChanged;
             // 
@@ -4150,9 +4185,10 @@ namespace ITP4519M
             dashboardpnl.Controls.Add(panel41);
             dashboardpnl.Controls.Add(label59);
             dashboardpnl.Controls.Add(label1);
-            dashboardpnl.Location = new Point(176, 2);
+            dashboardpnl.Location = new Point(201, 3);
+            dashboardpnl.Margin = new Padding(3, 4, 3, 4);
             dashboardpnl.Name = "dashboardpnl";
-            dashboardpnl.Size = new Size(1139, 789);
+            dashboardpnl.Size = new Size(1301, 1051);
             dashboardpnl.TabIndex = 1;
             dashboardpnl.MouseDown += Dashboard_MouseDown;
             dashboardpnl.MouseMove += Dashboard_MouseMove;
@@ -4165,9 +4201,10 @@ namespace ITP4519M
             dashordervalueChart.ChartAreas.Add(chartArea3);
             legend3.Name = "Legend1";
             dashordervalueChart.Legends.Add(legend3);
-            dashordervalueChart.Location = new Point(3, 188);
+            dashordervalueChart.Location = new Point(3, 251);
+            dashordervalueChart.Margin = new Padding(3, 4, 3, 4);
             dashordervalueChart.Name = "dashordervalueChart";
-            dashordervalueChart.Size = new Size(1118, 468);
+            dashordervalueChart.Size = new Size(1278, 624);
             dashordervalueChart.TabIndex = 53;
             dashordervalueChart.Text = "chart1";
             // 
@@ -4178,10 +4215,9 @@ namespace ITP4519M
             panel53.Controls.Add(panel40);
             panel53.Controls.Add(panel38);
             panel53.Controls.Add(panel37);
-            panel53.Location = new Point(2, 58);
-            panel53.Margin = new Padding(3, 2, 3, 2);
+            panel53.Location = new Point(2, 77);
             panel53.Name = "panel53";
-            panel53.Size = new Size(1132, 122);
+            panel53.Size = new Size(1293, 161);
             panel53.TabIndex = 57;
             // 
             // panel39
@@ -4189,18 +4225,19 @@ namespace ITP4519M
             panel39.BorderStyle = BorderStyle.FixedSingle;
             panel39.Controls.Add(dashOrderlbl);
             panel39.Controls.Add(label41);
-            panel39.Location = new Point(275, 16);
+            panel39.Location = new Point(314, 21);
+            panel39.Margin = new Padding(3, 4, 3, 4);
             panel39.Name = "panel39";
-            panel39.Size = new Size(207, 89);
+            panel39.Size = new Size(236, 118);
             panel39.TabIndex = 51;
             // 
             // dashOrderlbl
             // 
             dashOrderlbl.AutoSize = true;
             dashOrderlbl.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 136);
-            dashOrderlbl.Location = new Point(62, 58);
+            dashOrderlbl.Location = new Point(71, 77);
             dashOrderlbl.Name = "dashOrderlbl";
-            dashOrderlbl.Size = new Size(52, 17);
+            dashOrderlbl.Size = new Size(68, 22);
             dashOrderlbl.TabIndex = 16;
             dashOrderlbl.Text = "label40";
             // 
@@ -4208,9 +4245,9 @@ namespace ITP4519M
             // 
             label41.AutoSize = true;
             label41.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label41.Location = new Point(24, 9);
+            label41.Location = new Point(27, 12);
             label41.Name = "label41";
-            label41.Size = new Size(143, 24);
+            label41.Size = new Size(179, 29);
             label41.TabIndex = 12;
             label41.Text = "Today's Order";
             // 
@@ -4219,18 +4256,19 @@ namespace ITP4519M
             panel40.BorderStyle = BorderStyle.FixedSingle;
             panel40.Controls.Add(dashRevenuelbl);
             panel40.Controls.Add(label43);
-            panel40.Location = new Point(39, 16);
+            panel40.Location = new Point(45, 21);
+            panel40.Margin = new Padding(3, 4, 3, 4);
             panel40.Name = "panel40";
-            panel40.Size = new Size(207, 89);
+            panel40.Size = new Size(236, 118);
             panel40.TabIndex = 49;
             // 
             // dashRevenuelbl
             // 
             dashRevenuelbl.AutoSize = true;
             dashRevenuelbl.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 136);
-            dashRevenuelbl.Location = new Point(61, 58);
+            dashRevenuelbl.Location = new Point(70, 77);
             dashRevenuelbl.Name = "dashRevenuelbl";
-            dashRevenuelbl.Size = new Size(52, 17);
+            dashRevenuelbl.Size = new Size(68, 22);
             dashRevenuelbl.TabIndex = 15;
             dashRevenuelbl.Text = "label42";
             // 
@@ -4239,9 +4277,9 @@ namespace ITP4519M
             label43.AutoSize = true;
             label43.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label43.ImageAlign = ContentAlignment.MiddleRight;
-            label43.Location = new Point(22, 9);
+            label43.Location = new Point(25, 12);
             label43.Name = "label43";
-            label43.Size = new Size(158, 24);
+            label43.Size = new Size(196, 29);
             label43.TabIndex = 12;
             label43.Text = "Today Revenue";
             // 
@@ -4252,18 +4290,19 @@ namespace ITP4519M
             panel38.BorderStyle = BorderStyle.FixedSingle;
             panel38.Controls.Add(dashOutlbl);
             panel38.Controls.Add(label39);
-            panel38.Location = new Point(508, 16);
+            panel38.Location = new Point(581, 21);
+            panel38.Margin = new Padding(3, 4, 3, 4);
             panel38.Name = "panel38";
-            panel38.Size = new Size(244, 89);
+            panel38.Size = new Size(279, 118);
             panel38.TabIndex = 50;
             // 
             // dashOutlbl
             // 
             dashOutlbl.AutoSize = true;
             dashOutlbl.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 136);
-            dashOutlbl.Location = new Point(98, 61);
+            dashOutlbl.Location = new Point(112, 81);
             dashOutlbl.Name = "dashOutlbl";
-            dashOutlbl.Size = new Size(52, 17);
+            dashOutlbl.Size = new Size(68, 22);
             dashOutlbl.TabIndex = 17;
             dashOutlbl.Text = "label37";
             // 
@@ -4271,9 +4310,9 @@ namespace ITP4519M
             // 
             label39.AutoSize = true;
             label39.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label39.Location = new Point(-1, 7);
+            label39.Location = new Point(-1, 9);
             label39.Name = "label39";
-            label39.Size = new Size(231, 20);
+            label39.Size = new Size(281, 25);
             label39.TabIndex = 12;
             label39.Text = "Today Quantity Despatched";
             // 
@@ -4282,18 +4321,19 @@ namespace ITP4519M
             panel37.BorderStyle = BorderStyle.FixedSingle;
             panel37.Controls.Add(dashInlbl);
             panel37.Controls.Add(label34);
-            panel37.Location = new Point(773, 16);
+            panel37.Location = new Point(883, 21);
+            panel37.Margin = new Padding(3, 4, 3, 4);
             panel37.Name = "panel37";
-            panel37.Size = new Size(227, 89);
+            panel37.Size = new Size(259, 118);
             panel37.TabIndex = 52;
             // 
             // dashInlbl
             // 
             dashInlbl.AutoSize = true;
             dashInlbl.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 136);
-            dashInlbl.Location = new Point(79, 58);
+            dashInlbl.Location = new Point(90, 77);
             dashInlbl.Name = "dashInlbl";
-            dashInlbl.Size = new Size(52, 17);
+            dashInlbl.Size = new Size(68, 22);
             dashInlbl.TabIndex = 18;
             dashInlbl.Text = "label33";
             // 
@@ -4301,28 +4341,28 @@ namespace ITP4519M
             // 
             label34.AutoSize = true;
             label34.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label34.Location = new Point(7, 4);
+            label34.Location = new Point(8, 5);
             label34.Name = "label34";
-            label34.Size = new Size(173, 24);
+            label34.Size = new Size(216, 29);
             label34.TabIndex = 12;
             label34.Text = "Today Quantity In";
             // 
             // panel52
             // 
             panel52.BorderStyle = BorderStyle.Fixed3D;
-            panel52.Location = new Point(35, 858);
+            panel52.Location = new Point(40, 1144);
+            panel52.Margin = new Padding(3, 4, 3, 4);
             panel52.Name = "panel52";
-            panel52.Size = new Size(1246, 115);
+            panel52.Size = new Size(1423, 152);
             panel52.TabIndex = 55;
             // 
             // panel41
             // 
             panel41.BackColor = SystemColors.WindowFrame;
             panel41.Controls.Add(label57);
-            panel41.Location = new Point(0, 742);
-            panel41.Margin = new Padding(3, 2, 3, 2);
+            panel41.Location = new Point(0, 989);
             panel41.Name = "panel41";
-            panel41.Size = new Size(1133, 40);
+            panel41.Size = new Size(1295, 53);
             panel41.TabIndex = 53;
             // 
             // label57
@@ -4330,9 +4370,9 @@ namespace ITP4519M
             label57.AutoSize = true;
             label57.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label57.ForeColor = SystemColors.ButtonHighlight;
-            label57.Location = new Point(10, 14);
+            label57.Location = new Point(11, 19);
             label57.Name = "label57";
-            label57.Size = new Size(344, 21);
+            label57.Size = new Size(432, 28);
             label57.TabIndex = 54;
             label57.Text = "Copyright © 2024 Legend Motor (LC) Limited ®";
             // 
@@ -4340,9 +4380,9 @@ namespace ITP4519M
             // 
             label59.AutoSize = true;
             label59.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label59.Location = new Point(19, 13);
+            label59.Location = new Point(22, 17);
             label59.Name = "label59";
-            label59.Size = new Size(111, 24);
+            label59.Size = new Size(140, 29);
             label59.TabIndex = 16;
             label59.Text = "Dashboard";
             // 
@@ -4351,9 +4391,9 @@ namespace ITP4519M
             label1.AutoSize = true;
             label1.BackColor = SystemColors.GradientActiveCaption;
             label1.Font = new Font("Calibri", 24F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(290, 20);
+            label1.Location = new Point(331, 27);
             label1.Name = "label1";
-            label1.Size = new Size(512, 39);
+            label1.Size = new Size(636, 49);
             label1.TabIndex = 2;
             label1.Text = "Welcome to the LM Company System";
             // 
@@ -4362,9 +4402,10 @@ namespace ITP4519M
             logpnl.Controls.Add(panel19);
             logpnl.Controls.Add(auditLogdata);
             logpnl.Controls.Add(loglbl);
-            logpnl.Location = new Point(176, 2);
+            logpnl.Location = new Point(201, 3);
+            logpnl.Margin = new Padding(3, 4, 3, 4);
             logpnl.Name = "logpnl";
-            logpnl.Size = new Size(1094, 783);
+            logpnl.Size = new Size(1250, 1044);
             logpnl.TabIndex = 26;
             logpnl.Visible = false;
             logpnl.MouseDown += Dashboard_MouseDown;
@@ -4384,10 +4425,9 @@ namespace ITP4519M
             panel19.Controls.Add(label29);
             panel19.Controls.Add(ClearLogButton);
             panel19.Controls.Add(logdateTimePicker2);
-            panel19.Location = new Point(38, 57);
-            panel19.Margin = new Padding(3, 2, 3, 2);
+            panel19.Location = new Point(43, 76);
             panel19.Name = "panel19";
-            panel19.Size = new Size(1046, 169);
+            panel19.Size = new Size(1195, 225);
             panel19.TabIndex = 37;
             panel19.Paint += panel19_Paint;
             // 
@@ -4395,28 +4435,26 @@ namespace ITP4519M
             // 
             auditTypeStatusbox.FormattingEnabled = true;
             auditTypeStatusbox.Items.AddRange(new object[] { "Order", "OutstandingOrder", "Stock", "OrderAccembly", "Contact", "GRN", "Delivery", "PurchaseOrder", "Invoice", "Account", "Report" });
-            auditTypeStatusbox.Location = new Point(708, 48);
-            auditTypeStatusbox.Margin = new Padding(3, 2, 3, 2);
+            auditTypeStatusbox.Location = new Point(809, 64);
             auditTypeStatusbox.Name = "auditTypeStatusbox";
-            auditTypeStatusbox.Size = new Size(133, 23);
+            auditTypeStatusbox.Size = new Size(151, 28);
             auditTypeStatusbox.TabIndex = 52;
             // 
             // auditlogStatusbox
             // 
             auditlogStatusbox.FormattingEnabled = true;
-            auditlogStatusbox.Location = new Point(549, 47);
-            auditlogStatusbox.Margin = new Padding(3, 2, 3, 2);
+            auditlogStatusbox.Location = new Point(627, 63);
             auditlogStatusbox.Name = "auditlogStatusbox";
-            auditlogStatusbox.Size = new Size(133, 23);
+            auditlogStatusbox.Size = new Size(151, 28);
             auditlogStatusbox.TabIndex = 50;
             // 
             // label62
             // 
             label62.AutoSize = true;
             label62.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label62.Location = new Point(711, 17);
+            label62.Location = new Point(813, 23);
             label62.Name = "label62";
-            label62.Size = new Size(55, 21);
+            label62.Size = new Size(67, 28);
             label62.TabIndex = 51;
             label62.Text = "Status";
             // 
@@ -4424,29 +4462,28 @@ namespace ITP4519M
             // 
             label16.AutoSize = true;
             label16.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label16.Location = new Point(550, 20);
+            label16.Location = new Point(629, 27);
             label16.Name = "label16";
-            label16.Size = new Size(55, 21);
+            label16.Size = new Size(67, 28);
             label16.TabIndex = 49;
             label16.Text = "Status";
             // 
             // roundedTextBox3
             // 
             roundedTextBox3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            roundedTextBox3.Location = new Point(575, 119);
-            roundedTextBox3.Margin = new Padding(3, 4, 3, 4);
+            roundedTextBox3.Location = new Point(657, 159);
+            roundedTextBox3.Margin = new Padding(3, 5, 3, 5);
             roundedTextBox3.Multiline = true;
             roundedTextBox3.Name = "roundedTextBox3";
             roundedTextBox3.PlaceholderText = "Search";
-            roundedTextBox3.Size = new Size(446, 32);
+            roundedTextBox3.Size = new Size(509, 41);
             roundedTextBox3.TabIndex = 31;
             // 
             // logdateTimePicker1
             // 
-            logdateTimePicker1.Location = new Point(21, 48);
-            logdateTimePicker1.Margin = new Padding(3, 2, 3, 2);
+            logdateTimePicker1.Location = new Point(24, 64);
             logdateTimePicker1.Name = "logdateTimePicker1";
-            logdateTimePicker1.Size = new Size(212, 23);
+            logdateTimePicker1.Size = new Size(242, 27);
             logdateTimePicker1.TabIndex = 8;
             logdateTimePicker1.ValueChanged += logdateTimePicker1_ValueChanged;
             // 
@@ -4454,9 +4491,9 @@ namespace ITP4519M
             // 
             label28.AutoSize = true;
             label28.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label28.Location = new Point(21, 12);
+            label28.Location = new Point(24, 16);
             label28.Name = "label28";
-            label28.Size = new Size(55, 25);
+            label28.Size = new Size(69, 32);
             label28.TabIndex = 10;
             label28.Text = "From";
             // 
@@ -4476,10 +4513,9 @@ namespace ITP4519M
             SeachLogButton.ButtonRoundRadius = 30;
             SeachLogButton.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             SeachLogButton.ForeColor = Color.Black;
-            SeachLogButton.Location = new Point(875, 39);
-            SeachLogButton.Margin = new Padding(3, 2, 3, 2);
+            SeachLogButton.Location = new Point(1000, 52);
             SeachLogButton.Name = "SeachLogButton";
-            SeachLogButton.Size = new Size(90, 38);
+            SeachLogButton.Size = new Size(103, 51);
             SeachLogButton.TabIndex = 25;
             SeachLogButton.Text = "Filter";
             SeachLogButton.Click += SeachLogButton_Click;
@@ -4488,9 +4524,9 @@ namespace ITP4519M
             // 
             label29.AutoSize = true;
             label29.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label29.Location = new Point(275, 12);
+            label29.Location = new Point(314, 16);
             label29.Name = "label29";
-            label29.Size = new Size(31, 25);
+            label29.Size = new Size(39, 32);
             label29.TabIndex = 11;
             label29.Text = "To";
             // 
@@ -4510,19 +4546,17 @@ namespace ITP4519M
             ClearLogButton.ButtonRoundRadius = 30;
             ClearLogButton.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             ClearLogButton.ForeColor = Color.Black;
-            ClearLogButton.Location = new Point(22, 115);
-            ClearLogButton.Margin = new Padding(3, 2, 3, 2);
+            ClearLogButton.Location = new Point(25, 153);
             ClearLogButton.Name = "ClearLogButton";
-            ClearLogButton.Size = new Size(93, 41);
+            ClearLogButton.Size = new Size(106, 55);
             ClearLogButton.TabIndex = 30;
             ClearLogButton.Text = "Clear";
             // 
             // logdateTimePicker2
             // 
-            logdateTimePicker2.Location = new Point(278, 48);
-            logdateTimePicker2.Margin = new Padding(3, 2, 3, 2);
+            logdateTimePicker2.Location = new Point(318, 64);
             logdateTimePicker2.Name = "logdateTimePicker2";
-            logdateTimePicker2.Size = new Size(220, 23);
+            logdateTimePicker2.Size = new Size(251, 27);
             logdateTimePicker2.TabIndex = 9;
             // 
             // auditLogdata
@@ -4542,7 +4576,8 @@ namespace ITP4519M
             dataGridViewCellStyle27.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle27.WrapMode = DataGridViewTriState.True;
             auditLogdata.DefaultCellStyle = dataGridViewCellStyle27;
-            auditLogdata.Location = new Point(41, 234);
+            auditLogdata.Location = new Point(47, 312);
+            auditLogdata.Margin = new Padding(3, 4, 3, 4);
             auditLogdata.Name = "auditLogdata";
             dataGridViewCellStyle28.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle28.BackColor = SystemColors.Control;
@@ -4555,16 +4590,16 @@ namespace ITP4519M
             auditLogdata.RowHeadersVisible = false;
             auditLogdata.RowHeadersWidth = 51;
             auditLogdata.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            auditLogdata.Size = new Size(1038, 497);
+            auditLogdata.Size = new Size(1186, 663);
             auditLogdata.TabIndex = 39;
             // 
             // loglbl
             // 
             loglbl.AutoSize = true;
             loglbl.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            loglbl.Location = new Point(35, 2);
+            loglbl.Location = new Point(40, 3);
             loglbl.Name = "loglbl";
-            loglbl.Size = new Size(100, 25);
+            loglbl.Size = new Size(120, 31);
             loglbl.TabIndex = 23;
             loglbl.Text = "Audit Log";
             // 
@@ -4581,9 +4616,10 @@ namespace ITP4519M
             OrderAccemblypnl.Controls.Add(orderAccemblyData);
             OrderAccemblypnl.Controls.Add(orderAccemblylbl);
             OrderAccemblypnl.Controls.Add(accemblyCreatebtn);
-            OrderAccemblypnl.Location = new Point(176, 2);
+            OrderAccemblypnl.Location = new Point(201, 3);
+            OrderAccemblypnl.Margin = new Padding(3, 4, 3, 4);
             OrderAccemblypnl.Name = "OrderAccemblypnl";
-            OrderAccemblypnl.Size = new Size(1094, 788);
+            OrderAccemblypnl.Size = new Size(1250, 1051);
             OrderAccemblypnl.TabIndex = 7;
             OrderAccemblypnl.Visible = false;
             OrderAccemblypnl.MouseDown += Dashboard_MouseDown;
@@ -4597,20 +4633,18 @@ namespace ITP4519M
             panel18.Controls.Add(panel67);
             panel18.Controls.Add(label19);
             panel18.Controls.Add(label27);
-            panel18.Location = new Point(24, 233);
-            panel18.Margin = new Padding(3, 2, 3, 2);
+            panel18.Location = new Point(27, 311);
             panel18.Name = "panel18";
-            panel18.Size = new Size(1038, 52);
+            panel18.Size = new Size(1186, 69);
             panel18.TabIndex = 41;
             // 
             // panel60
             // 
             panel60.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel60.Controls.Add(textBox1);
-            panel60.Location = new Point(334, 16);
-            panel60.Margin = new Padding(3, 2, 3, 2);
+            panel60.Location = new Point(382, 21);
             panel60.Name = "panel60";
-            panel60.Size = new Size(40, 28);
+            panel60.Size = new Size(46, 37);
             panel60.TabIndex = 52;
             // 
             // textBox1
@@ -4618,11 +4652,10 @@ namespace ITP4519M
             textBox1.BackColor = SystemColors.Menu;
             textBox1.BorderStyle = BorderStyle.None;
             textBox1.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(9, 4);
-            textBox1.Margin = new Padding(3, 2, 3, 2);
+            textBox1.Location = new Point(10, 5);
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
-            textBox1.Size = new Size(26, 19);
+            textBox1.Size = new Size(30, 23);
             textBox1.TabIndex = 48;
             textBox1.Text = "880";
             // 
@@ -4631,10 +4664,9 @@ namespace ITP4519M
             panel66.AutoSize = true;
             panel66.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel66.Controls.Add(textBox2);
-            panel66.Location = new Point(761, 16);
-            panel66.Margin = new Padding(3, 2, 3, 2);
+            panel66.Location = new Point(870, 21);
             panel66.Name = "panel66";
-            panel66.Size = new Size(38, 24);
+            panel66.Size = new Size(43, 30);
             panel66.TabIndex = 51;
             // 
             // textBox2
@@ -4642,11 +4674,10 @@ namespace ITP4519M
             textBox2.BackColor = SystemColors.Menu;
             textBox2.BorderStyle = BorderStyle.None;
             textBox2.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.Location = new Point(9, 3);
-            textBox2.Margin = new Padding(3, 2, 3, 2);
+            textBox2.Location = new Point(10, 4);
             textBox2.Name = "textBox2";
             textBox2.ReadOnly = true;
-            textBox2.Size = new Size(26, 19);
+            textBox2.Size = new Size(30, 23);
             textBox2.TabIndex = 48;
             textBox2.Text = "880";
             // 
@@ -4654,8 +4685,7 @@ namespace ITP4519M
             // 
             panel67.AutoSize = true;
             panel67.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            panel67.Location = new Point(777, 14);
-            panel67.Margin = new Padding(3, 2, 3, 2);
+            panel67.Location = new Point(888, 19);
             panel67.Name = "panel67";
             panel67.Size = new Size(0, 0);
             panel67.TabIndex = 50;
@@ -4666,9 +4696,9 @@ namespace ITP4519M
             label19.BackColor = SystemColors.Menu;
             label19.Cursor = Cursors.Hand;
             label19.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label19.Location = new Point(672, 18);
+            label19.Location = new Point(768, 24);
             label19.Name = "label19";
-            label19.Size = new Size(94, 21);
+            label19.Size = new Size(114, 28);
             label19.TabIndex = 37;
             label19.Text = "Completed";
             // 
@@ -4678,9 +4708,9 @@ namespace ITP4519M
             label27.BackColor = SystemColors.Menu;
             label27.Cursor = Cursors.Hand;
             label27.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label27.Location = new Point(265, 17);
+            label27.Location = new Point(303, 23);
             label27.Name = "label27";
-            label27.Size = new Size(74, 21);
+            label27.Size = new Size(92, 28);
             label27.TabIndex = 33;
             label27.Text = "Partially";
             // 
@@ -4694,20 +4724,21 @@ namespace ITP4519M
             orderaccemblySearchpnl.Controls.Add(label5);
             orderaccemblySearchpnl.Controls.Add(orderAccemblydateTimePicker2);
             orderaccemblySearchpnl.Controls.Add(label6);
-            orderaccemblySearchpnl.Location = new Point(26, 80);
+            orderaccemblySearchpnl.Location = new Point(30, 107);
+            orderaccemblySearchpnl.Margin = new Padding(3, 4, 3, 4);
             orderaccemblySearchpnl.Name = "orderaccemblySearchpnl";
-            orderaccemblySearchpnl.Size = new Size(1050, 145);
+            orderaccemblySearchpnl.Size = new Size(1200, 193);
             orderaccemblySearchpnl.TabIndex = 16;
             // 
             // orderAccemblySearchbox
             // 
             orderAccemblySearchbox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            orderAccemblySearchbox.Location = new Point(587, 104);
-            orderAccemblySearchbox.Margin = new Padding(3, 4, 3, 4);
+            orderAccemblySearchbox.Location = new Point(671, 139);
+            orderAccemblySearchbox.Margin = new Padding(3, 5, 3, 5);
             orderAccemblySearchbox.Multiline = true;
             orderAccemblySearchbox.Name = "orderAccemblySearchbox";
             orderAccemblySearchbox.PlaceholderText = "    Search";
-            orderAccemblySearchbox.Size = new Size(446, 32);
+            orderAccemblySearchbox.Size = new Size(509, 41);
             orderAccemblySearchbox.TabIndex = 32;
             orderAccemblySearchbox.KeyDown += orderAccemblySearchbox_KeyDown;
             // 
@@ -4727,10 +4758,9 @@ namespace ITP4519M
             orderAccemblyViewbtn.ButtonRoundRadius = 30;
             orderAccemblyViewbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             orderAccemblyViewbtn.ForeColor = Color.Black;
-            orderAccemblyViewbtn.Location = new Point(359, 98);
-            orderAccemblyViewbtn.Margin = new Padding(3, 2, 3, 2);
+            orderAccemblyViewbtn.Location = new Point(410, 131);
             orderAccemblyViewbtn.Name = "orderAccemblyViewbtn";
-            orderAccemblyViewbtn.Size = new Size(126, 41);
+            orderAccemblyViewbtn.Size = new Size(144, 55);
             orderAccemblyViewbtn.TabIndex = 20;
             orderAccemblyViewbtn.Text = "View";
             orderAccemblyViewbtn.Click += orderAccemblyViewbtn_Click;
@@ -4751,10 +4781,9 @@ namespace ITP4519M
             orderAccemblySearchbtn.ButtonRoundRadius = 30;
             orderAccemblySearchbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             orderAccemblySearchbtn.ForeColor = Color.Black;
-            orderAccemblySearchbtn.Location = new Point(34, 98);
-            orderAccemblySearchbtn.Margin = new Padding(3, 2, 3, 2);
+            orderAccemblySearchbtn.Location = new Point(39, 131);
             orderAccemblySearchbtn.Name = "orderAccemblySearchbtn";
-            orderAccemblySearchbtn.Size = new Size(121, 38);
+            orderAccemblySearchbtn.Size = new Size(138, 51);
             orderAccemblySearchbtn.TabIndex = 19;
             orderAccemblySearchbtn.Text = "Filter";
             orderAccemblySearchbtn.Click += orderAccemblySearchbtn_Click;
@@ -4775,18 +4804,18 @@ namespace ITP4519M
             orderAccemblyClearbtn.ButtonRoundRadius = 30;
             orderAccemblyClearbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             orderAccemblyClearbtn.ForeColor = Color.Black;
-            orderAccemblyClearbtn.Location = new Point(195, 98);
-            orderAccemblyClearbtn.Margin = new Padding(3, 2, 3, 2);
+            orderAccemblyClearbtn.Location = new Point(223, 131);
             orderAccemblyClearbtn.Name = "orderAccemblyClearbtn";
-            orderAccemblyClearbtn.Size = new Size(125, 38);
+            orderAccemblyClearbtn.Size = new Size(143, 51);
             orderAccemblyClearbtn.TabIndex = 18;
             orderAccemblyClearbtn.Text = "Clear";
             // 
             // orderAccemblydateTimePicker
             // 
-            orderAccemblydateTimePicker.Location = new Point(34, 48);
+            orderAccemblydateTimePicker.Location = new Point(39, 64);
+            orderAccemblydateTimePicker.Margin = new Padding(3, 4, 3, 4);
             orderAccemblydateTimePicker.Name = "orderAccemblydateTimePicker";
-            orderAccemblydateTimePicker.Size = new Size(233, 23);
+            orderAccemblydateTimePicker.Size = new Size(266, 27);
             orderAccemblydateTimePicker.TabIndex = 8;
             orderAccemblydateTimePicker.ValueChanged += orderAccemblydateTimePicker_ValueChanged;
             // 
@@ -4794,26 +4823,27 @@ namespace ITP4519M
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(28, 8);
+            label5.Location = new Point(32, 11);
             label5.Name = "label5";
-            label5.Size = new Size(55, 25);
+            label5.Size = new Size(69, 32);
             label5.TabIndex = 10;
             label5.Text = "From";
             // 
             // orderAccemblydateTimePicker2
             // 
-            orderAccemblydateTimePicker2.Location = new Point(315, 48);
+            orderAccemblydateTimePicker2.Location = new Point(360, 64);
+            orderAccemblydateTimePicker2.Margin = new Padding(3, 4, 3, 4);
             orderAccemblydateTimePicker2.Name = "orderAccemblydateTimePicker2";
-            orderAccemblydateTimePicker2.Size = new Size(238, 23);
+            orderAccemblydateTimePicker2.Size = new Size(271, 27);
             orderAccemblydateTimePicker2.TabIndex = 9;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.Location = new Point(316, 10);
+            label6.Location = new Point(361, 13);
             label6.Name = "label6";
-            label6.Size = new Size(31, 25);
+            label6.Size = new Size(39, 32);
             label6.TabIndex = 11;
             label6.Text = "To";
             // 
@@ -4842,7 +4872,8 @@ namespace ITP4519M
             dataGridViewCellStyle31.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle31.WrapMode = DataGridViewTriState.False;
             orderAccemblyData.DefaultCellStyle = dataGridViewCellStyle31;
-            orderAccemblyData.Location = new Point(26, 297);
+            orderAccemblyData.Location = new Point(30, 396);
+            orderAccemblyData.Margin = new Padding(3, 4, 3, 4);
             orderAccemblyData.Name = "orderAccemblyData";
             dataGridViewCellStyle32.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle32.BackColor = SystemColors.Control;
@@ -4855,7 +4886,7 @@ namespace ITP4519M
             orderAccemblyData.RowHeadersVisible = false;
             orderAccemblyData.RowHeadersWidth = 51;
             orderAccemblyData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            orderAccemblyData.Size = new Size(1050, 449);
+            orderAccemblyData.Size = new Size(1200, 599);
             orderAccemblyData.TabIndex = 7;
             orderAccemblyData.CellClick += orderAccemblyData_CellClick;
             // 
@@ -4863,9 +4894,9 @@ namespace ITP4519M
             // 
             orderAccemblylbl.AutoSize = true;
             orderAccemblylbl.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            orderAccemblylbl.Location = new Point(24, 8);
+            orderAccemblylbl.Location = new Point(27, 11);
             orderAccemblylbl.Name = "orderAccemblylbl";
-            orderAccemblylbl.Size = new Size(154, 25);
+            orderAccemblylbl.Size = new Size(185, 31);
             orderAccemblylbl.TabIndex = 6;
             orderAccemblylbl.Text = "Order Accembly";
             // 
@@ -4885,10 +4916,9 @@ namespace ITP4519M
             accemblyCreatebtn.ButtonRoundRadius = 30;
             accemblyCreatebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             accemblyCreatebtn.ForeColor = Color.White;
-            accemblyCreatebtn.Location = new Point(884, 28);
-            accemblyCreatebtn.Margin = new Padding(3, 2, 3, 2);
+            accemblyCreatebtn.Location = new Point(1010, 37);
             accemblyCreatebtn.Name = "accemblyCreatebtn";
-            accemblyCreatebtn.Size = new Size(155, 38);
+            accemblyCreatebtn.Size = new Size(177, 51);
             accemblyCreatebtn.TabIndex = 8;
             accemblyCreatebtn.Text = "Create";
             accemblyCreatebtn.Click += accemblyCreatebtn_Click;
@@ -4900,9 +4930,10 @@ namespace ITP4519M
             GRNpnl.Controls.Add(grnAddNoteBtn);
             GRNpnl.Controls.Add(grndata);
             GRNpnl.Controls.Add(GRNlbl);
-            GRNpnl.Location = new Point(176, 2);
+            GRNpnl.Location = new Point(201, 3);
+            GRNpnl.Margin = new Padding(3, 4, 3, 4);
             GRNpnl.Name = "GRNpnl";
-            GRNpnl.Size = new Size(1094, 788);
+            GRNpnl.Size = new Size(1250, 1051);
             GRNpnl.TabIndex = 8;
             GRNpnl.Visible = false;
             GRNpnl.MouseDown += Dashboard_MouseDown;
@@ -4916,9 +4947,10 @@ namespace ITP4519M
             panel12.Controls.Add(grnPrevPage);
             panel12.Controls.Add(grnLastPage);
             panel12.Controls.Add(grnNextPage);
-            panel12.Location = new Point(574, 711);
+            panel12.Location = new Point(656, 948);
+            panel12.Margin = new Padding(3, 4, 3, 4);
             panel12.Name = "panel12";
-            panel12.Size = new Size(495, 50);
+            panel12.Size = new Size(566, 67);
             panel12.TabIndex = 34;
             // 
             // grnFirstPage
@@ -4937,22 +4969,23 @@ namespace ITP4519M
             grnFirstPage.ButtonRoundRadius = 30;
             grnFirstPage.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             grnFirstPage.ForeColor = Color.Black;
-            grnFirstPage.Location = new Point(45, 6);
+            grnFirstPage.Location = new Point(36, 8);
+            grnFirstPage.Margin = new Padding(3, 4, 3, 4);
             grnFirstPage.Name = "grnFirstPage";
-            grnFirstPage.Size = new Size(71, 37);
+            grnFirstPage.Size = new Size(81, 49);
             grnFirstPage.TabIndex = 31;
             grnFirstPage.Text = "First";
             grnFirstPage.Click += grnFirstPage_Click;
             // 
             // grnPage
             // 
-            grnPage.AutoSize = true;
             grnPage.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            grnPage.Location = new Point(205, 16);
+            grnPage.Location = new Point(211, 21);
             grnPage.Name = "grnPage";
-            grnPage.Size = new Size(79, 20);
+            grnPage.Size = new Size(148, 25);
             grnPage.TabIndex = 3;
             grnPage.Text = "LabelData";
+            grnPage.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // grnPrevPage
             // 
@@ -4971,9 +5004,10 @@ namespace ITP4519M
             grnPrevPage.ButtonRoundRadius = 30;
             grnPrevPage.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             grnPrevPage.ForeColor = Color.Black;
-            grnPrevPage.Location = new Point(122, 6);
+            grnPrevPage.Location = new Point(124, 8);
+            grnPrevPage.Margin = new Padding(3, 4, 3, 4);
             grnPrevPage.Name = "grnPrevPage";
-            grnPrevPage.Size = new Size(73, 38);
+            grnPrevPage.Size = new Size(81, 49);
             grnPrevPage.TabIndex = 33;
             grnPrevPage.Text = "Prev";
             grnPrevPage.Click += grnPrevPage_Click;
@@ -4994,9 +5028,10 @@ namespace ITP4519M
             grnLastPage.ButtonRoundRadius = 30;
             grnLastPage.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             grnLastPage.ForeColor = Color.Black;
-            grnLastPage.Location = new Point(397, 7);
+            grnLastPage.Location = new Point(454, 9);
+            grnLastPage.Margin = new Padding(3, 4, 3, 4);
             grnLastPage.Name = "grnLastPage";
-            grnLastPage.Size = new Size(71, 39);
+            grnLastPage.Size = new Size(81, 49);
             grnLastPage.TabIndex = 34;
             grnLastPage.Text = "Last";
             grnLastPage.Click += grnLastPage_Click;
@@ -5017,9 +5052,10 @@ namespace ITP4519M
             grnNextPage.ButtonRoundRadius = 30;
             grnNextPage.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             grnNextPage.ForeColor = Color.Black;
-            grnNextPage.Location = new Point(310, 7);
+            grnNextPage.Location = new Point(365, 9);
+            grnNextPage.Margin = new Padding(3, 4, 3, 4);
             grnNextPage.Name = "grnNextPage";
-            grnNextPage.Size = new Size(71, 40);
+            grnNextPage.Size = new Size(81, 49);
             grnNextPage.TabIndex = 32;
             grnNextPage.Text = "Next";
             grnNextPage.Click += grnNextPage_Click;
@@ -5033,27 +5069,29 @@ namespace ITP4519M
             panel1.Controls.Add(grnDatePicker2);
             panel1.Controls.Add(grnSearchBtn);
             panel1.Controls.Add(grnlbl2);
-            panel1.Location = new Point(31, 81);
+            panel1.Location = new Point(35, 108);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1031, 145);
+            panel1.Size = new Size(1178, 193);
             panel1.TabIndex = 15;
             // 
             // grnsearchbox
             // 
             grnsearchbox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            grnsearchbox.Location = new Point(575, 109);
-            grnsearchbox.Margin = new Padding(3, 4, 3, 4);
+            grnsearchbox.Location = new Point(657, 145);
+            grnsearchbox.Margin = new Padding(3, 5, 3, 5);
             grnsearchbox.Multiline = true;
             grnsearchbox.Name = "grnsearchbox";
             grnsearchbox.PlaceholderText = "    Search";
-            grnsearchbox.Size = new Size(446, 32);
+            grnsearchbox.Size = new Size(509, 41);
             grnsearchbox.TabIndex = 33;
             // 
             // grnDatePicker1
             // 
-            grnDatePicker1.Location = new Point(34, 48);
+            grnDatePicker1.Location = new Point(39, 64);
+            grnDatePicker1.Margin = new Padding(3, 4, 3, 4);
             grnDatePicker1.Name = "grnDatePicker1";
-            grnDatePicker1.Size = new Size(233, 23);
+            grnDatePicker1.Size = new Size(266, 27);
             grnDatePicker1.TabIndex = 8;
             grnDatePicker1.ValueChanged += grnDatePicker1_ValueChanged;
             // 
@@ -5061,9 +5099,9 @@ namespace ITP4519M
             // 
             grnlbl1.AutoSize = true;
             grnlbl1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            grnlbl1.Location = new Point(28, 8);
+            grnlbl1.Location = new Point(32, 11);
             grnlbl1.Name = "grnlbl1";
-            grnlbl1.Size = new Size(55, 25);
+            grnlbl1.Size = new Size(69, 32);
             grnlbl1.TabIndex = 10;
             grnlbl1.Text = "From";
             // 
@@ -5083,19 +5121,19 @@ namespace ITP4519M
             grncl.ButtonRoundRadius = 30;
             grncl.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             grncl.ForeColor = Color.Black;
-            grncl.Location = new Point(21, 97);
-            grncl.Margin = new Padding(3, 2, 3, 2);
+            grncl.Location = new Point(24, 129);
             grncl.Name = "grncl";
-            grncl.Size = new Size(123, 41);
+            grncl.Size = new Size(141, 55);
             grncl.TabIndex = 15;
             grncl.Text = "Clear";
             grncl.Click += grnclearBtn_Click;
             // 
             // grnDatePicker2
             // 
-            grnDatePicker2.Location = new Point(315, 48);
+            grnDatePicker2.Location = new Point(360, 64);
+            grnDatePicker2.Margin = new Padding(3, 4, 3, 4);
             grnDatePicker2.Name = "grnDatePicker2";
-            grnDatePicker2.Size = new Size(238, 23);
+            grnDatePicker2.Size = new Size(271, 27);
             grnDatePicker2.TabIndex = 9;
             // 
             // grnSearchBtn
@@ -5114,10 +5152,9 @@ namespace ITP4519M
             grnSearchBtn.ButtonRoundRadius = 30;
             grnSearchBtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             grnSearchBtn.ForeColor = Color.Black;
-            grnSearchBtn.Location = new Point(578, 41);
-            grnSearchBtn.Margin = new Padding(3, 2, 3, 2);
+            grnSearchBtn.Location = new Point(661, 55);
             grnSearchBtn.Name = "grnSearchBtn";
-            grnSearchBtn.Size = new Size(129, 42);
+            grnSearchBtn.Size = new Size(147, 56);
             grnSearchBtn.TabIndex = 15;
             grnSearchBtn.Text = "Search";
             grnSearchBtn.Click += grnSearchBtn_Click;
@@ -5126,9 +5163,9 @@ namespace ITP4519M
             // 
             grnlbl2.AutoSize = true;
             grnlbl2.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            grnlbl2.Location = new Point(316, 10);
+            grnlbl2.Location = new Point(361, 13);
             grnlbl2.Name = "grnlbl2";
-            grnlbl2.Size = new Size(31, 25);
+            grnlbl2.Size = new Size(39, 32);
             grnlbl2.TabIndex = 11;
             grnlbl2.Text = "To";
             // 
@@ -5148,10 +5185,9 @@ namespace ITP4519M
             grnAddNoteBtn.ButtonRoundRadius = 30;
             grnAddNoteBtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             grnAddNoteBtn.ForeColor = Color.White;
-            grnAddNoteBtn.Location = new Point(887, 34);
-            grnAddNoteBtn.Margin = new Padding(3, 2, 3, 2);
+            grnAddNoteBtn.Location = new Point(1014, 45);
             grnAddNoteBtn.Name = "grnAddNoteBtn";
-            grnAddNoteBtn.Size = new Size(139, 42);
+            grnAddNoteBtn.Size = new Size(159, 56);
             grnAddNoteBtn.TabIndex = 15;
             grnAddNoteBtn.Text = "Add";
             grnAddNoteBtn.Click += grnAddNoteBtn_Click;
@@ -5181,8 +5217,8 @@ namespace ITP4519M
             dataGridViewCellStyle35.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle35.WrapMode = DataGridViewTriState.False;
             grndata.DefaultCellStyle = dataGridViewCellStyle35;
-            grndata.Location = new Point(33, 250);
-            grndata.Margin = new Padding(3, 4, 3, 4);
+            grndata.Location = new Point(38, 333);
+            grndata.Margin = new Padding(3, 5, 3, 5);
             grndata.MultiSelect = false;
             grndata.Name = "grndata";
             dataGridViewCellStyle36.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -5196,7 +5232,7 @@ namespace ITP4519M
             grndata.RowHeadersVisible = false;
             grndata.RowHeadersWidth = 51;
             grndata.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            grndata.Size = new Size(1038, 434);
+            grndata.Size = new Size(1186, 579);
             grndata.TabIndex = 7;
             grndata.CellContentClick += grndata_CellContentClick;
             // 
@@ -5211,9 +5247,9 @@ namespace ITP4519M
             // 
             GRNlbl.AutoSize = true;
             GRNlbl.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            GRNlbl.Location = new Point(31, 8);
+            GRNlbl.Location = new Point(35, 11);
             GRNlbl.Name = "GRNlbl";
-            GRNlbl.Size = new Size(194, 25);
+            GRNlbl.Size = new Size(231, 31);
             GRNlbl.TabIndex = 6;
             GRNlbl.Text = "Good Received Note";
             // 
@@ -5225,9 +5261,10 @@ namespace ITP4519M
             deliverypnl.Controls.Add(deliveryData);
             deliverypnl.Controls.Add(deliveryAddbtn);
             deliverypnl.Controls.Add(deliverylbl);
-            deliverypnl.Location = new Point(176, 2);
+            deliverypnl.Location = new Point(201, 3);
+            deliverypnl.Margin = new Padding(3, 4, 3, 4);
             deliverypnl.Name = "deliverypnl";
-            deliverypnl.Size = new Size(1094, 788);
+            deliverypnl.Size = new Size(1250, 1051);
             deliverypnl.TabIndex = 9;
             deliverypnl.Visible = false;
             deliverypnl.Paint += deliverypnl_Paint;
@@ -5244,10 +5281,9 @@ namespace ITP4519M
             panel56.Controls.Add(label42);
             panel56.Controls.Add(label61);
             panel56.Controls.Add(label63);
-            panel56.Location = new Point(37, 242);
-            panel56.Margin = new Padding(3, 2, 3, 2);
+            panel56.Location = new Point(42, 323);
             panel56.Name = "panel56";
-            panel56.Size = new Size(1038, 52);
+            panel56.Size = new Size(1186, 69);
             panel56.TabIndex = 40;
             panel56.Paint += panel56_Paint_1;
             // 
@@ -5256,10 +5292,9 @@ namespace ITP4519M
             panel61.AutoSize = true;
             panel61.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel61.Controls.Add(textBox3);
-            panel61.Location = new Point(486, 20);
-            panel61.Margin = new Padding(3, 2, 3, 2);
+            panel61.Location = new Point(555, 27);
             panel61.Name = "panel61";
-            panel61.Size = new Size(36, 24);
+            panel61.Size = new Size(41, 30);
             panel61.TabIndex = 52;
             panel61.Paint += panel26_Paint;
             // 
@@ -5268,11 +5303,10 @@ namespace ITP4519M
             textBox3.BackColor = SystemColors.Menu;
             textBox3.BorderStyle = BorderStyle.None;
             textBox3.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox3.Location = new Point(7, 3);
-            textBox3.Margin = new Padding(3, 2, 3, 2);
+            textBox3.Location = new Point(8, 4);
             textBox3.Name = "textBox3";
             textBox3.ReadOnly = true;
-            textBox3.Size = new Size(26, 19);
+            textBox3.Size = new Size(30, 23);
             textBox3.TabIndex = 48;
             textBox3.Text = "880";
             // 
@@ -5281,10 +5315,9 @@ namespace ITP4519M
             panel62.AutoSize = true;
             panel62.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel62.Controls.Add(textBox5);
-            panel62.Location = new Point(776, 19);
-            panel62.Margin = new Padding(3, 2, 3, 2);
+            panel62.Location = new Point(887, 25);
             panel62.Name = "panel62";
-            panel62.Size = new Size(38, 24);
+            panel62.Size = new Size(43, 30);
             panel62.TabIndex = 51;
             panel62.Paint += panel26_Paint;
             // 
@@ -5293,11 +5326,10 @@ namespace ITP4519M
             textBox5.BackColor = SystemColors.Menu;
             textBox5.BorderStyle = BorderStyle.None;
             textBox5.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox5.Location = new Point(9, 3);
-            textBox5.Margin = new Padding(3, 2, 3, 2);
+            textBox5.Location = new Point(10, 4);
             textBox5.Name = "textBox5";
             textBox5.ReadOnly = true;
-            textBox5.Size = new Size(26, 19);
+            textBox5.Size = new Size(30, 23);
             textBox5.TabIndex = 48;
             textBox5.Text = "880";
             // 
@@ -5305,8 +5337,7 @@ namespace ITP4519M
             // 
             panel64.AutoSize = true;
             panel64.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            panel64.Location = new Point(777, 14);
-            panel64.Margin = new Padding(3, 2, 3, 2);
+            panel64.Location = new Point(888, 19);
             panel64.Name = "panel64";
             panel64.Size = new Size(0, 0);
             panel64.TabIndex = 50;
@@ -5316,10 +5347,9 @@ namespace ITP4519M
             panel65.AutoSize = true;
             panel65.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel65.Controls.Add(textBox7);
-            panel65.Location = new Point(178, 20);
-            panel65.Margin = new Padding(3, 2, 3, 2);
+            panel65.Location = new Point(203, 27);
             panel65.Name = "panel65";
-            panel65.Size = new Size(36, 24);
+            panel65.Size = new Size(41, 30);
             panel65.TabIndex = 50;
             // 
             // textBox7
@@ -5327,11 +5357,10 @@ namespace ITP4519M
             textBox7.BackColor = SystemColors.Menu;
             textBox7.BorderStyle = BorderStyle.None;
             textBox7.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox7.Location = new Point(7, 3);
-            textBox7.Margin = new Padding(3, 2, 3, 2);
+            textBox7.Location = new Point(8, 4);
             textBox7.Name = "textBox7";
             textBox7.ReadOnly = true;
-            textBox7.Size = new Size(26, 19);
+            textBox7.Size = new Size(30, 23);
             textBox7.TabIndex = 48;
             textBox7.Text = "44";
             // 
@@ -5340,9 +5369,9 @@ namespace ITP4519M
             label42.AutoSize = true;
             label42.BackColor = SystemColors.Menu;
             label42.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label42.Location = new Point(679, 20);
+            label42.Location = new Point(776, 27);
             label42.Name = "label42";
-            label42.Size = new Size(94, 21);
+            label42.Size = new Size(114, 28);
             label42.TabIndex = 37;
             label42.Text = "Completed";
             // 
@@ -5351,9 +5380,9 @@ namespace ITP4519M
             label61.AutoSize = true;
             label61.BackColor = SystemColors.Menu;
             label61.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label61.Location = new Point(407, 19);
+            label61.Location = new Point(465, 25);
             label61.Name = "label61";
-            label61.Size = new Size(74, 21);
+            label61.Size = new Size(92, 28);
             label61.TabIndex = 33;
             label61.Text = "Partially";
             // 
@@ -5362,9 +5391,9 @@ namespace ITP4519M
             label63.AutoSize = true;
             label63.BackColor = SystemColors.Menu;
             label63.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label63.Location = new Point(133, 18);
+            label63.Location = new Point(152, 24);
             label63.Name = "label63";
-            label63.Size = new Size(45, 21);
+            label63.Size = new Size(55, 28);
             label63.TabIndex = 35;
             label63.Text = "New";
             // 
@@ -5375,9 +5404,10 @@ namespace ITP4519M
             panel13.Controls.Add(roundedButton10);
             panel13.Controls.Add(roundedButton11);
             panel13.Controls.Add(roundedButton12);
-            panel13.Location = new Point(576, 714);
+            panel13.Location = new Point(658, 952);
+            panel13.Margin = new Padding(3, 4, 3, 4);
             panel13.Name = "panel13";
-            panel13.Size = new Size(495, 50);
+            panel13.Size = new Size(566, 59);
             panel13.TabIndex = 34;
             // 
             // roundedButton9
@@ -5396,9 +5426,10 @@ namespace ITP4519M
             roundedButton9.ButtonRoundRadius = 30;
             roundedButton9.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             roundedButton9.ForeColor = Color.Black;
-            roundedButton9.Location = new Point(61, 7);
+            roundedButton9.Location = new Point(70, 9);
+            roundedButton9.Margin = new Padding(3, 4, 3, 4);
             roundedButton9.Name = "roundedButton9";
-            roundedButton9.Size = new Size(69, 33);
+            roundedButton9.Size = new Size(79, 44);
             roundedButton9.TabIndex = 31;
             roundedButton9.Text = "First";
             // 
@@ -5406,9 +5437,9 @@ namespace ITP4519M
             // 
             label17.AutoSize = true;
             label17.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label17.Location = new Point(214, 16);
+            label17.Location = new Point(245, 21);
             label17.Name = "label17";
-            label17.Size = new Size(79, 20);
+            label17.Size = new Size(100, 25);
             label17.TabIndex = 3;
             label17.Text = "LabelData";
             // 
@@ -5429,9 +5460,10 @@ namespace ITP4519M
             roundedButton10.ButtonRoundRadius = 30;
             roundedButton10.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             roundedButton10.ForeColor = Color.Black;
-            roundedButton10.Location = new Point(136, 8);
+            roundedButton10.Location = new Point(155, 11);
+            roundedButton10.Margin = new Padding(3, 4, 3, 4);
             roundedButton10.Name = "roundedButton10";
-            roundedButton10.Size = new Size(63, 33);
+            roundedButton10.Size = new Size(72, 44);
             roundedButton10.TabIndex = 33;
             roundedButton10.Text = "Prev";
             // 
@@ -5451,9 +5483,10 @@ namespace ITP4519M
             roundedButton11.ButtonRoundRadius = 30;
             roundedButton11.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             roundedButton11.ForeColor = Color.Black;
-            roundedButton11.Location = new Point(397, 7);
+            roundedButton11.Location = new Point(454, 9);
+            roundedButton11.Margin = new Padding(3, 4, 3, 4);
             roundedButton11.Name = "roundedButton11";
-            roundedButton11.Size = new Size(66, 33);
+            roundedButton11.Size = new Size(75, 44);
             roundedButton11.TabIndex = 34;
             roundedButton11.Text = "Last";
             // 
@@ -5473,19 +5506,19 @@ namespace ITP4519M
             roundedButton12.ButtonRoundRadius = 30;
             roundedButton12.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             roundedButton12.ForeColor = Color.Black;
-            roundedButton12.Location = new Point(318, 6);
+            roundedButton12.Location = new Point(363, 8);
+            roundedButton12.Margin = new Padding(3, 4, 3, 4);
             roundedButton12.Name = "roundedButton12";
-            roundedButton12.Size = new Size(71, 33);
+            roundedButton12.Size = new Size(81, 44);
             roundedButton12.TabIndex = 32;
             roundedButton12.Text = "Next";
             // 
             // panel2
             // 
             panel2.Controls.Add(groupBox2);
-            panel2.Location = new Point(28, 55);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(32, 73);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1052, 181);
+            panel2.Size = new Size(1202, 241);
             panel2.TabIndex = 16;
             // 
             // groupBox2
@@ -5499,11 +5532,9 @@ namespace ITP4519M
             groupBox2.Controls.Add(deliverydateTimePicker1);
             groupBox2.Controls.Add(label3);
             groupBox2.Controls.Add(deliverySearchDatebtn);
-            groupBox2.Location = new Point(8, 5);
-            groupBox2.Margin = new Padding(3, 2, 3, 2);
+            groupBox2.Location = new Point(9, 7);
             groupBox2.Name = "groupBox2";
-            groupBox2.Padding = new Padding(3, 2, 3, 2);
-            groupBox2.Size = new Size(1012, 163);
+            groupBox2.Size = new Size(1157, 217);
             groupBox2.TabIndex = 35;
             groupBox2.TabStop = false;
             // 
@@ -5523,10 +5554,9 @@ namespace ITP4519M
             deliverycompletedeliverybtn.ButtonRoundRadius = 30;
             deliverycompletedeliverybtn.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             deliverycompletedeliverybtn.ForeColor = Color.Black;
-            deliverycompletedeliverybtn.Location = new Point(153, 117);
-            deliverycompletedeliverybtn.Margin = new Padding(3, 2, 3, 2);
+            deliverycompletedeliverybtn.Location = new Point(175, 156);
             deliverycompletedeliverybtn.Name = "deliverycompletedeliverybtn";
-            deliverycompletedeliverybtn.Size = new Size(108, 38);
+            deliverycompletedeliverybtn.Size = new Size(123, 51);
             deliverycompletedeliverybtn.TabIndex = 32;
             deliverycompletedeliverybtn.Text = "Complete";
             deliverycompletedeliverybtn.Click += deliverycompletedeliverybtn_Click;
@@ -5534,20 +5564,19 @@ namespace ITP4519M
             // deliverySearchIDbox
             // 
             deliverySearchIDbox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            deliverySearchIDbox.Location = new Point(555, 123);
-            deliverySearchIDbox.Margin = new Padding(3, 4, 3, 4);
+            deliverySearchIDbox.Location = new Point(634, 164);
+            deliverySearchIDbox.Margin = new Padding(3, 5, 3, 5);
             deliverySearchIDbox.Multiline = true;
             deliverySearchIDbox.Name = "deliverySearchIDbox";
             deliverySearchIDbox.PlaceholderText = "    Search in here";
-            deliverySearchIDbox.Size = new Size(446, 32);
+            deliverySearchIDbox.Size = new Size(509, 41);
             deliverySearchIDbox.TabIndex = 31;
             // 
             // deliverydateTimePicker2
             // 
-            deliverydateTimePicker2.Location = new Point(271, 53);
-            deliverydateTimePicker2.Margin = new Padding(3, 2, 3, 2);
+            deliverydateTimePicker2.Location = new Point(310, 71);
             deliverydateTimePicker2.Name = "deliverydateTimePicker2";
-            deliverydateTimePicker2.Size = new Size(220, 23);
+            deliverydateTimePicker2.Size = new Size(251, 27);
             deliverydateTimePicker2.TabIndex = 9;
             // 
             // deliveryViewDNbtn
@@ -5566,10 +5595,9 @@ namespace ITP4519M
             deliveryViewDNbtn.ButtonRoundRadius = 30;
             deliveryViewDNbtn.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             deliveryViewDNbtn.ForeColor = Color.Black;
-            deliveryViewDNbtn.Location = new Point(16, 117);
-            deliveryViewDNbtn.Margin = new Padding(3, 2, 3, 2);
+            deliveryViewDNbtn.Location = new Point(18, 156);
             deliveryViewDNbtn.Name = "deliveryViewDNbtn";
-            deliveryViewDNbtn.Size = new Size(108, 38);
+            deliveryViewDNbtn.Size = new Size(123, 51);
             deliveryViewDNbtn.TabIndex = 17;
             deliveryViewDNbtn.Text = "View";
             deliveryViewDNbtn.Click += deliveryViewDNbtn_Click;
@@ -5590,20 +5618,18 @@ namespace ITP4519M
             deliveryclearbtn.ButtonRoundRadius = 30;
             deliveryclearbtn.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             deliveryclearbtn.ForeColor = Color.Black;
-            deliveryclearbtn.Location = new Point(288, 116);
-            deliveryclearbtn.Margin = new Padding(3, 2, 3, 2);
+            deliveryclearbtn.Location = new Point(329, 155);
             deliveryclearbtn.Name = "deliveryclearbtn";
-            deliveryclearbtn.Size = new Size(108, 38);
+            deliveryclearbtn.Size = new Size(123, 51);
             deliveryclearbtn.TabIndex = 30;
             deliveryclearbtn.Text = "Clear";
             deliveryclearbtn.Click += deliveryclearbtn_Click_1;
             // 
             // deliverydateTimePicker1
             // 
-            deliverydateTimePicker1.Location = new Point(14, 53);
-            deliverydateTimePicker1.Margin = new Padding(3, 2, 3, 2);
+            deliverydateTimePicker1.Location = new Point(16, 71);
             deliverydateTimePicker1.Name = "deliverydateTimePicker1";
-            deliverydateTimePicker1.Size = new Size(212, 23);
+            deliverydateTimePicker1.Size = new Size(242, 27);
             deliverydateTimePicker1.TabIndex = 8;
             deliverydateTimePicker1.ValueChanged += deliverydateTimePicker1_ValueChanged;
             // 
@@ -5611,9 +5637,9 @@ namespace ITP4519M
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(268, 17);
+            label3.Location = new Point(306, 23);
             label3.Name = "label3";
-            label3.Size = new Size(31, 25);
+            label3.Size = new Size(39, 32);
             label3.TabIndex = 11;
             label3.Text = "To";
             // 
@@ -5633,10 +5659,9 @@ namespace ITP4519M
             deliverySearchDatebtn.ButtonRoundRadius = 30;
             deliverySearchDatebtn.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             deliverySearchDatebtn.ForeColor = Color.Black;
-            deliverySearchDatebtn.Location = new Point(514, 44);
-            deliverySearchDatebtn.Margin = new Padding(3, 2, 3, 2);
+            deliverySearchDatebtn.Location = new Point(587, 59);
             deliverySearchDatebtn.Name = "deliverySearchDatebtn";
-            deliverySearchDatebtn.Size = new Size(97, 38);
+            deliverySearchDatebtn.Size = new Size(111, 51);
             deliverySearchDatebtn.TabIndex = 25;
             deliverySearchDatebtn.Text = "Filter";
             deliverySearchDatebtn.Click += deliverySearchDatebtn_Click;
@@ -5666,8 +5691,7 @@ namespace ITP4519M
             dataGridViewCellStyle39.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle39.WrapMode = DataGridViewTriState.False;
             deliveryData.DefaultCellStyle = dataGridViewCellStyle39;
-            deliveryData.Location = new Point(32, 302);
-            deliveryData.Margin = new Padding(3, 2, 3, 2);
+            deliveryData.Location = new Point(37, 403);
             deliveryData.Name = "deliveryData";
             dataGridViewCellStyle40.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle40.BackColor = SystemColors.Control;
@@ -5680,7 +5704,7 @@ namespace ITP4519M
             deliveryData.RowHeadersVisible = false;
             deliveryData.RowHeadersWidth = 51;
             deliveryData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            deliveryData.Size = new Size(1040, 400);
+            deliveryData.Size = new Size(1189, 533);
             deliveryData.TabIndex = 7;
             deliveryData.CellClick += deliveryData_CellClick;
             deliveryData.CellContentClick += deliveryData_CellContentClick;
@@ -5701,10 +5725,9 @@ namespace ITP4519M
             deliveryAddbtn.ButtonRoundRadius = 30;
             deliveryAddbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             deliveryAddbtn.ForeColor = Color.White;
-            deliveryAddbtn.Location = new Point(860, 8);
-            deliveryAddbtn.Margin = new Padding(3, 2, 3, 2);
+            deliveryAddbtn.Location = new Point(983, 11);
             deliveryAddbtn.Name = "deliveryAddbtn";
-            deliveryAddbtn.Size = new Size(141, 42);
+            deliveryAddbtn.Size = new Size(161, 56);
             deliveryAddbtn.TabIndex = 15;
             deliveryAddbtn.Text = "Add";
             deliveryAddbtn.Click += deliveryAddbtn_Click_1;
@@ -5713,9 +5736,9 @@ namespace ITP4519M
             // 
             deliverylbl.AutoSize = true;
             deliverylbl.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            deliverylbl.Location = new Point(36, 8);
+            deliverylbl.Location = new Point(41, 11);
             deliverylbl.Name = "deliverylbl";
-            deliverylbl.Size = new Size(134, 25);
+            deliverylbl.Size = new Size(162, 31);
             deliverylbl.TabIndex = 6;
             deliverylbl.Text = "Delivery Note";
             // 
@@ -5730,9 +5753,10 @@ namespace ITP4519M
             deliveryCompletepnl.Controls.Add(deliveryCompletebtn);
             deliveryCompletepnl.Controls.Add(DeliveryCancelbtn);
             deliveryCompletepnl.Controls.Add(deliveryNextbtn);
-            deliveryCompletepnl.Location = new Point(186, 16);
+            deliveryCompletepnl.Location = new Point(213, 21);
+            deliveryCompletepnl.Margin = new Padding(3, 4, 3, 4);
             deliveryCompletepnl.Name = "deliveryCompletepnl";
-            deliveryCompletepnl.Size = new Size(1063, 717);
+            deliveryCompletepnl.Size = new Size(1215, 956);
             deliveryCompletepnl.TabIndex = 35;
             deliveryCompletepnl.Visible = false;
             // 
@@ -5740,36 +5764,36 @@ namespace ITP4519M
             // 
             deliveryShippingdatelbl.AutoSize = true;
             deliveryShippingdatelbl.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            deliveryShippingdatelbl.Location = new Point(228, 148);
+            deliveryShippingdatelbl.Location = new Point(261, 197);
             deliveryShippingdatelbl.Name = "deliveryShippingdatelbl";
-            deliveryShippingdatelbl.Size = new Size(119, 25);
+            deliveryShippingdatelbl.Size = new Size(142, 31);
             deliveryShippingdatelbl.TabIndex = 26;
             deliveryShippingdatelbl.Text = "Shipped on ";
             // 
             // DeliverydeliveredDate
             // 
-            DeliverydeliveredDate.Location = new Point(264, 219);
+            DeliverydeliveredDate.Location = new Point(302, 292);
+            DeliverydeliveredDate.Margin = new Padding(3, 4, 3, 4);
             DeliverydeliveredDate.Name = "DeliverydeliveredDate";
-            DeliverydeliveredDate.Size = new Size(237, 23);
+            DeliverydeliveredDate.Size = new Size(270, 27);
             DeliverydeliveredDate.TabIndex = 25;
             // 
             // label20
             // 
             label20.AutoSize = true;
             label20.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label20.Location = new Point(83, 217);
+            label20.Location = new Point(95, 289);
             label20.Name = "label20";
-            label20.Size = new Size(157, 25);
+            label20.Size = new Size(190, 31);
             label20.TabIndex = 24;
             label20.Text = "Delivered Date : ";
             // 
             // deliveryBackbtn
             // 
             deliveryBackbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            deliveryBackbtn.Location = new Point(529, 15);
-            deliveryBackbtn.Margin = new Padding(3, 2, 3, 2);
+            deliveryBackbtn.Location = new Point(605, 20);
             deliveryBackbtn.Name = "deliveryBackbtn";
-            deliveryBackbtn.Size = new Size(138, 38);
+            deliveryBackbtn.Size = new Size(158, 51);
             deliveryBackbtn.TabIndex = 23;
             deliveryBackbtn.Text = "Back";
             deliveryBackbtn.UseVisualStyleBackColor = true;
@@ -5779,9 +5803,9 @@ namespace ITP4519M
             // 
             deliveryDeliveryIDlbl.AutoSize = true;
             deliveryDeliveryIDlbl.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            deliveryDeliveryIDlbl.Location = new Point(277, 77);
+            deliveryDeliveryIDlbl.Location = new Point(317, 103);
             deliveryDeliveryIDlbl.Name = "deliveryDeliveryIDlbl";
-            deliveryDeliveryIDlbl.Size = new Size(151, 30);
+            deliveryDeliveryIDlbl.Size = new Size(198, 37);
             deliveryDeliveryIDlbl.TabIndex = 22;
             deliveryDeliveryIDlbl.Text = "Delivery ID : #";
             // 
@@ -5789,19 +5813,18 @@ namespace ITP4519M
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(8, 2);
+            label4.Location = new Point(9, 3);
             label4.Name = "label4";
-            label4.Size = new Size(134, 25);
+            label4.Size = new Size(162, 31);
             label4.TabIndex = 21;
             label4.Text = "Delivery Note";
             // 
             // deliveryCompletebtn
             // 
             deliveryCompletebtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            deliveryCompletebtn.Location = new Point(287, 347);
-            deliveryCompletebtn.Margin = new Padding(3, 2, 3, 2);
+            deliveryCompletebtn.Location = new Point(328, 463);
             deliveryCompletebtn.Name = "deliveryCompletebtn";
-            deliveryCompletebtn.Size = new Size(138, 38);
+            deliveryCompletebtn.Size = new Size(158, 51);
             deliveryCompletebtn.TabIndex = 20;
             deliveryCompletebtn.Text = "Complete";
             deliveryCompletebtn.UseVisualStyleBackColor = true;
@@ -5810,10 +5833,9 @@ namespace ITP4519M
             // DeliveryCancelbtn
             // 
             DeliveryCancelbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            DeliveryCancelbtn.Location = new Point(33, 347);
-            DeliveryCancelbtn.Margin = new Padding(3, 2, 3, 2);
+            DeliveryCancelbtn.Location = new Point(38, 463);
             DeliveryCancelbtn.Name = "DeliveryCancelbtn";
-            DeliveryCancelbtn.Size = new Size(138, 38);
+            DeliveryCancelbtn.Size = new Size(158, 51);
             DeliveryCancelbtn.TabIndex = 19;
             DeliveryCancelbtn.Text = "Cancel";
             DeliveryCancelbtn.UseVisualStyleBackColor = true;
@@ -5821,10 +5843,9 @@ namespace ITP4519M
             // deliveryNextbtn
             // 
             deliveryNextbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            deliveryNextbtn.Location = new Point(529, 347);
-            deliveryNextbtn.Margin = new Padding(3, 2, 3, 2);
+            deliveryNextbtn.Location = new Point(605, 463);
             deliveryNextbtn.Name = "deliveryNextbtn";
-            deliveryNextbtn.Size = new Size(138, 38);
+            deliveryNextbtn.Size = new Size(158, 51);
             deliveryNextbtn.TabIndex = 18;
             deliveryNextbtn.Text = "Next";
             deliveryNextbtn.UseVisualStyleBackColor = true;
@@ -5836,10 +5857,9 @@ namespace ITP4519M
             POpnl.Controls.Add(AddOrderPoButton);
             POpnl.Controls.Add(POlbl);
             POpnl.Controls.Add(panel17);
-            POpnl.Location = new Point(176, 2);
-            POpnl.Margin = new Padding(3, 2, 3, 2);
+            POpnl.Location = new Point(201, 3);
             POpnl.Name = "POpnl";
-            POpnl.Size = new Size(1094, 788);
+            POpnl.Size = new Size(1250, 1051);
             POpnl.TabIndex = 32;
             POpnl.MouseDown += Dashboard_MouseDown;
             POpnl.MouseMove += Dashboard_MouseMove;
@@ -5872,7 +5892,8 @@ namespace ITP4519M
             dataGridViewCellStyle43.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle43.WrapMode = DataGridViewTriState.False;
             poData.DefaultCellStyle = dataGridViewCellStyle43;
-            poData.Location = new Point(41, 263);
+            poData.Location = new Point(47, 351);
+            poData.Margin = new Padding(3, 4, 3, 4);
             poData.Name = "poData";
             dataGridViewCellStyle44.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle44.BackColor = SystemColors.Control;
@@ -5885,7 +5906,7 @@ namespace ITP4519M
             poData.RowHeadersVisible = false;
             poData.RowHeadersWidth = 51;
             poData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            poData.Size = new Size(1033, 444);
+            poData.Size = new Size(1181, 592);
             poData.TabIndex = 39;
             poData.CellContentClick += poData_CellContentClick;
             // 
@@ -5896,9 +5917,10 @@ namespace ITP4519M
             panel16.Controls.Add(poPrevPageBtn);
             panel16.Controls.Add(poLastPagebtn);
             panel16.Controls.Add(poNextPageBtn);
-            panel16.Location = new Point(567, 717);
+            panel16.Location = new Point(648, 956);
+            panel16.Margin = new Padding(3, 4, 3, 4);
             panel16.Name = "panel16";
-            panel16.Size = new Size(495, 50);
+            panel16.Size = new Size(566, 67);
             panel16.TabIndex = 38;
             // 
             // poFirstPageBtn
@@ -5917,9 +5939,10 @@ namespace ITP4519M
             poFirstPageBtn.ButtonRoundRadius = 30;
             poFirstPageBtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             poFirstPageBtn.ForeColor = Color.Black;
-            poFirstPageBtn.Location = new Point(42, 7);
+            poFirstPageBtn.Location = new Point(48, 9);
+            poFirstPageBtn.Margin = new Padding(3, 4, 3, 4);
             poFirstPageBtn.Name = "poFirstPageBtn";
-            poFirstPageBtn.Size = new Size(68, 40);
+            poFirstPageBtn.Size = new Size(78, 53);
             poFirstPageBtn.TabIndex = 31;
             poFirstPageBtn.Text = "First";
             poFirstPageBtn.Click += poFirstPageBtn_Click;
@@ -5928,9 +5951,9 @@ namespace ITP4519M
             // 
             poIndexlbl.AutoSize = true;
             poIndexlbl.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            poIndexlbl.Location = new Point(199, 15);
+            poIndexlbl.Location = new Point(227, 20);
             poIndexlbl.Name = "poIndexlbl";
-            poIndexlbl.Size = new Size(79, 20);
+            poIndexlbl.Size = new Size(100, 25);
             poIndexlbl.TabIndex = 3;
             poIndexlbl.Text = "LabelData";
             // 
@@ -5951,9 +5974,10 @@ namespace ITP4519M
             poPrevPageBtn.ButtonRoundRadius = 30;
             poPrevPageBtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             poPrevPageBtn.ForeColor = Color.Black;
-            poPrevPageBtn.Location = new Point(127, 7);
+            poPrevPageBtn.Location = new Point(145, 9);
+            poPrevPageBtn.Margin = new Padding(3, 4, 3, 4);
             poPrevPageBtn.Name = "poPrevPageBtn";
-            poPrevPageBtn.Size = new Size(62, 40);
+            poPrevPageBtn.Size = new Size(71, 53);
             poPrevPageBtn.TabIndex = 33;
             poPrevPageBtn.Text = "Prev";
             poPrevPageBtn.Click += poPrevPageBtn_Click;
@@ -5974,9 +5998,10 @@ namespace ITP4519M
             poLastPagebtn.ButtonRoundRadius = 30;
             poLastPagebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             poLastPagebtn.ForeColor = Color.Black;
-            poLastPagebtn.Location = new Point(397, 7);
+            poLastPagebtn.Location = new Point(454, 9);
+            poLastPagebtn.Margin = new Padding(3, 4, 3, 4);
             poLastPagebtn.Name = "poLastPagebtn";
-            poLastPagebtn.Size = new Size(62, 37);
+            poLastPagebtn.Size = new Size(71, 49);
             poLastPagebtn.TabIndex = 34;
             poLastPagebtn.Text = "Last";
             poLastPagebtn.Click += poLastPagebtn_Click;
@@ -5997,9 +6022,10 @@ namespace ITP4519M
             poNextPageBtn.ButtonRoundRadius = 30;
             poNextPageBtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             poNextPageBtn.ForeColor = Color.Black;
-            poNextPageBtn.Location = new Point(310, 7);
+            poNextPageBtn.Location = new Point(354, 9);
+            poNextPageBtn.Margin = new Padding(3, 4, 3, 4);
             poNextPageBtn.Name = "poNextPageBtn";
-            poNextPageBtn.Size = new Size(68, 37);
+            poNextPageBtn.Size = new Size(78, 49);
             poNextPageBtn.TabIndex = 32;
             poNextPageBtn.Text = "Next";
             poNextPageBtn.Click += poNextPageBtn_Click;
@@ -6020,9 +6046,10 @@ namespace ITP4519M
             AddOrderPoButton.ButtonRoundRadius = 30;
             AddOrderPoButton.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             AddOrderPoButton.ForeColor = Color.White;
-            AddOrderPoButton.Location = new Point(910, 7);
+            AddOrderPoButton.Location = new Point(1040, 9);
+            AddOrderPoButton.Margin = new Padding(3, 4, 3, 4);
             AddOrderPoButton.Name = "AddOrderPoButton";
-            AddOrderPoButton.Size = new Size(138, 42);
+            AddOrderPoButton.Size = new Size(158, 56);
             AddOrderPoButton.TabIndex = 36;
             AddOrderPoButton.Text = "Add Order";
             AddOrderPoButton.Click += button17_Click;
@@ -6031,9 +6058,9 @@ namespace ITP4519M
             // 
             POlbl.AutoSize = true;
             POlbl.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-            POlbl.Location = new Point(31, 7);
+            POlbl.Location = new Point(35, 9);
             POlbl.Name = "POlbl";
-            POlbl.Size = new Size(149, 25);
+            POlbl.Size = new Size(177, 31);
             POlbl.TabIndex = 0;
             POlbl.Text = "Purchase Order";
             // 
@@ -6043,9 +6070,10 @@ namespace ITP4519M
             panel17.Controls.Add(groupBox1);
             panel17.Controls.Add(CompletePoButton);
             panel17.Controls.Add(poSearchbox);
-            panel17.Location = new Point(32, 51);
+            panel17.Location = new Point(37, 68);
+            panel17.Margin = new Padding(3, 4, 3, 4);
             panel17.Name = "panel17";
-            panel17.Size = new Size(1040, 202);
+            panel17.Size = new Size(1189, 269);
             panel17.TabIndex = 37;
             // 
             // roundedButton1
@@ -6064,9 +6092,10 @@ namespace ITP4519M
             roundedButton1.ButtonRoundRadius = 30;
             roundedButton1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             roundedButton1.ForeColor = Color.Black;
-            roundedButton1.Location = new Point(405, 150);
+            roundedButton1.Location = new Point(463, 200);
+            roundedButton1.Margin = new Padding(3, 4, 3, 4);
             roundedButton1.Name = "roundedButton1";
-            roundedButton1.Size = new Size(112, 38);
+            roundedButton1.Size = new Size(128, 51);
             roundedButton1.TabIndex = 34;
             roundedButton1.Text = "Clear";
             // 
@@ -6077,9 +6106,11 @@ namespace ITP4519M
             groupBox1.Controls.Add(podateTimePicker1);
             groupBox1.Controls.Add(podateTimePicker2);
             groupBox1.Controls.Add(label26);
-            groupBox1.Location = new Point(13, 9);
+            groupBox1.Location = new Point(15, 12);
+            groupBox1.Margin = new Padding(3, 4, 3, 4);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1019, 110);
+            groupBox1.Padding = new Padding(3, 4, 3, 4);
+            groupBox1.Size = new Size(1165, 147);
             groupBox1.TabIndex = 34;
             groupBox1.TabStop = false;
             groupBox1.Text = "Filter by Date";
@@ -6100,9 +6131,10 @@ namespace ITP4519M
             dateFilterbtn.ButtonRoundRadius = 30;
             dateFilterbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dateFilterbtn.ForeColor = Color.Black;
-            dateFilterbtn.Location = new Point(597, 68);
+            dateFilterbtn.Location = new Point(682, 91);
+            dateFilterbtn.Margin = new Padding(3, 4, 3, 4);
             dateFilterbtn.Name = "dateFilterbtn";
-            dateFilterbtn.Size = new Size(112, 38);
+            dateFilterbtn.Size = new Size(128, 51);
             dateFilterbtn.TabIndex = 33;
             dateFilterbtn.Text = "Filter";
             dateFilterbtn.Click += dateFilterbtn_Click;
@@ -6111,34 +6143,36 @@ namespace ITP4519M
             // 
             label25.AutoSize = true;
             label25.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label25.Location = new Point(32, 29);
+            label25.Location = new Point(37, 39);
             label25.Name = "label25";
-            label25.Size = new Size(55, 25);
+            label25.Size = new Size(69, 32);
             label25.TabIndex = 10;
             label25.Text = "From";
             // 
             // podateTimePicker1
             // 
-            podateTimePicker1.Location = new Point(32, 77);
+            podateTimePicker1.Location = new Point(37, 103);
+            podateTimePicker1.Margin = new Padding(3, 4, 3, 4);
             podateTimePicker1.Name = "podateTimePicker1";
-            podateTimePicker1.Size = new Size(242, 23);
+            podateTimePicker1.Size = new Size(276, 27);
             podateTimePicker1.TabIndex = 8;
             podateTimePicker1.ValueChanged += podateTimePicker1_ValueChanged;
             // 
             // podateTimePicker2
             // 
-            podateTimePicker2.Location = new Point(326, 77);
+            podateTimePicker2.Location = new Point(373, 103);
+            podateTimePicker2.Margin = new Padding(3, 4, 3, 4);
             podateTimePicker2.Name = "podateTimePicker2";
-            podateTimePicker2.Size = new Size(251, 23);
+            podateTimePicker2.Size = new Size(286, 27);
             podateTimePicker2.TabIndex = 9;
             // 
             // label26
             // 
             label26.AutoSize = true;
             label26.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label26.Location = new Point(322, 29);
+            label26.Location = new Point(368, 39);
             label26.Name = "label26";
-            label26.Size = new Size(31, 25);
+            label26.Size = new Size(39, 32);
             label26.TabIndex = 11;
             label26.Text = "To";
             // 
@@ -6158,22 +6192,21 @@ namespace ITP4519M
             CompletePoButton.ButtonRoundRadius = 30;
             CompletePoButton.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             CompletePoButton.ForeColor = Color.Black;
-            CompletePoButton.Location = new Point(49, 148);
-            CompletePoButton.Margin = new Padding(3, 2, 3, 2);
+            CompletePoButton.Location = new Point(56, 197);
             CompletePoButton.Name = "CompletePoButton";
-            CompletePoButton.Size = new Size(121, 37);
+            CompletePoButton.Size = new Size(138, 49);
             CompletePoButton.TabIndex = 32;
             CompletePoButton.Text = "Complete";
             // 
             // poSearchbox
             // 
             poSearchbox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            poSearchbox.Location = new Point(544, 154);
-            poSearchbox.Margin = new Padding(3, 5, 3, 5);
+            poSearchbox.Location = new Point(622, 205);
+            poSearchbox.Margin = new Padding(3, 7, 3, 7);
             poSearchbox.Multiline = true;
             poSearchbox.Name = "poSearchbox";
             poSearchbox.PlaceholderText = "    Search";
-            poSearchbox.Size = new Size(473, 32);
+            poSearchbox.Size = new Size(540, 41);
             poSearchbox.TabIndex = 31;
             // 
             // dataGridViewCheckBoxColumn6
@@ -6198,10 +6231,9 @@ namespace ITP4519M
             outstandingOrderpnl.Controls.Add(panel21);
             outstandingOrderpnl.Controls.Add(outstandingdata);
             outstandingOrderpnl.Controls.Add(outstandingOrderlbl);
-            outstandingOrderpnl.Location = new Point(176, 2);
-            outstandingOrderpnl.Margin = new Padding(3, 2, 3, 2);
+            outstandingOrderpnl.Location = new Point(201, 3);
             outstandingOrderpnl.Name = "outstandingOrderpnl";
-            outstandingOrderpnl.Size = new Size(1094, 788);
+            outstandingOrderpnl.Size = new Size(1250, 1051);
             outstandingOrderpnl.TabIndex = 33;
             outstandingOrderpnl.MouseDown += Dashboard_MouseDown;
             outstandingOrderpnl.MouseMove += Dashboard_MouseMove;
@@ -6214,9 +6246,10 @@ namespace ITP4519M
             panel20.Controls.Add(outstandingLastPagebtn);
             panel20.Controls.Add(outstandingNextPagebtn);
             panel20.Controls.Add(oustandingPagelbl);
-            panel20.Location = new Point(569, 714);
+            panel20.Location = new Point(650, 952);
+            panel20.Margin = new Padding(3, 4, 3, 4);
             panel20.Name = "panel20";
-            panel20.Size = new Size(495, 50);
+            panel20.Size = new Size(566, 67);
             panel20.TabIndex = 38;
             // 
             // outstandingFirstPagebtn
@@ -6235,9 +6268,10 @@ namespace ITP4519M
             outstandingFirstPagebtn.ButtonRoundRadius = 30;
             outstandingFirstPagebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             outstandingFirstPagebtn.ForeColor = Color.Black;
-            outstandingFirstPagebtn.Location = new Point(51, 6);
+            outstandingFirstPagebtn.Location = new Point(58, 8);
+            outstandingFirstPagebtn.Margin = new Padding(3, 4, 3, 4);
             outstandingFirstPagebtn.Name = "outstandingFirstPagebtn";
-            outstandingFirstPagebtn.Size = new Size(70, 38);
+            outstandingFirstPagebtn.Size = new Size(80, 51);
             outstandingFirstPagebtn.TabIndex = 31;
             outstandingFirstPagebtn.Text = "First";
             outstandingFirstPagebtn.Click += outstandingFirstPagebtn_Click;
@@ -6259,9 +6293,10 @@ namespace ITP4519M
             oustadningPrevPagebtn.ButtonRoundRadius = 30;
             oustadningPrevPagebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             oustadningPrevPagebtn.ForeColor = Color.Black;
-            oustadningPrevPagebtn.Location = new Point(135, 7);
+            oustadningPrevPagebtn.Location = new Point(154, 9);
+            oustadningPrevPagebtn.Margin = new Padding(3, 4, 3, 4);
             oustadningPrevPagebtn.Name = "oustadningPrevPagebtn";
-            oustadningPrevPagebtn.Size = new Size(67, 37);
+            oustadningPrevPagebtn.Size = new Size(77, 49);
             oustadningPrevPagebtn.TabIndex = 33;
             oustadningPrevPagebtn.Text = "Prev";
             oustadningPrevPagebtn.Click += outstandingPrevPagebtn_Click;
@@ -6282,9 +6317,10 @@ namespace ITP4519M
             outstandingLastPagebtn.ButtonRoundRadius = 30;
             outstandingLastPagebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             outstandingLastPagebtn.ForeColor = Color.Black;
-            outstandingLastPagebtn.Location = new Point(403, 7);
+            outstandingLastPagebtn.Location = new Point(461, 9);
+            outstandingLastPagebtn.Margin = new Padding(3, 4, 3, 4);
             outstandingLastPagebtn.Name = "outstandingLastPagebtn";
-            outstandingLastPagebtn.Size = new Size(70, 37);
+            outstandingLastPagebtn.Size = new Size(80, 49);
             outstandingLastPagebtn.TabIndex = 34;
             outstandingLastPagebtn.Text = "Last";
             outstandingLastPagebtn.Click += outstandingLastPagebtn_Click;
@@ -6305,9 +6341,10 @@ namespace ITP4519M
             outstandingNextPagebtn.ButtonRoundRadius = 30;
             outstandingNextPagebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             outstandingNextPagebtn.ForeColor = Color.Black;
-            outstandingNextPagebtn.Location = new Point(319, 7);
+            outstandingNextPagebtn.Location = new Point(365, 9);
+            outstandingNextPagebtn.Margin = new Padding(3, 4, 3, 4);
             outstandingNextPagebtn.Name = "outstandingNextPagebtn";
-            outstandingNextPagebtn.Size = new Size(71, 37);
+            outstandingNextPagebtn.Size = new Size(81, 49);
             outstandingNextPagebtn.TabIndex = 32;
             outstandingNextPagebtn.Text = "Next";
             outstandingNextPagebtn.Click += outstandingNextPagebtn_Click;
@@ -6316,19 +6353,18 @@ namespace ITP4519M
             // 
             oustandingPagelbl.AutoSize = true;
             oustandingPagelbl.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            oustandingPagelbl.Location = new Point(207, 15);
+            oustandingPagelbl.Location = new Point(237, 20);
             oustandingPagelbl.Name = "oustandingPagelbl";
-            oustandingPagelbl.Size = new Size(79, 20);
+            oustandingPagelbl.Size = new Size(100, 25);
             oustandingPagelbl.TabIndex = 3;
             oustandingPagelbl.Text = "LabelData";
             // 
             // panel21
             // 
             panel21.Controls.Add(groupBox4);
-            panel21.Location = new Point(32, 49);
-            panel21.Margin = new Padding(3, 2, 3, 2);
+            panel21.Location = new Point(37, 65);
             panel21.Name = "panel21";
-            panel21.Size = new Size(1047, 177);
+            panel21.Size = new Size(1197, 236);
             panel21.TabIndex = 37;
             // 
             // groupBox4
@@ -6342,11 +6378,9 @@ namespace ITP4519M
             groupBox4.Controls.Add(outstandingClearBtn);
             groupBox4.Controls.Add(label32);
             groupBox4.Controls.Add(outstandingSearchbtn);
-            groupBox4.Location = new Point(12, 13);
-            groupBox4.Margin = new Padding(3, 2, 3, 2);
+            groupBox4.Location = new Point(14, 17);
             groupBox4.Name = "groupBox4";
-            groupBox4.Padding = new Padding(3, 2, 3, 2);
-            groupBox4.Size = new Size(1021, 153);
+            groupBox4.Size = new Size(1167, 204);
             groupBox4.TabIndex = 32;
             groupBox4.TabStop = false;
             // 
@@ -6366,31 +6400,30 @@ namespace ITP4519M
             outstandingDeletebtn.ButtonRoundRadius = 30;
             outstandingDeletebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             outstandingDeletebtn.ForeColor = Color.Black;
-            outstandingDeletebtn.Location = new Point(337, 114);
-            outstandingDeletebtn.Margin = new Padding(3, 2, 3, 2);
+            outstandingDeletebtn.Location = new Point(385, 152);
             outstandingDeletebtn.Name = "outstandingDeletebtn";
-            outstandingDeletebtn.Size = new Size(128, 38);
+            outstandingDeletebtn.Size = new Size(146, 51);
             outstandingDeletebtn.TabIndex = 32;
             outstandingDeletebtn.Text = "Delete";
             // 
             // outstandingSearchbox
             // 
             outstandingSearchbox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            outstandingSearchbox.Location = new Point(567, 110);
-            outstandingSearchbox.Margin = new Padding(3, 4, 3, 4);
+            outstandingSearchbox.Location = new Point(648, 147);
+            outstandingSearchbox.Margin = new Padding(3, 5, 3, 5);
             outstandingSearchbox.Multiline = true;
             outstandingSearchbox.Name = "outstandingSearchbox";
             outstandingSearchbox.PlaceholderText = "    Search";
-            outstandingSearchbox.Size = new Size(446, 32);
+            outstandingSearchbox.Size = new Size(509, 41);
             outstandingSearchbox.TabIndex = 31;
             // 
             // label31
             // 
             label31.AutoSize = true;
             label31.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label31.Location = new Point(13, 17);
+            label31.Location = new Point(15, 23);
             label31.Name = "label31";
-            label31.Size = new Size(55, 25);
+            label31.Size = new Size(69, 32);
             label31.TabIndex = 10;
             label31.Text = "From";
             // 
@@ -6409,28 +6442,25 @@ namespace ITP4519M
             outstandingViewbtn.ButtonRoundRadius = 30;
             outstandingViewbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             outstandingViewbtn.ForeColor = Color.Black;
-            outstandingViewbtn.Location = new Point(10, 114);
-            outstandingViewbtn.Margin = new Padding(3, 2, 3, 2);
+            outstandingViewbtn.Location = new Point(11, 152);
             outstandingViewbtn.Name = "outstandingViewbtn";
-            outstandingViewbtn.Size = new Size(124, 37);
+            outstandingViewbtn.Size = new Size(142, 49);
             outstandingViewbtn.TabIndex = 17;
             outstandingViewbtn.Text = "View";
             outstandingViewbtn.Click += outstandingViewbtn_Click;
             // 
             // outstandingdateTimePicker2
             // 
-            outstandingdateTimePicker2.Location = new Point(270, 53);
-            outstandingdateTimePicker2.Margin = new Padding(3, 2, 3, 2);
+            outstandingdateTimePicker2.Location = new Point(309, 71);
             outstandingdateTimePicker2.Name = "outstandingdateTimePicker2";
-            outstandingdateTimePicker2.Size = new Size(239, 23);
+            outstandingdateTimePicker2.Size = new Size(273, 27);
             outstandingdateTimePicker2.TabIndex = 9;
             // 
             // outstandingdateTimePicker1
             // 
-            outstandingdateTimePicker1.Location = new Point(13, 53);
-            outstandingdateTimePicker1.Margin = new Padding(3, 2, 3, 2);
+            outstandingdateTimePicker1.Location = new Point(15, 71);
             outstandingdateTimePicker1.Name = "outstandingdateTimePicker1";
-            outstandingdateTimePicker1.Size = new Size(237, 23);
+            outstandingdateTimePicker1.Size = new Size(270, 27);
             outstandingdateTimePicker1.TabIndex = 8;
             outstandingdateTimePicker1.ValueChanged += outstandingdateTimePicker1_ValueChanged;
             // 
@@ -6450,10 +6480,9 @@ namespace ITP4519M
             outstandingClearBtn.ButtonRoundRadius = 30;
             outstandingClearBtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             outstandingClearBtn.ForeColor = Color.Black;
-            outstandingClearBtn.Location = new Point(170, 113);
-            outstandingClearBtn.Margin = new Padding(3, 2, 3, 2);
+            outstandingClearBtn.Location = new Point(194, 151);
             outstandingClearBtn.Name = "outstandingClearBtn";
-            outstandingClearBtn.Size = new Size(128, 38);
+            outstandingClearBtn.Size = new Size(146, 51);
             outstandingClearBtn.TabIndex = 15;
             outstandingClearBtn.Text = "Clear";
             // 
@@ -6461,9 +6490,9 @@ namespace ITP4519M
             // 
             label32.AutoSize = true;
             label32.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label32.Location = new Point(267, 17);
+            label32.Location = new Point(305, 23);
             label32.Name = "label32";
-            label32.Size = new Size(31, 25);
+            label32.Size = new Size(39, 32);
             label32.TabIndex = 11;
             label32.Text = "To";
             // 
@@ -6483,10 +6512,9 @@ namespace ITP4519M
             outstandingSearchbtn.ButtonRoundRadius = 30;
             outstandingSearchbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             outstandingSearchbtn.ForeColor = Color.Black;
-            outstandingSearchbtn.Location = new Point(556, 45);
-            outstandingSearchbtn.Margin = new Padding(3, 2, 3, 2);
+            outstandingSearchbtn.Location = new Point(635, 60);
             outstandingSearchbtn.Name = "outstandingSearchbtn";
-            outstandingSearchbtn.Size = new Size(121, 41);
+            outstandingSearchbtn.Size = new Size(138, 55);
             outstandingSearchbtn.TabIndex = 25;
             outstandingSearchbtn.Text = "Filter";
             outstandingSearchbtn.Click += outstandingSearchbtn_Click;
@@ -6517,7 +6545,8 @@ namespace ITP4519M
             dataGridViewCellStyle47.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle47.WrapMode = DataGridViewTriState.False;
             outstandingdata.DefaultCellStyle = dataGridViewCellStyle47;
-            outstandingdata.Location = new Point(22, 254);
+            outstandingdata.Location = new Point(25, 339);
+            outstandingdata.Margin = new Padding(3, 4, 3, 4);
             outstandingdata.Name = "outstandingdata";
             dataGridViewCellStyle48.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle48.BackColor = SystemColors.Control;
@@ -6530,7 +6559,7 @@ namespace ITP4519M
             outstandingdata.RowHeadersVisible = false;
             outstandingdata.RowHeadersWidth = 51;
             outstandingdata.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            outstandingdata.Size = new Size(1040, 453);
+            outstandingdata.Size = new Size(1189, 604);
             outstandingdata.TabIndex = 35;
             outstandingdata.CellClick += outstandingdata_CellClick;
             outstandingdata.CellContentClick += outstandingdata_CellContentClick;
@@ -6539,9 +6568,9 @@ namespace ITP4519M
             // 
             outstandingOrderlbl.AutoSize = true;
             outstandingOrderlbl.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-            outstandingOrderlbl.Location = new Point(31, 8);
+            outstandingOrderlbl.Location = new Point(35, 11);
             outstandingOrderlbl.Name = "outstandingOrderlbl";
-            outstandingOrderlbl.Size = new Size(180, 25);
+            outstandingOrderlbl.Size = new Size(215, 31);
             outstandingOrderlbl.TabIndex = 0;
             outstandingOrderlbl.Text = "Outstanding Order";
             // 
@@ -6549,7 +6578,7 @@ namespace ITP4519M
             // 
             dateTimePicker8.Location = new Point(0, 0);
             dateTimePicker8.Name = "dateTimePicker8";
-            dateTimePicker8.Size = new Size(200, 23);
+            dateTimePicker8.Size = new Size(200, 27);
             dateTimePicker8.TabIndex = 0;
             // 
             // customDataGridView4
@@ -6580,10 +6609,9 @@ namespace ITP4519M
             invoicepnl.Controls.Add(panel15);
             invoicepnl.Controls.Add(invoiceData);
             invoicepnl.Controls.Add(invoicelbl);
-            invoicepnl.Location = new Point(176, 2);
-            invoicepnl.Margin = new Padding(3, 2, 3, 2);
+            invoicepnl.Location = new Point(201, 3);
             invoicepnl.Name = "invoicepnl";
-            invoicepnl.Size = new Size(1094, 788);
+            invoicepnl.Size = new Size(1250, 1051);
             invoicepnl.TabIndex = 33;
             invoicepnl.MouseDown += Dashboard_MouseDown;
             invoicepnl.MouseMove += Dashboard_MouseMove;
@@ -6596,9 +6624,10 @@ namespace ITP4519M
             panel14.Controls.Add(invoicePrevPagebtn);
             panel14.Controls.Add(invoiceLastPagebtn);
             panel14.Controls.Add(invoiceNextPagebtn);
-            panel14.Location = new Point(574, 699);
+            panel14.Location = new Point(656, 932);
+            panel14.Margin = new Padding(3, 4, 3, 4);
             panel14.Name = "panel14";
-            panel14.Size = new Size(495, 50);
+            panel14.Size = new Size(566, 67);
             panel14.TabIndex = 38;
             // 
             // invoiceFirstPagebtn
@@ -6617,9 +6646,10 @@ namespace ITP4519M
             invoiceFirstPagebtn.ButtonRoundRadius = 30;
             invoiceFirstPagebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             invoiceFirstPagebtn.ForeColor = Color.Black;
-            invoiceFirstPagebtn.Location = new Point(60, 7);
+            invoiceFirstPagebtn.Location = new Point(69, 9);
+            invoiceFirstPagebtn.Margin = new Padding(3, 4, 3, 4);
             invoiceFirstPagebtn.Name = "invoiceFirstPagebtn";
-            invoiceFirstPagebtn.Size = new Size(70, 38);
+            invoiceFirstPagebtn.Size = new Size(80, 51);
             invoiceFirstPagebtn.TabIndex = 31;
             invoiceFirstPagebtn.Text = "First";
             invoiceFirstPagebtn.Click += invoiceFirstPagebtn_Click;
@@ -6628,9 +6658,9 @@ namespace ITP4519M
             // 
             invoiceIndexlbl.AutoSize = true;
             invoiceIndexlbl.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            invoiceIndexlbl.Location = new Point(220, 16);
+            invoiceIndexlbl.Location = new Point(251, 21);
             invoiceIndexlbl.Name = "invoiceIndexlbl";
-            invoiceIndexlbl.Size = new Size(79, 20);
+            invoiceIndexlbl.Size = new Size(100, 25);
             invoiceIndexlbl.TabIndex = 3;
             invoiceIndexlbl.Text = "LabelData";
             // 
@@ -6651,9 +6681,10 @@ namespace ITP4519M
             invoicePrevPagebtn.ButtonRoundRadius = 30;
             invoicePrevPagebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             invoicePrevPagebtn.ForeColor = Color.Black;
-            invoicePrevPagebtn.Location = new Point(142, 7);
+            invoicePrevPagebtn.Location = new Point(162, 9);
+            invoicePrevPagebtn.Margin = new Padding(3, 4, 3, 4);
             invoicePrevPagebtn.Name = "invoicePrevPagebtn";
-            invoicePrevPagebtn.Size = new Size(67, 38);
+            invoicePrevPagebtn.Size = new Size(77, 51);
             invoicePrevPagebtn.TabIndex = 33;
             invoicePrevPagebtn.Text = "Prev";
             invoicePrevPagebtn.Click += invoicePrevPagebtn_Click;
@@ -6674,9 +6705,10 @@ namespace ITP4519M
             invoiceLastPagebtn.ButtonRoundRadius = 30;
             invoiceLastPagebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             invoiceLastPagebtn.ForeColor = Color.Black;
-            invoiceLastPagebtn.Location = new Point(397, 7);
+            invoiceLastPagebtn.Location = new Point(454, 9);
+            invoiceLastPagebtn.Margin = new Padding(3, 4, 3, 4);
             invoiceLastPagebtn.Name = "invoiceLastPagebtn";
-            invoiceLastPagebtn.Size = new Size(64, 37);
+            invoiceLastPagebtn.Size = new Size(73, 49);
             invoiceLastPagebtn.TabIndex = 34;
             invoiceLastPagebtn.Text = "Last";
             invoiceLastPagebtn.Click += invoiceLastPagebtn_Click;
@@ -6697,9 +6729,10 @@ namespace ITP4519M
             invoiceNextPagebtn.ButtonRoundRadius = 30;
             invoiceNextPagebtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             invoiceNextPagebtn.ForeColor = Color.Black;
-            invoiceNextPagebtn.Location = new Point(310, 7);
+            invoiceNextPagebtn.Location = new Point(354, 9);
+            invoiceNextPagebtn.Margin = new Padding(3, 4, 3, 4);
             invoiceNextPagebtn.Name = "invoiceNextPagebtn";
-            invoiceNextPagebtn.Size = new Size(71, 37);
+            invoiceNextPagebtn.Size = new Size(81, 49);
             invoiceNextPagebtn.TabIndex = 32;
             invoiceNextPagebtn.Text = "Next";
             invoiceNextPagebtn.Click += invoiceNextPagebtn_Click;
@@ -6715,10 +6748,9 @@ namespace ITP4519M
             panel15.Controls.Add(label23);
             panel15.Controls.Add(invoiceClearBtn);
             panel15.Controls.Add(invoicedateTimePicker2);
-            panel15.Location = new Point(32, 66);
-            panel15.Margin = new Padding(3, 2, 3, 2);
+            panel15.Location = new Point(37, 88);
             panel15.Name = "panel15";
-            panel15.Size = new Size(1026, 147);
+            panel15.Size = new Size(1173, 196);
             panel15.TabIndex = 37;
             // 
             // invoiceCompleteBtn
@@ -6737,22 +6769,21 @@ namespace ITP4519M
             invoiceCompleteBtn.ButtonRoundRadius = 30;
             invoiceCompleteBtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             invoiceCompleteBtn.ForeColor = Color.Black;
-            invoiceCompleteBtn.Location = new Point(162, 104);
-            invoiceCompleteBtn.Margin = new Padding(3, 2, 3, 2);
+            invoiceCompleteBtn.Location = new Point(185, 139);
             invoiceCompleteBtn.Name = "invoiceCompleteBtn";
-            invoiceCompleteBtn.Size = new Size(125, 38);
+            invoiceCompleteBtn.Size = new Size(143, 51);
             invoiceCompleteBtn.TabIndex = 32;
             invoiceCompleteBtn.Text = "Complete";
             // 
             // roundedTextBox1
             // 
             roundedTextBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            roundedTextBox1.Location = new Point(575, 104);
-            roundedTextBox1.Margin = new Padding(3, 4, 3, 4);
+            roundedTextBox1.Location = new Point(657, 139);
+            roundedTextBox1.Margin = new Padding(3, 5, 3, 5);
             roundedTextBox1.Multiline = true;
             roundedTextBox1.Name = "roundedTextBox1";
             roundedTextBox1.PlaceholderText = "    Search";
-            roundedTextBox1.Size = new Size(446, 32);
+            roundedTextBox1.Size = new Size(509, 41);
             roundedTextBox1.TabIndex = 31;
             // 
             // invoiceViewBtn
@@ -6771,20 +6802,18 @@ namespace ITP4519M
             invoiceViewBtn.ButtonRoundRadius = 30;
             invoiceViewBtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             invoiceViewBtn.ForeColor = Color.Black;
-            invoiceViewBtn.Location = new Point(21, 104);
-            invoiceViewBtn.Margin = new Padding(3, 2, 3, 2);
+            invoiceViewBtn.Location = new Point(24, 139);
             invoiceViewBtn.Name = "invoiceViewBtn";
-            invoiceViewBtn.Size = new Size(127, 40);
+            invoiceViewBtn.Size = new Size(145, 53);
             invoiceViewBtn.TabIndex = 17;
             invoiceViewBtn.Text = "View";
             invoiceViewBtn.Click += invoiceViewBtn_Click;
             // 
             // InvoicedateTimePicker1
             // 
-            InvoicedateTimePicker1.Location = new Point(21, 48);
-            InvoicedateTimePicker1.Margin = new Padding(3, 2, 3, 2);
+            InvoicedateTimePicker1.Location = new Point(24, 64);
             InvoicedateTimePicker1.Name = "InvoicedateTimePicker1";
-            InvoicedateTimePicker1.Size = new Size(212, 23);
+            InvoicedateTimePicker1.Size = new Size(242, 27);
             InvoicedateTimePicker1.TabIndex = 8;
             InvoicedateTimePicker1.ValueChanged += InvoicedateTimePicker1_ValueChanged;
             // 
@@ -6792,9 +6821,9 @@ namespace ITP4519M
             // 
             label22.AutoSize = true;
             label22.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label22.Location = new Point(21, 12);
+            label22.Location = new Point(24, 16);
             label22.Name = "label22";
-            label22.Size = new Size(55, 25);
+            label22.Size = new Size(69, 32);
             label22.TabIndex = 10;
             label22.Text = "From";
             // 
@@ -6814,10 +6843,9 @@ namespace ITP4519M
             invoiceSearchBtn.ButtonRoundRadius = 30;
             invoiceSearchBtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             invoiceSearchBtn.ForeColor = Color.Black;
-            invoiceSearchBtn.Location = new Point(520, 40);
-            invoiceSearchBtn.Margin = new Padding(3, 2, 3, 2);
+            invoiceSearchBtn.Location = new Point(594, 53);
             invoiceSearchBtn.Name = "invoiceSearchBtn";
-            invoiceSearchBtn.Size = new Size(126, 37);
+            invoiceSearchBtn.Size = new Size(144, 49);
             invoiceSearchBtn.TabIndex = 25;
             invoiceSearchBtn.Text = "Filter";
             invoiceSearchBtn.Click += invoiceSearchBtn_Click;
@@ -6826,9 +6854,9 @@ namespace ITP4519M
             // 
             label23.AutoSize = true;
             label23.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label23.Location = new Point(275, 12);
+            label23.Location = new Point(314, 16);
             label23.Name = "label23";
-            label23.Size = new Size(31, 25);
+            label23.Size = new Size(39, 32);
             label23.TabIndex = 11;
             label23.Text = "To";
             // 
@@ -6848,19 +6876,17 @@ namespace ITP4519M
             invoiceClearBtn.ButtonRoundRadius = 30;
             invoiceClearBtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             invoiceClearBtn.ForeColor = Color.Black;
-            invoiceClearBtn.Location = new Point(428, 100);
-            invoiceClearBtn.Margin = new Padding(3, 2, 3, 2);
+            invoiceClearBtn.Location = new Point(489, 133);
             invoiceClearBtn.Name = "invoiceClearBtn";
-            invoiceClearBtn.Size = new Size(124, 38);
+            invoiceClearBtn.Size = new Size(142, 51);
             invoiceClearBtn.TabIndex = 15;
             invoiceClearBtn.Text = "Clear";
             // 
             // invoicedateTimePicker2
             // 
-            invoicedateTimePicker2.Location = new Point(278, 48);
-            invoicedateTimePicker2.Margin = new Padding(3, 2, 3, 2);
+            invoicedateTimePicker2.Location = new Point(318, 64);
             invoicedateTimePicker2.Name = "invoicedateTimePicker2";
-            invoicedateTimePicker2.Size = new Size(220, 23);
+            invoicedateTimePicker2.Size = new Size(251, 27);
             invoicedateTimePicker2.TabIndex = 9;
             // 
             // invoiceData
@@ -6888,7 +6914,8 @@ namespace ITP4519M
             dataGridViewCellStyle51.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle51.WrapMode = DataGridViewTriState.False;
             invoiceData.DefaultCellStyle = dataGridViewCellStyle51;
-            invoiceData.Location = new Point(24, 225);
+            invoiceData.Location = new Point(27, 300);
+            invoiceData.Margin = new Padding(3, 4, 3, 4);
             invoiceData.Name = "invoiceData";
             dataGridViewCellStyle52.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle52.BackColor = SystemColors.Control;
@@ -6900,7 +6927,7 @@ namespace ITP4519M
             invoiceData.RowHeadersVisible = false;
             invoiceData.RowHeadersWidth = 51;
             invoiceData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            invoiceData.Size = new Size(1040, 461);
+            invoiceData.Size = new Size(1189, 615);
             invoiceData.TabIndex = 35;
             invoiceData.CellClick += invoiceData_CellClick;
             // 
@@ -6915,9 +6942,9 @@ namespace ITP4519M
             // 
             invoicelbl.AutoSize = true;
             invoicelbl.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-            invoicelbl.Location = new Point(31, 7);
+            invoicelbl.Location = new Point(35, 9);
             invoicelbl.Name = "invoicelbl";
-            invoicelbl.Size = new Size(76, 25);
+            invoicelbl.Size = new Size(91, 31);
             invoicelbl.TabIndex = 0;
             invoicelbl.Text = "Invoice";
             // 
@@ -6925,9 +6952,10 @@ namespace ITP4519M
             // 
             outstandingViewpnl.Controls.Add(panel43);
             outstandingViewpnl.Controls.Add(panel44);
-            outstandingViewpnl.Location = new Point(184, 11);
+            outstandingViewpnl.Location = new Point(210, 15);
+            outstandingViewpnl.Margin = new Padding(3, 4, 3, 4);
             outstandingViewpnl.Name = "outstandingViewpnl";
-            outstandingViewpnl.Size = new Size(1066, 725);
+            outstandingViewpnl.Size = new Size(1218, 967);
             outstandingViewpnl.TabIndex = 39;
             outstandingViewpnl.Visible = false;
             // 
@@ -6955,9 +6983,10 @@ namespace ITP4519M
             StockReportpnl.Controls.Add(reportStockdata);
             StockReportpnl.Controls.Add(CSVStockReportButton);
             StockReportpnl.Controls.Add(label55);
-            StockReportpnl.Location = new Point(175, 3);
+            StockReportpnl.Location = new Point(200, 4);
+            StockReportpnl.Margin = new Padding(3, 4, 3, 4);
             StockReportpnl.Name = "StockReportpnl";
-            StockReportpnl.Size = new Size(1094, 788);
+            StockReportpnl.Size = new Size(1250, 1051);
             StockReportpnl.TabIndex = 82;
             StockReportpnl.Visible = false;
             StockReportpnl.MouseDown += Dashboard_MouseDown;
@@ -6970,7 +6999,8 @@ namespace ITP4519M
             reportStockPie.ChartAreas.Add(chartArea4);
             legend4.Name = "Legend1";
             reportStockPie.Legends.Add(legend4);
-            reportStockPie.Location = new Point(556, 302);
+            reportStockPie.Location = new Point(635, 403);
+            reportStockPie.Margin = new Padding(3, 4, 3, 4);
             reportStockPie.Name = "reportStockPie";
             series4.ChartArea = "ChartArea1";
             series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
@@ -6979,7 +7009,7 @@ namespace ITP4519M
             series4.Legend = "Legend1";
             series4.Name = "Stock";
             reportStockPie.Series.Add(series4);
-            reportStockPie.Size = new Size(435, 249);
+            reportStockPie.Size = new Size(497, 332);
             reportStockPie.TabIndex = 82;
             reportStockPie.Text = "dashordervalueChart";
             // 
@@ -6999,10 +7029,9 @@ namespace ITP4519M
             StockStockReportButton.ButtonRoundRadius = 30;
             StockStockReportButton.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             StockStockReportButton.ForeColor = Color.Black;
-            StockStockReportButton.Location = new Point(359, 10);
-            StockStockReportButton.Margin = new Padding(3, 2, 3, 2);
+            StockStockReportButton.Location = new Point(410, 13);
             StockStockReportButton.Name = "StockStockReportButton";
-            StockStockReportButton.Size = new Size(141, 42);
+            StockStockReportButton.Size = new Size(161, 56);
             StockStockReportButton.TabIndex = 81;
             StockStockReportButton.Text = "Stock";
             // 
@@ -7022,10 +7051,9 @@ namespace ITP4519M
             OrderStockReportButton.ButtonRoundRadius = 30;
             OrderStockReportButton.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             OrderStockReportButton.ForeColor = Color.Black;
-            OrderStockReportButton.Location = new Point(178, 8);
-            OrderStockReportButton.Margin = new Padding(3, 2, 3, 2);
+            OrderStockReportButton.Location = new Point(203, 11);
             OrderStockReportButton.Name = "OrderStockReportButton";
-            OrderStockReportButton.Size = new Size(141, 42);
+            OrderStockReportButton.Size = new Size(161, 56);
             OrderStockReportButton.TabIndex = 80;
             OrderStockReportButton.Text = "Order";
             // 
@@ -7034,18 +7062,19 @@ namespace ITP4519M
             panel46.BackColor = SystemColors.ControlDark;
             panel46.BorderStyle = BorderStyle.Fixed3D;
             panel46.ForeColor = SystemColors.ControlText;
-            panel46.Location = new Point(48, 557);
+            panel46.Location = new Point(55, 743);
+            panel46.Margin = new Padding(3, 4, 3, 4);
             panel46.Name = "panel46";
-            panel46.Size = new Size(940, 5);
+            panel46.Size = new Size(1074, 5);
             panel46.TabIndex = 79;
             // 
             // label44
             // 
             label44.AutoSize = true;
             label44.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label44.Location = new Point(16, 559);
+            label44.Location = new Point(18, 745);
             label44.Name = "label44";
-            label44.Size = new Size(195, 24);
+            label44.Size = new Size(246, 29);
             label44.TabIndex = 78;
             label44.Text = "Top Selling Product";
             // 
@@ -7054,18 +7083,19 @@ namespace ITP4519M
             panel47.BorderStyle = BorderStyle.FixedSingle;
             panel47.Controls.Add(label45);
             panel47.Controls.Add(label46);
-            panel47.Location = new Point(793, 62);
+            panel47.Location = new Point(906, 83);
+            panel47.Margin = new Padding(3, 4, 3, 4);
             panel47.Name = "panel47";
-            panel47.Size = new Size(218, 89);
+            panel47.Size = new Size(249, 118);
             panel47.TabIndex = 48;
             // 
             // label45
             // 
             label45.AutoSize = true;
             label45.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 136);
-            label45.Location = new Point(27, 63);
+            label45.Location = new Point(31, 84);
             label45.Name = "label45";
-            label45.Size = new Size(52, 17);
+            label45.Size = new Size(68, 22);
             label45.TabIndex = 18;
             label45.Text = "label45";
             // 
@@ -7073,9 +7103,9 @@ namespace ITP4519M
             // 
             label46.AutoSize = true;
             label46.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label46.Location = new Point(2, 8);
+            label46.Location = new Point(2, 11);
             label46.Name = "label46";
-            label46.Size = new Size(195, 24);
+            label46.Size = new Size(245, 29);
             label46.TabIndex = 12;
             label46.Text = "Monthly Total Order";
             // 
@@ -7084,18 +7114,19 @@ namespace ITP4519M
             panel48.BorderStyle = BorderStyle.FixedSingle;
             panel48.Controls.Add(label47);
             panel48.Controls.Add(label48);
-            panel48.Location = new Point(532, 62);
+            panel48.Location = new Point(608, 83);
+            panel48.Margin = new Padding(3, 4, 3, 4);
             panel48.Name = "panel48";
-            panel48.Size = new Size(224, 89);
+            panel48.Size = new Size(256, 118);
             panel48.TabIndex = 46;
             // 
             // label47
             // 
             label47.AutoSize = true;
             label47.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 136);
-            label47.Location = new Point(34, 63);
+            label47.Location = new Point(39, 84);
             label47.Name = "label47";
-            label47.Size = new Size(52, 17);
+            label47.Size = new Size(68, 22);
             label47.TabIndex = 17;
             label47.Text = "label47";
             // 
@@ -7103,9 +7134,9 @@ namespace ITP4519M
             // 
             label48.AutoSize = true;
             label48.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label48.Location = new Point(14, 11);
+            label48.Location = new Point(16, 15);
             label48.Name = "label48";
-            label48.Size = new Size(192, 24);
+            label48.Size = new Size(243, 29);
             label48.TabIndex = 12;
             label48.Text = "Monthly Total Sales";
             // 
@@ -7115,15 +7146,15 @@ namespace ITP4519M
             chart2.ChartAreas.Add(chartArea5);
             legend5.Name = "Legend1";
             chart2.Legends.Add(legend5);
-            chart2.Location = new Point(55, 381);
-            chart2.Margin = new Padding(3, 5, 3, 5);
+            chart2.Location = new Point(63, 508);
+            chart2.Margin = new Padding(3, 7, 3, 7);
             chart2.Name = "chart2";
             series5.ChartArea = "ChartArea1";
             series5.IsXValueIndexed = true;
             series5.Legend = "Legend1";
             series5.Name = "Order";
             chart2.Series.Add(series5);
-            chart2.Size = new Size(519, 328);
+            chart2.Size = new Size(593, 437);
             chart2.TabIndex = 76;
             chart2.Text = "chart1";
             title3.Alignment = ContentAlignment.TopLeft;
@@ -7137,18 +7168,19 @@ namespace ITP4519M
             panel49.BorderStyle = BorderStyle.FixedSingle;
             panel49.Controls.Add(label49);
             panel49.Controls.Add(label50);
-            panel49.Location = new Point(299, 62);
+            panel49.Location = new Point(342, 83);
+            panel49.Margin = new Padding(3, 4, 3, 4);
             panel49.Name = "panel49";
-            panel49.Size = new Size(207, 89);
+            panel49.Size = new Size(236, 118);
             panel49.TabIndex = 47;
             // 
             // label49
             // 
             label49.AutoSize = true;
             label49.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 136);
-            label49.Location = new Point(32, 63);
+            label49.Location = new Point(37, 84);
             label49.Name = "label49";
-            label49.Size = new Size(52, 17);
+            label49.Size = new Size(68, 22);
             label49.TabIndex = 16;
             label49.Text = "label49";
             // 
@@ -7156,9 +7188,9 @@ namespace ITP4519M
             // 
             label50.AutoSize = true;
             label50.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label50.Location = new Point(3, 8);
+            label50.Location = new Point(3, 11);
             label50.Name = "label50";
-            label50.Size = new Size(180, 24);
+            label50.Size = new Size(228, 29);
             label50.TabIndex = 12;
             label50.Text = "Today Total Order";
             // 
@@ -7167,18 +7199,19 @@ namespace ITP4519M
             panel50.BorderStyle = BorderStyle.FixedSingle;
             panel50.Controls.Add(label51);
             panel50.Controls.Add(label52);
-            panel50.Location = new Point(64, 62);
+            panel50.Location = new Point(73, 83);
+            panel50.Margin = new Padding(3, 4, 3, 4);
             panel50.Name = "panel50";
-            panel50.Size = new Size(207, 89);
+            panel50.Size = new Size(236, 118);
             panel50.TabIndex = 45;
             // 
             // label51
             // 
             label51.AutoSize = true;
             label51.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 136);
-            label51.Location = new Point(31, 63);
+            label51.Location = new Point(35, 84);
             label51.Name = "label51";
-            label51.Size = new Size(139, 17);
+            label51.Size = new Size(185, 22);
             label51.TabIndex = 15;
             label51.Text = "TodayTotalSalesValue";
             // 
@@ -7186,9 +7219,9 @@ namespace ITP4519M
             // 
             label52.AutoSize = true;
             label52.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label52.Location = new Point(5, 10);
+            label52.Location = new Point(6, 13);
             label52.Name = "label52";
-            label52.Size = new Size(177, 24);
+            label52.Size = new Size(226, 29);
             label52.TabIndex = 12;
             label52.Text = "Today Total Sales";
             // 
@@ -7208,10 +7241,9 @@ namespace ITP4519M
             PDFStockReportButton.ButtonRoundRadius = 30;
             PDFStockReportButton.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             PDFStockReportButton.ForeColor = Color.Black;
-            PDFStockReportButton.Location = new Point(923, 9);
-            PDFStockReportButton.Margin = new Padding(3, 2, 3, 2);
+            PDFStockReportButton.Location = new Point(1055, 12);
             PDFStockReportButton.Name = "PDFStockReportButton";
-            PDFStockReportButton.Size = new Size(141, 42);
+            PDFStockReportButton.Size = new Size(161, 56);
             PDFStockReportButton.TabIndex = 44;
             PDFStockReportButton.Text = "Download PDF";
             // 
@@ -7223,27 +7255,25 @@ namespace ITP4519M
             panel51.Controls.Add(label54);
             panel51.Controls.Add(ClearStockReportButton);
             panel51.Controls.Add(dateTimePicker9);
-            panel51.Location = new Point(43, 168);
-            panel51.Margin = new Padding(3, 2, 3, 2);
+            panel51.Location = new Point(49, 224);
             panel51.Name = "panel51";
-            panel51.Size = new Size(1011, 108);
+            panel51.Size = new Size(1155, 144);
             panel51.TabIndex = 42;
             // 
             // dateTimePicker7
             // 
-            dateTimePicker7.Location = new Point(21, 48);
-            dateTimePicker7.Margin = new Padding(3, 2, 3, 2);
+            dateTimePicker7.Location = new Point(24, 64);
             dateTimePicker7.Name = "dateTimePicker7";
-            dateTimePicker7.Size = new Size(212, 23);
+            dateTimePicker7.Size = new Size(242, 27);
             dateTimePicker7.TabIndex = 8;
             // 
             // label53
             // 
             label53.AutoSize = true;
             label53.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label53.Location = new Point(23, 4);
+            label53.Location = new Point(26, 5);
             label53.Name = "label53";
-            label53.Size = new Size(55, 25);
+            label53.Size = new Size(69, 32);
             label53.TabIndex = 10;
             label53.Text = "From";
             // 
@@ -7263,10 +7293,9 @@ namespace ITP4519M
             SearchStockReportButton.ButtonRoundRadius = 30;
             SearchStockReportButton.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             SearchStockReportButton.ForeColor = Color.Black;
-            SearchStockReportButton.Location = new Point(525, 41);
-            SearchStockReportButton.Margin = new Padding(3, 2, 3, 2);
+            SearchStockReportButton.Location = new Point(600, 55);
             SearchStockReportButton.Name = "SearchStockReportButton";
-            SearchStockReportButton.Size = new Size(90, 38);
+            SearchStockReportButton.Size = new Size(103, 51);
             SearchStockReportButton.TabIndex = 25;
             SearchStockReportButton.Text = "Search";
             // 
@@ -7274,9 +7303,9 @@ namespace ITP4519M
             // 
             label54.AutoSize = true;
             label54.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label54.Location = new Point(282, 4);
+            label54.Location = new Point(322, 5);
             label54.Name = "label54";
-            label54.Size = new Size(31, 25);
+            label54.Size = new Size(39, 32);
             label54.TabIndex = 11;
             label54.Text = "To";
             // 
@@ -7296,19 +7325,17 @@ namespace ITP4519M
             ClearStockReportButton.ButtonRoundRadius = 30;
             ClearStockReportButton.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             ClearStockReportButton.ForeColor = Color.Black;
-            ClearStockReportButton.Location = new Point(647, 41);
-            ClearStockReportButton.Margin = new Padding(3, 2, 3, 2);
+            ClearStockReportButton.Location = new Point(739, 55);
             ClearStockReportButton.Name = "ClearStockReportButton";
-            ClearStockReportButton.Size = new Size(89, 39);
+            ClearStockReportButton.Size = new Size(102, 52);
             ClearStockReportButton.TabIndex = 15;
             ClearStockReportButton.Text = "Clear";
             // 
             // dateTimePicker9
             // 
-            dateTimePicker9.Location = new Point(278, 48);
-            dateTimePicker9.Margin = new Padding(3, 2, 3, 2);
+            dateTimePicker9.Location = new Point(318, 64);
             dateTimePicker9.Name = "dateTimePicker9";
-            dateTimePicker9.Size = new Size(220, 23);
+            dateTimePicker9.Size = new Size(251, 27);
             dateTimePicker9.TabIndex = 9;
             // 
             // reportStockdata
@@ -7335,13 +7362,12 @@ namespace ITP4519M
             dataGridViewCellStyle55.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle55.WrapMode = DataGridViewTriState.False;
             reportStockdata.DefaultCellStyle = dataGridViewCellStyle55;
-            reportStockdata.Location = new Point(27, 573);
-            reportStockdata.Margin = new Padding(3, 2, 3, 2);
+            reportStockdata.Location = new Point(31, 764);
             reportStockdata.Name = "reportStockdata";
             reportStockdata.RowHeadersVisible = false;
             reportStockdata.RowHeadersWidth = 51;
             reportStockdata.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            reportStockdata.Size = new Size(1040, 195);
+            reportStockdata.Size = new Size(1189, 260);
             reportStockdata.TabIndex = 40;
             // 
             // CSVStockReportButton
@@ -7360,10 +7386,9 @@ namespace ITP4519M
             CSVStockReportButton.ButtonRoundRadius = 30;
             CSVStockReportButton.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             CSVStockReportButton.ForeColor = Color.Black;
-            CSVStockReportButton.Location = new Point(751, 9);
-            CSVStockReportButton.Margin = new Padding(3, 2, 3, 2);
+            CSVStockReportButton.Location = new Point(858, 12);
             CSVStockReportButton.Name = "CSVStockReportButton";
-            CSVStockReportButton.Size = new Size(141, 42);
+            CSVStockReportButton.Size = new Size(161, 56);
             CSVStockReportButton.TabIndex = 41;
             CSVStockReportButton.Text = "Download CSV";
             // 
@@ -7371,20 +7396,25 @@ namespace ITP4519M
             // 
             label55.AutoSize = true;
             label55.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label55.Location = new Point(16, 18);
+            label55.Location = new Point(18, 24);
             label55.Name = "label55";
-            label55.Size = new Size(129, 25);
+            label55.Size = new Size(152, 31);
             label55.TabIndex = 6;
             label55.Text = "Stock Report";
             // 
             // Dashboard
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
-            ClientSize = new Size(1318, 759);
-            Controls.Add(listpnl);
+            ClientSize = new Size(1506, 1050);
             Controls.Add(closebtn);
+            Controls.Add(listpnl);
+            Controls.Add(GRNpnl);
+            Controls.Add(OrderAccemblypnl);
+            Controls.Add(contactpnl);
+            Controls.Add(outstandingOrderpnl);
+            Controls.Add(inventorypnl);
             Controls.Add(orderpnl);
             Controls.Add(deliverypnl);
             Controls.Add(outstandingViewpnl);
@@ -7396,15 +7426,11 @@ namespace ITP4519M
             Controls.Add(userspnl);
             Controls.Add(invoicepnl);
             Controls.Add(POpnl);
-            Controls.Add(GRNpnl);
-            Controls.Add(OrderAccemblypnl);
-            Controls.Add(contactpnl);
-            Controls.Add(outstandingOrderpnl);
-            Controls.Add(inventorypnl);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Dashboard";
-            Padding = new Padding(0, 0, 9, 0);
+            Padding = new Padding(0, 0, 10, 0);
             StartPosition = FormStartPosition.CenterParent;
             Text = "SalesOrder";
             Load += Dashboard_Load;
@@ -7418,7 +7444,6 @@ namespace ITP4519M
             orderpnl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)orderdata).EndInit();
             panel11.ResumeLayout(false);
-            panel11.PerformLayout();
             panel10.ResumeLayout(false);
             panel10.PerformLayout();
             panel9.ResumeLayout(false);
@@ -7525,7 +7550,6 @@ namespace ITP4519M
             GRNpnl.ResumeLayout(false);
             GRNpnl.PerformLayout();
             panel12.ResumeLayout(false);
-            panel12.PerformLayout();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)grndata).EndInit();
