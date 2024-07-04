@@ -280,6 +280,11 @@ namespace ProgramMethod
             return dataBaseMethod.overallOrderinfo();
         }
 
+        public DataTable searchOrderAccembly(string keyword)
+        {
+            return dataBaseMethod.searchOrderAccembly(keyword);
+        }
+
         //updateUserInfor(userid, username, password, confirmPassword, displayName, department, title, phoneNum, email)
         public bool updateUserInfor(string userid, string userName, string password, string passwordagain, string dispalyName, string department, string title, string phonenum, string email)
         {
@@ -887,21 +892,23 @@ namespace ProgramMethod
                 }
 
                 string invoiceID = "INV" + (int.Parse(dataBaseMethod.getInvoiceID()) + 1).ToString("000000");
-                if (dataBaseMethod.createInvoice(invoiceID, orderID, dataBaseMethod.getOrderOfDealerID(orderID), deliveryID))
+                if (dataBaseMethod.checkFinalTimeOrderStatusForDeliver(orderID))
                 {
-                    LogCreateInvoice(LoginUserID,invoiceID,orderID);
+                    if (dataBaseMethod.createInvoice(invoiceID, orderID, dataBaseMethod.getOrderOfDealerID(orderID), deliveryID))
+                    {
+                        LogCreateInvoice(LoginUserID, invoiceID, orderID);
+                    }
+
                 }
+                else
+                {
+                    if (dataBaseMethod.createInvoice(invoiceID, orderID, dataBaseMethod.getOrderOfDealerID(orderID), deliveryID))
+                    {
+                        LogCreateInvoice(LoginUserID, invoiceID, orderID);
+                    }
+                    dataBaseMethod.updateOrderStatus("OrderCompleted", orderID);
 
-                //if (dataBaseMethod.createDelivery(deliveryID, orderID, deliveryDate, "Shipped"))
-                //{
-                //    LogCreateDeliveryNote(LoginUserID, LoginUserName, deliveryID);
-                //    return true;
-
-                //}
-                //else
-                //{
-                //    return false;
-                //}
+                }
 
             }
             catch (Exception ex) {
@@ -1495,9 +1502,14 @@ namespace ProgramMethod
                     //string sum = ((int.Parse(ActualDesptchData.Rows[i].Cells[3].Value.ToString()) - (int.Parse(ActualDesptchData.Rows[i].Cells[2].Value.ToString())))).ToString();
                     
                    string oustID = "OUT" + (int.Parse(dataBaseMethod.getOutStandingID()) + 1).ToString("000000");
+                    if (dataBaseMethod.checkOutstandingOrderIDExist(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString()))
+                    {
+                        dataBaseMethod.DeleteOutstandingOrderForOrderAccembly(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString());
+                    }
+                    
                     if(dataBaseMethod.createOutstandingOrder(oustID, orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString(), dataBaseMethod.getOrderOfDealerID(orderID), ActualDesptchData.Rows[i].Cells[3].Value.ToString()))
                     {
-                       // dataBaseMethod.DeleteOutstandingOrderForOrderAccembly(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString());
+                       
                         LogCreateOutstandingOrder(LoginUserID, LoginUserName, orderID, oustID);
                     }
 

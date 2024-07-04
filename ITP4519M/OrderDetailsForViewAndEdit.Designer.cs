@@ -41,6 +41,7 @@ namespace ITP4519M
             createOrderbtn = new Button();
             productSearchbox = new RoundedTextBox();
             panel1 = new Panel();
+            orderStatusLabel = new Label();
             usernameAlertBox = new PictureBox();
             label17 = new Label();
             dealerInfobox = new BorderComboBox();
@@ -85,7 +86,6 @@ namespace ITP4519M
             goodsAddressBox = new Label();
             panel4 = new Panel();
             orderLabel = new Label();
-            orderStatusLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)productOfOrderdata).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)usernameAlertBox).BeginInit();
@@ -214,6 +214,17 @@ namespace ITP4519M
             panel1.TabIndex = 72;
             panel1.Paint += panel1_Paint;
             // 
+            // orderStatusLabel
+            // 
+            orderStatusLabel.AutoSize = true;
+            orderStatusLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            orderStatusLabel.ForeColor = Color.Black;
+            orderStatusLabel.Location = new Point(9, 12);
+            orderStatusLabel.Name = "orderStatusLabel";
+            orderStatusLabel.Size = new Size(102, 21);
+            orderStatusLabel.TabIndex = 94;
+            orderStatusLabel.Text = "Order Status";
+            // 
             // usernameAlertBox
             // 
             usernameAlertBox.Image = Properties.Resources.red_alert;
@@ -258,10 +269,10 @@ namespace ITP4519M
             // ordertotallbl
             // 
             ordertotallbl.AutoSize = true;
-            ordertotallbl.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            ordertotallbl.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             ordertotallbl.Location = new Point(114, 618);
             ordertotallbl.Name = "ordertotallbl";
-            ordertotallbl.Size = new Size(19, 21);
+            ordertotallbl.Size = new Size(22, 25);
             ordertotallbl.TabIndex = 100;
             ordertotallbl.Text = "0";
             // 
@@ -738,18 +749,7 @@ namespace ITP4519M
             orderLabel.Text = "Order";
             orderLabel.Click += orderLabel_Click;
             // 
-            // orderStatusLabel
-            // 
-            orderStatusLabel.AutoSize = true;
-            orderStatusLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            orderStatusLabel.ForeColor = Color.Black;
-            orderStatusLabel.Location = new Point(9, 12);
-            orderStatusLabel.Name = "orderStatusLabel";
-            orderStatusLabel.Size = new Size(102, 21);
-            orderStatusLabel.TabIndex = 94;
-            orderStatusLabel.Text = "Order Status";
-            // 
-            // OrderDetailsForViewAndEdit1
+            // OrderDetailsForViewAndEdit
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -761,7 +761,7 @@ namespace ITP4519M
             Controls.Add(panel1);
             Controls.Add(CloseButton);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "OrderDetailsForViewAndEdit1";
+            Name = "OrderDetailsForViewAndEdit";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "OrderForm1";
             Load += SalesOrder_Load;

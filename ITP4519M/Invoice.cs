@@ -34,16 +34,21 @@ namespace ITP4519M
             DataTable OrderItem = programMethod.getOrderItemDetailforInvoice(orderID);
             DataTable orderDetails = programMethod.getOrderDetails(orderID);
             DataTable deliverynoteItem = programMethod.getDeliveryNoteItem(result.Rows[0]["DeliveryID"].ToString());
+            string deliveredDate = programMethod.getDeliveryDate(result.Rows[0]["DeliveryID"].ToString());
             InvoiceInvoiceDatelbl.Text = result.Rows[0]["IssueDate"].ToString();
             InvoiceOrderIDlbl.Text = orderID;
             InvoiceDealerIDlbl.Text = dealerID;
-            //InvoicesubTotallbl.Text = 
+            
             InvoiceBillingAddresslbl.Text = orderDetails.Rows[0]["InvoiceAddress"].ToString();
             InvoiceAddresslbl.Text = orderDetails.Rows[0]["DeliveryAddress"].ToString();
             InvoiceOrderDatelbl.Text = orderDetails.Rows[0]["OrderDate"].ToString();
-            //Delivery Date //InvoiceDeliveryDatelbl.Text 
+            InvoiceDeliveryDatelbl.Text = deliveredDate;
             float temp = float.Parse(OrderItem.Rows[0]["Price"].ToString()) / float.Parse(OrderItem.Rows[0]["OrderedQuantity"].ToString()) * float.Parse(OrderItem.Rows[0]["ActualDespatchQuantity"].ToString());
-            this.InvoiceFormData.Rows.Add(deliverynoteItem.Rows[0]["ProductID"].ToString(), OrderItem.Rows[0]["ProductName"].ToString(), deliverynoteItem.Rows[0]["DeliveryQuantity"].ToString(), temp.ToString(), OrderItem.Rows[0]["Discount"].ToString());
+            for(int i = 0; i < deliverynoteItem.Rows.Count; i++)
+            {
+                this.InvoiceFormData.Rows.Add(deliverynoteItem.Rows[i]["ProductID"].ToString(), OrderItem.Rows[i]["ProductName"].ToString(), deliverynoteItem.Rows[i]["DeliveryQuantity"].ToString(), temp.ToString(), OrderItem.Rows[i]["Discount"].ToString());
+            }
+            
             InvoiceTotalPricelbl.Text = orderDetails.Rows[0]["TotalPrice"].ToString();
         }
 

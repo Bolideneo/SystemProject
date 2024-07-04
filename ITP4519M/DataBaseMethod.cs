@@ -960,7 +960,7 @@ namespace ITP4519M
             return result.ToString();
         }
 
-
+        
         public DataTable overallOrderinfo()
         {
             string sql = "SELECT OrderID, DealerID, OrderStatus, OrderDate FROM `order` WHERE OrderStatus = 'OrderProcessing' OR OrderStatus = 'PartialProductPackaged' OR OrderStatus = 'ALLProductPackaged'";
@@ -970,6 +970,17 @@ namespace ITP4519M
             adat.Fill(dataTable);
             return dataTable;
         }
+        public DataTable searchOrderAccembly(string keyword)
+        {
+            string sql = "SELECT OrderID, DealerID, OrderStatus, OrderDate FROM `order` WHERE (OrderStatus = 'OrderProcessing' OR OrderStatus = 'PartialProductPackaged' OR OrderStatus = 'ALLProductPackaged') AND OrderID LIKE @keyword ";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            cmd.Parameters.AddWithValue("@keyword",keyword);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
 
 
         //Get current max ID when creating new product
@@ -1677,6 +1688,27 @@ namespace ITP4519M
 
             }
             catch (Exception ex) {
+                Console.WriteLine("An error occurred: " + ex.Message);
+
+                return false;
+            }
+        }
+
+        public bool checkOutstandingOrderIDExist(string orderID,string productID)
+        {
+            try
+            {
+                string sql = "SELECT COUNT(*) FROM outstandingorder WHERE OrderID=@orderID AND ProductID =@productID";
+                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+                cmd.Parameters.AddWithValue("@orderID", orderID);
+                cmd.Parameters.AddWithValue("@productID", productID);
+                int count = Convert.ToInt32(cmd.ExecuteScalar());
+                ServerConnect().Close();
+                return count > 0;
+
+            }
+            catch (Exception ex)
+            {
                 Console.WriteLine("An error occurred: " + ex.Message);
 
                 return false;
@@ -2548,6 +2580,7 @@ namespace ITP4519M
             cmd.ExecuteNonQuery();
         }
 
+        
         public bool createInvoice(string invoiceID, string orderID, string dealerID, string deliveryID)
         {
             DateTime Date = DateTime.Now;
@@ -2564,6 +2597,13 @@ namespace ITP4519M
             return false;
         }
 
+        public bool checkFinalTimeOrderStatusForDeliver(string orderID)
+        {
+            string sql = "SELECT COUNT(OrderID) FROM `order` WHERE OrderStatus != 'ALLProductPackaged'";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@orderID", orderID);
+            return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+        }
 
         public string getInvoiceID()
         {

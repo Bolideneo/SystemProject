@@ -1209,10 +1209,10 @@ namespace ITP4519M
                 ProductForm ProductForm = new ProductForm(OperationMode.Edit);
                 ProductForm.productEdit(productID);
                 ProductForm.ShowDialog();
-                
+
             }
             stockbtn.PerformClick();
-            
+
         }
 
         private void GRNbtn_Click(object sender, EventArgs e)
@@ -1333,12 +1333,6 @@ namespace ITP4519M
         private void productSearchBtn_Click(object sender, EventArgs e)
         {
             stockData.DataSource = programMethod.searchProductInformation(stockSearchBox.Text.Trim());
-        }
-
-        private void stockSearchBox_TextChanged(object sender, EventArgs e)
-        {
-            stockData.DataSource = programMethod.searchProductInformation(stockSearchBox.Text.Trim());
-            SetRowHeights(stockData, StockPgSize);
         }
 
         private void orderdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -1848,12 +1842,11 @@ namespace ITP4519M
 
             lastClickedButton = (Button)sender;
             lastClickedButton.ForeColor = Color.Gray;
-
-            lastClickedButton = (Button)sender;
-            lastClickedButton.ForeColor = Color.Gray;
             CalculateTotalPages("Invoice");
             ShowPanel(invoicepnl);
             invoiceData.DataSource = programMethod.GetInvoiceCurrentRecords(InvoicePageIndex, InvoicePgSize);
+            lastClickedButton = (Button)sender;
+            lastClickedButton.ForeColor = Color.Gray;
             invoiceIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + InvoiceRowCount;
             invoiceData.Rows[0].Selected = false;
             SetRowHeights(invoiceData, InvoicePgSize);
@@ -2647,7 +2640,8 @@ namespace ITP4519M
 
         private void orderAccemblySearchbox_KeyDown(object sender, KeyEventArgs e)
         {
-
+            orderAccemblyData.DataSource = programMethod.searchOrderAccembly(orderAccemblySearchbox.Text.Trim());
+            SetRowHeights(orderAccemblyData, 15);
         }
 
         private void orderAccemblydateTimePicker_ValueChanged(object sender, EventArgs e)
@@ -2780,6 +2774,12 @@ namespace ITP4519M
         {
             dealersData.DataSource = programMethod.GetDealerCurrentRecords(DealerPageIndex, DealerPgSize);
             SetRowHeights(dealersData, DealerPgSize);
+        }
+
+        private void stockSearchBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            stockData.DataSource = programMethod.searchProductInformation(stockSearchBox.Text.Trim());
+            SetRowHeights(stockData, StockPgSize);
         }
     }
 }

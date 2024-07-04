@@ -407,7 +407,6 @@ namespace ITP4519M
             if (e.KeyCode == Keys.Enter)
             {
                 programMethod.DealerSearchAutoComplete(dealerInfobox, dealerInfobox.Text.Trim());
-                MessageBox.Show(text);
                 if (dealerInfobox.Items.Count > 0)
                 {
 
@@ -461,7 +460,7 @@ namespace ITP4519M
                 dealerNameBox.Text = result.Rows[0]["DealerName"].ToString();
                 phoneNumBox.Text = result.Rows[0]["DealerPhoneNum"].ToString();
                 dealerCompanyBox.Text = result.Rows[0]["DealerCompanyName"].ToString();
-                goodsAddressBox.Text = result.Rows[0]["DealerRegionNum"].ToString();
+                goodsAddressBox.Text = result.Rows[0]["DealerCompanyAddress"].ToString();
             }
         }
 

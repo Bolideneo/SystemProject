@@ -189,7 +189,7 @@ namespace ITP4519M
             productSearchbox.Name = "productSearchbox";
             productSearchbox.PlaceholderText = "Search Product";
             productSearchbox.Size = new Size(263, 32);
-            productSearchbox.TabIndex = 18;
+            productSearchbox.TabIndex = 5;
             productSearchbox.KeyDown += productSearchbox_KeyDown;
             // 
             // panel1
@@ -261,7 +261,7 @@ namespace ITP4519M
             dealerInfobox.Margin = new Padding(3, 2, 3, 2);
             dealerInfobox.Name = "dealerInfobox";
             dealerInfobox.Size = new Size(231, 23);
-            dealerInfobox.TabIndex = 102;
+            dealerInfobox.TabIndex = 1;
             dealerInfobox.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             dealerInfobox.KeyDown += comboBox2_KeyDown;
             dealerInfobox.KeyPress += dealerInfobox_KeyPress;
@@ -269,10 +269,10 @@ namespace ITP4519M
             // ordertotallbl
             // 
             ordertotallbl.AutoSize = true;
-            ordertotallbl.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            ordertotallbl.Location = new Point(114, 618);
+            ordertotallbl.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            ordertotallbl.Location = new Point(114, 614);
             ordertotallbl.Name = "ordertotallbl";
-            ordertotallbl.Size = new Size(19, 21);
+            ordertotallbl.Size = new Size(22, 25);
             ordertotallbl.TabIndex = 100;
             ordertotallbl.Text = "0";
             // 
@@ -350,7 +350,7 @@ namespace ITP4519M
             OrderContactPhonebox.Margin = new Padding(4, 3, 4, 3);
             OrderContactPhonebox.Name = "OrderContactPhonebox";
             OrderContactPhonebox.Size = new Size(158, 16);
-            OrderContactPhonebox.TabIndex = 17;
+            OrderContactPhonebox.TabIndex = 3;
             // 
             // pictureBox2
             // 
@@ -387,7 +387,7 @@ namespace ITP4519M
             orderContactNamebox.Margin = new Padding(4, 3, 4, 3);
             orderContactNamebox.Name = "orderContactNamebox";
             orderContactNamebox.Size = new Size(158, 16);
-            orderContactNamebox.TabIndex = 17;
+            orderContactNamebox.TabIndex = 2;
             // 
             // pictureBox1
             // 
@@ -456,7 +456,7 @@ namespace ITP4519M
             orderDateBox.MinDate = new DateTime(2024, 6, 26, 0, 0, 0, 0);
             orderDateBox.Name = "orderDateBox";
             orderDateBox.Size = new Size(236, 23);
-            orderDateBox.TabIndex = 70;
+            orderDateBox.TabIndex = 4;
             // 
             // ordertotallbl1
             // 

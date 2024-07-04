@@ -1165,7 +1165,6 @@ namespace ITP4519M
             orderdata.RowHeadersVisible = false;
             orderdata.RowHeadersWidth = 51;
             orderdata.RowTemplate.Height = 24;
-            orderdata.ScrollBars = ScrollBars.None;
             orderdata.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             orderdata.Size = new Size(1045, 405);
             orderdata.TabIndex = 52;
@@ -4137,7 +4136,7 @@ namespace ITP4519M
             stockSearchBox.PlaceholderText = "   Search Product Name or ID";
             stockSearchBox.Size = new Size(456, 32);
             stockSearchBox.TabIndex = 30;
-            stockSearchBox.TextChanged += stockSearchBox_TextChanged;
+            stockSearchBox.KeyDown += stockSearchBox_KeyDown;
             // 
             // dashboardpnl
             // 
@@ -7115,7 +7114,7 @@ namespace ITP4519M
             chart2.ChartAreas.Add(chartArea5);
             legend5.Name = "Legend1";
             chart2.Legends.Add(legend5);
-            chart2.Location = new Point(55, 381);
+            chart2.Location = new Point(45, 287);
             chart2.Margin = new Padding(3, 5, 3, 5);
             chart2.Name = "chart2";
             series5.ChartArea = "ChartArea1";
@@ -7123,7 +7122,7 @@ namespace ITP4519M
             series5.Legend = "Legend1";
             series5.Name = "Order";
             chart2.Series.Add(series5);
-            chart2.Size = new Size(519, 328);
+            chart2.Size = new Size(482, 272);
             chart2.TabIndex = 76;
             chart2.Text = "chart1";
             title3.Alignment = ContentAlignment.TopLeft;
@@ -7385,10 +7384,6 @@ namespace ITP4519M
             ClientSize = new Size(1318, 759);
             Controls.Add(listpnl);
             Controls.Add(closebtn);
-            Controls.Add(orderpnl);
-            Controls.Add(deliverypnl);
-            Controls.Add(outstandingViewpnl);
-            Controls.Add(deliveryCompletepnl);
             Controls.Add(StockReportpnl);
             Controls.Add(settingpnl);
             Controls.Add(dashboardpnl);
@@ -7401,6 +7396,10 @@ namespace ITP4519M
             Controls.Add(contactpnl);
             Controls.Add(outstandingOrderpnl);
             Controls.Add(inventorypnl);
+            Controls.Add(orderpnl);
+            Controls.Add(deliverypnl);
+            Controls.Add(outstandingViewpnl);
+            Controls.Add(deliveryCompletepnl);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Name = "Dashboard";

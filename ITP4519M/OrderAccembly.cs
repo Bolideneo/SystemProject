@@ -119,7 +119,7 @@ namespace ITP4519M
                     phoneNumBox.Text = dt1.Rows[0]["DealerPhoneNum"].ToString();
                     dealerCompanyBox.Text = dt1.Rows[0]["DealerCompanyName"].ToString();
                     orderAccemblyOrderItemdata.DataSource = programMethod.getOrderItemDetailsForOrderAccembly(orderID);
-                    //dealerAddressBox.Text = dt1.Rows[0]["DealerRegionNum"].ToString();
+                    //dealerAddressBox.Text = dt1.Rows[0]["DeliveryAddress"].ToString();
                     orderItemdata.Columns.Add("ProductID", "Product ID");
                     orderItemdata.Columns.Add("ProductName", "Product Name");
                     orderItemdata.Columns.Add("Quantity", "Quantity");
