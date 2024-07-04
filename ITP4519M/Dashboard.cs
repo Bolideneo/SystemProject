@@ -87,7 +87,7 @@ namespace ITP4519M
         //Paging
 
         //Invoice datagrid paging
-        private int GRNPgSize = 15;
+        private int GRNPgSize = 10;
         private int GRNPageIndex = 1;
         private int GRNTotalPage = 0;
         //Paging
@@ -117,6 +117,8 @@ namespace ITP4519M
         private string invoiceID;
         private string invoiceOrderID;
         private string invoiceDealerID;
+        private string invoiceDeliveryID;
+        private string invoiceDate;
         private string poID;
         private bool isDealerDVG;
         private int PageSize = 5;
@@ -138,6 +140,7 @@ namespace ITP4519M
         private int OutstandingRowCount;
         private int AccountRowCount;
         private int SupplierRowCount;
+
         private int DealerRowCount;
         private int PORowCount;
         private int DeliveryRowCount;
@@ -162,6 +165,7 @@ namespace ITP4519M
             ShowPanel(dashboardpnl);
             closebtn.BringToFront();
 
+
         }
 
 
@@ -178,12 +182,15 @@ namespace ITP4519M
         }
         private void Dashboard_Load(object sender, EventArgs e)
         {
+            KeyPreview = true;
             DoubleBuffered = true;
             programMethod = new ProgramMethod.ProgramMethod();
             closebtn.BringToFront();
             programMethod.CurrentUserIDAndName(LoginUserID, LoginUserName);
             OrderAccemblybtn.Size = new System.Drawing.Size(166, 56);
             contactsbtn.Size = new System.Drawing.Size(166, 56);
+            namelbl.Size = new System.Drawing.Size(194, 33);
+            usertypelbl.Size = new System.Drawing.Size(191, 33);
             outstandingOrderbtn.Size = new System.Drawing.Size(166, 56);
             PObtn.Size = new System.Drawing.Size(166, 56);
             string[] array = programMethod.getDashboardToadyLabel();
@@ -453,6 +460,8 @@ namespace ITP4519M
             CalculateTotalPages("Order");
             ShowPanel(orderpnl);
             orderdata.DataSource = programMethod.GetCurrentRecords("Order", OrderPageIndex, OrderPgSize);
+
+            orderIndexlbl.Text = "01" + "-" + OrderPgSize.ToString() + " of " + OrderRowCount;
             //  orderdata.DataSource = programMethod.orderDateFilter("2024-06-03", "2024-06-18");
             // FirstpageBtnClick(orderdata, "Order", OrderPgSize, OrderPageIndex, orderIndexlbl, OrderRowCount);
             orderdata.Rows[0].Selected = false;
@@ -557,7 +566,6 @@ namespace ITP4519M
             ShowPanel(userspnl);
             AccountOverallLabel();
             userData.DataSource = programMethod.GetAccountCurrentRecords(CurrentPageIndex, PgSize);
-            accountSearchBox.AutoSize = false;
             userData.Rows[0].Selected = false;
             //string words = userData.Rows[0].Cells["UserID"].Value.ToString();
             //string lastTwoWords = string.Join(" ", words.Skip(words.Length - ));
@@ -700,6 +708,7 @@ namespace ITP4519M
             searchDealerbtn.Visible = false;
             contactDealerclearbtn.Visible = false;
             contactSupplierCleaerbtn.Visible = true;
+            suppliersData.Columns[2].Visible = false;
             currentDataSourceType = "Supplier";
             // contactOverallLabel();
             dealerDatalbl.Text = DealerRowCount.ToString();
@@ -1224,14 +1233,14 @@ namespace ITP4519M
 
             lastClickedButton = (Button)sender;
             lastClickedButton.ForeColor = Color.Gray;
-
+            CalculateTotalPages("GRN");
             ShowPanel(GRNpnl);
-            grndata.DataSource = programMethod.overallGRNinfo();
-            grndata.Rows[0].Selected = false;
+            //  grndata.DataSource = programMethod.overallGRNinfo();
             grndata.DataSource = programMethod.GetGRNCurrentRecords(GRNPageIndex, GRNPgSize);
-            grnPage.Text = "01" + "-" + GRNPgSize.ToString() + " of " + programMethod.getGRNRowCount();
+            grndata.Rows[0].Selected = false;
+            grnPage.Text = "01" + "-" + GRNPgSize.ToString() + " of " + GRNRowCount;
             SetRowHeights(grndata, GRNPgSize);
-            oustandingPagelbl.Text = "01" + "-" + GRNPgSize + " of " + GRNRowCount;
+
 
             string[] MinDate = programMethod.getOrderMinAndMaxDateForGRN();
             grnDatePicker1.MinDate = DateTime.Parse(MinDate[0]);
@@ -1240,6 +1249,7 @@ namespace ITP4519M
             grnDatePicker2.MinDate = DateTime.Parse(MinDate[0]);
             grnDatePicker2.MaxDate = DateTime.Parse(MinDate[1]);
             grnDatePicker2.Value = DateTime.Parse(MinDate[1]);
+
         }
 
         private void deliverybtn_Click(object sender, EventArgs e)
@@ -1315,14 +1325,14 @@ namespace ITP4519M
             string formDate = grnDatePicker1.Value.Date.ToString("yyyy-MM-dd");
             string toDate = grnDatePicker2.Value.Date.ToString("yyyy-MM-dd");
             grndata.DataSource = programMethod.searchGRNDate(formDate, toDate);
+            SetRowHeights(grndata, GRNPgSize);
 
         }
 
         private void grnclearBtn_Click(object sender, EventArgs e)
         {
             grndata.DataSource = programMethod.overallGRNinfo();
-
-
+            SetRowHeights(grndata, GRNPgSize);
         }
 
         private void grnAddNoteBtn_Click(object sender, EventArgs e)
@@ -1477,11 +1487,21 @@ namespace ITP4519M
             if (e.KeyCode == Keys.Enter)
             {
                 deliveryData.DataSource = programMethod.getDeliveryDetails(deliverySearchIDbox.Text.Trim());
+                deliverySearchIDbox.Clear();
             }
         }
 
         private void deliveryclearbtn_Click_1(object sender, EventArgs e)
         {
+
+            string[] MinDate = programMethod.getDNMinAndMaxDate();
+            deliverydateTimePicker1.MinDate = DateTime.Parse(MinDate[0]);
+            deliverydateTimePicker1.MaxDate = DateTime.Parse(MinDate[1]);
+            deliverydateTimePicker1.Value = DateTime.Parse(MinDate[0]);
+            deliverydateTimePicker2.MinDate = DateTime.Parse(MinDate[0]);
+            deliverydateTimePicker2.MaxDate = DateTime.Parse(MinDate[1]);
+            deliverydateTimePicker2.Value = DateTime.Parse(MinDate[1]);
+
             deliveryData.DataSource = programMethod.overallDeliveryinfo();
         }
 
@@ -1602,6 +1622,7 @@ namespace ITP4519M
                 case "Order":
                     rowCount = programMethod.getOrderRowCount();
                     OrderRowCount = rowCount;
+                    OrderTotalPage = rowCount / OrderPgSize;
                     if (rowCount % OrderPgSize > 0)
                         OrderTotalPage += 1;
                     break;
@@ -2283,8 +2304,8 @@ namespace ITP4519M
 
             if (!IsZoomIN)
             {   //Zoom IN
-                stockData.Location = new Point(16, 53);
-                stockData.Size = new Size(1063, 718);
+                stockData.Location = new Point(19, 73);
+                stockData.Size = new Size(1204, 953);
                 IsZoomIN = true;
                 stockSummarypnl.Visible = false;
                 panel54.Visible = false;
@@ -2300,8 +2321,8 @@ namespace ITP4519M
             }
             else
             {
-                stockData.Location = new Point(29, 302);
-                stockData.Size = new Size(1045, 405);
+                stockData.Location = new Point(23, 408);
+                stockData.Size = new Size(1194, 540);
                 IsZoomIN = false;
 
                 stockSummarypnl.Visible = true;
@@ -2311,7 +2332,7 @@ namespace ITP4519M
                 delProductbtn.Visible = true;
                 stockSearchBox.Visible = true;
                 panel8.Visible = true;
-                panel55.Visible = false;
+                panel55.Visible = true;
                 stockbtn.PerformClick();
 
             }
@@ -2407,6 +2428,8 @@ namespace ITP4519M
                 invoiceID = selectRow.Cells[1].Value.ToString();
                 invoiceOrderID = selectRow.Cells[2].Value.ToString();
                 invoiceDealerID = selectRow.Cells[3].Value.ToString();
+                invoiceDate = selectRow.Cells[4].Value.ToString();
+                invoiceDeliveryID = selectRow.Cells[5].Value.ToString();
 
 
                 foreach (DataGridViewRow row in invoiceData.Rows)
@@ -2431,7 +2454,7 @@ namespace ITP4519M
             }
             else
             {
-                Invoice invoice = new Invoice(invoiceID, invoiceOrderID, invoiceDealerID);
+                Invoice invoice = new Invoice(invoiceID, invoiceOrderID, invoiceDealerID, invoiceDeliveryID, invoiceDate);
                 invoice.ShowDialog();
 
             }
@@ -2546,24 +2569,33 @@ namespace ITP4519M
         {
             if (e.RowIndex >= 0 && e.ColumnIndex == 0)
             {
-
-                this.poData.Rows[e.RowIndex].Cells["pocheckColumn"].Value = true;
-                POIndex = e.RowIndex;
-                DataGridViewRow selectRow = this.poData.Rows[POIndex];
-                poID = selectRow.Cells[1].Value.ToString();
-                //  dealerID = selectRow.Cells[2].Value.ToString();
-
-                foreach (DataGridViewRow row in stockData.Rows)
+                try
                 {
-                    if (row.Index == e.RowIndex)
+
+                    this.poData.Rows[e.RowIndex].Cells["pocheckColumn"].Value = true;
+                    POIndex = e.RowIndex;
+                    DataGridViewRow selectRow = this.poData.Rows[POIndex];
+                    poID = selectRow.Cells[1].Value.ToString();
+                    //  dealerID = selectRow.Cells[2].Value.ToString();
+
+                    foreach (DataGridViewRow row in stockData.Rows)
                     {
-                        row.Cells["pocheckColumn"].Value = !Convert.ToBoolean(row.Cells["pocheckColumn"].EditedFormattedValue);
-                    }
-                    else
-                    {
-                        row.Cells["pocheckColumn"].Value = false;
+                        if (row.Index == e.RowIndex)
+                        {
+                            row.Cells["pocheckColumn"].Value = !Convert.ToBoolean(row.Cells["pocheckColumn"].EditedFormattedValue);
+                        }
+                        else
+                        {
+                            row.Cells["pocheckColumn"].Value = false;
+                        }
                     }
                 }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show("Please try again!");
+                }
+
             }
         }
 
@@ -2614,6 +2646,7 @@ namespace ITP4519M
         {
             if (this.GRNPageIndex < this.GRNTotalPage)
             {
+
                 this.GRNPageIndex++;
                 this.grndata.DataSource = programMethod.GetGRNCurrentRecords(this.GRNPageIndex, GRNPgSize);
 
@@ -2622,10 +2655,12 @@ namespace ITP4519M
 
             if (GRNPageIndex != GRNTotalPage)
             {
+
                 grnPage.Text = (GRNPgSize * GRNPageIndex - (GRNPgSize - 1)) + " - " + (GRNPgSize * GRNPageIndex) + " of " + GRNRowCount;
             }
             else
             {
+
                 grnPage.Text = (GRNPgSize * GRNPageIndex - (GRNPgSize - 1)) + " - " + GRNRowCount + " of " + GRNRowCount;
             }
         }
@@ -2635,13 +2670,17 @@ namespace ITP4519M
             this.GRNPageIndex = GRNTotalPage;
             this.grndata.DataSource = programMethod.GetGRNCurrentRecords(this.GRNPageIndex, GRNPgSize);
             SetRowHeights(grndata, GRNPgSize);
-            grnPage.Text = (GRNPgSize * GRNPageIndex - (GRNPgSize - 1)) + "-" + GRNRowCount + " of " + GRNRowCount;
+            grnPage.Text = (GRNPgSize * GRNPageIndex - (GRNPgSize - 1)) + " - " + GRNRowCount + " of " + GRNRowCount;
         }
 
         private void orderAccemblySearchbox_KeyDown(object sender, KeyEventArgs e)
         {
-            orderAccemblyData.DataSource = programMethod.searchOrderAccembly(orderAccemblySearchbox.Text.Trim());
-            SetRowHeights(orderAccemblyData, 15);
+            if (e.KeyCode == Keys.Enter)
+            {
+                orderAccemblyData.DataSource = programMethod.searchOrderAccembly(orderAccemblySearchbox.Text.Trim());
+                orderAccemblySearchbox.Clear();
+                SetRowHeights(orderAccemblyData, 15);
+            }
         }
 
         private void orderAccemblydateTimePicker_ValueChanged(object sender, EventArgs e)
@@ -2654,10 +2693,14 @@ namespace ITP4519M
             if (e.KeyCode == Keys.Enter)
             {
                 if (orderSearchbox.Text.Trim() == "")
-                    //orderdata.DataSource = programMethod.GetorderCurrentRecords(outstandingPageIndex, outstandingPgSize);
-                    orderdata.Refresh();
+                {
+                    orderdata.DataSource = programMethod.GetCurrentRecords("Order", OrderPageIndex, OrderPgSize);
+                    SetRowHeights(orderdata, OrderPgSize);
+                }
                 else
                     orderdata.DataSource = programMethod.searchOrder(orderSearchbox.Text.Trim());
+                SetRowHeights(orderdata, OrderPgSize);
+                orderSearchbox.Clear();
             }
         }
 
@@ -2778,8 +2821,254 @@ namespace ITP4519M
 
         private void stockSearchBox_KeyDown(object sender, KeyEventArgs e)
         {
-            stockData.DataSource = programMethod.searchProductInformation(stockSearchBox.Text.Trim());
+            if (e.KeyCode == Keys.Enter)
+            {
+                stockData.DataSource = programMethod.searchProductInformation(stockSearchBox.Text.Trim());
+                SetRowHeights(stockData, StockPgSize);
+                stockSearchBox.Clear();
+            }
+
+        }
+        private void orderNextPagebtn_Click_1(object sender, EventArgs e)
+        {
+            if (this.OrderPageIndex < this.OrderTotalPage)
+            {
+                this.OrderPageIndex++;
+                this.orderdata.DataSource = programMethod.GetCurrentRecords("Order", this.OrderPageIndex, OrderPgSize);
+
+            }
+            SetRowHeights(orderdata, OrderPgSize);
+
+            if (OrderPageIndex != OrderTotalPage)
+            {
+                orderIndexlbl.Text = (OrderPgSize * OrderPageIndex - (OrderPgSize - 1)) + " - " + (OrderPgSize * OrderPageIndex) + " of " + OrderRowCount;
+            }
+            else
+            {
+                orderIndexlbl.Text = (OrderPgSize * OrderPageIndex - (OrderPgSize - 1)) + " - " + OrderRowCount + " of " + OrderRowCount;
+            }
+        }
+
+        private void orderLastPagebtn_Click_1(object sender, EventArgs e)
+        {
+            this.OrderPageIndex = OrderTotalPage;
+            this.orderdata.DataSource = programMethod.GetCurrentRecords("Order", this.OrderPageIndex, OrderPgSize);
+            SetRowHeights(orderdata, OrderPgSize);
+            orderIndexlbl.Text = (OrderPgSize * OrderPageIndex - (OrderPgSize - 1)) + "-" + OrderRowCount + " of " + OrderRowCount;
+        }
+
+        private void orderPrevPagebtn_Click_1(object sender, EventArgs e)
+        {
+            if (this.OrderPageIndex > 1)
+            {
+                this.OrderPageIndex--;
+                this.orderdata.DataSource = programMethod.GetCurrentRecords("Order", this.OrderPageIndex, OrderPgSize);
+            }
+            SetRowHeights(orderdata, OrderPgSize);
+            orderIndexlbl.Text = (OrderPgSize * OrderPageIndex - (OrderPgSize - 1)) + " - " + (OrderPgSize * OrderPageIndex) + " of " + OrderRowCount;
+        }
+
+        private void orderFirstPagebtn_Click_1(object sender, EventArgs e)
+        {
+            this.OrderPageIndex = 1;
+            this.orderdata.DataSource = programMethod.GetCurrentRecords("Order", this.OrderPageIndex, OrderPgSize);
+            SetRowHeights(orderdata, OrderPgSize);
+
+            orderIndexlbl.Text = "1" + " - " + OrderPgSize + " of " + OrderRowCount;
+        }
+
+        private void stockReOrderlbl_Click(object sender, EventArgs e)
+        {
+            stockData.DataSource = programMethod.getStockReOrderInfo();
+            if (stockData.Rows.Count > 0)
+            {
+                stockData.Rows[0].Selected = false;
+            }
             SetRowHeights(stockData, StockPgSize);
+            StockLevelBoldAndColor();
+        }
+
+        private void stockDangerlbl_Click(object sender, EventArgs e)
+        {
+            stockData.DataSource = programMethod.getStockDangerInfo();
+            stockData.Rows[0].Selected = false;
+            SetRowHeights(stockData, StockPgSize);
+            StockLevelBoldAndColor();
+        }
+
+        private void stockOutOfStocklbl_Click(object sender, EventArgs e)
+        {
+            stockData.DataSource = programMethod.getStockOutOfStockInfo();
+            stockData.Rows[0].Selected = false;
+            SetRowHeights(stockData, StockPgSize);
+            StockLevelBoldAndColor();
+        }
+
+        private void stockClearbtn_Click(object sender, EventArgs e)
+        {
+            stockData.DataSource = programMethod.GetStockCurrentRecords(StockPageIndex, StockPgSize);
+            stockData.Rows[0].Selected = false;
+            SetRowHeights(stockData, StockPgSize);
+            StockLevelBoldAndColor();
+        }
+
+        private void orderClearbtn_Click_1(object sender, EventArgs e)
+        {
+            orderdata.DataSource = programMethod.GetCurrentRecords("Order", OrderPageIndex, OrderPgSize);
+            orderdata.Rows[0].Selected = false;
+            SetRowHeights(orderdata, OrderPgSize);
+        }
+
+        private void orderAccemblyClearbtn_Click(object sender, EventArgs e)
+        {
+            string[] MinDate = programMethod.getOrderMinAndMaxDateForOrderAccembly();
+            orderAccemblydateTimePicker.MinDate = DateTime.Parse(MinDate[0]);
+            orderAccemblydateTimePicker.MaxDate = DateTime.Parse(MinDate[1]);
+            orderAccemblydateTimePicker.Value = DateTime.Parse(MinDate[0]);
+            orderAccemblydateTimePicker2.MinDate = DateTime.Parse(MinDate[0]);
+            orderAccemblydateTimePicker2.MaxDate = DateTime.Parse(MinDate[1]);
+            orderAccemblydateTimePicker2.Value = DateTime.Parse(MinDate[1]);
+
+            orderAccemblyData.DataSource = programMethod.overallOrderinfo();
+            orderAccemblyData.Rows[0].Selected = false;
+            ShowPanel(OrderAccemblypnl);
+        }
+
+        private void deliverySearchIDbox_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                deliveryData.DataSource = programMethod.searchDeliveryNote(deliverySearchIDbox.Text.Trim());
+                deliverySearchIDbox.Clear();
+                //SetRowHeights(deliveryData, DelivePgSize);
+            }
+        }
+
+        private void ClearLogButton_Click(object sender, EventArgs e)
+        {
+            string[] MinDate = programMethod.getMinAndMaxDateForAuditLog();
+            logdateTimePicker1.MinDate = DateTime.Parse(MinDate[0]);
+            logdateTimePicker1.MaxDate = DateTime.Parse(MinDate[1]);
+            logdateTimePicker1.Value = DateTime.Parse(MinDate[0]);
+            logdateTimePicker2.MinDate = DateTime.Parse(MinDate[0]);
+            logdateTimePicker2.MaxDate = DateTime.Parse(MinDate[1]);
+            logdateTimePicker2.Value = DateTime.Parse(MinDate[1]);
+            auditTypeStatusbox.SelectedIndex = -1;
+            auditlogStatusbox.SelectedIndex = -1;
+
+
+            auditLogdata.Columns[0].Width = 90;
+            auditLogdata.Columns[1].Width = 70;
+            auditLogdata.Columns[2].Width = 110;
+            auditLogdata.Columns[3].Width = 80;
+            auditLogdata.Columns[4].Width = 580;
+
+        }
+
+        private void auditsearchbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                auditLogdata.DataSource = programMethod.searchLoginfo(auditsearchbox.Text.Trim());
+                auditsearchbox.Clear();
+
+                string[] MinDate = programMethod.getMinAndMaxDateForAuditLog();
+                logdateTimePicker1.MinDate = DateTime.Parse(MinDate[0]);
+                logdateTimePicker1.MaxDate = DateTime.Parse(MinDate[1]);
+                logdateTimePicker1.Value = DateTime.Parse(MinDate[0]);
+                logdateTimePicker2.MinDate = DateTime.Parse(MinDate[0]);
+                logdateTimePicker2.MaxDate = DateTime.Parse(MinDate[1]);
+                logdateTimePicker2.Value = DateTime.Parse(MinDate[1]);
+
+                auditLogdata.Columns[0].Width = 90;
+                auditLogdata.Columns[1].Width = 70;
+                auditLogdata.Columns[2].Width = 110;
+                auditLogdata.Columns[3].Width = 80;
+                auditLogdata.Columns[4].Width = 580;
+            }
+
+        }
+
+        private void accountSearchBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+
+                userData.DataSource = programMethod.searchUserInformation(accountSearchBox.Text.Trim());
+                accountSearchBox.Clear();
+            }
+        }
+
+        private void accountClearbtn_Click(object sender, EventArgs e)
+        {
+            userData.DataSource = programMethod.GetAccountCurrentRecords(CurrentPageIndex, PgSize);
+            userData.Rows[0].Selected = false;
+        }
+
+        private void invoiceClearBtn_Click(object sender, EventArgs e)
+        {
+
+            invoiceData.DataSource = programMethod.GetInvoiceCurrentRecords(InvoicePageIndex, InvoicePgSize);
+            invoiceData.Rows[0].Selected = false;
+            SetRowHeights(invoiceData, InvoicePgSize);
+
+
+            string[] MinDate = programMethod.getMinAndMaxDateForInvoice();
+            InvoicedateTimePicker1.MinDate = DateTime.Parse(MinDate[0]);
+            InvoicedateTimePicker1.MaxDate = DateTime.Parse(MinDate[1]);
+            InvoicedateTimePicker1.Value = DateTime.Parse(MinDate[0]);
+            invoicedateTimePicker2.MinDate = DateTime.Parse(MinDate[0]);
+            invoicedateTimePicker2.MaxDate = DateTime.Parse(MinDate[1]);
+            invoicedateTimePicker2.Value = DateTime.Parse(MinDate[1]);
+
+        }
+
+        private void invoiceSearchbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+
+                invoiceData.DataSource = programMethod.searchInvoiceInfo(invoiceSearchbox.Text.Trim());
+                invoiceData.Rows[0].Selected = false;
+                SetRowHeights(invoiceData, InvoicePgSize);
+                invoiceSearchbox.Clear();
+            }
+        }
+
+        private void poSearchbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                poData.DataSource = programMethod.searchPOInformation(poSearchbox.Text.Trim());
+                poSearchbox.Clear();
+            }
+        }
+
+
+        private void poClearbtn_Click(object sender, EventArgs e)
+        {
+            poData.DataSource = programMethod.GetPOCurrentRecords(POPageIndex, POPgSize);
+            poData.Rows[0].Selected = false;
+            SetRowHeights(poData, POPgSize);
+
+
+            string[] MinDate = programMethod.getMinAndMaxDateForPO();
+            podateTimePicker1.MinDate = DateTime.Parse(MinDate[0]);
+            podateTimePicker1.MaxDate = DateTime.Parse(MinDate[1]);
+            podateTimePicker1.Value = DateTime.Parse(MinDate[0]);
+            podateTimePicker2.MinDate = DateTime.Parse(MinDate[0]);
+            podateTimePicker2.MaxDate = DateTime.Parse(MinDate[1]);
+            podateTimePicker2.Value = DateTime.Parse(MinDate[1]);
+        }
+
+        private void grnsearchbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) {
+                MessageBox.Show(grnsearchbox.Text);
+                poData.DataSource = programMethod.searchGRNinfo(grnsearchbox.Text.Trim());
+                SetRowHeights(poData, POPgSize);
+                grnsearchbox.Clear();
+            }
         }
     }
 }

@@ -103,10 +103,10 @@ namespace ITP4519M
             // 
             displaynamelbl.AutoSize = true;
             displaynamelbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            displaynamelbl.Location = new Point(528, 126);
-            displaynamelbl.Margin = new Padding(5, 0, 5, 0);
+            displaynamelbl.Location = new Point(462, 94);
+            displaynamelbl.Margin = new Padding(4, 0, 4, 0);
             displaynamelbl.Name = "displaynamelbl";
-            displaynamelbl.Size = new Size(109, 20);
+            displaynamelbl.Size = new Size(91, 17);
             displaynamelbl.TabIndex = 22;
             displaynamelbl.Text = "DisplayName";
             // 
@@ -115,10 +115,10 @@ namespace ITP4519M
             registerDisplaynameBox.BackColor = SystemColors.Window;
             registerDisplaynameBox.BorderStyle = BorderStyle.None;
             registerDisplaynameBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            registerDisplaynameBox.Location = new Point(5, 4);
-            registerDisplaynameBox.Margin = new Padding(5, 4, 5, 4);
+            registerDisplaynameBox.Location = new Point(4, 3);
+            registerDisplaynameBox.Margin = new Padding(4, 3, 4, 3);
             registerDisplaynameBox.Name = "registerDisplaynameBox";
-            registerDisplaynameBox.Size = new Size(180, 20);
+            registerDisplaynameBox.Size = new Size(158, 16);
             registerDisplaynameBox.TabIndex = 21;
             registerDisplaynameBox.TextChanged += PasswordBox_TextChanged;
             // 
@@ -126,10 +126,10 @@ namespace ITP4519M
             // 
             createAccountBtn.AccessibleRole = AccessibleRole.None;
             createAccountBtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            createAccountBtn.Location = new Point(403, 537);
-            createAccountBtn.Margin = new Padding(5, 4, 5, 4);
+            createAccountBtn.Location = new Point(353, 403);
+            createAccountBtn.Margin = new Padding(4, 3, 4, 3);
             createAccountBtn.Name = "createAccountBtn";
-            createAccountBtn.Size = new Size(248, 48);
+            createAccountBtn.Size = new Size(217, 36);
             createAccountBtn.TabIndex = 20;
             createAccountBtn.Text = "Create Account";
             createAccountBtn.UseVisualStyleBackColor = true;
@@ -139,10 +139,10 @@ namespace ITP4519M
             // 
             usernamelbl.AutoSize = true;
             usernamelbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            usernamelbl.Location = new Point(293, 126);
-            usernamelbl.Margin = new Padding(5, 0, 5, 0);
+            usernamelbl.Location = new Point(256, 94);
+            usernamelbl.Margin = new Padding(4, 0, 4, 0);
             usernamelbl.Name = "usernamelbl";
-            usernamelbl.Size = new Size(89, 20);
+            usernamelbl.Size = new Size(75, 17);
             usernamelbl.TabIndex = 19;
             usernamelbl.Text = "UserName";
             usernamelbl.Click += label2_Click;
@@ -152,10 +152,10 @@ namespace ITP4519M
             newAccountlabel.AutoSize = true;
             newAccountlabel.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             newAccountlabel.ForeColor = Color.Black;
-            newAccountlabel.Location = new Point(379, 56);
+            newAccountlabel.Location = new Point(332, 42);
             newAccountlabel.Margin = new Padding(2, 0, 2, 0);
             newAccountlabel.Name = "newAccountlabel";
-            newAccountlabel.Size = new Size(290, 32);
+            newAccountlabel.Size = new Size(230, 26);
             newAccountlabel.TabIndex = 25;
             newAccountlabel.Text = "Create New Account";
             newAccountlabel.TextAlign = ContentAlignment.BottomRight;
@@ -164,10 +164,10 @@ namespace ITP4519M
             // 
             maillbl.AutoSize = true;
             maillbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            maillbl.Location = new Point(294, 352);
-            maillbl.Margin = new Padding(5, 0, 5, 0);
+            maillbl.Location = new Point(257, 264);
+            maillbl.Margin = new Padding(4, 0, 4, 0);
             maillbl.Name = "maillbl";
-            maillbl.Size = new Size(107, 20);
+            maillbl.Size = new Size(89, 17);
             maillbl.TabIndex = 27;
             maillbl.Text = "Mail Address";
             // 
@@ -175,20 +175,20 @@ namespace ITP4519M
             // 
             mailBox.BorderStyle = BorderStyle.None;
             mailBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            mailBox.Location = new Point(5, 4);
-            mailBox.Margin = new Padding(5, 4, 5, 4);
+            mailBox.Location = new Point(4, 3);
+            mailBox.Margin = new Padding(4, 3, 4, 3);
             mailBox.Name = "mailBox";
-            mailBox.Size = new Size(220, 20);
+            mailBox.Size = new Size(192, 16);
             mailBox.TabIndex = 26;
             // 
             // phoneNumlbl
             // 
             phoneNumlbl.AutoSize = true;
             phoneNumlbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            phoneNumlbl.Location = new Point(561, 352);
-            phoneNumlbl.Margin = new Padding(5, 0, 5, 0);
+            phoneNumlbl.Location = new Point(491, 264);
+            phoneNumlbl.Margin = new Padding(4, 0, 4, 0);
             phoneNumlbl.Name = "phoneNumlbl";
-            phoneNumlbl.Size = new Size(120, 20);
+            phoneNumlbl.Size = new Size(103, 17);
             phoneNumlbl.TabIndex = 29;
             phoneNumlbl.Text = "Phone Number";
             // 
@@ -196,20 +196,20 @@ namespace ITP4519M
             // 
             phoneNumBox.BorderStyle = BorderStyle.None;
             phoneNumBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            phoneNumBox.Location = new Point(5, 4);
-            phoneNumBox.Margin = new Padding(5, 4, 5, 4);
+            phoneNumBox.Location = new Point(4, 3);
+            phoneNumBox.Margin = new Padding(4, 3, 4, 3);
             phoneNumBox.Name = "phoneNumBox";
-            phoneNumBox.Size = new Size(180, 20);
+            phoneNumBox.Size = new Size(158, 16);
             phoneNumBox.TabIndex = 28;
             // 
             // departlbl
             // 
             departlbl.AutoSize = true;
             departlbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            departlbl.Location = new Point(561, 449);
-            departlbl.Margin = new Padding(5, 0, 5, 0);
+            departlbl.Location = new Point(491, 337);
+            departlbl.Margin = new Padding(4, 0, 4, 0);
             departlbl.Name = "departlbl";
-            departlbl.Size = new Size(97, 20);
+            departlbl.Size = new Size(82, 17);
             departlbl.TabIndex = 31;
             departlbl.Text = "Department";
             departlbl.Click += label6_Click;
@@ -222,10 +222,10 @@ namespace ITP4519M
             departBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             departBox.FormattingEnabled = true;
             departBox.Items.AddRange(new object[] { "IT", "Account", "Sales", "WareHouse", "Purchasing", "Invoice" });
-            departBox.Location = new Point(561, 476);
-            departBox.Margin = new Padding(2, 3, 2, 3);
+            departBox.Location = new Point(491, 357);
+            departBox.Margin = new Padding(2, 2, 2, 2);
             departBox.Name = "departBox";
-            departBox.Size = new Size(218, 28);
+            departBox.Size = new Size(191, 25);
             departBox.TabIndex = 32;
             departBox.ValueMember = "DepartmentName";
             departBox.SelectedIndexChanged += departBox_SelectedIndexChanged;
@@ -235,10 +235,10 @@ namespace ITP4519M
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Verdana", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(767, 0);
-            button1.Margin = new Padding(2, 3, 2, 3);
+            button1.Location = new Point(671, 0);
+            button1.Margin = new Padding(2, 2, 2, 2);
             button1.Name = "button1";
-            button1.Size = new Size(40, 49);
+            button1.Size = new Size(35, 37);
             button1.TabIndex = 33;
             button1.Text = "X";
             button1.UseVisualStyleBackColor = true;
@@ -255,9 +255,9 @@ namespace ITP4519M
             panel1.Controls.Add(label9);
             panel1.Controls.Add(pictureBox2);
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(2, 3, 2, 3);
+            panel1.Margin = new Padding(2, 2, 2, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(264, 640);
+            panel1.Size = new Size(231, 480);
             panel1.TabIndex = 34;
             // 
             // accountreadlbl
@@ -265,10 +265,10 @@ namespace ITP4519M
             accountreadlbl.AutoSize = true;
             accountreadlbl.Font = new Font("Century", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             accountreadlbl.ForeColor = SystemColors.Window;
-            accountreadlbl.Location = new Point(18, 320);
+            accountreadlbl.Location = new Point(16, 240);
             accountreadlbl.Margin = new Padding(2, 0, 2, 0);
             accountreadlbl.Name = "accountreadlbl";
-            accountreadlbl.Size = new Size(158, 28);
+            accountreadlbl.Size = new Size(132, 23);
             accountreadlbl.TabIndex = 4;
             accountreadlbl.Text = "the Employee";
             // 
@@ -277,10 +277,10 @@ namespace ITP4519M
             label7.AutoSize = true;
             label7.Font = new Font("Century", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = SystemColors.Window;
-            label7.Location = new Point(18, 371);
+            label7.Location = new Point(16, 278);
             label7.Margin = new Padding(2, 0, 2, 0);
             label7.Name = "label7";
-            label7.Size = new Size(140, 28);
+            label7.Size = new Size(117, 23);
             label7.TabIndex = 3;
             label7.Text = "Information";
             // 
@@ -289,10 +289,10 @@ namespace ITP4519M
             accountlbl.AutoSize = true;
             accountlbl.Font = new Font("Century", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             accountlbl.ForeColor = SystemColors.Window;
-            accountlbl.Location = new Point(18, 320);
+            accountlbl.Location = new Point(16, 240);
             accountlbl.Margin = new Padding(2, 0, 2, 0);
             accountlbl.Name = "accountlbl";
-            accountlbl.Size = new Size(213, 28);
+            accountlbl.Size = new Size(177, 23);
             accountlbl.TabIndex = 2;
             accountlbl.Text = "the New Employee";
             // 
@@ -301,10 +301,10 @@ namespace ITP4519M
             label9.AutoSize = true;
             label9.Font = new Font("Century", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label9.ForeColor = SystemColors.Window;
-            label9.Location = new Point(18, 267);
+            label9.Location = new Point(16, 200);
             label9.Margin = new Padding(2, 0, 2, 0);
             label9.Name = "label9";
-            label9.Size = new Size(144, 28);
+            label9.Size = new Size(121, 23);
             label9.TabIndex = 1;
             label9.Text = "Please fill in";
             // 
@@ -312,10 +312,10 @@ namespace ITP4519M
             // 
             pictureBox2.BackgroundImage = Properties.Resources.company_logo;
             pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox2.Location = new Point(2, 97);
-            pictureBox2.Margin = new Padding(2, 3, 2, 3);
+            pictureBox2.Location = new Point(2, 73);
+            pictureBox2.Margin = new Padding(2, 2, 2, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(257, 99);
+            pictureBox2.Size = new Size(225, 74);
             pictureBox2.TabIndex = 0;
             pictureBox2.TabStop = false;
             // 
@@ -324,10 +324,10 @@ namespace ITP4519M
             registerUsernameBox.BackColor = SystemColors.Window;
             registerUsernameBox.BorderStyle = BorderStyle.None;
             registerUsernameBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            registerUsernameBox.Location = new Point(5, 4);
-            registerUsernameBox.Margin = new Padding(5, 4, 5, 4);
+            registerUsernameBox.Location = new Point(4, 3);
+            registerUsernameBox.Margin = new Padding(4, 3, 4, 3);
             registerUsernameBox.Name = "registerUsernameBox";
-            registerUsernameBox.Size = new Size(180, 20);
+            registerUsernameBox.Size = new Size(158, 16);
             registerUsernameBox.TabIndex = 17;
             registerUsernameBox.TextChanged += registerUsernameBox_TextChanged;
             // 
@@ -335,21 +335,21 @@ namespace ITP4519M
             // 
             registerPasswordBox.BorderStyle = BorderStyle.None;
             registerPasswordBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            registerPasswordBox.Location = new Point(5, 4);
-            registerPasswordBox.Margin = new Padding(5, 4, 5, 4);
+            registerPasswordBox.Location = new Point(4, 3);
+            registerPasswordBox.Margin = new Padding(4, 3, 4, 3);
             registerPasswordBox.Name = "registerPasswordBox";
             registerPasswordBox.PasswordChar = '*';
-            registerPasswordBox.Size = new Size(180, 20);
+            registerPasswordBox.Size = new Size(158, 16);
             registerPasswordBox.TabIndex = 35;
             // 
             // passwordlbl
             // 
             passwordlbl.AutoSize = true;
             passwordlbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            passwordlbl.Location = new Point(294, 227);
-            passwordlbl.Margin = new Padding(5, 0, 5, 0);
+            passwordlbl.Location = new Point(257, 170);
+            passwordlbl.Margin = new Padding(4, 0, 4, 0);
             passwordlbl.Name = "passwordlbl";
-            passwordlbl.Size = new Size(83, 20);
+            passwordlbl.Size = new Size(69, 17);
             passwordlbl.TabIndex = 36;
             passwordlbl.Text = "Password";
             passwordlbl.Click += label10_Click;
@@ -358,10 +358,10 @@ namespace ITP4519M
             // 
             passwordAgainlbl.AutoSize = true;
             passwordAgainlbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            passwordAgainlbl.Location = new Point(528, 227);
-            passwordAgainlbl.Margin = new Padding(5, 0, 5, 0);
+            passwordAgainlbl.Location = new Point(462, 170);
+            passwordAgainlbl.Margin = new Padding(4, 0, 4, 0);
             passwordAgainlbl.Name = "passwordAgainlbl";
-            passwordAgainlbl.Size = new Size(130, 20);
+            passwordAgainlbl.Size = new Size(109, 17);
             passwordAgainlbl.TabIndex = 38;
             passwordAgainlbl.Text = "Password Again";
             passwordAgainlbl.Click += label11_Click;
@@ -370,21 +370,21 @@ namespace ITP4519M
             // 
             registerPasswordAgainBox.BorderStyle = BorderStyle.None;
             registerPasswordAgainBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            registerPasswordAgainBox.Location = new Point(5, 4);
-            registerPasswordAgainBox.Margin = new Padding(5, 4, 5, 4);
+            registerPasswordAgainBox.Location = new Point(4, 3);
+            registerPasswordAgainBox.Margin = new Padding(4, 3, 4, 3);
             registerPasswordAgainBox.Name = "registerPasswordAgainBox";
             registerPasswordAgainBox.PasswordChar = '*';
-            registerPasswordAgainBox.Size = new Size(180, 20);
+            registerPasswordAgainBox.Size = new Size(158, 16);
             registerPasswordAgainBox.TabIndex = 37;
             // 
             // titlelbl
             // 
             titlelbl.AutoSize = true;
             titlelbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            titlelbl.Location = new Point(294, 449);
-            titlelbl.Margin = new Padding(5, 0, 5, 0);
+            titlelbl.Location = new Point(257, 337);
+            titlelbl.Margin = new Padding(4, 0, 4, 0);
             titlelbl.Name = "titlelbl";
-            titlelbl.Size = new Size(41, 20);
+            titlelbl.Size = new Size(35, 17);
             titlelbl.TabIndex = 39;
             titlelbl.Text = "Title";
             // 
@@ -392,20 +392,20 @@ namespace ITP4519M
             // 
             titleBox.BorderStyle = BorderStyle.None;
             titleBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            titleBox.Location = new Point(5, 4);
-            titleBox.Margin = new Padding(5, 4, 5, 4);
+            titleBox.Location = new Point(4, 3);
+            titleBox.Margin = new Padding(4, 3, 4, 3);
             titleBox.Name = "titleBox";
-            titleBox.Size = new Size(220, 20);
+            titleBox.Size = new Size(192, 16);
             titleBox.TabIndex = 42;
             // 
             // registerClearBtn
             // 
             registerClearBtn.AccessibleRole = AccessibleRole.None;
             registerClearBtn.Font = new Font("Arial Narrow", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            registerClearBtn.Location = new Point(475, 593);
-            registerClearBtn.Margin = new Padding(5, 4, 5, 4);
+            registerClearBtn.Location = new Point(416, 445);
+            registerClearBtn.Margin = new Padding(4, 3, 4, 3);
             registerClearBtn.Name = "registerClearBtn";
-            registerClearBtn.Size = new Size(96, 28);
+            registerClearBtn.Size = new Size(84, 21);
             registerClearBtn.TabIndex = 43;
             registerClearBtn.Text = "Clear";
             registerClearBtn.UseVisualStyleBackColor = true;
@@ -416,10 +416,10 @@ namespace ITP4519M
             accountEditlbl.AutoSize = true;
             accountEditlbl.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             accountEditlbl.ForeColor = Color.Black;
-            accountEditlbl.Location = new Point(426, 56);
+            accountEditlbl.Location = new Point(373, 42);
             accountEditlbl.Margin = new Padding(2, 0, 2, 0);
             accountEditlbl.Name = "accountEditlbl";
-            accountEditlbl.Size = new Size(186, 32);
+            accountEditlbl.Size = new Size(147, 26);
             accountEditlbl.TabIndex = 44;
             accountEditlbl.Text = "Edit Account";
             accountEditlbl.TextAlign = ContentAlignment.BottomRight;
@@ -429,10 +429,10 @@ namespace ITP4519M
             viewaccountlbl.AutoSize = true;
             viewaccountlbl.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             viewaccountlbl.ForeColor = Color.Black;
-            viewaccountlbl.Location = new Point(426, 56);
+            viewaccountlbl.Location = new Point(373, 42);
             viewaccountlbl.Margin = new Padding(2, 0, 2, 0);
             viewaccountlbl.Name = "viewaccountlbl";
-            viewaccountlbl.Size = new Size(198, 32);
+            viewaccountlbl.Size = new Size(157, 26);
             viewaccountlbl.TabIndex = 45;
             viewaccountlbl.Text = "View Account";
             viewaccountlbl.TextAlign = ContentAlignment.BottomRight;
@@ -441,10 +441,10 @@ namespace ITP4519M
             // 
             editAccountbtn.AccessibleRole = AccessibleRole.None;
             editAccountbtn.Font = new Font("Microsoft YaHei", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            editAccountbtn.Location = new Point(403, 537);
-            editAccountbtn.Margin = new Padding(5, 4, 5, 4);
+            editAccountbtn.Location = new Point(353, 403);
+            editAccountbtn.Margin = new Padding(4, 3, 4, 3);
             editAccountbtn.Name = "editAccountbtn";
-            editAccountbtn.Size = new Size(248, 48);
+            editAccountbtn.Size = new Size(217, 36);
             editAccountbtn.TabIndex = 46;
             editAccountbtn.Text = "Edit Account";
             editAccountbtn.UseVisualStyleBackColor = true;
@@ -455,10 +455,10 @@ namespace ITP4519M
             passwordNotelbl.AutoSize = true;
             passwordNotelbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             passwordNotelbl.ForeColor = Color.SteelBlue;
-            passwordNotelbl.Location = new Point(293, 288);
-            passwordNotelbl.Margin = new Padding(5, 0, 5, 0);
+            passwordNotelbl.Location = new Point(256, 216);
+            passwordNotelbl.Margin = new Padding(4, 0, 4, 0);
             passwordNotelbl.Name = "passwordNotelbl";
-            passwordNotelbl.Size = new Size(428, 40);
+            passwordNotelbl.Size = new Size(357, 34);
             passwordNotelbl.TabIndex = 47;
             passwordNotelbl.Text = "Note: Password must be at least 8 characters long with \r\nuppercase, lowercase, digit, and special character.";
             // 
@@ -468,9 +468,10 @@ namespace ITP4519M
             usernamepnl.BackColor = SystemColors.Window;
             usernamepnl.Controls.Add(registerUsernameBox);
             usernamepnl.Controls.Add(usernameAlertBox);
-            usernamepnl.Location = new Point(294, 154);
+            usernamepnl.Location = new Point(257, 116);
+            usernamepnl.Margin = new Padding(3, 2, 3, 2);
             usernamepnl.Name = "usernamepnl";
-            usernamepnl.Size = new Size(218, 28);
+            usernamepnl.Size = new Size(191, 21);
             usernamepnl.TabIndex = 77;
             usernamepnl.Paint += usernamepnl_Paint;
             // 
@@ -478,10 +479,10 @@ namespace ITP4519M
             // 
             usernameAlertBox.Image = Properties.Resources.red_alert;
             usernameAlertBox.InitialImage = null;
-            usernameAlertBox.Location = new Point(190, 2);
+            usernameAlertBox.Location = new Point(166, 2);
             usernameAlertBox.Margin = new Padding(3, 2, 3, 2);
             usernameAlertBox.Name = "usernameAlertBox";
-            usernameAlertBox.Size = new Size(24, 24);
+            usernameAlertBox.Size = new Size(21, 18);
             usernameAlertBox.SizeMode = PictureBoxSizeMode.StretchImage;
             usernameAlertBox.TabIndex = 76;
             usernameAlertBox.TabStop = false;
@@ -493,19 +494,20 @@ namespace ITP4519M
             displaynamepnl.BackColor = SystemColors.Window;
             displaynamepnl.Controls.Add(displaynameAlertBox);
             displaynamepnl.Controls.Add(registerDisplaynameBox);
-            displaynamepnl.Location = new Point(530, 154);
+            displaynamepnl.Location = new Point(464, 116);
+            displaynamepnl.Margin = new Padding(3, 2, 3, 2);
             displaynamepnl.Name = "displaynamepnl";
-            displaynamepnl.Size = new Size(218, 28);
+            displaynamepnl.Size = new Size(191, 21);
             displaynamepnl.TabIndex = 78;
             displaynamepnl.Paint += displaynamepnl_Paint;
             // 
             // displaynameAlertBox
             // 
             displaynameAlertBox.Image = Properties.Resources.red_alert;
-            displaynameAlertBox.Location = new Point(190, 2);
+            displaynameAlertBox.Location = new Point(166, 2);
             displaynameAlertBox.Margin = new Padding(3, 2, 3, 2);
             displaynameAlertBox.Name = "displaynameAlertBox";
-            displaynameAlertBox.Size = new Size(24, 24);
+            displaynameAlertBox.Size = new Size(21, 18);
             displaynameAlertBox.SizeMode = PictureBoxSizeMode.StretchImage;
             displaynameAlertBox.TabIndex = 76;
             displaynameAlertBox.TabStop = false;
@@ -516,10 +518,10 @@ namespace ITP4519M
             usernameAlertlbl.AutoSize = true;
             usernameAlertlbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             usernameAlertlbl.ForeColor = Color.Red;
-            usernameAlertlbl.Location = new Point(294, 185);
-            usernameAlertlbl.Margin = new Padding(5, 0, 5, 0);
+            usernameAlertlbl.Location = new Point(257, 139);
+            usernameAlertlbl.Margin = new Padding(4, 0, 4, 0);
             usernameAlertlbl.Name = "usernameAlertlbl";
-            usernameAlertlbl.Size = new Size(200, 20);
+            usernameAlertlbl.Size = new Size(171, 17);
             usernameAlertlbl.TabIndex = 79;
             usernameAlertlbl.Text = "Please enter a username.";
             usernameAlertlbl.Visible = false;
@@ -529,10 +531,10 @@ namespace ITP4519M
             displaynameAlertlbl.AutoSize = true;
             displaynameAlertlbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             displaynameAlertlbl.ForeColor = Color.Red;
-            displaynameAlertlbl.Location = new Point(528, 185);
-            displaynameAlertlbl.Margin = new Padding(5, 0, 5, 0);
+            displaynameAlertlbl.Location = new Point(462, 139);
+            displaynameAlertlbl.Margin = new Padding(4, 0, 4, 0);
             displaynameAlertlbl.Name = "displaynameAlertlbl";
-            displaynameAlertlbl.Size = new Size(224, 20);
+            displaynameAlertlbl.Size = new Size(191, 17);
             displaynameAlertlbl.TabIndex = 80;
             displaynameAlertlbl.Text = "Please enter a display name.";
             displaynameAlertlbl.Visible = false;
@@ -542,9 +544,9 @@ namespace ITP4519M
             emailAlertlbl.AutoSize = true;
             emailAlertlbl.Font = new Font("Microsoft Sans Serif", 10.2F);
             emailAlertlbl.ForeColor = Color.SteelBlue;
-            emailAlertlbl.Location = new Point(294, 412);
+            emailAlertlbl.Location = new Point(257, 309);
             emailAlertlbl.Name = "emailAlertlbl";
-            emailAlertlbl.Size = new Size(186, 20);
+            emailAlertlbl.Size = new Size(156, 17);
             emailAlertlbl.TabIndex = 81;
             emailAlertlbl.Text = "example@example.com";
             // 
@@ -553,9 +555,9 @@ namespace ITP4519M
             phoneAlertlbl.AutoSize = true;
             phoneAlertlbl.Font = new Font("Microsoft Sans Serif", 10.2F);
             phoneAlertlbl.ForeColor = Color.SteelBlue;
-            phoneAlertlbl.Location = new Point(561, 412);
+            phoneAlertlbl.Location = new Point(491, 309);
             phoneAlertlbl.Name = "phoneAlertlbl";
-            phoneAlertlbl.Size = new Size(130, 20);
+            phoneAlertlbl.Size = new Size(111, 17);
             phoneAlertlbl.TabIndex = 82;
             phoneAlertlbl.Text = "6 to 13 numbers";
             // 
@@ -565,9 +567,10 @@ namespace ITP4519M
             passwordpnl.BackColor = SystemColors.Window;
             passwordpnl.Controls.Add(passwordAlertBox);
             passwordpnl.Controls.Add(registerPasswordBox);
-            passwordpnl.Location = new Point(294, 257);
+            passwordpnl.Location = new Point(257, 193);
+            passwordpnl.Margin = new Padding(3, 2, 3, 2);
             passwordpnl.Name = "passwordpnl";
-            passwordpnl.Size = new Size(218, 28);
+            passwordpnl.Size = new Size(191, 21);
             passwordpnl.TabIndex = 78;
             passwordpnl.Paint += passwordpnl_Paint;
             // 
@@ -575,10 +578,10 @@ namespace ITP4519M
             // 
             passwordAlertBox.Image = Properties.Resources.red_alert;
             passwordAlertBox.InitialImage = null;
-            passwordAlertBox.Location = new Point(190, 2);
+            passwordAlertBox.Location = new Point(166, 2);
             passwordAlertBox.Margin = new Padding(3, 2, 3, 2);
             passwordAlertBox.Name = "passwordAlertBox";
-            passwordAlertBox.Size = new Size(24, 24);
+            passwordAlertBox.Size = new Size(21, 18);
             passwordAlertBox.SizeMode = PictureBoxSizeMode.StretchImage;
             passwordAlertBox.TabIndex = 76;
             passwordAlertBox.TabStop = false;
@@ -590,19 +593,20 @@ namespace ITP4519M
             passwordAgainpnl.BackColor = SystemColors.Window;
             passwordAgainpnl.Controls.Add(passwordAgainAlertBox);
             passwordAgainpnl.Controls.Add(registerPasswordAgainBox);
-            passwordAgainpnl.Location = new Point(530, 257);
+            passwordAgainpnl.Location = new Point(464, 193);
+            passwordAgainpnl.Margin = new Padding(3, 2, 3, 2);
             passwordAgainpnl.Name = "passwordAgainpnl";
-            passwordAgainpnl.Size = new Size(218, 28);
+            passwordAgainpnl.Size = new Size(191, 21);
             passwordAgainpnl.TabIndex = 79;
             passwordAgainpnl.Paint += passwordAgainpnl_Paint;
             // 
             // passwordAgainAlertBox
             // 
             passwordAgainAlertBox.Image = Properties.Resources.red_alert;
-            passwordAgainAlertBox.Location = new Point(190, 2);
+            passwordAgainAlertBox.Location = new Point(166, 2);
             passwordAgainAlertBox.Margin = new Padding(3, 2, 3, 2);
             passwordAgainAlertBox.Name = "passwordAgainAlertBox";
-            passwordAgainAlertBox.Size = new Size(24, 24);
+            passwordAgainAlertBox.Size = new Size(21, 18);
             passwordAgainAlertBox.SizeMode = PictureBoxSizeMode.StretchImage;
             passwordAgainAlertBox.TabIndex = 76;
             passwordAgainAlertBox.TabStop = false;
@@ -614,19 +618,20 @@ namespace ITP4519M
             mailpnl.BackColor = SystemColors.Window;
             mailpnl.Controls.Add(mailAlertBox);
             mailpnl.Controls.Add(mailBox);
-            mailpnl.Location = new Point(293, 381);
+            mailpnl.Location = new Point(256, 286);
+            mailpnl.Margin = new Padding(3, 2, 3, 2);
             mailpnl.Name = "mailpnl";
-            mailpnl.Size = new Size(259, 28);
+            mailpnl.Size = new Size(227, 21);
             mailpnl.TabIndex = 79;
             mailpnl.Paint += mailpnl_Paint;
             // 
             // mailAlertBox
             // 
             mailAlertBox.Image = Properties.Resources.red_alert;
-            mailAlertBox.Location = new Point(232, 2);
+            mailAlertBox.Location = new Point(203, 2);
             mailAlertBox.Margin = new Padding(3, 2, 3, 2);
             mailAlertBox.Name = "mailAlertBox";
-            mailAlertBox.Size = new Size(24, 24);
+            mailAlertBox.Size = new Size(21, 18);
             mailAlertBox.SizeMode = PictureBoxSizeMode.StretchImage;
             mailAlertBox.TabIndex = 76;
             mailAlertBox.TabStop = false;
@@ -638,19 +643,20 @@ namespace ITP4519M
             phonepnl.BackColor = SystemColors.Window;
             phonepnl.Controls.Add(phoneAlertBox);
             phonepnl.Controls.Add(phoneNumBox);
-            phonepnl.Location = new Point(561, 381);
+            phonepnl.Location = new Point(491, 286);
+            phonepnl.Margin = new Padding(3, 2, 3, 2);
             phonepnl.Name = "phonepnl";
-            phonepnl.Size = new Size(218, 28);
+            phonepnl.Size = new Size(191, 21);
             phonepnl.TabIndex = 79;
             phonepnl.Paint += phonepnl_Paint;
             // 
             // phoneAlertBox
             // 
             phoneAlertBox.Image = Properties.Resources.red_alert;
-            phoneAlertBox.Location = new Point(190, 2);
+            phoneAlertBox.Location = new Point(166, 2);
             phoneAlertBox.Margin = new Padding(3, 2, 3, 2);
             phoneAlertBox.Name = "phoneAlertBox";
-            phoneAlertBox.Size = new Size(24, 24);
+            phoneAlertBox.Size = new Size(21, 18);
             phoneAlertBox.SizeMode = PictureBoxSizeMode.StretchImage;
             phoneAlertBox.TabIndex = 76;
             phoneAlertBox.TabStop = false;
@@ -662,19 +668,20 @@ namespace ITP4519M
             titilepnl.BackColor = SystemColors.Window;
             titilepnl.Controls.Add(titleAlertBox);
             titilepnl.Controls.Add(titleBox);
-            titilepnl.Location = new Point(293, 476);
+            titilepnl.Location = new Point(256, 357);
+            titilepnl.Margin = new Padding(3, 2, 3, 2);
             titilepnl.Name = "titilepnl";
-            titilepnl.Size = new Size(259, 28);
+            titilepnl.Size = new Size(227, 21);
             titilepnl.TabIndex = 80;
             titilepnl.Paint += titilepnl_Paint;
             // 
             // titleAlertBox
             // 
             titleAlertBox.Image = Properties.Resources.red_alert;
-            titleAlertBox.Location = new Point(230, 3);
+            titleAlertBox.Location = new Point(201, 2);
             titleAlertBox.Margin = new Padding(3, 2, 3, 2);
             titleAlertBox.Name = "titleAlertBox";
-            titleAlertBox.Size = new Size(26, 23);
+            titleAlertBox.Size = new Size(23, 17);
             titleAlertBox.SizeMode = PictureBoxSizeMode.StretchImage;
             titleAlertBox.TabIndex = 76;
             titleAlertBox.TabStop = false;
@@ -685,10 +692,10 @@ namespace ITP4519M
             titleAlertlbl.AutoSize = true;
             titleAlertlbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             titleAlertlbl.ForeColor = Color.Red;
-            titleAlertlbl.Location = new Point(294, 507);
-            titleAlertlbl.Margin = new Padding(5, 0, 5, 0);
+            titleAlertlbl.Location = new Point(257, 380);
+            titleAlertlbl.Margin = new Padding(4, 0, 4, 0);
             titleAlertlbl.Name = "titleAlertlbl";
-            titleAlertlbl.Size = new Size(153, 20);
+            titleAlertlbl.Size = new Size(130, 17);
             titleAlertlbl.TabIndex = 83;
             titleAlertlbl.Text = "Please enter a title.";
             titleAlertlbl.Visible = false;
@@ -698,20 +705,20 @@ namespace ITP4519M
             departAlertlbl.AutoSize = true;
             departAlertlbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             departAlertlbl.ForeColor = Color.Red;
-            departAlertlbl.Location = new Point(561, 507);
-            departAlertlbl.Margin = new Padding(5, 0, 5, 0);
+            departAlertlbl.Location = new Point(491, 384);
+            departAlertlbl.Margin = new Padding(4, 0, 4, 0);
             departAlertlbl.Name = "departAlertlbl";
-            departAlertlbl.Size = new Size(217, 20);
+            departAlertlbl.Size = new Size(184, 17);
             departAlertlbl.TabIndex = 84;
             departAlertlbl.Text = "Please select a department.";
             departAlertlbl.Visible = false;
             // 
             // RegisterForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
-            ClientSize = new Size(807, 640);
+            ClientSize = new Size(706, 480);
             Controls.Add(departAlertlbl);
             Controls.Add(titleAlertlbl);
             Controls.Add(titilepnl);
@@ -744,7 +751,7 @@ namespace ITP4519M
             Controls.Add(usernamelbl);
             Controls.Add(editAccountbtn);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(2, 3, 2, 3);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "RegisterForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "RegisterForm";

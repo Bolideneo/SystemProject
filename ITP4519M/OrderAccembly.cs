@@ -124,7 +124,11 @@ namespace ITP4519M
                     orderItemdata.Columns.Add("ProductName", "Product Name");
                     orderItemdata.Columns.Add("Quantity", "Quantity");
                     orderItemdata.Columns.Add("FollowQuantity", "FollowQuantity");
-                    orderAccemblyOrderItemdata.Rows[0].Selected = false;
+                    if(orderItemdata.Rows.Count > 0)
+                    {
+                        orderAccemblyOrderItemdata.Rows[0].Selected = false;
+                    }
+                   
                     // ClearForm();
                     break;
                 case OperationMode.Edit:

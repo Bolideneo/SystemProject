@@ -461,6 +461,8 @@ namespace ITP4519M
                 phoneNumBox.Text = result.Rows[0]["DealerPhoneNum"].ToString();
                 dealerCompanyBox.Text = result.Rows[0]["DealerCompanyName"].ToString();
                 goodsAddressBox.Text = result.Rows[0]["DealerCompanyAddress"].ToString();
+                orderEmailAddressbox.Text = result.Rows[0]["DealerEmailAddress"].ToString();
+                invoiceAddressBox.Text = result.Rows[0]["DealerCompanyAddress"].ToString();
             }
         }
 

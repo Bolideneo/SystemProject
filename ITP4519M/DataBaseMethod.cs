@@ -541,7 +541,7 @@ namespace ITP4519M
 
         public DataTable GetSupplierCurrentRecords2(int page, int pageSize)
         {
-            string sql = "SELECT* FROM(SELECT s.SupplierID, s.SupplierCompanyName, s.SupplierContactPerson, s.SupplierPhoneNum, s.SupplierEmail, s.SupplierAddress, p.ProductName FROM supplier s LEFT JOIN supplierproducts sp ON s.SupplierID = sp.SupplierID LEFT JOIN product p ON sp.ProductID = p.ProductID ORDER BY s.SupplierID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY SupplierID";
+            string sql = "SELECT* FROM(SELECT s.SupplierID, p.ProductID, s.SupplierCompanyName, s.SupplierContactPerson, s.SupplierPhoneNum, s.SupplierEmail, s.SupplierAddress, p.ProductName FROM supplier s LEFT JOIN supplierproducts sp ON s.SupplierID = sp.SupplierID LEFT JOIN product p ON sp.ProductID = p.ProductID ORDER BY s.SupplierID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY SupplierID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);
@@ -551,11 +551,12 @@ namespace ITP4519M
             ServerConnect().Close();
             return dataTable;
         }
-
+        
         //search product information
         public DataTable searchProductInfo(string keyword)
         {
-            string sql = "SELECT ProductID, ProductName, SerialNumber, BinLocation, DemandStock, Status ,UnitPrice, QuantityInStock FROM product WHERE ProductName LIKE @keyword1 OR ProductName LIKE @keyword2 OR ProductID LIKE @keyword2 OR ProductName LIKE @keyword2";
+            string sql = "SELECT ProductID, ProductName, SerialNumber AS PartNumber, BinLocation AS WareHouse, DemandStock, Status ,UnitPrice, QuantityInStock FROM product WHERE ProductID LIKE @keyword1 OR ProductName LIKE @keyword1 OR ProductName LIKE @keyword2 OR ProductID LIKE @keyword2 OR ProductName LIKE @keyword2";
+            //string sql = "SELECT ProductID, ProductName, SerialNumber AS PartNumber, BinLocation AS WareHouse, DemandStock, Status ,UnitPrice, QuantityInStock FROM product WHERE ProductName LIKE @keyword OR ProductID LIKE @keyword OR SerialNumber LIKE @keyword";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@keyword1", "%" + keyword + "%");
             string keyword2 = keyword.Length > 0 ? $"%{char.ToUpper(keyword[0])}{keyword.Substring(1)}%" : keyword;
@@ -566,6 +567,33 @@ namespace ITP4519M
             ServerConnect().Close();
             return dataTable;
         }
+
+        public DataTable searchInvoiceInfo(string keyword)
+        {
+            string sql = "SELECT *  FROM invoice WHERE InvoiceID LIKE @keyword1 OR OrderID LIKE @keyword1 OR DealerID LIKE @keyword1 OR DeliveryID LIKE @keyword1 OR DeliveryID LIKE @keyword2 OR OrderID LIKE @keyword2 OR DealerID LIKE @keyword2 OR DeliveryID LIKE @keyword2 ";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@keyword1", "%" + keyword + "%");
+            string keyword2 = keyword.Length > 0 ? $"%{char.ToUpper(keyword[0])}{keyword.Substring(1)}%" : keyword;
+            cmd.Parameters.AddWithValue("@keyword2", keyword2);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+
+
+        public DataTable searchDeliveryNote(string keyword)
+        {
+            string sql = "SELECT DeliveryID,OrderID, DeliveryDate , DeliveryStatus FROM delivery WHERE deliveryID LIKE @keyword OR OrderID LIKE @keyword";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@keyword", "%" + keyword + "%");
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
 
 
         //search username by departmentName
@@ -663,7 +691,7 @@ namespace ITP4519M
 
         public int GetOrderCount()
         {
-            string sql = "SELECT COUNT(OrderID) FROM `order`";
+            string sql = "SELECT COUNT(OrderID) FROM 1";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             int count = Convert.ToInt32(cmd.ExecuteScalar());
             ServerConnect().Close();
@@ -931,7 +959,37 @@ namespace ITP4519M
             return dataTable;
         }
 
-        
+        public DataTable getStockReOrderInfo()
+        {
+            string sql = "SELECT ProductID,ProductName, SerialNumber, BinLocation, DemandStock, Status, QuantityInStock, UnitPrice FROM  product WHERE Status = 'Re-Order'";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
+        public DataTable getStockOutOfStockInfo()
+        {
+            string sql = "SELECT ProductID ,ProductName, SerialNumber, BinLocation, DemandStock, Status, QuantityInStock, UnitPrice FROM product WHERE Status = 'Out-Of-Stock'";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
+        public DataTable getStockDangerInfo()
+        {
+            string sql = "SELECT ProductID,ProductName, SerialNumber, BinLocation, DemandStock, Status, QuantityInStock, UnitPrice  FROM product WHERE Status = 'Danger'";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
+
 
         public string getStockOutofStockLevelLabel()
         {
@@ -2072,10 +2130,38 @@ namespace ITP4519M
             return dataTable;
         }
 
+        public DataTable getOrderItemProductNameForDelivery(string orderID, string ProductID)
+        {
+            string sql = "SELECT ProductName, Discount FROM orderitem_audit WHERE OrderID=@orderID AND ProductID = @ProductID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@orderID", orderID);
+            cmd.Parameters.AddWithValue("@ProductID", ProductID);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+
+
+        public DataTable getDeliveryOfOrderDetails(string deliveryID)
+        {
+            string sql = "SELECT DeliveryDate,DeliveryAddress,DealerContactPhoneNum FROM delivery,`order` WHERE DeliveryID=@deliveryID AND delivery.OrderID = `order`.OrderID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@deliveryID", deliveryID);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+
 
         public DataTable getDeliveryNoteItem(string deliveryID)
         {
-            string sql = "SELECT * FROM deliverynoteitem WHERE DeliveryID=@deliveryID";
+            //string sql = "SELECT * FROM deliverynoteitem, delviery, orderitem WHERE delviery.DeliveryID=@deliveryID AND delivery.DeliveryID = deliverynoteitem.DeliveryID AND delivery.OrderID = orderitem.OrderID";
+            //string sql = "SELECT distinct orderitem.ProductID, orderitem.ProductName FROM deliverynoteitem, delivery, orderitem WHERE delivery.DeliveryID=@deliveryID AND delivery.OrderID = orderitem.OrderID AND delivery.DeliveryID = deliverynoteitem.DeliveryID";
+            string sql = "SELECT * FROM deliverynoteitem WHERE DeliveryID = @deliveryID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@deliveryID", deliveryID);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
@@ -2109,11 +2195,12 @@ namespace ITP4519M
 
         public int getGRNRowCount()
         {
-            string sql = "SELECT COUNT(DISTINCT CONCAT(grnID, '-', ProductID, '-', PurchaseOrderID)) AS UniqueCombinationCount FROM grn";
+            string sql = "SELECT COUNT(DISTINCT CONCAT(grnID, '-', ProductID, '-', PurchaseOrderID)) AS UniqueCombinationCount FROM `grn`";
+            //string sql = "SELECT COUNT(DISTINCT grnID) FROM `grn`";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             object result = cmd.ExecuteScalar();
             int rowCount = Convert.ToInt32(result);
-
+            ServerConnect().Close();
             return rowCount;
         }
 
@@ -2123,6 +2210,7 @@ namespace ITP4519M
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             object result = cmd.ExecuteScalar();
             int rowCount = Convert.ToInt32(result);
+            ServerConnect().Close();
             return rowCount;
         }
 
@@ -2179,7 +2267,7 @@ namespace ITP4519M
 
         public int getOrderRowCount()
         {
-            string sql = "SELECT COUNT(DISTINCT OrderID) FROM `order`";
+            string sql = "SELECT COUNT(DISTINCT OrderID) FROM `order` WHERE OrderStatus != 'Cancelled' AND OrderStatus != 'Outstanding'";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             object result = cmd.ExecuteScalar();
             int rowCount = Convert.ToInt32(result);
@@ -2393,7 +2481,8 @@ namespace ITP4519M
 
         public DataTable GetGRNCurrentRecords(int page, int pageSize)
         {
-            string sql = "SELECT * FROM grn ORDER BY grnID LIMIT @PgSize";
+            //string sql = "SELECT * FROM grn ORDER BY grnID LIMIT @PgSize";
+            string sql = "SELECT* FROM grn ORDER BY grnID, ProductID, PurchaseOrderID LIMIT @PgSize";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
@@ -2405,7 +2494,8 @@ namespace ITP4519M
 
         public DataTable GetGRNCurrentRecords2(int page, int pageSize)
         {
-            string sql = "SELECT * FROM (SELECT * FROM grn ORDER BY grnID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY grnID";
+            //string sql = "SELECT * FROM (SELECT * FROM grn ORDER BY grnID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY grnID";
+            string sql = "SELECT * FROM (SELECT * FROM grn ORDER BY grnID, ProductID, PurchaseOrderID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY grnID, ProductID, PurchaseOrderID;";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);
@@ -2478,11 +2568,12 @@ namespace ITP4519M
             return dataTable;
         }
 
-        public DataTable getOrderItemDetailforInvoice(string orderID)
+        public DataTable getOrderItemDetailforDeliveryANDInvoice(string deliveryID)
         {
-            string sql = "SELECT orderitem_audit.* FROM orderitem_audit, product WHERE orderitem_audit.ProductID=product.ProductID AND orderitem_audit.OrderID=@orderID";
+            //string sql = "SELECT orderitem_audit.* FROM orderitem_audit, product WHERE orderitem_audit.ProductID=product.ProductID AND orderitem_audit.OrderID=@orderID";
+            string sql = "SELECT  deliverynoteitem.ProductID, orderitem.Price, orderitem.OrderedQuantity ,orderitem.ProductName, delivery.DeliveryDate, deliverynoteitem.DeliveryQuantity,deliverynoteitem.PreQtyDelivered,  deliverynoteitem.QuantityToFollow , orderitem.Discount FROM orderitem,delivery, deliverynoteitem WHERE  delivery.DeliveryID = @deliveryID  AND delivery.OrderID = orderitem.OrderID AND delivery.DeliveryID = deliverynoteitem.DeliveryID AND deliverynoteitem.ProductID = orderitem.ProductID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-            cmd.Parameters.AddWithValue("@orderID", orderID);
+            cmd.Parameters.AddWithValue("@deliveryID", deliveryID);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
@@ -3564,6 +3655,19 @@ namespace ITP4519M
             ServerConnect().Close();
             return dataTable;
         }
+
+        public DataTable searchLogInfo(string keyword)
+        {
+            string sql = "SELECT AuditID, UserID, UserName AS DisplayName, TypeID AS 'Target ID', Description, LogDate FROM log WHERE UserID LIKE @keyword OR UsearName LIKE @keyword OR TypeID LIKE @keyword OR SecondTypeID LIKE @keyword";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@PurchaseOrderID", "%" + keyword + "%");
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+
         //Test
         public static List<SupplierDetails> GetSuppliers()
         {
@@ -4038,6 +4142,8 @@ namespace ITP4519M
 
 
         }
+
+        
         public DataTable searchPOInformation(string poID)
         {
             //  string sql = "SELECT * FROM staff, department WHERE department.departmentID = staff.DepartmentID AND UserName LIKE @username";
@@ -4050,6 +4156,18 @@ namespace ITP4519M
             ServerConnect().Close();
             return dataTable;
         }
+
+        public DataTable searchGRNinfo(string keyword)
+        {
+            string sql = "SELECT grnID AS GRNID, ProductID, PurchaseOrderID, ReceiveQty, ReceiveDate, WareHouse FROM grn WHERE grnID LIKE @keyword OR ProductID LIKE @keyword OR PurchaseOrderID LIKE @keyword OR WareHouse LIKE @keyword";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@keyword", "%" + keyword + "%");
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
 
         public string getTodayGRNReceiveQty()
         {
@@ -4120,6 +4238,7 @@ namespace ITP4519M
             ServerConnect().Close();
             return dataTable;
         }
+
     }
 
 }

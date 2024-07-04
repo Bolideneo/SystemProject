@@ -83,10 +83,10 @@ namespace ProgramMethod
         {
             try
             {
-                if (!dataBaseMethod.getUserNameAndCheckStaus(username)){
+                if (!dataBaseMethod.getUserNameAndCheckStaus(username)) {
                     return false;
                 }
-               else  if (password == DecodeFrom64(dataBaseMethod.getPassword(username)) )
+                else if (password == DecodeFrom64(dataBaseMethod.getPassword(username)))
                 {
                     LogUserLoginAttempt(dataBaseMethod.getUserID(username), dataBaseMethod.getUserDisplayName(username));
                     return true;
@@ -94,7 +94,7 @@ namespace ProgramMethod
                 string userID = dataBaseMethod.getUserID(username);
                 LogUserLoginFailureAttempt(userID, dataBaseMethod.getUserDisplayName(username));
 
-                if(dataBaseMethod.calLoginFailedCount(userID) % 5 == 0)
+                if (dataBaseMethod.calLoginFailedCount(userID) % 5 == 0)
                 {
                     disableUserAccount(userID);
                 }
@@ -110,8 +110,8 @@ namespace ProgramMethod
 
         public void CurrentUserIDAndName(string userID, string userName)
         {
-          this.LoginUserID = userID;
-          this.LoginUserName = userName;
+            this.LoginUserID = userID;
+            this.LoginUserName = userName;
         }
 
         public string getUserDisplayName(string username)
@@ -179,7 +179,7 @@ namespace ProgramMethod
 
             if (dataBaseMethod.enableUser(userID))
             {
-                LogEnableUserAccount(LoginUserID,LoginUserName,userID);
+                LogEnableUserAccount(LoginUserID, LoginUserName, userID);
                 return true;
             }
             else
@@ -192,6 +192,7 @@ namespace ProgramMethod
         {
             return dataBaseMethod.searchUserInfoByName(username);
         }
+        
 
         //Datatable for product datagridView 
         public DataTable searchProductInformation(string productname)
@@ -199,9 +200,26 @@ namespace ProgramMethod
             return dataBaseMethod.searchProductInfo(productname);
         }
 
-        public DataTable searchPOInformation(string POID)
+        public DataTable searchInvoiceInfo(string productname)
         {
-            return dataBaseMethod.searchPOInformation(POID);
+            return dataBaseMethod.searchInvoiceInfo(productname);
+        }
+
+
+        public DataTable searchDeliveryNote(string keyword)
+        {
+            return dataBaseMethod.searchDeliveryNote(keyword);
+        }
+
+        
+        public DataTable searchPOInformation(string keyword)
+        {
+            return dataBaseMethod.searchPOInformation(keyword);
+        }
+
+        public DataTable searchGRNinfo(string keyword)
+        {
+            return dataBaseMethod.searchGRNinfo(keyword);
         }
 
         public DataTable searchDealerInformation(string contactname)
@@ -236,7 +254,7 @@ namespace ProgramMethod
         {
             return dataBaseMethod.GetSupplierCount();
         }
-        public int GetSupplierNum() 
+        public int GetSupplierNum()
         {
             return dataBaseMethod.GetSupplierNum();
         }
@@ -269,11 +287,6 @@ namespace ProgramMethod
             return dataBaseMethod.GetGRNCount();
         }
 
-
-        public DataTable overviewStockinfo()
-        {
-            return dataBaseMethod.overallStockinfo();
-        }
 
         public DataTable overallOrderinfo()
         {
@@ -337,7 +350,7 @@ namespace ProgramMethod
 
             if (dataBaseMethod.createSupplier(SupplierID, Suppliername, SupplierMailBox, SupplierPhoneNumBox, SupplierAddressBox, SupplierContactNameBox, products))
             {
-                LogCreateSupplierContact(LoginUserID, LoginUserName, SupplierID);   
+                LogCreateSupplierContact(LoginUserID, LoginUserName, SupplierID);
                 return true;
             }
             else
@@ -378,7 +391,7 @@ namespace ProgramMethod
 
             if (dataBaseMethod.dealerDel(contactID))
             {
-                LogDeleteDealerContact(LoginUserID,LoginUserName, contactID);
+                LogDeleteDealerContact(LoginUserID, LoginUserName, contactID);
                 MessageBox.Show("Delete successfully");
                 return true;
             }
@@ -437,9 +450,9 @@ namespace ProgramMethod
             {
 
                 return false;
-        
+
             }
-            LogCreateProduct(LoginUserID,LoginUserName,productID);
+            LogCreateProduct(LoginUserID, LoginUserName, productID);
             MessageBox.Show("Create new product successfully");
             return true;
         }
@@ -452,7 +465,7 @@ namespace ProgramMethod
             {
                 LogUpdateProduct(LoginUserID, LoginUserName, productID);
                 return true;
-                
+
             }
             else
                 return false;
@@ -519,21 +532,21 @@ namespace ProgramMethod
             }
         }
 
-            public ProductDetails getProductDetails(string productid)
+        public ProductDetails getProductDetails(string productid)
+        {
+            using (var connection = dataBaseMethod.ServerConnect())
             {
-                using (var connection = dataBaseMethod.ServerConnect())
+                if (connection.State == System.Data.ConnectionState.Open)
                 {
-                    if (connection.State == System.Data.ConnectionState.Open)
-                    {
 
-                        return dataBaseMethod.GetProductDetails(connection, productid);
-                    }
-                    else
-                    {
-                        throw new Exception("Database connection failed.");
-                    }
+                    return dataBaseMethod.GetProductDetails(connection, productid);
+                }
+                else
+                {
+                    throw new Exception("Database connection failed.");
                 }
             }
+        }
 
         //public string getProductWeight(string orderID)
         //{
@@ -619,8 +632,8 @@ namespace ProgramMethod
                         sum += int.Parse(productOfOrder.Rows[i].Cells[2].Value.ToString()) * float.Parse(productOfOrder.Rows[i].Cells[3].Value.ToString()) * (100 - int.Parse(productOfOrder.Rows[i].Cells[4].Value.ToString())) / 100;
                     }
                 }
-                   
-                
+
+
             }
             catch
             {
@@ -650,12 +663,12 @@ namespace ProgramMethod
             return dataBaseMethod.getOrderItemProductDeatails(orderID, productID);
         }
 
-        public string createSalesOrder(string dealerID, string dealerName,string dealerContactName, string dealerContactPhone, string phoneNumber, string Address, string CompleteDate,string price, DataGridView Order)
+        public string createSalesOrder(string dealerID, string dealerName, string dealerContactName, string dealerContactPhone, string phoneNumber, string Address, string CompleteDate, string price, DataGridView Order)
         {
 
 
             string orderID = (int.Parse(dataBaseMethod.getOrderID()) + 1).ToString("000000");
-            while (!dataBaseMethod.createSalesOrder(orderID, dealerID, "OrderProcessing",Address,dealerContactName,dealerContactPhone,price))
+            while (!dataBaseMethod.createSalesOrder(orderID, dealerID, "OrderProcessing", Address, dealerContactName, dealerContactPhone, price))
             {
                 orderID = (int.Parse(dataBaseMethod.getOrderID()) + 1).ToString("000000");
             }
@@ -663,7 +676,7 @@ namespace ProgramMethod
 
             for (int i = 0; i < Order.Rows.Count; i++)
             {
-                dataBaseMethod.createOrderItem(orderID, Order.Rows[i].Cells[0].Value.ToString(), Order.Rows[i].Cells[1].Value.ToString(), Order.Rows[i].Cells[2].Value.ToString(),Order.Rows[i].Cells[3].Value.ToString(), Order.Rows[i].Cells[4].Value.ToString());
+                dataBaseMethod.createOrderItem(orderID, Order.Rows[i].Cells[0].Value.ToString(), Order.Rows[i].Cells[1].Value.ToString(), Order.Rows[i].Cells[2].Value.ToString(), Order.Rows[i].Cells[3].Value.ToString(), Order.Rows[i].Cells[4].Value.ToString());
                 dataBaseMethod.updateOrderItemDemand(Order.Rows[i].Cells[0].Value.ToString(), (int.Parse(Order.Rows[i].Cells[2].Value.ToString())));
             }
 
@@ -705,7 +718,7 @@ namespace ProgramMethod
             return dataBaseMethod.overallGRNinfo();
         }
 
-        public bool createGRN(string POID, DataGridView dvg,  string receivedate)
+        public bool createGRN(string POID, DataGridView dvg, string receivedate)
         {
             string grnID = "G" + (int.Parse(dataBaseMethod.getGRNID('G').Substring(1)) + 1).ToString("000000");
             try
@@ -715,13 +728,13 @@ namespace ProgramMethod
                 {
                     dataBaseMethod.createGRN(grnID, POID, dvg.Rows[i].Cells[1].Value.ToString(), dvg.Rows[i].Cells[3].Value.ToString(), dvg.Rows[i].Cells[4].Value.ToString(), receivedate);
                     LogCreateGRN(LoginUserID, LoginUserName, grnID, POID, dvg.Rows[i].Cells[1].Value.ToString(), dvg.Rows[i].Cells[4].Value.ToString());
-                   
-                    if (int.Parse(dataBaseMethod.getPurchaseOrderQty(POID, dvg.Rows[i].Cells[0].Value.ToString(), dvg.Rows[i].Cells[1].Value.ToString())) ==  int.Parse(dataBaseMethod.getGRNReceiveQty(POID, dvg.Rows[i].Cells[1].Value.ToString())))
+
+                    if (int.Parse(dataBaseMethod.getPurchaseOrderQty(POID, dvg.Rows[i].Cells[0].Value.ToString(), dvg.Rows[i].Cells[1].Value.ToString())) == int.Parse(dataBaseMethod.getGRNReceiveQty(POID, dvg.Rows[i].Cells[1].Value.ToString())))
                     {
                         if (dataBaseMethod.updatePurchaseOrder(POID, dvg.Rows[i].Cells[1].Value.ToString(), "Recevied"))
                         {
                             //   dataBaseMethod.updateProductStatus(productID, "Available");
-                           // return true;
+                            // return true;
                         }
                     }
                     else
@@ -735,7 +748,7 @@ namespace ProgramMethod
                 }
 
 
-               
+
             }
             catch (Exception e)
             {
@@ -808,6 +821,10 @@ namespace ProgramMethod
             bool isDangerLevelValid = int.TryParse(dangerlevel, out dangerLevelInt);
             bool isOutOfStockLevelValid = int.TryParse(outofStocklevel, out outOfStockLevelInt);
 
+            //MessageBox.Show(reOrderLevelInt.ToString());
+            //MessageBox.Show(dangerLevelInt.ToString());
+            //MessageBox.Show(outOfStockLevelInt.ToString());
+
             if (!isReOrderLevelValid || !isDangerLevelValid || !isOutOfStockLevelValid)
             {
                 MessageBox.Show("Error: Invalid product levels in database.");
@@ -843,10 +860,10 @@ namespace ProgramMethod
             dataBaseMethod.orderDeleteItem(orderID);
         }
 
-        public void createOrderItem(string orderID, string product, string productName, string qty,string price, string discount)
+        public void createOrderItem(string orderID, string product, string productName, string qty, string price, string discount)
         {
             //dataBaseMethod.createOrderItem(orderID, product, productName,qty,price,discount);
-            LogUpdateSalesOrder(LoginUserID,LoginUserName,orderID);
+            LogUpdateSalesOrder(LoginUserID, LoginUserName, orderID);
         }
 
         public DataTable overallDeliveryinfo()
@@ -871,13 +888,17 @@ namespace ProgramMethod
                     LogCreateDeliveryNote(LoginUserID, LoginUserName, deliveryID);
                 }
                 int orderCount = dataBaseMethod.getMaxUpdateCount(orderID);
-                DataTable dt = dataBaseMethod.getOrderItemDetailForDelivery(orderID, orderCount);
+                DataTable dt = dataBaseMethod.getOrderItemDetailForDelivery(orderID,orderCount);
                 //Count number of order and assign the number + 1 to orderitem_audit(num)
                 if (!dataBaseMethod.checkDeliveryOrderIDExist(orderID))
                 {
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
- 
+                        if (dt.Rows[i]["ActualDespatchQuantity"].ToString() == "0")
+                        {
+                            continue;
+                        }
+
                         dataBaseMethod.createDeliveryNoteItem(deliveryID, dt.Rows[i]["ProductID"].ToString(), "N/A", dt.Rows[i]["ActualDespatchQuantity"].ToString(), dt.Rows[i]["QuantityFollow"].ToString());
 
                     }
@@ -886,7 +907,15 @@ namespace ProgramMethod
                 {
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
-                        dataBaseMethod.createDeliveryNoteItem(deliveryID, dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["PreQtyDelivered"].ToString(), dt.Rows[i]["ActualDespatchQuantity"].ToString(), dt.Rows[i]["QuantityFollow"].ToString());
+                          if (dt.Rows[i]["ActualDespatchQuantity"].ToString() == "0")
+                        {
+                            continue;
+                        }
+
+
+                        string orderQuantity = dataBaseMethod.getOrderItemOrderedQuantity(orderID, dt.Rows[i]["ProductID"].ToString());
+                        int preQty = int.Parse(orderQuantity) - int.Parse(dt.Rows[i]["ActualDespatchQuantity"].ToString()) - int.Parse(dt.Rows[i]["QuantityFollow"].ToString());
+                        dataBaseMethod.createDeliveryNoteItem(deliveryID, dt.Rows[i]["ProductID"].ToString(), preQty.ToString(), dt.Rows[i]["ActualDespatchQuantity"].ToString(), dt.Rows[i]["QuantityFollow"].ToString());
 
                     }
                 }
@@ -922,11 +951,17 @@ namespace ProgramMethod
         {
             dataBaseMethod.updateDeliveryStatus("Deliverd", deliveryID, deliveredDate);
         }
-
+        
         public DataTable getDeliveryDetails(string deliveryID)
         {
-           return dataBaseMethod.getDeliveryDetails(deliveryID);
+            return dataBaseMethod.getDeliveryDetails(deliveryID);
         }
+
+        public DataTable getDeliveryOfOrderDetails(string deliveryID)
+        {
+            return dataBaseMethod.getDeliveryOfOrderDetails(deliveryID);
+        }
+
 
         public string getDeliveryDate(string deliveryID)
         {
@@ -934,11 +969,16 @@ namespace ProgramMethod
         }
 
 
+        public DataTable getOrderItemProductNameForDelivery(string orderID, string ProductID)
+        {
+            return dataBaseMethod.getOrderItemProductNameForDelivery(orderID, ProductID);
+        }
+
         public DataTable getDeliveryNoteItem(string deliveryID)
         {
             return dataBaseMethod.getDeliveryNoteItem(deliveryID);
         }
-        
+
         
 
         public int getMaxUpdateCount(string orderID)
@@ -1008,8 +1048,8 @@ namespace ProgramMethod
                 return dataBaseMethod.GetAccountCurrentRecords(page, pageSize);
             }
             else
-            { 
-               return dataBaseMethod.GetAccountCurrentRecords2(page, pageSize);
+            {
+                return dataBaseMethod.GetAccountCurrentRecords2(page, pageSize);
             }
         }
 
@@ -1111,24 +1151,25 @@ namespace ProgramMethod
             switch (type)
             {
                 case "Order":
-                if (page == 1)
-                 {
+                    if (page == 1)
+                    {
                         return dataBaseMethod.GetOrderCurrentRecords(page, pageSize);
-                 }
-                 else
-                 {
+                    }
+                    else
+                    {
+
                         return dataBaseMethod.GetOrderCurrentRecords2(page, pageSize);
-                 }
+                    }
 
                 case "GRN":
-                 if (page == 1)
-                  {
+                    if (page == 1)
+                    {
                         return dataBaseMethod.GetGRNCurrentRecords(page, pageSize);
-                  }
-                 else
-                  {
+                    }
+                    else
+                    {
                         return dataBaseMethod.GetGRNCurrentRecords2(page, pageSize);
-                 }
+                    }
 
                 case "Delivery":
 
@@ -1142,7 +1183,7 @@ namespace ProgramMethod
                     }
             }
             return null;
-           
+
         }
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
@@ -1160,7 +1201,7 @@ namespace ProgramMethod
         private static extern bool DeleteObject(System.IntPtr hObject);
 
 
-        public  class RoundedTextBox : TextBox
+        public class RoundedTextBox : TextBox
         {
             [System.Runtime.InteropServices.DllImport("gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
             private static extern IntPtr CreateRoundRectRgn
@@ -1207,7 +1248,7 @@ namespace ProgramMethod
             private bool IsPressed = false;
 
 
-            
+
             public RoundedButton()
             {
                 SetStyle(ControlStyles.Opaque |
@@ -1223,14 +1264,14 @@ namespace ProgramMethod
             {
                 Size = new Size(100, 40);
                 //BackColor = Color.CadetBlue;
-               // BackColor2 = Color.Tomato;
+                // BackColor2 = Color.Tomato;
                 ButtonBorderColor = Color.White;
                 //ButtonHighlightColor = Color.Orange;
                 //ButtonHighlightColor2 = Color.OrangeRed;
                 ButtonHighlightForeColor = Color.Black;
 
-               // ButtonPressedColor = Color.BlueViolet;
-               // ButtonPressedColor2 = Color.Maroon;
+                // ButtonPressedColor = Color.BlueViolet;
+                // ButtonPressedColor2 = Color.Maroon;
                 ButtonPressedForeColor = Color.White;
             }
 
@@ -1278,7 +1319,7 @@ namespace ProgramMethod
                 }
             }
 
-           
+
             public Color BorderColor { get; set; } = Color.White;
             public Color BackColor2 { get; set; } = Color.White;
 
@@ -1382,14 +1423,14 @@ namespace ProgramMethod
                 return gp;
             }
 
-         
+
         }
         public DataTable getOrderItemDetailsForOrderAccembly(string orderID)
         {
             return dataBaseMethod.getOrderItemDetailsForOrderAccembly(orderID);
         }
 
-        public void productSearchAutoComplete(TextBox textBox,string orderID)
+        public void productSearchAutoComplete(TextBox textBox, string orderID)
         {
             DataTable result = dataBaseMethod.getProductIDAndpProductName(orderID);
             for (int i = 0; i < result.Rows.Count; i++)
@@ -1477,9 +1518,9 @@ namespace ProgramMethod
             return dataBaseMethod.getOrderItemDetailforAsb(orderID);
         }
 
-        public DataTable getOrderItemDetailforInvoice(string orderID)
+        public DataTable getOrderItemDetailforDeliveryANDInvoice(string deliveryID)
         {
-            return dataBaseMethod.getOrderItemDetailforInvoice(orderID);
+            return dataBaseMethod.getOrderItemDetailforDeliveryANDInvoice(deliveryID);
         }
 
         public bool createOrderAssembly(DataGridView ActualDesptchData, DataGridView orderItemData, string orderID)
@@ -1491,25 +1532,25 @@ namespace ProgramMethod
             {
                 LogUpdateAssginProdutIntoAccembly(logID, ActualDesptchData.Rows[i].Cells[0].Value.ToString(), ActualDesptchData.Rows[i].Cells[1].Value.ToString(), ActualDesptchData.Rows[i].Cells[2].Value.ToString());
                 ReduceStock(ActualDesptchData.Rows[i].Cells[0].Value.ToString(), ActualDesptchData.Rows[i].Cells[2].Value.ToString());
-                if(i == 0)
+                if (i == 0)
                 {
-                   temp  = dataBaseMethod.getOrderItemUpdateCount(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString()) + 1;
+                    temp = dataBaseMethod.getOrderItemUpdateCount(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString()) + 1;
                 }
                 //Question ?
                 //if (int.Parse(ActualDesptchData.Rows[i].Cells[2].Value.ToString()) < int.Parse(ActualDesptchData.Rows[i].Cells[3].Value.ToString()))
-                if (int.Parse(ActualDesptchData.Rows[i].Cells[3].Value.ToString()) > 0 )
+                if (int.Parse(ActualDesptchData.Rows[i].Cells[3].Value.ToString()) > 0)
                 {
                     //string sum = ((int.Parse(ActualDesptchData.Rows[i].Cells[3].Value.ToString()) - (int.Parse(ActualDesptchData.Rows[i].Cells[2].Value.ToString())))).ToString();
-                    
-                   string oustID = "OUT" + (int.Parse(dataBaseMethod.getOutStandingID()) + 1).ToString("000000");
+
+                    string oustID = "OUT" + (int.Parse(dataBaseMethod.getOutStandingID()) + 1).ToString("000000");
                     if (dataBaseMethod.checkOutstandingOrderIDExist(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString()))
                     {
                         dataBaseMethod.DeleteOutstandingOrderForOrderAccembly(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString());
                     }
-                    
-                    if(dataBaseMethod.createOutstandingOrder(oustID, orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString(), dataBaseMethod.getOrderOfDealerID(orderID), ActualDesptchData.Rows[i].Cells[3].Value.ToString()))
+
+                    if (dataBaseMethod.createOutstandingOrder(oustID, orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString(), dataBaseMethod.getOrderOfDealerID(orderID), ActualDesptchData.Rows[i].Cells[3].Value.ToString()))
                     {
-                       
+
                         LogCreateOutstandingOrder(LoginUserID, LoginUserName, orderID, oustID);
                     }
 
@@ -1521,7 +1562,7 @@ namespace ProgramMethod
                     if (dataBaseMethod.checkPurchaseOrderExist(ActualDesptchData.Rows[i].Cells[0].Value.ToString()) < 1)
                     {
                         string PurID = "PUR" + (int.Parse(dataBaseMethod.getPurchasesOrderID()) + 1).ToString("000000");
-                        if(dataBaseMethod.createPurchaseOrder(PurID, ActualDesptchData.Rows[i].Cells[0].Value.ToString(), dataBaseMethod.getProdcutReOrderQty(ActualDesptchData.Rows[i].Cells[0].Value.ToString()), "Pending"))
+                        if (dataBaseMethod.createPurchaseOrder(PurID, ActualDesptchData.Rows[i].Cells[0].Value.ToString(), dataBaseMethod.getProdcutReOrderQty(ActualDesptchData.Rows[i].Cells[0].Value.ToString()), "Pending"))
                         {
                             LogCreatePurchaseOrder(LoginUserID, LoginUserName, orderID, PurID);
                         }
@@ -1545,7 +1586,7 @@ namespace ProgramMethod
                         LogCreateOutstandingOrder(LoginUserID, LoginUserName, orderID, oustID);
                     }
                 }
-                
+
             }
             //else if (ActualDesptchData.RowCount < orderItemData.RowCount)
             //{
@@ -1586,7 +1627,7 @@ namespace ProgramMethod
                 }
                 //else if (int.Parse(ActualDesptchData.Rows[i].Cells[3].Value.ToString()) == 0)
                 //{  
-                 //}
+                //}
             }
             if (Count == 0)
                 dataBaseMethod.updateOrderStatus("ALLProductPackaged", orderID);
@@ -1649,7 +1690,7 @@ namespace ProgramMethod
             return dataBaseMethod.orderDateFilter(fromData, toDate);
 
         }
-       
+
         public DataTable orderAccemblyDateFilter(string fromData, string toDate)
         {
             return dataBaseMethod.orderAccemblyDateFilter(fromData, toDate);
@@ -1661,7 +1702,7 @@ namespace ProgramMethod
             return dataBaseMethod.getOutstandingDateFilter(fromData, toDate);
 
         }
-        
+
         public DataTable getInvoiceDateFilter(string fromData, string toDate)
         {
             return dataBaseMethod.getInvoiceDateFilter(fromData, toDate);
@@ -1673,7 +1714,7 @@ namespace ProgramMethod
             return dataBaseMethod.getAuditLogDateFilter(fromData, toDate);
 
         }
-        
+
         public DataTable orderDateStatusFilter(string fromDate, string toDate, string status)
         {
             return dataBaseMethod.orderDateStatusFilter(fromDate, toDate, status);
@@ -1687,7 +1728,7 @@ namespace ProgramMethod
         {
             string[] Date = new string[2];
             string minDate = dataBaseMethod.getOrderDateForDelivery(orderID);
-            Date[0] = minDate;   
+            Date[0] = minDate;
             DateTime date = DateTime.Parse(dataBaseMethod.getOrderDateForDelivery(orderID));
             DateTime newDate = date.AddDays(2);
             Date[1] = newDate.ToString("yyyy-MM-dd");
@@ -1721,8 +1762,8 @@ namespace ProgramMethod
             return temp;
         }
 
-        
-         public string[] getDNMinAndMaxDate()
+
+        public string[] getDNMinAndMaxDate()
         {
             string[] temp = new string[2];
             DataTable Date = dataBaseMethod.getDNMinAndMaxDate();
@@ -1757,7 +1798,7 @@ namespace ProgramMethod
             temp[1] = Date.Rows[0][1].ToString();
             return temp;
         }
-        
+
         public string[] getMinAndMaxDateForAuditLog()
         {
             string[] temp = new string[2];
@@ -1768,7 +1809,7 @@ namespace ProgramMethod
         }
         public bool cancelOrder(string orderID)
         {
-            LogCancelSalesOrder(LoginUserID,LoginUserName,orderID);
+            LogCancelSalesOrder(LoginUserID, LoginUserName, orderID);
             return dataBaseMethod.cancelOrder(orderID);
         }
 
@@ -1794,7 +1835,7 @@ namespace ProgramMethod
                         {
                             // Handle the case where conversion was not successful
                             // For example, log an error or set qty to a default value
-                            Console.WriteLine("Error: Invalid quantity format.");
+                            Console.WriteLine("Error: Invalid quantity format1.");
                         }
                     }
                 }
@@ -1814,15 +1855,15 @@ namespace ProgramMethod
                         {
                             // Handle the case where conversion was not successful
                             // For example, log an error or set qty to a default value
-                            Console.WriteLine("Error: Invalid quantity format.");
+                            Console.WriteLine("Error: Invalid quantity format2.");
                         }
                     }
                 }
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-               // MessageBox.Show(ex.Message);
+                // MessageBox.Show(ex.Message);
                 MessageBox.Show("Please input number");
             }
             return qty.ToString();
@@ -2063,7 +2104,7 @@ namespace ProgramMethod
         }
 
 
-        public void LogCreateSalesOrder(string userID,string userName, string orderID)
+        public void LogCreateSalesOrder(string userID, string userName, string orderID)
         {
             string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
             if (logID != null)
@@ -2099,9 +2140,9 @@ namespace ProgramMethod
                 dataBaseMethod.LogDeleteProduct(logID, userID, userName, productID);
             }
         }
-        
 
-         public void LogCreateDeliveryNote(string userID, string userName, string deliveryID)
+
+        public void LogCreateDeliveryNote(string userID, string userName, string deliveryID)
         {
             string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
             if (logID != null)
@@ -2116,7 +2157,7 @@ namespace ProgramMethod
             string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
             if (logID != null)
             {
-                dataBaseMethod.LogCreateOutstandingOrder(logID, userID, userName, orderID,outID);
+                dataBaseMethod.LogCreateOutstandingOrder(logID, userID, userName, orderID, outID);
             }
         }
 
@@ -2171,7 +2212,7 @@ namespace ProgramMethod
                 dataBaseMethod.LogCreateDealerContact(logID, userID, userName, dealerID);
             }
         }
-        
+
         public void LogUpdateDealerContact(string userID, string userName, string dealerID)
         {
             string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
@@ -2180,7 +2221,7 @@ namespace ProgramMethod
                 dataBaseMethod.LogUpdateDealerContact(logID, userID, userName, dealerID);
             }
         }
-        
+
         public void LogDeleteDealerContact(string userID, string userName, string dealerID)
         {
             string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
@@ -2189,7 +2230,7 @@ namespace ProgramMethod
                 dataBaseMethod.LogDeleteDealerContact(logID, userID, userName, dealerID);
             }
         }
-        
+
         public void LogCreateSupplierContact(string userID, string userName, string supplierID)
         {
             string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
@@ -2207,7 +2248,7 @@ namespace ProgramMethod
                 dataBaseMethod.LogUpdateSupplierContact(logID, userID, userName, supplierID);
             }
         }
-        
+
 
         public void LogDeleteSupplierContact(string userID, string userName, string supplierID)
         {
@@ -2227,21 +2268,21 @@ namespace ProgramMethod
             }
         }
 
-        public void LogCreateInvoice(string userID,string invoiceID, string orderID)
+        public void LogCreateInvoice(string userID, string invoiceID, string orderID)
         {
             string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
             if (logID != null)
             {
-                dataBaseMethod.LogCreateInvoice(logID,invoiceID, orderID);
+                dataBaseMethod.LogCreateInvoice(logID, invoiceID, orderID);
             }
         }
-                 
+
         public void LogCreatetUserAccount(string userID, string userName, string newUserID, string title)
         {
             string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
             if (logID != null)
             {
-                dataBaseMethod.LogCreatetUserAccount(logID, userID, userName, newUserID,title);
+                dataBaseMethod.LogCreatetUserAccount(logID, userID, userName, newUserID, title);
             }
         }
 
@@ -2254,8 +2295,8 @@ namespace ProgramMethod
             }
         }
 
-       
-         public void LogEnableUserAccount(string userID, string userName, string affectUserID)
+
+        public void LogEnableUserAccount(string userID, string userName, string affectUserID)
         {
             string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
             if (logID != null)
@@ -2306,12 +2347,12 @@ namespace ProgramMethod
 
             if (logID != null)
             {
-              dataBaseMethod.LogUserLoginFailureAttempt(logID, userID, userName);
+                dataBaseMethod.LogUserLoginFailureAttempt(logID, userID, userName);
             }
         }
 
 
-         public void LogUserLogOut(string userID, string userName)
+        public void LogUserLogOut(string userID, string userName)
         {
             string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
             if (logID != null)
@@ -2324,25 +2365,31 @@ namespace ProgramMethod
         {
             return dataBaseMethod.overallLogInfo();
         }
+
+        public DataTable searchLoginfo(string keyword)
+        {
+            return dataBaseMethod.searchLogInfo(keyword);
+        }
+
         // Test
         public List<SupplierDetails> GetSuppliers()
         {
             return DataBaseMethod.GetSuppliers();
         }
 
-        public  List<ProductDetails> GetProductsBySupplier(string supplierID)
+        public List<ProductDetails> GetProductsBySupplier(string supplierID)
         {
             return DataBaseMethod.GetProductsBySupplier(supplierID);
         }
 
 
-     
+
         public static ProductDetails GetProductDetails(string productID)
         {
             return DataBaseMethod.GetProductDetails(productID);
         }
 
-    
+
         public static void CreatePurchaseOrder(string supplierID, string userID, string productID, string quantity, string unitPrice, string totalPrice, string status)
         {
             int purchaseOrderID = DataBaseMethod.InsertPurchaseOrder(supplierID, userID, DateTime.Now, totalPrice, "Pending");
@@ -2353,7 +2400,7 @@ namespace ProgramMethod
             }
         }
 
-     
+
         public static string GetUserIDFromStaffInfo(string PhoneNum)
         {
             return DataBaseMethod.GetUserIDFromStaffInfo(PhoneNum);
@@ -2388,9 +2435,9 @@ namespace ProgramMethod
         {
             return dataBaseMethod.getStockReportForCategory();
         }
-        
 
-        public void LogPrintSalesOrderReportCSV(string userID,string userName)
+
+        public void LogPrintSalesOrderReportCSV(string userID, string userName)
         {
             string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
             if (logID != null)
@@ -2564,7 +2611,7 @@ namespace ProgramMethod
             string[] array = new string[3];
             string result = dataBaseMethod.getTodayGRNReceiveQty();
             DataTable result1 = dataBaseMethod.getDashboardToadyLabel();
-        
+
             array[0] = result1.Rows[0][0].ToString();
             array[1] = result1.Rows[0][1].ToString();
             array[2] = result;
@@ -2592,10 +2639,31 @@ namespace ProgramMethod
         }
 
 
+        public DataTable getStockReOrderInfo()
+        {
+           return dataBaseMethod.getStockReOrderInfo();
+        }
+
+
+        public DataTable getStockDangerInfo()
+        {
+            return dataBaseMethod.getStockDangerInfo();
+        }
+
+
+        public DataTable getStockOutOfStockInfo()
+        {
+            return dataBaseMethod.getStockOutOfStockInfo();
+        }
+
+        public DataTable overviewStockinfo()
+        {
+            return dataBaseMethod.overallStockinfo();
+        }
 
 
     }
-  
+
 }
 
     

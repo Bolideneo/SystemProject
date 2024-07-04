@@ -702,7 +702,7 @@ namespace ITP4519M
             orderDifferentDeliverybox.Location = new Point(21, 260);
             orderDifferentDeliverybox.Margin = new Padding(4, 0, 4, 0);
             orderDifferentDeliverybox.Name = "orderDifferentDeliverybox";
-            orderDifferentDeliverybox.PlaceholderText = "If deferent";
+            orderDifferentDeliverybox.PlaceholderText = "If diference";
             orderDifferentDeliverybox.Size = new Size(242, 23);
             orderDifferentDeliverybox.TabIndex = 89;
             // 

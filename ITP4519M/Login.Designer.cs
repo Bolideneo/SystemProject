@@ -254,9 +254,9 @@ namespace ITP4519M
             label1.ForeColor = SystemColors.Highlight;
             label1.Location = new Point(464, 332);
             label1.Name = "label1";
-            label1.Size = new Size(110, 18);
+            label1.Size = new Size(150, 18);
             label1.TabIndex = 21;
-            label1.Text = "Forget Password";
+            label1.Text = "Forgot Your Password?";
             label1.Click += label1_Click;
             // 
             // panel1
@@ -267,10 +267,10 @@ namespace ITP4519M
             panel1.Controls.Add(label6);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(pictureBox5);
-            panel1.Location = new Point(1, 1);
+            panel1.Location = new Point(-5, -8);
             panel1.Margin = new Padding(2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(203, 412);
+            panel1.Size = new Size(209, 421);
             panel1.TabIndex = 24;
             // 
             // label2

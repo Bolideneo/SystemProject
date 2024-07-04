@@ -73,35 +73,37 @@ namespace ITP4519M
 
             try
             {   //delivery, orderitem
-                DataTable deliveryDetails = programMethod.getDeliveryDetails(deliveryID);
-                DataTable orderDetails = programMethod.getOrderDetails(orderID);
-                DataTable deliveryNoteItem = programMethod.getDeliveryNoteItem(deliveryID);
+                DataTable deliveryOrderDetails = programMethod.getDeliveryOfOrderDetails(deliveryID);
+                //DataTable orderDetails = programMethod.getOrderDetails(orderID);
+                //DataTable deliveryNoteItem = programMethod.getDeliveryNoteItem(deliveryID);
                 int orderCount = programMethod.getMaxUpdateCount(orderID);
-                DataTable orderItemDeatails = programMethod.getOrderItemDetailForDelivery(orderID, orderCount);
+                DataTable deliveryNoteItem = programMethod.getOrderItemDetailforDeliveryANDInvoice(deliveryID);
 
-                if (deliveryDetails != null)
+
+                if (deliveryOrderDetails != null)
                 {
                     this.deliveryOrderidbox.Text = orderID;
                     this.deliveryIDbox.Text = deliveryID;
-                    this.deliveryDatebox.Text = deliveryDetails.Rows[0]["DeliveryDate"].ToString();
-                    this.deliveryAddressbox.Text = orderDetails.Rows[0]["DeliveryAddress"].ToString();
-                    this.deliveryPhoneBox.Text = orderDetails.Rows[0]["DealerContactPhoneNum"].ToString();
+                    this.deliveryDatebox.Text = deliveryOrderDetails.Rows[0]["DeliveryDate"].ToString();
+                    this.deliveryAddressbox.Text = deliveryOrderDetails.Rows[0]["DeliveryAddress"].ToString();
+                    this.deliveryPhoneBox.Text = deliveryOrderDetails.Rows[0]["DealerContactPhoneNum"].ToString();
                     this.deliveryWeightBox.Text = programMethod.GetProductWeight(orderID);
 
                    // this.deliveryPhoneBox.Text = orderDetails.Rows[0]["DealerContactPhoneNum"].ToString();
 
 
-                    if (orderItemDeatails.Rows.Count > 0)
+                    if (deliveryNoteItem.Rows.Count > 0)
                     {
                         for (int i = 0; i < deliveryNoteItem.Rows.Count; i++)
+
                         {
-                            string productID = orderItemDeatails.Rows[i]["ProductID"]?.ToString() ?? string.Empty;
-                            string productName = orderItemDeatails.Rows[i]["ProductName"]?.ToString() ?? string.Empty;
+                            string productID = deliveryNoteItem.Rows[i]["ProductID"]?.ToString() ?? string.Empty;
                             string PreQtyDelivered = deliveryNoteItem.Rows[i]["PreQtyDelivered"]?.ToString() ?? string.Empty;
                             string quantityFollow = deliveryNoteItem.Rows[i]["QuantityToFollow"]?.ToString() ?? string.Empty;
                             string deliveryQuantity = deliveryNoteItem.Rows[i]["DeliveryQuantity"]?.ToString() ?? string.Empty;
 
-                            this.deliveryformData.Rows.Add(productID, productName, PreQtyDelivered, quantityFollow, deliveryQuantity);
+                            this.deliveryformData.Rows.Add(productID, deliveryNoteItem.Rows[i]["ProductName"].ToString(), PreQtyDelivered, quantityFollow, deliveryQuantity);
+                           
                         }
                     }
 
