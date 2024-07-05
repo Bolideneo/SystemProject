@@ -478,7 +478,6 @@ namespace ProgramMethod
             if (dataBaseMethod.delProduct(productID))
             {
                 LogDeleteProduct(LoginUserID, LoginUserName, productID);
-                MessageBox.Show("Delete successfully");
                 return true;
             }
             else
@@ -663,12 +662,12 @@ namespace ProgramMethod
             return dataBaseMethod.getOrderItemProductDeatails(orderID, productID);
         }
 
-        public string createSalesOrder(string dealerID, string dealerName, string dealerContactName, string dealerContactPhone, string phoneNumber, string Address, string CompleteDate, string price, DataGridView Order)
+        public string createSalesOrder(string dealerID, string dealerName, string dealerContactName, string dealerContactPhone, string phoneNumber, string invoiceaddress, string Address, string CompleteDate, string price, DataGridView Order)
         {
 
 
             string orderID = (int.Parse(dataBaseMethod.getOrderID()) + 1).ToString("000000");
-            while (!dataBaseMethod.createSalesOrder(orderID, dealerID, "OrderProcessing", Address, dealerContactName, dealerContactPhone, price))
+            while (!dataBaseMethod.createSalesOrder(orderID, dealerID, "OrderProcessing", invoiceaddress, Address, dealerContactName, dealerContactPhone, price, CompleteDate))
             {
                 orderID = (int.Parse(dataBaseMethod.getOrderID()) + 1).ToString("000000");
             }
@@ -2525,16 +2524,14 @@ namespace ProgramMethod
             return temp;
         }
 
-        public string[] orderReportLabelinfo()
+        public string[] orderAccemblyLabelinfo()
         {
-            string[] temp = new string[4];
-            //temp[0] = dataBaseMethod.get();
-            temp[1] = dataBaseMethod.getAllCompletedOrderLabel();
-            temp[2] = dataBaseMethod.getAllCancelOrderLabel();
-            temp[3] = dataBaseMethod.getActiveOrder();
+            string[] temp = new string[3];
+            temp[0] = dataBaseMethod.getOrderAccemblyLabelForProcessing();
+            temp[1] = dataBaseMethod.getOrderAccemblyLabelForPartial();
+            temp[2] = dataBaseMethod.getOrderAccemblyLabelForALL();
             return temp;
         }
-
 
         public string CreatePurchaseOrder(PurchaseOrder purchaseOrder)
         {
@@ -2695,6 +2692,21 @@ namespace ProgramMethod
             array[2] = result;
             return array;
         }
+
+        //public string[] getOrderaccemblyLabelInfo()
+        //{
+        //    string[] array = new string[3];
+        //    string result = dataBaseMethod.getOrderStatus();
+        //    DataTable result1 = dataBaseMethod.getDashboardToadyLabel();
+
+        //    array[0] = result1.Rows[0][0].ToString();
+        //    array[1] = result1.Rows[0][1].ToString();
+        //    array[2] = result;
+        //    return array;
+        //}
+
+
+        
 
         public DataTable getCategoryAOrderQuantity()
         {

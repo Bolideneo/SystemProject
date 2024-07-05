@@ -112,6 +112,13 @@ namespace ITP4519M
             dealerNameBox.Text = string.Empty;
             dealerCompanyBox.Text = string.Empty;
             phoneNumBox.Text = string.Empty;
+            dealerInfobox.Text = string.Empty;
+            orderContactNamebox.Text = string.Empty;
+            OrderContactPhonebox.Text = string.Empty;
+            ordertotallbl.Text = string.Empty;
+            orderEmailAddressbox.Text  = string .Empty;
+            invoiceAddressBox.Text = string.Empty;
+            productSearchbox.Text = string .Empty;
             productOfOrderdata.Rows.Clear();
         }
 
@@ -177,38 +184,6 @@ namespace ITP4519M
         }
 
 
-
-        //private void productSearchbox_KeyDown(object sender, KeyEventArgs e)
-        //{
-        //    if (e.KeyCode == Keys.Enter)
-        //    {
-
-        //        if (programMethod.getValidProduct(productSearchbox1.Text.Trim()))
-        //        {
-
-        //            for (int i = 0; i < productOfOrderdata.Rows.Count; i++)
-        //            {
-
-        //                if (productOfOrderdata.Rows[i].Cells[0].Value.ToString() == productSearchbox1.Text.Trim() || productOfOrderdata.Rows[i].Cells[1].Value.ToString() == productSearchbox1.Text.Trim())
-        //                {
-        //                    productSearchbox1.Text = "";
-        //                    MessageBox.Show("Product is Added");
-        //                    return;
-        //                }
-        //                if (int.Parse(productOfOrderdata.Rows[i].Cells[2].Value.ToString()) == 0)
-        //                {
-        //                    productSearchbox1.Text = "";
-        //                    MessageBox.Show("Please Add One quantity");
-        //                    return;
-        //                }
-        //            }
-
-        //            DataTable result = programMethod.searchOrderItemDetail(productSearchbox1.Text.Trim());
-        //            this.productOfOrderdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, result.Rows[0]["UnitPrice"], "100");
-        //            productSearchbox1.Text = "";
-        //        }
-        //    }
-        //}
 
         private void createOrderbtn_Click(object sender, EventArgs e)
         {
@@ -323,15 +298,15 @@ namespace ITP4519M
             }
 
             string orderID;
-            orderID = programMethod.createSalesOrder(dealerIDBox.Text.Trim(), dealerNameBox.Text.Trim(), orderContactNamebox.Text.Trim(), OrderContactPhonebox.Text.Trim(), phoneNumBox.Text.Trim(), address, orderDateBox.Value.ToString(), ordertotallbl.Text.ToString(), productOfOrderdata);
+            orderID = programMethod.createSalesOrder(dealerIDBox.Text.Trim(), dealerNameBox.Text.Trim(), orderContactNamebox.Text.Trim(), OrderContactPhonebox.Text.Trim(), phoneNumBox.Text.Trim(), goodsAddressBox.Text.Trim(), address, orderDateBox.Value.ToString(), ordertotallbl.Text.ToString(), productOfOrderdata);
             if (orderID != null)
             {
                 programMethod.LogCreateSalesOrder(this.userID, this.userName, orderID);
             }
 
-            ClearForm();
+          
             MessageBox.Show("Order Create Successfully " + "Order ID: " + orderID);
-
+            ClearForm();
 
         }
 
@@ -398,11 +373,6 @@ namespace ITP4519M
             {
                 waitingTimer.Change(WaitingMilliSeconds, System.Threading.Timeout.Infinite);
             }
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)

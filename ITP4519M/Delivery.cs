@@ -20,6 +20,7 @@ namespace ITP4519M
 
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
         private OperationMode _mode;
+        public event EventHandler OperationCompleted;
 
 
         public Delivery(OperationMode mode)
@@ -116,6 +117,8 @@ namespace ITP4519M
                 if (programMethod.createDelivery(deliveryOrderidbox.Text.Trim(), DeliverydateTimePicker1.Value.Date.ToString()))
                 {
                     MessageBox.Show("Create Successfully");
+                    OperationCompleted?.Invoke(sender, e);
+
                 }
                 else
                 {

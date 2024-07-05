@@ -77,8 +77,20 @@ namespace ITP4519M
             switch (_mode)
             {
                 case OperationMode.View:
-                    DataTable orderDetails = programMethod.getOrderDetails(orderID);
-                    this.ordertotallbl.Text = orderDetails.Rows[0]["TotalPrice"].ToString();
+                    try
+                    {
+                        DataTable orderDetails = programMethod.getOrderDetails(orderID);
+                        this.ordertotallbl.Text = orderDetails.Rows[0]["TotalPrice"].ToString();
+                        this.orderEmailAddressbox.Text = orderDetails.Rows[0]["DealerEmailAddress"].ToString();
+                        this.goodsAddressBox.Text = orderDetails.Rows[0]["DeliveryAddress"].ToString();
+                        this.invoiceAddressBox.Text = orderDetails.Rows[0]["InvoiceAddress"].ToString();
+                        this.orderContactNamebox.Text = orderDetails.Rows[0]["DealerContactName"].ToString();
+                        this.OrderContactPhonebox.Text = orderDetails.Rows[0]["DealerContactPhoneNum"].ToString();
+                        this.orderDateBox.Value = DateTime.Parse(orderDetails.Rows[0]["ExpectCompleteDate"].ToString());
+                    }
+                    catch (Exception ex) {
+                        MessageBox.Show("Please try again!");
+                    }
                     orderContactNamebox.ReadOnly = true;
                     orderContactNamebox.ReadOnly = true;
                     OrderContactPhonebox.ReadOnly = true;
@@ -109,7 +121,14 @@ namespace ITP4519M
                     SetReadOnly(false);
                     break;
                 case OperationMode.Edit:
-                    // SetReadOnly(true);
+                    DataTable orderDetail = programMethod.getOrderDetails(orderID);
+                    this.ordertotallbl.Text = orderDetail.Rows[0]["TotalPrice"].ToString();
+                    this.orderEmailAddressbox.Text = orderDetail.Rows[0]["DealerEmailAddress"].ToString();
+                    this.goodsAddressBox.Text = orderDetail.Rows[0]["DeliveryAddress"].ToString();
+                    this.invoiceAddressBox.Text = orderDetail.Rows[0]["InvoiceAddress"].ToString();
+                    this.orderContactNamebox.Text = orderDetail.Rows[0]["DealerContactName"].ToString();
+                    this.OrderContactPhonebox.Text = orderDetail.Rows[0]["DealerContactPhoneNum"].ToString();
+                    this.orderDateBox.Value = DateTime.Parse(orderDetail.Rows[0]["ExpectCompleteDate"].ToString());
                     break;
             }
         }
@@ -336,7 +355,7 @@ namespace ITP4519M
             }
 
             string orderID;
-            orderID = programMethod.createSalesOrder(dealerIDBox.Text.Trim(), dealerNameBox.Text.Trim(), orderContactNamebox.Text.Trim(), OrderContactPhonebox.Text.Trim(), phoneNumBox.Text.Trim(), address, orderDateBox.Value.ToString(), ordertotallbl.Text.ToString(), productOfOrderdata);
+            orderID = programMethod.createSalesOrder(dealerIDBox.Text.Trim(), dealerNameBox.Text.Trim(), orderContactNamebox.Text.Trim(), OrderContactPhonebox.Text.Trim(), phoneNumBox.Text.Trim(), goodsAddressBox.Text.Trim(), address, orderDateBox.Value.ToString(), ordertotallbl.Text.ToString(), productOfOrderdata);
             if (orderID != null)
             {
                 programMethod.LogCreateSalesOrder(this.userID, this.userName, orderID);

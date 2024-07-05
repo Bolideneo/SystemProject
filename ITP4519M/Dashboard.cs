@@ -109,6 +109,7 @@ namespace ITP4519M
         private string LoginUserID;
         private string LoginUserName;
         private string productID;
+        private string stockproductID;
         private string orderID;
         private string grnID;
         private string dealerID;
@@ -125,6 +126,7 @@ namespace ITP4519M
         private string invoiceDeliveryID;
         private string invoiceDate;
         private string poID;
+        private string[] array;
         private bool isDealerDVG;
         private int PageSize = 5;
         private int index = -1;
@@ -483,7 +485,7 @@ namespace ITP4519M
 
         private void orderLabelinfo()
         {
-            string[] array = programMethod.orderLabelinfo();
+            array = programMethod.orderLabelinfo();
             orderAllbox.Text = array[0];
             orderCompletedlbl.Text = array[1];
             orderCancelbox.Text = array[2];
@@ -774,11 +776,12 @@ namespace ITP4519M
 
         private void editOrdersbtn_Click(object sender, EventArgs e)
         {
+
             if (orderindex == -1)
             {
                 MessageBox.Show("Please Select One User");
             }
-            else
+            else if (orderdata.Rows[orderindex].Cells[3].Value.ToString() == "OrderProcessing")
             {
                 OrderDetailsForViewAndEdit salesOrder = new OrderDetailsForViewAndEdit(OperationMode.Edit);
                 salesOrder.orderEdit(orderID, dealerID);
@@ -904,7 +907,7 @@ namespace ITP4519M
                 this.stockData.Rows[e.RowIndex].Cells["stockcheckColumn"].Value = true;
                 stockindex = e.RowIndex;
                 DataGridViewRow selectRow = this.stockData.Rows[stockindex];
-                productID = selectRow.Cells[1].Value.ToString();
+                stockproductID = selectRow.Cells[1].Value.ToString();
                 //  dealerID = selectRow.Cells[2].Value.ToString();
 
                 foreach (DataGridViewRow row in stockData.Rows)
@@ -1278,11 +1281,11 @@ namespace ITP4519M
             lastClickedButton.ForeColor = Color.Gray;
             CalculateTotalPages("Delivery");
             ShowPanel(deliverypnl);
-            deliveryData.DataSource = programMethod.overallDeliveryinfo();
-            //deliveryData.DataSource = programMethod.GetDeliveryCurrentRecords(DespatchPageIndex, DespatchPgSize);
+            //deliveryData.DataSource = programMethod.overallDeliveryinfo();
+            deliveryData.DataSource = programMethod.GetDeliveryCurrentRecords(DespatchPageIndex, DespatchPgSize);
             deliveryData.Rows[0].Selected = false;
             despatchPage.Text = "01" + " - " + DespatchPgSize.ToString() + " of " + DeliveryRowCount;
-            //SetRowHeights(deliveryData, DespatchPgSize);
+            SetRowHeights(deliveryData, DespatchPgSize);
 
             string[] MinDate = programMethod.getDNMinAndMaxDate();
             deliverydateTimePicker1.MinDate = DateTime.Parse(MinDate[0]);
@@ -1302,8 +1305,16 @@ namespace ITP4519M
             else
             {
 
-                programMethod.productDel(productID);
+                DialogResult box = MessageBox.Show("Do you want to Delete #" + stockproductID + " ?", "Delete Product", MessageBoxButtons.YesNo);
+                switch (box)
+                {
 
+                    case DialogResult.Yes:
+                        programMethod.productDel(stockproductID);
+                        break;
+                    case DialogResult.No:
+                        break;
+                }
             }
         }
 
@@ -1357,6 +1368,13 @@ namespace ITP4519M
             GRN grn = new GRN(OperationMode.New);
             grn.ShowDialog();
         }
+
+        private void DeliveryFormOperationCompleted(object sender, EventArgs e)
+        {
+            deliveryData.DataSource = programMethod.GetDeliveryCurrentRecords(DespatchPageIndex, DespatchPgSize);
+            deliverybtn_Click(deliverybtn, EventArgs.Empty);
+        }
+
         private void productSearchBtn_Click(object sender, EventArgs e)
         {
             stockData.DataSource = programMethod.searchProductInformation(stockSearchBox.Text.Trim());
@@ -1525,6 +1543,7 @@ namespace ITP4519M
         private void deliveryAddbtn_Click_1(object sender, EventArgs e)
         {
             Delivery delivery = new Delivery(OperationMode.New);
+            delivery.OperationCompleted += DeliveryFormOperationCompleted;
             delivery.ShowDialog();
         }
 
@@ -1838,7 +1857,7 @@ namespace ITP4519M
             {
                 MessageBox.Show("Please Select One Order");
             }
-            else
+            else if (orderAccemblyData.Rows[orderAceemblyindex].Cells[3].Value.ToString() != "ALLProductPackaged")
             {
                 OrderAccembly orderAccembly = new OrderAccembly(OperationMode.New, orderAccemblyOrderID, orderAccemblyDealerID);
                 orderAccembly.ShowDialog();
@@ -2050,16 +2069,21 @@ namespace ITP4519M
 
         private void orderCancelbtn_Click(object sender, EventArgs e)
         {
-            DialogResult box = MessageBox.Show("Do you want to delete #" + orderID + " ?", "Cancel Order", MessageBoxButtons.YesNo);
-            switch (box)
+            if (orderdata.Rows[orderindex].Cells[3].Value.ToString() == "OrderProcessing")
             {
-                case DialogResult.Yes:
-                    if (programMethod.cancelOrder(orderID))
-                        OrderLoad();
-                    break;
-                case DialogResult.No:
-                    break;
+
+                DialogResult box = MessageBox.Show("Do you want to delete #" + orderID + " ?", "Cancel Order", MessageBoxButtons.YesNo);
+                switch (box)
+                {
+                    case DialogResult.Yes:
+                        if (programMethod.cancelOrder(orderID))
+                            OrderLoad();
+                        break;
+                    case DialogResult.No:
+                        break;
+                }
             }
+
         }
 
 
@@ -2207,6 +2231,11 @@ namespace ITP4519M
             orderAccemblyData.DataSource = programMethod.overallOrderinfo();
             orderAccemblyData.Rows[0].Selected = false;
             ShowPanel(OrderAccemblypnl);
+
+            string[] result = programMethod.orderAccemblyLabelinfo();
+            orderaccemblybox.Text = result[0];
+            orderaccemblyPartiallylbl.Text = result[1];
+            orderaccemblycompletedbox.Text = result[2];
 
             string[] MinDate = programMethod.getOrderMinAndMaxDateForOrderAccembly();
             orderAccemblydateTimePicker.MinDate = DateTime.Parse(MinDate[0]);
@@ -3334,13 +3363,23 @@ namespace ITP4519M
         private void SearchStockReportButton_Click(object sender, EventArgs e)
         {
 
-            if(stockReportCategorybox.SelectedIndex > -1)
+            if (stockReportCategorybox.SelectedIndex > -1)
             {
                 reportStockdata.DataSource = programMethod.reportStockFilterByDateAndCategory(stockReportCategorybox.Text);
 
 
             }
-            
+
+        }
+
+        private void outstandingDeletebtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

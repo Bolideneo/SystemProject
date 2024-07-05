@@ -167,7 +167,7 @@ namespace ITP4519M
             createOrderbtn.Name = "createOrderbtn";
             createOrderbtn.Size = new Size(171, 53);
             createOrderbtn.TabIndex = 68;
-            createOrderbtn.Text = "Create";
+            createOrderbtn.Text = "Update";
             createOrderbtn.UseVisualStyleBackColor = true;
             createOrderbtn.Click += createOrderbtn_Click;
             // 
@@ -724,7 +724,7 @@ namespace ITP4519M
             // 
             invoiceAddressBox.AutoSize = true;
             invoiceAddressBox.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            invoiceAddressBox.Location = new Point(18, 515);
+            invoiceAddressBox.Location = new Point(5, 517);
             invoiceAddressBox.Margin = new Padding(5, 0, 5, 0);
             invoiceAddressBox.Name = "invoiceAddressBox";
             invoiceAddressBox.Size = new Size(130, 24);
@@ -746,7 +746,7 @@ namespace ITP4519M
             // 
             goodsAddressBox.AutoSize = true;
             goodsAddressBox.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            goodsAddressBox.Location = new Point(24, 309);
+            goodsAddressBox.Location = new Point(5, 307);
             goodsAddressBox.Margin = new Padding(5, 0, 5, 0);
             goodsAddressBox.Name = "goodsAddressBox";
             goodsAddressBox.Size = new Size(140, 24);

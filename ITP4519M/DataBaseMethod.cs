@@ -27,6 +27,8 @@ using System.Diagnostics.Tracing;
 using System.Globalization;
 using MySqlX.XDevAPI.Common;
 using static ITP4519M.DataBaseMethod;
+using System.Transactions;
+using System.Data.Common;
 
 
 namespace ITP4519M
@@ -357,23 +359,54 @@ namespace ITP4519M
             return false;
         }
 
+        //public bool delProduct(string productID)
+        //{
+        //    try
+        //    {
+        //        string sql = "DELETE FROM product WHERE ProductID=@ProductID";
+        //        MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+        //        cmd.Parameters.AddWithValue("@ProductID", productID);
+        //        if (cmd.ExecuteNonQuery() > 0)
+        //            return true;
+        //    }
+        //    catch (MySql.Data.MySqlClient.MySqlException ex)
+        //    {
+        //        Console.WriteLine("An exception occurred: " + ex.Message);
+        //    }
+        //    ServerConnect().Close();
+        //    return false;
+        //}
         public bool delProduct(string productID)
         {
+            var transaction = ServerConnect().BeginTransaction();
             try
             {
-                string sql = "DELETE FROM product WHERE ProductID=@ProductID";
-                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-                cmd.Parameters.AddWithValue("@ProductID", productID);
-                if (cmd.ExecuteNonQuery() > 0)
-                    return true;
+                string sqlDeleteSupplierProducts = "DELETE FROM supplierproducts WHERE productID = @productID";
+                string sqlDeleteProduct = "DELETE FROM product WHERE ProductID = @productID";
+
+                string sql = sqlDeleteSupplierProducts;
+                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect(), transaction);
+                cmd.Parameters.AddWithValue("@productID", productID);
+                cmd.ExecuteNonQuery();
+
+                sql = sqlDeleteProduct;
+                cmd = new MySqlCommand(sql, ServerConnect(), transaction);
+                cmd.Parameters.AddWithValue("@productID", productID);
+                cmd.ExecuteNonQuery();
+
+                transaction.Commit();
+                return true;
             }
-            catch (MySql.Data.MySqlClient.MySqlException ex)
+            catch (Exception ex)
             {
-                Console.WriteLine("An exception occurred: " + ex.Message);
+                // Rollback the transaction if any command fails
+                transaction.Rollback();
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return false;
             }
-            ServerConnect().Close();
-            return false;
+
         }
+
 
         public bool dealerDel(string contactID)
         {
@@ -1627,21 +1660,23 @@ namespace ITP4519M
         }
 
 
-        public bool createSalesOrder(string orderID, string dealerID, string orderstatus, string deliveryAddress, string DealerContactName, string DealerContactPhoneNum, string TotalPrice)
+        public bool createSalesOrder(string orderID, string dealerID, string orderstatus, string invoiceaddress , string deliveryAddress, string DealerContactName, string DealerContactPhoneNum, string TotalPrice, string ExpectCompleteDate)
         {
             DateTime orderDate = DateTime.Now;
             orderDate.ToString("yyyy-MM-dd HH:mm");
             Console.WriteLine(orderDate);
-            string sql = "INSERT INTO `order` (OrderID, DealerID, OrderStatus, OrderDate,DeliveryAddress, DealerContactName, DealerContactPhoneNum, TotalPrice) VALUES(@orderID, @dealerID, @orderStatus, @orderDate,@DeliveryAddress, @DealerContactName,@DealerContactPhoneNum, @TotalPrice)";
+            string sql = "INSERT INTO `order` (OrderID, DealerID, OrderStatus, OrderDate,InvoiceAddress, DeliveryAddress, DealerContactName, DealerContactPhoneNum, TotalPrice, ExpectCompleteDate) VALUES(@orderID, @dealerID, @orderStatus, @orderDate,@InvoiceAddress,@DeliveryAddress, @DealerContactName,@DealerContactPhoneNum, @TotalPrice, @ExpectCompleteDate)";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@orderID", orderID);
             cmd.Parameters.AddWithValue("@dealerID", dealerID);
             cmd.Parameters.AddWithValue("@orderStatus", orderstatus);
             cmd.Parameters.AddWithValue("@orderDate", orderDate);
+            cmd.Parameters.AddWithValue("@InvoiceAddress", invoiceaddress);
             cmd.Parameters.AddWithValue("@DeliveryAddress", deliveryAddress);
             cmd.Parameters.AddWithValue("@DealerContactName", DealerContactName);
             cmd.Parameters.AddWithValue("@DealerContactPhoneNum", DealerContactPhoneNum);
             cmd.Parameters.AddWithValue("@TotalPrice", TotalPrice);
+            cmd.Parameters.AddWithValue("@ExpectCompleteDate", ExpectCompleteDate);
             ServerConnect().Close();
             if (cmd.ExecuteNonQuery() > 0)
                 return true;
@@ -2706,12 +2741,19 @@ namespace ITP4519M
 
         public void DeleteOutstandingOrderForOrderAccembly(string orderID)
         {
-            string sql = "DELETE FROM outstandingorder WHERE OrderID=@orderIDD";
-            DateTime date = DateTime.Now;
-            date.ToString("yyyy-MM-dd HH:mm:ss");
-            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-            cmd.Parameters.AddWithValue("@orderID", orderID);
-            cmd.ExecuteNonQuery();
+            try
+            {
+                string sql = "DELETE FROM outstandingorder WHERE OrderID=@orderIDD";
+                DateTime date = DateTime.Now;
+                date.ToString("yyyy-MM-dd HH:mm:ss");
+                MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+                cmd.Parameters.AddWithValue("@orderID", orderID);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex) {
+                
+            }
+            
         }
 
         public void DeleteOutstandingOrder(string outID)
@@ -3037,7 +3079,7 @@ namespace ITP4519M
         {
             try
             {
-                string sql = "SELECT OrderID, DealerID, OrderStatus, OrderDate FROM `order` WHERE (OrderDate BETWEEN @fromDate AND @toDate) AND OrderStatus=@status";
+                string sql = "SELECT OrderID, DealerID, OrderStatus, OrderDate FROM `order` WHERE (OrderDate BETWEEN @fromDate AND @toDate + INTERVAL 1 DAY - INTERVAL 1 SECOND) AND OrderStatus=@status";
                 // string sql = "SELECT * FROM `order` WHERE (OrderDate BETWEEN @fromDate AND @toDate) AND OrderStatus=@status";
                 MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
                 cmd.Parameters.AddWithValue("@fromDate", fromDate);
@@ -4060,6 +4102,34 @@ namespace ITP4519M
             return dataTable;
         }
 
+        public string getOrderAccemblyLabelForProcessing()
+        {
+            string sql = "SELECT COUNT(*) FROM `order` WHERE OrderStatus = 'OrderProcessing'";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            object result = cmd.ExecuteScalar();
+            ServerConnect().Close();
+            return result.ToString();
+        }
+
+        public string getOrderAccemblyLabelForPartial()
+        {
+            string sql = "SELECT COUNT(*) FROM `order` WHERE OrderStatus = 'PartialProductPackaged'";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            object result = cmd.ExecuteScalar();
+            ServerConnect().Close();
+            return result.ToString();
+        }
+
+        public string getOrderAccemblyLabelForALL()
+        {
+            string sql = "SELECT COUNT(*) FROM `order` WHERE OrderStatus = 'ALLProductPackaged'";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            object result = cmd.ExecuteScalar();
+            ServerConnect().Close();
+            return result.ToString();
+        }
+
+
         public string getAllOrderLabel()
         {
             string sql = "SELECT COUNT(*) FROM `order` WHERE OrderStatus != 'Cancelled'";
@@ -4071,7 +4141,7 @@ namespace ITP4519M
 
         public string getActiveOrder()
         {
-            string sql = "SELECT COUNT(*) FROM `order` WHERE OrderStatus != 'Cancelled' AND OrderStatus != 'Completed'";
+            string sql = "SELECT COUNT(*) FROM `order` WHERE OrderStatus != 'Cancelled' AND OrderStatus != 'OrderCompleted'";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             object result = cmd.ExecuteScalar();
             ServerConnect().Close();
@@ -4091,7 +4161,7 @@ namespace ITP4519M
         {
             try
             {
-                string sql = "SELECT COUNT(OrderID) FROM `order` WHERE OrderStatus = 'Completed'";
+                string sql = "SELECT COUNT(OrderID) FROM `order` WHERE OrderStatus = 'OrderCompleted'";
                 MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
                 object result = cmd.ExecuteScalar();
                 ServerConnect().Close();
