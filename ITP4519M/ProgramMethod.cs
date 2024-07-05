@@ -1469,6 +1469,27 @@ namespace ProgramMethod
                 comboBox.Items.Add("-------------------");
             }
         }
+
+
+        public void ProductSearchAutoComplete(ComboBox comboBox, string keyword)
+        {
+            comboBox.AutoCompleteCustomSource.Clear();
+            comboBox.Items.Clear();
+            DataTable result = dataBaseMethod.searchProductDetail(keyword);
+            for (int i = 0; i < result.Rows.Count; i++)
+            {
+                string ProductID = result.Rows[i]["ProductID"].ToString();
+                string ProductName = result.Rows[i]["ProductName"].ToString();
+                string ProductSerialNumber = result.Rows[i]["SerialNumber"].ToString();
+                comboBox.AutoCompleteCustomSource.Add(ProductID);
+                comboBox.AutoCompleteCustomSource.Add(ProductName);
+                comboBox.AutoCompleteCustomSource.Add(ProductSerialNumber);
+                comboBox.Items.Add(ProductID);
+                comboBox.Items.Add(ProductName);
+                comboBox.Items.Add(ProductSerialNumber);
+                comboBox.Items.Add("-------------------");
+            }
+        }
         public DataTable grnAllPOID()
         {
             return dataBaseMethod.grnAllPOID();
@@ -1684,34 +1705,47 @@ namespace ProgramMethod
         {
             return dataBaseMethod.searchOrder(keyword);
         }
-
-        public DataTable orderDateFilter(string fromData, string toDate)
+        
+        public DataTable orderDateFilter(string fromDate, string toDate)
         {
-            return dataBaseMethod.orderDateFilter(fromData, toDate);
+            return dataBaseMethod.orderDateFilter(fromDate, toDate);
+
+        }
+        
+        public DataTable reportFilterByDateAndProductID(string fromDate, string toDate, string productID)
+        {
+            return dataBaseMethod.reportFilterByDateAndProductID(fromDate, toDate, productID);
 
         }
 
-        public DataTable orderAccemblyDateFilter(string fromData, string toDate)
+        public DataTable reportFilterByDateAndCategory(string fromDate, string toDate, string productCategory)
         {
-            return dataBaseMethod.orderAccemblyDateFilter(fromData, toDate);
+            return dataBaseMethod.reportFilterByDateAndCategory(fromDate, toDate, productCategory);
 
         }
 
-        public DataTable getOutstandingDateFilter(string fromData, string toDate)
+
+        public DataTable orderAccemblyDateFilter(string fromDate, string toDate)
         {
-            return dataBaseMethod.getOutstandingDateFilter(fromData, toDate);
+            return dataBaseMethod.orderAccemblyDateFilter(fromDate, toDate);
 
         }
 
-        public DataTable getInvoiceDateFilter(string fromData, string toDate)
+        public DataTable getOutstandingDateFilter(string fromDate, string toDate)
         {
-            return dataBaseMethod.getInvoiceDateFilter(fromData, toDate);
+            return dataBaseMethod.getOutstandingDateFilter(fromDate, toDate);
 
         }
 
-        public DataTable getAuditLogDateFilter(string fromData, string toDate)
+        public DataTable getInvoiceDateFilter(string fromDate, string toDate)
         {
-            return dataBaseMethod.getAuditLogDateFilter(fromData, toDate);
+            return dataBaseMethod.getInvoiceDateFilter(fromDate, toDate);
+
+        }
+
+        public DataTable getAuditLogDateFilter(string fromDate, string toDate)
+        {
+            return dataBaseMethod.getAuditLogDateFilter(fromDate, toDate);
 
         }
 
@@ -2102,7 +2136,15 @@ namespace ProgramMethod
         {
             return dataBaseMethod.GetProducts(productIDs);
         }
+        public DataTable getProductID()
+        {
+            return dataBaseMethod.getProductID();
+        }
 
+        public DataTable getProductCategory()
+        {
+            return dataBaseMethod.getProductCategory();
+        }
 
         public void LogCreateSalesOrder(string userID, string userName, string orderID)
         {
@@ -2421,10 +2463,15 @@ namespace ProgramMethod
         {
             return dataBaseMethod.getReportCount();
         }
-
+        
         public DataTable getTopSellingProductReport()
         {
             return dataBaseMethod.getTopSellingProductReport();
+        }
+
+        public DataTable getOrderReport()
+        {
+            return dataBaseMethod.getOrderReport();
         }
 
         public DataTable getAllSalesReport()
@@ -2451,6 +2498,16 @@ namespace ProgramMethod
         {
             string[] temp = new string[4];
             temp[0] = dataBaseMethod.getAllOrderLabel();
+            temp[1] = dataBaseMethod.getAllCompletedOrderLabel();
+            temp[2] = dataBaseMethod.getAllCancelOrderLabel();
+            temp[3] = dataBaseMethod.getActiveOrder();
+            return temp;
+        }
+
+        public string[] orderReportLabelinfo()
+        {
+            string[] temp = new string[4];
+            //temp[0] = dataBaseMethod.get();
             temp[1] = dataBaseMethod.getAllCompletedOrderLabel();
             temp[2] = dataBaseMethod.getAllCancelOrderLabel();
             temp[3] = dataBaseMethod.getActiveOrder();

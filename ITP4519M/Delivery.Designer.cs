@@ -41,8 +41,8 @@
             orderIDAlertlbl = new Label();
             DeliverydateTimePicker1 = new DateTimePicker();
             deliveryerrorlbl = new Label();
-            CloseButton = new Button();
             label4 = new Label();
+            CloseButton = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -52,9 +52,9 @@
             label1.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(23, 18);
             label1.Name = "label1";
-            label1.Size = new Size(145, 24);
+            label1.Size = new Size(147, 24);
             label1.TabIndex = 0;
-            label1.Text = "Delivery Notes";
+            label1.Text = "Despatch Note";
             label1.Click += label1_Click;
             // 
             // label2
@@ -200,6 +200,17 @@
             deliveryerrorlbl.Text = "* column cannot be empty";
             deliveryerrorlbl.Visible = false;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Location = new Point(36, 104);
+            label4.Name = "label4";
+            label4.Size = new Size(138, 20);
+            label4.TabIndex = 3;
+            label4.Text = "* OutStanding ID :";
+            label4.Visible = false;
+            // 
             // CloseButton
             // 
             CloseButton.Cursor = Cursors.Hand;
@@ -214,17 +225,6 @@
             CloseButton.Text = "X";
             CloseButton.UseVisualStyleBackColor = true;
             CloseButton.Click += CloseButton_Click;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(36, 104);
-            label4.Name = "label4";
-            label4.Size = new Size(138, 20);
-            label4.TabIndex = 3;
-            label4.Text = "* OutStanding ID :";
-            label4.Visible = false;
             // 
             // Delivery
             // 

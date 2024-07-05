@@ -485,6 +485,16 @@ namespace ITP4519M
             orderActivebox.Text = array[3];
         }
 
+        private void orderReportLabelinfo()
+        {
+            string[] array = programMethod.orderLabelinfo();
+            orderAllbox.Text = array[0];
+            orderCompletedlbl.Text = array[1];
+            orderCancelbox.Text = array[2];
+            orderActivebox.Text = array[3];
+        }
+
+
         private void CloseButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -821,7 +831,7 @@ namespace ITP4519M
 
             ShowPanel(logpnl);
             auditLogdata.DataSource = programMethod.overallLoginfo();
-
+            auditTypeStatusbox.SelectedIndex = 0;
 
             string[] MinDate = programMethod.getMinAndMaxDateForAuditLog();
             logdateTimePicker1.MinDate = DateTime.Parse(MinDate[0]);
@@ -834,7 +844,7 @@ namespace ITP4519M
             auditLogdata.Columns[0].Width = 90;
             auditLogdata.Columns[1].Width = 70;
             auditLogdata.Columns[2].Width = 110;
-            auditLogdata.Columns[3].Width = 80;
+            auditLogdata.Columns[3].Width = 95;
             auditLogdata.Columns[4].Width = 580;
 
         }
@@ -2270,12 +2280,13 @@ namespace ITP4519M
 
             lastClickedButton = (Button)sender;
             lastClickedButton.ForeColor = Color.Gray;
-
-            TodayTotalOrderValue.Text = "";
-            MonthlyTotalSalesValue.Text = "";
-            MonthlyTotalOrderValue.Text = "";
-            orderReportdata.DataSource = programMethod.getTopSellingProductReport();
-            DataTable dt = programMethod.getReportCount();
+            reportOrderProductbox.DataSource = programMethod.getProductID();
+            reportOrderProductbox.DisplayMember = "ProductID";
+            reportOrderProductCategorybox.DataSource = programMethod.getProductCategory();
+            reportOrderProductCategorybox.DisplayMember = "ProductCategory";
+            orderReportdata.DataSource = programMethod.getOrderReport();
+           // programMethod.getTopSellingProductReport();
+            DataTable dt = programMethod.getTopSellingProductReport();
             for (int i = 0; i < 5; i++)
             {
                 orderchart1.Series["Order"].Points.AddXY(dt.Rows[i][0].ToString(), dt.Rows[i][1].ToString());
@@ -2777,7 +2788,7 @@ namespace ITP4519M
             auditLogdata.Columns[0].Width = 100;
             auditLogdata.Columns[1].Width = 70;
             auditLogdata.Columns[2].Width = 110;
-            auditLogdata.Columns[3].Width = 80;
+            auditLogdata.Columns[3].Width = 95;
             auditLogdata.Columns[4].Width = 580;
             // auditLogdata.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
@@ -3063,12 +3074,140 @@ namespace ITP4519M
 
         private void grnsearchbox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter) {
+            if (e.KeyCode == Keys.Enter)
+            {
                 MessageBox.Show(grnsearchbox.Text);
                 poData.DataSource = programMethod.searchGRNinfo(grnsearchbox.Text.Trim());
                 SetRowHeights(poData, POPgSize);
                 grnsearchbox.Clear();
             }
+        }
+
+        private void auditTypeStatusbox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            var log = new List<string>
+                {
+                    "Create/Save",
+                    "Update",
+                    "Cancel/Delete",
+                    "Login",
+                    "Logout",
+                    "Print",
+                    "Enable",
+                    "Disable",
+                    "LoginFailed",
+               };
+
+            if (auditTypeStatusbox.Text == "Account")
+            {
+
+
+                auditlogStatusbox.DataSource = log.Where(item => item != "Print").ToList();
+
+            }
+
+            if (auditTypeStatusbox.Text == "Order")
+            {
+                auditlogStatusbox.DataSource = log.Where(item => item == "Create/Save" || item == "Update" || item == "Cancel/Delete").ToList();
+            }
+
+            if (auditTypeStatusbox.Text == "OrderAccembly")
+            {
+                auditlogStatusbox.DataSource = log.Where(item => item == "Create/Save").ToList();
+            }
+
+            if (auditTypeStatusbox.Text == "OrderAccembly")
+            {
+                auditlogStatusbox.DataSource = log.Where(item => item == "Create/Save").ToList();
+            }
+
+            if (auditTypeStatusbox.Text == "Contact")
+            {
+                auditlogStatusbox.DataSource = log.Where(item => item == "Create/Save" || item == "Update" || item == "Cancel/Delete").ToList();
+            }
+
+            if (auditTypeStatusbox.Text == "Contact")
+            {
+                auditlogStatusbox.DataSource = log.Where(item => item == "Create/Save" || item == "Update" || item == "Cancel/Delete").ToList();
+            }
+
+            if (auditTypeStatusbox.Text == "Stock")
+            {
+                auditlogStatusbox.DataSource = log.Where(item => item == "Create/Save" || item == "Update" || item == "Cancel/Delete").ToList();
+            }
+
+            if (auditTypeStatusbox.Text == "GRN")
+            {
+                auditlogStatusbox.DataSource = log.Where(item => item == "Create/Save").ToList();
+            }
+
+            if (auditTypeStatusbox.Text == "OutstandingOrder")
+            {
+                auditlogStatusbox.DataSource = log.Where(item => item == "Create/Save" || item == "Cancel/Delete").ToList();
+            }
+
+            if (auditTypeStatusbox.Text == "Delivery")
+            {
+                auditlogStatusbox.DataSource = log.Where(item => item == "Create/Save" || item == "Print").ToList();
+            }
+
+            if (auditTypeStatusbox.Text == "PurChaseOrder")
+            {
+                auditlogStatusbox.DataSource = log.Where(item => item == "Create/Save").ToList();
+            }
+
+
+            if (auditTypeStatusbox.Text == "Invoice")
+            {
+                auditlogStatusbox.DataSource = log.Where(item => item == "Create/Save").ToList();
+            }
+
+            if (auditTypeStatusbox.Text == "Report")
+            {
+                auditlogStatusbox.DataSource = log.Where(item => item == "Print").ToList();
+            }
+        }
+
+        private void CSVStockReportButton_Click(object sender, EventArgs e)
+        {
+            //string textExport = "";
+            //int countRows = dgStockReport.RowCount;
+            //int countCells = dgStockReport.Rows[0].Cells.Count;
+            //string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            //string filepath = path + "\\StockRecordReport.csv";
+
+            //for (int row_index = 0; row_index < dgStockReport.RowCount; row_index++)
+            //{
+            //    for (int cell_index = 0; cell_index < countCells; cell_index++)
+            //    {
+            //        textExport = textExport + dgStockReport.Rows[row_index].Cells[cell_index].Value.ToString() + ", ";
+            //    }
+            //    textExport += "\r\n";
+            //}
+            //System.IO.File.WriteAllText(filepath, textExport);
+            //MessageBox.Show("Your Stock Record Report form being exported on desktop");
+            //objController.LogPrintStockReportCSV(userID);
+        }
+
+        private void orderReportsearchbtn_Click(object sender, EventArgs e)
+        {
+            string formDate = reportOrderdateTimePicker.Value.Date.ToString("yyyy-MM-dd");
+            string toDate = reportOrderdateTimePicker2.Value.Date.ToString("yyyy-MM-dd");
+
+            if (reportOrderProductCategorybox.SelectedIndex == -1 && reportOrderProductbox.SelectedIndex > -1)
+            {
+                orderReportdata.DataSource = programMethod.reportFilterByDateAndProductID(formDate, toDate, reportOrderProductbox.Text);
+            }
+            else if (reportOrderProductbox.SelectedIndex == -1 && reportOrderProductCategorybox.SelectedIndex > -1)
+            {
+                orderReportdata.DataSource = programMethod.reportFilterByDateAndCategory(formDate, toDate, reportOrderProductCategorybox.Text);
+
+            }
+            else if (reportOrderProductbox.SelectedIndex > -1 && reportOrderProductCategorybox.SelectedIndex > -1)
+            {
+             //   orderReportdata.DataSource = objController.DataFilterReportSalesCatItem(reportOrderProductbox.Text, reportOrderProductCategorybox.Text);
+            }
+
         }
     }
 }

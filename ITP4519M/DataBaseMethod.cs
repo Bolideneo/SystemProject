@@ -948,6 +948,25 @@ namespace ITP4519M
             }
             return false;
         }
+        public DataTable getProductID()
+        {
+            string sql = "SELECT ProductID  FROM product";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
+        public DataTable getProductCategory()
+        {
+            string sql = "SELECT distinct ProductCategory FROM product";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
 
         public DataTable overallStockinfo()
         {
@@ -988,7 +1007,6 @@ namespace ITP4519M
             adat.Fill(dataTable);
             return dataTable;
         }
-
 
 
         public string getStockOutofStockLevelLabel()
@@ -1483,6 +1501,21 @@ namespace ITP4519M
             return dataTable;
         }
 
+        public DataTable searchProductDetail(string keyword)
+        {
+
+            string sql = "SELECT * FROM product WHERE ProductID LIKE @keyword1 OR ProductID LIKE @keyword2 OR ProductName LIKE @keyword1 OR ProductName LIKE @keyword2 OR SerialNumber LIKE @keyword1 OR SerialNumber LIKE @keyword2 ";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@keyword1", "%" + keyword + "%");
+            string keyword2 = keyword.Length > 0 ? $"%{char.ToUpper(keyword[0])}{keyword.Substring(1)}%" : keyword;
+            cmd.Parameters.AddWithValue("@keyword2", keyword2);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            return dataTable;
+        }
+
+
         public string searchProductIDofOrder(string productID)
         {
             try
@@ -1514,7 +1547,7 @@ namespace ITP4519M
 
         public DataTable searchOrderItemDetail(string keyword)
         {
-            string sql = "SELECT * FROM product WHERE ProductID=@keyword OR ProductName=@keyword";
+            string sql = "SELECT * FROM product WHERE ProductID=@keyword OR ProductName=@keyword OR SerialNumber = @keyword";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@keyword", keyword);
             //string keyword2 = keyword.Length > 0 ? $"%{char.ToUpper(keyword[0])}{keyword.Substring(1)}%" : keyword;
@@ -2848,7 +2881,7 @@ namespace ITP4519M
             ServerConnect().Close();
             return dataTable;
         }
-
+        
         public DataTable orderDateFilter(string fromDate, string toDate)
         {
 
@@ -2864,7 +2897,40 @@ namespace ITP4519M
             return dataTable;
 
         }
-        
+       
+
+        public DataTable reportFilterByDateAndProductID(string fromDate, string toDate, string productID)
+        {
+
+            string sql = "SELECT  OrderDate, `order`.OrderID, DealerID, OrderStatus,SUM(OrderedQuantity) AS Quantity ,TotalPrice AS 'TotalPrice (CNY¥)' FROM orderitem,`order` WHERE OrderDate BETWEEN @fromDate AND @toDate  AND orderitem.ProductID = @productID GROUP BY  `order`.OrderID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@fromDate", fromDate);
+            cmd.Parameters.AddWithValue("@toDate", toDate);
+            cmd.Parameters.AddWithValue("@productID", productID);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+
+        }
+
+        public DataTable reportFilterByDateAndCategory(string fromDate, string toDate, string productCategory)
+        {
+            string category = productCategory.Substring(0, 1);
+            string sql = "SELECT  OrderDate, `order`.OrderID, DealerID, OrderStatus,SUM(OrderedQuantity) AS Quantity ,TotalPrice AS 'TotalPrice (CNY¥)' FROM orderitem,`order` WHERE OrderDate BETWEEN @fromDate AND @toDate  AND orderitem.ProductID LIKE @category  GROUP BY  `order`.OrderID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@fromDate", fromDate);
+            cmd.Parameters.AddWithValue("@toDate", toDate);
+            cmd.Parameters.AddWithValue("@productCategory", category);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+
+        }
+
 
         public DataTable orderAccemblyDateFilter(string fromDate, string toDate)
         {
@@ -3862,7 +3928,7 @@ namespace ITP4519M
             ServerConnect().Close();
             return dataTable;
         }
-
+        
         public DataTable getTopSellingProductReport()
         {
             string sql = "SELECT product.ProductID, SUM(orderitem.OrderedQuantity) AS TotalOrderedQuantity, product.UnitPrice, product.CostPrice FROM product JOIN orderitem ON orderitem.ProductID = product.ProductID GROUP BY product.ProductID, product.UnitPrice, product.CostPrice ORDER BY TotalOrderedQuantity DESC;";
@@ -3873,6 +3939,19 @@ namespace ITP4519M
             ServerConnect().Close();
             return dataTable;
         }
+
+
+        public DataTable getOrderReport()
+        {
+            string sql = "SELECT  OrderDate, `order`.OrderID, DealerID, OrderStatus,SUM(OrderedQuantity) AS Quantity ,TotalPrice AS 'TotalPrice (CNY¥)' FROM orderitem,`order` WHERE orderitem.OrderID = `order`.OrderID  GROUP BY `order`.OrderID ";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+
         public DataTable getAllSalesReport()
         {
             string sql = "SELECT product.ProductID, orderitem.OrderedQuantity, product.UnitPrice, product.CostPrice FROM product, orderitem WHERE orderitem.ProductID = product.productID;";

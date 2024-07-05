@@ -40,8 +40,9 @@ namespace ITP4519M
             quantityColumn = new DataGridViewTextBoxColumn();
             unitPriceColumn = new DataGridViewTextBoxColumn();
             createOrderbtn = new Button();
-            productSearchbox = new RoundedTextBox();
             panel1 = new Panel();
+            pictureBox3 = new PictureBox();
+            productSearchbox = new BorderComboBox();
             usernameAlertBox = new PictureBox();
             label17 = new Label();
             dealerInfobox = new BorderComboBox();
@@ -88,6 +89,7 @@ namespace ITP4519M
             panel4 = new Panel();
             ((System.ComponentModel.ISupportInitialize)productOfOrderdata).BeginInit();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)usernameAlertBox).BeginInit();
             panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -177,25 +179,12 @@ namespace ITP4519M
             createOrderbtn.UseVisualStyleBackColor = true;
             createOrderbtn.Click += createOrderbtn_Click;
             // 
-            // productSearchbox
-            // 
-            productSearchbox.AutoCompleteMode = AutoCompleteMode.Suggest;
-            productSearchbox.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            productSearchbox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            productSearchbox.Location = new Point(22, 310);
-            productSearchbox.Margin = new Padding(3, 4, 3, 4);
-            productSearchbox.MaximumSize = new Size(263, 46);
-            productSearchbox.Multiline = true;
-            productSearchbox.Name = "productSearchbox";
-            productSearchbox.PlaceholderText = "Search Product";
-            productSearchbox.Size = new Size(263, 32);
-            productSearchbox.TabIndex = 5;
-            productSearchbox.KeyDown += productSearchbox_KeyDown;
-            // 
             // panel1
             // 
             panel1.BackColor = SystemColors.Menu;
             panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(pictureBox3);
+            panel1.Controls.Add(productSearchbox);
             panel1.Controls.Add(usernameAlertBox);
             panel1.Controls.Add(label17);
             panel1.Controls.Add(dealerInfobox);
@@ -216,7 +205,6 @@ namespace ITP4519M
             panel1.Controls.Add(label9);
             panel1.Controls.Add(label10);
             panel1.Controls.Add(label7);
-            panel1.Controls.Add(productSearchbox);
             panel1.Controls.Add(productOfOrderdata);
             panel1.Location = new Point(30, 66);
             panel1.Margin = new Padding(3, 2, 3, 2);
@@ -224,6 +212,34 @@ namespace ITP4519M
             panel1.Size = new Size(681, 671);
             panel1.TabIndex = 72;
             panel1.Paint += panel1_Paint;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = Properties.Resources.red_alert;
+            pictureBox3.Location = new Point(630, 299);
+            pictureBox3.Margin = new Padding(3, 2, 3, 2);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(23, 17);
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox3.TabIndex = 107;
+            pictureBox3.TabStop = false;
+            pictureBox3.Visible = false;
+            // 
+            // productSearchbox
+            // 
+            productSearchbox.AutoCompleteMode = AutoCompleteMode.Suggest;
+            productSearchbox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            productSearchbox.BorderColor = Color.Black;
+            productSearchbox.ForeColor = SystemColors.WindowText;
+            productSearchbox.FormattingEnabled = true;
+            productSearchbox.Location = new Point(428, 296);
+            productSearchbox.Margin = new Padding(3, 2, 3, 2);
+            productSearchbox.Name = "productSearchbox";
+            productSearchbox.Size = new Size(246, 23);
+            productSearchbox.TabIndex = 106;
+            productSearchbox.SelectedIndexChanged += productSearchbox_SelectedIndexChanged;
+            productSearchbox.KeyDown += productSearchbox_KeyDown_1;
+            productSearchbox.KeyPress += productSearchbox_KeyPress;
             // 
             // usernameAlertBox
             // 
@@ -243,7 +259,7 @@ namespace ITP4519M
             label17.BackColor = SystemColors.Menu;
             label17.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label17.ForeColor = Color.Red;
-            label17.Location = new Point(22, 290);
+            label17.Location = new Point(428, 326);
             label17.Name = "label17";
             label17.Size = new Size(213, 19);
             label17.TabIndex = 104;
@@ -497,7 +513,7 @@ namespace ITP4519M
             label7.BackColor = SystemColors.Menu;
             label7.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.DarkOrange;
-            label7.Location = new Point(354, 304);
+            label7.Location = new Point(22, 296);
             label7.Name = "label7";
             label7.Size = new Size(288, 38);
             label7.TabIndex = 72;
@@ -768,6 +784,7 @@ namespace ITP4519M
             ((System.ComponentModel.ISupportInitialize)productOfOrderdata).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)usernameAlertBox).EndInit();
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
@@ -832,7 +849,6 @@ namespace ITP4519M
         private Label label6;
         private TextBox orderEmailAddressbox;
         private Label label15;
-        private ProgramMethod.ProgramMethod.RoundedTextBox productSearchbox;
         private Label label16;
         private TextBox orderDifferentDeliverybox;
         private Panel panel5;
@@ -849,5 +865,7 @@ namespace ITP4519M
         private BorderComboBox dealerInfobox;
         private Label label17;
         private PictureBox usernameAlertBox;
+        private PictureBox pictureBox3;
+        private BorderComboBox productSearchbox;
     }
 }

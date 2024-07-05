@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
+﻿using Google.Protobuf.WellKnownTypes;
+using Microsoft.VisualBasic.ApplicationServices;
 using Microsoft.VisualBasic.Devices;
 using Mysqlx.Crud;
 using Mysqlx.Session;
@@ -177,37 +178,37 @@ namespace ITP4519M
 
 
 
-        private void productSearchbox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
+        //private void productSearchbox_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    if (e.KeyCode == Keys.Enter)
+        //    {
 
-                if (programMethod.getValidProduct(productSearchbox.Text.Trim()))
-                {
+        //        if (programMethod.getValidProduct(productSearchbox1.Text.Trim()))
+        //        {
 
-                    for (int i = 0; i < productOfOrderdata.Rows.Count; i++)
-                    {
+        //            for (int i = 0; i < productOfOrderdata.Rows.Count; i++)
+        //            {
 
-                        if (productOfOrderdata.Rows[i].Cells[0].Value.ToString() == productSearchbox.Text.Trim() || productOfOrderdata.Rows[i].Cells[1].Value.ToString() == productSearchbox.Text.Trim())
-                        {
-                            productSearchbox.Text = "";
-                            MessageBox.Show("Product is Added");
-                            return;
-                        }
-                        if (int.Parse(productOfOrderdata.Rows[i].Cells[2].Value.ToString()) == 0)
-                        {
-                            productSearchbox.Text = "";
-                            MessageBox.Show("Please Add One quantity");
-                            return;
-                        }
-                    }
+        //                if (productOfOrderdata.Rows[i].Cells[0].Value.ToString() == productSearchbox1.Text.Trim() || productOfOrderdata.Rows[i].Cells[1].Value.ToString() == productSearchbox1.Text.Trim())
+        //                {
+        //                    productSearchbox1.Text = "";
+        //                    MessageBox.Show("Product is Added");
+        //                    return;
+        //                }
+        //                if (int.Parse(productOfOrderdata.Rows[i].Cells[2].Value.ToString()) == 0)
+        //                {
+        //                    productSearchbox1.Text = "";
+        //                    MessageBox.Show("Please Add One quantity");
+        //                    return;
+        //                }
+        //            }
 
-                    DataTable result = programMethod.searchOrderItemDetail(productSearchbox.Text.Trim());
-                    this.productOfOrderdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, result.Rows[0]["UnitPrice"], "100");
-                    productSearchbox.Text = "";
-                }
-            }
-        }
+        //            DataTable result = programMethod.searchOrderItemDetail(productSearchbox1.Text.Trim());
+        //            this.productOfOrderdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, result.Rows[0]["UnitPrice"], "100");
+        //            productSearchbox1.Text = "";
+        //        }
+        //    }
+        //}
 
         private void createOrderbtn_Click(object sender, EventArgs e)
         {
@@ -274,7 +275,17 @@ namespace ITP4519M
                 label11.Visible = false;
                 orderDateBox.BorderColor = Color.Black;
             }
-
+            
+            if(productSearchbox.Text  == "")
+            {
+                productSearchbox.BorderColor = Color.Red;
+                pictureBox3.Visible = true;
+            }
+            else
+            {
+                productSearchbox.BorderColor = Color.Black;
+                pictureBox3.Visible = false;
+            }
 
             if (productOfOrderdata.RowCount == 0)
             {
@@ -302,7 +313,7 @@ namespace ITP4519M
                 MessageBox.Show("Product quantity should not be 0");
             }
             string address;
-            if(orderDifferentDeliverybox.Text == "")
+            if (orderDifferentDeliverybox.Text == "")
             {
                 address = goodsAddressBox.Text.Trim();
             }
@@ -310,7 +321,7 @@ namespace ITP4519M
             {
                 address = orderDifferentDeliverybox.Text.Trim();
             }
-                   
+
             string orderID;
             orderID = programMethod.createSalesOrder(dealerIDBox.Text.Trim(), dealerNameBox.Text.Trim(), orderContactNamebox.Text.Trim(), OrderContactPhonebox.Text.Trim(), phoneNumBox.Text.Trim(), address, orderDateBox.Value.ToString(), ordertotallbl.Text.ToString(), productOfOrderdata);
             if (orderID != null)
@@ -470,6 +481,68 @@ namespace ITP4519M
         {
             this.dealerInfobox.DroppedDown = false;
 
+        }
+
+        private void productSearchbox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (productSearchbox.SelectedItem == "-------------------")
+            {
+                return;
+            }
+            if (productSearchbox.SelectedItem != null)
+            {
+                string selectedItem = productSearchbox.SelectedItem.ToString();
+                Cursor.Current = Cursors.Default;
+
+                for (int i = 0; i < productOfOrderdata.Rows.Count; i++)
+                {
+
+                    if (productOfOrderdata.Rows[i].Cells[0].Value.ToString() == productSearchbox.Text.Trim() || productOfOrderdata.Rows[i].Cells[1].Value.ToString() == productSearchbox.Text.Trim())
+                    {
+                        productSearchbox.Text = "";
+                        MessageBox.Show("Product is Added");
+                        return;
+                    }
+                    if (int.Parse(productOfOrderdata.Rows[i].Cells[2].Value.ToString()) == 0)
+                    {
+                        productSearchbox.Text = "";
+                        MessageBox.Show("Please Add One quantity");
+                        return;
+                    }
+                }
+
+                DataTable result = programMethod.searchOrderItemDetail(productSearchbox.Text.Trim());
+                this.productOfOrderdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, result.Rows[0]["UnitPrice"], "100");
+              //  productSearchbox1.Text = "";
+
+            }
+        }
+
+        private void productSearchbox_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            string text = productSearchbox.Text.Trim();
+            if (e.KeyCode == Keys.Enter)
+            {
+                programMethod.ProductSearchAutoComplete(productSearchbox, productSearchbox.Text.Trim());
+                if (productSearchbox.Items.Count > 0)
+                {
+
+                    productSearchbox.DroppedDown = true;
+                    productSearchbox.IntegralHeight = true;
+                    productSearchbox.SelectedIndex = -1;
+                    productSearchbox.SelectionStart = productSearchbox.Text.Trim().Length;
+                    productSearchbox.SelectionLength = 0;
+                }
+                Cursor.Current = Cursors.Default;
+            }
+            //  dealerInfobox.SelectedIndex = -1;
+            productSearchbox.Text = text;
+            productSearchbox.SelectionStart = productSearchbox.Text.Length;
+        }
+
+        private void productSearchbox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            this.productSearchbox.DroppedDown = false;
         }
     }
 
