@@ -995,7 +995,10 @@ namespace ProgramMethod
         {
             return dataBaseMethod.getAccountRowCount();
         }
-
+        public int getDeliveryRowCount()
+        {
+            return dataBaseMethod.getDeliveryRowCount();
+        }
         public int getGRNRowCount()
         {
             return dataBaseMethod.getGRNRowCount();
@@ -1050,6 +1053,19 @@ namespace ProgramMethod
             else
             {
                 return dataBaseMethod.GetAccountCurrentRecords2(page, pageSize);
+            }
+        }
+
+        public DataTable GetDeliveryCurrentRecords(int page, int pageSize)
+        {
+
+            if (page == 1)
+            {
+                return dataBaseMethod.GetDeliveryCurrentRecords(page, pageSize);
+            }
+            else
+            {
+                return dataBaseMethod.GetDeliveryCurrentRecords2(page, pageSize);
             }
         }
 

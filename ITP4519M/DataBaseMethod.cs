@@ -402,8 +402,7 @@ namespace ITP4519M
             string sqlCheck;
             try
             {
-                MessageBox.Show(contactID);
-                MessageBox.Show(productID);
+
                 sql1 = "DELETE FROM supplierproducts WHERE SupplierID=@ContactID and ProductID=@ProductID";
                 sql2 = "DELETE FROM supplier WHERE SupplierID=@ContactID";
                 sqlCheck = "SELECT COUNT(*) FROM supplierproducts WHERE SupplierID=@ContactID";
@@ -2193,6 +2192,17 @@ namespace ITP4519M
             return rowCount;
         }
 
+        public int getDeliveryRowCount()
+        {
+            string sql = "SELECT COUNT(DISTINCT DeliveryID) FROM delivery";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            object result = cmd.ExecuteScalar();
+            int rowCount = Convert.ToInt32(result);
+            ServerConnect().Close();
+           // MessageBox.Show(rowCount.ToString());
+            return rowCount;
+        }
+
         public int getGRNRowCount()
         {
             string sql = "SELECT COUNT(DISTINCT CONCAT(grnID, '-', ProductID, '-', PurchaseOrderID)) AS UniqueCombinationCount FROM `grn`";
@@ -2361,7 +2371,7 @@ namespace ITP4519M
             ServerConnect().Close();
             return dataTable;
         }
-        //Tim
+        
         public DataTable GetPOCurrentRecords(int page, int pageSize)
         {
             string sql = "SELECT po.PurchaseOrderID, p.ProductName, po.OrderQuantity, po.UnitPrice, po.TotalPrice, s.SupplierCompanyName, po.Status, po.Date " +
@@ -2456,7 +2466,7 @@ namespace ITP4519M
 
         public DataTable GetDeliveryCurrentRecords(int page, int pageSize)
         {
-            string sql = "SELECT * FROM delivery ORDER BY DeliveryID LIMIT @PgSize";
+            string sql = "SELECT DeliveryID,OrderID, DeliveryDate , DeliveryStatus FROM delivery ORDER BY DeliveryID LIMIT @PgSize";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
@@ -2468,7 +2478,7 @@ namespace ITP4519M
 
         public DataTable GetDeliveryCurrentRecords2(int page, int pageSize)
         {
-            string sql = "SELECT * FROM (SELECT * FROM delivery ORDER BY DeliveryID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY DeliveryID";
+            string sql = "SELECT DeliveryID,OrderID, DeliveryDate , DeliveryStatus FROM (SELECT DeliveryID,OrderID, DeliveryDate , DeliveryStatus FROM delivery ORDER BY DeliveryID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY DeliveryID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);

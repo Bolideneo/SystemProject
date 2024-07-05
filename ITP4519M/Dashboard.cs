@@ -92,6 +92,11 @@ namespace ITP4519M
         private int GRNTotalPage = 0;
         //Paging
 
+        //Invoice datagrid paging
+        private int DespatchPgSize = 10;
+        private int DespatchPageIndex = 1;
+        private int DespatchTotalPage = 0;
+        //Paging
 
         //Order datagrid paging
         private int OrderPgSize = 15;
@@ -163,7 +168,7 @@ namespace ITP4519M
 
             InitializeComponent();
             ShowPanel(dashboardpnl);
-            closebtn.BringToFront();
+            
 
 
         }
@@ -185,7 +190,7 @@ namespace ITP4519M
             KeyPreview = true;
             DoubleBuffered = true;
             programMethod = new ProgramMethod.ProgramMethod();
-            closebtn.BringToFront();
+            
             programMethod.CurrentUserIDAndName(LoginUserID, LoginUserName);
             OrderAccemblybtn.Size = new System.Drawing.Size(166, 56);
             contactsbtn.Size = new System.Drawing.Size(166, 56);
@@ -461,7 +466,7 @@ namespace ITP4519M
             ShowPanel(orderpnl);
             orderdata.DataSource = programMethod.GetCurrentRecords("Order", OrderPageIndex, OrderPgSize);
 
-            orderIndexlbl.Text = "01" + "-" + OrderPgSize.ToString() + " of " + OrderRowCount;
+            orderIndexlbl.Text = "01" + " - " + OrderPgSize.ToString() + " of " + OrderRowCount;
             //  orderdata.DataSource = programMethod.orderDateFilter("2024-06-03", "2024-06-18");
             // FirstpageBtnClick(orderdata, "Order", OrderPgSize, OrderPageIndex, orderIndexlbl, OrderRowCount);
             orderdata.Rows[0].Selected = false;
@@ -571,9 +576,9 @@ namespace ITP4519M
             //string lastTwoWords = string.Join(" ", words.Skip(words.Length - ));
             //MessageBox.Show(lastTwoWords);
             //int end = int.Parse(lastTwoWords) + 9;
-            accountIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + programMethod.getAccountRowCount();
+            accountIndexlbl.Text = "01" + " - " + PgSize.ToString() + " of " + programMethod.getAccountRowCount();
             SetRowHeights(userData, PgSize);
-            oustandingPagelbl.Text = "01" + "-" + PgSize + " of " + AccountRowCount;
+            oustandingPagelbl.Text = "01" + " - " + PgSize + " of " + AccountRowCount;
 
 
 
@@ -662,7 +667,7 @@ namespace ITP4519M
             SetRowHeights(dealersData, DealerPgSize);
 
 
-            contactIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + programMethod.getDealersRowCount();
+            contactIndexlbl.Text = "01" + " - " + PgSize.ToString() + " of " + programMethod.getDealersRowCount();
             dealersData.Visible = true;
             suppliersData.Visible = false;
 
@@ -688,7 +693,7 @@ namespace ITP4519M
             dealerDatalbl.Text = DealerRowCount.ToString();
             supplierDatalbl.Text = SupplierRowCount.ToString();
             SetRowHeights(dealersData, DealerPgSize);
-            contactIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + DealerRowCount;
+            contactIndexlbl.Text = "01" + " - " + PgSize.ToString() + " of " + DealerRowCount;
             dealersData.Visible = true;
             suppliersData.Visible = false;
 
@@ -714,7 +719,7 @@ namespace ITP4519M
             dealerDatalbl.Text = DealerRowCount.ToString();
             supplierDatalbl.Text = SupplierRowCount.ToString();
             SetRowHeights(suppliersData, SupplierPgSize);
-            contactIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + SupplierRowCount;
+            contactIndexlbl.Text = "01" + " - " + PgSize.ToString() + " of " + SupplierRowCount;
             dealersData.Visible = false;
             suppliersData.Visible = true;
         }
@@ -1088,14 +1093,14 @@ namespace ITP4519M
                 this.DealerPageIndex = DealerTotalPage;
                 this.dealersData.DataSource = programMethod.GetDealerCurrentRecords(this.DealerPageIndex, DealerPgSize);
                 SetRowHeights(dealersData, DealerPgSize);
-                contactIndexlbl.Text = (PgSize * DealerPageIndex - (PgSize - 1)) + "-" + DealerRowCount + " of " + DealerRowCount;
+                contactIndexlbl.Text = (PgSize * DealerPageIndex - (PgSize - 1)) + " - " + DealerRowCount + " of " + DealerRowCount;
             }
             else
             {
                 this.SupplierPageIndex = SupplierTotalPage;
                 this.suppliersData.DataSource = programMethod.GetSupplierCurrentRecords(this.SupplierPageIndex, SupplierPgSize);
                 SetRowHeights(suppliersData, SupplierPgSize);
-                contactIndexlbl.Text = (PgSize * SupplierPageIndex - (PgSize - 1)) + "-" + SupplierRowCount + " of " + SupplierRowCount;
+                contactIndexlbl.Text = (PgSize * SupplierPageIndex - (PgSize - 1)) + " - " + SupplierRowCount + " of " + SupplierRowCount;
             }
 
         }
@@ -1238,7 +1243,7 @@ namespace ITP4519M
             //  grndata.DataSource = programMethod.overallGRNinfo();
             grndata.DataSource = programMethod.GetGRNCurrentRecords(GRNPageIndex, GRNPgSize);
             grndata.Rows[0].Selected = false;
-            grnPage.Text = "01" + "-" + GRNPgSize.ToString() + " of " + GRNRowCount;
+            grnPage.Text = "01" + " - " + GRNPgSize.ToString() + " of " + GRNRowCount;
             SetRowHeights(grndata, GRNPgSize);
 
 
@@ -1261,11 +1266,12 @@ namespace ITP4519M
 
             lastClickedButton = (Button)sender;
             lastClickedButton.ForeColor = Color.Gray;
-
+            CalculateTotalPages("Delivery");
             ShowPanel(deliverypnl);
-            deliveryData.DataSource = programMethod.overallDeliveryinfo();
+            deliveryData.DataSource = programMethod.GetDeliveryCurrentRecords(DespatchPageIndex, DespatchPgSize);
             deliveryData.Rows[0].Selected = false;
-
+            despatchPage.Text = "01" + " - " + DespatchPgSize.ToString() + " of " + DeliveryRowCount;
+            SetRowHeights(deliveryData, DespatchPgSize);
 
             string[] MinDate = programMethod.getDNMinAndMaxDate();
             deliverydateTimePicker1.MinDate = DateTime.Parse(MinDate[0]);
@@ -1636,8 +1642,11 @@ namespace ITP4519M
                     break;
 
                 case "Delivery":
-                    //rowCount = programMethod.getAccountRowCount();
-                    //TotalPage = rowCount / PgSize;
+                    rowCount = programMethod.getDeliveryRowCount();
+                    DeliveryRowCount = rowCount;
+                    DespatchTotalPage = rowCount / PgSize;
+                    if (rowCount % DespatchPgSize > 0)
+                        DespatchTotalPage += 1;
                     break;
 
 
@@ -1738,7 +1747,7 @@ namespace ITP4519M
             this.CurrentPageIndex = TotalPage;
             this.userData.DataSource = programMethod.GetAccountCurrentRecords(this.CurrentPageIndex, PgSize);
             SetRowHeights(userData, PgSize);
-            accountIndexlbl.Text = (PgSize * CurrentPageIndex - (PgSize - 1)) + "-" + AccountRowCount + " of " + AccountRowCount;
+            accountIndexlbl.Text = (PgSize * CurrentPageIndex - (PgSize - 1)) + " - " + AccountRowCount + " of " + AccountRowCount;
         }
 
         private void deliveryViewDNbtn_Click(object sender, EventArgs e)
@@ -1841,7 +1850,7 @@ namespace ITP4519M
             poData.DataSource = programMethod.GetPOCurrentRecords(POPageIndex, POPgSize);
             poData.Rows[0].Selected = false;
             SetRowHeights(poData, POPgSize);
-            poIndexlbl.Text = "01" + "-" + POPgSize.ToString() + " of " + programMethod.getPORowCount();
+            poIndexlbl.Text = "01" + " - " + POPgSize.ToString() + " of " + programMethod.getPORowCount();
 
 
             string[] MinDate = programMethod.getMinAndMaxDateForPO();
@@ -1868,7 +1877,7 @@ namespace ITP4519M
             invoiceData.DataSource = programMethod.GetInvoiceCurrentRecords(InvoicePageIndex, InvoicePgSize);
             lastClickedButton = (Button)sender;
             lastClickedButton.ForeColor = Color.Gray;
-            invoiceIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + InvoiceRowCount;
+            invoiceIndexlbl.Text = "01" + " - " + PgSize.ToString() + " of " + InvoiceRowCount;
             invoiceData.Rows[0].Selected = false;
             SetRowHeights(invoiceData, InvoicePgSize);
 
@@ -1888,7 +1897,7 @@ namespace ITP4519M
             this.StockPageIndex = StockTotalPage;
             this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockPageIndex, StockPgSize);
             SetRowHeights(stockData, StockPgSize);
-            StockpageNumlbl.Text = (StockPgSize * StockPageIndex - (StockPgSize - 1)) + "-" + StockRowCount + " of " + StockRowCount;
+            StockpageNumlbl.Text = (StockPgSize * StockPageIndex - (StockPgSize - 1)) + " - " + StockRowCount + " of " + StockRowCount;
             StockLevelBoldAndColor();
             stockData.Rows[0].Selected = false;
         }
@@ -1903,11 +1912,11 @@ namespace ITP4519M
 
                 if (StockPageIndex != StockTotalPage)
                 {
-                    StockpageNumlbl.Text = (StockPgSize * StockPageIndex - (StockPgSize - 1)) + "-" + (StockPgSize * StockPageIndex) + " of " + StockRowCount;
+                    StockpageNumlbl.Text = (StockPgSize * StockPageIndex - (StockPgSize - 1)) + " - " + (StockPgSize * StockPageIndex) + " of " + StockRowCount;
                 }
                 else
                 {
-                    StockpageNumlbl.Text = (StockPgSize * StockPageIndex - (StockPgSize - 1)) + "-" + StockRowCount + " of " + StockRowCount;
+                    StockpageNumlbl.Text = (StockPgSize * StockPageIndex - (StockPgSize - 1)) + " - " + StockRowCount + " of " + StockRowCount;
                 }
             }
             StockLevelBoldAndColor();
@@ -1921,7 +1930,7 @@ namespace ITP4519M
                 this.StockPageIndex--;
                 this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockPageIndex, StockPgSize);
                 SetRowHeights(stockData, StockPgSize);
-                StockpageNumlbl.Text = (StockPgSize * StockPageIndex - (StockPgSize - 1)) + "-" + (StockPgSize * StockPageIndex) + " of " + StockRowCount;
+                StockpageNumlbl.Text = (StockPgSize * StockPageIndex - (StockPgSize - 1)) + " - " + (StockPgSize * StockPageIndex) + " of " + StockRowCount;
 
             }
             StockLevelBoldAndColor();
@@ -1932,7 +1941,7 @@ namespace ITP4519M
             this.StockPageIndex = 1;
             this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockPageIndex, StockPgSize);
             SetRowHeights(stockData, StockPgSize);
-            StockpageNumlbl.Text = "1" + "-" + StockPgSize + " of " + StockRowCount;
+            StockpageNumlbl.Text = "1" + " - " + StockPgSize + " of " + StockRowCount;
             StockLevelBoldAndColor();
             stockData.Rows[0].Selected = false;
         }
@@ -2202,7 +2211,7 @@ namespace ITP4519M
             this.POPageIndex = POTotalPage;
             this.poData.DataSource = programMethod.GetPOCurrentRecords(this.POPageIndex, POPgSize);
             SetRowHeights(poData, POPgSize);
-            poIndexlbl.Text = (POPgSize * POPageIndex - (POPgSize - 1)) + "-" + PORowCount + " of " + PORowCount;
+            poIndexlbl.Text = (POPgSize * POPageIndex - (POPgSize - 1)) + " - " + PORowCount + " of " + PORowCount;
         }
 
         private void poFirstPageBtn_Click(object sender, EventArgs e)
@@ -2412,10 +2421,7 @@ namespace ITP4519M
 
         }
 
-        private void invoiceNextPagebtn_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void invoiceData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -2470,29 +2476,7 @@ namespace ITP4519M
             orderdateTimePicker2.MinDate = orderdateTimePicker1.Value;
         }
 
-        private void invoiceLastPagebtn_Click(object sender, EventArgs e)
-        {
-            this.InvoicePageIndex = InvoiceTotalPage;
-            this.invoiceData.DataSource = programMethod.GetInvoiceCurrentRecords(this.InvoicePageIndex, InvoicePgSize);
-            SetRowHeights(invoiceData, InvoicePgSize);
-            invoiceIndexlbl.Text = (InvoicePgSize * InvoicePageIndex - (InvoicePgSize - 1)) + " - " + InvoiceRowCount + " of " + InvoiceRowCount;
-        }
 
-        private void invoicePrevPagebtn_Click(object sender, EventArgs e)
-        {
-            if (this.InvoicePageIndex > 1)
-            {
-                this.InvoicePageIndex--;
-                this.invoiceData.DataSource = programMethod.GetInvoiceCurrentRecords(this.InvoicePageIndex, InvoicePgSize);
-            }
-            SetRowHeights(invoiceData, InvoicePgSize);
-            invoiceIndexlbl.Text = (InvoicePgSize * InvoicePageIndex - (InvoicePgSize - 1)) + " - " + (InvoicePgSize * InvoicePageIndex) + " of " + InvoiceRowCount;
-        }
-
-        private void invoiceFirstPagebtn_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void reportOrdercsvbtn_Click(object sender, EventArgs e)
         {
@@ -2630,7 +2614,7 @@ namespace ITP4519M
                 this.grndata.DataSource = programMethod.GetGRNCurrentRecords(this.GRNPageIndex, GRNPgSize);
             }
             SetRowHeights(grndata, GRNPgSize);
-            accountIndexlbl.Text = (GRNPgSize * GRNPageIndex - (GRNPgSize - 1)) + " - " + (GRNPgSize * GRNPageIndex) + " of " + GRNRowCount;
+            grnPage.Text = (GRNPgSize * GRNPageIndex - (GRNPgSize - 1)) + " - " + (GRNPgSize * GRNPageIndex) + " of " + GRNRowCount;
         }
 
         private void grnFirstPage_Click(object sender, EventArgs e)
@@ -2854,7 +2838,7 @@ namespace ITP4519M
             this.OrderPageIndex = OrderTotalPage;
             this.orderdata.DataSource = programMethod.GetCurrentRecords("Order", this.OrderPageIndex, OrderPgSize);
             SetRowHeights(orderdata, OrderPgSize);
-            orderIndexlbl.Text = (OrderPgSize * OrderPageIndex - (OrderPgSize - 1)) + "-" + OrderRowCount + " of " + OrderRowCount;
+            orderIndexlbl.Text = (OrderPgSize * OrderPageIndex - (OrderPgSize - 1)) +  " - " + OrderRowCount + " of " + OrderRowCount;
         }
 
         private void orderPrevPagebtn_Click_1(object sender, EventArgs e)
@@ -3063,11 +3047,108 @@ namespace ITP4519M
 
         private void grnsearchbox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter) {
+            if (e.KeyCode == Keys.Enter)
+            {
                 MessageBox.Show(grnsearchbox.Text);
                 poData.DataSource = programMethod.searchGRNinfo(grnsearchbox.Text.Trim());
                 SetRowHeights(poData, POPgSize);
                 grnsearchbox.Clear();
+            }
+        }
+
+        private void despatchFirstbtn_Click(object sender, EventArgs e)
+        {
+            this.DespatchPageIndex = 1;
+            this.deliveryData.DataSource = programMethod.GetDeliveryCurrentRecords(this.DespatchPageIndex, DespatchPgSize);
+            SetRowHeights(deliveryData, DespatchPgSize);
+
+            despatchPage.Text = "1" + " - " + DespatchPgSize + " of " + DeliveryRowCount;
+        }
+
+        private void despatchPrevbtn_Click(object sender, EventArgs e)
+        {
+            if (this.DespatchPageIndex > 1)
+            {
+                this.DespatchPageIndex--;
+                this.deliveryData.DataSource = programMethod.GetDeliveryCurrentRecords(this.DespatchPageIndex, DespatchPgSize);
+            }
+            SetRowHeights(deliveryData, DespatchPgSize);
+            despatchPage.Text = (DespatchPgSize * DespatchPageIndex - (DespatchPgSize - 1)) + " - " + (DespatchPgSize * DespatchPageIndex) + " of " + DeliveryRowCount;
+        }
+
+        private void despatchNextbtn_Click(object sender, EventArgs e)
+        {
+            if (this.DespatchPageIndex < this.DespatchTotalPage)
+            {
+                this.DespatchPageIndex++;
+                this.deliveryData.DataSource = programMethod.GetDeliveryCurrentRecords(this.DespatchPageIndex, DespatchPgSize);
+
+            }
+            SetRowHeights(deliveryData, DespatchPgSize);
+
+            if (DespatchPageIndex != DespatchTotalPage)
+            {
+                despatchPage.Text = (DespatchPgSize * DespatchPageIndex - (DespatchPgSize - 1)) + " - " + (DespatchPgSize * DespatchPageIndex) + " of " + DeliveryRowCount;
+            }
+            else
+            {
+                despatchPage.Text = (DespatchPgSize * DespatchPageIndex - (DespatchPgSize - 1)) + " - " + DeliveryRowCount + " of " + DeliveryRowCount;
+            }
+        }
+
+        private void despatchLastbtn_Click(object sender, EventArgs e)
+        {
+            this.DespatchPageIndex = DespatchTotalPage;
+            this.deliveryData.DataSource = programMethod.GetDeliveryCurrentRecords(this.DespatchPageIndex, DespatchPgSize);
+            SetRowHeights(deliveryData, DespatchPgSize);
+            despatchPage.Text = (DespatchPgSize * DespatchPageIndex - (DespatchPgSize - 1)) + " - " + DeliveryRowCount + " of " + DeliveryRowCount;
+        }
+
+        private void invoiceLastPagebtn_Click(object sender, EventArgs e)
+        {
+            this.InvoicePageIndex = InvoiceTotalPage;
+            this.invoiceData.DataSource = programMethod.GetInvoiceCurrentRecords(this.InvoicePageIndex, InvoicePgSize);
+            SetRowHeights(invoiceData, InvoicePgSize);
+            invoiceIndexlbl.Text = (InvoicePgSize * InvoicePageIndex - (InvoicePgSize - 1)) + " - " + InvoiceRowCount + " of " + InvoiceRowCount;
+        }
+
+        private void invoicePrevPagebtn_Click(object sender, EventArgs e)
+        {
+            if (this.InvoicePageIndex > 1)
+            {
+                this.InvoicePageIndex--;
+                this.invoiceData.DataSource = programMethod.GetInvoiceCurrentRecords(this.InvoicePageIndex, InvoicePgSize);
+            }
+            SetRowHeights(invoiceData, InvoicePgSize);
+            invoiceIndexlbl.Text = (InvoicePgSize * InvoicePageIndex - (InvoicePgSize - 1)) + " - " + (InvoicePgSize * InvoicePageIndex) + " of " + InvoiceRowCount;
+        }
+
+        private void invoiceFirstPagebtn_Click(object sender, EventArgs e)
+        {
+            this.InvoicePageIndex = 1;
+            this.invoiceData.DataSource = programMethod.GetInvoiceCurrentRecords(this.InvoicePageIndex, InvoicePgSize);
+            SetRowHeights(invoiceData, InvoicePgSize);
+
+            invoiceIndexlbl.Text = "1" + " - " + InvoicePgSize + " of " + InvoiceRowCount;
+        }
+
+        private void invoiceNextPagebtn_Click(object sender, EventArgs e)
+        {
+            if (this.InvoicePageIndex < this.InvoiceTotalPage)
+            {
+                this.InvoicePageIndex++;
+                this.invoiceData.DataSource = programMethod.GetInvoiceCurrentRecords(this.InvoicePageIndex, InvoicePgSize);
+
+            }
+            SetRowHeights(invoiceData, InvoicePgSize);
+
+            if (InvoicePageIndex != InvoiceTotalPage)
+            {
+                invoiceIndexlbl.Text = (InvoicePgSize * InvoicePageIndex - (InvoicePgSize - 1)) + " - " + (InvoicePgSize * InvoicePageIndex) + " of " + InvoiceRowCount;
+            }
+            else
+            {
+                invoiceIndexlbl.Text = (InvoicePgSize * InvoicePageIndex - (InvoicePgSize - 1)) + " - " + InvoiceRowCount + " of " + InvoiceRowCount;
             }
         }
     }
