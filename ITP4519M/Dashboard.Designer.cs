@@ -1689,10 +1689,11 @@ namespace ITP4519M
             // 
             // contactIndexlbl
             // 
+            contactIndexlbl.AutoSize = true;
             contactIndexlbl.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            contactIndexlbl.Location = new Point(222, 23);
+            contactIndexlbl.Location = new Point(218, 24);
             contactIndexlbl.Name = "contactIndexlbl";
-            contactIndexlbl.Size = new Size(90, 27);
+            contactIndexlbl.Size = new Size(59, 25);
             contactIndexlbl.TabIndex = 3;
             contactIndexlbl.Text = "Label";
             contactIndexlbl.TextAlign = ContentAlignment.MiddleCenter;
@@ -7161,7 +7162,6 @@ namespace ITP4519M
             ClientSize = new Size(1506, 1051);
             Controls.Add(closebtn);
             Controls.Add(listpnl);
-            Controls.Add(OrderAccemblypnl);
             Controls.Add(contactpnl);
             Controls.Add(outstandingOrderpnl);
             Controls.Add(inventorypnl);
@@ -7177,6 +7177,7 @@ namespace ITP4519M
             Controls.Add(invoicepnl);
             Controls.Add(POpnl);
             Controls.Add(GRNpnl);
+            Controls.Add(OrderAccemblypnl);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
@@ -7219,6 +7220,7 @@ namespace ITP4519M
             contactpnl.ResumeLayout(false);
             contactpnl.PerformLayout();
             panel23.ResumeLayout(false);
+            panel23.PerformLayout();
             panel22.ResumeLayout(false);
             panel24.ResumeLayout(false);
             panel24.PerformLayout();
