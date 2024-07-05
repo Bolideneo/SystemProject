@@ -7223,6 +7223,7 @@ namespace ITP4519M
             ClientSize = new Size(1506, 1051);
             Controls.Add(closebtn);
             Controls.Add(listpnl);
+            Controls.Add(deliveryCompletepnl);
             Controls.Add(settingpnl);
             Controls.Add(dashboardpnl);
             Controls.Add(logpnl);
@@ -7238,7 +7239,6 @@ namespace ITP4519M
             Controls.Add(deliverypnl);
             Controls.Add(StockReportpnl);
             Controls.Add(outstandingViewpnl);
-            Controls.Add(deliveryCompletepnl);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);

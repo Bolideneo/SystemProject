@@ -163,14 +163,6 @@ namespace ITP4519M
             printDocument1.PrintPage += new PrintPageEventHandler(printDocument1_PrintPage);
         }
 
-
-        private void btn_print_Click(object sender, EventArgs e)
-        {
-            CaptureScreen();
-            printDocument1.Print();
-            printDocument1.PrintPage += new PrintPageEventHandler(printDocument1_PrintPage);
-        }
-
         Bitmap memoryImage;
 
         private void CaptureScreen()

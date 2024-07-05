@@ -921,23 +921,23 @@ namespace ProgramMethod
                 }
 
                 string invoiceID = "INV" + (int.Parse(dataBaseMethod.getInvoiceID()) + 1).ToString("000000");
-                if (dataBaseMethod.checkFinalTimeOrderStatusForDeliver(orderID))
-                {
+               // if (dataBaseMethod.checkFinalTimeOrderStatusForDeliver(orderID))
+               // {
                     if (dataBaseMethod.createInvoice(invoiceID, orderID, dataBaseMethod.getOrderOfDealerID(orderID), deliveryID))
                     {
                         LogCreateInvoice(LoginUserID, invoiceID, orderID);
                     }
 
-                }
-                else
-                {
-                    if (dataBaseMethod.createInvoice(invoiceID, orderID, dataBaseMethod.getOrderOfDealerID(orderID), deliveryID))
-                    {
-                        LogCreateInvoice(LoginUserID, invoiceID, orderID);
-                    }
-                    dataBaseMethod.updateOrderStatus("OrderCompleted", orderID);
+                //}
+                //else
+                //{
+                //    if (dataBaseMethod.createInvoice(invoiceID, orderID, dataBaseMethod.getOrderOfDealerID(orderID), deliveryID))
+                //    {
+                //        LogCreateInvoice(LoginUserID, invoiceID, orderID);
+                //    }
+                //    dataBaseMethod.updateOrderStatus("OrderCompleted", orderID);
 
-                }
+                //}
 
             }
             catch (Exception ex) {
@@ -947,9 +947,14 @@ namespace ProgramMethod
             return true;
         }
 
-        public void updateDeliveryStatus(string deliveryID, string deliveredDate)
+        public void updateDeliveryStatus(string DeliveryorderID, string deliveryID, string deliveredDate)
         {
+
             dataBaseMethod.updateDeliveryStatus("Deliverd", deliveryID, deliveredDate);
+            if (dataBaseMethod.getOrderStatusForCompleteOrder(DeliveryorderID))
+            {
+                dataBaseMethod.updateOrderStatus("OrderCompleted", DeliveryorderID);
+            }
         }
         
         public DataTable getDeliveryDetails(string deliveryID)
@@ -1573,11 +1578,10 @@ namespace ProgramMethod
                 {
                     temp = dataBaseMethod.getOrderItemUpdateCount(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString()) + 1;
                 }
-                //Question ?
-                //if (int.Parse(ActualDesptchData.Rows[i].Cells[2].Value.ToString()) < int.Parse(ActualDesptchData.Rows[i].Cells[3].Value.ToString()))
+               
                 if (int.Parse(ActualDesptchData.Rows[i].Cells[3].Value.ToString()) > 0)
                 {
-                    //string sum = ((int.Parse(ActualDesptchData.Rows[i].Cells[3].Value.ToString()) - (int.Parse(ActualDesptchData.Rows[i].Cells[2].Value.ToString())))).ToString();
+                    
 
                     string oustID = "OUT" + (int.Parse(dataBaseMethod.getOutStandingID()) + 1).ToString("000000");
                     if (dataBaseMethod.checkOutstandingOrderIDExist(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString()))
@@ -1594,6 +1598,8 @@ namespace ProgramMethod
                     if (int.Parse(dataBaseMethod.getPrdocutQuantityInStock(ActualDesptchData.Rows[i].Cells[0].Value.ToString())) < 0)
                         dataBaseMethod.setDefualtInStock(ActualDesptchData.Rows[i].Cells[0].Value.ToString());
                 }
+
+
                 if (int.Parse(dataBaseMethod.getPrdocutQuantityInStock(ActualDesptchData.Rows[i].Cells[0].Value.ToString())) < int.Parse(dataBaseMethod.getProdcutReOrderQty(ActualDesptchData.Rows[i].Cells[0].Value.ToString())))
                 {
                     if (dataBaseMethod.checkPurchaseOrderExist(ActualDesptchData.Rows[i].Cells[0].Value.ToString()) < 1)
@@ -1619,57 +1625,25 @@ namespace ProgramMethod
                     string oustID = "OUT" + (int.Parse(dataBaseMethod.getOutStandingID()) + 1).ToString("000000");
                     if (dataBaseMethod.createOutstandingOrder(oustID, orderID, orderItemData.Rows[j].Cells[0].Value.ToString(), dataBaseMethod.getOrderOfDealerID(orderID), orderItemData.Rows[j].Cells[3].Value.ToString()))
                     {
-                        //dataBaseMethod.DeleteOutstandingOrderForOrderAccembly(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString());
                         LogCreateOutstandingOrder(LoginUserID, LoginUserName, orderID, oustID);
                     }
                 }
 
             }
-            //else if (ActualDesptchData.RowCount < orderItemData.RowCount)
-            //{
-            //    //未完成單先會show出嚟，完成唔會
-            //    for (int i = 0; i < orderItemData.RowCount; i++)
-            //    {
-            //        int count = 0;
-            //        for (int j = 0; j < ActualDesptchData.RowCount; j++)
-            //        {
-            //            if (orderItemData.Rows[i].Cells[1].Value.ToString() != ActualDesptchData.Rows[j].Cells[0].Value.ToString())
-            //            {
-            //                count++;
-            //            }
 
-            //            if (count == ActualDesptchData.RowCount - 1)
-            //            {
-            //                string oustID = "OUT" + (int.Parse(dataBaseMethod.getOutStandingID()) + 1).ToString("000000");
-            //                if (dataBaseMethod.createOutstandingOrder(oustID, orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString(), dataBaseMethod.getOrderOfDealerID(orderID), ActualDesptchData.Rows[i].Cells[3].Value.ToString()))
-            //                {
-            //                    dataBaseMethod.DeleteOutstandingOrderForOrderAccembly(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString());
-            //                    LogCreateOutstandingOrder(LoginUserID, LoginUserName, orderID, oustID);
-            //                }
-            //                break;
-            //            }
-            //        }
-
-            //    }
-            //}
             int Count = 0;
             for (int i = 0; i < ActualDesptchData.RowCount; i++)
             {
-                // if (int.Parse(ActualDesptchData.Rows[i].Cells[2].Value.ToString()) < int.Parse(ActualDesptchData.Rows[i].Cells[3].Value.ToString()))
                 if (int.Parse(ActualDesptchData.Rows[i].Cells[3].Value.ToString()) > 0)
                 {
                     dataBaseMethod.updateOrderStatus("PartialProductPackaged", orderID);
                     Count++;
                     break;
                 }
-                //else if (int.Parse(ActualDesptchData.Rows[i].Cells[3].Value.ToString()) == 0)
-                //{  
-                //}
             }
             if (Count == 0)
                 dataBaseMethod.updateOrderStatus("ALLProductPackaged", orderID);
-            //else
-            //    dataBaseMethod.updateOrderStatus("AllProductPackaged", orderID);
+                dataBaseMethod.DeleteOutstandingOrderForOrderAccembly(orderID);
             return true;
         }
 

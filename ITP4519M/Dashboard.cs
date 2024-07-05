@@ -1278,7 +1278,8 @@ namespace ITP4519M
             lastClickedButton.ForeColor = Color.Gray;
             CalculateTotalPages("Delivery");
             ShowPanel(deliverypnl);
-            deliveryData.DataSource = programMethod.GetDeliveryCurrentRecords(DespatchPageIndex, DespatchPgSize);
+            deliveryData.DataSource = programMethod.overallDeliveryinfo();
+            //deliveryData.DataSource = programMethod.GetDeliveryCurrentRecords(DespatchPageIndex, DespatchPgSize);
             deliveryData.Rows[0].Selected = false;
             despatchPage.Text = "01" + " - " + DespatchPgSize.ToString() + " of " + DeliveryRowCount;
             //SetRowHeights(deliveryData, DespatchPgSize);
@@ -2088,7 +2089,7 @@ namespace ITP4519M
             }
             else
             {
-                programMethod.updateDeliveryStatus(DeliverydeliveryID, deliveredDate);
+                programMethod.updateDeliveryStatus(DeliveryorderID, DeliverydeliveryID, deliveredDate);
                 MessageBox.Show("Save");
             }
         }

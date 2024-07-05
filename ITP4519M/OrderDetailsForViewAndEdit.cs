@@ -80,10 +80,17 @@ namespace ITP4519M
                     DataTable orderDetails = programMethod.getOrderDetails(orderID);
                     this.ordertotallbl.Text = orderDetails.Rows[0]["TotalPrice"].ToString();
                     orderContactNamebox.ReadOnly = true;
+                    orderContactNamebox.ReadOnly = true;
+                    OrderContactPhonebox.ReadOnly = true;
+                    orderDifferentDeliverybox.ReadOnly = true;
+                    orderContactNamebox.Enabled = false;
+                    OrderContactPhonebox.Enabled = false;
+                    orderDifferentDeliverybox.Visible = false;
+                    label7.Visible = false;
+                    orderDifferentDeliverybox.Enabled = false;
                     dealerInfobox.Enabled = false;
                     OrderContactPhonebox.ReadOnly = true;
                     productSearchbox.Enabled = false;
-                    productSearchbox.ReadOnly = true;
                     createOrderbtn.Visible = false;
                     SetReadOnly(true);
                     disableFunction(true);
@@ -282,17 +289,26 @@ namespace ITP4519M
                 label11.Visible = false;
                 orderDateBox.BorderColor = Color.Black;
             }
-
+            if (productSearchbox.Text == "")
+            {
+                productSearchbox.BorderColor = Color.Red;
+                pictureBox3.Visible = true;
+            }
+            else
+            {
+                productSearchbox.BorderColor = Color.Black;
+                pictureBox3.Visible = false;
+            }
 
             if (productOfOrderdata.RowCount == 0)
             {
-                label17.Visible = true;
+                label3.Visible = true;
                 return;
 
             }
             else
             {
-                label17.Visible = false;
+                label3.Visible = false;
             }
 
             List<bool> checkList = new List<bool>();
@@ -353,11 +369,9 @@ namespace ITP4519M
                 {
                     //this.orderIDBox.Text = orderID;
                     orderLabel.Text = "Order #" + orderID;
-                    orderStatusLabel.Text = "Placed on " + orderDetails.Rows[0]["OrderDate"].ToString();
+                    orderDatelbl.Text = "Placed on " + orderDetails.Rows[0]["OrderDate"].ToString();
                     this.dealerIDBox.Text = dealerID;
-                    //this.orderDateBox.Text = orderDetails.Rows[0]["OrderDate"].ToString();
-                    //this.orderStatusBox.Text = orderDetails.Rows[0]["OrderStatus"].ToString();
-                    // this.orderStatuslbl.Text = orderDetails.Rows[0]["OrderStatus"].ToString();
+                    this.orderstatuslbl.Text = "Order Status: " + orderDetails.Rows[0]["OrderStatus"].ToString();
                     this.dealerNameBox.Text = dealerDetails.Rows[0]["DealerName"].ToString();
                     this.phoneNumBox.Text = dealerDetails.Rows[0]["DealerPhoneNum"].ToString();
                     this.dealerCompanyBox.Text = dealerDetails.Rows[0]["DealerCompanyName"].ToString();
@@ -394,9 +408,9 @@ namespace ITP4519M
                 {
                     this.dealerIDBox.Text = dealerID;
                     this.orderLabel.Text = "Order #" + orderID;
-                    this.orderStatusLabel.Text = "Placed on " + orderDetails.Rows[0]["OrderDate"].ToString();
+                    this.orderDatelbl.Text = "Placed on " + orderDetails.Rows[0]["OrderDate"].ToString();
                     this.ordertotallbl.Text = orderDetails.Rows[0]["TotalPrice"].ToString();
-                    this.orderStatusLabel.Text = orderDetails.Rows[0]["OrderStatus"].ToString();
+                    this.orderstatuslbl.Text = "Order Status: " + orderDetails.Rows[0]["OrderStatus"].ToString();
                     this.dealerNameBox.Text = dealerDetails.Rows[0]["DealerName"].ToString();
                     this.phoneNumBox.Text = dealerDetails.Rows[0]["DealerPhoneNum"].ToString();
                     this.dealerCompanyBox.Text = dealerDetails.Rows[0]["DealerCompanyName"].ToString();
@@ -565,6 +579,68 @@ namespace ITP4519M
         private void orderLabel_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void productSearchbox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (productSearchbox.SelectedItem == "-------------------")
+            {
+                return;
+            }
+            if (productSearchbox.SelectedItem != null)
+            {
+                string selectedItem = productSearchbox.SelectedItem.ToString();
+                Cursor.Current = Cursors.Default;
+
+                for (int i = 0; i < productOfOrderdata.Rows.Count; i++)
+                {
+
+                    if (productOfOrderdata.Rows[i].Cells[0].Value.ToString() == productSearchbox.Text.Trim() || productOfOrderdata.Rows[i].Cells[1].Value.ToString() == productSearchbox.Text.Trim())
+                    {
+                        productSearchbox.Text = "";
+                        MessageBox.Show("Product is Added");
+                        return;
+                    }
+                    if (int.Parse(productOfOrderdata.Rows[i].Cells[2].Value.ToString()) == 0)
+                    {
+                        productSearchbox.Text = "";
+                        MessageBox.Show("Please Add One quantity");
+                        return;
+                    }
+                }
+
+                DataTable result = programMethod.searchOrderItemDetail(productSearchbox.Text.Trim());
+                this.productOfOrderdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, result.Rows[0]["UnitPrice"], "100");
+                //  productSearchbox1.Text = "";
+
+            }
+        }
+
+        private void productSearchbox_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            string text = productSearchbox.Text.Trim();
+            if (e.KeyCode == Keys.Enter)
+            {
+                programMethod.ProductSearchAutoComplete(productSearchbox, productSearchbox.Text.Trim());
+                if (productSearchbox.Items.Count > 0)
+                {
+
+                    productSearchbox.DroppedDown = true;
+                    productSearchbox.IntegralHeight = true;
+                    productSearchbox.SelectedIndex = -1;
+                    productSearchbox.SelectionStart = productSearchbox.Text.Trim().Length;
+                    productSearchbox.SelectionLength = 0;
+                }
+                Cursor.Current = Cursors.Default;
+            }
+            //  dealerInfobox.SelectedIndex = -1;
+            productSearchbox.Text = text;
+            productSearchbox.SelectionStart = productSearchbox.Text.Length;
+        }
+
+        private void productSearchbox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            this.productSearchbox.DroppedDown = false;
         }
     }
 

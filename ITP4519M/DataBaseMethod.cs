@@ -2704,6 +2704,16 @@ namespace ITP4519M
             cmd.ExecuteNonQuery();
         }
 
+        public void DeleteOutstandingOrderForOrderAccembly(string orderID)
+        {
+            string sql = "DELETE FROM outstandingorder WHERE OrderID=@orderIDD";
+            DateTime date = DateTime.Now;
+            date.ToString("yyyy-MM-dd HH:mm:ss");
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@orderID", orderID);
+            cmd.ExecuteNonQuery();
+        }
+
         public void DeleteOutstandingOrder(string outID)
         {
             string sql = "DELETE FROM outstandingorder WHERE OutstandingOrderID=@outID";
@@ -3958,6 +3968,15 @@ namespace ITP4519M
             adat.Fill(dataTable);
             ServerConnect().Close();
             return dataTable;
+        }
+
+        
+        public bool getOrderStatusForCompleteOrder(string orderID)
+        {
+            string sql = "SELECT COUNT(OrderID) FROM `order` WHERE OrderID=@orderID AND OrderStatus='ALLProductPackaged'";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@OrderID", orderID);
+            return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
         }
 
         public DataTable getAuditStatus()

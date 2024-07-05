@@ -52,20 +52,17 @@
             InvoiceLabel16 = new Label();
             panel9 = new ProgramMethod.ProgramMethod.PanelBorderColor();
             InvoiceTotalPricelbl = new Label();
-            InvoiceLabel15 = new Label();
-            panel10 = new ProgramMethod.ProgramMethod.PanelBorderColor();
-            InvoiceValue14 = new Label();
-            InvoiceLabel13 = new Label();
-            InvoiceLabel14 = new Label();
             InvoiceLabel12 = new Label();
             panel11 = new ProgramMethod.ProgramMethod.PanelBorderColor();
             InvoicesubTotallbl = new Label();
-            panel12 = new ProgramMethod.ProgramMethod.PanelBorderColor();
-            InvoiceValue13 = new Label();
-            panel13 = new ProgramMethod.ProgramMethod.PanelBorderColor();
-            InvoiceValue12 = new Label();
             panel14 = new Panel();
             InvoiceFormData = new DataGridView();
+            ProductID = new DataGridViewTextBoxColumn();
+            ProductName = new DataGridViewTextBoxColumn();
+            Qty = new DataGridViewTextBoxColumn();
+            Unit_Price = new DataGridViewTextBoxColumn();
+            Total = new DataGridViewTextBoxColumn();
+            Discount = new DataGridViewTextBoxColumn();
             InvoiceLabel21 = new Label();
             InvoiceLabel17 = new Label();
             pictureBox5 = new PictureBox();
@@ -80,21 +77,12 @@
             InvoiceAddresslbl = new Label();
             invoicePrintbtn = new Button();
             invoiceExitbtn = new Button();
-            ProductID = new DataGridViewTextBoxColumn();
-            ProductName = new DataGridViewTextBoxColumn();
-            Qty = new DataGridViewTextBoxColumn();
-            Unit_Price = new DataGridViewTextBoxColumn();
-            Total = new DataGridViewTextBoxColumn();
-            Discount = new DataGridViewTextBoxColumn();
             panel3.SuspendLayout();
             panel4.SuspendLayout();
             panel5.SuspendLayout();
             panel2.SuspendLayout();
             panel9.SuspendLayout();
-            panel10.SuspendLayout();
             panel11.SuspendLayout();
-            panel12.SuspendLayout();
-            panel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)InvoiceFormData).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             SuspendLayout();
@@ -373,71 +361,13 @@
             InvoiceTotalPricelbl.TabIndex = 88;
             InvoiceTotalPricelbl.Text = "InvoiceValue15";
             // 
-            // InvoiceLabel15
-            // 
-            InvoiceLabel15.AutoSize = true;
-            InvoiceLabel15.BackColor = SystemColors.ButtonFace;
-            InvoiceLabel15.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            InvoiceLabel15.ForeColor = Color.Black;
-            InvoiceLabel15.Location = new Point(607, 789);
-            InvoiceLabel15.Name = "InvoiceLabel15";
-            InvoiceLabel15.Size = new Size(120, 25);
-            InvoiceLabel15.TabIndex = 68;
-            InvoiceLabel15.Text = "Other Fees";
-            // 
-            // panel10
-            // 
-            panel10.BorderColor = Color.DarkOrange;
-            panel10.BorderStyle = BorderStyle.FixedSingle;
-            panel10.BorderWidth = 3;
-            panel10.Controls.Add(InvoiceValue14);
-            panel10.Location = new Point(595, 804);
-            panel10.Margin = new Padding(3, 4, 3, 4);
-            panel10.Name = "panel10";
-            panel10.Size = new Size(176, 63);
-            panel10.TabIndex = 62;
-            // 
-            // InvoiceValue14
-            // 
-            InvoiceValue14.AutoSize = true;
-            InvoiceValue14.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
-            InvoiceValue14.Location = new Point(8, 21);
-            InvoiceValue14.Name = "InvoiceValue14";
-            InvoiceValue14.Size = new Size(138, 22);
-            InvoiceValue14.TabIndex = 87;
-            InvoiceValue14.Text = "InvoiceValue14";
-            // 
-            // InvoiceLabel13
-            // 
-            InvoiceLabel13.AutoSize = true;
-            InvoiceLabel13.BackColor = SystemColors.ButtonFace;
-            InvoiceLabel13.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            InvoiceLabel13.ForeColor = Color.Black;
-            InvoiceLabel13.Location = new Point(266, 789);
-            InvoiceLabel13.Name = "InvoiceLabel13";
-            InvoiceLabel13.Size = new Size(107, 25);
-            InvoiceLabel13.TabIndex = 66;
-            InvoiceLabel13.Text = "Discounts";
-            // 
-            // InvoiceLabel14
-            // 
-            InvoiceLabel14.AutoSize = true;
-            InvoiceLabel14.BackColor = SystemColors.ButtonFace;
-            InvoiceLabel14.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            InvoiceLabel14.ForeColor = Color.Black;
-            InvoiceLabel14.Location = new Point(447, 789);
-            InvoiceLabel14.Name = "InvoiceLabel14";
-            InvoiceLabel14.Size = new Size(92, 25);
-            InvoiceLabel14.TabIndex = 67;
-            InvoiceLabel14.Text = "Handing";
-            // 
             // InvoiceLabel12
             // 
             InvoiceLabel12.AutoSize = true;
             InvoiceLabel12.BackColor = SystemColors.ButtonFace;
             InvoiceLabel12.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             InvoiceLabel12.ForeColor = Color.Black;
-            InvoiceLabel12.Location = new Point(70, 789);
+            InvoiceLabel12.Location = new Point(582, 789);
             InvoiceLabel12.Name = "InvoiceLabel12";
             InvoiceLabel12.Size = new Size(92, 25);
             InvoiceLabel12.TabIndex = 65;
@@ -450,7 +380,7 @@
             panel11.BorderWidth = 3;
             panel11.Controls.Add(InvoicesubTotallbl);
             panel11.Cursor = Cursors.No;
-            panel11.Location = new Point(57, 804);
+            panel11.Location = new Point(569, 804);
             panel11.Margin = new Padding(3, 4, 3, 4);
             panel11.Name = "panel11";
             panel11.Size = new Size(193, 63);
@@ -465,50 +395,6 @@
             InvoicesubTotallbl.Size = new Size(138, 22);
             InvoicesubTotallbl.TabIndex = 84;
             InvoicesubTotallbl.Text = "InvoiceValue11";
-            // 
-            // panel12
-            // 
-            panel12.BorderColor = Color.DarkOrange;
-            panel12.BorderStyle = BorderStyle.FixedSingle;
-            panel12.BorderWidth = 3;
-            panel12.Controls.Add(InvoiceValue13);
-            panel12.Location = new Point(433, 804);
-            panel12.Margin = new Padding(3, 4, 3, 4);
-            panel12.Name = "panel12";
-            panel12.Size = new Size(167, 63);
-            panel12.TabIndex = 61;
-            // 
-            // InvoiceValue13
-            // 
-            InvoiceValue13.AutoSize = true;
-            InvoiceValue13.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
-            InvoiceValue13.Location = new Point(10, 21);
-            InvoiceValue13.Name = "InvoiceValue13";
-            InvoiceValue13.Size = new Size(138, 22);
-            InvoiceValue13.TabIndex = 86;
-            InvoiceValue13.Text = "InvoiceValue13";
-            // 
-            // panel13
-            // 
-            panel13.BorderColor = Color.DarkOrange;
-            panel13.BorderStyle = BorderStyle.FixedSingle;
-            panel13.BorderWidth = 3;
-            panel13.Controls.Add(InvoiceValue12);
-            panel13.Location = new Point(249, 804);
-            panel13.Margin = new Padding(3, 4, 3, 4);
-            panel13.Name = "panel13";
-            panel13.Size = new Size(188, 63);
-            panel13.TabIndex = 60;
-            // 
-            // InvoiceValue12
-            // 
-            InvoiceValue12.AutoSize = true;
-            InvoiceValue12.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 136);
-            InvoiceValue12.Location = new Point(14, 21);
-            InvoiceValue12.Name = "InvoiceValue12";
-            InvoiceValue12.Size = new Size(138, 22);
-            InvoiceValue12.TabIndex = 85;
-            InvoiceValue12.Text = "InvoiceValue12";
             // 
             // panel14
             // 
@@ -536,6 +422,58 @@
             InvoiceFormData.RowHeadersWidth = 51;
             InvoiceFormData.Size = new Size(877, 311);
             InvoiceFormData.TabIndex = 70;
+            // 
+            // ProductID
+            // 
+            ProductID.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ProductID.FillWeight = 70F;
+            ProductID.HeaderText = "ProductID";
+            ProductID.MinimumWidth = 6;
+            ProductID.Name = "ProductID";
+            ProductID.ReadOnly = true;
+            // 
+            // ProductName
+            // 
+            ProductName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ProductName.FillWeight = 130F;
+            ProductName.HeaderText = "ProductName";
+            ProductName.MinimumWidth = 6;
+            ProductName.Name = "ProductName";
+            ProductName.ReadOnly = true;
+            // 
+            // Qty
+            // 
+            Qty.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Qty.FillWeight = 130F;
+            Qty.HeaderText = "Qty";
+            Qty.MinimumWidth = 6;
+            Qty.Name = "Qty";
+            Qty.ReadOnly = true;
+            // 
+            // Unit_Price
+            // 
+            Unit_Price.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Unit_Price.FillWeight = 130F;
+            Unit_Price.HeaderText = "Unit Price";
+            Unit_Price.MinimumWidth = 6;
+            Unit_Price.Name = "Unit_Price";
+            Unit_Price.ReadOnly = true;
+            // 
+            // Total
+            // 
+            Total.HeaderText = "Total";
+            Total.MinimumWidth = 6;
+            Total.Name = "Total";
+            Total.ReadOnly = true;
+            Total.Width = 125;
+            // 
+            // Discount
+            // 
+            Discount.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Discount.HeaderText = "Discount (%)";
+            Discount.MinimumWidth = 6;
+            Discount.Name = "Discount";
+            Discount.ReadOnly = true;
             // 
             // InvoiceLabel21
             // 
@@ -677,6 +615,7 @@
             invoicePrintbtn.TabIndex = 83;
             invoicePrintbtn.Text = "Print";
             invoicePrintbtn.UseVisualStyleBackColor = false;
+            invoicePrintbtn.Click += invoicePrintbtn_Click;
             // 
             // invoiceExitbtn
             // 
@@ -691,58 +630,6 @@
             invoiceExitbtn.Text = "Exit";
             invoiceExitbtn.UseVisualStyleBackColor = false;
             invoiceExitbtn.Click += invoiceExitbtn_Click;
-            // 
-            // ProductID
-            // 
-            ProductID.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            ProductID.FillWeight = 70F;
-            ProductID.HeaderText = "ProductID";
-            ProductID.MinimumWidth = 6;
-            ProductID.Name = "ProductID";
-            ProductID.ReadOnly = true;
-            // 
-            // ProductName
-            // 
-            ProductName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            ProductName.FillWeight = 130F;
-            ProductName.HeaderText = "ProductName";
-            ProductName.MinimumWidth = 6;
-            ProductName.Name = "ProductName";
-            ProductName.ReadOnly = true;
-            // 
-            // Qty
-            // 
-            Qty.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Qty.FillWeight = 130F;
-            Qty.HeaderText = "Qty";
-            Qty.MinimumWidth = 6;
-            Qty.Name = "Qty";
-            Qty.ReadOnly = true;
-            // 
-            // Unit_Price
-            // 
-            Unit_Price.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Unit_Price.FillWeight = 130F;
-            Unit_Price.HeaderText = "Unit Price";
-            Unit_Price.MinimumWidth = 6;
-            Unit_Price.Name = "Unit_Price";
-            Unit_Price.ReadOnly = true;
-            // 
-            // Total
-            // 
-            Total.HeaderText = "Total";
-            Total.MinimumWidth = 6;
-            Total.Name = "Total";
-            Total.ReadOnly = true;
-            Total.Width = 125;
-            // 
-            // Discount
-            // 
-            Discount.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Discount.HeaderText = "Discount (%)";
-            Discount.MinimumWidth = 6;
-            Discount.Name = "Discount";
-            Discount.ReadOnly = true;
             // 
             // Invoice
             // 
@@ -767,14 +654,8 @@
             Controls.Add(panel14);
             Controls.Add(InvoiceLabel16);
             Controls.Add(panel9);
-            Controls.Add(InvoiceLabel15);
-            Controls.Add(panel10);
-            Controls.Add(InvoiceLabel13);
-            Controls.Add(InvoiceLabel14);
             Controls.Add(InvoiceLabel12);
             Controls.Add(panel11);
-            Controls.Add(panel12);
-            Controls.Add(panel13);
             Controls.Add(InvoiceLabel11);
             Controls.Add(panel2);
             Controls.Add(InvoiceLabel9);
@@ -808,14 +689,8 @@
             panel2.PerformLayout();
             panel9.ResumeLayout(false);
             panel9.PerformLayout();
-            panel10.ResumeLayout(false);
-            panel10.PerformLayout();
             panel11.ResumeLayout(false);
             panel11.PerformLayout();
-            panel12.ResumeLayout(false);
-            panel12.PerformLayout();
-            panel13.ResumeLayout(false);
-            panel13.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)InvoiceFormData).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ResumeLayout(false);
@@ -845,10 +720,7 @@
         private DateTimePicker dateTimePicker1;
         private Label InvoiceLabel16;
         private TextBox textBox12;
-        private Label InvoiceLabel15;
         private TextBox textBox13;
-        private Label InvoiceLabel13;
-        private Label InvoiceLabel14;
         private Label InvoiceLabel12;
         private TextBox textBox14;
         private TextBox textBox15;
@@ -869,10 +741,7 @@
         private Label InvoiceOrderDatelbl;
         private Label InvoiceDeliveryDatelbl;
         private Label InvoiceTotalPricelbl;
-        private Label InvoiceValue14;
         private Label InvoicesubTotallbl;
-        private Label InvoiceValue13;
-        private Label InvoiceValue12;
         private Label InvoiceDealerIDlbl;
         private Label InvoiceValue4;
         private Label InvoiceBillingAddresslbl;
@@ -882,9 +751,6 @@
         private ProgramMethod.ProgramMethod.PanelBorderColor panel4;
         private ProgramMethod.ProgramMethod.PanelBorderColor panel2;
         private ProgramMethod.ProgramMethod.PanelBorderColor panel11;
-        private ProgramMethod.ProgramMethod.PanelBorderColor panel13;
-        private ProgramMethod.ProgramMethod.PanelBorderColor panel12;
-        private ProgramMethod.ProgramMethod.PanelBorderColor panel10;
         private ProgramMethod.ProgramMethod.PanelBorderColor panel9;
         private Button invoicePrintbtn;
         private Button invoiceExitbtn;
