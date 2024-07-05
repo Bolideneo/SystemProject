@@ -402,8 +402,7 @@ namespace ITP4519M
             string sqlCheck;
             try
             {
-                MessageBox.Show(contactID);
-                MessageBox.Show(productID);
+
                 sql1 = "DELETE FROM supplierproducts WHERE SupplierID=@ContactID and ProductID=@ProductID";
                 sql2 = "DELETE FROM supplier WHERE SupplierID=@ContactID";
                 sqlCheck = "SELECT COUNT(*) FROM supplierproducts WHERE SupplierID=@ContactID";
@@ -2226,6 +2225,17 @@ namespace ITP4519M
             return rowCount;
         }
 
+        public int getDeliveryRowCount()
+        {
+            string sql = "SELECT COUNT(DISTINCT DeliveryID) FROM delivery";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            object result = cmd.ExecuteScalar();
+            int rowCount = Convert.ToInt32(result);
+            ServerConnect().Close();
+           // MessageBox.Show(rowCount.ToString());
+            return rowCount;
+        }
+
         public int getGRNRowCount()
         {
             string sql = "SELECT COUNT(DISTINCT CONCAT(grnID, '-', ProductID, '-', PurchaseOrderID)) AS UniqueCombinationCount FROM `grn`";
@@ -2394,7 +2404,7 @@ namespace ITP4519M
             ServerConnect().Close();
             return dataTable;
         }
-        //Tim
+        
         public DataTable GetPOCurrentRecords(int page, int pageSize)
         {
             string sql = "SELECT po.PurchaseOrderID, p.ProductName, po.OrderQuantity, po.UnitPrice, po.TotalPrice, s.SupplierCompanyName, po.Status, po.Date " +
@@ -2489,7 +2499,7 @@ namespace ITP4519M
 
         public DataTable GetDeliveryCurrentRecords(int page, int pageSize)
         {
-            string sql = "SELECT * FROM delivery ORDER BY DeliveryID LIMIT @PgSize";
+            string sql = "SELECT DeliveryID,OrderID, DeliveryDate , DeliveryStatus FROM delivery ORDER BY DeliveryID LIMIT @PgSize";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
@@ -2501,7 +2511,7 @@ namespace ITP4519M
 
         public DataTable GetDeliveryCurrentRecords2(int page, int pageSize)
         {
-            string sql = "SELECT * FROM (SELECT * FROM delivery ORDER BY DeliveryID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY DeliveryID";
+            string sql = "SELECT DeliveryID,OrderID, DeliveryDate , DeliveryStatus FROM (SELECT DeliveryID,OrderID, DeliveryDate , DeliveryStatus FROM delivery ORDER BY DeliveryID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY DeliveryID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);
@@ -2914,15 +2924,43 @@ namespace ITP4519M
             return dataTable;
 
         }
-
+        
         public DataTable reportFilterByDateAndCategory(string fromDate, string toDate, string productCategory)
         {
-            string category = productCategory.Substring(0, 1);
-            string sql = "SELECT  OrderDate, `order`.OrderID, DealerID, OrderStatus,SUM(OrderedQuantity) AS Quantity ,TotalPrice AS 'TotalPrice (CNY¥)' FROM orderitem,`order` WHERE OrderDate BETWEEN @fromDate AND @toDate  AND orderitem.ProductID LIKE @category  GROUP BY  `order`.OrderID";
+            string sql = "SELECT  OrderDate, `order`.OrderID, DealerID, OrderStatus,SUM(OrderedQuantity) AS Quantity ,TotalPrice AS 'TotalPrice (CNY¥)' FROM `order`, orderitem,product WHERE OrderDate BETWEEN @fromDate AND @toDate  AND orderitem.ProductID = product.ProductID AND ProductCategoroy = @productCategory GROUP BY  `order`.OrderID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@fromDate", fromDate);
             cmd.Parameters.AddWithValue("@toDate", toDate);
-            cmd.Parameters.AddWithValue("@productCategory", category);
+            cmd.Parameters.AddWithValue("@productCategory", productCategory);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+
+        }
+
+        public DataTable reportStockFilterByDateAndCategory(string productCategory)
+        {
+            string sql = "SELECT ProductID, ProductName, SerialNumber AS PartNumber, BinLocation AS WareHouse, UnitPrice, CostPrice, QuantityInStock, DemandStock, OutOfStockQty AS 'Out-Of-StockLevel', ReOrderQty AS 'ReOrderLevel', DangerQty AS 'DangerLevel'FROM product WHERE ProductCategory=@productcategory";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@productCategory", productCategory);
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+
+        }
+
+        public DataTable reportFilterByDateAndCategoryANDProductID(string fromDate, string toDate, string productID, string productCategory)
+        {
+            string sql = "SELECT  OrderDate, `order`.OrderID, DealerID, OrderStatus,SUM(OrderedQuantity) AS Quantity ,TotalPrice AS 'TotalPrice (CNY¥)' FROM `order`, orderitem,product WHERE OrderDate BETWEEN @fromDate AND @toDate  AND orderitem.ProductID = @productID AND ProductCategory = @productCategory GROUP BY  `order`.OrderID";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@fromDate", fromDate);
+            cmd.Parameters.AddWithValue("@toDate", toDate);
+            cmd.Parameters.AddWithValue("@productID", productID);
+            cmd.Parameters.AddWithValue("@productCategory", productCategory);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
@@ -3646,7 +3684,23 @@ namespace ITP4519M
         {
             DateTime Date = DateTime.Now;
             Date.ToString("yyyy-MM-dd HH:mm:ss");
-            string Desc = "#" + userID + " Print the Sales Order Report CSV";
+            string Desc = "#" + userID + " "  + userName + " Print Sales Order Report CSV";
+            string sql = "INSERT INTO log (LogID, UserID, UserName, Action, Type, Description, LogDate) VALUES(@logID, @userID, @userName, 6, 'Report', @Desc,  @Date)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@userName", userName);
+            cmd.Parameters.AddWithValue("@Desc", Desc);
+            cmd.Parameters.AddWithValue("@Date", Date);
+            ServerConnect().Close();
+            cmd.ExecuteNonQuery();
+        }
+
+        public void LogPrintStockReportCSV(string logID, string userID, string userName)
+        {
+            DateTime Date = DateTime.Now;
+            Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string Desc = "#" + userID + " " + userName + " Print Stock Report CSV";
             string sql = "INSERT INTO log (LogID, UserID, UserName, Action, Type, Description, LogDate) VALUES(@logID, @userID, @userName, 6, 'Report', @Desc,  @Date)";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@logID", logID);
@@ -3962,11 +4016,23 @@ namespace ITP4519M
             ServerConnect().Close();
             return dataTable;
         }
-
+        
         public DataTable getStockReportForCategory()
         {
             //string sql = "SELECT (SUM(QuantityInStock) * 100.0 / (SELECT SUM(QuantityInStock) FROM product)) AS Percentage, SUM(QuantityInStock) AS TotalQuantityInStock FROM product GROUP BY ProductCategory ORDER BY ProductCategory";
             string sql = "SELECT ProductCategory, SUM(QuantityInStock) AS TotalQuantityInStock FROM product GROUP BY ProductCategory ORDER BY ProductCategory";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+
+        public DataTable getStockInAndOut()
+        {
+            
+            string sql = "SELECT SUM(ReceiveQty) AS 'Stock - In' FROM grn ";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();

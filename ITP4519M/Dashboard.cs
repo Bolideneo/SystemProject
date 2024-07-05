@@ -92,6 +92,11 @@ namespace ITP4519M
         private int GRNTotalPage = 0;
         //Paging
 
+        //Invoice datagrid paging
+        private int DespatchPgSize = 10;
+        private int DespatchPageIndex = 1;
+        private int DespatchTotalPage = 0;
+        //Paging
 
         //Order datagrid paging
         private int OrderPgSize = 15;
@@ -163,7 +168,7 @@ namespace ITP4519M
 
             InitializeComponent();
             ShowPanel(dashboardpnl);
-            closebtn.BringToFront();
+
 
 
         }
@@ -185,7 +190,7 @@ namespace ITP4519M
             KeyPreview = true;
             DoubleBuffered = true;
             programMethod = new ProgramMethod.ProgramMethod();
-            closebtn.BringToFront();
+
             programMethod.CurrentUserIDAndName(LoginUserID, LoginUserName);
             OrderAccemblybtn.Size = new System.Drawing.Size(166, 56);
             contactsbtn.Size = new System.Drawing.Size(166, 56);
@@ -461,7 +466,7 @@ namespace ITP4519M
             ShowPanel(orderpnl);
             orderdata.DataSource = programMethod.GetCurrentRecords("Order", OrderPageIndex, OrderPgSize);
 
-            orderIndexlbl.Text = "01" + "-" + OrderPgSize.ToString() + " of " + OrderRowCount;
+            orderIndexlbl.Text = "01" + " - " + OrderPgSize.ToString() + " of " + OrderRowCount;
             //  orderdata.DataSource = programMethod.orderDateFilter("2024-06-03", "2024-06-18");
             // FirstpageBtnClick(orderdata, "Order", OrderPgSize, OrderPageIndex, orderIndexlbl, OrderRowCount);
             orderdata.Rows[0].Selected = false;
@@ -581,9 +586,9 @@ namespace ITP4519M
             //string lastTwoWords = string.Join(" ", words.Skip(words.Length - ));
             //MessageBox.Show(lastTwoWords);
             //int end = int.Parse(lastTwoWords) + 9;
-            accountIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + programMethod.getAccountRowCount();
+            accountIndexlbl.Text = "01" + " - " + PgSize.ToString() + " of " + programMethod.getAccountRowCount();
             SetRowHeights(userData, PgSize);
-            oustandingPagelbl.Text = "01" + "-" + PgSize + " of " + AccountRowCount;
+            oustandingPagelbl.Text = "01" + " - " + PgSize + " of " + AccountRowCount;
 
 
 
@@ -672,7 +677,7 @@ namespace ITP4519M
             SetRowHeights(dealersData, DealerPgSize);
 
 
-            contactIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + programMethod.getDealersRowCount();
+            contactIndexlbl.Text = "01" + " - " + PgSize.ToString() + " of " + programMethod.getDealersRowCount();
             dealersData.Visible = true;
             suppliersData.Visible = false;
 
@@ -698,7 +703,7 @@ namespace ITP4519M
             dealerDatalbl.Text = DealerRowCount.ToString();
             supplierDatalbl.Text = SupplierRowCount.ToString();
             SetRowHeights(dealersData, DealerPgSize);
-            contactIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + DealerRowCount;
+            contactIndexlbl.Text = "01" + " - " + PgSize.ToString() + " of " + DealerRowCount;
             dealersData.Visible = true;
             suppliersData.Visible = false;
 
@@ -724,7 +729,7 @@ namespace ITP4519M
             dealerDatalbl.Text = DealerRowCount.ToString();
             supplierDatalbl.Text = SupplierRowCount.ToString();
             SetRowHeights(suppliersData, SupplierPgSize);
-            contactIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + SupplierRowCount;
+            contactIndexlbl.Text = "01" + " - " + PgSize.ToString() + " of " + SupplierRowCount;
             dealersData.Visible = false;
             suppliersData.Visible = true;
         }
@@ -1098,14 +1103,14 @@ namespace ITP4519M
                 this.DealerPageIndex = DealerTotalPage;
                 this.dealersData.DataSource = programMethod.GetDealerCurrentRecords(this.DealerPageIndex, DealerPgSize);
                 SetRowHeights(dealersData, DealerPgSize);
-                contactIndexlbl.Text = (PgSize * DealerPageIndex - (PgSize - 1)) + "-" + DealerRowCount + " of " + DealerRowCount;
+                contactIndexlbl.Text = (PgSize * DealerPageIndex - (PgSize - 1)) + " - " + DealerRowCount + " of " + DealerRowCount;
             }
             else
             {
                 this.SupplierPageIndex = SupplierTotalPage;
                 this.suppliersData.DataSource = programMethod.GetSupplierCurrentRecords(this.SupplierPageIndex, SupplierPgSize);
                 SetRowHeights(suppliersData, SupplierPgSize);
-                contactIndexlbl.Text = (PgSize * SupplierPageIndex - (PgSize - 1)) + "-" + SupplierRowCount + " of " + SupplierRowCount;
+                contactIndexlbl.Text = (PgSize * SupplierPageIndex - (PgSize - 1)) + " - " + SupplierRowCount + " of " + SupplierRowCount;
             }
 
         }
@@ -1248,7 +1253,7 @@ namespace ITP4519M
             //  grndata.DataSource = programMethod.overallGRNinfo();
             grndata.DataSource = programMethod.GetGRNCurrentRecords(GRNPageIndex, GRNPgSize);
             grndata.Rows[0].Selected = false;
-            grnPage.Text = "01" + "-" + GRNPgSize.ToString() + " of " + GRNRowCount;
+            grnPage.Text = "01" + " - " + GRNPgSize.ToString() + " of " + GRNRowCount;
             SetRowHeights(grndata, GRNPgSize);
 
 
@@ -1271,11 +1276,12 @@ namespace ITP4519M
 
             lastClickedButton = (Button)sender;
             lastClickedButton.ForeColor = Color.Gray;
-
+            CalculateTotalPages("Delivery");
             ShowPanel(deliverypnl);
-            deliveryData.DataSource = programMethod.overallDeliveryinfo();
+            deliveryData.DataSource = programMethod.GetDeliveryCurrentRecords(DespatchPageIndex, DespatchPgSize);
             deliveryData.Rows[0].Selected = false;
-
+            despatchPage.Text = "01" + " - " + DespatchPgSize.ToString() + " of " + DeliveryRowCount;
+            //SetRowHeights(deliveryData, DespatchPgSize);
 
             string[] MinDate = programMethod.getDNMinAndMaxDate();
             deliverydateTimePicker1.MinDate = DateTime.Parse(MinDate[0]);
@@ -1646,8 +1652,11 @@ namespace ITP4519M
                     break;
 
                 case "Delivery":
-                    //rowCount = programMethod.getAccountRowCount();
-                    //TotalPage = rowCount / PgSize;
+                    rowCount = programMethod.getDeliveryRowCount();
+                    DeliveryRowCount = rowCount;
+                    DespatchTotalPage = rowCount / PgSize;
+                    if (rowCount % DespatchPgSize > 0)
+                        DespatchTotalPage += 1;
                     break;
 
 
@@ -1748,7 +1757,7 @@ namespace ITP4519M
             this.CurrentPageIndex = TotalPage;
             this.userData.DataSource = programMethod.GetAccountCurrentRecords(this.CurrentPageIndex, PgSize);
             SetRowHeights(userData, PgSize);
-            accountIndexlbl.Text = (PgSize * CurrentPageIndex - (PgSize - 1)) + "-" + AccountRowCount + " of " + AccountRowCount;
+            accountIndexlbl.Text = (PgSize * CurrentPageIndex - (PgSize - 1)) + " - " + AccountRowCount + " of " + AccountRowCount;
         }
 
         private void deliveryViewDNbtn_Click(object sender, EventArgs e)
@@ -1851,7 +1860,7 @@ namespace ITP4519M
             poData.DataSource = programMethod.GetPOCurrentRecords(POPageIndex, POPgSize);
             poData.Rows[0].Selected = false;
             SetRowHeights(poData, POPgSize);
-            poIndexlbl.Text = "01" + "-" + POPgSize.ToString() + " of " + programMethod.getPORowCount();
+            poIndexlbl.Text = "01" + " - " + POPgSize.ToString() + " of " + programMethod.getPORowCount();
 
 
             string[] MinDate = programMethod.getMinAndMaxDateForPO();
@@ -1878,7 +1887,7 @@ namespace ITP4519M
             invoiceData.DataSource = programMethod.GetInvoiceCurrentRecords(InvoicePageIndex, InvoicePgSize);
             lastClickedButton = (Button)sender;
             lastClickedButton.ForeColor = Color.Gray;
-            invoiceIndexlbl.Text = "01" + "-" + PgSize.ToString() + " of " + InvoiceRowCount;
+            invoiceIndexlbl.Text = "01" + " - " + PgSize.ToString() + " of " + InvoiceRowCount;
             invoiceData.Rows[0].Selected = false;
             SetRowHeights(invoiceData, InvoicePgSize);
 
@@ -1898,7 +1907,7 @@ namespace ITP4519M
             this.StockPageIndex = StockTotalPage;
             this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockPageIndex, StockPgSize);
             SetRowHeights(stockData, StockPgSize);
-            StockpageNumlbl.Text = (StockPgSize * StockPageIndex - (StockPgSize - 1)) + "-" + StockRowCount + " of " + StockRowCount;
+            StockpageNumlbl.Text = (StockPgSize * StockPageIndex - (StockPgSize - 1)) + " - " + StockRowCount + " of " + StockRowCount;
             StockLevelBoldAndColor();
             stockData.Rows[0].Selected = false;
         }
@@ -1913,11 +1922,11 @@ namespace ITP4519M
 
                 if (StockPageIndex != StockTotalPage)
                 {
-                    StockpageNumlbl.Text = (StockPgSize * StockPageIndex - (StockPgSize - 1)) + "-" + (StockPgSize * StockPageIndex) + " of " + StockRowCount;
+                    StockpageNumlbl.Text = (StockPgSize * StockPageIndex - (StockPgSize - 1)) + " - " + (StockPgSize * StockPageIndex) + " of " + StockRowCount;
                 }
                 else
                 {
-                    StockpageNumlbl.Text = (StockPgSize * StockPageIndex - (StockPgSize - 1)) + "-" + StockRowCount + " of " + StockRowCount;
+                    StockpageNumlbl.Text = (StockPgSize * StockPageIndex - (StockPgSize - 1)) + " - " + StockRowCount + " of " + StockRowCount;
                 }
             }
             StockLevelBoldAndColor();
@@ -1931,7 +1940,7 @@ namespace ITP4519M
                 this.StockPageIndex--;
                 this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockPageIndex, StockPgSize);
                 SetRowHeights(stockData, StockPgSize);
-                StockpageNumlbl.Text = (StockPgSize * StockPageIndex - (StockPgSize - 1)) + "-" + (StockPgSize * StockPageIndex) + " of " + StockRowCount;
+                StockpageNumlbl.Text = (StockPgSize * StockPageIndex - (StockPgSize - 1)) + " - " + (StockPgSize * StockPageIndex) + " of " + StockRowCount;
 
             }
             StockLevelBoldAndColor();
@@ -1942,7 +1951,7 @@ namespace ITP4519M
             this.StockPageIndex = 1;
             this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockPageIndex, StockPgSize);
             SetRowHeights(stockData, StockPgSize);
-            StockpageNumlbl.Text = "1" + "-" + StockPgSize + " of " + StockRowCount;
+            StockpageNumlbl.Text = "1" + " - " + StockPgSize + " of " + StockRowCount;
             StockLevelBoldAndColor();
             stockData.Rows[0].Selected = false;
         }
@@ -2212,7 +2221,7 @@ namespace ITP4519M
             this.POPageIndex = POTotalPage;
             this.poData.DataSource = programMethod.GetPOCurrentRecords(this.POPageIndex, POPgSize);
             SetRowHeights(poData, POPgSize);
-            poIndexlbl.Text = (POPgSize * POPageIndex - (POPgSize - 1)) + "-" + PORowCount + " of " + PORowCount;
+            poIndexlbl.Text = (POPgSize * POPageIndex - (POPgSize - 1)) + " - " + PORowCount + " of " + PORowCount;
         }
 
         private void poFirstPageBtn_Click(object sender, EventArgs e)
@@ -2272,7 +2281,7 @@ namespace ITP4519M
 
         private void reportbtn_Click(object sender, EventArgs e)
         {
-
+            reportOrderProductCategorybox.DataSource = null;
             if (lastClickedButton != null)
             {
                 lastClickedButton.ForeColor = Color.White;
@@ -2285,7 +2294,7 @@ namespace ITP4519M
             reportOrderProductCategorybox.DataSource = programMethod.getProductCategory();
             reportOrderProductCategorybox.DisplayMember = "ProductCategory";
             orderReportdata.DataSource = programMethod.getOrderReport();
-           // programMethod.getTopSellingProductReport();
+            // programMethod.getTopSellingProductReport();
             DataTable dt = programMethod.getTopSellingProductReport();
             for (int i = 0; i < 5; i++)
             {
@@ -2423,10 +2432,7 @@ namespace ITP4519M
 
         }
 
-        private void invoiceNextPagebtn_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void invoiceData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -2481,29 +2487,7 @@ namespace ITP4519M
             orderdateTimePicker2.MinDate = orderdateTimePicker1.Value;
         }
 
-        private void invoiceLastPagebtn_Click(object sender, EventArgs e)
-        {
-            this.InvoicePageIndex = InvoiceTotalPage;
-            this.invoiceData.DataSource = programMethod.GetInvoiceCurrentRecords(this.InvoicePageIndex, InvoicePgSize);
-            SetRowHeights(invoiceData, InvoicePgSize);
-            invoiceIndexlbl.Text = (InvoicePgSize * InvoicePageIndex - (InvoicePgSize - 1)) + " - " + InvoiceRowCount + " of " + InvoiceRowCount;
-        }
 
-        private void invoicePrevPagebtn_Click(object sender, EventArgs e)
-        {
-            if (this.InvoicePageIndex > 1)
-            {
-                this.InvoicePageIndex--;
-                this.invoiceData.DataSource = programMethod.GetInvoiceCurrentRecords(this.InvoicePageIndex, InvoicePgSize);
-            }
-            SetRowHeights(invoiceData, InvoicePgSize);
-            invoiceIndexlbl.Text = (InvoicePgSize * InvoicePageIndex - (InvoicePgSize - 1)) + " - " + (InvoicePgSize * InvoicePageIndex) + " of " + InvoiceRowCount;
-        }
-
-        private void invoiceFirstPagebtn_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void reportOrdercsvbtn_Click(object sender, EventArgs e)
         {
@@ -2511,36 +2495,66 @@ namespace ITP4519M
             int countRows = orderReportdata.RowCount;
             int countCells = orderReportdata.Rows[0].Cells.Count;
             string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            string filepath = path + "\\salesOrderReport.csv";
+            string filepath = Path.Combine(path, "SalesOrderReport.csv");
 
-            for (int row_index = 0; row_index < orderReportdata.RowCount; row_index++)
+            int fileCount = 1;
+            while (File.Exists(filepath))
             {
-                for (int cell_index = 0; cell_index < countCells; cell_index++)
+                filepath = Path.Combine(path, $"SalesOrderReport ({fileCount}).csv");
+                fileCount++;
+            }
+
+            for (int i = 0; i < countCells; i++)
+            {
+                text += orderReportdata.Columns[i].HeaderText + ", ";
+            }
+            text = text.TrimEnd(',', ' ');
+            text += "\r\n";
+
+            for (int row_index = 0; row_index < countRows; row_index++)
+            {
+                for (int i = 0; i < countCells; i++)
                 {
-                    text = text + orderReportdata.Rows[row_index].Cells[cell_index].Value.ToString() + ", ";
+                    text += orderReportdata.Rows[row_index].Cells[i].Value.ToString() + ", ";
                 }
+                text = text.TrimEnd(',', ' ');
                 text += "\r\n";
             }
-            System.IO.File.WriteAllText(filepath, text);
-            MessageBox.Show("Sales Order Report Saved");
+
+            File.WriteAllText(filepath, text);
+            MessageBox.Show("Sales Order Report Saved At Your Desktop!");
             programMethod.LogPrintSalesOrderReportCSV(LoginUserID, LoginUserName);
         }
 
 
         private void reportShowStockbtn_Click(object sender, EventArgs e)
         {
+            foreach (var series in reportStockPie.Series)
+            {
+                series.Points.Clear();
+            }
+
+            foreach (var series in stockInAndOutchart.Series)
+            {
+                series.Points.Clear();
+            }
             ShowPanel(StockReportpnl);
             reportStockdata.DataSource = programMethod.getTopSellingProductReport();
+            stockReportCategorybox.DataSource = programMethod.getProductCategory();
+            stockReportCategorybox.DisplayMember = "ProductCategory";
+
+            DataTable dataTable = programMethod.getStockInAndOut();
+            for (int i = 0; i < dataTable.Rows.Count; i++)
+            {
+                stockInAndOutchart.Series["Stock"].Points.AddXY("Sotck - In", dataTable.Rows[i][0].ToString());
+            }
+
 
             DataTable dt = programMethod.getStockReportForCategory();
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 reportStockPie.Series["Stock"].Points.AddXY(dt.Rows[i][0].ToString(), dt.Rows[i][1].ToString());
             }
-        }
-        private void reportOrderpdfbtn_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void button17_Click(object sender, EventArgs e)
@@ -2561,20 +2575,6 @@ namespace ITP4519M
             programMethod.completeOutstandingOrder(outstandingOrderID);
         }
 
-        /*   private void POViewbtn_Click(object sender, EventArgs e)
-           {
-               if (POIndex == -1)
-               {
-                   MessageBox.Show("Please Select One Invoice");
-               }
-               else
-               {
-                   CreatePurchaseOrder PurchaseOrderForm = new CreatePurchaseOrder(OperationMode.View);
-                   PurchaseOrderForm.purchaseOrderView(poID);
-                   PurchaseOrderForm.ShowDialog();
-
-               }
-           }*/
 
         private void poData_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -2641,7 +2641,7 @@ namespace ITP4519M
                 this.grndata.DataSource = programMethod.GetGRNCurrentRecords(this.GRNPageIndex, GRNPgSize);
             }
             SetRowHeights(grndata, GRNPgSize);
-            accountIndexlbl.Text = (GRNPgSize * GRNPageIndex - (GRNPgSize - 1)) + " - " + (GRNPgSize * GRNPageIndex) + " of " + GRNRowCount;
+            grnPage.Text = (GRNPgSize * GRNPageIndex - (GRNPgSize - 1)) + " - " + (GRNPgSize * GRNPageIndex) + " of " + GRNRowCount;
         }
 
         private void grnFirstPage_Click(object sender, EventArgs e)
@@ -2865,7 +2865,7 @@ namespace ITP4519M
             this.OrderPageIndex = OrderTotalPage;
             this.orderdata.DataSource = programMethod.GetCurrentRecords("Order", this.OrderPageIndex, OrderPgSize);
             SetRowHeights(orderdata, OrderPgSize);
-            orderIndexlbl.Text = (OrderPgSize * OrderPageIndex - (OrderPgSize - 1)) + "-" + OrderRowCount + " of " + OrderRowCount;
+            orderIndexlbl.Text = (OrderPgSize * OrderPageIndex - (OrderPgSize - 1)) + " - " + OrderRowCount + " of " + OrderRowCount;
         }
 
         private void orderPrevPagebtn_Click_1(object sender, EventArgs e)
@@ -3170,23 +3170,39 @@ namespace ITP4519M
 
         private void CSVStockReportButton_Click(object sender, EventArgs e)
         {
-            //string textExport = "";
-            //int countRows = dgStockReport.RowCount;
-            //int countCells = dgStockReport.Rows[0].Cells.Count;
-            //string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            //string filepath = path + "\\StockRecordReport.csv";
+            string text = "";
+            int countRows = reportStockdata.RowCount;
+            int countCells = reportStockdata.Rows[0].Cells.Count;
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string filepath = Path.Combine(path, "StockReport.csv");
 
-            //for (int row_index = 0; row_index < dgStockReport.RowCount; row_index++)
-            //{
-            //    for (int cell_index = 0; cell_index < countCells; cell_index++)
-            //    {
-            //        textExport = textExport + dgStockReport.Rows[row_index].Cells[cell_index].Value.ToString() + ", ";
-            //    }
-            //    textExport += "\r\n";
-            //}
-            //System.IO.File.WriteAllText(filepath, textExport);
-            //MessageBox.Show("Your Stock Record Report form being exported on desktop");
-            //objController.LogPrintStockReportCSV(userID);
+            int fileCount = 1;
+            while (File.Exists(filepath))
+            {
+                filepath = Path.Combine(path, $"StockReport ({fileCount}).csv");
+                fileCount++;
+            }
+
+            for (int i = 0; i < countCells; i++)
+            {
+                text += reportStockdata.Columns[i].HeaderText + ", ";
+            }
+            text = text.TrimEnd(',', ' ');
+            text += "\r\n";
+
+            for (int row_index = 0; row_index < countRows; row_index++)
+            {
+                for (int i = 0; i < countCells; i++)
+                {
+                    text += reportStockdata.Rows[row_index].Cells[i].Value.ToString() + ", ";
+                }
+                text = text.TrimEnd(',', ' ');
+                text += "\r\n";
+            }
+
+            File.WriteAllText(filepath, text);
+            MessageBox.Show("Stock Report Saved At Your Desktop!");
+            programMethod.LogPrintStockReportCSV(LoginUserID, LoginUserName);
         }
 
         private void orderReportsearchbtn_Click(object sender, EventArgs e)
@@ -3205,9 +3221,125 @@ namespace ITP4519M
             }
             else if (reportOrderProductbox.SelectedIndex > -1 && reportOrderProductCategorybox.SelectedIndex > -1)
             {
-             //   orderReportdata.DataSource = objController.DataFilterReportSalesCatItem(reportOrderProductbox.Text, reportOrderProductCategorybox.Text);
+                orderReportdata.DataSource = programMethod.reportFilterByDateAndCategoryANDProductID(formDate, toDate, reportOrderProductbox.Text, reportOrderProductCategorybox.Text);
             }
+        }
+        private void despatchFirstbtn_Click(object sender, EventArgs e)
+        {
+            this.DespatchPageIndex = 1;
+            this.deliveryData.DataSource = programMethod.GetDeliveryCurrentRecords(this.DespatchPageIndex, DespatchPgSize);
+            SetRowHeights(deliveryData, DespatchPgSize);
 
+            despatchPage.Text = "1" + " - " + DespatchPgSize + " of " + DeliveryRowCount;
+        }
+
+        private void despatchPrevbtn_Click(object sender, EventArgs e)
+        {
+            if (this.DespatchPageIndex > 1)
+            {
+                this.DespatchPageIndex--;
+                this.deliveryData.DataSource = programMethod.GetDeliveryCurrentRecords(this.DespatchPageIndex, DespatchPgSize);
+            }
+            SetRowHeights(deliveryData, DespatchPgSize);
+            despatchPage.Text = (DespatchPgSize * DespatchPageIndex - (DespatchPgSize - 1)) + " - " + (DespatchPgSize * DespatchPageIndex) + " of " + DeliveryRowCount;
+        }
+
+        private void despatchNextbtn_Click(object sender, EventArgs e)
+        {
+            if (this.DespatchPageIndex < this.DespatchTotalPage)
+            {
+                this.DespatchPageIndex++;
+                this.deliveryData.DataSource = programMethod.GetDeliveryCurrentRecords(this.DespatchPageIndex, DespatchPgSize);
+
+            }
+            SetRowHeights(deliveryData, DespatchPgSize);
+
+            if (DespatchPageIndex != DespatchTotalPage)
+            {
+                despatchPage.Text = (DespatchPgSize * DespatchPageIndex - (DespatchPgSize - 1)) + " - " + (DespatchPgSize * DespatchPageIndex) + " of " + DeliveryRowCount;
+            }
+            else
+            {
+                despatchPage.Text = (DespatchPgSize * DespatchPageIndex - (DespatchPgSize - 1)) + " - " + DeliveryRowCount + " of " + DeliveryRowCount;
+            }
+        }
+
+        private void despatchLastbtn_Click(object sender, EventArgs e)
+        {
+            this.DespatchPageIndex = DespatchTotalPage;
+            this.deliveryData.DataSource = programMethod.GetDeliveryCurrentRecords(this.DespatchPageIndex, DespatchPgSize);
+            SetRowHeights(deliveryData, DespatchPgSize);
+            despatchPage.Text = (DespatchPgSize * DespatchPageIndex - (DespatchPgSize - 1)) + " - " + DeliveryRowCount + " of " + DeliveryRowCount;
+        }
+
+        private void invoiceLastPagebtn_Click(object sender, EventArgs e)
+        {
+            this.InvoicePageIndex = InvoiceTotalPage;
+            this.invoiceData.DataSource = programMethod.GetInvoiceCurrentRecords(this.InvoicePageIndex, InvoicePgSize);
+            SetRowHeights(invoiceData, InvoicePgSize);
+            invoiceIndexlbl.Text = (InvoicePgSize * InvoicePageIndex - (InvoicePgSize - 1)) + " - " + InvoiceRowCount + " of " + InvoiceRowCount;
+        }
+
+        private void invoicePrevPagebtn_Click(object sender, EventArgs e)
+        {
+            if (this.InvoicePageIndex > 1)
+            {
+                this.InvoicePageIndex--;
+                this.invoiceData.DataSource = programMethod.GetInvoiceCurrentRecords(this.InvoicePageIndex, InvoicePgSize);
+            }
+            SetRowHeights(invoiceData, InvoicePgSize);
+            invoiceIndexlbl.Text = (InvoicePgSize * InvoicePageIndex - (InvoicePgSize - 1)) + " - " + (InvoicePgSize * InvoicePageIndex) + " of " + InvoiceRowCount;
+        }
+
+        private void invoiceFirstPagebtn_Click(object sender, EventArgs e)
+        {
+            this.InvoicePageIndex = 1;
+            this.invoiceData.DataSource = programMethod.GetInvoiceCurrentRecords(this.InvoicePageIndex, InvoicePgSize);
+            SetRowHeights(invoiceData, InvoicePgSize);
+
+            invoiceIndexlbl.Text = "1" + " - " + InvoicePgSize + " of " + InvoiceRowCount;
+        }
+
+        private void invoiceNextPagebtn_Click(object sender, EventArgs e)
+        {
+            if (this.InvoicePageIndex < this.InvoiceTotalPage)
+            {
+                this.InvoicePageIndex++;
+                this.invoiceData.DataSource = programMethod.GetInvoiceCurrentRecords(this.InvoicePageIndex, InvoicePgSize);
+
+            }
+            SetRowHeights(invoiceData, InvoicePgSize);
+
+            if (InvoicePageIndex != InvoiceTotalPage)
+            {
+                invoiceIndexlbl.Text = (InvoicePgSize * InvoicePageIndex - (InvoicePgSize - 1)) + " - " + (InvoicePgSize * InvoicePageIndex) + " of " + InvoiceRowCount;
+            }
+            else
+            {
+                invoiceIndexlbl.Text = (InvoicePgSize * InvoicePageIndex - (InvoicePgSize - 1)) + " - " + InvoiceRowCount + " of " + InvoiceRowCount;
+            }
+        }
+
+        private void OrderStockReportButton_Click(object sender, EventArgs e)
+        {
+            ShowPanel(settingpnl);
+        }
+
+        private void StockStockReportButton_Click(object sender, EventArgs e)
+        {
+            //chart2
+        }
+
+        private void SearchStockReportButton_Click(object sender, EventArgs e)
+        {
+
+            if(stockReportCategorybox.SelectedIndex > -1)
+            {
+                reportStockdata.DataSource = programMethod.reportStockFilterByDateAndCategory(stockReportCategorybox.Text);
+
+
+            }
+            
         }
     }
 }

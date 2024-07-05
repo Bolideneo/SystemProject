@@ -995,7 +995,10 @@ namespace ProgramMethod
         {
             return dataBaseMethod.getAccountRowCount();
         }
-
+        public int getDeliveryRowCount()
+        {
+            return dataBaseMethod.getDeliveryRowCount();
+        }
         public int getGRNRowCount()
         {
             return dataBaseMethod.getGRNRowCount();
@@ -1050,6 +1053,19 @@ namespace ProgramMethod
             else
             {
                 return dataBaseMethod.GetAccountCurrentRecords2(page, pageSize);
+            }
+        }
+
+        public DataTable GetDeliveryCurrentRecords(int page, int pageSize)
+        {
+
+            if (page == 1)
+            {
+                return dataBaseMethod.GetDeliveryCurrentRecords(page, pageSize);
+            }
+            else
+            {
+                return dataBaseMethod.GetDeliveryCurrentRecords2(page, pageSize);
             }
         }
 
@@ -1717,10 +1733,25 @@ namespace ProgramMethod
             return dataBaseMethod.reportFilterByDateAndProductID(fromDate, toDate, productID);
 
         }
-
+        
         public DataTable reportFilterByDateAndCategory(string fromDate, string toDate, string productCategory)
         {
             return dataBaseMethod.reportFilterByDateAndCategory(fromDate, toDate, productCategory);
+
+
+        }
+
+        public DataTable reportStockFilterByDateAndCategory( string productCategory)
+        {
+            return dataBaseMethod.reportStockFilterByDateAndCategory(productCategory);
+
+
+        }
+
+
+        public DataTable reportFilterByDateAndCategoryANDProductID(string fromDate, string toDate, string productID, string productCategory)
+        {
+            return dataBaseMethod.reportFilterByDateAndCategoryANDProductID(fromDate, toDate, productID,productCategory);
 
         }
 
@@ -2473,23 +2504,39 @@ namespace ProgramMethod
         {
             return dataBaseMethod.getOrderReport();
         }
-
+        
         public DataTable getAllSalesReport()
         {
             return dataBaseMethod.getAllSalesReport();
         }
+
+
         public DataTable getStockReportForCategory()
         {
             return dataBaseMethod.getStockReportForCategory();
         }
+        public DataTable getStockInAndOut()
+        {
+            return dataBaseMethod.getStockInAndOut();
+        }
 
-
+        
         public void LogPrintSalesOrderReportCSV(string userID, string userName)
         {
             string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
             if (logID != null)
             {
                 dataBaseMethod.LogPrintSalesOrderReportCSV(logID, userID, userName);
+            }
+
+        }
+
+        public void LogPrintStockReportCSV(string userID, string userName)
+        {
+            string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
+            if (logID != null)
+            {
+                dataBaseMethod.LogPrintStockReportCSV(logID, userID, userName);
             }
 
         }
