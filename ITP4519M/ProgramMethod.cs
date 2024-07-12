@@ -623,13 +623,13 @@ namespace ProgramMethod
 
                 for (int i = 0; i < productOfOrder.Rows.Count; i++)
                 {
-                    if (productOfOrder.Rows[i].Cells[4].Value.ToString() == "100")
+                    if (productOfOrder.Rows[i].Cells[5].Value.ToString() == "100")
                     {
-                        sum += int.Parse(productOfOrder.Rows[i].Cells[2].Value.ToString()) * float.Parse(productOfOrder.Rows[i].Cells[3].Value.ToString());
+                        sum += int.Parse(productOfOrder.Rows[i].Cells[3].Value.ToString()) * float.Parse(productOfOrder.Rows[i].Cells[4].Value.ToString());
                     }
                     else
                     {
-                        sum += int.Parse(productOfOrder.Rows[i].Cells[2].Value.ToString()) * float.Parse(productOfOrder.Rows[i].Cells[3].Value.ToString()) * (100 - int.Parse(productOfOrder.Rows[i].Cells[4].Value.ToString())) / 100;
+                        sum += int.Parse(productOfOrder.Rows[i].Cells[3].Value.ToString()) * float.Parse(productOfOrder.Rows[i].Cells[4].Value.ToString()) * (100 - int.Parse(productOfOrder.Rows[i].Cells[5].Value.ToString())) / 100;
                     }
                 }
 
@@ -1615,19 +1615,6 @@ namespace ProgramMethod
                 dataBaseMethod.createOrderItemAudit(orderID, ActualDesptchData.Rows[i].Cells[0].Value.ToString());
 
             }
-
-            //if (ActualDesptchData.RowCount == 0)
-            //{
-
-            //    for (int j = 0; j < orderItemData.RowCount; j++)
-            //    {
-            //        string oustID = "OUT" + (int.Parse(dataBaseMethod.getOutStandingID()) + 1).ToString("000000");
-            //        if (dataBaseMethod.createOutstandingOrder(oustID, orderID, orderItemData.Rows[j].Cells[0].Value.ToString(), dataBaseMethod.getOrderOfDealerID(orderID), orderItemData.Rows[j].Cells[3].Value.ToString()))
-            //        {
-            //            LogCreateOutstandingOrder(LoginUserID, LoginUserName, orderID, oustID);
-            //        }
-            //    }
-            //}
 
             int Count = 0;
             for (int i = 0; i < ActualDesptchData.RowCount; i++)

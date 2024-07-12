@@ -56,6 +56,7 @@ namespace ITP4519M
             checkboxSelectedbtn = new Button();
             checkBox = new CheckBox();
             accemblyerrorlbl = new Label();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)orderItemdata).BeginInit();
             ((System.ComponentModel.ISupportInitialize)orderAccemblyOrderItemdata).BeginInit();
             SuspendLayout();
@@ -198,8 +199,9 @@ namespace ITP4519M
             orderItemdata.RowHeadersVisible = false;
             orderItemdata.RowHeadersWidth = 51;
             orderItemdata.RowTemplate.Height = 24;
-            orderItemdata.Size = new Size(679, 207);
+            orderItemdata.Size = new Size(679, 236);
             orderItemdata.TabIndex = 61;
+            orderItemdata.CellClick += orderItemdata_CellClick;
             orderItemdata.CellDoubleClick += productOfOrderdata_CellDoubleClick;
             orderItemdata.CellEndEdit += orderItemdata_CellEndEdit;
             orderItemdata.RowsAdded += orderItemdata_RowsAdded;
@@ -241,7 +243,7 @@ namespace ITP4519M
             // saveOrderbtn
             // 
             saveOrderbtn.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            saveOrderbtn.Location = new Point(653, 858);
+            saveOrderbtn.Location = new Point(658, 887);
             saveOrderbtn.Name = "saveOrderbtn";
             saveOrderbtn.Size = new Size(150, 40);
             saveOrderbtn.TabIndex = 71;
@@ -330,12 +332,25 @@ namespace ITP4519M
             accemblyerrorlbl.Text = "Please enter a valid number.";
             accemblyerrorlbl.Visible = false;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = SystemColors.MenuBar;
+            label4.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.DarkOrange;
+            label4.Location = new Point(69, 618);
+            label4.Name = "label4";
+            label4.Size = new Size(300, 20);
+            label4.TabIndex = 82;
+            label4.Text = "Double click Cell to remove unwant product";
+            // 
             // OrderAccembly
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
-            ClientSize = new Size(846, 915);
+            ClientSize = new Size(850, 939);
+            Controls.Add(label4);
             Controls.Add(accemblyerrorlbl);
             Controls.Add(checkBox);
             Controls.Add(checkboxSelectedbtn);
@@ -407,5 +422,6 @@ namespace ITP4519M
         private CheckBox checkBox;
         private Label accemblyerrorlbl;
         private DataGridViewCheckBoxColumn check;
+        private Label label4;
     }
 }

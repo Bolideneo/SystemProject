@@ -16,11 +16,13 @@ using System.Drawing.Printing;
 using System.Drawing.Text;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Web;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using ZstdSharp.Unsafe;
 using static ProgramMethod.ProgramMethod;
 
@@ -99,6 +101,7 @@ namespace ITP4519M
                     //programMethod.productSearchAutoComplete(orderAccemblyAssignbox);
                     orderDateBox.MinDate = DateTime.Today;
                     orderDateBox.MaxDate = DateTime.Today.AddDays(7);
+                    productOfOrderdata.Columns.Add("Numbering", "NO");
                     productOfOrderdata.Columns.Add("ProductID", "Product ID");
                     productOfOrderdata.Columns.Add("ProductName", "Product Name");
                     productOfOrderdata.Columns.Add("Quantity", "Quantity");
@@ -130,9 +133,9 @@ namespace ITP4519M
             orderContactNamebox.Text = string.Empty;
             OrderContactPhonebox.Text = string.Empty;
             ordertotallbl.Text = string.Empty;
-            orderEmailAddressbox.Text  = string .Empty;
+            orderEmailAddressbox.Text = string.Empty;
             invoiceAddressBox.Text = string.Empty;
-            productSearchbox.Text = string .Empty;
+            productSearchbox.Text = string.Empty;
             productOfOrderdata.Rows.Clear();
         }
 
@@ -264,8 +267,8 @@ namespace ITP4519M
                 label11.Visible = false;
                 orderDateBox.BorderColor = Color.Black;
             }
-            
-            if(productSearchbox.Text  == "")
+
+            if (productSearchbox.Text == "")
             {
                 productSearchbox.BorderColor = Color.Red;
                 pictureBox3.Visible = true;
@@ -291,7 +294,7 @@ namespace ITP4519M
 
             for (int i = 0; i < productOfOrderdata.Rows.Count; i++)
             {
-                int quantity = Convert.ToInt32(productOfOrderdata.Rows[i].Cells[2].Value);
+                int quantity = Convert.ToInt32(productOfOrderdata.Rows[i].Cells[3].Value);
 
                 bool isGreaterThanZero = (quantity > 0);
                 checkList.Add(isGreaterThanZero);
@@ -318,7 +321,7 @@ namespace ITP4519M
                 programMethod.LogCreateSalesOrder(this.userID, this.userName, orderID);
             }
 
-          
+
             MessageBox.Show("Order Create Successfully " + "Order ID: " + orderID);
             ClearForm();
 
@@ -488,13 +491,13 @@ namespace ITP4519M
                 for (int i = 0; i < productOfOrderdata.Rows.Count; i++)
                 {
 
-                    if (productOfOrderdata.Rows[i].Cells[0].Value.ToString() == productSearchbox.Text.Trim() || productOfOrderdata.Rows[i].Cells[1].Value.ToString() == productSearchbox.Text.Trim())
+                    if (productOfOrderdata.Rows[i].Cells[1].Value.ToString() == productSearchbox.Text.Trim() || productOfOrderdata.Rows[i].Cells[2].Value.ToString() == productSearchbox.Text.Trim())
                     {
                         productSearchbox.Text = "";
                         MessageBox.Show("Product is Added");
                         return;
                     }
-                    if (int.Parse(productOfOrderdata.Rows[i].Cells[2].Value.ToString()) == 0)
+                    if (int.Parse(productOfOrderdata.Rows[i].Cells[3].Value.ToString()) == 0)
                     {
                         productSearchbox.Text = "";
                         MessageBox.Show("Please Add One quantity");
@@ -503,8 +506,8 @@ namespace ITP4519M
                 }
 
                 DataTable result = programMethod.searchOrderItemDetail(productSearchbox.Text.Trim());
-                this.productOfOrderdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, result.Rows[0]["UnitPrice"], "100");
-              //  productSearchbox1.Text = "";
+                this.productOfOrderdata.Rows.Add("", result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, result.Rows[0]["UnitPrice"], "100");
+                //  productSearchbox1.Text = "";
 
             }
         }
@@ -558,8 +561,40 @@ namespace ITP4519M
             }
         }
 
+        private void productOfOrderdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (productOfOrderdata.Columns[e.ColumnIndex].Name != "Quantity" && productOfOrderdata.Columns[e.ColumnIndex].Name != "Discount")
+            {
+                productOfOrderdata.Columns[e.ColumnIndex].ReadOnly = true;
+            }
+        }
 
+
+        private void productOfOrderdata_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            int cct = productOfOrderdata.Rows.Count; 
+            int cnt = 0;
+            int replace_no = 1;
+
+
+            while (cnt < cct)
+            {
+                productOfOrderdata.Rows[cnt].Cells[0].Value = "No." + replace_no.ToString();
+                cnt = cnt + 1;
+                replace_no = replace_no + 1;
+            }
+
+
+        }
+
+        private void productOfOrderdata_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+                for (int i = 0; i < e.RowCount; i++)
+                {
+                    productOfOrderdata.Rows[e.RowIndex + i].Cells[0].Value = "No." + (e.RowIndex + 1 + i).ToString();
+
+                }
+
+        }
     }
-
-
 }

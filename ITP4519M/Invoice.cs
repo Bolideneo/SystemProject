@@ -22,6 +22,9 @@ namespace ITP4519M
         private string deliveryID;
         private string IssueDate;
         private System.Drawing.Printing.PrintDocument printDocument1;
+        private bool dragging = false;
+        private Point dragCursorPoint;
+        private Point dragFormPoint;
 
         ProgramMethod.ProgramMethod programMethod;
         public Invoice(string invoiceID, string orderID, string dealerID, string deliveryID, string issueDate)
@@ -106,6 +109,29 @@ namespace ITP4519M
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             e.Graphics.DrawImage(memoryImage, 0, 0);
+        }
+
+
+        private void Dashboard_MouseDown(object sender, MouseEventArgs e)
+        {
+            dragging = true;
+            dragCursorPoint = Control.MousePosition;
+            dragFormPoint = this.Location;
+        }
+
+        private void Dashboard_MouseUp(object sender, MouseEventArgs e)
+        {
+            dragging = false;
+
+        }
+
+        private void Dashboard_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (dragging)
+            {
+                Point diff = Point.Subtract(Control.MousePosition, new Size(dragCursorPoint));
+                this.Location = Point.Add(dragFormPoint, new Size(diff));
+            }
         }
     }
 }

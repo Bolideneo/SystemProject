@@ -315,7 +315,6 @@ namespace ITP4519M
             deliveryIDbox.Size = new Size(90, 16);
             deliveryIDbox.TabIndex = 84;
             deliveryIDbox.Text = "deliveryIDbox";
-            deliveryIDbox.Click += deliveryIDbox_Click;
             // 
             // deliveryDatebox
             // 
@@ -379,6 +378,9 @@ namespace ITP4519M
             StartPosition = FormStartPosition.CenterScreen;
             Text = "DeliveryForm";
             Load += DeliveryForm_Load;
+            MouseDown += Dashboard_MouseDown;
+            MouseMove += Dashboard_MouseMove;
+            MouseUp += Dashboard_MouseUp;
             ((System.ComponentModel.ISupportInitialize)deliveryformData).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ResumeLayout(false);

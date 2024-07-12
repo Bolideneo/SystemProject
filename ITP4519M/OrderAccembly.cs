@@ -110,7 +110,7 @@ namespace ITP4519M
                     orderAccemblyOrderItemdata.Columns["check"].Visible = false;
                     orderIDBox.Text = orderID;
                     dealerIDBox.Text = dealerID;
-                    checkBox.Visible = false;   
+                    checkBox.Visible = false;
                     dt1 = programMethod.getOrderDealerName(orderID, dealerID);
                     dealerNameBox.Text = dt1.Rows[0]["DealerName"].ToString();
                     phoneNumBox.Text = dt1.Rows[0]["DealerPhoneNum"].ToString();
@@ -121,7 +121,7 @@ namespace ITP4519M
                 case OperationMode.New:
                     isReadOnly = false;
                     SetReadOnly(true);
-                   // disableFunction(false);
+                    // disableFunction(false);
                     programMethod.productSearchAutoComplete(orderAccemblyAssignbox, orderID);
                     checkboxSelectedbtn.Visible = true;
                     orderAccemblyAssignbox.Visible = true;
@@ -143,11 +143,11 @@ namespace ITP4519M
                     orderItemdata.Columns.Add("ProductName", "Product Name");
                     orderItemdata.Columns.Add("Quantity", "Quantity");
                     orderItemdata.Columns.Add("FollowQuantity", "FollowQuantity");
-                    if(orderItemdata.Rows.Count > 0)
+                    if (orderItemdata.Rows.Count > 0)
                     {
                         orderAccemblyOrderItemdata.Rows[0].Selected = false;
                     }
-                   
+
                     // ClearForm();
                     break;
                 case OperationMode.Edit:
@@ -236,7 +236,7 @@ namespace ITP4519M
 
         private void saveOrderbtn_Click(object sender, EventArgs e)
         {
-            if (programMethod.createOrderAssembly(orderItemdata, orderAccemblyOrderItemdata, orderID) && accemblyerrorlbl.Visible != true )
+            if (programMethod.createOrderAssembly(orderItemdata, orderAccemblyOrderItemdata, orderID) && accemblyerrorlbl.Visible != true)
             {
                 MessageBox.Show("Order Pick Up Successfully");
                 this.Close();
@@ -259,10 +259,10 @@ namespace ITP4519M
             {
                 return;
             }
-            DataGridViewRow orderData = this.orderItemdata.CurrentRow;
+            DataGridViewRow orderData = orderItemdata.CurrentRow;
             if (orderData != null && orderData.Index >= 0 && orderData.Index < orderItemdata.Rows.Count)
             {
-                this.orderItemdata.Rows.Remove(orderData);
+                orderItemdata.Rows.Remove(orderData);
             }
             orderitemIndex--;
         }
@@ -282,7 +282,7 @@ namespace ITP4519M
                 }
                 DataTable result = programMethod.getOrderEachItemDetail(orderAccemblyAssignbox.Text.Trim(), orderID);
                 orderAccemblyOrderItemdata.DataSource = programMethod.getOrderItemDetail(orderID);
-                this.orderItemdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, QuantityFollow);
+                orderItemdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, QuantityFollow);
 
 
                 if (orderItemdata.Rows.Count > 1)
@@ -324,7 +324,7 @@ namespace ITP4519M
         private void orderItemdata_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             try
-            {   
+            {
                 QuantityFollow = programMethod.calOrderItemQuantityFollow(orderItemdata, orderID);
                 if (orderitemIndex > -1)
                 {
@@ -344,32 +344,46 @@ namespace ITP4519M
 
         private void orderItemdata_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            if(int.Parse(orderItemdata.Rows[e.RowIndex].Cells[2].Value.ToString()) < 0)
+            try
             {
-                Font boldFont = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-                
+
+                if (int.Parse(orderItemdata.Rows[e.RowIndex].Cells[2].Value.ToString()) < 0)
+                {
+                    Font boldFont = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+
+                    orderItemdata.Rows[e.RowIndex].Cells[2].Style.ForeColor = Color.Red;
+                    accemblyerrorlbl.Visible = true;
+                    return;
+
+                }
+                else
+                {
+                    orderItemdata.Rows[e.RowIndex].Cells[2].Style.ForeColor = Color.Black;
+                    accemblyerrorlbl.Visible = false;
+                }
+
+
+                int quantityFollow = int.Parse(programMethod.getOrderItemFollowQuantity(orderID, orderItemdata.Rows[e.RowIndex].Cells[0].Value.ToString()));
+                if (int.Parse(orderItemdata.Rows[e.RowIndex].Cells[2].Value.ToString()) > quantityFollow)
+                {
+                    orderItemdata.Rows[e.RowIndex].Cells[2].Style.ForeColor = Color.Red;
+                    accemblyerrorlbl.Visible = true;
+                    return;
+                }
+                else
+                {
+                    orderItemdata.Rows[e.RowIndex].Cells[2].Style.ForeColor = Color.Black;
+                    accemblyerrorlbl.Visible = false;
+                }
+                int result = quantityFollow - int.Parse(orderItemdata.Rows[e.RowIndex].Cells[2].Value.ToString());
+                orderItemdata.Rows[e.RowIndex].Cells[3].Value = result.ToString();
+            }
+            catch (Exception ex)
+            {
                 orderItemdata.Rows[e.RowIndex].Cells[2].Style.ForeColor = Color.Red;
                 accemblyerrorlbl.Visible = true;
-                return;
+            }
 
-            }
-            else
-            {
-                accemblyerrorlbl.Visible = false;
-            }
-            //int.Parse(orderItemdata["FollowQuantity", e.RowIndex].Value.ToString());
-            int quantityFollow = int.Parse(programMethod.getOrderItemFollowQuantity(orderID, orderItemdata.Rows[e.RowIndex].Cells[0].Value.ToString()));
-            if(int.Parse(orderItemdata.Rows[e.RowIndex].Cells[2].Value.ToString()) > quantityFollow)
-            {
-                accemblyerrorlbl.Visible = true;
-                return;
-            }
-            else
-            {
-                accemblyerrorlbl.Visible = false;
-            }
-            int result = quantityFollow - int.Parse(orderItemdata.Rows[e.RowIndex].Cells[2].Value.ToString());
-            orderItemdata.Rows[e.RowIndex].Cells[3].Value = result.ToString();
         }
 
         private void orderAccemblyOrderItemdata_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -429,18 +443,24 @@ namespace ITP4519M
                     {
                         if (i == j)
                             continue;
-                        if (orderItemdata.Rows[i].Cells[0].Value.ToString() == orderItemdata.Rows[j].Cells[0].Value.ToString() || orderItemdata.Rows[j].Cells[3].Value.ToString() == "0")
+                        if (j <= orderItemdata.RowCount - 1 && i <= orderItemdata.RowCount - 1)
                         {
-                            DataGridViewRow dgvDelRow = orderItemdata.Rows[j];
-                            orderItemdata.Rows.Remove(dgvDelRow);
-                            orderitemIndex--;
+                            if (orderItemdata.Rows[i].Cells[0].Value.ToString() == orderItemdata.Rows[j].Cells[0].Value.ToString() || orderItemdata.Rows[j].Cells[3].Value.ToString() == "0")
+                            {
+                                DataGridViewRow dgvDelRow = orderItemdata.Rows[j];
+                                orderItemdata.Rows.Remove(dgvDelRow);
+                                orderitemIndex--;
+                            }
                         }
-
+                        else
+                        {
+                            continue;
+                        }
                     }
 
                 }
             }
-            
+
             checkBox.Checked = false;
         }
 
@@ -463,11 +483,6 @@ namespace ITP4519M
             }
         }
 
-        private void orderItemdata_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
-        {
-            //orderItemdata.RowsAdded += orderItemdata_RowsAdded;
-        }
-
 
         private void Dashboard_MouseDown(object sender, MouseEventArgs e)
         {
@@ -488,6 +503,14 @@ namespace ITP4519M
             {
                 Point diff = Point.Subtract(Control.MousePosition, new Size(dragCursorPoint));
                 this.Location = Point.Add(dragFormPoint, new Size(diff));
+            }
+        }
+
+        private void orderItemdata_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (orderItemdata.Columns[e.ColumnIndex].Name != "Quantity")
+            {
+                orderItemdata.Columns[e.ColumnIndex].ReadOnly = true;
             }
         }
     }

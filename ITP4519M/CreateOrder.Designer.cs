@@ -131,14 +131,17 @@ namespace ITP4519M
             productOfOrderdata.AllowUserToDeleteRows = false;
             productOfOrderdata.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             productOfOrderdata.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            productOfOrderdata.Location = new Point(21, 349);
+            productOfOrderdata.Location = new Point(5, 349);
             productOfOrderdata.Margin = new Padding(3, 4, 3, 4);
             productOfOrderdata.Name = "productOfOrderdata";
             productOfOrderdata.RowHeadersWidth = 51;
             productOfOrderdata.RowTemplate.Height = 24;
-            productOfOrderdata.Size = new Size(653, 265);
+            productOfOrderdata.Size = new Size(669, 265);
             productOfOrderdata.TabIndex = 61;
+            productOfOrderdata.CellContentClick += productOfOrderdata_CellContentClick;
             productOfOrderdata.CellDoubleClick += productOfOrderdata_CellDoubleClick;
+            productOfOrderdata.RowsAdded += productOfOrderdata_RowsAdded;
+            productOfOrderdata.RowsRemoved += productOfOrderdata_RowsRemoved;
             // 
             // productIDColumn
             // 

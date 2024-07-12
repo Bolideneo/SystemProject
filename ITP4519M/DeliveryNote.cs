@@ -25,6 +25,9 @@ namespace ITP4519M
 
         private OperationMode _mode;
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
+        private bool dragging = false;
+        private Point dragCursorPoint;
+        private Point dragFormPoint;
 
         public DeliveryForm()
         {
@@ -185,20 +188,30 @@ namespace ITP4519M
             this.Close();
         }
 
-        private void panel18_Paint(object sender, PaintEventArgs e)
+        private void Dashboard_MouseDown(object sender, MouseEventArgs e)
         {
+            dragging = true;
+            dragCursorPoint = Control.MousePosition;
+            dragFormPoint = this.Location;
+        }
+
+        private void Dashboard_MouseUp(object sender, MouseEventArgs e)
+        {
+            dragging = false;
 
         }
 
-        private void deliveryQuantityDeliverdbox_Click(object sender, EventArgs e)
+        private void Dashboard_MouseMove(object sender, MouseEventArgs e)
         {
-
+            if (dragging)
+            {
+                Point diff = Point.Subtract(Control.MousePosition, new Size(dragCursorPoint));
+                this.Location = Point.Add(dragFormPoint, new Size(diff));
+            }
         }
 
-        private void deliveryIDbox_Click(object sender, EventArgs e)
-        {
 
-        }
+
     }
 }
 
