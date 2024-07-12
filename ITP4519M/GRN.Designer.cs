@@ -131,7 +131,7 @@
             CloseButton.FlatStyle = FlatStyle.Flat;
             CloseButton.Font = new Font("Verdana", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             CloseButton.Location = new Point(513, 3);
-            CloseButton.Margin = new Padding(2, 2, 2, 2);
+            CloseButton.Margin = new Padding(2);
             CloseButton.Name = "CloseButton";
             CloseButton.Size = new Size(35, 37);
             CloseButton.TabIndex = 30;
@@ -235,6 +235,9 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "GRN";
             Load += GRN_Load;
+            MouseDown += Dashboard_MouseDown;
+            MouseMove += Dashboard_MouseMove;
+            MouseUp += Dashboard_MouseUp;
             ((System.ComponentModel.ISupportInitialize)grnProductData).EndInit();
             ResumeLayout(false);
             PerformLayout();

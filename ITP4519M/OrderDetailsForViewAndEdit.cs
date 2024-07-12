@@ -14,6 +14,7 @@ using System.Drawing;
 using System.Drawing.Printing;
 using System.Drawing.Text;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
@@ -40,13 +41,27 @@ namespace ITP4519M
         private OperationMode _mode;
         private bool DealerInfo;
         private string value;
+        private bool dragging = false;
+        private Point dragCursorPoint;
+        private Point dragFormPoint;
 
-
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+(
+    int nLeftRect,     // x-coordinate of upper-left corner
+    int nTopRect,      // y-coordinate of upper-left corner
+    int nRightRect,    // x-coordinate of lower-right corner
+    int nBottomRect,   // y-coordinate of lower-right corner
+    int nWidthEllipse, // width of ellipse
+    int nHeightEllipse // height of ellipse
+);
 
         public OrderDetailsForViewAndEdit(OperationMode mode)
         {
             InitializeComponent();
             _mode = mode;
+            this.FormBorderStyle = FormBorderStyle.None;
+            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 30, 30));
         }
 
 
@@ -660,6 +675,28 @@ namespace ITP4519M
         private void productSearchbox_KeyPress(object sender, KeyPressEventArgs e)
         {
             this.productSearchbox.DroppedDown = false;
+        }
+
+        private void Dashboard_MouseDown(object sender, MouseEventArgs e)
+        {
+            dragging = true;
+            dragCursorPoint = Control.MousePosition;
+            dragFormPoint = this.Location;
+        }
+
+        private void Dashboard_MouseUp(object sender, MouseEventArgs e)
+        {
+            dragging = false;
+
+        }
+
+        private void Dashboard_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (dragging)
+            {
+                Point diff = Point.Subtract(Control.MousePosition, new Size(dragCursorPoint));
+                this.Location = Point.Add(dragFormPoint, new Size(diff));
+            }
         }
     }
 

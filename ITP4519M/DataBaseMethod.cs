@@ -2509,7 +2509,7 @@ namespace ITP4519M
 
         public DataTable GetInvoiceCurrentRecords(int page, int pageSize)
         {
-            string sql = "SELECT * FROM invoice ORDER BY InvoiceID LIMIT @PgSize";
+            string sql = "SELECT * FROM invoice ORDER BY InvoiceID DESC LIMIT @PgSize ";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
@@ -2521,7 +2521,7 @@ namespace ITP4519M
 
         public DataTable GetInvoiceCurrentRecords2(int page, int pageSize)
         {
-            string sql = "SELECT * FROM (SELECT * FROM invoice ORDER BY InvoiceID LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY InvoiceID";
+            string sql = "SELECT * FROM (SELECT * FROM invoice ORDER BY InvoiceID  DESC LIMIT @PreviousPageOffset, @PgSize) AS subquery ORDER BY InvoiceID ";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@PgSize", pageSize);
             cmd.Parameters.AddWithValue("@PreviousPageOffset", (page - 1) * pageSize);
@@ -4110,6 +4110,43 @@ namespace ITP4519M
             ServerConnect().Close();
             return result.ToString();
         }
+
+
+        public DataTable getOrderAccemblyNewOrder()
+        {
+
+            string sql = "SELECT OrderID, DealerID, OrderStatus, OrderDate FROM `order` WHERE OrderStatus = 'OrderProcessing'";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+
+        public DataTable getOrderAccemblyPartially()
+        {
+
+            string sql = "SELECT OrderID, DealerID, OrderStatus, OrderDate FROM `order` WHERE OrderStatus = 'PartialProductPackaged'";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+        public DataTable getOrderAccemblyComplete()
+        {
+
+            string sql = "SELECT OrderID, DealerID, OrderStatus, OrderDate FROM `order` WHERE OrderStatus = 'ALLProductPackaged' ";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+
 
         public string getOrderAccemblyLabelForPartial()
         {

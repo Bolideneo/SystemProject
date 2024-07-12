@@ -35,6 +35,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using static System.ComponentModel.Design.ObjectSelectorEditor;
 using System.Configuration;
 using Google.Protobuf;
+using Org.BouncyCastle.Asn1.Mozilla;
 
 
 
@@ -1568,7 +1569,6 @@ namespace ProgramMethod
         {
             int temp = -1;
             string logID = LogAssginProdutIntoAccembly(LoginUserID, LoginUserName, orderID);
-            MessageBox.Show(logID);
             for (int i = 0; i < ActualDesptchData.Rows.Count; i++)
             {
                 LogUpdateAssginProdutIntoAccembly(logID, ActualDesptchData.Rows[i].Cells[0].Value.ToString(), ActualDesptchData.Rows[i].Cells[1].Value.ToString(), ActualDesptchData.Rows[i].Cells[2].Value.ToString());
@@ -1616,19 +1616,18 @@ namespace ProgramMethod
 
             }
 
-            if (ActualDesptchData.RowCount == 0)
-            {
+            //if (ActualDesptchData.RowCount == 0)
+            //{
 
-                for (int j = 0; j < orderItemData.RowCount; j++)
-                {
-                    string oustID = "OUT" + (int.Parse(dataBaseMethod.getOutStandingID()) + 1).ToString("000000");
-                    if (dataBaseMethod.createOutstandingOrder(oustID, orderID, orderItemData.Rows[j].Cells[0].Value.ToString(), dataBaseMethod.getOrderOfDealerID(orderID), orderItemData.Rows[j].Cells[3].Value.ToString()))
-                    {
-                        LogCreateOutstandingOrder(LoginUserID, LoginUserName, orderID, oustID);
-                    }
-                }
-
-            }
+            //    for (int j = 0; j < orderItemData.RowCount; j++)
+            //    {
+            //        string oustID = "OUT" + (int.Parse(dataBaseMethod.getOutStandingID()) + 1).ToString("000000");
+            //        if (dataBaseMethod.createOutstandingOrder(oustID, orderID, orderItemData.Rows[j].Cells[0].Value.ToString(), dataBaseMethod.getOrderOfDealerID(orderID), orderItemData.Rows[j].Cells[3].Value.ToString()))
+            //        {
+            //            LogCreateOutstandingOrder(LoginUserID, LoginUserName, orderID, oustID);
+            //        }
+            //    }
+            //}
 
             int Count = 0;
             for (int i = 0; i < ActualDesptchData.RowCount; i++)
@@ -1859,10 +1858,11 @@ namespace ProgramMethod
             {
                 if (dataBaseMethod.checkOrderItemFollowQuantity(orderID))
                 {
-                    for (int i = 0; i < orderItemdata.Rows.Count; i++)
+                    //for (int i = orderItemdata.Rows.Count; i < orderItemdata.Rows.Count; i++)
+                    do
                     {
-                        string orderedQtyStr = dataBaseMethod.getOrderItemOrderedQuantity(orderID, orderItemdata.Rows[i].Cells[0].Value.ToString());
-                        string itemQtyStr = orderItemdata.Rows[i].Cells[2].Value.ToString();
+                        string orderedQtyStr = dataBaseMethod.getOrderItemOrderedQuantity(orderID, orderItemdata.Rows[orderItemdata.RowCount - 1].Cells[0].Value.ToString());
+                        string itemQtyStr = orderItemdata.Rows[orderItemdata.RowCount - 1].Cells[2].Value.ToString();
 
                         int orderedQty, itemQty;
                         if (int.TryParse(orderedQtyStr, out orderedQty) && int.TryParse(itemQtyStr, out itemQty))
@@ -1873,16 +1873,17 @@ namespace ProgramMethod
                         {
                             // Handle the case where conversion was not successful
                             // For example, log an error or set qty to a default value
-                            Console.WriteLine("Error: Invalid quantity format1.");
+                            Console.WriteLine("Error: Invalid quantity format.");
                         }
-                    }
+                    }while (0>1);
                 }
                 else
                 {
-                    for (int i = 0; i < orderItemdata.Rows.Count; i++)
+                    //for (int i = orderItemdata.Rows.Count -1 ; i < orderItemdata.Rows.Count; i++)
+                    do
                     {
-                        string followQtyStr = dataBaseMethod.getOrderItemFollowQuantity(orderID, orderItemdata.Rows[i].Cells[0].Value.ToString());
-                        string itemQtyStr = orderItemdata.Rows[i].Cells[2].Value.ToString();
+                        string followQtyStr = dataBaseMethod.getOrderItemFollowQuantity(orderID, orderItemdata.Rows[orderItemdata.Rows.Count - 1].Cells[0].Value.ToString());
+                        string itemQtyStr = orderItemdata.Rows[orderItemdata.Rows.Count - 1].Cells[2].Value.ToString();
 
                         int followQty, itemQty;
                         if (int.TryParse(followQtyStr, out followQty) && int.TryParse(itemQtyStr, out itemQty))
@@ -1893,9 +1894,9 @@ namespace ProgramMethod
                         {
                             // Handle the case where conversion was not successful
                             // For example, log an error or set qty to a default value
-                            Console.WriteLine("Error: Invalid quantity format2.");
+                            Console.WriteLine("Error: Invalid quantity format.");
                         }
-                    }
+                    }while (0>1);
                 }
 
             }
@@ -2751,6 +2752,23 @@ namespace ProgramMethod
             return dataBaseMethod.overallStockinfo();
         }
 
+
+        public DataTable getOrderAccemblyNewOrder()
+        {
+
+            return dataBaseMethod.getOrderAccemblyNewOrder();
+        }
+
+        public DataTable getOrderAccemblyPartially()
+        {
+
+            return dataBaseMethod.getOrderAccemblyPartially();
+        }
+
+        public DataTable getOrderAccemblyComplete()
+        {
+            return dataBaseMethod.getOrderAccemblyComplete();
+        }
 
     }
 

@@ -12,9 +12,11 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ITP4519M
 {
@@ -36,6 +38,19 @@ namespace ITP4519M
         private CheckBox HeaderCheckBox;
 
 
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+ (
+    int nLeftRect,     // x-coordinate of upper-left corner
+    int nTopRect,      // y-coordinate of upper-left corner
+    int nRightRect,    // x-coordinate of lower-right corner
+    int nBottomRect,   // y-coordinate of lower-right corner
+    int nWidthEllipse, // height of ellipse
+    int nHeightEllipse // width of ellipse
+);
+
+        [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
+        private static extern bool DeleteObject(System.IntPtr hObject);
 
         public OrderAccembly(OperationMode mode, string orderID, string dealerID)
         {
@@ -50,20 +65,19 @@ namespace ITP4519M
             this.Close();
         }
 
-
         private void OrderAccembly_Load(object sender, EventArgs e)
         {
 
             // Define the points in the polygonal path for a downward arrow with reduced width and height.
             Point[] pts = {
-        new Point(30, 10),  // Top left corner
-        new Point(70, 10),  // Top right corner
-        new Point(70, 40),  // Right point of the arrow's base
-        new Point(90, 40),  // Right point of the arrow's head
-        new Point(50, 90),  // Bottom point of the arrow
-        new Point(10, 40),  // Left point of the arrow's head
-        new Point(30, 40)   // Left point of the arrow's base
-    };
+                new Point(30, 10),  // Top left corner
+                new Point(70, 10),  // Top right corner
+                new Point(70, 40),  // Right point of the arrow's base
+                new Point(90, 40),  // Right point of the arrow's head
+                new Point(50, 90),  // Bottom point of the arrow
+                new Point(10, 40),  // Left point of the arrow's head
+                new Point(30, 40)   // Left point of the arrow's base
+            };
 
             // Make the GraphicsPath.
             GraphicsPath polygon_path = new GraphicsPath(FillMode.Winding);
@@ -82,16 +96,21 @@ namespace ITP4519M
                 pts[3].X + 5, // Width based on the rightmost point
                 pts[4].Y + 5  // Height based on the lowest point
             );
+            checkboxSelectedbtn.Cursor = Cursors.Hand;
 
+            IntPtr handle = CreateRoundRectRgn(0, 0, Width, Height, 40, 40);
+            Region = System.Drawing.Region.FromHrgn(handle);
+            DoubleBuffered = true;
             switch (_mode)
             {
                 case OperationMode.View:
                     isReadOnly = true;
                     SetReadOnly(isReadOnly);
-                    disableFunction(isReadOnly);
+                    //disableFunction(isReadOnly);
                     orderAccemblyOrderItemdata.Columns["check"].Visible = false;
                     orderIDBox.Text = orderID;
                     dealerIDBox.Text = dealerID;
+                    checkBox.Visible = false;   
                     dt1 = programMethod.getOrderDealerName(orderID, dealerID);
                     dealerNameBox.Text = dt1.Rows[0]["DealerName"].ToString();
                     phoneNumBox.Text = dt1.Rows[0]["DealerPhoneNum"].ToString();
@@ -102,7 +121,7 @@ namespace ITP4519M
                 case OperationMode.New:
                     isReadOnly = false;
                     SetReadOnly(true);
-                    disableFunction(false);
+                   // disableFunction(false);
                     programMethod.productSearchAutoComplete(orderAccemblyAssignbox, orderID);
                     checkboxSelectedbtn.Visible = true;
                     orderAccemblyAssignbox.Visible = true;
@@ -158,7 +177,7 @@ namespace ITP4519M
             dealerNameBox.ReadOnly = readOnly;
             phoneNumBox.ReadOnly = readOnly;
             dealerCompanyBox.ReadOnly = readOnly;
-            dealerAddressBox.ReadOnly = readOnly;
+            //dealerAddressBox.ReadOnly = readOnly;
             orderAccemblyOrderItemdata.ReadOnly = readOnly;
             orderItemdata.ReadOnly = readOnly;
             saveOrderbtn.Visible = !readOnly;
@@ -192,21 +211,21 @@ namespace ITP4519M
         }
 
 
-        private void disableFunction(bool readOnly)
-        {
-            if (readOnly)
-            {
-                orderItemdata.RowsAdded -= orderItemdata_RowsAdded;
-                orderItemdata.CellContentDoubleClick -= productOfOrderdata_CellDoubleClick;
-                orderAccemblyOrderItemdata.CellContentDoubleClick -= orderAccemblyOrderItemdata_CellDoubleClick;
-            }
-            else
-            {
-                orderItemdata.CellContentDoubleClick += productOfOrderdata_CellDoubleClick;
-                orderItemdata.RowsAdded += orderItemdata_RowsAdded;
-                orderAccemblyOrderItemdata.CellContentDoubleClick += orderAccemblyOrderItemdata_CellDoubleClick;
-            }
-        }
+        //private void disableFunction(bool readOnly)
+        //{
+        //    if (readOnly)
+        //    {
+        //        orderItemdata.RowsAdded -= orderItemdata_RowsAdded;
+        //        orderItemdata.CellContentDoubleClick -= productOfOrderdata_CellDoubleClick;
+        //        orderAccemblyOrderItemdata.CellContentDoubleClick -= orderAccemblyOrderItemdata_CellDoubleClick;
+        //    }
+        //    else
+        //    {
+        //        orderItemdata.CellContentDoubleClick += productOfOrderdata_CellDoubleClick;
+        //        orderItemdata.RowsAdded += orderItemdata_RowsAdded;
+        //        orderAccemblyOrderItemdata.CellContentDoubleClick += orderAccemblyOrderItemdata_CellDoubleClick;
+        //    }
+        //}
 
 
 
@@ -305,43 +324,13 @@ namespace ITP4519M
         private void orderItemdata_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             try
-            {
+            {   
                 QuantityFollow = programMethod.calOrderItemQuantityFollow(orderItemdata, orderID);
-                if (QuantityFollow == "0")
-                {
-                    if (orderitemIndex > -1)
-                    {
-                        // MessageBox.Show(orderitemIndex.ToString());
-                        DataGridViewRow dvgDelRow = orderItemdata.Rows[orderitemIndex];
-                        //orderItemdata.Rows.Remove(dvgDelRow);;
-                        orderItemdata.Rows.RemoveAt(orderitemIndex);
-
-                        //MessageBox.Show(orderitemIndex.ToString());
-                    }
-
-                    QuantityFollow = "";
-                    if (orderitemIndex == -1)
-                    {
-                        orderitemIndex = -1;
-
-                    }
-                    else
-                        orderitemIndex--;
-
-                }
-                //MessageBox.Show(orderitemIndex.ToString());
                 if (orderitemIndex > -1)
                 {
                     orderItemdata["FollowQuantity", orderitemIndex].Value = QuantityFollow;
                     QuantityFollow = "";
                 }
-                //orderItemdata["FollowQuantity", orderitemIndex].Value = QuantityFollow;
-                //QuantityFollow = "";
-                //MessageBox.Show(orderitemIndex.ToString());
-                //QuantityFollow = programMethod.calOrderItemQuantityFollow(orderItemdata, orderID);
-                //orderItemdata["FollowQuantity", orderitemIndex].Value = QuantityFollow;
-                //QuantityFollow = "";
-                //MessageBox.Show(orderitemIndex.ToString());
             }
 
             catch (Exception ex)
@@ -402,10 +391,9 @@ namespace ITP4519M
 
         private void checkboxSelectedbtn_Click(object sender, EventArgs e)
         {
-
-
             for (int i = 0; i < orderAccemblyOrderItemdata.Rows.Count; i++)
             {
+
                 try
                 {
                     // Refresh cause uncheck box
@@ -420,44 +408,40 @@ namespace ITP4519M
                 catch (Exception ex)
                 {
                     return;
-
                 }
 
 
             }
 
-            // orderAccemblyOrderItemdata.DataSource = programMethod.getOrderItemDetail(orderID);
+            //uncheck
             foreach (DataGridViewRow row in orderAccemblyOrderItemdata.Rows)
             {
                 orderAccemblyOrderItemdata.Rows[row.Index].Cells[0].Value = false;
             }
+
             orderAccemblyOrderItemdata.Rows[0].Selected = false;
 
             if (orderItemdata.Rows.Count > 1)
             {
                 for (int i = 0; i < orderItemdata.Rows.Count; i++)
                 {
-                    int count = 0;
                     for (int j = 1; j < orderItemdata.Rows.Count; j++)
                     {
-                        //  MessageBox.Show(j.ToString());
                         if (i == j)
                             continue;
-                        if (orderItemdata.Rows[i].Cells[0].Value.ToString() == orderItemdata.Rows[j].Cells[0].Value.ToString())
+                        if (orderItemdata.Rows[i].Cells[0].Value.ToString() == orderItemdata.Rows[j].Cells[0].Value.ToString() || orderItemdata.Rows[j].Cells[3].Value.ToString() == "0")
                         {
                             DataGridViewRow dgvDelRow = orderItemdata.Rows[j];
                             orderItemdata.Rows.Remove(dgvDelRow);
                             orderitemIndex--;
-                            count++;
                         }
 
                     }
-                    //orderItemdata.Rows[i].Cells[2].Value = (int.Parse(orderItemdata.Rows[i].Cells[2].Value.ToString()) + count);
+
                 }
             }
-
+            
             checkBox.Checked = false;
-
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -481,7 +465,7 @@ namespace ITP4519M
 
         private void orderItemdata_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
-            orderItemdata.RowsAdded += orderItemdata_RowsAdded;
+            //orderItemdata.RowsAdded += orderItemdata_RowsAdded;
         }
 
 

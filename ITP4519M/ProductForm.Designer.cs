@@ -89,7 +89,6 @@
             prudctCategorylbl.Size = new Size(140, 20);
             prudctCategorylbl.TabIndex = 0;
             prudctCategorylbl.Text = "Product Category :";
-            prudctCategorylbl.Click += label1_Click;
             // 
             // label3
             // 
@@ -156,7 +155,6 @@
             productDescriptionlbl.Size = new Size(97, 20);
             productDescriptionlbl.TabIndex = 11;
             productDescriptionlbl.Text = "Description :";
-            productDescriptionlbl.Click += label4_Click;
             // 
             // productSeriallbl
             // 
@@ -327,7 +325,6 @@
             productAutoOrderlbl.Size = new Size(172, 20);
             productAutoOrderlbl.TabIndex = 38;
             productAutoOrderlbl.Text = "Out Of Stock Quantity :";
-            productAutoOrderlbl.Click += label9_Click;
             // 
             // label1
             // 

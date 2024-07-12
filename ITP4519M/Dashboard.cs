@@ -163,7 +163,16 @@ namespace ITP4519M
         private Point dragFormPoint;
         private int[] buttonLocationIndex = [229, 300, 371, 440, 509, 580, 651, 720, 789];
 
-
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+        (
+            int nLeftRect,     // x-coordinate of upper-left corner
+            int nTopRect,      // y-coordinate of upper-left corner
+            int nRightRect,    // x-coordinate of lower-right corner
+            int nBottomRect,   // y-coordinate of lower-right corner
+            int nWidthEllipse, // width of ellipse
+            int nHeightEllipse // height of ellipse
+        );
 
         public Dashboard()
         {
@@ -171,7 +180,8 @@ namespace ITP4519M
             InitializeComponent();
             ShowPanel(dashboardpnl);
 
-
+            this.FormBorderStyle = FormBorderStyle.None;
+            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 30, 30));
 
         }
 
@@ -192,6 +202,9 @@ namespace ITP4519M
             KeyPreview = true;
             DoubleBuffered = true;
             programMethod = new ProgramMethod.ProgramMethod();
+            IntPtr handle = CreateRoundRectRgn(0, 0, Width, Height, 40, 40);
+            Region = System.Drawing.Region.FromHrgn(handle);
+            DoubleBuffered = true;
 
             programMethod.CurrentUserIDAndName(LoginUserID, LoginUserName);
             OrderAccemblybtn.Size = new System.Drawing.Size(166, 56);
@@ -984,7 +997,7 @@ namespace ITP4519M
         private void viewProductbtn_Click(object sender, EventArgs e)
         {
             ProductForm productForm = new ProductForm(OperationMode.View);
-            productForm.productEdit(productID);
+            productForm.productEdit(stockproductID);
             productForm.ShowDialog();
         }
 
@@ -1234,7 +1247,7 @@ namespace ITP4519M
             else
             {
                 ProductForm ProductForm = new ProductForm(OperationMode.Edit);
-                ProductForm.productEdit(productID);
+                ProductForm.productEdit(stockproductID);
                 ProductForm.ShowDialog();
 
             }
@@ -2229,8 +2242,8 @@ namespace ITP4519M
             lastClickedButton.ForeColor = Color.Gray;
 
             orderAccemblyData.DataSource = programMethod.overallOrderinfo();
-            orderAccemblyData.Rows[0].Selected = false;
             ShowPanel(OrderAccemblypnl);
+            orderAccemblyData.Rows[0].Selected = false;
 
             string[] result = programMethod.orderAccemblyLabelinfo();
             orderaccemblybox.Text = result[0];
@@ -3377,9 +3390,31 @@ namespace ITP4519M
 
         }
 
-        private void textBox3_TextChanged_1(object sender, EventArgs e)
+        private void orderaccemblyNewbtn_Click(object sender, EventArgs e)
         {
+            orderAccemblyData.DataSource = programMethod.getOrderAccemblyNewOrder();
+            if (orderAccemblyData != null) {
+                orderAccemblyData.Rows[0].Selected = false;
+            }
+            
+        }
 
+        private void orderaccemblyPartiallybtn_Click(object sender, EventArgs e)
+        {
+            orderAccemblyData.DataSource = programMethod.getOrderAccemblyPartially();
+            if (orderAccemblyData != null)
+            {
+                orderAccemblyData.Rows[0].Selected = false;
+            }
+        }
+
+        private void orderaccemblycompletedlbl_Click(object sender, EventArgs e)
+        {
+            orderAccemblyData.DataSource = programMethod.getOrderAccemblyComplete();
+            if (orderAccemblyData != null)
+            {
+                orderAccemblyData.Rows[0].Selected = false;
+            }
         }
     }
 }

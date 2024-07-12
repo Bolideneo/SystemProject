@@ -12,6 +12,7 @@ using Google.Protobuf.WellKnownTypes;
 using Microsoft.VisualBasic.ApplicationServices;
 using MySqlX.XDevAPI.Common;
 using ProgramMethod;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ITP4519M
 {
@@ -21,6 +22,20 @@ namespace ITP4519M
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
         private OperationMode _mode;
         public event EventHandler OperationCompleted;
+        private bool dragging = false;
+        private Point dragCursorPoint;
+        private Point dragFormPoint;
+
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+       (
+           int nLeftRect,     // x-coordinate of upper-left corner
+           int nTopRect,      // y-coordinate of upper-left corner
+           int nRightRect,    // x-coordinate of lower-right corner
+           int nBottomRect,   // y-coordinate of lower-right corner
+           int nWidthEllipse, // width of ellipse
+           int nHeightEllipse // height of ellipse
+       );
 
 
         public Delivery(OperationMode mode)
@@ -28,6 +43,8 @@ namespace ITP4519M
             InitializeComponent();
             _mode = mode;
             DeliverydateTimePicker1.MinDate = DateTime.Today;
+            this.FormBorderStyle = FormBorderStyle.None;
+            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 40, 40));
         }
 
 
@@ -59,7 +76,6 @@ namespace ITP4519M
             }
 
             orderIDAlertlbl.Visible = false;
-            outstandingIDAlertlbl.Visible = false;
         }
 
 
@@ -67,7 +83,6 @@ namespace ITP4519M
         {
 
             deliveryOrderidbox.Text = string.Empty;
-            deliveryOutstandingbox.Text = string.Empty;
             deliveryDeliveryaddressbox.Text = string.Empty;
             deliveryPhoneNumbox.Text = string.Empty;
         }
@@ -85,6 +100,9 @@ namespace ITP4519M
 
 
         }
+
+
+
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -156,11 +174,61 @@ namespace ITP4519M
             DeliverydateTimePicker1.MinDate = DateTime.Parse("2024-01-01");
             DeliverydateTimePicker1.MaxDate = DateTime.Now.AddDays(1);
             string[] dateTime = programMethod.getOrderDateForDelivery(deliveryOrderidbox.Text.Trim());
-            //DeliverydateTimePicker1.Value = DateTime.Parse(dateTime[0]);
             DeliverydateTimePicker1.MinDate = DateTime.Parse(dateTime[0]);
             DeliverydateTimePicker1.MaxDate = DateTime.Parse(dateTime[1]);
 
+            //if (DeliverydateTimePicker1.Text.Contains("Saturday"))
+            //{
+            //    DeliverydateTimePicker1.Text = DeliverydateTimePicker1.Value.AddDays(2).ToString();
+            //}
+            //else if (DeliverydateTimePicker1.Text.Contains("Sunday"))
+            //{
+            //    DeliverydateTimePicker1.Text = DeliverydateTimePicker1.Value.AddDays(1).ToString();
+            //}
+
         }
+
+
+        private static bool IsWeekend(DateTime date)
+        {
+            return date.DayOfWeek == DayOfWeek.Saturday
+                || date.DayOfWeek == DayOfWeek.Sunday;
+        }
+
+
+        private static DateTime GetNextWorkingDay(DateTime date)
+        {
+            do
+            {
+                date = date.AddDays(1);
+            } while (IsWeekend(date));
+
+            return date;
+        }
+
+
+        private void Dashboard_MouseDown(object sender, MouseEventArgs e)
+        {
+            dragging = true;
+            dragCursorPoint = Control.MousePosition;
+            dragFormPoint = this.Location;
+        }
+
+        private void Dashboard_MouseUp(object sender, MouseEventArgs e)
+        {
+            dragging = false;
+
+        }
+
+        private void Dashboard_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (dragging)
+            {
+                Point diff = Point.Subtract(Control.MousePosition, new Size(dragCursorPoint));
+                this.Location = Point.Add(dragFormPoint, new Size(diff));
+            }
+        }
+
     }
 }
 

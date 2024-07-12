@@ -15,6 +15,7 @@ using MySql.Data.MySqlClient;
 using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 using static System.ComponentModel.Design.ObjectSelectorEditor;
 using Org.BouncyCastle.Crypto.Paddings;
+using System.Runtime.InteropServices;
 
 namespace ITP4519M
 {
@@ -26,6 +27,23 @@ namespace ITP4519M
         private bool isFormDragging = false;
         private Point formStartPoint;
         public event EventHandler OperationCompleted;
+        private bool dragging = false;
+        private Point dragCursorPoint;
+        private Point dragFormPoint;
+
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+(
+        int nLeftRect,     // x-coordinate of upper-left corner
+        int nTopRect,      // y-coordinate of upper-left corner
+        int nRightRect,    // x-coordinate of lower-right corner
+        int nBottomRect,   // y-coordinate of lower-right corner
+        int nWidthEllipse, // height of ellipse
+        int nHeightEllipse // width of ellipse
+);
+
+        [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
+        private static extern bool DeleteObject(System.IntPtr hObject);
 
 
         public ProductForm(OperationMode mode)
@@ -35,6 +53,9 @@ namespace ITP4519M
         }
         private void productForm_Load(object sender, EventArgs e)
         {
+            IntPtr handle = CreateRoundRectRgn(0, 0, Width, Height, 40, 40);
+            Region = System.Drawing.Region.FromHrgn(handle);
+
             programMethod = new ProgramMethod.ProgramMethod();
             dangerQuanAlert.Visible = false;
             reorderAlert.Visible = false;
@@ -57,6 +78,8 @@ namespace ITP4519M
                 case OperationMode.View:
                     stockAddProuctbtn.Visible = false;
                     stockEditProuctbtn.Visible=false;
+                    productCategorybox.Enabled = false;
+                    productStatusbox.Enabled = false;
                     SetReadOnly(true);
 
                     break;
@@ -143,27 +166,6 @@ namespace ITP4519M
             productdemandbox.Enabled = !readOnly;
 
         }
-
-        private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
 
 
         private void productClosebtn_Click(object sender, EventArgs e)
@@ -604,6 +606,7 @@ namespace ITP4519M
                 MessageBox.Show("Failed to update product.");
             }
         }
+
     }
 
 }

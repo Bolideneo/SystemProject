@@ -94,13 +94,6 @@ namespace ITP4519M
             MessageBox.Show(contactInfo, "Forgot Password", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void loginbtn_Paint(object sender, PaintEventArgs e)
-        {
-            IntPtr ptr = CreateRoundRectRgn(0, 0, button1.Width, button1.Height, 30, 30);
-            button1.Region = Region.FromHrgn(ptr);
-            DeleteObject(ptr);
-
-        }
 
         private void button2_Paint(object sender, PaintEventArgs e)
         {

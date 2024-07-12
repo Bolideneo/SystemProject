@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -30,18 +31,36 @@ namespace ITP4519M
         private bool isWrongFormat_title = false;
         private bool isWrongFormat_department = false;
         public event EventHandler OperationCompleted;
+        private bool dragging = false;
+        private Point dragCursorPoint;
+        private Point dragFormPoint;
 
+
+
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+ (
+    int nLeftRect,     // x-coordinate of upper-left corner
+    int nTopRect,      // y-coordinate of upper-left corner
+    int nRightRect,    // x-coordinate of lower-right corner
+    int nBottomRect,   // y-coordinate of lower-right corner
+    int nWidthEllipse, // height of ellipse
+    int nHeightEllipse // width of ellipse
+);
+
+        [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
+        private static extern bool DeleteObject(System.IntPtr hObject);
 
 
         public RegisterForm(OperationMode mode)
         {
+
+
             InitializeComponent();
             _mode = mode;
-        }
 
-        private void label6_Click(object sender, EventArgs e)
-        {
-
+            IntPtr handle = CreateRoundRectRgn(0, 0, Width, Height, 40, 40);
+            Region = System.Drawing.Region.FromHrgn(handle);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -52,22 +71,18 @@ namespace ITP4519M
         private void RegisterForm_Load(object sender, EventArgs e)
         {
 
-
             switch (_mode)
             {
                 case OperationMode.View:
                     viewaccountlbl.Visible = true;
                     accountreadlbl.Visible = true;
                     accountlbl.Visible = false;
-                    //         passwordAgainlbl.Visible = false;
                     accountEditlbl.Visible = false;
-                    //       passwordlbl.Visible = false;
-                    //        registerPasswordAgainBox.Visible = false;
-                    //       registerPasswordBox.Visible = false;
                     registerClearBtn.Visible = false;
                     newAccountlabel.Visible = false;
                     createAccountBtn.Visible = false;
                     editAccountbtn.Visible = false;
+                    departBox.Enabled = false;
                     SetReadOnly(true);
                     break;
                 case OperationMode.New:
@@ -90,15 +105,6 @@ namespace ITP4519M
                     viewaccountlbl.Visible = false;
                     SetReadOnly(false);
                     break;
-                    //case OperationMode.Disable:
-                    //    accountEditlbl.Visible = true;
-                    //    editAccountbtn.Visible = true;
-                    //    createAccountBtn.Visible = false;
-                    //    newAccountlabel.Visible = false;
-                    //    viewaccountlbl.Visible = false;
-                    //    SetReadOnly(false);
-                    //    break;
-
 
             }
         }
@@ -136,21 +142,10 @@ namespace ITP4519M
             registerPasswordAgainBox.Enabled = !readOnly;
             mailBox.Enabled = !readOnly;
             phoneNumBox.Enabled = !readOnly;
-            departBox.Enabled = true;
+            //departBox.Enabled = true;
             titleBox.Enabled = !readOnly;
 
         }
-
-        private void departBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void PasswordBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
 
         private void createAccountBtn_Click(object sender, EventArgs e)
         {
@@ -351,26 +346,6 @@ namespace ITP4519M
             return phoneNum.Length >= 6 && phoneNum.Length <= 13;
         }
 
-        private void registerUsernameBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -683,6 +658,28 @@ namespace ITP4519M
             else
             {
                 ControlPaint.DrawBorder(e.Graphics, this.titilepnl.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
+            }
+        }
+
+        private void Dashboard_MouseDown(object sender, MouseEventArgs e)
+        {
+            dragging = true;
+            dragCursorPoint = Control.MousePosition;
+            dragFormPoint = this.Location;
+        }
+
+        private void Dashboard_MouseUp(object sender, MouseEventArgs e)
+        {
+            dragging = false;
+
+        }
+
+        private void Dashboard_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (dragging)
+            {
+                Point diff = Point.Subtract(Control.MousePosition, new Size(dragCursorPoint));
+                this.Location = Point.Add(dragFormPoint, new Size(diff));
             }
         }
     }

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,6 +23,11 @@ namespace ITP4519M
         public event EventHandler OperationCompleted;
         private string productID;
         private int stockindex = -1;
+        private bool dragging = false;
+        private Point dragCursorPoint;
+        private Point dragFormPoint;
+
+
         public bool IsOperationSuccessful { get; private set; }
         public SupplierContactForm(OperationMode mode)
         {
@@ -49,6 +55,23 @@ namespace ITP4519M
             productSelectAlert.Visible = false;
 
         }
+
+
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+ (
+    int nLeftRect,     // x-coordinate of upper-left corner
+    int nTopRect,      // y-coordinate of upper-left corner
+    int nRightRect,    // x-coordinate of lower-right corner
+    int nBottomRect,   // y-coordinate of lower-right corner
+    int nWidthEllipse, // height of ellipse
+    int nHeightEllipse // width of ellipse
+);
+
+        [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
+        private static extern bool DeleteObject(System.IntPtr hObject);
+
+
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -56,6 +79,9 @@ namespace ITP4519M
 
         private void SupplierContactForm_Load(object sender, EventArgs e)
         {
+            IntPtr handle = CreateRoundRectRgn(0, 0, Width, Height, 40, 40);
+            Region = System.Drawing.Region.FromHrgn(handle);
+
             switch (_mode)
             {
                 case OperationMode.Edit:
@@ -345,6 +371,28 @@ namespace ITP4519M
         private bool IsValidPhoneNumber(string phoneNum)
         {
             return phoneNum.Length >= 6 && phoneNum.Length <= 13;
+        }
+
+        private void Dashboard_MouseDown(object sender, MouseEventArgs e)
+        {
+            dragging = true;
+            dragCursorPoint = Control.MousePosition;
+            dragFormPoint = this.Location;
+        }
+
+        private void Dashboard_MouseUp(object sender, MouseEventArgs e)
+        {
+            dragging = false;
+
+        }
+
+        private void Dashboard_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (dragging)
+            {
+                Point diff = Point.Subtract(Control.MousePosition, new Size(dragCursorPoint));
+                this.Location = Point.Add(dragFormPoint, new Size(diff));
+            }
         }
 
     }

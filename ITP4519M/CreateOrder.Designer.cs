@@ -781,6 +781,9 @@ namespace ITP4519M
             Text = "OrderForm1";
             Load += SalesOrder_Load;
             Paint += Form1_Paint;
+            MouseDown += Dashboard_MouseDown;
+            MouseMove += Dashboard_MouseMove;
+            MouseUp += Dashboard_MouseUp;
             ((System.ComponentModel.ISupportInitialize)productOfOrderdata).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

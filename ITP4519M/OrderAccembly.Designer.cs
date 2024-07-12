@@ -51,8 +51,6 @@ namespace ITP4519M
             saveOrderbtn = new Button();
             orderAccemblyOrderItemdata = new DataGridView();
             check = new DataGridViewCheckBoxColumn();
-            label4 = new Label();
-            dealerAddressBox = new TextBox();
             orderAccemblyAssignbox = new TextBox();
             orderAccemblyAssignbtn = new Button();
             checkboxSelectedbtn = new Button();
@@ -68,7 +66,7 @@ namespace ITP4519M
             CloseButton.FlatAppearance.BorderSize = 0;
             CloseButton.FlatStyle = FlatStyle.Flat;
             CloseButton.Font = new Font("Verdana", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            CloseButton.Location = new Point(754, 4);
+            CloseButton.Location = new Point(799, 4);
             CloseButton.Name = "CloseButton";
             CloseButton.Size = new Size(35, 38);
             CloseButton.TabIndex = 15;
@@ -194,18 +192,17 @@ namespace ITP4519M
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
             orderItemdata.DefaultCellStyle = dataGridViewCellStyle1;
-            orderItemdata.Location = new Point(69, 664);
+            orderItemdata.Location = new Point(69, 643);
             orderItemdata.Margin = new Padding(3, 5, 3, 5);
             orderItemdata.Name = "orderItemdata";
             orderItemdata.RowHeadersVisible = false;
             orderItemdata.RowHeadersWidth = 51;
             orderItemdata.RowTemplate.Height = 24;
-            orderItemdata.Size = new Size(679, 186);
+            orderItemdata.Size = new Size(679, 207);
             orderItemdata.TabIndex = 61;
             orderItemdata.CellDoubleClick += productOfOrderdata_CellDoubleClick;
             orderItemdata.CellEndEdit += orderItemdata_CellEndEdit;
             orderItemdata.RowsAdded += orderItemdata_RowsAdded;
-            orderItemdata.RowsRemoved += orderItemdata_RowsRemoved;
             // 
             // productIDColumn
             // 
@@ -260,56 +257,35 @@ namespace ITP4519M
             orderAccemblyOrderItemdata.BackgroundColor = SystemColors.ButtonFace;
             orderAccemblyOrderItemdata.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             orderAccemblyOrderItemdata.Columns.AddRange(new DataGridViewColumn[] { check });
-            orderAccemblyOrderItemdata.Location = new Point(69, 346);
+            orderAccemblyOrderItemdata.Location = new Point(69, 310);
             orderAccemblyOrderItemdata.Margin = new Padding(3, 5, 3, 5);
             orderAccemblyOrderItemdata.Name = "orderAccemblyOrderItemdata";
             orderAccemblyOrderItemdata.RowHeadersVisible = false;
             orderAccemblyOrderItemdata.RowHeadersWidth = 51;
             orderAccemblyOrderItemdata.RowTemplate.Height = 24;
-            orderAccemblyOrderItemdata.Size = new Size(679, 209);
+            orderAccemblyOrderItemdata.Size = new Size(679, 233);
             orderAccemblyOrderItemdata.TabIndex = 72;
             orderAccemblyOrderItemdata.CellContentClick += orderAccemblyOrderItemdata_CellContentClick;
             orderAccemblyOrderItemdata.CellDoubleClick += orderAccemblyOrderItemdata_CellDoubleClick;
             // 
             // check
             // 
-            check.HeaderText = "Select";
+            check.HeaderText = "All";
             check.MinimumWidth = 6;
             check.Name = "check";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(183, 261);
-            label4.Margin = new Padding(5, 0, 5, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(114, 17);
-            label4.TabIndex = 73;
-            label4.Text = "Dealer Address :";
-            label4.Click += label4_Click;
-            // 
-            // dealerAddressBox
-            // 
-            dealerAddressBox.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dealerAddressBox.Location = new Point(353, 256);
-            dealerAddressBox.Margin = new Padding(6, 7, 6, 7);
-            dealerAddressBox.Name = "dealerAddressBox";
-            dealerAddressBox.Size = new Size(268, 23);
-            dealerAddressBox.TabIndex = 74;
             // 
             // orderAccemblyAssignbox
             // 
             orderAccemblyAssignbox.AutoCompleteMode = AutoCompleteMode.Suggest;
             orderAccemblyAssignbox.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            orderAccemblyAssignbox.Location = new Point(83, 305);
+            orderAccemblyAssignbox.Location = new Point(239, 267);
             orderAccemblyAssignbox.Name = "orderAccemblyAssignbox";
             orderAccemblyAssignbox.Size = new Size(285, 23);
             orderAccemblyAssignbox.TabIndex = 75;
             // 
             // orderAccemblyAssignbtn
             // 
-            orderAccemblyAssignbtn.Location = new Point(434, 292);
+            orderAccemblyAssignbtn.Location = new Point(631, 256);
             orderAccemblyAssignbtn.Name = "orderAccemblyAssignbtn";
             orderAccemblyAssignbtn.Size = new Size(117, 46);
             orderAccemblyAssignbtn.TabIndex = 76;
@@ -320,7 +296,9 @@ namespace ITP4519M
             // checkboxSelectedbtn
             // 
             checkboxSelectedbtn.BackColor = Color.LimeGreen;
-            checkboxSelectedbtn.Location = new Point(338, 551);
+            checkboxSelectedbtn.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            checkboxSelectedbtn.ForeColor = Color.Black;
+            checkboxSelectedbtn.Location = new Point(334, 540);
             checkboxSelectedbtn.Name = "checkboxSelectedbtn";
             checkboxSelectedbtn.Size = new Size(116, 46);
             checkboxSelectedbtn.TabIndex = 77;
@@ -331,7 +309,7 @@ namespace ITP4519M
             // checkBox
             // 
             checkBox.AutoSize = true;
-            checkBox.Location = new Point(120, 352);
+            checkBox.Location = new Point(120, 317);
             checkBox.Margin = new Padding(3, 2, 3, 2);
             checkBox.Name = "checkBox";
             checkBox.Size = new Size(15, 14);
@@ -344,7 +322,7 @@ namespace ITP4519M
             accemblyerrorlbl.AutoSize = true;
             accemblyerrorlbl.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             accemblyerrorlbl.ForeColor = Color.Red;
-            accemblyerrorlbl.Location = new Point(471, 631);
+            accemblyerrorlbl.Location = new Point(487, 621);
             accemblyerrorlbl.Margin = new Padding(4, 0, 4, 0);
             accemblyerrorlbl.Name = "accemblyerrorlbl";
             accemblyerrorlbl.Size = new Size(189, 17);
@@ -357,14 +335,12 @@ namespace ITP4519M
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
-            ClientSize = new Size(870, 920);
+            ClientSize = new Size(846, 915);
             Controls.Add(accemblyerrorlbl);
             Controls.Add(checkBox);
             Controls.Add(checkboxSelectedbtn);
             Controls.Add(orderAccemblyAssignbtn);
             Controls.Add(orderAccemblyAssignbox);
-            Controls.Add(dealerAddressBox);
-            Controls.Add(label4);
             Controls.Add(orderAccemblyOrderItemdata);
             Controls.Add(saveOrderbtn);
             Controls.Add(phoneNumBox);
@@ -425,13 +401,11 @@ namespace ITP4519M
         private DataGridViewTextBoxColumn unitPriceColumn;
         private Button saveOrderbtn;
         private DataGridView orderAccemblyOrderItemdata;
-        private Label label4;
-        private TextBox dealerAddressBox;
         private TextBox orderAccemblyAssignbox;
         private Button orderAccemblyAssignbtn;
         private Button checkboxSelectedbtn;
-        private DataGridViewCheckBoxColumn check;
         private CheckBox checkBox;
         private Label accemblyerrorlbl;
+        private DataGridViewCheckBoxColumn check;
     }
 }
