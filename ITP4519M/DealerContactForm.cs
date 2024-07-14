@@ -18,6 +18,10 @@ namespace ITP4519M
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
         private string dealerID;
         public event EventHandler OperationCompleted;
+        private bool dragging = false;
+        private Point dragCursorPoint;
+        private Point dragFormPoint;
+
         public DealerContactForm(OperationMode mode)
         {
             InitializeComponent();
@@ -280,6 +284,29 @@ namespace ITP4519M
         private bool IsValidPhoneNumber(string phoneNum)
         {
             return phoneNum.Length >= 6 && phoneNum.Length <= 13;
+        }
+
+
+        private void Dashboard_MouseDown(object sender, MouseEventArgs e)
+        {
+            dragging = true;
+            dragCursorPoint = Control.MousePosition;
+            dragFormPoint = this.Location;
+        }
+
+        private void Dashboard_MouseUp(object sender, MouseEventArgs e)
+        {
+            dragging = false;
+
+        }
+
+        private void Dashboard_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (dragging)
+            {
+                Point diff = Point.Subtract(Control.MousePosition, new Size(dragCursorPoint));
+                this.Location = Point.Add(dragFormPoint, new Size(diff));
+            }
         }
 
     }

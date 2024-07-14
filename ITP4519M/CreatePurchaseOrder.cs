@@ -39,6 +39,7 @@ namespace ITP4519M
         private Point dragCursorPoint;
         private Point dragFormPoint;
 
+
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
  (
@@ -55,14 +56,22 @@ namespace ITP4519M
 
         public CreatePurchaseOrder(OperationMode mode)
         {
+
             InitializeComponent();
             LoadSuppliers();
             _mode = mode;
-            purchaseOrderItemsListView.Columns.Add("ProductID", 0); 
+            KeyPreview = true;
+            supplierBox.SelectedIndex = -1;
+            supplierBox.Text = "Select a supplier";
+            supplierProductBox.SelectedIndex = -1;
+            supplierProductBox.Text = "Select a product";
+            purchaseOrderItemsListView.Columns.Add("Product ID", 90);
             purchaseOrderItemsListView.Columns.Add("Product Name", 200);
             purchaseOrderItemsListView.Columns.Add("Quantity", 70);
             purchaseOrderItemsListView.Columns.Add("Cost Price", 100);
             purchaseOrderItemsListView.Columns.Add("Total Price", 100);
+            clearForm();
+
         }
 
         private void LoadSuppliers()
@@ -73,6 +82,7 @@ namespace ITP4519M
             supplierBox.DisplayMember = "SupplierCompanyName";
             supplierBox.ValueMember = "SupplierID";
             quantityAlertlbl.Visible = false;
+            
         }
         private void CreatePurchaseOrder_Load(object sender, EventArgs e)
         {
@@ -99,18 +109,32 @@ namespace ITP4519M
         private void SetReadOnly(bool readOnly)
         {
 
-        
+
             supplierContactPersonBox.ReadOnly = readOnly;
             supplierMailBox.ReadOnly = readOnly;
             supplierPhoneBox.ReadOnly = readOnly;
             costPriceBox.ReadOnly = readOnly;
 
-          
+
             supplierContactPersonBox.Enabled = !readOnly;
             supplierMailBox.Enabled = !readOnly;
             supplierPhoneBox.Enabled = !readOnly;
             costPriceBox.Enabled = !readOnly;
 
+        }
+
+        private void clearForm()
+        {
+            supplierBox.SelectedIndex = -1;
+            supplierBox.Text = "Select a supplier";
+            supplierProductBox.SelectedIndex = -1;
+            supplierProductBox.Text = "Select a product";
+            quanBox.Text = "";
+            costPriceBox.Text = "";
+            supplierContactPersonBox.Text = "";
+            supplierMailBox.Text = "";
+            supplierPhoneBox.Text = "";
+            purchaseOrderItemsListView.Items.Clear();
         }
 
         private void UpdateSupplierDetails(SupplierDetails supplier)
@@ -132,56 +156,56 @@ namespace ITP4519M
             }
         }
 
-       /* public void purchaseOrderView(string poID)
-        {
-            this.poID = poID;
+        /* public void purchaseOrderView(string poID)
+         {
+             this.poID = poID;
 
-            try
-            {
-                // 获取采购订单详细信息
-                var orderDetails = programMethod.GetPurchaseOrderDetails(poID);
-                if (orderDetails != null)
-                {
-                    // 填充订单基本信息
-                    supplierBox.Text = orderDetails.SupplierCompanyName;
-                    SupplierID = orderDetails.SupplierID;
-                    supplierProductBox.Text = orderDetails.ProductName;
-                    quanBox.Text = orderDetails.OrderQuantity;
-                    costPriceBox.Text = orderDetails.TotalPrice;
+             try
+             {
+                 // 获取采购订单详细信息
+                 var orderDetails = programMethod.GetPurchaseOrderDetails(poID);
+                 if (orderDetails != null)
+                 {
+                     // 填充订单基本信息
+                     supplierBox.Text = orderDetails.SupplierCompanyName;
+                     SupplierID = orderDetails.SupplierID;
+                     supplierProductBox.Text = orderDetails.ProductName;
+                     quanBox.Text = orderDetails.OrderQuantity;
+                     costPriceBox.Text = orderDetails.TotalPrice;
 
-                    // 清空现有的 ListView 项
-                    purchaseOrderItemsListView.Items.Clear();
+                     // 清空现有的 ListView 项
+                     purchaseOrderItemsListView.Items.Clear();
 
-                    // 获取采购订单项
-                    var purchaseOrderItems = programMethod.GetPurchaseOrderItems(poID);
+                     // 获取采购订单项
+                     var purchaseOrderItems = programMethod.GetPurchaseOrderItems(poID);
 
-                    // 添加新的 ListView 项
-                    foreach (var item in purchaseOrderItems)
-                    {
-                        // 获取产品详细信息
-                        var productDetails = programMethod.getProductDetails(item.ProductID);
+                     // 添加新的 ListView 项
+                     foreach (var item in purchaseOrderItems)
+                     {
+                         // 获取产品详细信息
+                         var productDetails = programMethod.getProductDetails(item.ProductID);
 
-                        ListViewItem listViewItem = new ListViewItem(new string[]
-                        {
-                    item.ProductID,
-                    productDetails.ProductName,
-                    item.OrderQuantity.ToString(),
-                    item.UnitPrice.ToString("F2"),
-                    item.TotalPrice.ToString("F2")
-                        });
-                        purchaseOrderItemsListView.Items.Add(listViewItem);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Order details not found.");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occurred: " + ex.Message);
-            }
-        }*/
+                         ListViewItem listViewItem = new ListViewItem(new string[]
+                         {
+                     item.ProductID,
+                     productDetails.ProductName,
+                     item.OrderQuantity.ToString(),
+                     item.UnitPrice.ToString("F2"),
+                     item.TotalPrice.ToString("F2")
+                         });
+                         purchaseOrderItemsListView.Items.Add(listViewItem);
+                     }
+                 }
+                 else
+                 {
+                     MessageBox.Show("Order details not found.");
+                 }
+             }
+             catch (Exception ex)
+             {
+                 MessageBox.Show("An error occurred: " + ex.Message);
+             }
+         }*/
 
 
 
@@ -224,13 +248,16 @@ namespace ITP4519M
                     orders.Add(newOrder);
                 }
 
+                string purID = null;
                 // Save each PurchaseOrder
                 foreach (var order in orders)
                 {
-                    programMethod.CreatePurchaseOrder(order);
+                     purID = programMethod.CreatePurchaseOrder(order);
                 }
 
-                MessageBox.Show("Purchase Orders Saved Successfully");
+                MessageBox.Show("Purchase Order " + purID +  " Saved Successfully");
+                clearForm();
+
             }
             catch (Exception ex)
             {
@@ -271,7 +298,7 @@ namespace ITP4519M
                 return;
             }
 
-            quantityAlertlbl.Visible = false; 
+            quantityAlertlbl.Visible = false;
 
             if (supplierProductBox.SelectedItem != null && int.TryParse(quanBox.Text, out int quantity))
             {
@@ -301,6 +328,7 @@ namespace ITP4519M
                     {
                         // Add new product
                         ListViewItem item = new ListViewItem(selectedProduct.ProductID);
+                        //item.SubItems.Add(selectedProduct.ProductID);
                         item.SubItems.Add(selectedProduct.ProductName);
                         item.SubItems.Add(quantity.ToString());
                         item.SubItems.Add(unitPrice.ToString("F2"));
@@ -340,5 +368,71 @@ namespace ITP4519M
             }
         }
 
+        private void caculatorbtn_Click(object sender, EventArgs e)
+        {
+
+            DataTable dt = programMethod.getOutstandingProductQuantityForPO();
+            string text = "";
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+
+                text = text + dt.Rows[i]["SupplierID"].ToString() + " " + dt.Rows[i]["ProductID"].ToString() + " " + dt.Rows[i]["FollowUpQuantity"].ToString() + "\n";
+            }
+
+
+            MessageBox.Show(text, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            string purID = "";
+
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (i != dt.Rows.Count - 1)
+                {
+                    if (dt.Rows[i]["SupplierID"].ToString() == dt.Rows[i + 1]["SupplierID"].ToString())
+                    {
+                        purID = programMethod.CreatePurchaseOrder(purID, dt.Rows[i]["SupplierID"].ToString(), dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["FollowUpQuantity"].ToString());
+                    }
+                    else if (i != 0)
+                    {
+                        if (dt.Rows[i]["SupplierID"].ToString() == dt.Rows[i - 1]["SupplierID"].ToString())
+                        {
+                            programMethod.CreatePurchaseOrder(purID, dt.Rows[i]["SupplierID"].ToString(), dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["FollowUpQuantity"].ToString());
+                            purID = "";
+                        }
+                        else
+                        {
+                            programMethod.CreatePurchaseOrder("", dt.Rows[i]["SupplierID"].ToString(), dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["FollowUpQuantity"].ToString());
+                        }
+                         
+                    }
+                    else
+                    {
+                        programMethod.CreatePurchaseOrder("", dt.Rows[i]["SupplierID"].ToString(), dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["FollowUpQuantity"].ToString());
+                    }
+
+                }
+                else
+                {
+                    //Last Time
+                    if (dt.Rows[i]["SupplierID"].ToString() == dt.Rows[i - 1]["SupplierID"].ToString() && i != 0)
+                    {
+                        programMethod.CreatePurchaseOrder(purID, dt.Rows[i]["SupplierID"].ToString(), dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["FollowUpQuantity"].ToString());
+                        purID = "";
+
+                    }
+                }
+            } 
+        } 
+        
+        
+
+        private void CreatePurchaseOrder_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

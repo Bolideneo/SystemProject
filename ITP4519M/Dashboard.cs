@@ -29,6 +29,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using System.Globalization;
 
 
+
 namespace ITP4519M
 {
     public enum OperationMode
@@ -118,6 +119,8 @@ namespace ITP4519M
         private string DeliveryorderID;
         private string contactID;
         private string outstandingOrderID;
+        private string outOrderID;
+        private string outproductID;
         private string orderAccemblyOrderID;
         private string orderAccemblyDealerID;
         private string invoiceID;
@@ -644,9 +647,7 @@ namespace ITP4519M
             lastClickedButton = (Button)sender;
             lastClickedButton.ForeColor = Color.Gray;
             ShowPanel(outstandingOrderpnl);
-            outstandingdata.DataSource = programMethod.GetOutstandingCurrentRecords(outstandingPageIndex, outstandingPgSize);
-            outstandingdata.Rows[0].Selected = false;
-            SetRowHeights(outstandingdata, outstandingPgSize);
+            outstandingdata.DataSource = programMethod.GetOutstandingCurrentRecords(outstandingPageIndex, outstandingPgSize);;
             oustandingPagelbl.Text = (outstandingPgSize * outstandingPageIndex - (outstandingPgSize - 1)) + " - " + (outstandingPgSize * outstandingPageIndex) + " of " + OutstandingRowCount;
 
 
@@ -686,7 +687,7 @@ namespace ITP4519M
             searchDealerbtn.Visible = true;
             contactDealerclearbtn.Visible = true;
             contactSupplierCleaerbtn.Visible = false;
-            // contactOverallLabel();
+            currentDataSourceType = "Dealer";
             dealerDatalbl.Text = DealerRowCount.ToString();
             supplierDatalbl.Text = SupplierRowCount.ToString();
             SetRowHeights(dealersData, DealerPgSize);
@@ -703,7 +704,6 @@ namespace ITP4519M
         private void dealersbtn_Click(object sender, EventArgs e)
         {
             isDealerDVG = true;
-            //CalculateTotalPages("Dealer");
             dealersData.DataSource = programMethod.GetDealerCurrentRecords(DealerPageIndex, DealerPgSize);
             newSupplierbtn.Visible = false;
             editSupplierbtn.Visible = false;
@@ -714,10 +714,8 @@ namespace ITP4519M
             contactDealerclearbtn.Visible = true;
             contactSupplierCleaerbtn.Visible = false;
             currentDataSourceType = "Dealer";
-            // contactOverallLabel();
             dealerDatalbl.Text = DealerRowCount.ToString();
             supplierDatalbl.Text = SupplierRowCount.ToString();
-            SetRowHeights(dealersData, DealerPgSize);
             contactIndexlbl.Text = "01" + " - " + PgSize.ToString() + " of " + DealerRowCount;
             dealersData.Visible = true;
             suppliersData.Visible = false;
@@ -728,7 +726,6 @@ namespace ITP4519M
         private void supplersbtn_Click(object sender, EventArgs e)
         {
             isDealerDVG = false;
-            // CalculateTotalPages("Supplier");
             suppliersData.DataSource = programMethod.GetSupplierCurrentRecords(SupplierPageIndex, SupplierPgSize);
             newDealerbtn.Visible = false;
             editDealerbtn.Visible = false;
@@ -740,10 +737,8 @@ namespace ITP4519M
             contactSupplierCleaerbtn.Visible = true;
             suppliersData.Columns[2].Visible = false;
             currentDataSourceType = "Supplier";
-            // contactOverallLabel();
             dealerDatalbl.Text = DealerRowCount.ToString();
             supplierDatalbl.Text = SupplierRowCount.ToString();
-            SetRowHeights(suppliersData, SupplierPgSize);
             contactIndexlbl.Text = "01" + " - " + PgSize.ToString() + " of " + SupplierRowCount;
             dealersData.Visible = false;
             suppliersData.Visible = true;
@@ -862,11 +857,6 @@ namespace ITP4519M
             logdateTimePicker2.MaxDate = DateTime.Parse(MinDate[1]);
             logdateTimePicker2.Value = DateTime.Parse(MinDate[1]);
 
-            auditLogdata.Columns[0].Width = 90;
-            auditLogdata.Columns[1].Width = 70;
-            auditLogdata.Columns[2].Width = 110;
-            auditLogdata.Columns[3].Width = 95;
-            auditLogdata.Columns[4].Width = 580;
 
         }
 
@@ -1266,7 +1256,6 @@ namespace ITP4519M
             lastClickedButton.ForeColor = Color.Gray;
             CalculateTotalPages("GRN");
             ShowPanel(GRNpnl);
-            //  grndata.DataSource = programMethod.overallGRNinfo();
             grndata.DataSource = programMethod.GetGRNCurrentRecords(GRNPageIndex, GRNPgSize);
             grndata.Rows[0].Selected = false;
             grnPage.Text = "01" + " - " + GRNPgSize.ToString() + " of " + GRNRowCount;
@@ -1294,11 +1283,9 @@ namespace ITP4519M
             lastClickedButton.ForeColor = Color.Gray;
             CalculateTotalPages("Delivery");
             ShowPanel(deliverypnl);
-            //deliveryData.DataSource = programMethod.overallDeliveryinfo();
             deliveryData.DataSource = programMethod.GetDeliveryCurrentRecords(DespatchPageIndex, DespatchPgSize);
             deliveryData.Rows[0].Selected = false;
             despatchPage.Text = "01" + " - " + DespatchPgSize.ToString() + " of " + DeliveryRowCount;
-            SetRowHeights(deliveryData, DespatchPgSize);
 
             string[] MinDate = programMethod.getDNMinAndMaxDate();
             deliverydateTimePicker1.MinDate = DateTime.Parse(MinDate[0]);
@@ -1403,7 +1390,6 @@ namespace ITP4519M
             string formDate = deliverydateTimePicker1.Value.Date.ToString("yyyy-MM-dd");
             string toDate = deliverydateTimePicker2.Value.Date.ToString("yyyy-MM-dd");
             deliveryData.DataSource = programMethod.searchDeliveryDate(formDate, toDate);
-            //SetRowHeights(deliveryData, DeliveryStockPgSize);
         }
 
         private void newDealerbtn_Click(object sender, EventArgs e)
@@ -1437,11 +1423,6 @@ namespace ITP4519M
             dealersbtn_Click(dealersbtn, EventArgs.Empty);
         }
 
-        private void contactsdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-
-        }
 
         private void delContactbtn_Click(object sender, EventArgs e)
         {
@@ -1455,20 +1436,40 @@ namespace ITP4519M
             {
 
 
-
                 if (currentDataSourceType == "Dealer")
                 {
-                    programMethod.dealerDel(contactID);
-                    dealersbtn_Click(dealersbtn, EventArgs.Empty);
+                    DialogResult box = MessageBox.Show("Do you want to Delete Dealer#" + contactID + " ?", "Delete Dealer", MessageBoxButtons.YesNo);
+                    switch (box)
+                    {
+
+                        case DialogResult.Yes:
+                            programMethod.dealerDel(contactID);
+                            dealersbtn_Click(dealersbtn, EventArgs.Empty);
+                            break;
+                        case DialogResult.No:
+                            break;
+                    }
+
                 }
                 else if (currentDataSourceType == "Supplier")
                 {
-                    programMethod.supplierDel(contactID, productID);
-                    supplersbtn_Click(supplersbtn, EventArgs.Empty);
+                    DialogResult box = MessageBox.Show("Do you want to Delete Supplier" +
+                        "#" + contactID + " ?", "Delete Supplier", MessageBoxButtons.YesNo);
+                    switch (box)
+                    {
+
+                        case DialogResult.Yes:
+                            programMethod.supplierDel(contactID, productID);
+                            supplersbtn_Click(supplersbtn, EventArgs.Empty);
+                            break;
+                        case DialogResult.No:
+                            break;
+                    }
+
+
                 }
 
             }
-
 
         }
 
@@ -1511,33 +1512,9 @@ namespace ITP4519M
 
         private void searchSupplierbtn_Click(object sender, EventArgs e)
         {
-            dealersData.DataSource = programMethod.searchSupplierInformation(searchContactbtn.Text.Trim());
+            suppliersData.DataSource = programMethod.searchSupplierInformation(searchContactbtn.Text.Trim());
         }
 
-        private void deliveryclearbtn_Click(object sender, EventArgs e)
-        {
-            deliveryData.DataSource = programMethod.overallDeliveryinfo();
-        }
-
-        private void deliveryAddbtn_Click(object sender, EventArgs e)
-        {
-            Delivery delivery = new Delivery(OperationMode.New);
-            delivery.ShowDialog();
-        }
-
-        private void deliverySearchIDbtn_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void deliverySearchIDbox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                deliveryData.DataSource = programMethod.getDeliveryDetails(deliverySearchIDbox.Text.Trim());
-                deliverySearchIDbox.Clear();
-            }
-        }
 
         private void deliveryclearbtn_Click_1(object sender, EventArgs e)
         {
@@ -1891,8 +1868,6 @@ namespace ITP4519M
             CalculateTotalPages("PO");
             ShowPanel(POpnl);
             poData.DataSource = programMethod.GetPOCurrentRecords(POPageIndex, POPgSize);
-            poData.Rows[0].Selected = false;
-            SetRowHeights(poData, POPgSize);
             poIndexlbl.Text = "01" + " - " + POPgSize.ToString() + " of " + programMethod.getPORowCount();
 
 
@@ -1920,6 +1895,7 @@ namespace ITP4519M
             invoiceData.DataSource = programMethod.GetInvoiceCurrentRecords(InvoicePageIndex, InvoicePgSize);
             lastClickedButton = (Button)sender;
             lastClickedButton.ForeColor = Color.Gray;
+            //Question
             invoiceIndexlbl.Text = "01" + " - " + PgSize.ToString() + " of " + InvoiceRowCount;
             invoiceData.Rows[0].Selected = false;
             SetRowHeights(invoiceData, InvoicePgSize);
@@ -2085,7 +2061,7 @@ namespace ITP4519M
             if (orderdata.Rows[orderindex].Cells[3].Value.ToString() == "OrderProcessing")
             {
 
-                DialogResult box = MessageBox.Show("Do you want to delete #" + orderID + " ?", "Cancel Order", MessageBoxButtons.YesNo);
+                DialogResult box = MessageBox.Show("Do you want to cancel Order #" + orderID + " ?", "Cancel Order", MessageBoxButtons.YesNo);
                 switch (box)
                 {
                     case DialogResult.Yes:
@@ -2195,6 +2171,8 @@ namespace ITP4519M
                 outstandingIndex = e.RowIndex;
                 DataGridViewRow selectRow = this.outstandingdata.Rows[outstandingIndex];
                 outstandingOrderID = selectRow.Cells[1].Value.ToString();
+                outOrderID = selectRow.Cells[2].Value.ToString();
+                outproductID = selectRow.Cells[3].Value.ToString();
 
                 foreach (DataGridViewRow row in outstandingdata.Rows)
                 {
@@ -2263,17 +2241,16 @@ namespace ITP4519M
         {
             this.POPageIndex = POTotalPage;
             this.poData.DataSource = programMethod.GetPOCurrentRecords(this.POPageIndex, POPgSize);
-            SetRowHeights(poData, POPgSize);
             poIndexlbl.Text = (POPgSize * POPageIndex - (POPgSize - 1)) + " - " + PORowCount + " of " + PORowCount;
+
         }
 
         private void poFirstPageBtn_Click(object sender, EventArgs e)
         {
             this.POPageIndex = 1;
             poData.DataSource = programMethod.GetPOCurrentRecords(POPageIndex, POPgSize);
-            SetRowHeights(poData, POPgSize);
-            SetRowHeights(poData, POPgSize);
             poIndexlbl.Text = "1" + " - " + POPgSize + " of " + PORowCount;
+
         }
 
         private void poPrevPageBtn_Click(object sender, EventArgs e)
@@ -2283,7 +2260,6 @@ namespace ITP4519M
                 this.POPageIndex--;
                 this.poData.DataSource = programMethod.GetPOCurrentRecords(this.POPageIndex, POPgSize);
             }
-            SetRowHeights(poData, POPgSize);
             poIndexlbl.Text = (POPgSize * POPageIndex - (POPgSize - 1)) + " - " + (POPgSize * CurrentPageIndex) + " of " + PORowCount;
         }
 
@@ -2296,7 +2272,6 @@ namespace ITP4519M
                     this.poData.DataSource = programMethod.GetPOCurrentRecords(this.POPageIndex, POPgSize);
 
                 }
-                SetRowHeights(poData, POPgSize);
 
                 if (POPageIndex != POTotalPage)
                 {
@@ -2337,7 +2312,6 @@ namespace ITP4519M
             reportOrderProductCategorybox.DataSource = programMethod.getProductCategory();
             reportOrderProductCategorybox.DisplayMember = "ProductCategory";
             orderReportdata.DataSource = programMethod.getOrderReport();
-            // programMethod.getTopSellingProductReport();
             DataTable dt = programMethod.getTopSellingProductReport();
             for (int i = 0; i < 5; i++)
             {
@@ -2665,10 +2639,10 @@ namespace ITP4519M
 
         private void dateFilterbtn_Click(object sender, EventArgs e)
         {
-            string formDate = podateTimePicker1.Value.Date.ToString("M/d/yyyy");
-            string toDate = podateTimePicker2.Value.Date.ToString("M/d/yyyy");
+            string formDate = podateTimePicker1.Value.Date.ToString("yyyy-MM-dd");
+            string toDate = podateTimePicker2.Value.Date.ToString("yyyy-MM-dd");
             poData.DataSource = programMethod.searchPODate(formDate, toDate);
-            SetRowHeights(poData, POPgSize);
+           
         }
 
         private void orderdateTimePicker2_ValueChanged(object sender, EventArgs e)
@@ -2833,33 +2807,9 @@ namespace ITP4519M
             auditLogdata.Columns[2].Width = 110;
             auditLogdata.Columns[3].Width = 95;
             auditLogdata.Columns[4].Width = 580;
-            // auditLogdata.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
 
-        private void auditlogStatusFilter_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void label42_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel56_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel9_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void contactSupplierCleaerbtn_Click(object sender, EventArgs e)
         {
@@ -2875,12 +2825,17 @@ namespace ITP4519M
 
         private void stockSearchBox_KeyDown(object sender, KeyEventArgs e)
         {
+            string text = stockSearchBox.Text.Trim();
             if (e.KeyCode == Keys.Enter)
             {
                 stockData.DataSource = programMethod.searchProductInformation(stockSearchBox.Text.Trim());
                 SetRowHeights(stockData, StockPgSize);
                 stockSearchBox.Clear();
             }
+
+            //      stockSearchBox.Select(stockSearchBox.Text.Length, 0);
+            //stockSearchBox.SelectionStart = stockSearchBox.Text.Length;
+            //stockSearchBox.SelectionLength = 0;
 
         }
         private void orderNextPagebtn_Click_1(object sender, EventArgs e)
@@ -3139,19 +3094,21 @@ namespace ITP4519M
                     "Enable",
                     "Disable",
                     "LoginFailed",
+                    "Notification",
+                    "Complete",
                };
 
             if (auditTypeStatusbox.Text == "Account")
             {
 
 
-                auditlogStatusbox.DataSource = log.Where(item => item != "Print").ToList();
+                auditlogStatusbox.DataSource = log.Where(item => item == "Create/Save" || item == "Update" || item == "Login" || item == "Logout" || item == "Enable" || item == "Disable" || item == "LoginFailed").ToList();
 
             }
 
             if (auditTypeStatusbox.Text == "Order")
             {
-                auditlogStatusbox.DataSource = log.Where(item => item == "Create/Save" || item == "Update" || item == "Cancel/Delete").ToList();
+                auditlogStatusbox.DataSource = log.Where(item => item == "Create/Save" || item == "Update" || item == "Cancel/Delete" || item == "Notification").ToList();
             }
 
             if (auditTypeStatusbox.Text == "OrderAccembly")
@@ -3159,22 +3116,13 @@ namespace ITP4519M
                 auditlogStatusbox.DataSource = log.Where(item => item == "Create/Save").ToList();
             }
 
-            if (auditTypeStatusbox.Text == "OrderAccembly")
-            {
-                auditlogStatusbox.DataSource = log.Where(item => item == "Create/Save").ToList();
-            }
 
             if (auditTypeStatusbox.Text == "Contact")
             {
                 auditlogStatusbox.DataSource = log.Where(item => item == "Create/Save" || item == "Update" || item == "Cancel/Delete").ToList();
             }
 
-            if (auditTypeStatusbox.Text == "Contact")
-            {
-                auditlogStatusbox.DataSource = log.Where(item => item == "Create/Save" || item == "Update" || item == "Cancel/Delete").ToList();
-            }
-
-            if (auditTypeStatusbox.Text == "Stock")
+            if (auditTypeStatusbox.Text == "Product")
             {
                 auditlogStatusbox.DataSource = log.Where(item => item == "Create/Save" || item == "Update" || item == "Cancel/Delete").ToList();
             }
@@ -3191,18 +3139,17 @@ namespace ITP4519M
 
             if (auditTypeStatusbox.Text == "Delivery")
             {
-                auditlogStatusbox.DataSource = log.Where(item => item == "Create/Save" || item == "Print").ToList();
+                auditlogStatusbox.DataSource = log.Where(item => item == "Create/Save" || item == "Complete" || item == "Print").ToList();
             }
 
-            if (auditTypeStatusbox.Text == "PurChaseOrder")
+            if (auditTypeStatusbox.Text == "PurchaseOrder")
             {
                 auditlogStatusbox.DataSource = log.Where(item => item == "Create/Save").ToList();
             }
-
 
             if (auditTypeStatusbox.Text == "Invoice")
             {
-                auditlogStatusbox.DataSource = log.Where(item => item == "Create/Save").ToList();
+                auditlogStatusbox.DataSource = log.Where(item => item == "Create/Save" || item == "Print").ToList();
             }
 
             if (auditTypeStatusbox.Text == "Report")
@@ -3271,7 +3218,6 @@ namespace ITP4519M
         {
             this.DespatchPageIndex = 1;
             this.deliveryData.DataSource = programMethod.GetDeliveryCurrentRecords(this.DespatchPageIndex, DespatchPgSize);
-            SetRowHeights(deliveryData, DespatchPgSize);
 
             despatchPage.Text = "1" + " - " + DespatchPgSize + " of " + DeliveryRowCount;
         }
@@ -3283,7 +3229,6 @@ namespace ITP4519M
                 this.DespatchPageIndex--;
                 this.deliveryData.DataSource = programMethod.GetDeliveryCurrentRecords(this.DespatchPageIndex, DespatchPgSize);
             }
-            SetRowHeights(deliveryData, DespatchPgSize);
             despatchPage.Text = (DespatchPgSize * DespatchPageIndex - (DespatchPgSize - 1)) + " - " + (DespatchPgSize * DespatchPageIndex) + " of " + DeliveryRowCount;
         }
 
@@ -3295,7 +3240,6 @@ namespace ITP4519M
                 this.deliveryData.DataSource = programMethod.GetDeliveryCurrentRecords(this.DespatchPageIndex, DespatchPgSize);
 
             }
-            SetRowHeights(deliveryData, DespatchPgSize);
 
             if (DespatchPageIndex != DespatchTotalPage)
             {
@@ -3311,7 +3255,6 @@ namespace ITP4519M
         {
             this.DespatchPageIndex = DespatchTotalPage;
             this.deliveryData.DataSource = programMethod.GetDeliveryCurrentRecords(this.DespatchPageIndex, DespatchPgSize);
-            SetRowHeights(deliveryData, DespatchPgSize);
             despatchPage.Text = (DespatchPgSize * DespatchPageIndex - (DespatchPgSize - 1)) + " - " + DeliveryRowCount + " of " + DeliveryRowCount;
         }
 
@@ -3319,7 +3262,6 @@ namespace ITP4519M
         {
             this.InvoicePageIndex = InvoiceTotalPage;
             this.invoiceData.DataSource = programMethod.GetInvoiceCurrentRecords(this.InvoicePageIndex, InvoicePgSize);
-            SetRowHeights(invoiceData, InvoicePgSize);
             invoiceIndexlbl.Text = (InvoicePgSize * InvoicePageIndex - (InvoicePgSize - 1)) + " - " + InvoiceRowCount + " of " + InvoiceRowCount;
         }
 
@@ -3330,7 +3272,6 @@ namespace ITP4519M
                 this.InvoicePageIndex--;
                 this.invoiceData.DataSource = programMethod.GetInvoiceCurrentRecords(this.InvoicePageIndex, InvoicePgSize);
             }
-            SetRowHeights(invoiceData, InvoicePgSize);
             invoiceIndexlbl.Text = (InvoicePgSize * InvoicePageIndex - (InvoicePgSize - 1)) + " - " + (InvoicePgSize * InvoicePageIndex) + " of " + InvoiceRowCount;
         }
 
@@ -3338,7 +3279,6 @@ namespace ITP4519M
         {
             this.InvoicePageIndex = 1;
             this.invoiceData.DataSource = programMethod.GetInvoiceCurrentRecords(this.InvoicePageIndex, InvoicePgSize);
-            SetRowHeights(invoiceData, InvoicePgSize);
 
             invoiceIndexlbl.Text = "1" + " - " + InvoicePgSize + " of " + InvoiceRowCount;
         }
@@ -3351,7 +3291,6 @@ namespace ITP4519M
                 this.invoiceData.DataSource = programMethod.GetInvoiceCurrentRecords(this.InvoicePageIndex, InvoicePgSize);
 
             }
-            SetRowHeights(invoiceData, InvoicePgSize);
 
             if (InvoicePageIndex != InvoiceTotalPage)
             {
@@ -3387,16 +3326,35 @@ namespace ITP4519M
 
         private void outstandingDeletebtn_Click(object sender, EventArgs e)
         {
+            if (outstandingIndex == -1) 
+            {
+                MessageBox.Show("Please Select One Option");
+            }
+            else
+            {
 
+                DialogResult box = MessageBox.Show("Do you want to Delete #" + outstandingOrderID + " ?", "Delete OutstandingOrder", MessageBoxButtons.YesNo);
+                switch (box)
+                {
+
+                    case DialogResult.Yes:
+                        programMethod.DeleteOutstandingOrder(outstandingOrderID, outOrderID, outproductID);
+                        outstandingdata.DataSource = programMethod.GetOutstandingCurrentRecords(outstandingPageIndex, outstandingPgSize);
+                        break;
+                    case DialogResult.No:
+                        break;
+                }
+            }
         }
 
         private void orderaccemblyNewbtn_Click(object sender, EventArgs e)
         {
             orderAccemblyData.DataSource = programMethod.getOrderAccemblyNewOrder();
-            if (orderAccemblyData != null) {
+            if (orderAccemblyData != null)
+            {
                 orderAccemblyData.Rows[0].Selected = false;
             }
-            
+
         }
 
         private void orderaccemblyPartiallybtn_Click(object sender, EventArgs e)
@@ -3416,6 +3374,164 @@ namespace ITP4519M
                 orderAccemblyData.Rows[0].Selected = false;
             }
         }
+
+        private void outstandingdata_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            if (outstandingdata != null)
+            {
+                outstandingdata.Rows[0].Selected = false;
+                SetRowHeights(outstandingdata, outstandingPgSize);
+            }
+
+            
+
+        }
+
+        private void stockData_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            if (stockData.Rows.Count > 0)
+            {
+                stockData.Rows[0].Selected = false;
+            }
+
+        }
+
+        private void orderdata_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+
+            if (orderdata.Rows.Count > 0)
+            {
+                orderdata.Rows[0].Selected = false;
+
+            }
+        }
+
+        private void deliveryData_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+
+
+            if (deliveryData.Rows.Count > 0)
+            {
+                deliveryData.Rows[0].Selected = false;
+                SetRowHeights(deliveryData, DespatchPgSize);
+            }
+        }
+
+        private void outstandingViewData_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+
+            if (outstandingViewData.Rows.Count > 0)
+            {
+                outstandingViewData.Rows[0].Selected = false;
+            }
+        }
+
+        private void userData_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+
+
+
+            if (userData.Rows.Count > 0)
+            {
+                userData.Rows[0].Selected = false;
+            }
+        }
+
+        private void invoiceData_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+
+
+            if (invoiceData.Rows.Count > 0)
+            {
+                invoiceData.Rows[0].Selected = false;
+                SetRowHeights(invoiceData, InvoicePgSize);
+            }
+        }
+
+
+        private void poData_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            if (poData.Rows.Count > 0)
+            {
+                poData.Rows[0].Selected = false;
+                SetRowHeights(poData, POPgSize);
+            }
+
+            poData.Columns[0].Width = 70;
+            poData.Columns[1].Width = 155;
+            poData.Columns[2].Width = 140;
+            poData.Columns[3].Width = 140;
+            poData.Columns[4].Width = 110;
+            poData.Columns[5].Width = 110;
+            poData.Columns[6].Width = 220;
+            poData.Columns[7].Width = 110;
+            poData.Columns[8].Width = 200;
+        }
+
+        private void grndata_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            if (grndata.Rows.Count > 0)
+            {
+                grndata.Rows[0].Selected = false;
+            }
+
+        }
+
+        private void orderAccemblyData_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+
+
+            if (orderAccemblyData.Rows.Count > 0)
+            {
+                orderAccemblyData.Rows[0].Selected = false;
+            }
+        }
+
+        private void suppliersData_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+
+
+            if (suppliersData.Rows.Count > 0)
+            {
+                suppliersData.Rows[0].Selected = false;
+            }
+
+            SetRowHeights(suppliersData, SupplierPgSize);
+        }
+
+        private void dealersData_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            if (dealersData.Rows.Count > 0)
+            {
+                dealersData.Rows[0].Selected = false;
+            }
+
+            SetRowHeights(dealersData, DealerPgSize);
+
+        }
+
+        private void auditLogdata_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            if (auditLogdata.Rows.Count > 0)
+            {
+                auditLogdata.Rows[0].Selected = false;
+            }
+
+            auditLogdata.Columns[0].Width = 90;
+            auditLogdata.Columns[1].Width = 70;
+            auditLogdata.Columns[2].Width = 130;
+            auditLogdata.Columns[3].Width = 130;
+            auditLogdata.Columns[4].Width = 580;
+        }
+        private void stockSearchBox_TextChanged(object sender, EventArgs e)
+        {
+            int selectionStart = stockSearchBox.SelectionStart;
+            int originalTextLength = stockSearchBox.Text.Length;
+            stockSearchBox.Text = new string(stockSearchBox.Text.Distinct().ToArray());
+            int lengthDif = originalTextLength - stockSearchBox.Text.Length;
+            stockSearchBox.Select(selectionStart - lengthDif, 0);
+        }
+
     }
 }
     

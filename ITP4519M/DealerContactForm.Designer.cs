@@ -318,6 +318,9 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ContactForm";
             Load += DealerContactForm_Load;
+            MouseDown += Dashboard_MouseDown;
+            MouseMove += Dashboard_MouseMove;
+            MouseUp += Dashboard_MouseUp;
             ResumeLayout(false);
             PerformLayout();
         }

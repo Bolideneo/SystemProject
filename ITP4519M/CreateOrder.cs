@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Drawing.Text;
@@ -25,6 +26,7 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using ZstdSharp.Unsafe;
 using static ProgramMethod.ProgramMethod;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ITP4519M
 {
@@ -46,6 +48,9 @@ namespace ITP4519M
         private bool dragging = false;
         private Point dragCursorPoint;
         private Point dragFormPoint;
+        private string text;
+        private Keys m_keyCode;
+        private int index;
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
@@ -62,6 +67,7 @@ namespace ITP4519M
         {
             InitializeComponent();
             _mode = mode;
+            this.KeyPreview = true;
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 40, 40));
         }
@@ -89,7 +95,7 @@ namespace ITP4519M
         private void SalesOrder_Load(object sender, EventArgs e)
         {
 
-
+            dealerInfobox.Focus();
 
             switch (_mode)
             {
@@ -102,6 +108,7 @@ namespace ITP4519M
                     orderDateBox.MinDate = DateTime.Today;
                     orderDateBox.MaxDate = DateTime.Today.AddDays(7);
                     productOfOrderdata.Columns.Add("Numbering", "NO");
+                    productOfOrderdata.Columns[0].Width = 50;
                     productOfOrderdata.Columns.Add("ProductID", "Product ID");
                     productOfOrderdata.Columns.Add("ProductName", "Product Name");
                     productOfOrderdata.Columns.Add("Quantity", "Quantity");
@@ -116,10 +123,7 @@ namespace ITP4519M
                     break;
             }
         }
-        private void Form1_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
         private void ClearForm()
         {
 
@@ -194,14 +198,6 @@ namespace ITP4519M
             }
         }
 
-
-        private void productSearchbox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-
         private void createOrderbtn_Click(object sender, EventArgs e)
         {
 
@@ -260,11 +256,11 @@ namespace ITP4519M
             if (orderDateBox.Text == "")
             {
                 orderDateBox.BorderColor = Color.Red;
-                label11.Visible = true;
+                orderDate.Visible = true;
             }
             else
             {
-                label11.Visible = false;
+                orderDate.Visible = false;
                 orderDateBox.BorderColor = Color.Black;
             }
 
@@ -398,27 +394,68 @@ namespace ITP4519M
         }
 
         private void comboBox2_KeyDown(object sender, KeyEventArgs e)
-        {  //&& dealerInfobox.Text.Trim().Length != 0
-            //dealerInfobox.Focus();
-            string text = dealerInfobox.Text.Trim();
-            //dealerInfobox.DroppedDown = false;
-            if (e.KeyCode == Keys.Enter)
+        {
+            try
             {
-                programMethod.DealerSearchAutoComplete(dealerInfobox, dealerInfobox.Text.Trim());
-                if (dealerInfobox.Items.Count > 0)
+
+                text = dealerInfobox.Text.Trim();
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (dealerInfobox.Text == "" || dealerInfobox.Text == "d" || dealerInfobox.Text == "D10" || dealerInfobox.Text == "D")
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        dealerInfobox.Focus();
+                        programMethod.DealerSearchAutoComplete(dealerInfobox, dealerInfobox.Text.Trim());
+                        if (dealerInfobox.Items.Count > 0)
+                        {
+
+                            dealerInfobox.DroppedDown = true;
+                            dealerInfobox.IntegralHeight = true;
+                            dealerInfobox.SelectedIndex = -1;
+                            dealerInfobox.SelectionStart = dealerInfobox.Text.Trim().Length;
+                            dealerInfobox.SelectionLength = 0;
+                        }
+                        Cursor.Current = Cursors.Default;
+                    }
+
+                }
+
+                if (dealerInfobox.SelectedIndex % 2 == 0 && dealerInfobox.SelectedIndex % 4 != 0)
                 {
 
-                    dealerInfobox.DroppedDown = true;
-                    dealerInfobox.IntegralHeight = true;
-                    dealerInfobox.SelectedIndex = -1;
-                    dealerInfobox.SelectionStart = dealerInfobox.Text.Trim().Length;
-                    dealerInfobox.SelectionLength = 0;
+                    if (e.KeyCode == Keys.Down)
+                    {
+                        index = dealerInfobox.SelectedIndex + 2;
+                        dealerInfobox.SelectedIndex = dealerInfobox.SelectedIndex + 2;
+                        return;
+                    }
+
                 }
-                Cursor.Current = Cursors.Default;
+
+                if (dealerInfobox.SelectedIndex % 4 == 0)
+                {
+                    if (e.KeyCode == Keys.Up)
+                    {
+
+                        index = dealerInfobox.SelectedIndex - 2;
+                        dealerInfobox.SelectedIndex = dealerInfobox.SelectedIndex - 2;
+                        return;
+                    }
+                }
+
+
+                //  dealerInfobox.SelectedIndex = -1;
+                dealerInfobox.Text = text;
+                dealerInfobox.SelectionStart = dealerInfobox.Text.Length;
+            }catch
+            {
+
+
             }
-            //  dealerInfobox.SelectedIndex = -1;
-            dealerInfobox.Text = text;
-            dealerInfobox.SelectionStart = dealerInfobox.Text.Length;
+           
         }
 
 
@@ -445,29 +482,41 @@ namespace ITP4519M
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (dealerInfobox.SelectedItem == "-------------------")
+            try
             {
-                return;
-            }
-            if (dealerInfobox.SelectedItem != null)
+                
+                if (dealerInfobox.SelectedItem == "-------------------")
+                {
+                    dealerInfobox.SelectedIndex = index;
+                    return;
+                }
+                if (dealerInfobox.SelectedItem != null)
+                {
+                    string selectedItem = dealerInfobox.SelectedItem.ToString();
+                    Cursor.Current = Cursors.Default;
+                    DataTable result = programMethod.searchDealerDetail(selectedItem);
+                    dealerIDBox.Text = result.Rows[0]["DealerID"].ToString();
+                    dealerNameBox.Text = result.Rows[0]["DealerName"].ToString();
+                    phoneNumBox.Text = result.Rows[0]["DealerPhoneNum"].ToString();
+                    dealerCompanyBox.Text = result.Rows[0]["DealerCompanyName"].ToString();
+                    goodsAddressBox.Text = result.Rows[0]["DealerCompanyAddress"].ToString();
+                    orderEmailAddressbox.Text = result.Rows[0]["DealerEmailAddress"].ToString();
+                    invoiceAddressBox.Text = result.Rows[0]["DealerCompanyAddress"].ToString();
+                }
+                
+            }catch
             {
-                string selectedItem = dealerInfobox.SelectedItem.ToString();
-                Cursor.Current = Cursors.Default;
-                DataTable result = programMethod.searchDealerDetail(selectedItem);
-                dealerIDBox.Text = result.Rows[0]["DealerID"].ToString();
-                dealerNameBox.Text = result.Rows[0]["DealerName"].ToString();
-                phoneNumBox.Text = result.Rows[0]["DealerPhoneNum"].ToString();
-                dealerCompanyBox.Text = result.Rows[0]["DealerCompanyName"].ToString();
-                goodsAddressBox.Text = result.Rows[0]["DealerCompanyAddress"].ToString();
-                orderEmailAddressbox.Text = result.Rows[0]["DealerEmailAddress"].ToString();
-                invoiceAddressBox.Text = result.Rows[0]["DealerCompanyAddress"].ToString();
+                
             }
+          
         }
 
         private void dealerInfobox_KeyPress(object sender, KeyPressEventArgs e)
         {
             this.dealerInfobox.DroppedDown = false;
 
+            dealerInfobox.Text = text;
+            dealerInfobox.SelectionStart = dealerInfobox.Text.Length;
         }
 
         private void productSearchbox_SelectedIndexChanged(object sender, EventArgs e)
@@ -507,7 +556,6 @@ namespace ITP4519M
 
                 DataTable result = programMethod.searchOrderItemDetail(productSearchbox.Text.Trim());
                 this.productOfOrderdata.Rows.Add("", result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, result.Rows[0]["UnitPrice"], "100");
-                //  productSearchbox1.Text = "";
 
             }
         }
@@ -537,6 +585,8 @@ namespace ITP4519M
         private void productSearchbox_KeyPress(object sender, KeyPressEventArgs e)
         {
             this.productSearchbox.DroppedDown = false;
+            //productSearchbox.Text = text;
+            //productSearchbox.SelectionStart = productSearchbox.Text.Length;
         }
 
         private void Dashboard_MouseDown(object sender, MouseEventArgs e)
@@ -572,7 +622,7 @@ namespace ITP4519M
 
         private void productOfOrderdata_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
-            int cct = productOfOrderdata.Rows.Count; 
+            int cct = productOfOrderdata.Rows.Count;
             int cnt = 0;
             int replace_no = 1;
 
@@ -589,11 +639,17 @@ namespace ITP4519M
 
         private void productOfOrderdata_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-                for (int i = 0; i < e.RowCount; i++)
-                {
-                    productOfOrderdata.Rows[e.RowIndex + i].Cells[0].Value = "No." + (e.RowIndex + 1 + i).ToString();
+            for (int i = 0; i < e.RowCount; i++)
+            {
+                productOfOrderdata.Rows[e.RowIndex + i].Cells[0].Value = "No." + (e.RowIndex + 1 + i).ToString();
 
-                }
+            }
+
+        }
+
+        private void CreateOrder_KeyDown(object sender, KeyEventArgs e)
+        {
+            this.m_keyCode = e.KeyCode;
 
         }
     }

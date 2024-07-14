@@ -14,6 +14,9 @@ using MySqlX.XDevAPI.Common;
 using Mysqlx.Session;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Runtime.InteropServices;
+using Mysqlx.Crud;
+using Google.Protobuf.WellKnownTypes;
+using Org.BouncyCastle.Bcpg.OpenPgp;
 
 
 namespace ITP4519M
@@ -25,6 +28,7 @@ namespace ITP4519M
         private bool dragging = false;
         private Point dragCursorPoint;
         private Point dragFormPoint;
+        private DataTable dt;
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
@@ -53,6 +57,7 @@ namespace ITP4519M
         private void GRN_Load(object sender, EventArgs e)
         {
             grnDateTimePicker.Value = DateTime.Now;
+            this.KeyPreview = true;
 
             switch (_mode)
             {
@@ -62,8 +67,7 @@ namespace ITP4519M
                 case OperationMode.New:
                     grnDateTimePicker.MinDate = DateTime.Now;
                     grnPOIDbox.SelectedIndex = -1;
-                    grnPOIDbox.Text = "Select an item";
-                    grnPOIDbox.DataSource = programMethod.grnAllPOID();
+                    programMethod.GRNSearchAutoComplete(grnPOIDbox);
                     grnPOIDbox.ValueMember = "PurchaseOrderID";
                     ClearForm();
                     SetReadOnly(false);
@@ -89,19 +93,9 @@ namespace ITP4519M
             grnDateTimePicker.Enabled = readOnly;
 
 
-          //  grnPOIDbox.ReadOnly = !readOnly;
+            //  grnPOIDbox.ReadOnly = !readOnly;
             grnDateTimePicker.Enabled = !readOnly;
 
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
 
         }
 
@@ -110,10 +104,6 @@ namespace ITP4519M
             this.Close();
         }
 
-        private void grnerrorlbl_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void deliveryClearbtn_Click(object sender, EventArgs e)
         {
@@ -125,6 +115,7 @@ namespace ITP4519M
             if (grnPOIDbox.Text == "")
             {
                 grnerrorlbl.Visible = true;
+                return;
             }
             else
             {
@@ -132,18 +123,23 @@ namespace ITP4519M
                 try
                 {
                     string poID = grnPOIDbox.Text;
+                    if(errorlbl.Visible == true)
+                    {
+                        grnerrorlbl.Visible = true;
+                        return;
+                    }
                     programMethod.createGRN(poID, grnProductData, grnDateTimePicker.Value.ToString("yyyy-MM-dd HH:mm:ss"));
 
-                        for (int i = 0; i < grnProductData.Rows.Count; i++)
-                       {
+                    for (int i = 0; i < grnProductData.Rows.Count; i++)
+                    {
 
-                       
+
                         programMethod.increaseStock(grnProductData.Rows[i].Cells[1].Value.ToString(), grnProductData.Rows[i].Cells[4].Value.ToString());
-                        
-                       }
-                        MessageBox.Show("Good Received Note Created Successfully");
-                        ClearForm();
-                        //MessageBox.Show("Please try again!");
+
+                    }
+                    MessageBox.Show("Good Received Note Created Successfully");
+                    ClearForm();
+                    //MessageBox.Show("Please try again!");
                 }
                 catch (Exception ex)
                 {
@@ -156,13 +152,22 @@ namespace ITP4519M
 
         private void grnPOIDbox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (grnPOIDbox.SelectedIndex == -1)
+            {
+                return;
+            }
+            if (grnPOIDbox.SelectedItem.ToString() == "------------New Order------------"  || grnPOIDbox.SelectedItem.ToString() == "-----------Outstanding------------")
+            {
+                grnPOIDbox.SelectedIndex = -1;
+                return;
+            }
             grnProductData.Rows.Clear();
             grnProductData.Refresh();
-            if (grnPOIDbox.SelectedIndex > 0 )
+            if (grnPOIDbox.SelectedIndex > 0)
             {
                 string selectedItem = grnPOIDbox.SelectedItem.ToString();
                 Cursor.Current = Cursors.Default;
-                DataTable dt = programMethod.getPurchaseOrderProductIDAndQty(grnPOIDbox.Text.Trim());
+                dt = programMethod.getPurchaseOrderProductIDAndQty(grnPOIDbox.Text.Trim());
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     grnProductData.Rows.Add(dt.Rows[i]["SupplierID"].ToString(), dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["OrderQuantity"].ToString(), "", 0);
@@ -193,50 +198,61 @@ namespace ITP4519M
             }
         }
 
-        /*
-        private void grnCreatebtn_Click(object sender, EventArgs e)
+        private void GRN_KeyDown(object sender, KeyEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(grnPOIDbox.Text) || string.IsNullOrWhiteSpace(grnwarehousebox.Text))
+            if (e.KeyCode == Keys.Escape)
             {
-                grnerrorlbl.Visible = true;
-            }
-            else
-            {
-                try
-                {
-                    string purchaseOrderId = grnPOIDbox.Text.Trim();
-                    string productid="";
-                    string quantity="";
-                    List<PurchaseOrderItem> items = programMethod.GetPurchaseOrderItems(purchaseOrderId);
-                    foreach (var item in items)
-                    {
-                        bool grnCreated = programMethod.createGRN(
-                            purchaseOrderId,
-                            productid= item.ProductID.ToString(),
-                            grnwarehousebox.Text.Trim(),
-                           quantity=  item.Quantity.ToString(), 
-                            grnDateTimePicker.Value.Date.ToString());
-
-                        if (grnCreated)
-                        {
-                            programMethod.increaseStock(item.ProductID, item.Quantity);
-                        }
-                        else
-                        {
-                            MessageBox.Show($"Failed to create GRN for ProductID: {item.ProductID}");
-                        }
-                    }
-                    MessageBox.Show(productid);
-                    MessageBox.Show(quantity);
-                    MessageBox.Show("Good Received Note Created Successfully");
-                    ClearForm();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                this.Close();
             }
         }
-        */
+
+        private void grnProductData_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+
+                if (int.Parse(grnProductData.Rows[e.RowIndex].Cells[4].Value.ToString()) < 0)
+                {
+                    Font boldFont = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+                    grnProductData.Rows[e.RowIndex].Cells[4].Style.ForeColor = Color.Red;
+                    errorlbl.Visible = true;
+                    return;
+
+                }
+                else
+                {
+                    grnProductData.Rows[e.RowIndex].Cells[4].Style.ForeColor = Color.Black;
+                    errorlbl.Visible = false;
+                }
+
+                    if (int.Parse(grnProductData.Rows[e.RowIndex].Cells[4].Value.ToString())  > int.Parse(dt.Rows[e.RowIndex]["OrderQuantity"].ToString()))
+                    {
+                        grnProductData.Rows[e.RowIndex].Cells[4].Style.ForeColor = Color.Red;
+                        errorlbl.Visible = true;
+                        return;
+                    }
+                    else
+                    {
+                    grnProductData.Rows[e.RowIndex].Cells[4].Style.ForeColor = Color.Black;
+                        errorlbl.Visible = false;
+
+                    }
+
+                for (int i = 0; grnProductData.Rows.Count > i; i++)
+                {
+                    if (grnProductData.Rows[i].Cells[4].Style.ForeColor == Color.Red)
+                    {
+                        errorlbl.Visible = true;
+                        break;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                grnProductData.Rows[e.RowIndex].Cells[4].Style.ForeColor = Color.Red;
+                errorlbl.Visible = true;
+            }
+        }
     }
 }

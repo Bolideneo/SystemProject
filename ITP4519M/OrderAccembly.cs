@@ -1,22 +1,6 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
-using Mysqlx.Crud;
-using Mysqlx.Session;
-using MySqlX.XDevAPI.Common;
-using ProgramMethod;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+﻿using System.Data;
 using System.Drawing.Drawing2D;
-using System.Drawing.Text;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ITP4519M
 {
