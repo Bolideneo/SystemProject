@@ -349,8 +349,9 @@ namespace ITP4519M
                 }
 
 
-                int quantityFollow = int.Parse(programMethod.getOrderItemFollowQuantity(orderID, orderItemdata.Rows[e.RowIndex].Cells[0].Value.ToString()));
-                if (int.Parse(orderItemdata.Rows[e.RowIndex].Cells[2].Value.ToString()) > quantityFollow)
+                 DataTable dataTable = programMethod.getOrderItemFollowQuantity(orderID, orderItemdata.Rows[e.RowIndex].Cells[0].Value.ToString());
+                 int quantityFollow = int.Parse(dataTable.Rows[0]["QuantityFollow"].ToString());
+                if (int.Parse(orderItemdata.Rows[e.RowIndex].Cells[2].Value.ToString()) > quantityFollow || int.Parse(orderItemdata.Rows[e.RowIndex].Cells[2].Value.ToString()) > int.Parse(dataTable.Rows[0]["QuantityInStock"].ToString()))
                 {
                     orderItemdata.Rows[e.RowIndex].Cells[2].Style.ForeColor = Color.Red;
                     accemblyerrorlbl.Visible = true;
@@ -448,11 +449,6 @@ namespace ITP4519M
             }
 
             checkBox.Checked = false;
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void orderAccemblyOrderItemdata_CellContentClick(object sender, DataGridViewCellEventArgs e)

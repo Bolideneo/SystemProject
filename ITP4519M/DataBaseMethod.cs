@@ -1987,15 +1987,18 @@ namespace ITP4519M
             return result.ToString();
         }
 
-        public string getOrderItemFollowQuantity(string orderID, string productID)
+        public DataTable getOrderItemFollowQuantity(string orderID, string productID)
         {
-            string sql = "SELECT QuantityFollow FROM orderitem WHERE OrderID =@orderID AND ProductID =@productID ";
+            //  string sql = "SELECT QuantityFollow FROM orderitem WHERE OrderID =@orderID AND ProductID =@productID ";
+            string sql = "SELECT QuantityFollow, QuantityInStock FROM orderitem,product WHERE OrderID =@orderID AND orderitem.ProductID =@productID AND product.ProductID = orderitem.ProductID";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             cmd.Parameters.AddWithValue("@orderID", orderID);
             cmd.Parameters.AddWithValue("@productID", productID);
-            Object result = cmd.ExecuteScalar();
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
             ServerConnect().Close();
-            return result.ToString();
+            return dataTable;
         }
 
         public DataTable getOrderDealerName(string orderID, string dealerID)
@@ -2318,6 +2321,20 @@ namespace ITP4519M
             ServerConnect().Close();
         }
 
+        public void LogStockOut(string logID, string productID,  string DeliveryQuantity)
+        {
+            DateTime Date = DateTime.Now;
+            string Desc =  " ProductID #" + productID +  " Quanitty #" + DeliveryQuantity + " reduced";
+            Date.ToString("yyyy-MM-dd HH:mm:ss");
+            string sql = "INSERT INTO log (LogID,Action, Type, TypeID, Description,LogDate) VALUES(@logID, 10, 'Product' , @TypeID,  @Desc,  @Date)";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            cmd.Parameters.AddWithValue("@logID", logID);
+            cmd.Parameters.AddWithValue("@TypeID", productID);
+            cmd.Parameters.AddWithValue("@Desc", Desc);
+            cmd.Parameters.AddWithValue("@Date", Date);
+            ServerConnect().Close();
+            cmd.ExecuteNonQuery();
+        }
 
 
 
@@ -3893,7 +3910,7 @@ namespace ITP4519M
             cmd.Parameters.AddWithValue("@TypeID", grnID);
             cmd.Parameters.AddWithValue("@Desc", Desc);
             cmd.Parameters.AddWithValue("@Date", Date);
-            cmd.Parameters.AddWithValue("@SecondTypeID", PurID);
+            cmd.Parameters.AddWithValue("@SecondTypeID", productID);
             ServerConnect().Close();
             cmd.ExecuteNonQuery();
         }
@@ -4177,9 +4194,11 @@ namespace ITP4519M
 
         public DataTable searchLogInfo(string keyword)
         {
-            string sql = "SELECT LogID, UserID, UserName AS DisplayName, TypeID AS 'Target ID', Description, LogDate FROM log WHERE UserID LIKE @keyword OR UserName LIKE @keyword OR TypeID LIKE @keyword OR SecondTypeID LIKE @keyword";
+            string sql = "SELECT LogID, UserID, UserName AS DisplayName, TypeID AS 'Target ID', Description, LogDate FROM log WHERE UserID LIKE @keyword OR UserName LIKE @keyword OR TypeID =@keyword OR SecondTypeID= @keyword";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-            cmd.Parameters.AddWithValue("@keyword", "%" + keyword + "%");
+            //cmd.Parameters.AddWithValue("@keyword", "%" + keyword + "%");
+            cmd.Parameters.AddWithValue("@keyword", keyword);
+            //  cmd.par
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
@@ -4441,6 +4460,18 @@ namespace ITP4519M
         {
             
             string sql = "SELECT SUM(ReceiveQty) AS 'Stock - In' FROM grn ";
+            MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
+            MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adat.Fill(dataTable);
+            ServerConnect().Close();
+            return dataTable;
+        }
+
+        public DataTable getStockOut()
+        {
+
+            string sql = "SELECT SUM(DeliveryQuantity) As 'Stock - Out'FROM systemproject.delivery, deliverynoteitem WHERE delivery.DeliveryID = deliverynoteitem.DeliveryID;";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
@@ -4757,10 +4788,10 @@ namespace ITP4519M
         public string getTodayGRNReceiveQty()
         {
             DateTime Date = DateTime.Now;
-            Date.ToString("yyyy-MM-dd");
-            string sql = "SELECT IFNULL(SUM(ReceiveQty),0) FROM grn WHERE ReceiveDate= @date ";
+            string dateFormat =  Date.ToString("yyyy-MM-dd");
+            string sql = "SELECT IFNULL(SUM(ReceiveQty),0) FROM grn WHERE DATE(ReceiveDate)= @date";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-            cmd.Parameters.AddWithValue("@date", Date);
+            cmd.Parameters.AddWithValue("@date", dateFormat);
             object result = cmd.ExecuteScalar();
             ServerConnect().Close();
             return result.ToString();
@@ -4769,14 +4800,15 @@ namespace ITP4519M
         public DataTable getDashboardToadyLabel()
         {
             DateTime Date = DateTime.Now;
-            Date.ToString("yyyy-MM-dd");
-            string sql = "SELECT IFNULL(COUNT(DISTINCT `order`.OrderID),0) AS OrderCount, IFNULL(SUM(orderitem.OrderedQuantity),0) AS TotalOrderedQuantity FROM `order`, orderitem WHERE `order`.OrderID  = orderitem.OrderID AND DATE(`order`.OrderDate) =  @date";
+            string DateFormat = Date.ToString("yyyy-MM-dd");
+            //string sql = "SELECT IFNULL(COUNT(DISTINCT `order`.OrderID),0) AS OrderCount, IFNULL(SUM(orderitem.OrderedQuantity),0) AS TotalOrderedQuantity FROM `order`, orderitem WHERE `order`.OrderID  = orderitem.OrderID AND DATE(`order`.OrderDate) =  @date + INTERVAL 1 DAY - INTERVAL 1 SECOND";
+            string sql = "SELECT COUNT(DISTINCT`order`.OrderID) AS OrderCount,  SUM(orderitem.OrderedQuantity) AS TotalOrderedQuantity FROM `order`, orderitem WHERE `order`.OrderID  = orderitem.OrderID AND DATE(`order`.OrderDate) = @date";
             MySqlCommand cmd = new MySqlCommand(sql, ServerConnect());
-            cmd.Parameters.AddWithValue("@date", Date);
+            cmd.Parameters.AddWithValue("@date", DateFormat);
             MySqlDataAdapter adat = new MySqlDataAdapter(cmd);
             DataTable dataTable = new DataTable();
             adat.Fill(dataTable);
-            ServerConnect().Close();
+            ServerConnect().Close();    
             return dataTable;
         }
 

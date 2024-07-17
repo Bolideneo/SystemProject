@@ -331,6 +331,7 @@ namespace ITP4519M
             panel1.Visible = true;
             POCaculatorbtn.Visible = true;
             errorlbl1.Visible = false;
+            polbl2.Visible = true;
             dt = programMethod.getOutstandingProductQuantityForPO();
             POProductData.DataSource = dt;
             Font boldFont = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -343,6 +344,8 @@ namespace ITP4519M
                 DataGridViewCell QISCell = row.Cells["QuantityInStock"];
                 string QIS = QISCell.Value?.ToString();
                 DataGridViewCell ReOrderCell = row.Cells["ReOrderQty"];
+                DataGridViewCell POQuantityCell = row.Cells["PO_Quantity"];
+
                 string reOrderQty = ReOrderCell.Value?.ToString();
                 double result = double.Parse(reOrderQty) * 0.001;
                 int resultInt = (int)result;
@@ -355,6 +358,8 @@ namespace ITP4519M
                 {
                     QuantityCell.Style.ForeColor = Color.Blue;
                     QuantityCell.Style.Font = boldFont;
+                    POQuantityCell.Style.ForeColor = Color.Blue;
+                    POQuantityCell.Style.Font = boldFont;
                     continue;
                 }
 
@@ -366,6 +371,8 @@ namespace ITP4519M
                         case "0":
                             QuantityCell.Style.ForeColor = Color.Red;
                             QuantityCell.Style.Font = boldFont;
+                            POQuantityCell.Style.ForeColor = Color.Red;
+                            POQuantityCell.Style.Font = boldFont;
                             break;
                         default:
                             break;
@@ -553,9 +560,31 @@ namespace ITP4519M
             Font boldFont = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             foreach (DataGridViewRow row in POProductData.Rows)
             {
+                row.Cells["PO_Quantity"].Style.Font = boldFont;
                 DataGridViewCell QuantityCell = row.Cells["FollowUpQuantity"];
                 string qty = QuantityCell.Value?.ToString();
-                row.Cells["PO_Quantity"].Style.Font = boldFont;
+                DataGridViewCell QISCell = row.Cells["QuantityInStock"];
+                string QIS = QISCell.Value?.ToString();
+                DataGridViewCell ReOrderCell = row.Cells["ReOrderQty"];
+                DataGridViewCell POQuantityCell = row.Cells["PO_Quantity"];
+
+                string reOrderQty = ReOrderCell.Value?.ToString();
+                double result = double.Parse(reOrderQty) * 0.001;
+                int resultInt = (int)result;
+                if (resultInt >= 0 && resultInt <= 1)
+                {
+                    resultInt = 1;
+                }
+
+                if (int.Parse(QIS) >= int.Parse(reOrderQty) - resultInt && int.Parse(QIS) < int.Parse(reOrderQty))
+                {
+                    QuantityCell.Style.ForeColor = Color.Blue;
+                    QuantityCell.Style.Font = boldFont;
+                    POQuantityCell.Style.ForeColor = Color.Blue;
+                    POQuantityCell.Style.Font = boldFont;
+                    continue;
+                }
+
 
                 if (qty != null)
                 {
@@ -564,6 +593,8 @@ namespace ITP4519M
                         case "0":
                             QuantityCell.Style.ForeColor = Color.Red;
                             QuantityCell.Style.Font = boldFont;
+                            POQuantityCell.Style.ForeColor = Color.Red;
+                            POQuantityCell.Style.Font = boldFont;
                             break;
                         default:
                             break;
@@ -581,6 +612,7 @@ namespace ITP4519M
             panel1.Visible = false;
             poalertlbl.Visible = false;
             POCaculatorbtn.Visible = false;
+            polbl2.Visible = false;
         }
 
         private void POProductData_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)

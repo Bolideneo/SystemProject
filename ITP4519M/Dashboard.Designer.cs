@@ -121,10 +121,11 @@ namespace ITP4519M
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
             DataGridViewCellStyle dataGridViewCellStyle63 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle64 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle65 = new DataGridViewCellStyle();
@@ -3040,6 +3041,7 @@ namespace ITP4519M
             title1.Name = "Sales Overview";
             title1.Text = "Sales Overview";
             orderchart2.Titles.Add(title1);
+            orderchart2.Visible = false;
             // 
             // orderchart1
             // 
@@ -3048,7 +3050,7 @@ namespace ITP4519M
             orderchart1.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
             orderchart1.Legends.Add(legend2);
-            orderchart1.Location = new Point(36, 182);
+            orderchart1.Location = new Point(48, 179);
             orderchart1.Name = "orderchart1";
             series2.ChartArea = "ChartArea1";
             series2.IsXValueIndexed = true;
@@ -4122,7 +4124,7 @@ namespace ITP4519M
             // 
             // dashboardpnl
             // 
-            dashboardpnl.BackColor = Color.Gainsboro;
+            dashboardpnl.BackColor = SystemColors.Menu;
             dashboardpnl.BackgroundImageLayout = ImageLayout.Stretch;
             dashboardpnl.BorderStyle = BorderStyle.Fixed3D;
             dashboardpnl.Controls.Add(dashordervalueChart);
@@ -4149,13 +4151,13 @@ namespace ITP4519M
             dashordervalueChart.Location = new Point(3, 251);
             dashordervalueChart.Margin = new Padding(3, 4, 3, 4);
             dashordervalueChart.Name = "dashordervalueChart";
-            dashordervalueChart.Size = new Size(1118, 468);
+            dashordervalueChart.Size = new Size(1118, 491);
             dashordervalueChart.TabIndex = 53;
             dashordervalueChart.Text = "chart1";
             // 
             // panel53
             // 
-            panel53.BorderStyle = BorderStyle.Fixed3D;
+            panel53.BorderStyle = BorderStyle.FixedSingle;
             panel53.Controls.Add(panel39);
             panel53.Controls.Add(panel38);
             panel53.Controls.Add(panel37);
@@ -4170,7 +4172,7 @@ namespace ITP4519M
             panel39.BorderStyle = BorderStyle.FixedSingle;
             panel39.Controls.Add(dashOrderlbl);
             panel39.Controls.Add(label41);
-            panel39.Location = new Point(216, 17);
+            panel39.Location = new Point(134, 17);
             panel39.Name = "panel39";
             panel39.Size = new Size(207, 89);
             panel39.TabIndex = 51;
@@ -4178,20 +4180,20 @@ namespace ITP4519M
             // dashOrderlbl
             // 
             dashOrderlbl.AutoSize = true;
-            dashOrderlbl.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 136);
-            dashOrderlbl.Location = new Point(62, 58);
+            dashOrderlbl.Font = new Font("Microsoft YaHei", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dashOrderlbl.Location = new Point(71, 50);
             dashOrderlbl.Name = "dashOrderlbl";
-            dashOrderlbl.Size = new Size(52, 17);
+            dashOrderlbl.Size = new Size(102, 31);
             dashOrderlbl.TabIndex = 16;
             dashOrderlbl.Text = "label40";
             // 
             // label41
             // 
             label41.AutoSize = true;
-            label41.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label41.Location = new Point(24, 9);
+            label41.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label41.Location = new Point(23, 6);
             label41.Name = "label41";
-            label41.Size = new Size(143, 24);
+            label41.Size = new Size(160, 25);
             label41.TabIndex = 12;
             label41.Text = "Today's Order";
             // 
@@ -4202,28 +4204,28 @@ namespace ITP4519M
             panel38.BorderStyle = BorderStyle.FixedSingle;
             panel38.Controls.Add(dashOutlbl);
             panel38.Controls.Add(label39);
-            panel38.Location = new Point(450, 17);
+            panel38.Location = new Point(373, 19);
             panel38.Name = "panel38";
-            panel38.Size = new Size(244, 89);
+            panel38.Size = new Size(310, 88);
             panel38.TabIndex = 50;
             // 
             // dashOutlbl
             // 
             dashOutlbl.AutoSize = true;
-            dashOutlbl.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 136);
-            dashOutlbl.Location = new Point(98, 61);
+            dashOutlbl.Font = new Font("Microsoft YaHei", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dashOutlbl.Location = new Point(127, 47);
             dashOutlbl.Name = "dashOutlbl";
-            dashOutlbl.Size = new Size(52, 17);
+            dashOutlbl.Size = new Size(102, 31);
             dashOutlbl.TabIndex = 17;
             dashOutlbl.Text = "label37";
             // 
             // label39
             // 
             label39.AutoSize = true;
-            label39.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label39.Location = new Point(-1, 7);
+            label39.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label39.Location = new Point(1, 1);
             label39.Name = "label39";
-            label39.Size = new Size(231, 20);
+            label39.Size = new Size(304, 25);
             label39.TabIndex = 12;
             label39.Text = "Today Quantity Despatched";
             // 
@@ -4234,26 +4236,26 @@ namespace ITP4519M
             panel37.Controls.Add(label34);
             panel37.Location = new Point(714, 17);
             panel37.Name = "panel37";
-            panel37.Size = new Size(227, 89);
+            panel37.Size = new Size(269, 89);
             panel37.TabIndex = 52;
             // 
             // dashInlbl
             // 
             dashInlbl.AutoSize = true;
-            dashInlbl.Font = new Font("Microsoft JhengHei UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 136);
-            dashInlbl.Location = new Point(79, 58);
+            dashInlbl.Font = new Font("Microsoft YaHei", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dashInlbl.Location = new Point(111, 46);
             dashInlbl.Name = "dashInlbl";
-            dashInlbl.Size = new Size(52, 17);
+            dashInlbl.Size = new Size(102, 31);
             dashInlbl.TabIndex = 18;
             dashInlbl.Text = "label33";
             // 
             // label34
             // 
             label34.AutoSize = true;
-            label34.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label34.Location = new Point(7, 4);
+            label34.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label34.Location = new Point(34, 2);
             label34.Name = "label34";
-            label34.Size = new Size(173, 24);
+            label34.Size = new Size(198, 25);
             label34.TabIndex = 12;
             label34.Text = "Today Quantity In";
             // 
@@ -4301,7 +4303,7 @@ namespace ITP4519M
             label1.AutoSize = true;
             label1.BackColor = SystemColors.GradientActiveCaption;
             label1.Font = new Font("Calibri", 24F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(290, 20);
+            label1.Location = new Point(264, 7);
             label1.Name = "label1";
             label1.Size = new Size(512, 39);
             label1.TabIndex = 2;
@@ -7094,6 +7096,9 @@ namespace ITP4519M
             reportStockPie.Size = new Size(422, 233);
             reportStockPie.TabIndex = 82;
             reportStockPie.Text = "dashordervalueChart";
+            title3.Name = "Title1";
+            title3.Text = "Percentage By Category";
+            reportStockPie.Titles.Add(title3);
             // 
             // StockStockReportButton
             // 
@@ -7170,11 +7175,11 @@ namespace ITP4519M
             stockInAndOutchart.Size = new Size(447, 236);
             stockInAndOutchart.TabIndex = 76;
             stockInAndOutchart.Text = "chart1";
-            title3.Alignment = ContentAlignment.TopLeft;
-            title3.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            title3.Name = "Sales Overview";
-            title3.Text = "Order Statistics";
-            stockInAndOutchart.Titles.Add(title3);
+            title4.Alignment = ContentAlignment.TopLeft;
+            title4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            title4.Name = "Sales Overview";
+            title4.Text = "Inventory In & Out ";
+            stockInAndOutchart.Titles.Add(title4);
             // 
             // panel51
             // 
@@ -7287,6 +7292,7 @@ namespace ITP4519M
             reportStockdata.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             reportStockdata.Size = new Size(1040, 318);
             reportStockdata.TabIndex = 40;
+            reportStockdata.DataBindingComplete += reportStockdata_DataBindingComplete;
             // 
             // CSVStockReportButton
             // 
@@ -7330,12 +7336,6 @@ namespace ITP4519M
             ClientSize = new Size(1308, 788);
             Controls.Add(closebtn);
             Controls.Add(listpnl);
-            Controls.Add(POpnl);
-            Controls.Add(GRNpnl);
-            Controls.Add(OrderAccemblypnl);
-            Controls.Add(contactpnl);
-            Controls.Add(outstandingOrderpnl);
-            Controls.Add(inventorypnl);
             Controls.Add(orderpnl);
             Controls.Add(deliverypnl);
             Controls.Add(StockReportpnl);
@@ -7346,6 +7346,12 @@ namespace ITP4519M
             Controls.Add(userspnl);
             Controls.Add(logpnl);
             Controls.Add(invoicepnl);
+            Controls.Add(POpnl);
+            Controls.Add(GRNpnl);
+            Controls.Add(OrderAccemblypnl);
+            Controls.Add(contactpnl);
+            Controls.Add(outstandingOrderpnl);
+            Controls.Add(inventorypnl);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Name = "Dashboard";

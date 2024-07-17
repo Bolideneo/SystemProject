@@ -52,13 +52,13 @@
             quantityAlertlbl = new Label();
             caculatorbtn = new Button();
             panel1 = new Panel();
+            polbl2 = new Label();
             poalertlbl = new Label();
             errorlbl = new Label();
             POProductData = new DataGridView();
             pobackbtn = new Button();
             POCaculatorbtn = new Button();
             errorlbl1 = new Label();
-            polbl2 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)POProductData).BeginInit();
             SuspendLayout();
@@ -69,7 +69,7 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Verdana", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.Location = new Point(749, 1);
-            button1.Margin = new Padding(2, 2, 2, 2);
+            button1.Margin = new Padding(2);
             button1.Name = "button1";
             button1.Size = new Size(35, 37);
             button1.TabIndex = 34;
@@ -317,6 +317,19 @@
             panel1.TabIndex = 119;
             panel1.Visible = false;
             // 
+            // polbl2
+            // 
+            polbl2.AutoSize = true;
+            polbl2.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            polbl2.ForeColor = Color.Blue;
+            polbl2.Location = new Point(11, 0);
+            polbl2.Margin = new Padding(4, 0, 4, 0);
+            polbl2.Name = "polbl2";
+            polbl2.Size = new Size(159, 17);
+            polbl2.TabIndex = 124;
+            polbl2.Text = "0.1% inaccuracy factors";
+            polbl2.Visible = false;
+            // 
             // poalertlbl
             // 
             poalertlbl.AutoSize = true;
@@ -353,10 +366,9 @@
             POProductData.Location = new Point(3, 44);
             POProductData.Margin = new Padding(3, 4, 3, 4);
             POProductData.Name = "POProductData";
-            POProductData.RowHeadersVisible = false;
             POProductData.RowHeadersWidth = 51;
             POProductData.RowTemplate.Height = 24;
-            POProductData.Size = new Size(784, 378);
+            POProductData.Size = new Size(784, 392);
             POProductData.TabIndex = 121;
             POProductData.CellContentClick += POProductData_CellContentClick;
             POProductData.CellDoubleClick += POProductData_CellDoubleClick;
@@ -398,19 +410,6 @@
             errorlbl1.TabIndex = 122;
             errorlbl1.Text = "Please select a supplier and a product.";
             errorlbl1.Visible = false;
-            // 
-            // polbl2
-            // 
-            polbl2.AutoSize = true;
-            polbl2.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            polbl2.ForeColor = Color.Blue;
-            polbl2.Location = new Point(11, 0);
-            polbl2.Margin = new Padding(4, 0, 4, 0);
-            polbl2.Name = "polbl2";
-            polbl2.Size = new Size(159, 17);
-            polbl2.TabIndex = 124;
-            polbl2.Text = "0.1% inaccuracy factors";
-            polbl2.Visible = false;
             // 
             // CreatePurchaseOrder
             // 

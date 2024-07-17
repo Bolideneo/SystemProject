@@ -131,6 +131,7 @@ namespace ITP4519M
         private string invoiceDate;
         private string poID;
         private string[] array;
+        private string[] Orderarray;
         private bool isDealerDVG;
         private bool isOrderFilter = false;
         private int PageSize = 5;
@@ -273,10 +274,10 @@ namespace ITP4519M
             }
 
             // Add series to the chart
-            AddSeriesToChart(dashordervalueChart, "A-Sheet Metal Quantity", SeriesChartType.Line, Color.Black, AxisType.Primary);
-            AddSeriesToChart(dashordervalueChart, "B-Major Assemblies Quantity", SeriesChartType.Line, Color.Blue, AxisType.Primary);
-            AddSeriesToChart(dashordervalueChart, "C-Light Components Quantity", SeriesChartType.Line, Color.Brown, AxisType.Primary);
-            AddSeriesToChart(dashordervalueChart, "D-Accessories Quantity", SeriesChartType.Line, Color.Red, AxisType.Primary);
+            //AddSeriesToChart(dashordervalueChart, "A-Sheet Metal Quantity", SeriesChartType.Line, Color.Black, AxisType.Primary);
+            //AddSeriesToChart(dashordervalueChart, "B-Major Assemblies Quantity", SeriesChartType.Line, Color.Blue, AxisType.Primary);
+            //AddSeriesToChart(dashordervalueChart, "C-Light Components Quantity", SeriesChartType.Line, Color.Brown, AxisType.Primary);
+            //AddSeriesToChart(dashordervalueChart, "D-Accessories Quantity", SeriesChartType.Line, Color.Red, AxisType.Primary);
 
             AddSeriesToChart(dashordervalueChart, "A-Sheet Metal Sum", SeriesChartType.Line, Color.DarkGray, AxisType.Secondary);
             AddSeriesToChart(dashordervalueChart, "B-Major Assemblies Sum", SeriesChartType.Line, Color.LightBlue, AxisType.Secondary);
@@ -292,7 +293,7 @@ namespace ITP4519M
                 string category = row["Category"].ToString();
 
                 // Add data points to the correct series
-                dashordervalueChart.Series[category + " Quantity"].Points.AddXY(date, orderQuantity);
+                //dashordervalueChart.Series[category + " Quantity"].Points.AddXY(date, orderQuantity);
                 dashordervalueChart.Series[category + " Sum"].Points.AddXY(date, sum);
             }
 
@@ -498,11 +499,11 @@ namespace ITP4519M
 
         private void orderLabelinfo()
         {
-            array = programMethod.orderLabelinfo();
-            orderAllbox.Text = array[0];
-            orderCompletedlbl.Text = array[1];
-            orderCancelbox.Text = array[2];
-            orderActivebox.Text = array[3];
+            Orderarray = programMethod.orderLabelinfo();
+            orderAllbox.Text = Orderarray[0];
+            orderCompletedlbl.Text = Orderarray[1];
+            orderCancelbox.Text = Orderarray[2];
+            orderActivebox.Text = Orderarray[3];
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
@@ -2064,36 +2065,37 @@ namespace ITP4519M
             switch (orderStatusCombox.SelectedIndex)
             {
                 case 0:
-                    OrderRowCount = int.Parse(array[5]);
-                    OrderTotalPage = int.Parse(array[5]) / OrderPgSize;
+                    OrderRowCount = int.Parse(Orderarray[5]);
+                    OrderTotalPage = int.Parse(Orderarray[5]) / OrderPgSize;
                     if (OrderRowCount % OrderPgSize > 0)
                         OrderTotalPage += 1;
                     break;
 
                 case 1:
-                    OrderRowCount = int.Parse(array[4]);
-                    OrderTotalPage = int.Parse(array[4]) / OrderPgSize;
+                    OrderRowCount = int.Parse(Orderarray[4]);
+                    OrderTotalPage = int.Parse(Orderarray[4]) / OrderPgSize;
                     if (OrderRowCount % OrderPgSize > 0)
                         OrderTotalPage += 1;
                     break;
 
                 case 2:
-                    OrderRowCount = int.Parse(array[6]);
-                    OrderTotalPage = int.Parse(array[6]) / OrderPgSize;
+                    OrderRowCount = int.Parse(Orderarray[6]);
+                    OrderTotalPage = int.Parse(Orderarray[6]) / OrderPgSize;
                     if (OrderRowCount % OrderPgSize > 0)
                         OrderTotalPage += 1;
                     break;
 
                 case 3:
-                    OrderRowCount = int.Parse(array[2]);
-                    OrderTotalPage = int.Parse(array[2]) / OrderPgSize;
+                    OrderRowCount = int.Parse(Orderarray[2]);
+                    OrderTotalPage = int.Parse(Orderarray[2]) / OrderPgSize;
                     if (OrderRowCount % OrderPgSize > 0)
                         OrderTotalPage += 1;
                     break;
 
                 case 4:
-                    OrderRowCount = int.Parse(array[1]);
-                    OrderTotalPage = int.Parse(array[1]) / OrderPgSize;
+                    OrderRowCount = int.Parse(Orderarray[1]);
+                  //  MessageBox.Show(OrderRowCount.ToString());
+                    OrderTotalPage = int.Parse(Orderarray[1]) / OrderPgSize;
                     if (OrderRowCount % OrderPgSize > 0)
                         OrderTotalPage += 1;
                     break;
@@ -2325,7 +2327,10 @@ namespace ITP4519M
 
             lastClickedButton = (Button)sender;
             lastClickedButton.ForeColor = Color.Gray;
-
+            string[] array = programMethod.getDashboardToadyLabel();
+            dashOrderlbl.Text = array[0];
+            dashOutlbl.Text = array[1];
+            dashInlbl.Text = array[2];
             ShowPanel(dashboardpnl);
         }
 
@@ -2591,15 +2596,17 @@ namespace ITP4519M
             {
                 series.Points.Clear();
             }
-            ShowPanel(StockReportpnl);
+
             reportStockdata.DataSource = programMethod.getTopSellingProductReport();
             stockReportCategorybox.DataSource = programMethod.getProductCategory();
             stockReportCategorybox.DisplayMember = "ProductCategory";
 
             DataTable dataTable = programMethod.getStockInAndOut();
+            DataTable dataTable1 = programMethod.getStockOut();
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
                 stockInAndOutchart.Series["Stock"].Points.AddXY("Sotck - In", dataTable.Rows[i][0].ToString());
+                stockInAndOutchart.Series["Stock"].Points.AddXY("Sotck - Out", dataTable1.Rows[i][0].ToString());
             }
 
 
@@ -2608,6 +2615,7 @@ namespace ITP4519M
             {
                 reportStockPie.Series["Stock"].Points.AddXY(dt.Rows[i][0].ToString(), dt.Rows[i][1].ToString());
             }
+            ShowPanel(StockReportpnl);
         }
 
         private void button17_Click(object sender, EventArgs e)
@@ -3344,6 +3352,7 @@ namespace ITP4519M
 
         private void OrderStockReportButton_Click(object sender, EventArgs e)
         {
+            StockReportpnl.Visible = false;
             ShowPanel(settingpnl);
         }
 
@@ -3446,7 +3455,7 @@ namespace ITP4519M
             {
                 orderdata.Rows[0].Selected = false;
                 SetRowHeights(orderdata, OrderPgSize);
-                orderIndexlbl.Text = (OrderPgSize * (OrderPageIndex - 1) + 1) + " - " + ((OrderPageIndex - 1) * OrderPgSize + orderdata.RowCount) + " of " + OrderRowCount;
+                orderIndexlbl.Text = (OrderPgSize * (OrderPageIndex - 1) + 1) + " - " + ((OrderPageIndex - 1) * OrderPgSize + orderdata.Rows.Count) + " of " + OrderRowCount;
             }
 
         }
@@ -3613,6 +3622,14 @@ namespace ITP4519M
             {
                 DeliverydeliveredDate.BorderColor = Color.Red;
                 orderDate.Visible = true;
+            }
+        }
+
+        private void reportStockdata_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            if(reportStockdata != null)
+            {
+                reportStockdata.Rows[0].Selected = false;
             }
         }
     }

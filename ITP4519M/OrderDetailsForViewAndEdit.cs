@@ -262,39 +262,39 @@ namespace ITP4519M
         private void createOrderbtn_Click(object sender, EventArgs e)
         {
 
-            if (orderContactNamebox.Text == "")
-            {
-                isWrongFormat2 = true;
-                label1.Visible = true;
-                pictureBox1.Visible = true;
-                Refresh();
+            //if (orderContactNamebox.Text == "")
+            //{
+            //    isWrongFormat2 = true;
+            //    label1.Visible = true;
+            //    pictureBox1.Visible = true;
+            //    Refresh();
 
-            }
-            else
-            {
+            //}
+            //else
+            //{
 
-                isWrongFormat2 = false;
-                label1.Visible = false;
-                pictureBox1.Visible = false;
-                Refresh();
-            }
+            //    isWrongFormat2 = false;
+            //    label1.Visible = false;
+            //    pictureBox1.Visible = false;
+            //    Refresh();
+            //}
 
-            if (OrderContactPhonebox.Text == "")
-            {
-                isWrongFormat3 = true;
-                label2.Visible = true;
-                pictureBox2.Visible = true;
-                Refresh();
+            //if (OrderContactPhonebox.Text == "")
+            //{
+            //    isWrongFormat3 = true;
+            //    label2.Visible = true;
+            //    pictureBox2.Visible = true;
+            //    Refresh();
 
-            }
-            else
-            {
-                isWrongFormat3 = false;
-                label2.Visible = false;
-                pictureBox2.Visible = false;
-                Refresh();
+            //}
+            //else
+            //{
+            //    isWrongFormat3 = false;
+            //    label2.Visible = false;
+            //    pictureBox2.Visible = false;
+            //    Refresh();
 
-            }
+            //}
 
             if (orderDateBox.Text == "")
             {

@@ -98,6 +98,7 @@ namespace ProgramMethod
 
                 if (dataBaseMethod.calLoginFailedCount(userID) % 5 == 0)
                 {
+                    MessageBox.Show(" This account has been locked due to five failed logins. Please contact the IT department to unlock it.");
                     disableUserAccount(userID);
                 }
 
@@ -1018,7 +1019,7 @@ namespace ProgramMethod
                         }
 
                         dataBaseMethod.createDeliveryNoteItem(deliveryID, dt.Rows[i]["ProductID"].ToString(), "N/A", dt.Rows[i]["ActualDespatchQuantity"].ToString(), dt.Rows[i]["QuantityFollow"].ToString());
-
+                        LogStockOut(dt.Rows[i]["ProductID"].ToString(),dt.Rows[i]["ActualDespatchQuantity"].ToString());
                     }
                 }
                 else
@@ -1034,6 +1035,7 @@ namespace ProgramMethod
                         string orderQuantity = dataBaseMethod.getOrderItemOrderedQuantity(orderID, dt.Rows[i]["ProductID"].ToString());
                         int preQty = int.Parse(orderQuantity) - int.Parse(dt.Rows[i]["ActualDespatchQuantity"].ToString()) - int.Parse(dt.Rows[i]["QuantityFollow"].ToString());
                         dataBaseMethod.createDeliveryNoteItem(deliveryID, dt.Rows[i]["ProductID"].ToString(), preQty.ToString(), dt.Rows[i]["ActualDespatchQuantity"].ToString(), dt.Rows[i]["QuantityFollow"].ToString());
+                        LogStockOut(dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["ActualDespatchQuantity"].ToString());
 
                     }
                 }
@@ -2097,7 +2099,9 @@ namespace ProgramMethod
                     //for (int i = orderItemdata.Rows.Count -1 ; i < orderItemdata.Rows.Count; i++)
                     do
                     {
-                        string followQtyStr = dataBaseMethod.getOrderItemFollowQuantity(orderID, orderItemdata.Rows[orderItemdata.Rows.Count - 1].Cells[0].Value.ToString());
+                        DataTable result = dataBaseMethod.getOrderItemFollowQuantity(orderID, orderItemdata.Rows[orderItemdata.Rows.Count - 1].Cells[0].Value.ToString());
+                        string followQtyStr  = result.Rows[0]["QuantityFollow"].ToString();
+                       // MessageBox.Show(followQtyStr);
                         string itemQtyStr = orderItemdata.Rows[orderItemdata.Rows.Count - 1].Cells[2].Value.ToString();
 
                         int followQty, itemQty;
@@ -2118,12 +2122,13 @@ namespace ProgramMethod
             catch (Exception ex)
             {
                 // MessageBox.Show(ex.Message);
-                MessageBox.Show("Please input number");
+                // MessageBox.Show("Calculator Error!");
+                MessageBox.Show(ex.Message);
             }
             return qty.ToString();
         }
 
-        public string getOrderItemFollowQuantity(string orderID, string productID)
+        public DataTable getOrderItemFollowQuantity(string orderID, string productID)
         {
             return dataBaseMethod.getOrderItemFollowQuantity(orderID, productID);
         }
@@ -2650,13 +2655,22 @@ namespace ProgramMethod
                 dataBaseMethod.LogUserLogOut(logID, userID, userName);
             }
         }
-
+        
         public void LogDeleteOutstandingOrder(string outstandingOrder, string orderID, string productID)
         {
             string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
             if (logID != null)
             {
                 dataBaseMethod.LogDeleteOutstandingOrder(logID, LoginUserID, LoginUserName, outstandingOrder,orderID, productID);
+            }
+        }
+
+        public void LogStockOut(string productID, string qty)
+        {
+            string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
+            if (logID != null)
+            {
+                dataBaseMethod.LogStockOut(logID, productID, qty);
             }
         }
 
@@ -2761,7 +2775,13 @@ namespace ProgramMethod
             return dataBaseMethod.getStockInAndOut();
         }
 
-        
+        public DataTable getStockOut()
+        {
+            return dataBaseMethod.getStockOut();
+        }
+
+
+
         public void LogPrintSalesOrderReportCSV(string userID, string userName)
         {
             string logID = "LOG" + (int.Parse(dataBaseMethod.getLogID()) + 1).ToString("000000");
@@ -2792,12 +2812,12 @@ namespace ProgramMethod
                 allOrder = allOrder + int.Parse(dt.Rows[i][1].ToString());
             }
             temp[0] = allOrder.ToString();
-            temp[1] = dt.Rows[4][1].ToString();
+            temp[1] = dt.Rows[3][1].ToString();
             temp[2] = dt.Rows[0][1].ToString();
-            temp[3] = (allOrder - int.Parse(dt.Rows[4][1].ToString())).ToString();
+            temp[3] = (int.Parse(dt.Rows[1][1].ToString()) +  int.Parse(dt.Rows[2][1].ToString()) + int.Parse(dt.Rows[4][1].ToString())).ToString();
             temp[4] = dt.Rows[1][1].ToString(); // partial
-            temp[5] = dt.Rows[2][1].ToString();// Orderprocessing
-            temp[6] = dt.Rows[3][1].ToString();//all
+            temp[5] = dt.Rows[4][1].ToString();// Orderprocessing
+            temp[6] = dt.Rows[2][1].ToString();//all
             return temp;
         }
 
