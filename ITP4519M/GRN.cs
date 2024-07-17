@@ -29,6 +29,7 @@ namespace ITP4519M
         private Point dragCursorPoint;
         private Point dragFormPoint;
         private DataTable dt;
+        public event EventHandler OperationCompleted;
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
@@ -66,6 +67,7 @@ namespace ITP4519M
                     break;
                 case OperationMode.New:
                     grnDateTimePicker.MinDate = DateTime.Now;
+                    grnDateTimePicker.MaxDate = DateTime.Now.AddDays(7);
                     grnPOIDbox.SelectedIndex = -1;
                     programMethod.GRNSearchAutoComplete(grnPOIDbox);
                     grnPOIDbox.ValueMember = "PurchaseOrderID";
@@ -112,7 +114,7 @@ namespace ITP4519M
 
         private void grnCreatebtn_Click(object sender, EventArgs e)
         {
-            if (grnPOIDbox.Text == "")
+            if (grnPOIDbox.Text == "" || orderDate.Visible == true)
             {
                 grnerrorlbl.Visible = true;
                 return;
@@ -123,7 +125,7 @@ namespace ITP4519M
                 try
                 {
                     string poID = grnPOIDbox.Text;
-                    if(errorlbl.Visible == true)
+                    if (errorlbl.Visible == true)
                     {
                         grnerrorlbl.Visible = true;
                         return;
@@ -138,8 +140,8 @@ namespace ITP4519M
 
                     }
                     MessageBox.Show("Good Received Note Created Successfully");
+                    OperationCompleted?.Invoke(sender, e);
                     ClearForm();
-                    //MessageBox.Show("Please try again!");
                 }
                 catch (Exception ex)
                 {
@@ -156,7 +158,7 @@ namespace ITP4519M
             {
                 return;
             }
-            if (grnPOIDbox.SelectedItem.ToString() == "------------New Order------------"  || grnPOIDbox.SelectedItem.ToString() == "-----------Outstanding------------")
+            if (grnPOIDbox.SelectedItem.ToString() == "------------New Order------------" || grnPOIDbox.SelectedItem.ToString() == "-----------Outstanding------------")
             {
                 grnPOIDbox.SelectedIndex = -1;
                 return;
@@ -225,18 +227,18 @@ namespace ITP4519M
                     errorlbl.Visible = false;
                 }
 
-                    if (int.Parse(grnProductData.Rows[e.RowIndex].Cells[4].Value.ToString())  > int.Parse(dt.Rows[e.RowIndex]["OrderQuantity"].ToString()))
-                    {
-                        grnProductData.Rows[e.RowIndex].Cells[4].Style.ForeColor = Color.Red;
-                        errorlbl.Visible = true;
-                        return;
-                    }
-                    else
-                    {
+                if (int.Parse(grnProductData.Rows[e.RowIndex].Cells[4].Value.ToString()) > int.Parse(dt.Rows[e.RowIndex]["OrderQuantity"].ToString()))
+                {
+                    grnProductData.Rows[e.RowIndex].Cells[4].Style.ForeColor = Color.Red;
+                    errorlbl.Visible = true;
+                    return;
+                }
+                else
+                {
                     grnProductData.Rows[e.RowIndex].Cells[4].Style.ForeColor = Color.Black;
-                        errorlbl.Visible = false;
+                    errorlbl.Visible = false;
 
-                    }
+                }
 
                 for (int i = 0; grnProductData.Rows.Count > i; i++)
                 {
@@ -253,6 +255,32 @@ namespace ITP4519M
                 grnProductData.Rows[e.RowIndex].Cells[4].Style.ForeColor = Color.Red;
                 errorlbl.Visible = true;
             }
+        }
+
+        private void grnDateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (grnDateTimePicker.Value.DayOfWeek == DayOfWeek.Saturday || grnDateTimePicker.Value.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    grnDateTimePicker.BorderColor = Color.Red;
+                    orderDate.Visible = true;
+                    // DeliverydateTimePicker.Value = DateTime.Parse(dateTime[0]);
+
+                }
+                else
+                {
+                    orderDate.Visible = false;
+                    grnDateTimePicker.BorderColor = Color.Black;
+                }
+            }
+            catch (Exception ex)
+            {
+                grnDateTimePicker.BorderColor = Color.Red;
+                orderDate.Visible = true;
+            }
+
         }
     }
 }

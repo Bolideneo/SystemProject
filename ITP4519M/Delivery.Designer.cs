@@ -140,9 +140,9 @@ namespace ITP4519M
             orderDate.Location = new Point(243, 175);
             orderDate.Margin = new Padding(5, 0, 5, 0);
             orderDate.Name = "orderDate";
-            orderDate.Size = new Size(165, 20);
+            orderDate.Size = new Size(204, 20);
             orderDate.TabIndex = 100;
-            orderDate.Text = "Please select a date.";
+            orderDate.Text = "Please select a valid date.";
             orderDate.Visible = false;
             // 
             // deliveryOrderidbox

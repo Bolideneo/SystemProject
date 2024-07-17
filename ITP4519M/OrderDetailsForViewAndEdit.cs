@@ -44,6 +44,7 @@ namespace ITP4519M
         private bool dragging = false;
         private Point dragCursorPoint;
         private Point dragFormPoint;
+        public event EventHandler OperationCompleted;
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
@@ -160,7 +161,7 @@ namespace ITP4519M
             dealerNameBox.Text = string.Empty;
             dealerCompanyBox.Text = string.Empty;
             phoneNumBox.Text = string.Empty;
-            productOfOrderdata.Rows.Clear();
+            //productOfOrderdata.Rows.Clear();
         }
 
         private void SetReadOnly(bool readOnly)
@@ -261,24 +262,6 @@ namespace ITP4519M
         private void createOrderbtn_Click(object sender, EventArgs e)
         {
 
-
-            if (dealerInfobox.Text == "")
-            {
-                isWrongFormat = true;
-                usernameAlertBox.Visible = true;
-                usernameAlertlbl.Visible = true;
-                dealerInfobox.BorderColor = Color.Red;
-                Refresh();
-            }
-            else
-            {
-                isWrongFormat = false;
-                usernameAlertBox.Visible = false;
-                usernameAlertlbl.Visible = false;
-                dealerInfobox.BorderColor = Color.Black;
-                Refresh();
-
-            }
             if (orderContactNamebox.Text == "")
             {
                 isWrongFormat2 = true;
@@ -369,17 +352,11 @@ namespace ITP4519M
                 address = orderDifferentDeliverybox.Text.Trim();
             }
 
-            string orderID;
-            orderID = programMethod.createSalesOrder(dealerIDBox.Text.Trim(), dealerNameBox.Text.Trim(), orderContactNamebox.Text.Trim(), OrderContactPhonebox.Text.Trim(), phoneNumBox.Text.Trim(), goodsAddressBox.Text.Trim(), address, orderDateBox.Value.ToString(), ordertotallbl.Text.ToString(), productOfOrderdata);
-            if (orderID != null)
-            {
-                programMethod.LogCreateSalesOrder(this.userID, this.userName, orderID);
-            }
+            programMethod.UpdateSalesOrder(orderID, dealerIDBox.Text.Trim(), dealerNameBox.Text.Trim(), orderContactNamebox.Text.Trim(), OrderContactPhonebox.Text.Trim(), phoneNumBox.Text.Trim(), goodsAddressBox.Text.Trim(), address, orderDateBox.Value.ToString(), ordertotallbl.Text.ToString(), productOfOrderdata);
+            MessageBox.Show("Order Updated Successfully " + "Order ID: " + orderID);
+            OperationCompleted?.Invoke(sender, e);
 
             ClearForm();
-            MessageBox.Show("Order Create Successfully " + "Order ID: " + orderID);
-
-
         }
 
         public void orderView(string orderID, string dealerID)
@@ -539,10 +516,8 @@ namespace ITP4519M
         }
 
         private void comboBox2_KeyDown(object sender, KeyEventArgs e)
-        {  //&& dealerInfobox.Text.Trim().Length != 0
-            //dealerInfobox.Focus();
+        {  
             string text = dealerInfobox.Text.Trim();
-            //dealerInfobox.DroppedDown = false;
             if (e.KeyCode == Keys.Enter)
             {
                 programMethod.DealerSearchAutoComplete(dealerInfobox, dealerInfobox.Text.Trim());
@@ -558,7 +533,7 @@ namespace ITP4519M
                 }
                 Cursor.Current = Cursors.Default;
             }
-            //  dealerInfobox.SelectedIndex = -1;
+
             dealerInfobox.Text = text;
             dealerInfobox.SelectionStart = dealerInfobox.Text.Length;
         }
@@ -644,7 +619,9 @@ namespace ITP4519M
                 }
 
                 DataTable result = programMethod.searchOrderItemDetail(productSearchbox.Text.Trim());
-                this.productOfOrderdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, result.Rows[0]["UnitPrice"], "100");
+                DataTable dataTable = (DataTable)productOfOrderdata.DataSource;
+                dataTable.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, result.Rows[0]["UnitPrice"], "100");
+                dataTable.AcceptChanges();
                 //  productSearchbox1.Text = "";
 
             }

@@ -44,7 +44,7 @@ namespace ITP4519M
         {
             InitializeComponent();
             _mode = mode;
-            DeliverydateTimePicker.MinDate = DateTime.Today;
+            DeliverydateTimePicker.Value = DateTime.Today;
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 40, 40));
         }
@@ -160,11 +160,13 @@ namespace ITP4519M
             {
                 return;
             }
-            DeliverydateTimePicker.MinDate = DateTime.Parse("2024-01-01");
-            DeliverydateTimePicker.MaxDate = DateTime.Now.AddDays(1);
-            dateTime = programMethod.getOrderDateForDelivery(deliveryOrderidbox.Text.Trim());
+             DeliverydateTimePicker.MinDate = DateTime.Parse("2024-01-01");
+             DeliverydateTimePicker.MaxDate = DateTime.Parse("2025-01-01");
+            //DeliverydateTimePicker.MaxDate = DateTime.Now.AddDays(1);
+            dateTime = programMethod.getOrderDateForDelivery(deliveryOrderidbox.Text.Trim()); 
             DeliverydateTimePicker.MinDate = DateTime.Parse(dateTime[0]);
             DeliverydateTimePicker.MaxDate = DateTime.Parse(dateTime[1]);
+
 
         }
 

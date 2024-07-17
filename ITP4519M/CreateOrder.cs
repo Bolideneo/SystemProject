@@ -51,6 +51,7 @@ namespace ITP4519M
         private string text;
         private Keys m_keyCode;
         private int index;
+        public event EventHandler OperationCompleted;
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
@@ -107,8 +108,6 @@ namespace ITP4519M
                     //programMethod.productSearchAutoComplete(orderAccemblyAssignbox);
                     orderDateBox.MinDate = DateTime.Today;
                     orderDateBox.MaxDate = DateTime.Today.AddDays(7);
-                    productOfOrderdata.Columns.Add("Numbering", "NO");
-                    productOfOrderdata.Columns[0].Width = 50;
                     productOfOrderdata.Columns.Add("ProductID", "Product ID");
                     productOfOrderdata.Columns.Add("ProductName", "Product Name");
                     productOfOrderdata.Columns.Add("Quantity", "Quantity");
@@ -290,7 +289,7 @@ namespace ITP4519M
 
             for (int i = 0; i < productOfOrderdata.Rows.Count; i++)
             {
-                int quantity = Convert.ToInt32(productOfOrderdata.Rows[i].Cells[3].Value);
+                int quantity = Convert.ToInt32(productOfOrderdata.Rows[i].Cells[2].Value);
 
                 bool isGreaterThanZero = (quantity > 0);
                 checkList.Add(isGreaterThanZero);
@@ -316,9 +315,8 @@ namespace ITP4519M
             {
                 programMethod.LogCreateSalesOrder(this.userID, this.userName, orderID);
             }
-
-
             MessageBox.Show("Order Create Successfully " + "Order ID: " + orderID);
+            OperationCompleted?.Invoke(sender, e);
             ClearForm();
 
         }
@@ -340,6 +338,7 @@ namespace ITP4519M
             if (orderData != null && orderData.Index >= 0 && orderData.Index < productOfOrderdata.Rows.Count)
             {
                 this.productOfOrderdata.Rows.Remove(orderData);
+                
             }
 
             ordertotallbl.Text = "" + programMethod.calProductTotalAmount(productOfOrderdata);
@@ -358,8 +357,8 @@ namespace ITP4519M
                 if (this.productOfOrderdata.ContainsFocus)
                 {
                     this.productOfOrderdata.EndEdit();
-                    if (this.productOfOrderdata.CurrentRow.IsNewRow && this.productOfOrderdata.Rows.Count > 1)
-                        this.productOfOrderdata.CurrentCell = this.productOfOrderdata.Rows[this.productOfOrderdata.Rows.Count - 1].Cells[2];
+                    //if (this.productOfOrderdata.CurrentRow.IsNewRow && this.productOfOrderdata.Rows.Count > 1)
+                    //    this.productOfOrderdata.CurrentCell = this.productOfOrderdata.Rows[this.productOfOrderdata.Rows.Count - 1].Cells[2];
                     ordertotallbl.Text = "" + programMethod.calProductTotalAmount(productOfOrderdata);
                     return true;
                 }
@@ -540,13 +539,13 @@ namespace ITP4519M
                 for (int i = 0; i < productOfOrderdata.Rows.Count; i++)
                 {
 
-                    if (productOfOrderdata.Rows[i].Cells[1].Value.ToString() == productSearchbox.Text.Trim() || productOfOrderdata.Rows[i].Cells[2].Value.ToString() == productSearchbox.Text.Trim())
+                    if (productOfOrderdata.Rows[i].Cells[0].Value.ToString() == productSearchbox.Text.Trim() || productOfOrderdata.Rows[i].Cells[1].Value.ToString() == productSearchbox.Text.Trim())
                     {
                         productSearchbox.Text = "";
                         MessageBox.Show("Product is Added");
                         return;
                     }
-                    if (int.Parse(productOfOrderdata.Rows[i].Cells[3].Value.ToString()) == 0)
+                    if (int.Parse(productOfOrderdata.Rows[i].Cells[2].Value.ToString()) == 0)
                     {
                         productSearchbox.Text = "";
                         MessageBox.Show("Please Add One quantity");
@@ -555,7 +554,7 @@ namespace ITP4519M
                 }
 
                 DataTable result = programMethod.searchOrderItemDetail(productSearchbox.Text.Trim());
-                this.productOfOrderdata.Rows.Add("", result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, result.Rows[0]["UnitPrice"], "100");
+                this.productOfOrderdata.Rows.Add(result.Rows[0]["ProductID"].ToString(), result.Rows[0]["ProductName"].ToString(), 0, result.Rows[0]["UnitPrice"], "100");
 
             }
         }
@@ -620,32 +619,32 @@ namespace ITP4519M
         }
 
 
-        private void productOfOrderdata_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
-        {
-            int cct = productOfOrderdata.Rows.Count;
-            int cnt = 0;
-            int replace_no = 1;
+        //private void productOfOrderdata_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        //{
+        //    int cct = productOfOrderdata.Rows.Count;
+        //    int cnt = 0;
+        //    int replace_no = 1;
 
 
-            while (cnt < cct)
-            {
-                productOfOrderdata.Rows[cnt].Cells[0].Value = "No." + replace_no.ToString();
-                cnt = cnt + 1;
-                replace_no = replace_no + 1;
-            }
+        //    while (cnt < cct)
+        //    {
+        //        productOfOrderdata.Rows[cnt].Cells[0].Value = "No." + replace_no.ToString();
+        //        cnt = cnt + 1;
+        //        replace_no = replace_no + 1;
+        //    }
 
 
-        }
+        //}
 
-        private void productOfOrderdata_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            for (int i = 0; i < e.RowCount; i++)
-            {
-                productOfOrderdata.Rows[e.RowIndex + i].Cells[0].Value = "No." + (e.RowIndex + 1 + i).ToString();
+        //private void productOfOrderdata_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        //{
+        //    for (int i = 0; i < e.RowCount; i++)
+        //    {
+        //        productOfOrderdata.Rows[e.RowIndex + i].Cells[0].Value = "No." + (e.RowIndex + 1 + i).ToString();
 
-            }
+        //    }
 
-        }
+        //}
 
         private void CreateOrder_KeyDown(object sender, KeyEventArgs e)
         {

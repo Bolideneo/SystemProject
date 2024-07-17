@@ -75,10 +75,8 @@ namespace ITP4519M
         {
 
             try
-            {   //delivery, orderitem
+            {  
                 DataTable deliveryOrderDetails = programMethod.getDeliveryOfOrderDetails(deliveryID);
-                //DataTable orderDetails = programMethod.getOrderDetails(orderID);
-                //DataTable deliveryNoteItem = programMethod.getDeliveryNoteItem(deliveryID);
                 int orderCount = programMethod.getMaxUpdateCount(orderID);
                 DataTable deliveryNoteItem = programMethod.getOrderItemDetailforDeliveryANDInvoice(deliveryID);
 

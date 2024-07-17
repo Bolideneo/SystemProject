@@ -19,25 +19,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using static ITP4519M.DataBaseMethod;
 using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 using static ProgramMethod.ProgramMethod;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
 
 namespace ITP4519M
 {
     public partial class CreatePurchaseOrder : Form
     {
         ProgramMethod.ProgramMethod programMethod = new ProgramMethod.ProgramMethod();
-        string SupplierID;
         private string poID;
         private OperationMode _mode;
-        private string ProductID;
-        private string OrderQuantity;
         public event EventHandler OperationCompleted;
         private bool dragging = false;
         private Point dragCursorPoint;
         private Point dragFormPoint;
+        private DataTable dt;
 
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
@@ -82,13 +82,12 @@ namespace ITP4519M
             supplierBox.DisplayMember = "SupplierCompanyName";
             supplierBox.ValueMember = "SupplierID";
             quantityAlertlbl.Visible = false;
-            
+
         }
         private void CreatePurchaseOrder_Load(object sender, EventArgs e)
         {
             IntPtr handle = CreateRoundRectRgn(0, 0, Width, Height, 40, 40);
             Region = System.Drawing.Region.FromHrgn(handle);
-
             switch (_mode)
             {
                 case OperationMode.View:
@@ -156,59 +155,6 @@ namespace ITP4519M
             }
         }
 
-        /* public void purchaseOrderView(string poID)
-         {
-             this.poID = poID;
-
-             try
-             {
-                 // 获取采购订单详细信息
-                 var orderDetails = programMethod.GetPurchaseOrderDetails(poID);
-                 if (orderDetails != null)
-                 {
-                     // 填充订单基本信息
-                     supplierBox.Text = orderDetails.SupplierCompanyName;
-                     SupplierID = orderDetails.SupplierID;
-                     supplierProductBox.Text = orderDetails.ProductName;
-                     quanBox.Text = orderDetails.OrderQuantity;
-                     costPriceBox.Text = orderDetails.TotalPrice;
-
-                     // 清空现有的 ListView 项
-                     purchaseOrderItemsListView.Items.Clear();
-
-                     // 获取采购订单项
-                     var purchaseOrderItems = programMethod.GetPurchaseOrderItems(poID);
-
-                     // 添加新的 ListView 项
-                     foreach (var item in purchaseOrderItems)
-                     {
-                         // 获取产品详细信息
-                         var productDetails = programMethod.getProductDetails(item.ProductID);
-
-                         ListViewItem listViewItem = new ListViewItem(new string[]
-                         {
-                     item.ProductID,
-                     productDetails.ProductName,
-                     item.OrderQuantity.ToString(),
-                     item.UnitPrice.ToString("F2"),
-                     item.TotalPrice.ToString("F2")
-                         });
-                         purchaseOrderItemsListView.Items.Add(listViewItem);
-                     }
-                 }
-                 else
-                 {
-                     MessageBox.Show("Order details not found.");
-                 }
-             }
-             catch (Exception ex)
-             {
-                 MessageBox.Show("An error occurred: " + ex.Message);
-             }
-         }*/
-
-
-
         private void LoadProductsBySupplier(string supplierID)
         {
             List<ProductDetails> products = programMethod.GetProductsBySupplier(supplierID);
@@ -231,6 +177,16 @@ namespace ITP4519M
         {
             try
             {
+                if (purchaseOrderItemsListView.Items.Count <= 0)
+                {
+                    errorlbl1.Visible = true;
+                    return;
+                }
+                else
+                {
+                    errorlbl1.Visible = false;
+                }
+
                 // Collect ProductID, OrderQuantity, UnitPrice, and TotalPrice from ListView
                 List<PurchaseOrder> orders = new List<PurchaseOrder>();
                 foreach (ListViewItem item in purchaseOrderItemsListView.Items)
@@ -252,10 +208,11 @@ namespace ITP4519M
                 // Save each PurchaseOrder
                 foreach (var order in orders)
                 {
-                     purID = programMethod.CreatePurchaseOrder(order);
+                    purID = programMethod.CreatePurchaseOrder(order);
                 }
 
-                MessageBox.Show("Purchase Order " + purID +  " Saved Successfully");
+                MessageBox.Show("Purchase Order " + purID + " Saved Successfully");
+                OperationCompleted?.Invoke(sender, e);
                 clearForm();
 
             }
@@ -370,20 +327,138 @@ namespace ITP4519M
 
         private void caculatorbtn_Click(object sender, EventArgs e)
         {
-
-            DataTable dt = programMethod.getOutstandingProductQuantityForPO();
-            string text = "";
-
-            for (int i = 0; i < dt.Rows.Count; i++)
+            
+            panel1.Visible = true;
+            POCaculatorbtn.Visible = true;
+            errorlbl1.Visible = false;
+            dt = programMethod.getOutstandingProductQuantityForPO();
+            POProductData.DataSource = dt;
+            Font boldFont = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            poalertlbl.Visible = true ;
+            foreach (DataGridViewRow row in POProductData.Rows)
             {
+                row.Cells["PO_Quantity"].Style.Font = boldFont;
+                DataGridViewCell QuantityCell = row.Cells["FollowUpQuantity"];
+                string qty = QuantityCell.Value?.ToString();
+                DataGridViewCell QISCell = row.Cells["QuantityInStock"];
+                string QIS = QISCell.Value?.ToString();
+                DataGridViewCell ReOrderCell = row.Cells["ReOrderQty"];
+                string reOrderQty = ReOrderCell.Value?.ToString();
+                double result = double.Parse(reOrderQty) * 0.001;
+                int resultInt = (int)result;
+                if(resultInt >= 0 && resultInt <= 1)
+                {
+                    resultInt = 1;
+                }
+                
+                if( int.Parse(QIS) >= int.Parse(reOrderQty) - resultInt && int.Parse(QIS) < int.Parse(reOrderQty))
+                {
+                    QuantityCell.Style.ForeColor = Color.Blue;
+                    QuantityCell.Style.Font = boldFont;
+                    continue;
+                }
 
-                text = text + dt.Rows[i]["SupplierID"].ToString() + " " + dt.Rows[i]["ProductID"].ToString() + " " + dt.Rows[i]["FollowUpQuantity"].ToString() + "\n";
+
+                if (qty != null)
+                {
+                    switch (qty)
+                    {
+                        case "0":
+                            QuantityCell.Style.ForeColor = Color.Red;
+                            QuantityCell.Style.Font = boldFont;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+            }
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            try
+            {
+                if (keyData == Keys.Enter)
+                {
+                    if (this.POProductData.ContainsFocus)
+                    {
+                        this.POProductData.EndEdit();
+                        this.POProductData.CurrentRow.Cells["PO_Quantity"].Value = int.Parse(this.POProductData.CurrentRow.Cells["PO_Quantity"].Value.ToString()) + int.Parse(this.POProductData.CurrentRow.Cells["FollowUpQuantity"].Value.ToString());
+                        return true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //   POProductData.CurrentRow.Cells["FollowUpQuantity"].Style.ForeColor = Color.Black;
+                errorlbl.Visible = true;
+
             }
 
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
 
-            MessageBox.Show(text, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        private void CreatePurchaseOrder_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
+
+        private void POCaculatorbtn_Click(object sender, EventArgs e)
+        {
             string purID = "";
+            string FirstAndLastID = "";
+            //for (int i = 0; i < dt.Rows.Count; i++)
+            //{
+            //    if (i != dt.Rows.Count - 1)
+            //    {
+            //        if(i != 0)
+            //        {
+            //            if (dt.Rows[i]["SupplierID"].ToString() == dt.Rows[i + 1]["SupplierID"].ToString())
+            //            {
+            //                purID = programMethod.CreatePurchaseOrder(purID, dt.Rows[i]["SupplierID"].ToString(), dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["Total"].ToString());
+            //            }
+            //            else
+            //            {
+            //                programMethod.CreatePurchaseOrder("", dt.Rows[i]["SupplierID"].ToString(), dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["Total"].ToString());
+            //            }
 
+            //        }
+            //        else
+            //        {
+            //            if (dt.Rows[i]["SupplierID"].ToString() == dt.Rows[i + 1]["SupplierID"].ToString())
+            //            {
+            //                purID = programMethod.CreatePurchaseOrder(purID, dt.Rows[i]["SupplierID"].ToString(), dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["Total"].ToString());
+            //                FirstAndLastID = purID;
+
+            //            }
+            //            else 
+            //            {
+            //                FirstAndLastID = programMethod.CreatePurchaseOrder("", dt.Rows[i]["SupplierID"].ToString(), dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["Total"].ToString());
+            //            }
+            //        }
+
+            //    }
+            //    else
+            //    {
+            //        //Last Time
+            //        if (dt.Rows[i]["SupplierID"].ToString() == dt.Rows[i - 1]["SupplierID"].ToString())
+            //        {
+            //            FirstAndLastID = FirstAndLastID + " To " + programMethod.CreatePurchaseOrder(purID, dt.Rows[i]["SupplierID"].ToString(), dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["Total"].ToString());
+            //           // purID = "";
+
+
+            //        }
+            //        else
+            //        {
+            //            FirstAndLastID = FirstAndLastID + " To " + programMethod.CreatePurchaseOrder("", dt.Rows[i]["SupplierID"].ToString(), dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["Total"].ToString());
+            //        }
+            //    }
+            //}
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -391,47 +466,140 @@ namespace ITP4519M
                 {
                     if (dt.Rows[i]["SupplierID"].ToString() == dt.Rows[i + 1]["SupplierID"].ToString())
                     {
-                        purID = programMethod.CreatePurchaseOrder(purID, dt.Rows[i]["SupplierID"].ToString(), dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["FollowUpQuantity"].ToString());
+                        purID = programMethod.CreatePurchaseOrder(purID, dt.Rows[i]["SupplierID"].ToString(), dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["PO_Quantity"].ToString());
+
                     }
                     else if (i != 0)
                     {
                         if (dt.Rows[i]["SupplierID"].ToString() == dt.Rows[i - 1]["SupplierID"].ToString())
                         {
-                            programMethod.CreatePurchaseOrder(purID, dt.Rows[i]["SupplierID"].ToString(), dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["FollowUpQuantity"].ToString());
+                            programMethod.CreatePurchaseOrder(purID, dt.Rows[i]["SupplierID"].ToString(), dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["PO_Quantity"].ToString());
                             purID = "";
                         }
                         else
                         {
-                            programMethod.CreatePurchaseOrder("", dt.Rows[i]["SupplierID"].ToString(), dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["FollowUpQuantity"].ToString());
+                            programMethod.CreatePurchaseOrder("", dt.Rows[i]["SupplierID"].ToString(), dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["PO_Quantity"].ToString());
                         }
-                         
+
                     }
                     else
                     {
-                        programMethod.CreatePurchaseOrder("", dt.Rows[i]["SupplierID"].ToString(), dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["FollowUpQuantity"].ToString());
+                        FirstAndLastID = programMethod.CreatePurchaseOrder("", dt.Rows[i]["SupplierID"].ToString(), dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["PO_Quantity"].ToString());
+
                     }
 
                 }
                 else
                 {
                     //Last Time
-                    if (dt.Rows[i]["SupplierID"].ToString() == dt.Rows[i - 1]["SupplierID"].ToString() && i != 0)
+                    if (dt.Rows[i]["SupplierID"].ToString() == dt.Rows[i - 1]["SupplierID"].ToString())
                     {
-                        programMethod.CreatePurchaseOrder(purID, dt.Rows[i]["SupplierID"].ToString(), dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["FollowUpQuantity"].ToString());
-                        purID = "";
-
+                        FirstAndLastID = FirstAndLastID + " To " + programMethod.CreatePurchaseOrder(purID, dt.Rows[i]["SupplierID"].ToString(), dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["PO_Quantity"].ToString());
+                        // purID = "";
+                    }
+                    else
+                    {
+                        FirstAndLastID = FirstAndLastID + " To " + programMethod.CreatePurchaseOrder("", dt.Rows[i]["SupplierID"].ToString(), dt.Rows[i]["ProductID"].ToString(), dt.Rows[i]["PO_Quantity"].ToString());
                     }
                 }
-            } 
-        } 
-        
-        
+            }
+            MessageBox.Show("Purchase Order Sucessfully Created # " + FirstAndLastID);
+        }
 
-        private void CreatePurchaseOrder_KeyDown(object sender, KeyEventArgs e)
+        private void POProductData_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.KeyCode == Keys.Escape)
+            try
             {
-                this.Close();
+
+                if (int.Parse(POProductData.Rows[e.RowIndex].Cells[5].Value.ToString()) < 0)
+                {
+                    Font boldFont = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+
+                    POProductData.Rows[e.RowIndex].Cells[5].Style.ForeColor = Color.Red;
+                    errorlbl.Visible = true;
+                    return;
+
+                }
+                else
+                {
+                    POProductData.Rows[e.RowIndex].Cells[5].Style.ForeColor = Color.Black;
+                    errorlbl.Visible = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                POProductData.Rows[e.RowIndex].Cells[5].Style.ForeColor = Color.Red;
+                errorlbl.Visible = true;
+            }
+        }
+
+        private void POProductData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (POProductData.Columns[e.ColumnIndex].Name != "FollowUpQuantity")
+            {
+                POProductData.Columns[e.ColumnIndex].ReadOnly = true;
+            }
+        }
+
+        private void POProductData_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow Data = this.POProductData.CurrentRow;
+            if (Data != null && Data.Index >= 0 && Data.Index < POProductData.Rows.Count)
+            {
+                this.POProductData.Rows.Remove(Data);
+            }
+            dt.AcceptChanges();
+            Font boldFont = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            foreach (DataGridViewRow row in POProductData.Rows)
+            {
+                DataGridViewCell QuantityCell = row.Cells["FollowUpQuantity"];
+                string qty = QuantityCell.Value?.ToString();
+                row.Cells["PO_Quantity"].Style.Font = boldFont;
+
+                if (qty != null)
+                {
+                    switch (qty)
+                    {
+                        case "0":
+                            QuantityCell.Style.ForeColor = Color.Red;
+                            QuantityCell.Style.Font = boldFont;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+            }
+            SetRowHeights(POProductData, 12);
+
+
+        }
+
+        private void pobackbtn_Click(object sender, EventArgs e)
+        {
+            panel1.Visible = false;
+            poalertlbl.Visible = false;
+            POCaculatorbtn.Visible = false;
+        }
+
+        private void POProductData_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            POProductData.Columns[1].Width = 70;
+            POProductData.Columns[3].Width = 120;
+            POProductData.Columns[5].Width = 120;
+            SetRowHeights(POProductData,12);
+            if (POProductData.Rows.Count > 0)
+            {
+                POProductData.Rows[0].Selected = false;
+            }
+        }
+
+        public void SetRowHeights(DataGridView Data, int pageSize)
+        {
+            foreach (DataGridViewRow row in Data.Rows)
+            {
+                row.Height = (Data.ClientRectangle.Height - Data.ColumnHeadersHeight) / pageSize;
             }
         }
     }

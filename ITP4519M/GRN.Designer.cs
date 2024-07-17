@@ -1,4 +1,6 @@
-﻿namespace ITP4519M
+﻿using static ProgramMethod.ProgramMethod;
+
+namespace ITP4519M
 {
     partial class GRN
     {
@@ -34,7 +36,7 @@
             label12 = new Label();
             grnCreatebtn = new Button();
             deliveryClearbtn = new Button();
-            grnDateTimePicker = new DateTimePicker();
+            grnDateTimePicker = new BorderDateTimePicker();
             CloseButton = new Button();
             grnerrorlbl = new Label();
             grnProductData = new DataGridView();
@@ -45,6 +47,7 @@
             ReceivedQty = new DataGridViewTextBoxColumn();
             grnPOIDbox = new ComboBox();
             errorlbl = new Label();
+            orderDate = new Label();
             ((System.ComponentModel.ISupportInitialize)grnProductData).BeginInit();
             SuspendLayout();
             // 
@@ -118,11 +121,13 @@
             // 
             // grnDateTimePicker
             // 
+            grnDateTimePicker.BorderColor = Color.Black;
             grnDateTimePicker.Location = new Point(271, 510);
             grnDateTimePicker.Margin = new Padding(3, 4, 3, 4);
             grnDateTimePicker.Name = "grnDateTimePicker";
             grnDateTimePicker.Size = new Size(265, 27);
             grnDateTimePicker.TabIndex = 28;
+            grnDateTimePicker.ValueChanged += grnDateTimePicker_ValueChanged;
             // 
             // CloseButton
             // 
@@ -144,7 +149,7 @@
             grnerrorlbl.AutoSize = true;
             grnerrorlbl.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             grnerrorlbl.ForeColor = Color.Red;
-            grnerrorlbl.Location = new Point(234, 563);
+            grnerrorlbl.Location = new Point(234, 579);
             grnerrorlbl.Name = "grnerrorlbl";
             grnerrorlbl.RightToLeft = RightToLeft.No;
             grnerrorlbl.Size = new Size(243, 28);
@@ -224,12 +229,26 @@
             errorlbl.Text = "Please enter a valid number.";
             errorlbl.Visible = false;
             // 
+            // orderDate
+            // 
+            orderDate.AutoSize = true;
+            orderDate.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            orderDate.ForeColor = Color.Red;
+            orderDate.Location = new Point(271, 543);
+            orderDate.Margin = new Padding(5, 0, 5, 0);
+            orderDate.Name = "orderDate";
+            orderDate.Size = new Size(204, 20);
+            orderDate.TabIndex = 106;
+            orderDate.Text = "Please select a valid date.";
+            orderDate.Visible = false;
+            // 
             // GRN
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(690, 771);
+            Controls.Add(orderDate);
             Controls.Add(errorlbl);
             Controls.Add(grnPOIDbox);
             Controls.Add(grnProductData);
@@ -265,7 +284,7 @@
         private Label label12;
         private Button grnCreatebtn;
         private Button deliveryClearbtn;
-        private DateTimePicker grnDateTimePicker;
+        private ProgramMethod.ProgramMethod.BorderDateTimePicker grnDateTimePicker;
         private Button CloseButton;
         private Label grnerrorlbl;
         private DataGridView grnProductData;
@@ -276,5 +295,6 @@
         private DataGridViewTextBoxColumn OrderQuantity;
         private DataGridViewTextBoxColumn WareHouse;
         private DataGridViewTextBoxColumn ReceivedQty;
+        private Label orderDate;
     }
 }

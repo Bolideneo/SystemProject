@@ -20,6 +20,7 @@ namespace ITP4519M
         private Point dragCursorPoint;
         private Point dragFormPoint;
         private CheckBox HeaderCheckBox;
+        public event EventHandler OperationCompleted;
 
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
@@ -223,6 +224,7 @@ namespace ITP4519M
             if (programMethod.createOrderAssembly(orderItemdata, orderAccemblyOrderItemdata, orderID) && accemblyerrorlbl.Visible != true)
             {
                 MessageBox.Show("Order Pick Up Successfully");
+                OperationCompleted?.Invoke(sender, e);
                 this.Close();
             }
             else
@@ -423,7 +425,7 @@ namespace ITP4519M
             {
                 for (int i = 0; i < orderItemdata.Rows.Count; i++)
                 {
-                    for (int j = 1; j < orderItemdata.Rows.Count; j++)
+                    for (int j = 0; j < orderItemdata.Rows.Count; j++)
                     {
                         if (i == j)
                             continue;

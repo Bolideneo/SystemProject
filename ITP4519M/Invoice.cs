@@ -39,42 +39,52 @@ namespace ITP4519M
 
         private void Invoice_Load(object sender, EventArgs e)
         {
-            programMethod = new ProgramMethod.ProgramMethod();
-            DataTable OrderItem = programMethod.getOrderItemDetailforDeliveryANDInvoice(deliveryID);
-            DataTable orderDetails = programMethod.getOrderDetails(orderID);
-            InvoiceInvoiceDatelbl.Text = IssueDate;
-            InvoiceOrderIDlbl.Text = orderID;
-            InvoiceDealerIDlbl.Text = dealerID;
 
-            InvoiceBillingAddresslbl.Text = orderDetails.Rows[0]["InvoiceAddress"].ToString();
-            InvoiceAddresslbl.Text = orderDetails.Rows[0]["DeliveryAddress"].ToString();
-            InvoiceOrderDatelbl.Text = orderDetails.Rows[0]["OrderDate"].ToString();
-            InvoiceDeliveryDatelbl.Text = OrderItem.Rows[0]["DeliveryDate"].ToString();
-
-            for (int i = 0; i < OrderItem.Rows.Count; i++)
+            try
             {
+                programMethod = new ProgramMethod.ProgramMethod();
+                DataTable OrderItem = programMethod.getOrderItemDetailforDeliveryANDInvoice(deliveryID);
+                DataTable orderDetails = programMethod.getOrderDetails(orderID);
+                InvoiceInvoiceDatelbl.Text = IssueDate;
+                InvoiceOrderIDlbl.Text = orderID;
+                InvoiceDealerIDlbl.Text = dealerID;
+                InvoiceLabel1.Text = "Invoice #" + invoiceID;
+                invoicesalespersonlbl.Text = programMethod.getInvoiceSalesPerson(invoiceID);
 
-                float temp = float.Parse(OrderItem.Rows[i]["Price"].ToString()) / float.Parse(OrderItem.Rows[i]["OrderedQuantity"].ToString()) * float.Parse(OrderItem.Rows[i]["DeliveryQuantity"].ToString());
+                InvoiceBillingAddresslbl.Text = orderDetails.Rows[0]["InvoiceAddress"].ToString();
+                InvoiceAddresslbl.Text = orderDetails.Rows[0]["DeliveryAddress"].ToString();
+                InvoiceOrderDatelbl.Text = orderDetails.Rows[0]["OrderDate"].ToString();
+                InvoiceDeliveryDatelbl.Text = OrderItem.Rows[0]["DeliveryDate"].ToString();
 
-                float unitprice;
-                if ((int.Parse(OrderItem.Rows[0]["Discount"].ToString())) == 100)
+                for (int i = 0; i < OrderItem.Rows.Count; i++)
                 {
-                    unitprice = temp / int.Parse(OrderItem.Rows[i]["DeliveryQuantity"].ToString());
-                }
-                else
-                {
-                    unitprice = temp / float.Parse(OrderItem.Rows[i]["DeliveryQuantity"].ToString()) * 100 / (100 - int.Parse(OrderItem.Rows[0]["Discount"].ToString()));
-                }
-                this.InvoiceFormData.Rows.Add(OrderItem.Rows[i]["ProductID"].ToString(), OrderItem.Rows[i]["ProductName"].ToString(), OrderItem.Rows[i]["DeliveryQuantity"].ToString(), unitprice.ToString(), temp.ToString(), OrderItem.Rows[0]["Discount"].ToString());
-            }
 
-            InvoiceTotalPricelbl.Text = "CNY¥" + orderDetails.Rows[0]["TotalPrice"].ToString();
-            float subtoal = 0;
-            for (int j = 0; j < InvoiceFormData.Rows.Count; j++)
-            {
-                subtoal = subtoal + float.Parse(InvoiceFormData.Rows[j].Cells["Total"].Value.ToString());
+                    float temp = float.Parse(OrderItem.Rows[i]["Price"].ToString()) / float.Parse(OrderItem.Rows[i]["OrderedQuantity"].ToString()) * float.Parse(OrderItem.Rows[i]["DeliveryQuantity"].ToString());
+
+                    float unitprice;
+                    if ((int.Parse(OrderItem.Rows[0]["Discount"].ToString())) == 100)
+                    {
+                        unitprice = temp / int.Parse(OrderItem.Rows[i]["DeliveryQuantity"].ToString());
+                    }
+                    else
+                    {
+                        unitprice = temp / float.Parse(OrderItem.Rows[i]["DeliveryQuantity"].ToString()) * 100 / (100 - int.Parse(OrderItem.Rows[0]["Discount"].ToString()));
+                    }
+                    this.InvoiceFormData.Rows.Add(OrderItem.Rows[i]["ProductID"].ToString(), OrderItem.Rows[i]["ProductName"].ToString(), OrderItem.Rows[i]["DeliveryQuantity"].ToString(), unitprice.ToString(), temp.ToString(), OrderItem.Rows[0]["Discount"].ToString());
+                }
+
+                InvoiceTotalPricelbl.Text = "CNY¥" + orderDetails.Rows[0]["TotalPrice"].ToString();
+                float subtoal = 0;
+                for (int j = 0; j < InvoiceFormData.Rows.Count; j++)
+                {
+                    subtoal = subtoal + float.Parse(InvoiceFormData.Rows[j].Cells["Total"].Value.ToString());
+                }
+                InvoicesubTotallbl.Text = "CNY¥" + subtoal.ToString();
+            }catch (Exception ex) { 
+                    
+                
             }
-            InvoicesubTotallbl.Text = "CNY¥" + subtoal.ToString();
+           
         }
 
         private void invoiceExitbtn_Click(object sender, EventArgs e)

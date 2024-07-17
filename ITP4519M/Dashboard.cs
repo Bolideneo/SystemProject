@@ -27,6 +27,7 @@ using System.Security.Policy;
 using System.Net.NetworkInformation;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Globalization;
+using ZstdSharp.Unsafe;
 
 
 
@@ -131,6 +132,7 @@ namespace ITP4519M
         private string poID;
         private string[] array;
         private bool isDealerDVG;
+        private bool isOrderFilter = false;
         private int PageSize = 5;
         private int index = -1;
         private int index2 = -1;
@@ -483,12 +485,7 @@ namespace ITP4519M
             CalculateTotalPages("Order");
             ShowPanel(orderpnl);
             orderdata.DataSource = programMethod.GetCurrentRecords("Order", OrderPageIndex, OrderPgSize);
-
-            orderIndexlbl.Text = "01" + " - " + OrderPgSize.ToString() + " of " + OrderRowCount;
-            //  orderdata.DataSource = programMethod.orderDateFilter("2024-06-03", "2024-06-18");
-            // FirstpageBtnClick(orderdata, "Order", OrderPgSize, OrderPageIndex, orderIndexlbl, OrderRowCount);
-            orderdata.Rows[0].Selected = false;
-            SetRowHeights(orderdata, OrderPgSize);
+            orderStatusCombox.SelectedIndex = -1;
             string[] MinDate = programMethod.getOrderMinAndMaxDate();
             orderdateTimePicker1.MinDate = DateTime.Parse(MinDate[0]);
             orderdateTimePicker1.MaxDate = DateTime.Parse(MinDate[1]);
@@ -507,16 +504,6 @@ namespace ITP4519M
             orderCancelbox.Text = array[2];
             orderActivebox.Text = array[3];
         }
-
-        private void orderReportLabelinfo()
-        {
-            string[] array = programMethod.orderLabelinfo();
-            orderAllbox.Text = array[0];
-            orderCompletedlbl.Text = array[1];
-            orderCancelbox.Text = array[2];
-            orderActivebox.Text = array[3];
-        }
-
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
@@ -544,7 +531,6 @@ namespace ITP4519M
             stockData.Rows[0].Selected = false;
             SetRowHeights(stockData, StockPgSize);
             StockpageNumlbl.Text = "1" + " - " + StockPgSize + " of " + StockRowCount;
-            StockLevelBoldAndColor();
 
         }
 
@@ -647,7 +633,7 @@ namespace ITP4519M
             lastClickedButton = (Button)sender;
             lastClickedButton.ForeColor = Color.Gray;
             ShowPanel(outstandingOrderpnl);
-            outstandingdata.DataSource = programMethod.GetOutstandingCurrentRecords(outstandingPageIndex, outstandingPgSize);;
+            outstandingdata.DataSource = programMethod.GetOutstandingCurrentRecords(outstandingPageIndex, outstandingPgSize); ;
             oustandingPagelbl.Text = (outstandingPgSize * outstandingPageIndex - (outstandingPgSize - 1)) + " - " + (outstandingPgSize * outstandingPageIndex) + " of " + OutstandingRowCount;
 
 
@@ -779,6 +765,7 @@ namespace ITP4519M
         {
             CreateOrder createOrder = new CreateOrder(OperationMode.New);
             createOrder.CurrentUserIDAndName(LoginUserID, LoginUserName);
+            createOrder.OperationCompleted += CreateOrderFormOperationCompleted;
             createOrder.ShowDialog();
         }
 
@@ -793,6 +780,7 @@ namespace ITP4519M
             {
                 OrderDetailsForViewAndEdit salesOrder = new OrderDetailsForViewAndEdit(OperationMode.Edit);
                 salesOrder.orderEdit(orderID, dealerID);
+                salesOrder.OperationCompleted += CreateOrderFormOperationCompleted;
                 salesOrder.ShowDialog();
             }
 
@@ -847,7 +835,8 @@ namespace ITP4519M
 
             ShowPanel(logpnl);
             auditLogdata.DataSource = programMethod.overallLoginfo();
-            auditTypeStatusbox.SelectedIndex = 0;
+            auditTypeStatusbox.SelectedIndex = -1;
+            auditlogStatusbox.SelectedIndex = -1;
 
             string[] MinDate = programMethod.getMinAndMaxDateForAuditLog();
             logdateTimePicker1.MinDate = DateTime.Parse(MinDate[0]);
@@ -1279,13 +1268,19 @@ namespace ITP4519M
                 lastClickedButton.ForeColor = Color.White;
             }
 
+            DataTable dt = programMethod.getDeliveryStatusAndLableinfo();
+            deliveryStatusbox.DataSource = dt;
+            deliveryStatusbox.ValueMember = "DeliveryStatus";
+            deliveryStatusbox.SelectedIndex = -1;
+
+            deliveryShippinglbl.Text = dt.Rows[1]["Quantity"].ToString();
+            deliverydeliveredlbl.Text = dt.Rows[0]["Quantity"].ToString();
+
             lastClickedButton = (Button)sender;
             lastClickedButton.ForeColor = Color.Gray;
             CalculateTotalPages("Delivery");
             ShowPanel(deliverypnl);
             deliveryData.DataSource = programMethod.GetDeliveryCurrentRecords(DespatchPageIndex, DespatchPgSize);
-            deliveryData.Rows[0].Selected = false;
-            despatchPage.Text = "01" + " - " + DespatchPgSize.ToString() + " of " + DeliveryRowCount;
 
             string[] MinDate = programMethod.getDNMinAndMaxDate();
             deliverydateTimePicker1.MinDate = DateTime.Parse(MinDate[0]);
@@ -1366,13 +1361,33 @@ namespace ITP4519M
         private void grnAddNoteBtn_Click(object sender, EventArgs e)
         {
             GRN grn = new GRN(OperationMode.New);
+            grn.OperationCompleted += GRNFormOperationCompleted;
             grn.ShowDialog();
         }
 
         private void DeliveryFormOperationCompleted(object sender, EventArgs e)
         {
-            deliveryData.DataSource = programMethod.GetDeliveryCurrentRecords(DespatchPageIndex, DespatchPgSize);
+
             deliverybtn_Click(deliverybtn, EventArgs.Empty);
+        }
+
+
+        private void CreateOrderFormOperationCompleted(object sender, EventArgs e)
+        {
+
+            orderbtn_Click(orderbtn, EventArgs.Empty);
+        }
+
+
+
+        private void GRNFormOperationCompleted(object sender, EventArgs e)
+        {
+            GRNbtn_Click(GRNbtn, EventArgs.Empty);
+        }
+
+        private void OrderAccemblyFormOperationCompleted(object sender, EventArgs e)
+        {
+            OrderAccemblybtn_Click(OrderAccemblybtn, EventArgs.Empty);
         }
 
         private void productSearchBtn_Click(object sender, EventArgs e)
@@ -1389,7 +1404,16 @@ namespace ITP4519M
         {
             string formDate = deliverydateTimePicker1.Value.Date.ToString("yyyy-MM-dd");
             string toDate = deliverydateTimePicker2.Value.Date.ToString("yyyy-MM-dd");
-            deliveryData.DataSource = programMethod.searchDeliveryDate(formDate, toDate);
+
+            if (deliveryStatusbox.SelectedIndex == -1)
+                deliveryData.DataSource = programMethod.searchDeliveryDate(formDate, toDate);
+            else
+            {
+                string status = deliveryStatusbox.Text.ToString();
+                deliveryData.DataSource = programMethod.searchDeliveryDate(formDate, toDate, status);
+            }
+
+
         }
 
         private void newDealerbtn_Click(object sender, EventArgs e)
@@ -1519,15 +1543,16 @@ namespace ITP4519M
         private void deliveryclearbtn_Click_1(object sender, EventArgs e)
         {
 
-            string[] MinDate = programMethod.getDNMinAndMaxDate();
-            deliverydateTimePicker1.MinDate = DateTime.Parse(MinDate[0]);
-            deliverydateTimePicker1.MaxDate = DateTime.Parse(MinDate[1]);
-            deliverydateTimePicker1.Value = DateTime.Parse(MinDate[0]);
-            deliverydateTimePicker2.MinDate = DateTime.Parse(MinDate[0]);
-            deliverydateTimePicker2.MaxDate = DateTime.Parse(MinDate[1]);
-            deliverydateTimePicker2.Value = DateTime.Parse(MinDate[1]);
+            //string[] MinDate = programMethod.getDNMinAndMaxDate();
+            //deliverydateTimePicker1.MinDate = DateTime.Parse(MinDate[0]);
+            //deliverydateTimePicker1.MaxDate = DateTime.Parse(MinDate[1]);
+            //deliverydateTimePicker1.Value = DateTime.Parse(MinDate[0]);
+            //deliverydateTimePicker2.MinDate = DateTime.Parse(MinDate[0]);
+            //deliverydateTimePicker2.MaxDate = DateTime.Parse(MinDate[1]);
+            //deliverydateTimePicker2.Value = DateTime.Parse(MinDate[1]);
 
-            deliveryData.DataSource = programMethod.overallDeliveryinfo();
+            //deliveryData.DataSource = programMethod.overallDeliveryinfo();
+            deliverybtn_Click(deliverybtn, EventArgs.Empty);
         }
 
         private void deliveryAddbtn_Click_1(object sender, EventArgs e)
@@ -1850,6 +1875,7 @@ namespace ITP4519M
             else if (orderAccemblyData.Rows[orderAceemblyindex].Cells[3].Value.ToString() != "ALLProductPackaged")
             {
                 OrderAccembly orderAccembly = new OrderAccembly(OperationMode.New, orderAccemblyOrderID, orderAccemblyDealerID);
+                orderAccembly.OperationCompleted += OrderAccemblyFormOperationCompleted;
                 orderAccembly.ShowDialog();
 
             }
@@ -1868,7 +1894,6 @@ namespace ITP4519M
             CalculateTotalPages("PO");
             ShowPanel(POpnl);
             poData.DataSource = programMethod.GetPOCurrentRecords(POPageIndex, POPgSize);
-            poIndexlbl.Text = "01" + " - " + POPgSize.ToString() + " of " + programMethod.getPORowCount();
 
 
             string[] MinDate = programMethod.getMinAndMaxDateForPO();
@@ -1915,10 +1940,8 @@ namespace ITP4519M
         {
             this.StockPageIndex = StockTotalPage;
             this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockPageIndex, StockPgSize);
-            SetRowHeights(stockData, StockPgSize);
+
             StockpageNumlbl.Text = (StockPgSize * StockPageIndex - (StockPgSize - 1)) + " - " + StockRowCount + " of " + StockRowCount;
-            StockLevelBoldAndColor();
-            stockData.Rows[0].Selected = false;
         }
 
         private void sotckNextPagebtn_Click(object sender, EventArgs e)
@@ -1927,7 +1950,6 @@ namespace ITP4519M
             {
                 this.StockPageIndex++;
                 this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockPageIndex, StockPgSize);
-                SetRowHeights(stockData, StockPgSize);
 
                 if (StockPageIndex != StockTotalPage)
                 {
@@ -1938,8 +1960,6 @@ namespace ITP4519M
                     StockpageNumlbl.Text = (StockPgSize * StockPageIndex - (StockPgSize - 1)) + " - " + StockRowCount + " of " + StockRowCount;
                 }
             }
-            StockLevelBoldAndColor();
-            stockData.Rows[0].Selected = false;
         }
 
         private void sotckPrevPagebtn_Click(object sender, EventArgs e)
@@ -1948,21 +1968,16 @@ namespace ITP4519M
             {
                 this.StockPageIndex--;
                 this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockPageIndex, StockPgSize);
-                SetRowHeights(stockData, StockPgSize);
                 StockpageNumlbl.Text = (StockPgSize * StockPageIndex - (StockPgSize - 1)) + " - " + (StockPgSize * StockPageIndex) + " of " + StockRowCount;
 
             }
-            StockLevelBoldAndColor();
         }
 
         private void stockFirstPagebtn_Click(object sender, EventArgs e)
         {
             this.StockPageIndex = 1;
             this.stockData.DataSource = programMethod.GetStockCurrentRecords(this.StockPageIndex, StockPgSize);
-            SetRowHeights(stockData, StockPgSize);
             StockpageNumlbl.Text = "1" + " - " + StockPgSize + " of " + StockRowCount;
-            StockLevelBoldAndColor();
-            stockData.Rows[0].Selected = false;
         }
 
         private void label10_Click(object sender, EventArgs e)
@@ -2036,19 +2051,61 @@ namespace ITP4519M
             orderdata.DataSource = programMethod.searchOrder(orderStatusCombox.Text.Trim());
         }
 
+
         private void orderSearchbtn_Click(object sender, EventArgs e)
         {
             string formDate = orderdateTimePicker1.Value.Date.ToString("yyyy-MM-dd");
             string toDate = orderdateTimePicker2.Value.Date.ToString("yyyy-MM-dd");
+
+
+            isOrderFilter = true;
+            OrderPageIndex = 1;
+
+            switch (orderStatusCombox.SelectedIndex)
+            {
+                case 0:
+                    OrderRowCount = int.Parse(array[5]);
+                    OrderTotalPage = int.Parse(array[5]) / OrderPgSize;
+                    if (OrderRowCount % OrderPgSize > 0)
+                        OrderTotalPage += 1;
+                    break;
+
+                case 1:
+                    OrderRowCount = int.Parse(array[4]);
+                    OrderTotalPage = int.Parse(array[4]) / OrderPgSize;
+                    if (OrderRowCount % OrderPgSize > 0)
+                        OrderTotalPage += 1;
+                    break;
+
+                case 2:
+                    OrderRowCount = int.Parse(array[6]);
+                    OrderTotalPage = int.Parse(array[6]) / OrderPgSize;
+                    if (OrderRowCount % OrderPgSize > 0)
+                        OrderTotalPage += 1;
+                    break;
+
+                case 3:
+                    OrderRowCount = int.Parse(array[2]);
+                    OrderTotalPage = int.Parse(array[2]) / OrderPgSize;
+                    if (OrderRowCount % OrderPgSize > 0)
+                        OrderTotalPage += 1;
+                    break;
+
+                case 4:
+                    OrderRowCount = int.Parse(array[1]);
+                    OrderTotalPage = int.Parse(array[1]) / OrderPgSize;
+                    if (OrderRowCount % OrderPgSize > 0)
+                        OrderTotalPage += 1;
+                    break;
+            }
 
             if (orderStatusCombox.SelectedIndex == -1)
                 orderdata.DataSource = programMethod.orderDateFilter(formDate, toDate);
             else
             {
                 string status = orderStatusCombox.Text.ToString();
-                orderdata.DataSource = programMethod.orderDateStatusFilter(formDate, toDate, status);
+                orderdata.DataSource = programMethod.orderDateStatusFilterPagination(formDate, toDate, status, OrderPageIndex, OrderPgSize);
             }
-            SetRowHeights(orderdata, OrderPgSize);
         }
 
         private void orderClearbtn_Click(object sender, EventArgs e)
@@ -2066,7 +2123,7 @@ namespace ITP4519M
                 {
                     case DialogResult.Yes:
                         if (programMethod.cancelOrder(orderID))
-                            OrderLoad();
+                            orderbtn_Click(orderbtn, EventArgs.Empty);
                         break;
                     case DialogResult.No:
                         break;
@@ -2075,35 +2132,19 @@ namespace ITP4519M
 
         }
 
-
-        private void OrderLoad()
-        {
-            // orderdata.DataSource = programMethod.overallOrderinfo();
-            foreach (DataGridViewRow row in orderdata.Rows)
-            {
-                row.Height = (orderdata.ClientRectangle.Height - orderdata.ColumnHeadersHeight) / orderdata.Rows.Count;
-            }
-            orderdata.Rows[0].Selected = false;
-
-        }
-
         private void deliveryCompletebtn_Click(object sender, EventArgs e)
         {
             string deliveredDate = DeliverydeliveredDate.Value.Date.ToString("yyyy-MM-dd");
 
-            if (deliveryindex == -1)
+            if (deliveryindex == -1 || orderDate.Visible == true)
             {
-                MessageBox.Show("Please Select One Delivery");
-            }
-            else if (deliveredDate == "")
-            {
-                MessageBox.Show("Please Select Date");
+                orderDate.Visible = true;
                 return;
             }
             else
             {
                 programMethod.updateDeliveryStatus(DeliveryorderID, DeliverydeliveryID, deliveredDate);
-                MessageBox.Show("Save");
+                MessageBox.Show("Delivery ID #" + DeliverydeliveryID + " delivered successfully");
             }
         }
 
@@ -2131,6 +2172,9 @@ namespace ITP4519M
                 deliveryDeliveryIDlbl.Text = "Delivery ID : # " + DeliverydeliveryID.ToString();
                 deliveryShippingdatelbl.Text = "Placed on " + programMethod.getDeliveryDate(deliveryID);
                 DeliverydeliveredDate.MinDate = DateTime.Now.Date;
+                string[] dateTime = programMethod.getOrderDateForDelivery(DeliveryorderID);
+                //DeliverydeliveredDate.MinDate = DateTime.Parse(dateTime[0]);
+                DeliverydeliveredDate.MaxDate = DateTime.Parse(dateTime[1]);
 
             }
         }
@@ -2241,7 +2285,6 @@ namespace ITP4519M
         {
             this.POPageIndex = POTotalPage;
             this.poData.DataSource = programMethod.GetPOCurrentRecords(this.POPageIndex, POPgSize);
-            poIndexlbl.Text = (POPgSize * POPageIndex - (POPgSize - 1)) + " - " + PORowCount + " of " + PORowCount;
 
         }
 
@@ -2249,7 +2292,6 @@ namespace ITP4519M
         {
             this.POPageIndex = 1;
             poData.DataSource = programMethod.GetPOCurrentRecords(POPageIndex, POPgSize);
-            poIndexlbl.Text = "1" + " - " + POPgSize + " of " + PORowCount;
 
         }
 
@@ -2260,7 +2302,6 @@ namespace ITP4519M
                 this.POPageIndex--;
                 this.poData.DataSource = programMethod.GetPOCurrentRecords(this.POPageIndex, POPgSize);
             }
-            poIndexlbl.Text = (POPgSize * POPageIndex - (POPgSize - 1)) + " - " + (POPgSize * CurrentPageIndex) + " of " + PORowCount;
         }
 
         private void poNextPageBtn_Click(object sender, EventArgs e)
@@ -2271,15 +2312,6 @@ namespace ITP4519M
                     this.POPageIndex++;
                     this.poData.DataSource = programMethod.GetPOCurrentRecords(this.POPageIndex, POPgSize);
 
-                }
-
-                if (POPageIndex != POTotalPage)
-                {
-                    poIndexlbl.Text = (POPgSize * POPageIndex - (POPgSize - 1)) + " - " + (POPgSize * POPageIndex) + " of " + PORowCount;
-                }
-                else
-                {
-                    poIndexlbl.Text = (POPgSize * POPageIndex - (POPgSize - 1)) + " - " + PORowCount + " of " + PORowCount;
                 }
             }
         }
@@ -2313,6 +2345,10 @@ namespace ITP4519M
             reportOrderProductCategorybox.DisplayMember = "ProductCategory";
             orderReportdata.DataSource = programMethod.getOrderReport();
             DataTable dt = programMethod.getTopSellingProductReport();
+            foreach (var series in orderchart1.Series)
+            {
+                series.Points.Clear();
+            }
             for (int i = 0; i < 5; i++)
             {
                 orderchart1.Series["Order"].Points.AddXY(dt.Rows[i][0].ToString(), dt.Rows[i][1].ToString());
@@ -2642,7 +2678,7 @@ namespace ITP4519M
             string formDate = podateTimePicker1.Value.Date.ToString("yyyy-MM-dd");
             string toDate = podateTimePicker2.Value.Date.ToString("yyyy-MM-dd");
             poData.DataSource = programMethod.searchPODate(formDate, toDate);
-           
+
         }
 
         private void orderdateTimePicker2_ValueChanged(object sender, EventArgs e)
@@ -2802,11 +2838,6 @@ namespace ITP4519M
                 auditLogdata.DataSource = programMethod.auditLogDateStatusFilter(formDate, toDate, type, status);
             }
 
-            auditLogdata.Columns[0].Width = 100;
-            auditLogdata.Columns[1].Width = 70;
-            auditLogdata.Columns[2].Width = 110;
-            auditLogdata.Columns[3].Width = 95;
-            auditLogdata.Columns[4].Width = 580;
         }
 
 
@@ -2833,37 +2864,44 @@ namespace ITP4519M
                 stockSearchBox.Clear();
             }
 
-            //      stockSearchBox.Select(stockSearchBox.Text.Length, 0);
-            //stockSearchBox.SelectionStart = stockSearchBox.Text.Length;
-            //stockSearchBox.SelectionLength = 0;
 
         }
+
         private void orderNextPagebtn_Click_1(object sender, EventArgs e)
         {
             if (this.OrderPageIndex < this.OrderTotalPage)
             {
                 this.OrderPageIndex++;
-                this.orderdata.DataSource = programMethod.GetCurrentRecords("Order", this.OrderPageIndex, OrderPgSize);
-
-            }
-            SetRowHeights(orderdata, OrderPgSize);
-
-            if (OrderPageIndex != OrderTotalPage)
-            {
-                orderIndexlbl.Text = (OrderPgSize * OrderPageIndex - (OrderPgSize - 1)) + " - " + (OrderPgSize * OrderPageIndex) + " of " + OrderRowCount;
-            }
-            else
-            {
-                orderIndexlbl.Text = (OrderPgSize * OrderPageIndex - (OrderPgSize - 1)) + " - " + OrderRowCount + " of " + OrderRowCount;
+                if (isOrderFilter)
+                {
+                    string formDate = orderdateTimePicker1.Value.Date.ToString("yyyy-MM-dd");
+                    string toDate = orderdateTimePicker2.Value.Date.ToString("yyyy-MM-dd");
+                    string status = orderStatusCombox.Text.ToString();
+                    orderdata.DataSource = programMethod.orderDateStatusFilterPagination(formDate, toDate, status, OrderPageIndex, OrderPgSize);
+                }
+                else
+                {
+                    this.orderdata.DataSource = programMethod.GetCurrentRecords("Order", this.OrderPageIndex, OrderPgSize);
+                }
             }
         }
 
         private void orderLastPagebtn_Click_1(object sender, EventArgs e)
         {
             this.OrderPageIndex = OrderTotalPage;
-            this.orderdata.DataSource = programMethod.GetCurrentRecords("Order", this.OrderPageIndex, OrderPgSize);
-            SetRowHeights(orderdata, OrderPgSize);
-            orderIndexlbl.Text = (OrderPgSize * OrderPageIndex - (OrderPgSize - 1)) + " - " + OrderRowCount + " of " + OrderRowCount;
+
+            if (isOrderFilter)
+            {
+                string formDate = orderdateTimePicker1.Value.Date.ToString("yyyy-MM-dd");
+                string toDate = orderdateTimePicker2.Value.Date.ToString("yyyy-MM-dd");
+                string status = orderStatusCombox.Text.ToString();
+                orderdata.DataSource = programMethod.orderDateStatusFilterPagination(formDate, toDate, status, OrderPageIndex, OrderPgSize);
+            }
+            else
+            {
+                this.orderdata.DataSource = programMethod.GetCurrentRecords("Order", this.OrderPageIndex, OrderPgSize);
+            }
+
         }
 
         private void orderPrevPagebtn_Click_1(object sender, EventArgs e)
@@ -2871,19 +2909,34 @@ namespace ITP4519M
             if (this.OrderPageIndex > 1)
             {
                 this.OrderPageIndex--;
-                this.orderdata.DataSource = programMethod.GetCurrentRecords("Order", this.OrderPageIndex, OrderPgSize);
+                if (isOrderFilter)
+                {
+                    string formDate = orderdateTimePicker1.Value.Date.ToString("yyyy-MM-dd");
+                    string toDate = orderdateTimePicker2.Value.Date.ToString("yyyy-MM-dd");
+                    string status = orderStatusCombox.Text.ToString();
+                    orderdata.DataSource = programMethod.orderDateStatusFilterPagination(formDate, toDate, status, OrderPageIndex, OrderPgSize);
+                }
+                else
+                {
+                    this.orderdata.DataSource = programMethod.GetCurrentRecords("Order", this.OrderPageIndex, OrderPgSize);
+                }
             }
-            SetRowHeights(orderdata, OrderPgSize);
-            orderIndexlbl.Text = (OrderPgSize * OrderPageIndex - (OrderPgSize - 1)) + " - " + (OrderPgSize * OrderPageIndex) + " of " + OrderRowCount;
         }
 
         private void orderFirstPagebtn_Click_1(object sender, EventArgs e)
         {
             this.OrderPageIndex = 1;
-            this.orderdata.DataSource = programMethod.GetCurrentRecords("Order", this.OrderPageIndex, OrderPgSize);
-            SetRowHeights(orderdata, OrderPgSize);
-
-            orderIndexlbl.Text = "1" + " - " + OrderPgSize + " of " + OrderRowCount;
+            if (isOrderFilter)
+            {
+                string formDate = orderdateTimePicker1.Value.Date.ToString("yyyy-MM-dd");
+                string toDate = orderdateTimePicker2.Value.Date.ToString("yyyy-MM-dd");
+                string status = orderStatusCombox.Text.ToString();
+                orderdata.DataSource = programMethod.orderDateStatusFilterPagination(formDate, toDate, status, OrderPageIndex, OrderPgSize);
+            }
+            else
+            {
+                this.orderdata.DataSource = programMethod.GetCurrentRecords("Order", this.OrderPageIndex, OrderPgSize);
+            }
         }
 
         private void stockReOrderlbl_Click(object sender, EventArgs e)
@@ -2900,9 +2953,14 @@ namespace ITP4519M
         private void stockDangerlbl_Click(object sender, EventArgs e)
         {
             stockData.DataSource = programMethod.getStockDangerInfo();
-            stockData.Rows[0].Selected = false;
-            SetRowHeights(stockData, StockPgSize);
-            StockLevelBoldAndColor();
+            if (stockData != null)
+            {
+
+                stockData.Rows[0].Selected = false;
+                SetRowHeights(stockData, StockPgSize);
+                StockLevelBoldAndColor();
+            }
+
         }
 
         private void stockOutOfStocklbl_Click(object sender, EventArgs e)
@@ -2923,9 +2981,15 @@ namespace ITP4519M
 
         private void orderClearbtn_Click_1(object sender, EventArgs e)
         {
+            isOrderFilter = false;
+            OrderPageIndex = 1;
+            orderStatusCombox.SelectedIndex = -1;
+            OrderRowCount = int.Parse(array[0]);
+            OrderTotalPage = OrderRowCount / OrderPgSize;
+            if (OrderRowCount % OrderPgSize > 0)
+                OrderTotalPage += 1;
             orderdata.DataSource = programMethod.GetCurrentRecords("Order", OrderPageIndex, OrderPgSize);
-            orderdata.Rows[0].Selected = false;
-            SetRowHeights(orderdata, OrderPgSize);
+
         }
 
         private void orderAccemblyClearbtn_Click(object sender, EventArgs e)
@@ -3219,7 +3283,6 @@ namespace ITP4519M
             this.DespatchPageIndex = 1;
             this.deliveryData.DataSource = programMethod.GetDeliveryCurrentRecords(this.DespatchPageIndex, DespatchPgSize);
 
-            despatchPage.Text = "1" + " - " + DespatchPgSize + " of " + DeliveryRowCount;
         }
 
         private void despatchPrevbtn_Click(object sender, EventArgs e)
@@ -3229,7 +3292,6 @@ namespace ITP4519M
                 this.DespatchPageIndex--;
                 this.deliveryData.DataSource = programMethod.GetDeliveryCurrentRecords(this.DespatchPageIndex, DespatchPgSize);
             }
-            despatchPage.Text = (DespatchPgSize * DespatchPageIndex - (DespatchPgSize - 1)) + " - " + (DespatchPgSize * DespatchPageIndex) + " of " + DeliveryRowCount;
         }
 
         private void despatchNextbtn_Click(object sender, EventArgs e)
@@ -3240,29 +3302,18 @@ namespace ITP4519M
                 this.deliveryData.DataSource = programMethod.GetDeliveryCurrentRecords(this.DespatchPageIndex, DespatchPgSize);
 
             }
-
-            if (DespatchPageIndex != DespatchTotalPage)
-            {
-                despatchPage.Text = (DespatchPgSize * DespatchPageIndex - (DespatchPgSize - 1)) + " - " + (DespatchPgSize * DespatchPageIndex) + " of " + DeliveryRowCount;
-            }
-            else
-            {
-                despatchPage.Text = (DespatchPgSize * DespatchPageIndex - (DespatchPgSize - 1)) + " - " + DeliveryRowCount + " of " + DeliveryRowCount;
-            }
         }
 
         private void despatchLastbtn_Click(object sender, EventArgs e)
         {
             this.DespatchPageIndex = DespatchTotalPage;
             this.deliveryData.DataSource = programMethod.GetDeliveryCurrentRecords(this.DespatchPageIndex, DespatchPgSize);
-            despatchPage.Text = (DespatchPgSize * DespatchPageIndex - (DespatchPgSize - 1)) + " - " + DeliveryRowCount + " of " + DeliveryRowCount;
         }
 
         private void invoiceLastPagebtn_Click(object sender, EventArgs e)
         {
             this.InvoicePageIndex = InvoiceTotalPage;
             this.invoiceData.DataSource = programMethod.GetInvoiceCurrentRecords(this.InvoicePageIndex, InvoicePgSize);
-            invoiceIndexlbl.Text = (InvoicePgSize * InvoicePageIndex - (InvoicePgSize - 1)) + " - " + InvoiceRowCount + " of " + InvoiceRowCount;
         }
 
         private void invoicePrevPagebtn_Click(object sender, EventArgs e)
@@ -3272,7 +3323,6 @@ namespace ITP4519M
                 this.InvoicePageIndex--;
                 this.invoiceData.DataSource = programMethod.GetInvoiceCurrentRecords(this.InvoicePageIndex, InvoicePgSize);
             }
-            invoiceIndexlbl.Text = (InvoicePgSize * InvoicePageIndex - (InvoicePgSize - 1)) + " - " + (InvoicePgSize * InvoicePageIndex) + " of " + InvoiceRowCount;
         }
 
         private void invoiceFirstPagebtn_Click(object sender, EventArgs e)
@@ -3280,7 +3330,6 @@ namespace ITP4519M
             this.InvoicePageIndex = 1;
             this.invoiceData.DataSource = programMethod.GetInvoiceCurrentRecords(this.InvoicePageIndex, InvoicePgSize);
 
-            invoiceIndexlbl.Text = "1" + " - " + InvoicePgSize + " of " + InvoiceRowCount;
         }
 
         private void invoiceNextPagebtn_Click(object sender, EventArgs e)
@@ -3291,15 +3340,6 @@ namespace ITP4519M
                 this.invoiceData.DataSource = programMethod.GetInvoiceCurrentRecords(this.InvoicePageIndex, InvoicePgSize);
 
             }
-
-            if (InvoicePageIndex != InvoiceTotalPage)
-            {
-                invoiceIndexlbl.Text = (InvoicePgSize * InvoicePageIndex - (InvoicePgSize - 1)) + " - " + (InvoicePgSize * InvoicePageIndex) + " of " + InvoiceRowCount;
-            }
-            else
-            {
-                invoiceIndexlbl.Text = (InvoicePgSize * InvoicePageIndex - (InvoicePgSize - 1)) + " - " + InvoiceRowCount + " of " + InvoiceRowCount;
-            }
         }
 
         private void OrderStockReportButton_Click(object sender, EventArgs e)
@@ -3309,7 +3349,7 @@ namespace ITP4519M
 
         private void StockStockReportButton_Click(object sender, EventArgs e)
         {
-            //chart2
+            ShowPanel(StockReportpnl);
         }
 
         private void SearchStockReportButton_Click(object sender, EventArgs e)
@@ -3326,7 +3366,7 @@ namespace ITP4519M
 
         private void outstandingDeletebtn_Click(object sender, EventArgs e)
         {
-            if (outstandingIndex == -1) 
+            if (outstandingIndex == -1)
             {
                 MessageBox.Show("Please Select One Option");
             }
@@ -3383,7 +3423,7 @@ namespace ITP4519M
                 SetRowHeights(outstandingdata, outstandingPgSize);
             }
 
-            
+
 
         }
 
@@ -3391,6 +3431,9 @@ namespace ITP4519M
         {
             if (stockData.Rows.Count > 0)
             {
+
+                SetRowHeights(stockData, StockPgSize);
+                StockLevelBoldAndColor();
                 stockData.Rows[0].Selected = false;
             }
 
@@ -3402,18 +3445,20 @@ namespace ITP4519M
             if (orderdata.Rows.Count > 0)
             {
                 orderdata.Rows[0].Selected = false;
-
+                SetRowHeights(orderdata, OrderPgSize);
+                orderIndexlbl.Text = (OrderPgSize * (OrderPageIndex - 1) + 1) + " - " + ((OrderPageIndex - 1) * OrderPgSize + orderdata.RowCount) + " of " + OrderRowCount;
             }
+
         }
 
         private void deliveryData_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
 
-
             if (deliveryData.Rows.Count > 0)
             {
                 deliveryData.Rows[0].Selected = false;
                 SetRowHeights(deliveryData, DespatchPgSize);
+                despatchPage.Text = (DespatchPgSize * (DespatchPageIndex - 1) + 1) + " - " + ((DespatchPageIndex - 1) * DespatchPgSize + deliveryData.RowCount) + " of " + DeliveryRowCount;
             }
         }
 
@@ -3455,6 +3500,7 @@ namespace ITP4519M
             {
                 poData.Rows[0].Selected = false;
                 SetRowHeights(poData, POPgSize);
+                poIndexlbl.Text = (POPgSize * (POPageIndex - 1) + 1) + " - " + ((POPageIndex - 1) * POPgSize + poData.Rows.Count) + " of " + PORowCount;
             }
 
             poData.Columns[0].Width = 70;
@@ -3521,7 +3567,9 @@ namespace ITP4519M
             auditLogdata.Columns[1].Width = 70;
             auditLogdata.Columns[2].Width = 130;
             auditLogdata.Columns[3].Width = 130;
-            auditLogdata.Columns[4].Width = 580;
+            auditLogdata.Columns[4].Width = 510;
+            auditLogdata.Columns[5].Width = 130;
+
         }
         private void stockSearchBox_TextChanged(object sender, EventArgs e)
         {
@@ -3532,6 +3580,41 @@ namespace ITP4519M
             stockSearchBox.Select(selectionStart - lengthDif, 0);
         }
 
+        private void orderReportdata_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            if (orderReportdata != null)
+            {
+
+                orderReportdata.Rows[0].Selected = false;
+            }
+
+
+        }
+
+        private void DeliverydeliveredDate_ValueChanged(object sender, EventArgs e)
+        {
+
+            try
+            {
+
+                if (DeliverydeliveredDate.Value.DayOfWeek == DayOfWeek.Saturday || DeliverydeliveredDate.Value.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    DeliverydeliveredDate.BorderColor = Color.Red;
+                    orderDate.Visible = true;
+
+                }
+                else
+                {
+                    orderDate.Visible = false;
+                    DeliverydeliveredDate.BorderColor = Color.Black;
+                }
+            }
+            catch (Exception ex)
+            {
+                DeliverydeliveredDate.BorderColor = Color.Red;
+                orderDate.Visible = true;
+            }
+        }
     }
 }
     

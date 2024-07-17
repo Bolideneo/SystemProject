@@ -84,7 +84,7 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Verdana", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.Location = new Point(452, 9);
-            button1.Margin = new Padding(2, 2, 2, 2);
+            button1.Margin = new Padding(2);
             button1.Name = "button1";
             button1.Size = new Size(35, 37);
             button1.TabIndex = 82;
@@ -330,6 +330,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 2, 3, 2);
             Name = "SupplierContactForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "SupplierContactForm";
             Load += SupplierContactForm_Load;
             MouseDown += Dashboard_MouseDown;
